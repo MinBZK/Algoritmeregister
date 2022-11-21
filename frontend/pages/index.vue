@@ -1,3 +1,11 @@
 <template>
-  <h1>Index page</h1>
+  <Page>Home page index</Page>
 </template>
+
+<script setup>
+import Page from "@/components/Page.vue";
+
+definePageMeta({
+  title: "Home page",
+});
+</script>
