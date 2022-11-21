@@ -1,0 +1,15 @@
+.deploy:
+  image: harbor.cicd.s15m.nl/ocw-lsp-pub/library/helm-toolbox:latest
+  variables:
+    CHART_NAME: ""
+    NAMESPACE: ""
+    CLUSTER: "overheid-test3"
+  only:
+    - tags
+  environment:
+    name: ${CLUSTER}
+  script:
+    - PASSWORD_DECODED=$(echo ${HARBOR_ROBOT_SECRET} | base64 -d)
+    - echo ${PASSWORD_DECODED} | helm registry login -u ${HARBOR_ROBOT_NAME} harbor.cicd.s15m.nl --password-stdin
+    - helm upgrade -i ${CHART_NAME} oci://harbor.cicd.s15m.nl/ictu-devops-charts/${CHART_NAME} --version ${CI_COMMIT_TAG} --values ./deployment/helm/${CHART_NAME}/values-${NAMESPACE}.yaml --namespace=ictu-devops-${NAMESPACE}
+  when: manual
