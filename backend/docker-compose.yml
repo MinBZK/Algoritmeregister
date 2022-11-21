@@ -1,0 +1,59 @@
+version: "3.4"
+
+services:
+  db:
+    image: postgres:14-alpine
+    container_name: ${DEV_DOCKER_CONTAINER_NAME_PREFIX}_postgres_db
+    restart: always
+    volumes:
+      - ./dev_db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - ${POSTGRES_PORT}:5432
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+
+  dbgate:
+    image: dbgate/dbgate:alpine
+    container_name: ${DEV_DOCKER_CONTAINER_NAME_PREFIX}_dbgate
+    volumes:
+      - dbgate:/root/.dbgate
+    depends_on:
+      - db
+    ports:
+      - 8093:3000
+    environment:
+      # docs: https://dbgate.org/docs/env-variables.html
+      CONNECTIONS: 'CON1'
+      LABEL_CON1: 'Postgres'
+      SERVER_CON1: 'db'
+      USER_CON1: ${POSTGRES_USER}
+      PASSWORD_CON1: ${POSTGRES_PASSWORD}
+      PORT_CON1: 5432
+      ENGINE_CON1: postgres@dbgate-plugin-postgres
+
+  # pgadmin:
+  #   image: dpage/pgadmin4:6.2
+  #   container_name: ${DEV_DOCKER_CONTAINER_NAME_PREFIX}_pgadmin
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: dummy@admin.com
+  #     PGADMIN_DEFAULT_PASSWORD: dummy
+  #   volumes:
+  #     - pgadmin:/var/lib/pgadmin
+  #     - ./dev_db/pgadmin/servers.json:/pgadmin4/servers.json # preconfigured servers/connections
+  #     - ./dev_db/pgadmin/config_local.py:/pgadmin4/config_local.py
+  #     - ./dev_db/pgadmin/pgpass:/pgadmin4/pgpass      
+  #   ports:
+  #     - 5056:80
+  #   restart: unless-stopped
+
+
+volumes:
+  # pgadmin:
+  #   name: ${DEV_DOCKER_CONTAINER_NAME_PREFIX}_pgadmin
+  dbgate:
+    name: ${DEV_DOCKER_CONTAINER_NAME_PREFIX}_dbgate
+  postgres:
+    name: ${DEV_DOCKER_CONTAINER_NAME_PREFIX}_postgres

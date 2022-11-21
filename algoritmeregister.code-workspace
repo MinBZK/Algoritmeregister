@@ -5,7 +5,10 @@
 		},
 		{
 			"path": "frontend"
-		}
+		},
+		{
+			"path": "backend"
+		},
 	],
 	"settings": {}
 }
