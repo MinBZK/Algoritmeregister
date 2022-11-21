@@ -1,11 +1,14 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "frontend"
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "frontend"
+    }
+  ],
+  "settings": {
+    "prettier.enable": true,
+    "editor.formatOnSave": true
+  }
 }

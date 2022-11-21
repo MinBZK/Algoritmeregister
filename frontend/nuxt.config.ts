@@ -10,13 +10,13 @@ export default defineNuxtConfig({
       },
     },
   },
-  css: ["@/assets/styles/main.scss", "vuetify/lib/styles/main.sass"],
+  css: ['@/assets/styles/main.scss', 'vuetify/lib/styles/main.sass'],
   build: {
-    transpile: ["vuetify"],
+    transpile: ['vuetify'],
   },
   runtimeConfig: {
     app: {
-      apiBaseUrl: process.env.API_BASE_URL || "",
+      apiBaseUrl: process.env.API_BASE_URL || '',
     },
   },
-});
+})
