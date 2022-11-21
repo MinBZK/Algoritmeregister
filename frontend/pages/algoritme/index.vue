@@ -29,7 +29,7 @@
 
 <script setup>
 import Page from "@/components/Page.vue";
-import algoritme from "@/services/algoritme";
+import algoritmeService from "@/services/algoritme";
 
 definePageMeta({
   title: "Algoritmeoverzicht",
@@ -41,6 +41,5 @@ const keys = {
 };
 
 const columnKeys = Object.keys(keys);
-
-const algoritmes = await algoritme.getAll();
+const algoritmes = await algoritmeService.getAll();
 </script>

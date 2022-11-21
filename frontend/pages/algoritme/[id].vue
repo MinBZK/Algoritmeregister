@@ -1,17 +1,16 @@
 <template>
   <Page>
-    Algoritme
-    {{ data }}
+    {{ algoritme }}
   </Page>
 </template>
 
 <script setup>
 import Page from "@/components/Page.vue";
-import algoritme from "@/services/algoritme";
+import algoritmeService from "@/services/algoritme";
 
 const route = useRoute();
 const id = route.params.id;
-const data = await algoritme.getOne(id);
+const algoritme = await algoritmeService.getOne(id);
 
 definePageMeta({
   title: "Algoritme details",
