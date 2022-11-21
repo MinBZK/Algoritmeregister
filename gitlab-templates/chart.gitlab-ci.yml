@@ -1,0 +1,15 @@
+.chart:
+  stage: chart
+  variables:
+    CHART_NAME: ""
+  only:
+    - tags
+  image: harbor.cicd.s15m.nl/ocw-lsp-pub/library/helm-toolbox:latest
+  script:
+    - helm package ./deployment/helm/${CHART_NAME}/ --version ${CI_COMMIT_TAG}
+    - mkdir -p ./generated
+    - mv ./${CHART_NAME}-${CI_COMMIT_TAG}.tgz ./generated
+    - PASSWORD_DECODED=$(echo ${HARBOR_ROBOT_SECRET} | base64 -d)
+    - echo ${PASSWORD_DECODED} | helm registry login -u ${HARBOR_ROBOT_NAME} harbor.cicd.s15m.nl --password-stdin
+    - helm push ./generated/${CHART_NAME}-${CI_COMMIT_TAG}.tgz oci://harbor.cicd.s15m.nl/ictu-devops-charts
+  when: manual
