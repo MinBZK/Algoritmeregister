@@ -1,11 +1,13 @@
-<template>
-  <RijksoverheidHeaderVue title="Algoritmeregister" :pages="['algoritme']" />
-  <NuxtPage />
-</template>
-
 <script setup lang="ts">
-import RijksoverheidHeaderVue from "@/components/Header.vue";
+import RijksoverheidHeaderVue from '@/components/Header.vue'
 </script>
+
+<template>
+  <div>
+    <RijksoverheidHeaderVue title="Algoritmeregister" :pages="['algoritme']" />
+    <NuxtPage />
+  </div>
+</template>
 
 <style>
 #content {

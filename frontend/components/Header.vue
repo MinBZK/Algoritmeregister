@@ -1,29 +1,47 @@
+<script setup lang="ts">
+const props = defineProps<{
+  title?: string
+  pages?: string[]
+}>()
+
+const router = useRouter()
+const routes = router.getRoutes()
+const navigationRoutes = routes.filter((r) => {
+  const routeName = typeof r.name == 'string' ? r.name : ''
+  return (props.pages || []).includes(routeName)
+})
+</script>
+
 <template>
   <div class="skiplinks">
     <a href="#content">Ga direct naar inhoud</a>
   </div>
   <header id="header">
-    <div class="logo-wrapper ma-0 pa-0" id="mainwrapper">
+    <div id="mainwrapper" class="logo-wrapper ma-0 pa-0">
       <figure>
         <img
           alt="Rijksoverheid Logo"
           src="../assets/images/logo-ro-zonder-caption.svg"
           class="logo-full"
-        />
+        >
         <img
           alt="Rijksoverheid Logo"
           src="../assets/images/logo-ro-zonder-caption-mobile.svg"
           class="logo-mobile"
-        />
-        <figcaption class="logo-caption">Rijksoverheid</figcaption>
+        >
+        <figcaption class="logo-caption">
+          Rijksoverheid
+        </figcaption>
       </figure>
     </div>
   </header>
 
-  <div class="bar-wrapper" id="bar">
+  <div id="bar" class="bar-wrapper">
     <div class="bar-wrapper-content">
       <div style="align-items: center; display: flex">
-        <NuxtLink to="/">{{ title }}</NuxtLink>
+        <NuxtLink to="/">
+          {{ title }}
+        </NuxtLink>
       </div>
       <nav>
         <ul>
@@ -35,27 +53,15 @@
             >
           </li> -->
           <li v-for="nR in navigationRoutes" :key="nR.name">
-            <NuxtLink :to="nR.path">{{ nR.meta.title }}</NuxtLink>
+            <NuxtLink :to="nR.path">
+              {{ nR.meta.title }}
+            </NuxtLink>
           </li>
         </ul>
       </nav>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-const props = defineProps<{
-  title?: string;
-  pages?: string[];
-}>();
-
-const router = useRouter();
-const routes = router.getRoutes();
-const navigationRoutes = routes.filter((r) => {
-  const routeName = typeof r.name == "string" ? r.name : "";
-  return (props.pages || []).includes(routeName);
-});
-</script>
 
 <style scoped lang="scss">
 figure {
