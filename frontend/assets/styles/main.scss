@@ -1,5 +1,9 @@
 @import "_colors.scss";
+@import "_rijksoverheid.scss";
+@import "_skiplinks.scss";
+@import "_rijksoverheid-header.scss";
 
 body {
-  color: red;
+  margin: 0;
+  padding: 0;
 }
