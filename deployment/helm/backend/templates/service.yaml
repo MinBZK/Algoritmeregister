@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.appLabelName }}
+spec:
+  selector:
+    app: {{ .Values.appLabelName }}
+    tier: zeer-vertrouwd
+  ports:
+    - port: 8000
+      targetPort: 8000
+      protocol: TCP
