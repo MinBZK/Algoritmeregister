@@ -4,8 +4,9 @@
 // };
 import { apiFetch } from "@/utils/fetchApi";
 
-const getAll = async () => apiFetch("/project");
+const getAll = () => apiFetch("/project").then((response) => response.data);
 
-const getOne = async (id: string) => apiFetch(`/project/${id}`);
+const getOne = (id: string) =>
+  apiFetch(`/project/${id}`).then((response) => response.data);
 
 export default { getAll, getOne };
