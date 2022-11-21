@@ -1,0 +1,27 @@
+.image:
+  variables:
+    HARBOR_REPO: ""
+    DOCKER_FILE_PATH: ""
+    DOCKER_FILE_NAME: ""
+  stage: image
+  only:
+    - tags
+  image:
+    name: gcr.io/kaniko-project/executor:v1.3.0-debug # Must run in own image
+    entrypoint: [""]
+  before_script:
+    - echo "Started by ${GITLAB_USER_LOGIN} at $(date +%Y-%m-%d'-'%H-%M-%S)"
+    - unset ${HISTFILE} # Disable shell cache for security purposes
+    - cd $DOCKER_FILE_PATH
+  script:
+    - mkdir -p /kaniko/.docker
+    - PASSWORD_DECODED=$(echo $HARBOR_ROBOT_SECRET | base64 -d)
+    - echo "{\"auths\":{\"$HARBOR_REG\":{\"username\":\"$HARBOR_ROBOT_NAME\",\"password\":\"$PASSWORD_DECODED\"}}}" > /kaniko/.docker/config.json # Harbor credentials for pushing
+    - echo "contextdir ${CI_PROJECT_DIR} contextfile ${DOCKER_FILE_PATH} / ${DOCKER_FILE_NAME}"
+    - /kaniko/executor
+      --context ${CI_PROJECT_DIR}
+      --dockerfile $CI_PROJECT_DIR/$DOCKER_FILE_PATH/$DOCKER_FILE_NAME
+      --destination ${HARBOR_REG}/${HARBOR_PROJECT}/${HARBOR_REPO}:${CI_COMMIT_TAG}
+      --destination ${HARBOR_REG}/${HARBOR_PROJECT}/${HARBOR_REPO}:latest
+      --cache=false # Build and push to Harbor
+  when: manual
