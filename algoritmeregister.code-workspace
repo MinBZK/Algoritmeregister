@@ -13,6 +13,8 @@
 	"settings": {
 		"python.linting.flake8Enabled": true,
 		"python.linting.enabled": true,
-		"python.defaultInterpreterPath": "/.venv/bin/python"
+		"python.defaultInterpreterPath": "/.venv/bin/python",
+		"prettier.enable": true,
+		"editor.formatOnSave": true
 	  }
 }

@@ -1,3 +1,11 @@
+<script setup>
+import Page from '~~/components/PageWrapper.vue'
+
+definePageMeta({
+  title: 'Home page',
+})
+</script>
+
 <template>
-  <h1>Index page</h1>
+  <Page>Home page index</Page>
 </template>

@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appLabelName }}-{{ .Chart.Version }}
+  labels:
+    app: {{ .Values.appLabelName }}
+    tier: zeer-vertrouwd
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: {{ .Values.appLabelName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appLabelName }}
+        tier: zeer-vertrouwd
+        version: {{ .Chart.Version }}
+        egress-frontoffice-policy: allow
+        ingress-controller-frontoffice-policy: allow
+        pgo-cluster-policy: allow
+    spec:
+      imagePullSecrets:
+        - name: harbor-puller
+      containers:
+        - name: {{ .Values.appLabelName }}
+          image: harbor.cicd.s15m.nl/ictu-devops/{{ .Values.appLabelName }}:{{ .Chart.Version }}
+          resources:
+            limits:
+              cpu: 500m
+              memory: 500Mi
+            requests:
+              cpu: 500m
+              memory: 500Mi
+          ports:
+            - containerPort: 8000
+          env:
+            - name: POSTGRES_SERVER
+              valueFrom:
+                {
+                  secretKeyRef:
+                    {
+                      name: algreg-db-pguser-algreg-db,
+                      key: host,
+                    },
+                }
+            - name: POSTGRES_PORT
+              valueFrom:
+                {
+                  secretKeyRef:
+                    {
+                      name: algreg-db-pguser-algreg-db,
+                      key: port,
+                    },
+                }
+            - name: POSTGRES_DB
+              valueFrom:
+                {
+                  secretKeyRef:
+                    {
+                      name: algreg-db-pguser-algreg-db,
+                      key: dbname,
+                    },
+                }
+            - name: POSTGRES_USER
+              valueFrom:
+                {
+                  secretKeyRef:
+                    {
+                      name: algreg-db-pguser-algreg-db,
+                      key: user,
+                    },
+                }
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                {
+                  secretKeyRef:
+                    {
+                      name: algreg-db-pguser-algreg-db,
+                      key: password,
+                    },
+                }
+---
