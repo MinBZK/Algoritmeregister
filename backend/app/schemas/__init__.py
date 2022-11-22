@@ -1,1 +1,1 @@
-from .alg_inf import AlgemeneInformatie # noqa
+from .algemene_informatie import AlgemeneInformatie # noqa
