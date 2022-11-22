@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import RijksoverheidHeaderVue from '@/components/Header.vue'
+import AppHeader from '@/components/AppHeader.vue'
 </script>
 
 <template>
   <div>
-    <RijksoverheidHeaderVue title="Algoritmeregister" :pages="['algoritme']" />
+    <NuxtLoadingIndicator
+      color="repeating-linear-gradient(to right,#01689b 0%,#81c0df 50%,#4fb6e9 100%)"
+      :height="5"
+    />
+    <AppHeader title="Algoritmeregister" :pages="['algoritme']" />
     <NuxtPage />
   </div>
 </template>

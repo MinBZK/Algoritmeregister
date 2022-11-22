@@ -8,5 +8,8 @@
     "@nuxtjs/eslint-config-typescript",
     "plugin:nuxt/recommended",
     "plugin:prettier/recommended"
-  ]
+  ],
+  "rules": {
+    "dot-notation": "off"
+  }
 }
