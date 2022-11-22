@@ -41,6 +41,13 @@ frontend:build:
       - frontend/dist
 
 # Image stage
+backend:image:
+  extends: .image
+  variables:
+    HARBOR_REPO: "algreg-backend"
+    DOCKER_FILE_PATH: "backend"
+    DOCKER_FILE_NAME: "Dockerfile"
+
 frontend:image:
   extends: .image
   variables:
@@ -52,21 +59,7 @@ frontend:image:
   needs:
     - frontend:build
 
-backend:image:
-  extends: .image
-  variables:
-    HARBOR_REPO: "algreg-backend"
-    DOCKER_FILE_PATH: "backend"
-    DOCKER_FILE_NAME: "Dockerfile"
-
 # Chart stage
-frontend:chart:
-  extends: .chart
-  variables:
-    CHART_NAME: algreg-frontend
-  needs:
-    - frontend:image
-
 backend:chart:
   extends: .chart
   variables:
@@ -74,6 +67,12 @@ backend:chart:
   needs:
     - backend:image
 
+frontend:chart:
+  extends: .chart
+  variables:
+    CHART_NAME: algreg-frontend
+  needs:
+    - frontend:image
 
 # Deploy to TST stage
 frontend:deploy-test:
