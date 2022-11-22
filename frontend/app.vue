@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import AppHeader from '@/components/AppHeader.vue'
+
+// const setLocale = locale: string => {
+
+// }
 </script>
 
 <template>
@@ -8,7 +12,9 @@ import AppHeader from '@/components/AppHeader.vue'
       color="repeating-linear-gradient(to right,#01689b 0%,#81c0df 50%,#4fb6e9 100%)"
       :height="5"
     />
+
     <AppHeader title="Algoritmeregister" :pages="['algoritme']" />
+
     <NuxtPage />
   </div>
 </template>
