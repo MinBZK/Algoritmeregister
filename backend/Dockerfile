@@ -1,5 +1,5 @@
 # FROM harbor.cicd.s15m.nl/ictu-devops-pub/rid_base:3.11_alpine_3.16
-FROM harbor.cicd.s15m.nl/ictu-devops-pub/algreg-backend:3.11-slim2-0.1
+FROM harbor.cicd.s15m.nl/ictu-devops-pub/rid_base:3.11-slim2-0.1
 
 ENV YOUR_ENV=${YOUR_ENV} \
   PYTHONFAULTHANDLER=1 \
