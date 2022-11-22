@@ -1,5 +1,5 @@
 <script setup>
-import Page from '@/components/Page.vue'
+import Page from '~~/components/PageWrapper.vue'
 
 definePageMeta({
   title: 'Home page',
