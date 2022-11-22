@@ -1,0 +1,118 @@
+.logo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%
+}
+
+.logo .wrapper {
+    display: flex;
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    -webkit-margin-end: -16px;
+    margin-inline-end:-16px;-webkit-margin-start: -16px;
+    margin-inline-start:-16px;justify-content: center
+}
+
+.logo .wrapper img {
+    width: inherit;
+    max-width: 1168px
+}
+
+.logo .wrapper img {
+    -webkit-margin-start: -50px;
+    margin-inline-start:-50px;-webkit-transform: translateX(50%);
+    transform: translateX(50%)
+}
+
+.logo .logo__wrapper {
+    width: 100%;
+    max-width: 1200px;
+    -webkit-margin-start: calc(50% - 20px);
+    margin-inline-start:calc(50% - 20px)}
+
+@media(min-width: 768px) {
+    .logo .logo__wrapper {
+        -webkit-margin-start:calc(50% - 25px);
+        margin-inline-start:calc(50% - 25px)}
+}
+
+.logo .logo__link {
+    display: block;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content
+}
+
+.logo .logo__link:focus {
+    outline: 2px dashed #000;
+    z-index: 1010;
+    outline-offset: 0;
+    -webkit-box-shadow: 0 0 0 2px #fff;
+    box-shadow: 0 0 0 2px #fff
+}
+
+.logo .logo__link,.logo .logo__link:hover {
+    text-decoration: none
+}
+
+.logo .logo__figure {
+    display: flex;
+    align-items: flex-start;
+    margin: 0
+}
+
+.logo .logo__figure img {
+    flex: 0;
+    width: inherit
+}
+
+.logo .logo__text {
+    font-family: "RO Serif",Calibri,sans-serif;
+    font-size: 1rem;
+    line-height: 1.1;
+    width: 100%;
+    max-width: 300px;
+    padding: 20px 10px 10px;
+    color: #000
+}
+
+@media(min-width: 768px) {
+    .logo .logo__text {
+        padding:50px 12px 25px
+    }
+}
+
+.logo .logo__sender,.logo .logo__ministry {
+    display: block
+}
+
+.logo .logo__ministry {
+    font-style: italic
+}
+
+.logo.left .wrapper {
+    justify-content: flex-start
+}
+
+.logo.left .wrapper img {
+    -webkit-margin-end: 16px;
+    margin-inline-end:16px;-webkit-margin-start: 16px;
+    margin-inline-start:16px;-webkit-transform: translateX(0);
+    transform: translateX(0)
+}
+
+.logo.left .logo__wrapper {
+    -webkit-margin-start: 16px;
+    margin-inline-start:16px}
+
+header a:focus .logo img {
+    outline: 2px dashed #000;
+    z-index: 1010;
+    outline-offset: 0;
+    -webkit-box-shadow: 0 0 0 2px #fff;
+    box-shadow: 0 0 0 2px #fff
+}

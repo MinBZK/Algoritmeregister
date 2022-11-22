@@ -1,0 +1,143 @@
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://docker:2375/
+  CLAIR_URL: "https://clair.diensten.test.overheid.standaardplatform.rijksapps.nl"
+  HARBOR_REG: "harbor.cicd.s15m.nl"
+  HARBOR_PROJECT: "ictu-devops"
+  FF_GITLAB_REGISTRY_HELPER_IMAGE: 1
+
+stages:
+  - build
+  - image
+  - chart
+  - deploy-test
+  - deploy-acc
+  - deploy-prd
+
+# Use default (non-privileged) runner, ref. https://docs.gitlab.com/ee/ci/yaml/#tags
+default:
+  tags:
+    - default
+
+# Include remote and local templates
+include:
+  - local: "/gitlab-templates/image.gitlab-ci.yml"
+  - local: "/gitlab-templates/deploy.gitlab-ci.yml"
+  - local: "/gitlab-templates/chart.gitlab-ci.yml"
+
+# Build stage
+frontend:build:
+  stage: build
+  only:
+    - tags
+  image: harbor.cicd.s15m.nl/ictu-devops-docker-hub/library/node:16-alpine
+  before_script:
+    - cd frontend
+    - npm ci
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - frontend/dist
+
+# Image stage
+frontend:image:
+  extends: .image
+  variables:
+    HARBOR_REPO: "algreg-frontend"
+    DOCKER_FILE_PATH: "frontend"
+    DOCKER_FILE_NAME: "Dockerfile"
+  dependencies:
+    - frontend:build
+  needs:
+    - frontend:build
+
+backend:image:
+  extends: .image
+  variables:
+    HARBOR_REPO: "algreg-backend"
+    DOCKER_FILE_PATH: "backend"
+    DOCKER_FILE_NAME: "Dockerfile"
+
+# Chart stage
+frontend:chart:
+  extends: .chart
+  variables:
+    CHART_NAME: algreg-frontend
+  needs:
+    - frontend:image
+
+backend:chart:
+  extends: .chart
+  variables:
+    CHART_NAME: algreg-backend
+  needs:
+    - backend:image
+
+
+# Deploy to TST stage
+frontend:deploy-test:
+  extends: .deploy
+  stage: deploy-test
+  variables:
+    NAMESPACE: "tst"
+    CHART_NAME: "algreg-frontend"
+    CLUSTER: "overheid-test3"
+  needs:
+    - frontend:chart
+
+backend:deploy-test:
+  extends: .deploy
+  stage: deploy-test
+  variables:
+    NAMESPACE: "tst"
+    CHART_NAME: "algreg-backend"
+    CLUSTER: "overheid-test3"
+  needs:
+    - backend:chart
+
+# Deploy to ACC stage
+frontend:deploy-acc:
+  extends: .deploy
+  stage: deploy-acc
+  variables:
+    NAMESPACE: "acc"
+    CHART_NAME: "algreg-frontend"
+    CLUSTER: "overheid-test3"
+  needs:
+    - frontend:chart
+  when: manual
+
+backend:deploy-acc:
+  extends: .deploy
+  stage: deploy-acc
+  variables:
+    NAMESPACE: "acc"
+    CHART_NAME: "algreg-backend"
+    CLUSTER: "overheid-test3"
+  needs:
+    - backend:chart
+  when: manual
+
+# Deploy to PRD stage
+frontend:deploy-prd:
+  extends: .deploy
+  stage: deploy-prd
+  variables:
+    NAMESPACE: "prd"
+    CHART_NAME: "algreg-frontend"
+    CLUSTER: "overheid-prod4"
+  needs:
+    - frontend:chart
+  when: manual
+
+backend:deploy-prd:
+  extends: .deploy
+  stage: deploy-prd
+  variables:
+    NAMESPACE: "prd"
+    CHART_NAME: "algreg-backend"
+    CLUSTER: "overheid-prod4"
+  needs:
+    - backend:chart
+  when: manual

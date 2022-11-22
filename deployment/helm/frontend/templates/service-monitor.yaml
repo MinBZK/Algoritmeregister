@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: {{ .Values.appLabelName }}
+  name: {{ .Values.appLabelName }}-service-monitor
+spec:
+  endpoints:
+    - interval: 30s
+      port: web # Must refer to existing service port
+  namespaceSelector: # Scrape metrics from...
+    matchNames:
+      - {{ .Values.namespace | quote }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appLabelName }}

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Values.appLabelName }}-{{ .Chart.Version }}"
+  labels:
+    app: {{ .Values.appLabelName }}
+    tier: vertrouwd
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: {{ .Values.appLabelName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appLabelName }}
+        version: {{ quote .Chart.Version }}
+        egress-frontoffice-policy: allow
+        ingress-controller-frontoffice-policy: allow
+    spec:
+      imagePullSecrets:
+        - name: harbor-puller
+      containers:
+        - name: {{ .Values.appLabelName }}
+          image: harbor.cicd.s15m.nl/ictu-devops/{{ .Values.appLabelName }}:{{ .Chart.Version }}
+          resources:
+            limits:
+              cpu: 750m
+              memory: 1500Mi
+            requests:
+              cpu: 500m
+              memory: 1000Mi
+          ports:
+            - containerPort: 8080

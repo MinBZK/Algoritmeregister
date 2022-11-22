@@ -1,5 +1,20 @@
-@import "_colors.scss";
+@import '_colors.scss';
+@import '_rijksoverheid.scss';
+@import '_skiplinks.scss';
+@import '_rijksoverheid-header.scss';
 
 body {
-  color: red;
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $primary-dark;
+  text-decoration: underline;
 }

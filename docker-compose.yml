@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  nuxt-static:
+    image: httpd:2.4
+    restart: always
+    volumes:
+      - ./frontend/.output/public/:/usr/local/apache2/htdocs
+    ports:
+      - 8080:80
