@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-cd backend
+# cd backend
 
 # Let the DB start
 # python3 -m app.create_database

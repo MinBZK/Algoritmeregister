@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS algemene_informatie (
     website varchar (1024) ,
     status varchar (1024) NOT NULL
 );
-ALTER TABLE algemene_informatie OWNER TO "postgres";
+
 
 CREATE TABLE IF NOT EXISTS inzet (
     id  SERIAL PRIMARY KEY,
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS inzet (
 	  REFERENCES algemene_informatie (id)
 	  ON DELETE CASCADE
 );
-ALTER TABLE inzet OWNER TO "postgres";
+
 
 CREATE TABLE IF NOT EXISTS toepassing (
     id  SERIAL PRIMARY KEY,
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS toepassing (
 	  REFERENCES algemene_informatie (id)
 	  ON DELETE CASCADE    
 );
-ALTER TABLE toepassing OWNER TO "postgres";
+
 
 CREATE TABLE IF NOT EXISTS toezicht (
     id  SERIAL PRIMARY KEY,
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS toezicht (
 	  REFERENCES algemene_informatie (id)
 	  ON DELETE CASCADE    
 );
-ALTER TABLE toezicht OWNER TO "postgres";
+
 
 CREATE TABLE IF NOT EXISTS juridisch (
     id  SERIAL PRIMARY KEY,
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS juridisch (
 	  REFERENCES algemene_informatie (id)
 	  ON DELETE CASCADE 
 );
-ALTER TABLE juridisch OWNER TO "postgres";
+
 
 CREATE TABLE IF NOT EXISTS metadata (
     id  SERIAL PRIMARY KEY,
@@ -90,5 +90,5 @@ CREATE TABLE IF NOT EXISTS metadata (
 	  REFERENCES algemene_informatie (id)
 	  ON DELETE CASCADE 
 );
-ALTER TABLE metadata OWNER TO "postgres";
+
 
