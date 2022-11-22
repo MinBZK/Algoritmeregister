@@ -1,5 +1,6 @@
 {
     "hello": "Hello, {name}!",
     "language": "Language",
-    "homepageTitle": "Algoritmeregister from the Netherlandic Upper Entity"
+    "homepageTitle": "Algoritmeregister from the Netherlandic Upper Entity",
+    "searchHint": "Find algorithms by organisation, title or description"
 }

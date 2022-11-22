@@ -1,5 +1,6 @@
 {
     "hello": "Hallo, {name}!",
     "language": "Taal",
-    "homepageTitle": "Algoritmeregister van de Nederlandse Overheid"
+    "homepageTitle": "Algoritmeregister van de Nederlandse Overheid",
+    "searchHint": "Zoek op organisatie, titel of omschrijving"
 }
