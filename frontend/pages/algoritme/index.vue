@@ -10,14 +10,18 @@
       <v-col :cols="6" class="text-grey"
         >{{ filteredAlgoritmes.length }} algoritmes gevonden</v-col
       >
-      <v-col :cols="6"
-        ><v-pagination v-model="page" :length="nPages"></v-pagination
+      <v-col :cols="6">
+        <v-pagination
+          v-if="paginatedAlgoritmes.length > 0"
+          v-model="page"
+          :length="nPages"
+        ></v-pagination
       ></v-col>
     </v-row>
 
-    <div v-for="algoritme in paginatedAlgoritmes" :key="algoritme.project_id">
+    <div v-for="algoritme in paginatedAlgoritmes" :key="algoritme[keys.id]">
       <h3>
-        <NuxtLink :to="`/algoritme/${algoritme.project_id}`">
+        <NuxtLink :to="`/algoritme/${algoritme[keys.id]}`">
           {{ algoritme[keys.name] }}
         </NuxtLink>
       </h3>
@@ -30,32 +34,6 @@
     <div v-if="paginatedAlgoritmes.length == 0">
       Geen algoritmes gevonden voor de huidige zoekopdracht.
     </div>
-
-    <!-- <v-table>
-      <thead>
-        <tr>
-          <th v-for="key in columnKeys" :key="key" style="text-align: left">
-            {{ keys[key] }}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="algoritme in paginatedAlgoritmes"
-          :key="algoritme.project_id"
-        >
-          <td v-for="key in columnKeys" :key="key">
-            <template v-if="key === 'name'">
-              <NuxtLink :to="`/algoritme/${algoritme.project_id}`">
-                {{ algoritme[keys[key]] }}
-              </NuxtLink> </template
-            ><template v-else>
-              {{ algoritme[keys[key]] }}
-            </template>
-          </td>
-        </tr>
-      </tbody>
-    </v-table> -->
 
     <v-row v-if="filteredAlgoritmes.length > 1" align="center" justify="center">
       <v-col :cols="6" class="text-grey"
@@ -86,7 +64,7 @@ const keys = {
 let algoritmes = ref([])
 algoritmes = await algoritmeService.getAll()
 
-const searchQuery = ref('')
+const searchQuery = ref(useRoute().query.q || '')
 
 const filteredAlgoritmes = computed(() =>
   algoritmes.value.filter((a) => {
