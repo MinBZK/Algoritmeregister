@@ -2,3 +2,12 @@ backend/.venv
 __pycache__/
 .env
 *.pyc
+
+node_modules
+*.log*
+.nuxt
+.nitro
+.cache
+.output
+.env
+dist
