@@ -1,0 +1,79 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: algreg-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 20m
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - acc.algoritmeoverheid.nl
+      secretName: algoritmeoverheid-nl-certificate
+    - hosts:
+        - concept.algoritmeoverheid.nl
+      secretName: algoritmeoverheid-nl-certificate
+  rules:
+    - host: acc.algoritmeoverheid.nl
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: algreg-frontend
+                port:
+                  number: 8080
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: algreg-backend
+                port:
+                  number: 8000
+          - path: /docs
+            pathType: Prefix
+            backend:
+              service:
+                name: algreg-backend
+                port:
+                  number: 8000
+          - path: /openapi.json
+            pathType: Exact
+            backend:
+              service:
+                name: algreg-backend
+                port:
+                  number: 8000
+    - host: concept.algoritmeoverheid.nl
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: algreg-frontend
+                port:
+                  number: 8080
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: algreg-backend
+                port:
+                  number: 8000
+          - path: /docs
+            pathType: Prefix
+            backend:
+              service:
+                name: algreg-backend
+                port:
+                  number: 8000
+          - path: /openapi.json
+            pathType: Exact
+            backend:
+              service:
+                name: algreg-backend
+                port:
+                  number: 8000                  
