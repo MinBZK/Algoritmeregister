@@ -15,6 +15,9 @@ async def root():
     return {"message": "Hello World"}
 
 
-@router.get("/algemene-informatie", response_model=list[schemas.alg_inf.AlgemeneInformatie])
+@router.get(
+    "/algemene-informatie",
+    response_model=list[schemas.algemene_informatie.AlgemeneInformatie],
+)
 async def project(db: Session = Depends(get_db)):
-    return db.query(models.default.AlgemeneInformatie).all()
+    return db.query(models.algemene_informatie.AlgemeneInformatie).all()
