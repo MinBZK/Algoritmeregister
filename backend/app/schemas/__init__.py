@@ -1,0 +1,1 @@
+from .alg_inf import AlgemeneInformatie # noqa
