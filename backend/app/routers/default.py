@@ -10,11 +10,21 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
-@router.get("/")
-async def root():
-    return {"message": "Hello World"}
+@router.get(
+    "/algemene-informatie/",
+    response_model=list[schemas.algemene_informatie.AlgemeneInformatie],
+)
+async def get_all(db: Session = Depends(get_db)):
+    return db.query(models.algemene_informatie.AlgemeneInformatie).all()
 
 
-@router.get("/algemene-informatie", response_model=list[schemas.alg_inf.AlgemeneInformatie])
-async def project(db: Session = Depends(get_db)):
-    return db.query(models.default.AlgemeneInformatie).all()
+@router.get(
+    "/algemene-informatie/{id}/",
+    response_model=schemas.algemene_informatie.AlgemeneInformatie,
+)
+async def get_one(id: str, db: Session = Depends(get_db)) -> any:
+    return (
+        db.query(models.algemene_informatie.AlgemeneInformatie)
+        .filter(models.algemene_informatie.AlgemeneInformatie.id == id)
+        .first()
+    )

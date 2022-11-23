@@ -1,20 +1,23 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "frontend"
-		},
-		{
-			"path": "backend"
-		},
-	],
-	"settings": {
-		"python.linting.flake8Enabled": true,
-		"python.linting.enabled": true,
-		"python.defaultInterpreterPath": "/.venv/bin/python",
-		"prettier.enable": true,
-		"editor.formatOnSave": true
-	  }
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "frontend"
+    },
+    {
+      "path": "backend"
+    }
+  ],
+  "settings": {
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "python.defaultInterpreterPath": "/.venv/bin/python",
+    "prettier.enable": true,
+    "editor.formatOnSave": true,
+    "search.exclude": {
+      "*.mjs": true
+    }
+  }
 }
