@@ -1,6 +1,7 @@
 const apiFetch = (endpoint: string) => {
   const config = useRuntimeConfig()
-  return useFetch(endpoint, { baseURL: config.public.apiBaseUrl })
+  console.log(endpoint, { baseURL: config.app.apiBaseUrl })
+  return useFetch(endpoint, { baseURL: config.app.apiBaseUrl })
 }
 
 export { apiFetch }

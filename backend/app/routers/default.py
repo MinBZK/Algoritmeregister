@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 @router.get(
-    "/algemene-informatie/",
+    "/algoritme/",
     response_model=list[schemas.algemene_informatie.AlgemeneInformatie],
 )
 async def get_all(db: Session = Depends(get_db)):
@@ -19,7 +19,7 @@ async def get_all(db: Session = Depends(get_db)):
 
 
 @router.get(
-    "/algemene-informatie/{id}/",
+    "/algoritme/{id}/",
     response_model=schemas.algemene_informatie.AlgemeneInformatie,
 )
 async def get_one(id: str, db: Session = Depends(get_db)) -> any:
