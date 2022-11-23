@@ -5,28 +5,14 @@
       label="Zoek algoritme"
       variant="outlined"
     ></v-text-field>
-
-    <!-- <v-row align="center" justify="center">
-      <v-col :cols="6" class="text-grey"
-        >{{ filteredAlgoritmes.length }} algoritmes gevonden</v-col
-      >
-      <v-col :cols="6">
-        <v-pagination
-          v-if="paginatedAlgoritmes.length > 0"
-          v-model="page"
-          :length="nPages"
-        ></v-pagination
-      ></v-col>
-    </v-row> -->
-
-    <div v-for="algoritme in paginatedAlgoritmes" :key="algoritme[keys.id]">
+    <div v-for="algoritme in paginatedAlgoritmes">
       <h3>
         <NuxtLink :to="`/algoritme/${algoritme[keys.id]}`">
           {{ algoritme[keys.name] }}
         </NuxtLink>
       </h3>
       <p>
-        {{ algoritme[keys.description][0] }}
+        {{ algoritme[keys.description] }}
       </p>
       <v-divider></v-divider>
     </div>
@@ -56,9 +42,9 @@ definePageMeta({
 })
 
 const keys = {
-  id: 'project_id',
-  name: 'naam',
-  description: 'omschrijving',
+  id: 'id',
+  name: 'name',
+  description: 'description_short',
 }
 
 let algoritmes = ref([])

@@ -1,7 +1,5 @@
 <template>
   <Page :title="`Homepage`">
-    {{ $i18n.locale }}
-    <h1>{{ $t('hello', { name: 'vue-i18n' }) }}</h1>
     <v-row>
       <v-col :cols="10">
         <v-text-field
@@ -31,6 +29,7 @@ const searchQuery = ref('')
 
 const doSearch = () => {
   const router = useRouter()
+  console.log('doing search', `/algoritme?q=${searchQuery.value}`)
   router.push(`/algoritme?q=${searchQuery.value}`)
 }
 </script>
