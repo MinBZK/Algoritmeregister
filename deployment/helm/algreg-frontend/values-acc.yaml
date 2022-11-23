@@ -1,3 +1,4 @@
 namespace: ictu-devops-acc
 replicaCount: 1
 appLabelName: algreg-frontend
+apiUrl: http://acc.algoritmeoverheid.nl/api

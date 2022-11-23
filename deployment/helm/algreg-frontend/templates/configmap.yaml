@@ -1,0 +1,6 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: algreg-frontend-config
+data:
+  NUXT_PUBLIC_API_BASE_URL: {{ quote .Values.apiUrl }}

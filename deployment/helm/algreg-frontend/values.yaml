@@ -1,3 +1,4 @@
 namespace: default
 replicaCount: 1
 appLabelName: algreg-frontend
+apiUrl: http://localhost:8000/api
