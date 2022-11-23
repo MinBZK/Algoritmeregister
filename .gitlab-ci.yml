@@ -38,7 +38,7 @@ frontend:build:
     - npm run build
   artifacts:
     paths:
-      - frontend/dist
+      - frontend/.output
 
 # Image stage
 backend:image:
