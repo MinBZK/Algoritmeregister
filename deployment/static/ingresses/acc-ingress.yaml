@@ -32,7 +32,7 @@ spec:
                 name: algreg-backend
                 port:
                   number: 8000
-          - path: /docs
+          - path: /api-docs
             pathType: Prefix
             backend:
               service:

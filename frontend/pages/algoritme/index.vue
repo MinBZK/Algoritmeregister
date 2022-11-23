@@ -6,7 +6,7 @@
       variant="outlined"
     ></v-text-field>
 
-    <v-row align="center" justify="center">
+    <!-- <v-row align="center" justify="center">
       <v-col :cols="6" class="text-grey"
         >{{ filteredAlgoritmes.length }} algoritmes gevonden</v-col
       >
@@ -17,7 +17,7 @@
           :length="nPages"
         ></v-pagination
       ></v-col>
-    </v-row>
+    </v-row> -->
 
     <div v-for="algoritme in paginatedAlgoritmes" :key="algoritme[keys.id]">
       <h3>
