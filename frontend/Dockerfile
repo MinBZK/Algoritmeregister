@@ -6,4 +6,4 @@ COPY ./frontend/.output /app
 CMD node /app/server/index.mjs
 
 # Expose ports
-EXPOSE 3000:8080
+EXPOSE 3000:3000
