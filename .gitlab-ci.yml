@@ -54,8 +54,6 @@ frontend:image:
     HARBOR_REPO: "algreg-frontend"
     DOCKER_FILE_PATH: "frontend"
     DOCKER_FILE_NAME: "Dockerfile"
-  dependencies:
-    - frontend:build
   needs:
     - frontend:build
 

@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
+    "@intlify/unplugin-vue-i18n": "^0.8.0",
     "@mdi/font": "^7.0.96",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",

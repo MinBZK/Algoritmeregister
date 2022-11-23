@@ -1,10 +1,12 @@
 <template>
   <Page :title="`Homepage`">
+    {{ $i18n.locale }}
+    <h1>{{ $t('hello', { name: 'vue-i18n' }) }}</h1>
     <v-row>
       <v-col :cols="10">
         <v-text-field
           v-model="searchQuery"
-          label="Zoek op organisatie, titel of omschrijving"
+          :label="searchHint"
           variant="outlined"
           @keyup.enter="doSearch"
         ></v-text-field>
@@ -20,6 +22,10 @@
 
 <script setup>
 import Page from '@/components/PageWrapper.vue'
+import { useI18n } from 'vue-i18n'
+const x = useI18n()
+const { t } = x
+const searchHint = computed(() => t('searchHint'))
 
 const searchQuery = ref('')
 
