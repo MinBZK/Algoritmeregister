@@ -10,6 +10,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@nuxtjs/i18n-edge": "^8.0.0-beta.4-27812700.b832f07",
     "axios": "^1.1.3",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",

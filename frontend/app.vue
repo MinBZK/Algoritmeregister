@@ -16,7 +16,6 @@ const helloName = computed(() => t('hello', { name: 'Terry' }))
       :height="5"
     />
 
-    {{ helloName }}
     <LanguagePicker />
 
     <!-- <h1>{{ $t('hello', { name: 'vue-i18n' }) }}</h1>
