@@ -12,8 +12,3 @@ app.include_router(default.router, prefix="/api")
 app.add_middleware(
     CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"]
 )
-
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
