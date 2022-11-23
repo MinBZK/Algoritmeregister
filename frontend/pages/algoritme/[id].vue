@@ -20,21 +20,30 @@
         {{ o }}
       </p>
       <v-row class="mt-5">
-        <v-col v-for="sT in summaryTiles" :key="sT.key"
+        <v-col v-for="sT in summaryTiles"
           ><h4>{{ sT.label }}</h4>
           {{ algoritme[sT.key] }}</v-col
         >
       </v-row>
-
       <v-expansion-panels variant="default" class="mt-5">
         <v-expansion-panel
-          v-for="i in 3"
-          :key="i"
-          title="Title"
+          v-for="subtable in expansionContent"
+          :title="subtable.label"
           elevation="1"
-          text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus! Eaque cupiditate minima"
           expand-icon="mdi-menu-down"
         >
+          <v-expansion-panel-text>
+            <v-row v-for="content in getExpansionContent(subtable.key)">
+              <v-col>
+                <p><b> some text </b></p>
+                <br />
+                <p color="grey"><i> some explanation </i></p>
+                <br />
+                <p>{{ content }}</p>
+              </v-col>
+              <v-divider></v-divider>
+            </v-row>
+          </v-expansion-panel-text>
         </v-expansion-panel>
       </v-expansion-panels>
     </v-container>
@@ -51,6 +60,44 @@ const route = useRoute()
 const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
 const algoritme: { [key: string]: any } = await algoritmeService.getOne(id)
 const title = computed(() => (algoritme?.value ? algoritme.value['naam'] : ''))
+
+function getExpansionContent(key: string) {
+  if (key == '') {
+    return algoritme.value.filter((a: any) => {
+      console.log(a)
+      return true
+    })
+  }
+  return algoritme.value
+}
+const expansionContent = computed(() => {
+  return [
+    {
+      label: 'Algemene informatie',
+      key: '',
+    },
+    {
+      label: 'Inzet',
+      key: 'inzet_entity',
+    },
+    {
+      label: 'Toepassing',
+      key: 'inzet_entity',
+    },
+    {
+      label: 'Toezicht',
+      key: 'inzet_entity',
+    },
+    {
+      label: 'Juridisch',
+      key: 'inzet_entity',
+    },
+    {
+      label: 'Metadata',
+      key: 'inzet_entity',
+    },
+  ]
+})
 
 definePageMeta({
   title: 'Algoritme details',
