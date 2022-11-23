@@ -29,13 +29,6 @@
       </div>
       <nav>
         <ul>
-          <!-- <li v-for="p in pages" :key="p">
-            <router-link
-              :to="{ path: '/' + p.toLowerCase() }"
-              aria-current="page"
-              >{{ p }}</router-link
-            >
-          </li> -->
           <li v-for="nR in navigationRoutes" :key="nR.name">
             <NuxtLink :to="nR.path">
               {{ nR.meta.title }}
