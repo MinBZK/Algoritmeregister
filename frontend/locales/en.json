@@ -7,149 +7,153 @@
     "algemeneInformatie": {
       "name": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "organization": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "department": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "description_short": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "type": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "category": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "website": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "status": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       }
     },
     "inzet": {
       "goal": {
         "label": "Goal",
-        "description": "** Unknown **"
+        "description": "** nog te vertalen **"
       },
       "impact": {
         "label": "Impact",
-        "description": "** Unknown **"
+        "description": "** nog te vertalen **"
       },
       "proportionality": {
         "label": "Proportionality",
-        "description": "** Unknown **"
+        "description": "** nog te vertalen **"
       },
       "decision_making_process": {
         "label": "Decision making process",
-        "description": "** Unknown **"
+        "description": "** nog te vertalen **"
+      },
+      "documentation": {
+        "label": "Documentation",
+        "description": "** nog te vertalen **"
       }
     },
     "toepassing": {
       "description": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "application_url": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "publiccode": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "mprd": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "source_data": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "methods_and_models": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       }
     },
     "toezicht": {
       "monitoring": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "human_intervention": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "risks": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "performance_standard": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       }
     },
     "juridisch": {
       "competent_authority": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "lawful_basis": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "dpia": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "dpia_description": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "objection_procedure": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       }
     },
     "metadata_algorithm": {
       "schema_metadata": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "uuid": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "url": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "contact_email": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "area": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "lang": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       },
       "revision_date": {
         "label": "",
-        "description": ""
+        "description": "** nog te vertalen **"
       }
     }
   }
