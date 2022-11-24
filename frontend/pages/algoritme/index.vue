@@ -49,7 +49,7 @@
       </div>
 
       <div v-if="paginatedAlgoritmes.length == 0">
-        Geen algoritmes gevonden voor de huidige zoekopdracht.
+        {{ $t('noResults') }}
       </div>
 
       <v-row
@@ -58,8 +58,8 @@
         justify="center"
       >
         <v-col :cols="6" class="text-grey"
-          >{{ filteredAlgoritmes.length }} algoritmes gevonden</v-col
-        >
+          >{{ $t(`foundResults`, { n: filteredAlgoritmes.length }) }}
+        </v-col>
         <v-col :cols="6"
           ><v-pagination v-model="page" :length="nPages"></v-pagination
         ></v-col>
@@ -89,17 +89,24 @@ let algoritmes = ref(data.value as Algoritme[])
 
 const searchQuery = ref(useRoute().query.q || '')
 
-const filteredAlgoritmes = computed(() =>
-  algoritmes.value.filter((algoritme) => {
-    const algoritmeName = algoritme.name
-    const searchQueryString = String(searchQuery.value)
-    const allowed =
-      searchQueryString.length > 0 && typeof algoritmeName === 'string'
-        ? algoritmeName.toLowerCase().includes(searchQueryString.toLowerCase())
-        : true
-    return allowed
-  })
-)
+const includedSearchFields = ['organization', 'name', 'description_short']
+const filteredAlgoritmes = computed(() => {
+  const searchQueryString = String(searchQuery.value)
+  if (searchQueryString.length > 0) {
+    return algoritmes.value.filter((algoritme) => {
+      return includedSearchFields
+        .map((field) => {
+          const value = algoritme[field as keyof typeof algoritme]
+          return value
+            ? value.toLowerCase().includes(searchQueryString.toLowerCase())
+            : false
+        })
+        .some((v) => v)
+    })
+  } else {
+    return algoritmes.value
+  }
+})
 
 const page = ref(1)
 const pageLength = 10

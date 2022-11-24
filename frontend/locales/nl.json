@@ -3,6 +3,7 @@
   "locale-nl": "Nederlands",
   "selectLanguage": "Kies taal",
   "foundResults": "{n} resultaten gevonden",
+  "noResults": "Geen algoritmes gevonden voor de huidige zoekopdracht.",
   "paths": {
     "/algoritme": "Algoritmeoverzicht"
   },
