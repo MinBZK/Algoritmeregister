@@ -3,26 +3,17 @@
     <a href="#content">Ga direct naar inhoud</a>
   </div>
   <header id="header">
-    <div id="mainwrapper" class="logo-wrapper ma-0 pa-0">
+    <div>
       <figure>
-        <img
-          alt="Rijksoverheid Logo"
-          src="../assets/images/logo-ro-zonder-caption.svg"
-          class="logo-full"
-        />
-        <img
-          alt="Rijksoverheid Logo"
-          src="../assets/images/logo-ro-zonder-caption-mobile.svg"
-          class="logo-mobile"
-        />
-        <figcaption class="logo-caption">Rijksoverheid</figcaption>
+        <img alt="Overheidlogo" src="../assets/images/logo.svg" class="logo" />
       </figure>
+      <div class="logo-caption">Algoritmes in de overheid</div>
     </div>
   </header>
 
   <div id="bar" class="bar-wrapper">
     <div class="bar-wrapper-content">
-      <div style="align-items: center; display: flex">
+      <div class="center-flex">
         <NuxtLink to="/">
           {{ title }}
         </NuxtLink>
@@ -59,24 +50,38 @@ figure {
   margin: 0;
   padding: 0;
 }
-.logo-wrapper figure {
-  display: flex;
-  align-items: flex-start;
-}
-
-.logo {
-  height: 76px;
-}
-.logo-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  height: 70px;
-}
+// .logo-wrapper {
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   height: 70px;
+// }
 
 .logo-wrapper img {
-  margin-left: 90px;
   height: 70px;
+}
+
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#header div {
+  width: $page-width;
+  height: 84px;
+}
+
+#header div img {
+  width: 180px;
+  padding-top: 15px;
+}
+
+#header div .logo-caption {
+  margin-top: 0px;
+  color: $primary-dark;
+  margin-top: 5px;
+  font-size: 0.8em;
 }
 
 .bar-wrapper {
@@ -84,7 +89,8 @@ figure {
   align-items: center;
   justify-content: center;
   background-color: $primary;
-  height: 76px;
+  height: 59px;
+  border-bottom: 9px solid $secondary;
 }
 
 .bar-wrapper nav,
@@ -93,9 +99,9 @@ figure {
 }
 
 .bar-wrapper-content {
-  max-width: 1200px;
+  max-width: $page-width;
   display: flex;
-  font-size: 26px;
+  font-size: 20px;
   width: 100%;
   justify-content: space-between;
 }
@@ -104,15 +110,9 @@ figure {
 .bar-wrapper-content nav {
   color: white;
 }
-
-.logo-caption {
-  font-family: RO Serif, Calibri, sans-serif;
-  font-size: 1rem;
-  line-height: 1.1;
-  width: 100%;
-  max-width: 300px;
-  padding: 20px 10px 10px;
-  color: #000;
+.center-flex {
+  align-items: center;
+  display: flex;
 }
 
 nav {
@@ -150,36 +150,5 @@ nav ul > li {
 
 nav ul > li a:hover {
   text-decoration: underline;
-}
-
-@media (min-width: 768px) {
-  .logo-caption {
-    padding: 50px 12px 25px;
-  }
-
-  .logo-wrapper {
-    height: 125px;
-  }
-
-  .logo-wrapper img {
-    height: 125px;
-    margin-left: 112px;
-  }
-
-  img.logo-full {
-    display: block;
-  }
-
-  img.logo-mobile {
-    display: none;
-  }
-}
-
-.logo-mobile {
-  display: block;
-}
-
-.logo-full {
-  display: none;
 }
 </style>

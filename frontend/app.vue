@@ -11,17 +11,17 @@ import LanguagePicker from '@/components/LanguagePicker.vue'
       :height="5"
     />
 
-    <LanguagePicker />
-
     <AppHeader title="Algoritmeregister" :pages="['algoritme']" />
+
+    <LanguagePicker />
 
     <NuxtPage />
   </div>
 </template>
 
-<style>
+<style lang="scss">
 #content {
-  width: 1200px;
+  width: $page-width;
   margin: 0 auto;
   padding-top: 0.5em;
 }
