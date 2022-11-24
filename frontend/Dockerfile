@@ -12,7 +12,9 @@ RUN rm /etc/nginx/conf.d/default.conf
 
 COPY ./frontend/nginx /etc/nginx
 
-CMD node /app/server/index.mjs; nginx -g "daemon off;"
+RUN node /app/server/index.mjs
+
+CMD nginx -g "daemon off;"
 
 # Expose ports
 EXPOSE 8080:8080

@@ -46,7 +46,7 @@ backend:image:
   variables:
     HARBOR_REPO: "algreg-backend"
     DOCKER_FILE_PATH: "backend"
-    DOCKER_FILE_NAME: "Dockerfile"
+    DOCKER_FILE_NAME: "Dockerfile.simple"
 
 frontend:image:
   extends: .image
