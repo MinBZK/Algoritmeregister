@@ -1,4 +1,4 @@
 namespace: ictu-devops-tst
 replicaCount: 1
 appLabelName: algreg-frontend
-apiUrl: http://test.algoritmeoverheid.nl/api
+apiUrl: https://test.algoritmeoverheid.nl/api
