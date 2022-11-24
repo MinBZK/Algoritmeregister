@@ -1,18 +1,48 @@
 <template>
-  <div class="locale-changer">
-    <form>
-      <label for="locale-select">{{ $t('language') }}: </label>
-      <select id="locale-select" v-model="$i18n.locale">
-        <option
-          v-for="locale in $i18n.availableLocales"
-          :key="`locale-${locale}`"
-          :value="locale"
-        >
-          {{ locale }}
-        </option>
-      </select>
-    </form>
+  <div class="locale-changer text-grey">
+    {{ $t('selectLanguage') }}:
+    <span
+      v-for="(locale, index) in $i18n.availableLocales"
+      class="locale"
+      :key="`locale-${locale}`"
+      @click="setLocale(locale)"
+    >
+      <template v-if="$i18n.locale !== locale">
+        <a>{{ $t(`locale-${locale}`) }}</a>
+      </template>
+
+      <template v-else> {{ $t(`locale-${locale}`) }}</template>
+
+      <span v-if="index < $i18n.availableLocales.length - 1">|</span>
+    </span>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useI18n } from 'vue-i18n'
+
+const composer = useI18n()
+
+const setLocale = (newLocale) => {
+  composer.locale.value = newLocale
+}
+</script>
+
+<style scoped lang="scss">
+input[type='radio'] {
+  opacity: 0;
+}
+
+label {
+  color: $primary;
+  cursor: pointer;
+}
+
+span {
+  padding-left: 0.25em;
+}
+
+span a {
+  cursor: pointer;
+}
+</style>
