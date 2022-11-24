@@ -1,14 +1,14 @@
 @font-face {
-  font-family: "RO Serif";
-  src: url("@/assets/fonts/RO-SerifWeb-Regular.woff") format("woff");
+  font-family: 'RO Serif';
+  src: url('@/assets/fonts/RO-SerifWeb-Regular.woff') format('woff');
   font-weight: normal;
 }
 
 @font-face {
-  font-family: "RO Icons";
+  font-family: 'RO Icons';
   font-weight: normal;
   font-style: normal;
-  src: url("@/assets/fonts/ro-icons-2.1.woff2") format("woff");
+  src: url('@/assets/fonts/ro-icons-2.1.woff2') format('woff');
 }
 
 @media (min-width: 768px) {
@@ -18,7 +18,7 @@
 }
 
 :root {
-  font-family: "RO Sans", Calibri, sans-serif;
+  font-family: 'RO Rijksoverheid Sans', Calibri, sans-serif;
   font-size: 80%;
 }
 @media (min-width: 768px) {
@@ -109,24 +109,24 @@ body {
 }
 body:after {
   display: none;
-  content: "mobile";
+  content: 'mobile';
 }
 @media (min-width: 576px) {
   body:after {
     display: none;
-    content: "phablet";
+    content: 'phablet';
   }
 }
 @media (min-width: 768px) {
   body:after {
     display: none;
-    content: "tablet";
+    content: 'tablet';
   }
 }
 @media (min-width: 992px) {
   body:after {
     display: none;
-    content: "desktop";
+    content: 'desktop';
   }
 }
 
