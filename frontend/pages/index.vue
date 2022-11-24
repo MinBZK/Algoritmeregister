@@ -1,34 +1,36 @@
 <template>
-  <v-container>
-    <v-card elevation="0" color="tertiary">
-      <div class="card-margins">
-        <v-card-title>
-          <h2 align="center">
-            Algoritmeregister van de Nederlandse Overheid
-          </h2></v-card-title
-        >
-        <v-card-subtitle
-          ><h4 align="center">
-            Zoek naar algoritmes bij Nederlandse Overheidsorganisaties.
-          </h4></v-card-subtitle
-        >
-        <v-card-text>
-          <v-text-field
-            bg-color="white"
-            color="primary"
-            v-model="searchQuery"
-            :label="searchHint"
-            variant="outlined"
-            @keyup.enter="doSearch"
-            prepend-inner-icon="mdi-magnify"
-          ></v-text-field>
-          <v-btn block elevation="0" class="btn-dark" @click="doSearch"
-            ><b> Zoeken</b>
-          </v-btn>
-        </v-card-text>
-      </div>
-    </v-card>
-  </v-container>
+  <Page>
+    <v-container>
+      <v-card elevation="0" color="tertiary">
+        <div class="card-margins">
+          <v-card-title>
+            <h2 align="center">
+              Algoritmeregister van de Nederlandse Overheid
+            </h2></v-card-title
+          >
+          <v-card-subtitle
+            ><h4 align="center">
+              Zoek naar algoritmes bij Nederlandse Overheidsorganisaties.
+            </h4></v-card-subtitle
+          >
+          <v-card-text>
+            <v-text-field
+              bg-color="white"
+              color="primary"
+              v-model="searchQuery"
+              :label="searchHint"
+              variant="outlined"
+              @keyup.enter="doSearch"
+              prepend-inner-icon="mdi-magnify"
+            ></v-text-field>
+            <v-btn block elevation="0" class="btn-dark" @click="doSearch"
+              ><b> Zoeken</b>
+            </v-btn>
+          </v-card-text>
+        </div>
+      </v-card>
+    </v-container>
+  </Page>
 </template>
 
 <script setup>
