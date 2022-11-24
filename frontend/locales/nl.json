@@ -1,4 +1,8 @@
 {
+  "paths": {
+    "/algoritme": "Algoritmeoverzicht"
+  },
+  "algoritmeRegister": "Algoritmeregister",
   "goBack": "terug",
   "yes": "Ja",
   "no": "Nee",

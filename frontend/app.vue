@@ -4,9 +4,10 @@ import { useI18n } from 'vue-i18n'
 import { computed } from 'vue'
 import LanguagePicker from '@/components/LanguagePicker.vue'
 
-const x = useI18n()
-const { t } = x
+const { t } = useI18n()
+
 const helloName = computed(() => t('hello', { name: 'Terry' }))
+const algoritmeRegister = computed(() => t('algoritmeRegister'))
 </script>
 
 <template>
@@ -36,7 +37,7 @@ const helloName = computed(() => t('hello', { name: 'Terry' }))
       </form>
     </div> -->
 
-    <AppHeader title="Algoritmeregister" :pages="['algoritme']" />
+    <AppHeader :title="algoritmeRegister" :pages="['algoritme']" />
 
     <NuxtPage />
   </div>
