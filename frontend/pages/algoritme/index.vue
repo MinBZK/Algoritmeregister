@@ -10,7 +10,9 @@
             variant="outlined"
           >
             <template v-slot:append>
-              <v-btn class="btn-dark" block variant="text"> Zoeken </v-btn>
+              <v-btn class="btn-dark" block variant="text">
+                {{ search }}
+              </v-btn>
             </template>
           </v-text-field>
         </v-col>
@@ -18,7 +20,9 @@
 
       <v-row>
         <v-col :cols="6"
-          ><h2>{{ filteredAlgoritmes.length }} resultaten gevonden</h2></v-col
+          ><h2>
+            {{ $t(`foundResults`, { n: filteredAlgoritmes.length }) }}
+          </h2></v-col
         >
       </v-row>
 
@@ -73,6 +77,7 @@ import type { Algoritme } from '@/types/algoritme'
 const x = useI18n()
 const { t } = x
 const searchHint = computed(() => t('searchHint'))
+const search = computed(() => t('search'))
 
 definePageMeta({
   title: 'Algoritmeoverzicht',
