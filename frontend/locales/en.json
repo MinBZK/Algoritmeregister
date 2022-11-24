@@ -33,7 +33,7 @@
         "description": "** nog te vertalen **"
       },
       "type": {
-        "label": "Type",
+        "label": "Algorithm type",
         "description": "** nog te vertalen **"
       },
       "category": {
@@ -73,98 +73,102 @@
       }
     },
     "toepassing": {
+      "label": "Use-case",
       "description": {
-        "label": "",
+        "label": "Description",
         "description": "** nog te vertalen **"
       },
       "application_url": {
-        "label": "",
+        "label": "Application URL",
         "description": "** nog te vertalen **"
       },
       "publiccode": {
-        "label": "",
-        "description": "** nog te vertalen **"
+        "label": "** Onbekend ** publiccode",
+        "description": "** Onbekend **"
       },
       "mprd": {
-        "label": "",
+        "label": "Coupling with basic registration",
         "description": "** nog te vertalen **"
       },
       "source_data": {
-        "label": "",
+        "label": "Source data",
         "description": "** nog te vertalen **"
       },
       "methods_and_models": {
-        "label": "",
-        "description": "** nog te vertalen **"
+        "label": "** Onbekend ** methods_and_models",
+        "description": "** Onbekend **"
       }
     },
     "toezicht": {
+      "label": "Supervision",
       "monitoring": {
-        "label": "",
+        "label": "Monitoring",
         "description": "** nog te vertalen **"
       },
       "human_intervention": {
-        "label": "",
+        "label": "Human intervention",
         "description": "** nog te vertalen **"
       },
       "risks": {
-        "label": "",
+        "label": "Risks",
         "description": "** nog te vertalen **"
       },
       "performance_standard": {
-        "label": "",
+        "label": "Performance standard",
         "description": "** nog te vertalen **"
       }
     },
     "juridisch": {
+      "label": "Legal",
       "competent_authority": {
-        "label": "",
+        "label": "Competent authority",
         "description": "** nog te vertalen **"
       },
       "lawful_basis": {
-        "label": "",
+        "label": "Lawful basis",
         "description": "** nog te vertalen **"
       },
       "dpia": {
-        "label": "",
+        "label": "Data protection impact assessment",
         "description": "** nog te vertalen **"
       },
       "dpia_description": {
-        "label": "",
+        "label": "Description of the DPIA",
         "description": "** nog te vertalen **"
       },
       "objection_procedure": {
-        "label": "",
+        "label": "Objection procedure",
         "description": "** nog te vertalen **"
       }
     },
     "metadata_algorithm": {
+      "label": "Metadata",
       "schema_metadata": {
-        "label": "",
+        "label": "Schema",
         "description": "** nog te vertalen **"
       },
       "uuid": {
-        "label": "",
+        "label": "UUID",
         "description": "** nog te vertalen **"
       },
       "url": {
-        "label": "",
+        "label": "Source registration URL",
         "description": "** nog te vertalen **"
       },
       "contact_email": {
-        "label": "",
+        "label": "Email for point of contact",
         "description": "** nog te vertalen **"
       },
       "area": {
-        "label": "",
+        "label": "Geographical area",
         "description": "** nog te vertalen **"
       },
       "lang": {
-        "label": "",
+        "label": "Language",
         "description": "** nog te vertalen **"
       },
       "revision_date": {
-        "label": "",
+        "label": "Revision date",
         "description": "** nog te vertalen **"
       }
     }
