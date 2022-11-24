@@ -73,14 +73,12 @@ const { t } = useI18n()
 const example = computed(() => t(`algorithmProperties.inzet.goal.label`))
 
 const filteredData = computed(() => {
+  // from the database, the nested data is all but the 'algemene informatie'
   const nestedData = Object.fromEntries(
     Object.entries(algoritme.value).filter(([k, v]) => typeof v == 'object')
   )
   nestedData.algemeneInformatie = Object.fromEntries(
-    Object.entries(algoritme.value).filter(([k, v]) => {
-      console.log(!excludedData.includes(k))
-      return typeof v != 'object'
-    })
+    Object.entries(algoritme.value).filter(([k, v]) => typeof v != 'object')
   )
   const result = Object.fromEntries(
     Object.entries(nestedData).map((x: [string, any]) => {
@@ -98,14 +96,13 @@ const filteredData = computed(() => {
 const algorithmProperties = computed(() => {
   // This property uses nicely ordered data from database (without excluded keys) and the translation data from i18n
   const result = expansionConfig.map((row) => {
-    // console.log('properties', filteredData.value['inzet'])
     return {
       label: row.label,
       content: Object.entries(filteredData.value[row.key]).map(([k, v]) => {
         return {
           label: t(`algorithmProperties.${row.key}.${k}.label`),
           description: t(`algorithmProperties.${row.key}.${k}.description`),
-          value: v,
+          value: v || 'Ontbreekt',
         }
       }),
     }
@@ -115,25 +112,29 @@ const algorithmProperties = computed(() => {
 
 const expansionConfig = [
   {
+    label: 'Algemene informatie',
+    key: 'algemeneInformatie',
+  },
+  {
     label: 'Inzet',
     key: 'inzet',
   },
-  // {
-  //   label: 'Toepassing',
-  //   key: 'toepassing',
-  // },
-  // {
-  //   label: 'Toezicht',
-  //   key: 'toezicht',
-  // },
-  // {
-  //   label: 'Juridisch',
-  //   key: 'juridisch',
-  // },
-  // {
-  //   label: 'Metadata',
-  //   key: 'metadata',
-  // },
+  {
+    label: 'Toepassing',
+    key: 'toepassing',
+  },
+  {
+    label: 'Toezicht',
+    key: 'toezicht',
+  },
+  {
+    label: 'Juridisch',
+    key: 'juridisch',
+  },
+  {
+    label: 'Metadata',
+    key: 'metadata_algorithm',
+  },
 ]
 
 definePageMeta({
