@@ -22,27 +22,26 @@
           {{ algoritme[sT.key as keyof typeof algoritme] }}</v-col
         >
       </v-row>
-      {{ example }}
       <v-expansion-panels variant="default" class="mt-5">
         <v-expansion-panel
           bg-color="quaternary"
-          v-for="subtable in algorithmProperties"
-          :title="subtable.label"
+          v-for="groupedProperty in structuredProperties"
+          :title="groupedProperty.attributeGroupKeyLabel"
           elevation="1"
           expand-icon="mdi-menu-down"
         >
           <v-expansion-panel-text>
-            <v-row v-for="content in subtable.content">
+            <v-row v-for="property in groupedProperty.properties">
               <v-col>
-                <p>
-                  <b> {{ content.label }} </b>
+                <p class="mt-2">
+                  <b> {{ property.attributeKeyLabel }} </b>
                 </p>
-                <br />
-                <p color="grey">
-                  <i> {{ content.description }} </i>
+                <p class="mb-1">
+                  <i> {{ property.attributeKeyDescription }} </i>
                 </p>
-                <br />
-                <p>{{ content.value }}</p>
+                <p class="mb-1">
+                  {{ property.attributeValue }}
+                </p>
               </v-col>
               <v-divider></v-divider>
             </v-row>
@@ -64,53 +63,43 @@ import type { Algoritme } from '~~/types/algoritme'
 // get data
 const route = useRoute()
 const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
-// const algoritme: { [key: string]: any } = await algoritmeService.getOne(id)
 
 const { data } = await algoritmeService.getOne(id)
 let algoritme = ref(data.value as Algoritme)
 
 const title = computed(() => algoritme?.value.name)
-const excludedData = ['id', 'algoritme_id']
 
 const { t } = useI18n()
 const example = computed(() => t(`algorithmProperties.inzet.goal.label`))
 
-const filteredData = computed(() => {
-  // from the database, the nested data is all but the 'algemene informatie'
-  const nestedData = Object.fromEntries(
-    Object.entries(algoritme.value).filter(([k, v]) => typeof v == 'object')
+const structuredProperties = computed(() => {
+  const keysWithObjectValues = Object.keys(algoritme.value).filter(
+    (key) =>
+      typeof algoritme.value[key as keyof typeof algoritme.value] == 'object'
   )
-  nestedData.algemeneInformatie = Object.fromEntries(
-    Object.entries(algoritme.value).filter(([k, v]) => typeof v != 'object')
-  )
-  const result = Object.fromEntries(
-    Object.entries(nestedData).map((x: [string, any]) => {
-      return [
-        x[0],
-        Object.fromEntries(
-          Object.entries(x[1]).filter(([k, v]) => !excludedData.includes(k))
-        ),
-      ]
-    })
-  )
-  return result
-})
-
-const algorithmProperties = computed(() => {
-  // This property uses nicely ordered data from database (without excluded keys) and the translation data from i18n
-  const result = expansionConfig.map((row) => {
+  const excludedKeys = ['id', 'algoritme_id']
+  return keysWithObjectValues.map((attributeGroupKey) => {
     return {
-      label: row.label,
-      content: Object.entries(filteredData.value[row.key]).map(([k, v]) => {
-        return {
-          label: t(`algorithmProperties.${row.key}.${k}.label`),
-          description: t(`algorithmProperties.${row.key}.${k}.description`),
-          value: v || 'Ontbreekt',
-        }
-      }),
+      attributeGroupKey,
+      attributeGroupKeyLabel: t('bestaatniet') || attributeGroupKey,
+      properties: Object.entries(
+        algoritme.value[attributeGroupKey as keyof typeof algoritme.value]
+      )
+        .filter(([key]) => !excludedKeys.includes(key))
+        .map(([key, value]) => {
+          return {
+            attributeKey: key,
+            attributeValue: value,
+            attributeKeyDescription: t(
+              `algorithmProperties.${attributeGroupKey}.${key}.description`
+            ),
+            attributeKeyLabel: t(
+              `algorithmProperties.${attributeGroupKey}.${key}.label`
+            ),
+          }
+        }),
     }
   })
-  return result
 })
 
 const expansionConfig = [
