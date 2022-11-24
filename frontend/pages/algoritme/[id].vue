@@ -21,7 +21,7 @@
           ><h4>
             {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
           </h4>
-          {{ algoritme[sT.key as keyof typeof algoritme] }}</v-col
+          {{ algoritme[sT as keyof typeof algoritme] }}</v-col
         >
       </v-row>
       <v-row class="mt-8">
@@ -96,10 +96,7 @@ const enrichedAlgoritme = computed(() => {
 // const title = computed(() => algoritme?.value.name)
 
 const { t } = useI18n()
-<<<<<<< HEAD
 const i18nGoBack = computed(() => t(`goBack`))
-=======
->>>>>>> origin
 
 const structuredProperties = computed(() => {
   const algoritme = enrichedAlgoritme
@@ -108,12 +105,7 @@ const structuredProperties = computed(() => {
       typeof algoritme.value[key as keyof typeof algoritme.value] == 'object'
   )
   const excludedKeys = ['id', 'algoritme_id']
-<<<<<<< HEAD
-  const result = keysWithObjectValues.map((attributeGroupKey) => {
-=======
-
   return keysWithObjectValues.map((attributeGroupKey) => {
->>>>>>> origin
     return {
       attributeGroupKey,
       attributeGroupKeyLabel:
@@ -143,8 +135,6 @@ const structuredProperties = computed(() => {
         }),
     }
   })
-  console.log(result)
-  return result
 })
 
 definePageMeta({
