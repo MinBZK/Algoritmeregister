@@ -1,4 +1,7 @@
 {
+  "goBack": "back to summary",
+  "yes": "Yes",
+  "no": "No",
   "hello": "Hello, {name}!",
   "language": "Language",
   "homepageTitle": "Algoritmeregister from the Netherlandic Upper Entity",

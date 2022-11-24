@@ -3,7 +3,7 @@
     <v-container>
       <div class="text-field-sheet">
         <v-col>
-          <NuxtLink to="/algoritme"> terug </NuxtLink>
+          <NuxtLink to="/algoritme"> {{ i18nGoBack }} </NuxtLink>
         </v-col>
       </div>
 
@@ -25,7 +25,6 @@
           {{ algoritme[sT.key] }}</v-col
         >
       </v-row>
-      {{ example }}
       <v-expansion-panels variant="default" class="mt-5">
         <v-expansion-panel
           bg-color="quaternary"
@@ -70,7 +69,7 @@ const title = computed(() => (algoritme?.value ? algoritme.value['naam'] : ''))
 const excludedData = ['id', 'algoritme_id']
 
 const { t } = useI18n()
-const example = computed(() => t(`algorithmProperties.inzet.goal.label`))
+const i18nGoBack = computed(() => t(`goBack`))
 
 const filteredData = computed(() => {
   // from the database, the nested data is all but the 'algemene informatie'
@@ -99,10 +98,13 @@ const algorithmProperties = computed(() => {
     return {
       label: row.label,
       content: Object.entries(filteredData.value[row.key]).map(([k, v]) => {
+        const parsedValue = () => {
+          return typeof v != 'boolean' ? v : v == true ? t(`yes`) : t(`no`)
+        }
         return {
           label: t(`algorithmProperties.${row.key}.${k}.label`),
           description: t(`algorithmProperties.${row.key}.${k}.description`),
-          value: v || 'Ontbreekt',
+          value: parsedValue() || 'Ontbreekt',
         }
       }),
     }

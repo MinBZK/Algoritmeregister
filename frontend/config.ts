@@ -1,26 +1,9 @@
-import { SummaryTile } from '@/types'
-
-const summaryTiles: SummaryTile[] = [
-  {
-    label: 'Organisatie',
-    key: 'organization',
-  },
-  {
-    label: 'Afdeling',
-    key: 'department',
-  },
-  {
-    label: 'Thema',
-    key: 'category',
-  },
-  {
-    label: 'Type',
-    key: 'type',
-  },
-  {
-    label: 'Status',
-    key: 'status',
-  },
+const summaryTiles: Array<string> = [
+  'organization',
+  'department',
+  'category',
+  'type',
+  'status',
 ]
 
 const keys = {
