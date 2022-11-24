@@ -70,8 +70,8 @@ class AlgemeneInformatie(BaseModelOrmMode):
     website: str | None
     status: str
 
-    inzet_entity: Inzet | None
-    juridisch_entity: Juridisch | None
-    metadata_entity: Metadata | None
-    toepassing_entity: Toepassing | None
-    toezicht_entity: Toezicht | None
+    inzet: Inzet | None
+    juridisch: Juridisch | None
+    metadata_algorithm: Metadata | None
+    toepassing: Toepassing | None
+    toezicht: Toezicht | None
