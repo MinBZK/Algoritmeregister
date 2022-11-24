@@ -17,7 +17,11 @@
     "prettier.enable": true,
     "editor.formatOnSave": true,
     "search.exclude": {
-      "*.mjs": true
+      "*.mjs": true,
+      "*.sql": true,
+      "**/.nuxt": true,
+      "**/.output": true,
+      "**/dist/_nuxt": true
     }
   }
 }

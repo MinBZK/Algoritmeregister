@@ -2,12 +2,12 @@
 import type { Algoritme } from '@/types/algoritme'
 
 const getAll = () =>
-  useFetch<Algoritme[]>('/algoritme', {
+  useFetch<Algoritme[]>('/algoritme/', {
     baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
 
 const getOne = (id: string) =>
-  useFetch<Algoritme>(`/algoritme/${id}`, {
+  useFetch<Algoritme>(`/algoritme/${id}/`, {
     baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
 
