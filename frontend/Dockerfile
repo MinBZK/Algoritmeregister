@@ -1,9 +1,20 @@
-FROM harbor.cicd.s15m.nl/ictu-devops-docker-hub/library/node:19-alpine
+FROM harbor.cicd.s15m.nl/ictu-devops-pub/nginxinc/nginx-unprivileged:1.21.6-alpine_rid
 
-ENV APP_ROOT /app
+USER root
+RUN apk update
+RUN apk upgrade
+
+RUN apk add --update npm
 
 COPY ./frontend/.output /app
-CMD node /app/server/index.mjs
+
+RUN rm /etc/nginx/conf.d/default.conf
+
+COPY ./frontend/nginx /etc/nginx
+
+RUN node /app/server/index.mjs
+
+CMD nginx -g "daemon off;"
 
 # Expose ports
-EXPOSE 3000:3000
+EXPOSE 8080:8080

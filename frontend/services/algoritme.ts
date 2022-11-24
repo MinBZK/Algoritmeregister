@@ -1,11 +1,14 @@
-import { apiFetch } from '@/utils/fetchApi'
+// import { apiFetch } from '@/utils/fetchApi'
+import type { Algoritme } from '@/types/algoritme'
 
 const getAll = () =>
-  apiFetch('/algoritme').then((response) => {
-    return response.data
+  useFetch<Algoritme[]>('/algoritme', {
+    baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
 
 const getOne = (id: string) =>
-  apiFetch(`/algoritme/${id}/`).then((response) => response.data)
+  useFetch<Algoritme>(`/algoritme/${id}`, {
+    baseURL: useRuntimeConfig().public.apiBaseUrl,
+  })
 
 export default { getAll, getOne }
