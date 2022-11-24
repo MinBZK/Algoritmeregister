@@ -42,6 +42,7 @@
       }
     },
     "inzet": {
+      "label": "Application",
       "goal": {
         "label": "Goal",
         "description": "** nog te vertalen **"

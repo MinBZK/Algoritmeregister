@@ -24,19 +24,19 @@
 
       <div v-for="algoritme in paginatedAlgoritmes">
         <h3>
-          <NuxtLink :to="`/algoritme/${algoritme[keys.id]}`">
-            {{ algoritme[keys.name] }}
+          <NuxtLink :to="`/algoritme/${algoritme.id}`">
+            {{ algoritme.name }}
           </NuxtLink>
         </h3>
         <v-row>
           <v-col>
-            {{ algoritme[keys.description] }}
+            {{ algoritme.description_short }}
           </v-col>
         </v-row>
         <v-row class="mt-5">
           <v-col v-for="sT in summaryTiles" :key="sT.key"
             ><h4>{{ sT.label }}</h4>
-            {{ algoritme[sT.key] }}</v-col
+            {{ algoritme[sT.key as keyof typeof algoritme] }}</v-col
           >
         </v-row>
         <v-divider></v-divider>
@@ -67,7 +67,8 @@ import { computed } from 'vue'
 import Page from '~~/components/PageWrapper.vue'
 import algoritmeService from '@/services/algoritme'
 import { useI18n } from 'vue-i18n'
-import { summaryTiles, keys } from '~~/config'
+import { summaryTiles } from '~~/config'
+import type { Algoritme } from '@/types/algoritme'
 
 const x = useI18n()
 const { t } = x
@@ -77,17 +78,18 @@ definePageMeta({
   title: 'Algoritmeoverzicht',
 })
 
-let algoritmes = ref([])
-algoritmes = await algoritmeService.getAll()
+const { data } = await algoritmeService.getAll()
+let algoritmes = ref(data.value as Algoritme[])
 
 const searchQuery = ref(useRoute().query.q || '')
 
 const filteredAlgoritmes = computed(() =>
-  algoritmes.value.filter((a) => {
-    const algoritmeName = a[keys.name]
+  algoritmes.value.filter((algoritme) => {
+    const algoritmeName = algoritme.name
+    const searchQueryString = String(searchQuery.value)
     const allowed =
-      searchQuery.value.length > 0 && typeof algoritmeName === 'string'
-        ? algoritmeName.toLowerCase().includes(searchQuery.value.toLowerCase())
+      searchQueryString.length > 0 && typeof algoritmeName === 'string'
+        ? algoritmeName.toLowerCase().includes(searchQueryString.toLowerCase())
         : true
     return allowed
   })

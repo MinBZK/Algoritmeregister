@@ -53,7 +53,7 @@ frontend:image:
   variables:
     HARBOR_REPO: "algreg-frontend"
     DOCKER_FILE_PATH: "frontend"
-    DOCKER_FILE_NAME: "Dockerfile"
+    DOCKER_FILE_NAME: "Dockerfile.simple"
   needs:
     - frontend:build
 
