@@ -18,7 +18,9 @@
       <!-- {{ structuredProperties }} -->
       <v-row class="mt-5">
         <v-col v-for="sT in summaryTiles"
-          ><h4>{{ sT }}</h4>
+          ><h4>
+            {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
+          </h4>
           {{ algoritme[sT.key as keyof typeof algoritme] }}</v-col
         >
       </v-row>
