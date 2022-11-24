@@ -4,6 +4,40 @@
   "homepageTitle": "Algoritmeregister from the Netherlandic Upper Entity",
   "searchHint": "Find algorithms by organisation, title or description",
   "algorithmProperties": {
+    "algemeneInformatie": {
+      "name": {
+        "label": "",
+        "description": ""
+      },
+      "organization": {
+        "label": "",
+        "description": ""
+      },
+      "department": {
+        "label": "",
+        "description": ""
+      },
+      "description_short": {
+        "label": "",
+        "description": ""
+      },
+      "type": {
+        "label": "",
+        "description": ""
+      },
+      "category": {
+        "label": "",
+        "description": ""
+      },
+      "website": {
+        "label": "",
+        "description": ""
+      },
+      "status": {
+        "label": "",
+        "description": ""
+      }
+    },
     "inzet": {
       "goal": {
         "label": "Goal",
@@ -20,6 +54,102 @@
       "decision_making_process": {
         "label": "Decision making process",
         "description": "** Unknown **"
+      }
+    },
+    "toepassing": {
+      "description": {
+        "label": "",
+        "description": ""
+      },
+      "application_url": {
+        "label": "",
+        "description": ""
+      },
+      "publiccode": {
+        "label": "",
+        "description": ""
+      },
+      "mprd": {
+        "label": "",
+        "description": ""
+      },
+      "source_data": {
+        "label": "",
+        "description": ""
+      },
+      "methods_and_models": {
+        "label": "",
+        "description": ""
+      }
+    },
+    "toezicht": {
+      "monitoring": {
+        "label": "",
+        "description": ""
+      },
+      "human_intervention": {
+        "label": "",
+        "description": ""
+      },
+      "risks": {
+        "label": "",
+        "description": ""
+      },
+      "performance_standard": {
+        "label": "",
+        "description": ""
+      }
+    },
+    "juridisch": {
+      "competent_authority": {
+        "label": "",
+        "description": ""
+      },
+      "lawful_basis": {
+        "label": "",
+        "description": ""
+      },
+      "dpia": {
+        "label": "",
+        "description": ""
+      },
+      "dpia_description": {
+        "label": "",
+        "description": ""
+      },
+      "objection_procedure": {
+        "label": "",
+        "description": ""
+      }
+    },
+    "metadata_algorithm": {
+      "schema_metadata": {
+        "label": "",
+        "description": ""
+      },
+      "uuid": {
+        "label": "",
+        "description": ""
+      },
+      "url": {
+        "label": "",
+        "description": ""
+      },
+      "contact_email": {
+        "label": "",
+        "description": ""
+      },
+      "area": {
+        "label": "",
+        "description": ""
+      },
+      "lang": {
+        "label": "",
+        "description": ""
+      },
+      "revision_date": {
+        "label": "",
+        "description": ""
       }
     }
   }
