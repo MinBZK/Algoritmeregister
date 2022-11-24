@@ -16,6 +16,6 @@ class Metadata(Base):
     revision_date = Column(VARCHAR(1024))
     algoritme_id = Column(Integer, ForeignKey("algemene_informatie.id"))
 
-    algemene_informatie_entity = relationship(
-        "AlgemeneInformatie", back_populates="metadata_entity"
+    algemene_informatie = relationship(
+        "AlgemeneInformatie", back_populates="metadata_algorithm"
     )
