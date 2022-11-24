@@ -73,7 +73,7 @@ const { t } = useI18n()
 const example = computed(() => t(`algorithmProperties.inzet.goal.label`))
 
 const filteredData = computed(() => {
-  const nestedData: {} = Object.fromEntries(
+  const nestedData = Object.fromEntries(
     Object.entries(algoritme.value).filter(([k, v]) => typeof v == 'object')
   )
   nestedData.algemeneInformatie = Object.fromEntries(
@@ -82,15 +82,20 @@ const filteredData = computed(() => {
       return typeof v != 'object'
     })
   )
-  const nestedFilteredData = Object.fromEntries(
-    Object.entries(nestedData).map((x) => {
-      console.log(x)
-      return x
+  const result = Object.fromEntries(
+    Object.entries(nestedData).map((x: [string, any]) => {
+      return [
+        x[0],
+        Object.fromEntries(
+          Object.entries(x[1]).filter(([k, v]) => !excludedData.includes(k))
+        ),
+      ]
     })
   )
   // && !excludedData.includes(k)
-  console.log(nestedFilteredData)
+  console.log(result)
   const filtered = algoritme.value
+  console.log(filtered)
   return filtered
 })
 
