@@ -1,5 +1,5 @@
 <template>
-  <Page :title="`Homepage`">
+  <Page>
     <v-container>
       <v-card elevation="0" color="tertiary">
         <div class="card-margins">

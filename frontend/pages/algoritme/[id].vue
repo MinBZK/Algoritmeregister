@@ -1,5 +1,5 @@
 <template>
-  <Page :title="title">
+  <Page>
     <v-container>
       <div class="text-field-sheet">
         <v-col>
@@ -24,32 +24,34 @@
           {{ algoritme[sT.key as keyof typeof algoritme] }}</v-col
         >
       </v-row>
-      <v-expansion-panels variant="default" class="mt-5">
-        <v-expansion-panel
-          bg-color="quaternary"
-          v-for="groupedProperty in structuredProperties"
-          :title="groupedProperty.attributeGroupKeyLabel"
-          elevation="1"
-          expand-icon="mdi-menu-down"
-        >
-          <v-expansion-panel-text>
-            <v-row v-for="property in groupedProperty.properties">
-              <v-col>
-                <p class="mt-2">
-                  <b> {{ property.attributeKeyLabel }} </b>
-                </p>
-                <p class="mb-1">
-                  <i> {{ property.attributeKeyDescription }} </i>
-                </p>
-                <p class="mb-1">
-                  {{ property.attributeValue }}
-                </p>
-              </v-col>
-              <v-divider></v-divider>
-            </v-row>
-          </v-expansion-panel-text>
-        </v-expansion-panel>
-      </v-expansion-panels>
+      <v-row class="mt-8">
+        <v-expansion-panels variant="default">
+          <v-expansion-panel
+            bg-color="quaternary"
+            v-for="groupedProperty in structuredProperties"
+            :title="groupedProperty.attributeGroupKeyLabel"
+            elevation="1"
+            expand-icon="mdi-menu-down"
+          >
+            <v-expansion-panel-text>
+              <v-row v-for="property in groupedProperty.properties">
+                <v-col>
+                  <p class="mt-2">
+                    <b> {{ property.attributeKeyLabel }} </b>
+                  </p>
+                  <p class="mb-1">
+                    <i> {{ property.attributeKeyDescription }} </i>
+                  </p>
+                  <p class="mb-1">
+                    {{ property.attributeValue }}
+                  </p>
+                </v-col>
+                <v-divider></v-divider>
+              </v-row>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-row>
     </v-container>
   </Page>
 </template>
@@ -69,18 +71,49 @@ const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
 const { data } = await algoritmeService.getOne(id)
 let algoritme = ref(data.value as Algoritme)
 
-const title = computed(() => algoritme?.value.name)
+const enrichedAlgoritme = computed(() => {
+  // add algemene informatie as object
+  const groupKey = 'algemeneInformatie'
+  const nestedKeys = [
+    'name',
+    'organization',
+    'department',
+    'description_short',
+    'type',
+    'category',
+    'website',
+    'status',
+    'id',
+  ]
+  const group = nestedKeys.reduce((obj, key) => {
+    obj[key as keyof Algoritme] = algoritme.value[key as keyof Algoritme]
+    return obj
+  }, {} as Algoritme)
+
+  return { [groupKey]: group, ...algoritme.value }
+})
+
+// const title = computed(() => algoritme?.value.name)
 
 const { t } = useI18n()
+<<<<<<< HEAD
 const i18nGoBack = computed(() => t(`goBack`))
+=======
+>>>>>>> origin
 
 const structuredProperties = computed(() => {
+  const algoritme = enrichedAlgoritme
   const keysWithObjectValues = Object.keys(algoritme.value).filter(
     (key) =>
       typeof algoritme.value[key as keyof typeof algoritme.value] == 'object'
   )
   const excludedKeys = ['id', 'algoritme_id']
+<<<<<<< HEAD
   const result = keysWithObjectValues.map((attributeGroupKey) => {
+=======
+
+  return keysWithObjectValues.map((attributeGroupKey) => {
+>>>>>>> origin
     return {
       attributeGroupKey,
       attributeGroupKeyLabel:
