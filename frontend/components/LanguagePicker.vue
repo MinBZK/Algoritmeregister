@@ -1,6 +1,5 @@
 <template>
   <div class="locale-changer text-grey">
-    {{ $t('selectLanguage') }}:
     <span
       v-for="(locale, index) in $i18n.availableLocales"
       class="locale"
@@ -20,11 +19,15 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n'
+import { useLocale } from 'vuetify'
+
+const { current } = useLocale()
 
 const composer = useI18n()
 
 const setLocale = (newLocale) => {
   composer.locale.value = newLocale
+  current.value = newLocale
 }
 </script>
 
