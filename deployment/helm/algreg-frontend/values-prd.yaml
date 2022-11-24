@@ -1,4 +1,4 @@
 namespace: ictu-devops-prd
 replicaCount: 1
 appLabelName: algreg-frontend
-apiUrl: http://algoritmeoverheid.nl/api
+apiUrl: https://algoritmeoverheid.nl/api
