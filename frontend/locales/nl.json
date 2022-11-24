@@ -1,5 +1,6 @@
 {
   "foundResults": "{n} Resultaten gevonden",
+  "noResults": "Geen algoritmes gevonden voor de huidige zoekopdracht.",
   "paths": {
     "/algoritme": "Algoritmeoverzicht"
   },

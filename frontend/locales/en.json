@@ -1,5 +1,6 @@
 {
   "foundResults": "Found {n} results",
+  "noResults": "No algorithm was found for this search request.",
   "paths": {
     "/algoritme": "Overview"
   },
