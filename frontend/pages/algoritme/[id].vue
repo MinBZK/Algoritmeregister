@@ -16,7 +16,7 @@
         </v-col>
       </v-row>
       <!-- {{ structuredProperties }} -->
-      <v-row class="mt-5">
+      <v-row class="mt-3">
         <v-col v-for="sT in summaryTiles"
           ><h4>
             {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
