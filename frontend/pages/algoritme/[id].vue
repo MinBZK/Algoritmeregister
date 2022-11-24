@@ -67,20 +67,29 @@ const route = useRoute()
 const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
 const algoritme: { [key: string]: any } = await algoritmeService.getOne(id)
 const title = computed(() => (algoritme?.value ? algoritme.value['naam'] : ''))
+const excludedData = ['id', 'algoritme_id']
 
 const { t } = useI18n()
 const example = computed(() => t(`algorithmProperties.inzet.goal.label`))
 
 const filteredData = computed(() => {
-  const nestedData = Object.fromEntries(
+  const nestedData: {} = Object.fromEntries(
     Object.entries(algoritme.value).filter(([k, v]) => typeof v == 'object')
   )
-  const algemeneInformatie = Object.fromEntries(
-    Object.entries(algoritme.value).filter(([k, v]) => typeof v != 'object')
+  nestedData.algemeneInformatie = Object.fromEntries(
+    Object.entries(algoritme.value).filter(([k, v]) => {
+      console.log(!excludedData.includes(k))
+      return typeof v != 'object'
+    })
   )
-  console.log(algemeneInformatie)
-  nestedData['algemeneInformatie'] = algemeneInformatie
-  console.log(nestedData)
+  const nestedFilteredData = Object.fromEntries(
+    Object.entries(nestedData).map((x) => {
+      console.log(x)
+      return x
+    })
+  )
+  // && !excludedData.includes(k)
+  console.log(nestedFilteredData)
   const filtered = algoritme.value
   return filtered
 })
@@ -102,7 +111,6 @@ const algorithmProperties = computed(() => {
   return result
 })
 
-const excludedData = ['id', 'algoritme_id']
 const expansionConfig = [
   {
     label: 'Inzet',
