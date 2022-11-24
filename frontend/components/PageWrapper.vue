@@ -1,6 +1,5 @@
 <template>
   <NuxtLayout>
-    <!-- <h1>{{ displayedTitle }}</h1> -->
     <slot />
   </NuxtLayout>
 </template>
