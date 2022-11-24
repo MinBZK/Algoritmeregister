@@ -1,6 +1,26 @@
 {
-    "hello": "Hello, {name}!",
-    "language": "Language",
-    "homepageTitle": "Algoritmeregister from the Netherlandic Upper Entity",
-    "searchHint": "Find algorithms by organisation, title or description"
+  "hello": "Hello, {name}!",
+  "language": "Language",
+  "homepageTitle": "Algoritmeregister from the Netherlandic Upper Entity",
+  "searchHint": "Find algorithms by organisation, title or description",
+  "algorithmProperties": {
+    "inzet": {
+      "goal": {
+        "label": "Goal",
+        "description": "** Unknown **"
+      },
+      "impact": {
+        "label": "Impact",
+        "description": "** Unknown **"
+      },
+      "proportionality": {
+        "label": "Proportionality",
+        "description": "** Unknown **"
+      },
+      "decision_making_process": {
+        "label": "Decision making process",
+        "description": "** Unknown **"
+      }
+    }
+  }
 }
