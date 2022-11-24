@@ -37,9 +37,6 @@
 import Page from '@/components/PageWrapper.vue'
 import { useI18n } from 'vue-i18n'
 
-const vuetify = useVuetify()
-console.log(vuetify)
-
 const { t } = useI18n()
 const searchHint = computed(() => t('searchHint'))
 const homepageTitle = computed(() => t('homepageTitle'))
