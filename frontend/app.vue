@@ -2,6 +2,11 @@
 import AppHeader from '@/components/AppHeader.vue'
 import { useI18n } from 'vue-i18n'
 import LanguagePicker from '@/components/LanguagePicker.vue'
+
+const { t } = useI18n()
+
+const helloName = computed(() => t('hello', { name: 'Terry' }))
+const algoritmeRegister = computed(() => t('algoritmeRegister'))
 </script>
 
 <template>
@@ -11,7 +16,9 @@ import LanguagePicker from '@/components/LanguagePicker.vue'
       :height="5"
     />
 
-    <AppHeader title="Algoritmeregister" :pages="['algoritme']" />
+    <LanguagePicker />
+
+    <AppHeader :title="algoritmeRegister" :pages="['algoritme']" />
 
     <LanguagePicker />
 
