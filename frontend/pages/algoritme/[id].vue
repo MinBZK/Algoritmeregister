@@ -3,7 +3,7 @@
     <v-container>
       <div class="text-field-sheet">
         <v-col>
-          <NuxtLink to="/algoritme"> terug </NuxtLink>
+          <NuxtLink to="/algoritme"> {{ i18nGoBack }} </NuxtLink>
         </v-col>
       </div>
 
@@ -15,11 +15,13 @@
           {{ algoritme.description_short }}
         </v-col>
       </v-row>
-
+      <!-- {{ structuredProperties }} -->
       <v-row class="mt-5">
         <v-col v-for="sT in summaryTiles"
-          ><h4>{{ sT.label }}</h4>
-          {{ algoritme[sT.key as keyof typeof algoritme] }}</v-col
+          ><h4>
+            {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
+          </h4>
+          {{ algoritme[sT as keyof typeof algoritme] }}</v-col
         >
       </v-row>
       <v-row class="mt-8">
@@ -58,7 +60,7 @@
 import { computed } from 'vue'
 import Page from '~~/components/PageWrapper.vue'
 import algoritmeService from '@/services/algoritme'
-import { summaryTiles, keys } from '~~/config'
+import { summaryTiles, keys } from '~~/config/config'
 import { useI18n } from 'vue-i18n'
 import type { Algoritme } from '~~/types/algoritme'
 
@@ -94,6 +96,7 @@ const enrichedAlgoritme = computed(() => {
 // const title = computed(() => algoritme?.value.name)
 
 const { t } = useI18n()
+const i18nGoBack = computed(() => t(`goBack`))
 
 const structuredProperties = computed(() => {
   const algoritme = enrichedAlgoritme
@@ -102,7 +105,6 @@ const structuredProperties = computed(() => {
       typeof algoritme.value[key as keyof typeof algoritme.value] == 'object'
   )
   const excludedKeys = ['id', 'algoritme_id']
-
   return keysWithObjectValues.map((attributeGroupKey) => {
     return {
       attributeGroupKey,
@@ -114,9 +116,15 @@ const structuredProperties = computed(() => {
       )
         .filter(([key]) => !excludedKeys.includes(key))
         .map(([key, value]) => {
+          const parsedValue =
+            typeof value != 'boolean'
+              ? value
+              : value == true
+              ? t(`yes`)
+              : t(`no`)
           return {
             attributeKey: key,
-            attributeValue: value,
+            attributeValue: parsedValue,
             attributeKeyDescription: t(
               `algorithmProperties.${attributeGroupKey}.${key}.description`
             ),

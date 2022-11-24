@@ -10,7 +10,9 @@
             variant="outlined"
           >
             <template v-slot:append>
-              <v-btn class="btn-dark" block variant="text"> Zoeken </v-btn>
+              <v-btn class="btn-dark" block variant="text">
+                {{ search }}
+              </v-btn>
             </template>
           </v-text-field>
         </v-col>
@@ -18,7 +20,9 @@
 
       <v-row>
         <v-col :cols="6"
-          ><h2>{{ filteredAlgoritmes.length }} resultaten gevonden</h2></v-col
+          ><h2>
+            {{ $t(`foundResults`, { n: filteredAlgoritmes.length }) }}
+          </h2></v-col
         >
       </v-row>
 
@@ -34,9 +38,11 @@
           </v-col>
         </v-row>
         <v-row class="mt-5">
-          <v-col v-for="sT in summaryTiles" :key="sT.key"
-            ><h4>{{ sT.label }}</h4>
-            {{ algoritme[sT.key as keyof typeof algoritme] }}</v-col
+          <v-col v-for="sT in summaryTiles"
+            ><h4>
+              {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
+            </h4>
+            {{ algoritme[sT as keyof typeof algoritme] }}</v-col
           >
         </v-row>
         <v-divider></v-divider>
@@ -67,12 +73,13 @@ import { computed } from 'vue'
 import Page from '~~/components/PageWrapper.vue'
 import algoritmeService from '@/services/algoritme'
 import { useI18n } from 'vue-i18n'
-import { summaryTiles } from '~~/config'
+import { summaryTiles } from '~~/config/config'
 import type { Algoritme } from '@/types/algoritme'
 
 const x = useI18n()
 const { t } = x
 const searchHint = computed(() => t('searchHint'))
+const search = computed(() => t('search'))
 
 definePageMeta({
   title: 'Algoritmeoverzicht',

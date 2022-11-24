@@ -5,12 +5,12 @@
         <div class="card-margins">
           <v-card-title>
             <h2 align="center">
-              Algoritmeregister van de Nederlandse Overheid
+              {{ homepageTitle }}
             </h2></v-card-title
           >
           <v-card-subtitle
             ><h4 align="center">
-              Zoek naar algoritmes bij Nederlandse Overheidsorganisaties.
+              {{ homepageSubtitle }}
             </h4></v-card-subtitle
           >
           <v-card-text>
@@ -24,7 +24,7 @@
               prepend-inner-icon="mdi-magnify"
             ></v-text-field>
             <v-btn block elevation="0" class="btn-dark" @click="doSearch"
-              ><b> Zoeken</b>
+              ><b> {{ search }}</b>
             </v-btn>
           </v-card-text>
         </div>
@@ -39,6 +39,9 @@ import { useI18n } from 'vue-i18n'
 const x = useI18n()
 const { t } = x
 const searchHint = computed(() => t('searchHint'))
+const homepageTitle = computed(() => t('homepageTitle'))
+const homepageSubtitle = computed(() => t('homepageSubtitle'))
+const search = computed(() => t('search'))
 
 const searchQuery = ref('')
 

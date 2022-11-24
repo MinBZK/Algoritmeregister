@@ -32,6 +32,10 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
 const props = defineProps<{
   title?: string
   pages?: string[]
@@ -39,9 +43,17 @@ const props = defineProps<{
 
 const router = useRouter()
 const routes = router.getRoutes()
-const navigationRoutes = routes.filter((r) => {
-  const routeName = typeof r.name === 'string' ? r.name : ''
-  return (props.pages || []).includes(routeName)
+const navigationRoutes = computed(() => {
+  return routes
+    .filter((r) => {
+      const routeName = typeof r.name === 'string' ? r.name : ''
+      return (props.pages || []).includes(routeName)
+    })
+    .map((r) => {
+      r.meta.title = t(`paths.${r.path}`)
+      console.log(r.path)
+      return r
+    })
 })
 </script>
 
