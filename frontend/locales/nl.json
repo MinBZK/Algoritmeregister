@@ -1,4 +1,7 @@
 {
+  "goBack": "terug",
+  "yes": "Ja",
+  "no": "Nee",
   "hello": "Hallo, {name}!",
   "language": "Taal",
   "homepageTitle": "Algoritmeregister van de Nederlandse Overheid",
@@ -111,20 +114,20 @@
     "juridisch": {
       "label": "Juridisch",
       "competent_authority": {
-        "label": "",
-        "description": ""
+        "label": "Bevoegde autoriteit",
+        "description": "Volledige naam van de bevoegde autoriteit verantwoordelijk voor de inzet van het algoritme."
       },
       "lawful_basis": {
         "label": "Wettelijke grondslag",
         "description": "Een omschrijving van de wettelijke grondslag voor de inzet van het algoritme, of URL van het formele besluit."
       },
       "dpia": {
-        "label": "",
-        "description": ""
+        "label": "Data protection impact assessment",
+        "description": "Is er een data protection impact assessment (DPIA) uitgevoerd?"
       },
       "dpia_description": {
-        "label": "",
-        "description": ""
+        "label": "Omschrijving van de DPIA",
+        "description": "Een overzicht van de belangrijkste zaken die uit de data protection impact assessment (DPIA) naar voren kwamen."
       },
       "objection_procedure": {
         "label": "Bezwaarprocedure",
@@ -134,16 +137,16 @@
     "metadata_algorithm": {
       "label": "Metadata",
       "schema_metadata": {
-        "label": "",
-        "description": ""
+        "label": "Schema",
+        "description": "Het schema gebruikt voor deze registratie in machine leesbaar format."
       },
       "uuid": {
         "label": "UUID",
         "description": "De unieke identificatie (UUID) voor deze registratie."
       },
       "url": {
-        "label": "",
-        "description": ""
+        "label": "URL van de bronregistratie",
+        "description": "URL van deze registratie of van het algoritmeregister waarin deze registratie is vastgelegd in machine leesbaar format."
       },
       "contact_email": {
         "label": "E-mailadres van de contactpersoon",
@@ -158,8 +161,8 @@
         "description": "De taal waarin deze registratie is ingevoerd."
       },
       "revision_date": {
-        "label": "",
-        "description": ""
+        "label": "Herzieningsdatum",
+        "description": "De datum waarvoor deze registratie moet worden herzien."
       }
     }
   }
