@@ -92,16 +92,13 @@ const filteredData = computed(() => {
       ]
     })
   )
-  // && !excludedData.includes(k)
-  console.log(result)
-  const filtered = algoritme.value
-  console.log(filtered)
-  return filtered
+  return result
 })
 
 const algorithmProperties = computed(() => {
   // This property uses nicely ordered data from database (without excluded keys) and the translation data from i18n
   const result = expansionConfig.map((row) => {
+    // console.log('properties', filteredData.value['inzet'])
     return {
       label: row.label,
       content: Object.entries(filteredData.value[row.key]).map(([k, v]) => {
