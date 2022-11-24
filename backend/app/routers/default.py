@@ -22,7 +22,7 @@ async def get_all(db: Session = Depends(get_db)):
     "/algoritme/{id}/",
     response_model=schemas.algemene_informatie.AlgemeneInformatie,
 )
-async def get_one(id: str, db: Session = Depends(get_db)) -> any:
+async def get_one(id: str, db: Session = Depends(get_db)):
     return (
         db.query(models.algemene_informatie.AlgemeneInformatie)
         .filter(models.algemene_informatie.AlgemeneInformatie.id == id)
