@@ -15,36 +15,37 @@
   "search": "Search",
   "algorithmProperties": {
     "algemeneInformatie": {
+      "label": "General information",
       "name": {
-        "label": "",
+        "label": "Name",
         "description": "** nog te vertalen **"
       },
       "organization": {
-        "label": "",
+        "label": "Organization",
         "description": "** nog te vertalen **"
       },
       "department": {
-        "label": "",
+        "label": "Department",
         "description": "** nog te vertalen **"
       },
       "description_short": {
-        "label": "",
+        "label": "Short description",
         "description": "** nog te vertalen **"
       },
       "type": {
-        "label": "",
+        "label": "Type",
         "description": "** nog te vertalen **"
       },
       "category": {
-        "label": "",
+        "label": "Category",
         "description": "** nog te vertalen **"
       },
       "website": {
-        "label": "",
+        "label": "Website",
         "description": "** nog te vertalen **"
       },
       "status": {
-        "label": "",
+        "label": "Status",
         "description": "** nog te vertalen **"
       }
     },
