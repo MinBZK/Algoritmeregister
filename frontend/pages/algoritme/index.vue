@@ -38,9 +38,11 @@
           </v-col>
         </v-row>
         <v-row class="mt-5">
-          <v-col v-for="sT in summaryTiles" :key="sT.key"
-            ><h4>{{ sT.label }}</h4>
-            {{ algoritme[sT.key as keyof typeof algoritme] }}</v-col
+          <v-col v-for="sT in summaryTiles"
+            ><h4>
+              {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
+            </h4>
+            {{ algoritme[sT as keyof typeof algoritme] }}</v-col
           >
         </v-row>
         <v-divider></v-divider>
