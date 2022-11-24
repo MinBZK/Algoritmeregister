@@ -1,6 +1,26 @@
 {
-    "hello": "Hallo, {name}!",
-    "language": "Taal",
-    "homepageTitle": "Algoritmeregister van de Nederlandse Overheid",
-    "searchHint": "Zoek op organisatie, titel of omschrijving"
+  "hello": "Hallo, {name}!",
+  "language": "Taal",
+  "homepageTitle": "Algoritmeregister van de Nederlandse Overheid",
+  "searchHint": "Zoek op organisatie, titel of omschrijving",
+  "algorithmProperties": {
+    "inzet": {
+      "goal": {
+        "label": "Doel",
+        "description": "Het doel waarvoor het algoritme ontwikkeld is en/of hoe de inzet ervan bijdraagt aan het behalen van die doelen."
+      },
+      "impact": {
+        "label": "Impact",
+        "description": "(1) De impact op burgers van de effecten van het algoritme, (2) onder welke omstandigheden dit gebeurt, en (3) wat de verwachte consequenties daarvan zijn voor het individu en/of de samenleving."
+      },
+      "proportionality": {
+        "label": "Proportionaliteit",
+        "description": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is."
+      },
+      "decision_making_process": {
+        "label": "Proces",
+        "description": "De naam van het bedrijfs- of besluitvormingsproces in de organisatie waarbinnen het algoritme wordt ingezet."
+      }
+    }
+  }
 }

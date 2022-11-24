@@ -14,6 +14,4 @@ class Inzet(Base):
     documentation = Column(VARCHAR(1024))
     algoritme_id = Column(Integer, ForeignKey("algemene_informatie.id"))
 
-    algemene_informatie_entity = relationship(
-        "AlgemeneInformatie", back_populates="inzet_entity"
-    )
+    algemene_informatie = relationship("AlgemeneInformatie", back_populates="inzet")
