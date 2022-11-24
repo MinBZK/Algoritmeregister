@@ -8,21 +8,18 @@
       </div>
 
       <h2>
-        {{ algoritme[keys.name] }}
+        {{ algoritme.name }}
       </h2>
       <v-row>
         <v-col>
-          {{ algoritme[keys.description] }}
+          {{ algoritme.description_short }}
         </v-col>
       </v-row>
 
-      <p v-for="o in algoritme.omschrijving" :key="o">
-        {{ o }}
-      </p>
       <v-row class="mt-5">
         <v-col v-for="sT in summaryTiles"
           ><h4>{{ sT.label }}</h4>
-          {{ algoritme[sT.key] }}</v-col
+          {{ algoritme[sT.key as keyof typeof algoritme] }}</v-col
         >
       </v-row>
       {{ example }}
@@ -62,11 +59,17 @@ import Page from '~~/components/PageWrapper.vue'
 import algoritmeService from '@/services/algoritme'
 import { summaryTiles, keys } from '~~/config'
 import { useI18n } from 'vue-i18n'
+import type { Algoritme } from '~~/types/algoritme'
 
+// get data
 const route = useRoute()
 const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
-const algoritme: { [key: string]: any } = await algoritmeService.getOne(id)
-const title = computed(() => (algoritme?.value ? algoritme.value['naam'] : ''))
+// const algoritme: { [key: string]: any } = await algoritmeService.getOne(id)
+
+const { data } = await algoritmeService.getOne(id)
+let algoritme = ref(data.value as Algoritme)
+
+const title = computed(() => algoritme?.value.name)
 const excludedData = ['id', 'algoritme_id']
 
 const { t } = useI18n()
@@ -76,7 +79,7 @@ const filteredData = computed(() => {
   const nestedData = Object.fromEntries(
     Object.entries(algoritme.value).filter(([k, v]) => typeof v == 'object')
   )
-  nestedData.algemeneInformatie = Object.fromEntries(
+  nestedData['algemeneInformatie'] = Object.fromEntries(
     Object.entries(algoritme.value).filter(([k, v]) => {
       console.log(!excludedData.includes(k))
       return typeof v != 'object'
