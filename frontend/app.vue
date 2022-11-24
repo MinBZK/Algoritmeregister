@@ -20,13 +20,15 @@ const algoritmeRegister = computed(() => t('algoritmeRegister'))
 
     <AppHeader :title="algoritmeRegister" :pages="['algoritme']" />
 
+    <LanguagePicker />
+
     <NuxtPage />
   </div>
 </template>
 
-<style>
+<style lang="scss">
 #content {
-  width: 1200px;
+  width: $page-width;
   margin: 0 auto;
   padding-top: 0.5em;
 }
