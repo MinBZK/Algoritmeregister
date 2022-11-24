@@ -25,21 +25,27 @@
           {{ algoritme[sT.key] }}</v-col
         >
       </v-row>
+      {{ example }}
       <v-expansion-panels variant="default" class="mt-5">
         <v-expansion-panel
-          v-for="subtable in expansionContent"
+          bg-color="quaternary"
+          v-for="subtable in algorithmProperties"
           :title="subtable.label"
           elevation="1"
           expand-icon="mdi-menu-down"
         >
           <v-expansion-panel-text>
-            <v-row v-for="content in getExpansionContent(subtable.key)">
+            <v-row v-for="content in subtable.content">
               <v-col>
-                <p><b> some text </b></p>
+                <p>
+                  <b> {{ content.label }} </b>
+                </p>
                 <br />
-                <p color="grey"><i> some explanation </i></p>
+                <p color="grey">
+                  <i> {{ content.description }} </i>
+                </p>
                 <br />
-                <p>{{ content }}</p>
+                <p>{{ content.value }}</p>
               </v-col>
               <v-divider></v-divider>
             </v-row>
@@ -55,49 +61,80 @@ import { computed } from 'vue'
 import Page from '~~/components/PageWrapper.vue'
 import algoritmeService from '@/services/algoritme'
 import { summaryTiles, keys } from '~~/config'
+import { useI18n } from 'vue-i18n'
 
 const route = useRoute()
 const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
 const algoritme: { [key: string]: any } = await algoritmeService.getOne(id)
 const title = computed(() => (algoritme?.value ? algoritme.value['naam'] : ''))
+const excludedData = ['id', 'algoritme_id']
 
-function getExpansionContent(key: string) {
-  if (key == '') {
-    return algoritme.value.filter((a: any) => {
-      console.log(a)
-      return true
+const { t } = useI18n()
+const example = computed(() => t(`algorithmProperties.inzet.goal.label`))
+
+const filteredData = computed(() => {
+  const nestedData = Object.fromEntries(
+    Object.entries(algoritme.value).filter(([k, v]) => typeof v == 'object')
+  )
+  nestedData.algemeneInformatie = Object.fromEntries(
+    Object.entries(algoritme.value).filter(([k, v]) => {
+      console.log(!excludedData.includes(k))
+      return typeof v != 'object'
     })
-  }
-  return algoritme.value
-}
-const expansionContent = computed(() => {
-  return [
-    {
-      label: 'Algemene informatie',
-      key: '',
-    },
-    {
-      label: 'Inzet',
-      key: 'inzet_entity',
-    },
-    {
-      label: 'Toepassing',
-      key: 'inzet_entity',
-    },
-    {
-      label: 'Toezicht',
-      key: 'inzet_entity',
-    },
-    {
-      label: 'Juridisch',
-      key: 'inzet_entity',
-    },
-    {
-      label: 'Metadata',
-      key: 'inzet_entity',
-    },
-  ]
+  )
+  const result = Object.fromEntries(
+    Object.entries(nestedData).map((x: [string, any]) => {
+      return [
+        x[0],
+        Object.fromEntries(
+          Object.entries(x[1]).filter(([k, v]) => !excludedData.includes(k))
+        ),
+      ]
+    })
+  )
+  return result
 })
+
+const algorithmProperties = computed(() => {
+  // This property uses nicely ordered data from database (without excluded keys) and the translation data from i18n
+  const result = expansionConfig.map((row) => {
+    // console.log('properties', filteredData.value['inzet'])
+    return {
+      label: row.label,
+      content: Object.entries(filteredData.value[row.key]).map(([k, v]) => {
+        return {
+          label: t(`algorithmProperties.${row.key}.${k}.label`),
+          description: t(`algorithmProperties.${row.key}.${k}.description`),
+          value: v,
+        }
+      }),
+    }
+  })
+  return result
+})
+
+const expansionConfig = [
+  {
+    label: 'Inzet',
+    key: 'inzet',
+  },
+  // {
+  //   label: 'Toepassing',
+  //   key: 'toepassing',
+  // },
+  // {
+  //   label: 'Toezicht',
+  //   key: 'toezicht',
+  // },
+  // {
+  //   label: 'Juridisch',
+  //   key: 'juridisch',
+  // },
+  // {
+  //   label: 'Metadata',
+  //   key: 'metadata',
+  // },
+]
 
 definePageMeta({
   title: 'Algoritme details',
