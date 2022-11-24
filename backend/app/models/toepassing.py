@@ -15,6 +15,6 @@ class Toepassing(Base):
     methods_and_models = Column(VARCHAR(5000))
     algoritme_id = Column(Integer, ForeignKey("algemene_informatie.id"))
 
-    algemene_informatie_entity = relationship(
-        "AlgemeneInformatie", back_populates="toepassing_entity"
+    algemene_informatie = relationship(
+        "AlgemeneInformatie", back_populates="toepassing"
     )

@@ -16,18 +16,16 @@ class AlgemeneInformatie(Base):
     website = Column(VARCHAR(1024))
     status = Column(VARCHAR(1024))
 
-    inzet_entity = relationship(
-        "Inzet", back_populates="algemene_informatie_entity", uselist=False
+    inzet = relationship("Inzet", back_populates="algemene_informatie", uselist=False)
+    juridisch = relationship(
+        "Juridisch", back_populates="algemene_informatie", uselist=False
     )
-    juridisch_entity = relationship(
-        "Juridisch", back_populates="algemene_informatie_entity", uselist=False
+    metadata_algorithm = relationship(
+        "Metadata", back_populates="algemene_informatie", uselist=False
     )
-    metadata_entity = relationship(
-        "Metadata", back_populates="algemene_informatie_entity", uselist=False
+    toepassing = relationship(
+        "Toepassing", back_populates="algemene_informatie", uselist=False
     )
-    toepassing_entity = relationship(
-        "Toepassing", back_populates="algemene_informatie_entity", uselist=False
-    )
-    toezicht_entity = relationship(
-        "Toezicht", back_populates="algemene_informatie_entity", uselist=False
+    toezicht = relationship(
+        "Toezicht", back_populates="algemene_informatie", uselist=False
     )
