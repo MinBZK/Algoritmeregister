@@ -5,40 +5,42 @@
   "searchHint": "Zoek op organisatie, titel of omschrijving",
   "algorithmProperties": {
     "algemeneInformatie": {
+      "label": "Algemene informatie",
       "name": {
-        "label": "",
-        "description": ""
+        "label": "Naam",
+        "description": "De naam die gebruikt wordt om dit algoritme aan te duiden."
       },
       "organization": {
-        "label": "",
-        "description": ""
+        "label": "Organisatie",
+        "description": "De volledige naam van de organisatie verantwoordelijk voor de inzet van het algoritme."
       },
       "department": {
-        "label": "",
-        "description": ""
+        "label": "Afdeling",
+        "description": "De volledige naam van de afdeling of divisie verantwoordelijk voor de inzet van het algoritme."
       },
       "description_short": {
-        "label": "",
-        "description": ""
+        "label": "Korte omschrijving",
+        "description": "Een korte omschrijving van maximaal 150 karakters waarin hoog over omschreven wordt wat de rol is van het algoritme."
       },
       "type": {
-        "label": "",
-        "description": ""
+        "label": "Type algoritme",
+        "description": "Is het algoritme regelgebaseerd of zelflerend?"
       },
       "category": {
-        "label": "",
-        "description": ""
+        "label": "Thema",
+        "description": "Het domein waarin het algoritme wordt ingezet."
       },
       "website": {
-        "label": "",
-        "description": ""
+        "label": "Publiekspagina",
+        "description": "URL van de publieke algoritmeregister pagina over de inzet van het algoritme van de organisatie zelf"
       },
       "status": {
-        "label": "",
-        "description": ""
+        "label": "Status",
+        "description": "Is het algoritme in ontwikkeling, in gebruik, of buiten gebruik?"
       }
     },
     "inzet": {
+      "label": "Inzet",
       "goal": {
         "label": "Doel",
         "description": "Het doel waarvoor het algoritme ontwikkeld is en/of hoe de inzet ervan bijdraagt aan het behalen van die doelen."
@@ -56,62 +58,65 @@
         "description": "De naam van het bedrijfs- of besluitvormingsproces in de organisatie waarbinnen het algoritme wordt ingezet."
       },
       "documentation": {
-        "label": "",
-        "description": ""
+        "label": "Projectpagina",
+        "description": "URL van de projectpagina van de organisatie zelf over dit specifieke gebruik van het algoritme."
       }
     },
     "toepassing": {
+      "label": "Toepassing",
       "description": {
-        "label": "",
-        "description": ""
+        "label": "Omschrijving",
+        "description": "Een uitgebreide uitleg tussen de 500 en 10000 karakters van hoe het algoritme werkt."
       },
       "application_url": {
-        "label": "",
-        "description": ""
+        "label": "URL van de applicatie",
+        "description": "URL van de applicatiepagina van de ontwikkelaar/aanbieder van het algoritme."
       },
       "publiccode": {
-        "label": "",
-        "description": ""
+        "label": "** Onbekend **",
+        "description": "** Onbekend **"
       },
       "mprd": {
-        "label": "",
-        "description": ""
+        "label": "Koppelingen met basisregistraties",
+        "description": "Is het algoritme direct gekoppeld aan een basisregistratie?"
       },
       "source_data": {
-        "label": "",
-        "description": ""
+        "label": "Brondata",
+        "description": "Een overzicht van de databronnen die gebruikt worden door of bij het maken of trainen van het algoritme."
       },
       "methods_and_models": {
-        "label": "",
-        "description": ""
+        "label": "** Onbekend **",
+        "description": "** Onbekend **"
       }
     },
     "toezicht": {
+      "label": "Toezicht",
       "monitoring": {
-        "label": "",
-        "description": ""
+        "label": "Monitoring",
+        "description": "Een overzicht van hoe de inzet van het algoritme wordt gemonitord."
       },
       "human_intervention": {
-        "label": "",
-        "description": ""
+        "label": "Menselijke tussenkomst",
+        "description": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gecontroleerd en bijgesteld (kunnen) worden."
       },
       "risks": {
-        "label": "",
-        "description": ""
+        "label": "Risico's",
+        "description": "Een overzicht van de voorziene risico's."
       },
       "performance_standard": {
-        "label": "",
-        "description": ""
+        "label": "Prestatienormen",
+        "description": "Een omschrijving van de verwachte prestaties van het algoritme en hoe die worden gemeten."
       }
     },
     "juridisch": {
+      "label": "Juridisch",
       "competent_authority": {
         "label": "",
         "description": ""
       },
       "lawful_basis": {
-        "label": "",
-        "description": ""
+        "label": "Wettelijke grondslag",
+        "description": "Een omschrijving van de wettelijke grondslag voor de inzet van het algoritme, of URL van het formele besluit."
       },
       "dpia": {
         "label": "",
@@ -122,34 +127,35 @@
         "description": ""
       },
       "objection_procedure": {
-        "label": "",
-        "description": ""
+        "label": "Bezwaarprocedure",
+        "description": "Een omschrijving van hoe burgers en bedrijven bezwaar kunnen maken tegen de uitkomsten van het algoritme."
       }
     },
     "metadata_algorithm": {
+      "label": "Metadata",
       "schema_metadata": {
         "label": "",
         "description": ""
       },
       "uuid": {
-        "label": "",
-        "description": ""
+        "label": "UUID",
+        "description": "De unieke identificatie (UUID) voor deze registratie."
       },
       "url": {
         "label": "",
         "description": ""
       },
       "contact_email": {
-        "label": "",
-        "description": ""
+        "label": "E-mailadres van de contactpersoon",
+        "description": "e-mailadres van de organisatie of de contactpersoon voor deze registratie."
       },
       "area": {
-        "label": "",
-        "description": ""
+        "label": "Geografisch gebied",
+        "description": "Het geografische gebied waarin het algoritme wordt ingezet."
       },
       "lang": {
-        "label": "",
-        "description": ""
+        "label": "Taal",
+        "description": "De taal waarin deze registratie is ingevoerd."
       },
       "revision_date": {
         "label": "",
