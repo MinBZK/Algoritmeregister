@@ -36,7 +36,6 @@
 <script setup>
 import Page from '@/components/PageWrapper.vue'
 import { useI18n } from 'vue-i18n'
-import { useVuetify } from '@/composables/useVuetify'
 
 const vuetify = useVuetify()
 console.log(vuetify)
