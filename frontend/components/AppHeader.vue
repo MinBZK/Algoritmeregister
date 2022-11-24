@@ -51,7 +51,6 @@ const navigationRoutes = computed(() => {
     })
     .map((r) => {
       r.meta.title = t(`paths.${r.path}`)
-      console.log(r.path)
       return r
     })
 })

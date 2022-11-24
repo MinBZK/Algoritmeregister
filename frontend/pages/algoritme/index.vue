@@ -76,8 +76,7 @@ import { useI18n } from 'vue-i18n'
 import { summaryTiles } from '~~/config/config'
 import type { Algoritme } from '@/types/algoritme'
 
-const x = useI18n()
-const { t } = x
+const { t } = useI18n()
 const searchHint = computed(() => t('searchHint'))
 const search = computed(() => t('search'))
 

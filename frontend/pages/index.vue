@@ -36,8 +36,7 @@
 <script setup>
 import Page from '@/components/PageWrapper.vue'
 import { useI18n } from 'vue-i18n'
-const x = useI18n()
-const { t } = x
+const { t } = useI18n()
 const searchHint = computed(() => t('searchHint'))
 const homepageTitle = computed(() => t('homepageTitle'))
 const homepageSubtitle = computed(() => t('homepageSubtitle'))
@@ -47,7 +46,6 @@ const searchQuery = ref('')
 
 const doSearch = () => {
   const router = useRouter()
-  console.log('doing search', `/algoritme?q=${searchQuery.value}`)
   router.push(`/algoritme?q=${searchQuery.value}`)
 }
 </script>

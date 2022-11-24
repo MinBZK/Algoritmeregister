@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import AppHeader from '@/components/AppHeader.vue'
 import { useI18n } from 'vue-i18n'
-import LanguagePicker from '@/components/LanguagePicker.vue'
 
 const { t } = useI18n()
-
-const helloName = computed(() => t('hello', { name: 'Terry' }))
 const algoritmeRegister = computed(() => t('algoritmeRegister'))
 </script>
 
@@ -16,11 +13,7 @@ const algoritmeRegister = computed(() => t('algoritmeRegister'))
       :height="5"
     />
 
-    <LanguagePicker />
-
     <AppHeader :title="algoritmeRegister" :pages="['algoritme']" />
-
-    <LanguagePicker />
 
     <NuxtPage />
   </div>

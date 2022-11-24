@@ -1,5 +1,8 @@
 {
-  "foundResults": "{n} Resultaten gevonden",
+  "locale-en": "Engels",
+  "locale-nl": "Nederlands",
+  "selectLanguage": "Kies taal",
+  "foundResults": "{n} resultaten gevonden",
   "paths": {
     "/algoritme": "Algoritmeoverzicht"
   },
