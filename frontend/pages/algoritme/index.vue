@@ -67,7 +67,7 @@ import { computed } from 'vue'
 import Page from '~~/components/PageWrapper.vue'
 import algoritmeService from '@/services/algoritme'
 import { useI18n } from 'vue-i18n'
-import { summaryTiles } from '~~/config'
+import { summaryTiles } from '~~/config/config'
 import type { Algoritme } from '@/types/algoritme'
 
 const x = useI18n()
