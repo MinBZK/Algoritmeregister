@@ -4,8 +4,10 @@
   "no": "No",
   "hello": "Hello, {name}!",
   "language": "Language",
-  "homepageTitle": "Algoritmeregister from the Netherlandic Upper Entity",
+  "homepageTitle": "Algoritmeregister from the Dutch Government",
+  "homepageSubtitle": "Search for algorithms at Dutch government agencies.",
   "searchHint": "Find algorithms by organisation, title or description",
+  "search": "Search",
   "algorithmProperties": {
     "algemeneInformatie": {
       "name": {

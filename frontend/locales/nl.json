@@ -5,7 +5,9 @@
   "hello": "Hallo, {name}!",
   "language": "Taal",
   "homepageTitle": "Algoritmeregister van de Nederlandse Overheid",
+  "homepageSubtitle": "Zoek naar algoritmes bij Nederlandse Overheidsorganisaties.",
   "searchHint": "Zoek op organisatie, titel of omschrijving",
+  "search": "Zoeken",
   "algorithmProperties": {
     "algemeneInformatie": {
       "label": "Algemene informatie",
