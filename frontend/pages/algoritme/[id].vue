@@ -81,7 +81,9 @@ const structuredProperties = computed(() => {
   return keysWithObjectValues.map((attributeGroupKey) => {
     return {
       attributeGroupKey,
-      attributeGroupKeyLabel: t('bestaatniet') || attributeGroupKey,
+      attributeGroupKeyLabel:
+        t(`algorithmProperties.${attributeGroupKey}.label`) ||
+        attributeGroupKey,
       properties: Object.entries(
         algoritme.value[attributeGroupKey as keyof typeof algoritme.value]
       )
@@ -101,33 +103,6 @@ const structuredProperties = computed(() => {
     }
   })
 })
-
-const expansionConfig = [
-  {
-    label: 'Algemene informatie',
-    key: 'algemeneInformatie',
-  },
-  {
-    label: 'Inzet',
-    key: 'inzet',
-  },
-  {
-    label: 'Toepassing',
-    key: 'toepassing',
-  },
-  {
-    label: 'Toezicht',
-    key: 'toezicht',
-  },
-  {
-    label: 'Juridisch',
-    key: 'juridisch',
-  },
-  {
-    label: 'Metadata',
-    key: 'metadata_algorithm',
-  },
-]
 
 definePageMeta({
   title: 'Algoritme details',
