@@ -46,14 +46,14 @@ backend:image:
   variables:
     HARBOR_REPO: "algreg-backend"
     DOCKER_FILE_PATH: "backend"
-    DOCKER_FILE_NAME: "Dockerfile.simple"
+    DOCKER_FILE_NAME: "Dockerfile"
 
 frontend:image:
   extends: .image
   variables:
     HARBOR_REPO: "algreg-frontend"
     DOCKER_FILE_PATH: "frontend"
-    DOCKER_FILE_NAME: "Dockerfile"
+    DOCKER_FILE_NAME: "Dockerfile.simple"
   needs:
     - frontend:build
 
