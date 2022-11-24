@@ -22,32 +22,34 @@
           {{ algoritme[sT.key as keyof typeof algoritme] }}</v-col
         >
       </v-row>
-      <v-expansion-panels variant="default">
-        <v-expansion-panel
-          bg-color="quaternary"
-          v-for="groupedProperty in structuredProperties"
-          :title="groupedProperty.attributeGroupKeyLabel"
-          elevation="1"
-          expand-icon="mdi-menu-down"
-        >
-          <v-expansion-panel-text>
-            <v-row v-for="property in groupedProperty.properties">
-              <v-col>
-                <p class="mt-2">
-                  <b> {{ property.attributeKeyLabel }} </b>
-                </p>
-                <p class="mb-1">
-                  <i> {{ property.attributeKeyDescription }} </i>
-                </p>
-                <p class="mb-1">
-                  {{ property.attributeValue }}
-                </p>
-              </v-col>
-              <v-divider></v-divider>
-            </v-row>
-          </v-expansion-panel-text>
-        </v-expansion-panel>
-      </v-expansion-panels>
+      <v-row class="mt-8">
+        <v-expansion-panels variant="default">
+          <v-expansion-panel
+            bg-color="quaternary"
+            v-for="groupedProperty in structuredProperties"
+            :title="groupedProperty.attributeGroupKeyLabel"
+            elevation="1"
+            expand-icon="mdi-menu-down"
+          >
+            <v-expansion-panel-text>
+              <v-row v-for="property in groupedProperty.properties">
+                <v-col>
+                  <p class="mt-2">
+                    <b> {{ property.attributeKeyLabel }} </b>
+                  </p>
+                  <p class="mb-1">
+                    <i> {{ property.attributeKeyDescription }} </i>
+                  </p>
+                  <p class="mb-1">
+                    {{ property.attributeValue }}
+                  </p>
+                </v-col>
+                <v-divider></v-divider>
+              </v-row>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-row>
     </v-container>
   </Page>
 </template>
