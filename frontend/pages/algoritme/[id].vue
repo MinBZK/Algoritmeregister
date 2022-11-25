@@ -1,58 +1,56 @@
 <template>
   <Page>
-    <v-container>
-      <div class="text-field-sheet">
-        <v-col>
-          <NuxtLink to="/algoritme"> {{ i18nGoBack }} </NuxtLink>
-        </v-col>
-      </div>
+    <div class="text-field-sheet">
+      <v-col>
+        <NuxtLink to="/algoritme"> {{ i18nGoBack }} </NuxtLink>
+      </v-col>
+    </div>
 
-      <h2>
-        {{ algoritme.name }}
-      </h2>
-      <v-row>
-        <v-col>
-          {{ algoritme.description_short }}
-        </v-col>
-      </v-row>
-      <!-- {{ structuredProperties }} -->
-      <v-row class="mt-5">
-        <v-col v-for="sT in summaryTiles"
-          ><h4>
-            {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
-          </h4>
-          {{ algoritme[sT as keyof typeof algoritme] }}</v-col
+    <h2>
+      {{ algoritme.name }}
+    </h2>
+    <v-row>
+      <v-col>
+        {{ algoritme.description_short }}
+      </v-col>
+    </v-row>
+    <!-- {{ structuredProperties }} -->
+    <v-row class="mt-3">
+      <v-col v-for="sT in summaryTiles"
+        ><h4>
+          {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
+        </h4>
+        {{ algoritme[sT as keyof typeof algoritme] }}</v-col
+      >
+    </v-row>
+    <v-row class="mt-8">
+      <v-expansion-panels variant="default">
+        <v-expansion-panel
+          bg-color="quaternary"
+          v-for="groupedProperty in structuredProperties"
+          :title="groupedProperty.attributeGroupKeyLabel"
+          elevation="1"
+          expand-icon="mdi-menu-down"
         >
-      </v-row>
-      <v-row class="mt-8">
-        <v-expansion-panels variant="default">
-          <v-expansion-panel
-            bg-color="quaternary"
-            v-for="groupedProperty in structuredProperties"
-            :title="groupedProperty.attributeGroupKeyLabel"
-            elevation="1"
-            expand-icon="mdi-menu-down"
-          >
-            <v-expansion-panel-text>
-              <v-row v-for="property in groupedProperty.properties">
-                <v-col>
-                  <p class="mt-2">
-                    <b> {{ property.attributeKeyLabel }} </b>
-                  </p>
-                  <p class="mb-1">
-                    <i> {{ property.attributeKeyDescription }} </i>
-                  </p>
-                  <p class="mb-1">
-                    {{ property.attributeValue }}
-                  </p>
-                </v-col>
-                <v-divider></v-divider>
-              </v-row>
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-        </v-expansion-panels>
-      </v-row>
-    </v-container>
+          <v-expansion-panel-text>
+            <v-row v-for="property in groupedProperty.properties">
+              <v-col>
+                <p class="mt-2">
+                  <b> {{ property.attributeKeyLabel }} </b>
+                </p>
+                <p class="mb-1">
+                  <i> {{ property.attributeKeyDescription }} </i>
+                </p>
+                <p class="mb-1">
+                  {{ property.attributeValue }}
+                </p>
+              </v-col>
+              <v-divider></v-divider>
+            </v-row>
+          </v-expansion-panel-text>
+        </v-expansion-panel>
+      </v-expansion-panels>
+    </v-row>
   </Page>
 </template>
 
