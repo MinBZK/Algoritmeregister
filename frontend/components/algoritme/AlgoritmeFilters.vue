@@ -1,8 +1,17 @@
 <template>
   <div class="search-filters">
+    <div v-if="parsedFilters.length > 0" class="search-filter-item">
+      <h4>Geslecteerde algoritmes</h4>
+      <div v-for="f in parsedFilters" @click="removeFilter(f)">
+        {{ f.value || '-' }}
+        <v-icon icon="mdi-close" size="small"></v-icon>
+      </div>
+    </div>
+
     <div
       v-for="aggregationType in props.aggregatedAlgoritmes"
       :key="aggregationType.aggregationAttribute"
+      class="search-filter-item"
     >
       <h4>{{ aggregationType.aggregationAttribute }}</h4>
       <div
@@ -27,19 +36,37 @@
 
 <script setup lang="ts">
 import qs from 'qs'
-
-import type { AggregatedAlgoritmes } from '@/types/algoritme'
+import type { AggregatedAlgoritmes, AlgoritmeFilter } from '@/types/algoritme'
 
 const props = defineProps<{ aggregatedAlgoritmes: AggregatedAlgoritmes[] }>()
 
 const getEncodedQuery = (attribute: string, value: string): string => {
   const stringified = qs.stringify({
-    filters: [
-      { attribute, value },
-      { attribute, value },
-    ],
+    filters: [{ attribute, value }, ...parsedFilters.value],
   })
   return stringified
+}
+
+const parsedQuery = computed(() => useRouteQuery())
+const parsedFilters = computed(
+  () => (parsedQuery.value.filters || []) as AlgoritmeFilter[]
+)
+
+const removeFilter = (filter: AlgoritmeFilter) => {
+  const filterToBeRemoved = parsedFilters.value.find(
+    (f) => f.attribute == filter.attribute
+  )
+  if (filterToBeRemoved) {
+    const newFilters = [...parsedFilters.value]
+    const filterIndex = newFilters.indexOf(filterToBeRemoved)
+    newFilters.splice(filterIndex, 1)
+    console.log({ filterIndex, newFilters, filterToBeRemoved })
+    const router = useRouter()
+    router.push({
+      name: 'algoritme',
+      query: { q: qs.stringify({ filters: newFilters }) },
+    })
+  }
 }
 </script>
 
@@ -51,5 +78,13 @@ const getEncodedQuery = (attribute: string, value: string): string => {
 
 .text-secondary {
   color: $primary !important;
+}
+
+.search-filter-item:first-child {
+  padding-top: 0px;
+}
+
+.search-filter-item {
+  padding-top: 1.5em;
 }
 </style>

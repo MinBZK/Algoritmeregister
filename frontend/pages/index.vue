@@ -36,6 +36,7 @@
 <script setup>
 import Page from '@/components/PageWrapper.vue'
 import { useI18n } from 'vue-i18n'
+import qs from 'qs'
 
 const { t } = useI18n()
 const searchHint = computed(() => t('searchHint'))
@@ -47,7 +48,10 @@ const searchQuery = ref('')
 
 const doSearch = () => {
   const router = useRouter()
-  router.push(`/algoritme?q=${searchQuery.value}`)
+  const stringifiedQuery = qs.stringify({
+    search: searchQuery.value,
+  })
+  router.push(`/algoritme?q=${stringifiedQuery}`)
 }
 </script>
 
