@@ -12,6 +12,6 @@ class Juridisch(Base):
     dpia = Column(Boolean)
     dpia_description = Column(VARCHAR(5000))
     objection_procedure = Column(VARCHAR(5000))
-    algoritme_id = Column(Integer, ForeignKey("algemene_informatie.id"))
+    algoritme_id = Column(Integer, ForeignKey("algoritme.id"))
 
-    algemene_informatie = relationship("AlgemeneInformatie", back_populates="juridisch")
+    algoritme = relationship("Algoritme", back_populates="juridisch")

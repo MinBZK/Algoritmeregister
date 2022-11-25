@@ -12,6 +12,6 @@ class Inzet(Base):
     proportionality = Column(VARCHAR(5000))
     decision_making_process = Column(VARCHAR(5000))
     documentation = Column(VARCHAR(1024))
-    algoritme_id = Column(Integer, ForeignKey("algemene_informatie.id"))
+    algoritme_id = Column(Integer, ForeignKey("algoritme.id"))
 
-    algemene_informatie = relationship("AlgemeneInformatie", back_populates="inzet")
+    algoritme = relationship("Algoritme", back_populates="inzet")

@@ -1,1 +1,1 @@
-from .algemene_informatie import AlgemeneInformatie  # noqa
+from .algoritme import Algoritme  # noqa
