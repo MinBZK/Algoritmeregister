@@ -9,9 +9,9 @@
       </p>
       <p class="mb-4">Hoe gaat de Rijksoverheid om met uw persoonsgegevens?</p>
       <p>
-        Wilt u informatie vragen over het ICT-dashboard? Wilt u een opmerking
-        achterlaten? Dan kunt u uw persoonsgegevens in een formulier invullen.
-        Bijvoorbeeld uw naam en (e-mail)adres. Bij het formulier staat
+        Wilt u informatie vragen over het Algoritmeregister? Wilt u een
+        opmerking achterlaten? Dan kunt u uw persoonsgegevens in een formulier
+        invullen. Bijvoorbeeld uw naam en (e-mail)adres. Bij het formulier staat
         aangegeven welke gegevens de Rijksoverheid gebruikt en met welk doel.
       </p>
       <p class="mb-4">
@@ -26,7 +26,13 @@
         de Algemene Verordening Gegevensbescherming.
       </p>
     </div>
-    <div v-if="englishSelected"></div>
+    <div v-if="englishSelected">
+      <p class="mb-4">
+        This site does not store information about you. At some point in the
+        future this may change but only in compliance with GDPR (AVG)
+        regulations.
+      </p>
+    </div>
   </Page>
 </template>
 

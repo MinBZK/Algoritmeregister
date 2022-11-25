@@ -27,7 +27,29 @@
         derde partijen (zogenaamde third-party cookies).
       </p>
     </div>
-    <div v-if="englishSelected"></div>
+    <div v-if="englishSelected">
+      <p class="mb-4">
+        This Website uses cookies for analytic purposes only. Cookies are tiny
+        text files stored on your computer by websites. This type of cookie
+        identifies your computer while you visit the website. Thus, analytic
+        cookies provide answers to the following questions:
+      </p>
+      <ol class="ml-5 mb-4">
+        <li>Are you a new visitor of have you visited the website recently?</li>
+        <li>Which webpages did you open?</li>
+        <li>From which website did you come here?</li>
+        <li>
+          Was your visit a ‘bounce’, meaning: Did you leave the site immediately
+          after opening the first webpage?
+        </li>
+      </ol>
+      <p class="mb-4">
+        Your visit is anonymous. We do not make a profile of you. We do not to
+        track you on the internet. This site does not allow third-party cookies
+        to be placed, except for use of web analytics tools under our control
+        which we use to improve the site.
+      </p>
+    </div>
   </Page>
 </template>
 

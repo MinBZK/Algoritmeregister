@@ -19,7 +19,22 @@
       </p>
     </div>
 
-    <div v-if="englishSelected"></div>
+    <div v-if="englishSelected">
+      <p class="mb-4">
+        If you discover any weaknesses or vulnerabilities on this website,
+        please report this to the National Cyber Security Centre (NCSC). A
+        report like this is called a Coordinated Vulnerability Disclosure (CVD).
+      </p>
+      <p class="mb-4">
+        We will discuss the issue with the NCSC and resolve it as soon as
+        possible.
+      </p>
+      <p class="mb-4">
+        <a href="https://www.ncsc.nl/contact/kwetsbaarheid-melden">
+          Report vulnerability
+        </a>
+      </p>
+    </div>
   </Page>
 </template>
 

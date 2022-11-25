@@ -62,7 +62,13 @@
       </ul>
     </div>
 
-    <div v-if="englishSelected"></div>
+    <div v-if="englishSelected">
+      <p class="mb-4">
+        This site is intended to fully comply to Dutch government regulations
+        and policies concerning the accessibility of this site. The site is
+        currently under preview and will apply for A-status soon.
+      </p>
+    </div>
   </Page>
 </template>
 

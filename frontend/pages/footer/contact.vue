@@ -6,12 +6,12 @@
         Inhoudelijke vragen, zoals beleidsvragen over projecten, kunt u via het
         contactformulier op rijksoverheid.nl sturen.
       </p>
-      <p class="mb-4">
+      <!-- <p class="mb-4">
         Vragen, opmerkingen en/of suggesties over de werking en vormgeving van
         het ICT-dashboard zijn van harte welkom. U kunt deze sturen naar
         Postbus.ICTdashboard@minbzk.nl. Wij nemen uw reactie mee bij de
         ontwikkeling van onze website.
-      </p>
+      </p> -->
       <p class="mb-4">
         Uw persoonsgegevens worden alleen gebruikt voor het beantwoorden van uw
         verzoek. De gegevens worden dus niet langer bewaard dan nodig is.
@@ -24,7 +24,12 @@
       </p>
     </div>
 
-    <div v-if="englishSelected"></div>
+    <div v-if="englishSelected">
+      <p>
+        Contact information is not available at this time. It will be added
+        soon.
+      </p>
+    </div>
   </Page>
 </template>
 
