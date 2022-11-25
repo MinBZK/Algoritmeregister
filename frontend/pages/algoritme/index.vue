@@ -1,6 +1,6 @@
 <template>
   <Page>
-    {{ parsedQuery }}
+    <!-- {{ parsedQuery }} -->
     <v-row>
       <v-col>
         <v-text-field
@@ -53,7 +53,7 @@
         </div>
 
         <div v-if="paginatedAlgoritmes.length == 0">
-          Geen algoritmes gevonden voor de huidige zoekopdracht.
+          {{ $t('noResults') }}
         </div>
 
         <v-row
@@ -62,8 +62,8 @@
           justify="center"
         >
           <v-col :cols="6" class="text-grey"
-            >{{ filteredAlgoritmes.length }} algoritmes gevonden</v-col
-          >
+            >{{ $t(`foundResults`, { n: filteredAlgoritmes.length }) }}
+          </v-col>
           <v-col :cols="6"
             ><v-pagination v-model="page" :length="nPages"></v-pagination
           ></v-col>
@@ -82,8 +82,6 @@ import { summaryTiles } from '@/config/config'
 import type { Algoritme, AggregatedAlgoritmes } from '@/types/algoritme'
 import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
 import qs from 'qs'
-
-const routeQuery = useRouteQuery()
 
 const { t } = useI18n()
 const searchHint = computed(() => t('searchHint'))

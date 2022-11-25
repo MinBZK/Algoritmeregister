@@ -17,4 +17,12 @@ import LanguagePicker from '@/components/LanguagePicker.vue'
 #layout {
   margin: 0 auto 10px auto;
 }
+
+.row {
+  display: flex;
+}
+
+.align-right {
+  margin-left: auto;
+}
 </style>
