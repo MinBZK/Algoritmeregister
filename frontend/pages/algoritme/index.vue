@@ -1,6 +1,6 @@
 <template>
   <Page>
-    <div class="text-field-sheet">
+    <v-row>
       <v-col>
         <v-text-field
           bg-color="white"
@@ -15,49 +15,60 @@
           </template>
         </v-text-field>
       </v-col>
-    </div>
-
-    <v-row>
-      <v-col
-        ><h2>
-          {{ $t(`foundResults`, { n: filteredAlgoritmes.length }) }}
-        </h2></v-col
-      >
     </v-row>
+    <v-row>
+      <v-col :cols="3">
+        {{ aggregatedAlgoritmes }}
+        <AlgoritmeFilters
+      /></v-col>
+      <v-col>
+        <v-row>
+          <v-col
+            ><h2>
+              {{ $t(`foundResults`, { n: filteredAlgoritmes.length }) }}
+            </h2></v-col
+          >
+        </v-row>
 
-    <div v-for="algoritme in paginatedAlgoritmes">
-      <h3>
-        <NuxtLink :to="`/algoritme/${algoritme.id}`">
-          {{ algoritme.name }}
-        </NuxtLink>
-      </h3>
-      <v-row>
-        <v-col>
-          {{ algoritme.description_short }}
-        </v-col>
-      </v-row>
-      <v-row class="mt-3">
-        <v-col v-for="sT in summaryTiles"
-          ><h4>
-            {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
-          </h4>
-          {{ algoritme[sT as keyof typeof algoritme] }}</v-col
+        <div v-for="algoritme in paginatedAlgoritmes">
+          <h3>
+            <NuxtLink :to="`/algoritme/${algoritme.id}`">
+              {{ algoritme.name }}
+            </NuxtLink>
+          </h3>
+          <v-row>
+            <v-col>
+              {{ algoritme.description_short }}
+            </v-col>
+          </v-row>
+          <v-row class="mt-3">
+            <v-col v-for="sT in summaryTiles"
+              ><h4>
+                {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
+              </h4>
+              {{ algoritme[sT as keyof typeof algoritme] }}</v-col
+            >
+          </v-row>
+          <v-divider></v-divider>
+        </div>
+
+        <div v-if="paginatedAlgoritmes.length == 0">
+          Geen algoritmes gevonden voor de huidige zoekopdracht.
+        </div>
+
+        <v-row
+          v-if="filteredAlgoritmes.length > 1"
+          align="center"
+          justify="center"
         >
-      </v-row>
-      <v-divider></v-divider>
-    </div>
-
-    <div v-if="paginatedAlgoritmes.length == 0">
-      Geen algoritmes gevonden voor de huidige zoekopdracht.
-    </div>
-
-    <v-row v-if="filteredAlgoritmes.length > 1" align="center" justify="center">
-      <v-col :cols="6" class="text-grey"
-        >{{ filteredAlgoritmes.length }} algoritmes gevonden</v-col
-      >
-      <v-col :cols="6"
-        ><v-pagination v-model="page" :length="nPages"></v-pagination
-      ></v-col>
+          <v-col :cols="6" class="text-grey"
+            >{{ filteredAlgoritmes.length }} algoritmes gevonden</v-col
+          >
+          <v-col :cols="6"
+            ><v-pagination v-model="page" :length="nPages"></v-pagination
+          ></v-col>
+        </v-row>
+      </v-col>
     </v-row>
   </Page>
 </template>
@@ -67,8 +78,9 @@ import { computed } from 'vue'
 import Page from '~~/components/PageWrapper.vue'
 import algoritmeService from '@/services/algoritme'
 import { useI18n } from 'vue-i18n'
-import { summaryTiles } from '~~/config/config'
+import { summaryTiles } from '@/config/config'
 import type { Algoritme } from '@/types/algoritme'
+import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
 
 const { t } = useI18n()
 const searchHint = computed(() => t('searchHint'))
@@ -106,6 +118,21 @@ const paginatedAlgoritmes = computed(() =>
     page.value * pageLength
   )
 )
+
+const aggregatedAlgoritmes = computed(() => {
+  const groupOnAttributes = ['organization', 'type']
+  return groupOnAttributes.map((attribute) =>
+    algoritmes.value.reduce((obj, algoritme) => {
+      const value = algoritme[attribute]
+      if (obj[value]) {
+        obj[value] = obj[value]
+      } else {
+        obj[value] = 1
+      }
+      return obj
+    }, {})
+  )
+})
 
 watch(searchQuery, () => {
   page.value = 1

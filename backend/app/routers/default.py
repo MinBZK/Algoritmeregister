@@ -12,19 +12,19 @@ logger = logging.getLogger(__name__)
 
 @router.get(
     "/algoritme/",
-    response_model=list[schemas.algemene_informatie.AlgemeneInformatie],
+    response_model=list[schemas.algoritme.Algoritme],
 )
 async def get_all(db: Session = Depends(get_db)):
-    return db.query(models.algemene_informatie.AlgemeneInformatie).all()
+    return db.query(models.algoritme.Algoritme).all()
 
 
 @router.get(
     "/algoritme/{id}/",
-    response_model=schemas.algemene_informatie.AlgemeneInformatie,
+    response_model=schemas.algoritme.Algoritme,
 )
 async def get_one(id: str, db: Session = Depends(get_db)):
     return (
-        db.query(models.algemene_informatie.AlgemeneInformatie)
-        .filter(models.algemene_informatie.AlgemeneInformatie.id == id)
+        db.query(models.algoritme.Algoritme)
+        .filter(models.algoritme.Algoritme.id == id)
         .first()
     )
