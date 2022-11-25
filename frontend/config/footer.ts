@@ -1,33 +1,48 @@
 export type FooterPage = {
   label: string
-  slug: string
+  path: string
 }
 
 export type FooterColumn = {
+  key: string
   title: string
   pages: FooterPage[]
 }
 
 const footer: FooterColumn[] = [
   {
-    title: 'Service',
+    key: 'service',
+    title: '',
     pages: [
       {
-        label: 'Contact',
-        slug: 'contact',
+        label: '',
+        path: '/contact',
       },
       {
-        label: 'Over',
-        slug: 'over',
+        label: '',
+        path: '/over',
       },
     ],
   },
   {
-    title: 'Over deze site',
+    key: 'over',
+    title: '',
     pages: [
       {
-        label: 'Privacyverklaring',
-        slug: 'privacyverklaring',
+        label: '',
+        path: '/privacyverklaring',
+      },
+      {
+        label: '',
+        path: '/cookies',
+      },
+      {
+        label: ' melden',
+        path: '/kwetsbaarheid',
+      },
+      {
+        label: '',
+        path: '/toegankelijkheid',
       },
     ],
   },
