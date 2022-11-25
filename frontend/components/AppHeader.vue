@@ -73,13 +73,12 @@ figure {
 }
 
 #header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: 0 auto;
+  max-width: $page-width;
+  padding: 0 $page-side-padding;
 }
 
 #header div {
-  width: $page-width;
   height: 84px;
 }
 
@@ -104,12 +103,8 @@ figure {
   border-bottom: 9px solid $secondary;
 }
 
-.bar-wrapper nav,
-.bar-wrapper div {
-  padding: 0;
-}
-
 .bar-wrapper-content {
+  padding: 0 $page-side-padding;
   max-width: $page-width;
   display: flex;
   font-size: 20px;
