@@ -1,8 +1,8 @@
 import qs from 'qs'
-import { fileURLToPath } from 'url'
 
 export const useRouteQuery = () => {
-  const route = reactive(useRoute())
-  const query = toRef(route, 'query')
-  return query
+  const query = useRoute().query.q
+  const queryString = (Array.isArray(query) ? query[0] : query) || ''
+  const parsed = reactive(qs.parse(queryString.toString()))
+  return parsed
 }

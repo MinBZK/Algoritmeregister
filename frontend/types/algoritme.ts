@@ -15,3 +15,8 @@ export type AggregatedAlgoritmes = {
   aggregationType: string
   aggregatedValues: Record<string, number>
 }
+
+export type AlgoritmeFilter = {
+  attribute: string
+  value: string
+}
