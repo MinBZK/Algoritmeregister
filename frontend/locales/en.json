@@ -1,10 +1,22 @@
 {
+  "Ontbreekt": "Missing",
   "locale-en": "English",
   "locale-nl": "Dutch",
   "selectLanguage": "Choose language",
   "foundResults": "Found {n} results",
+  "noResults": "No algorithm was found for this search request.",
+  "footerColumns": {
+    "over": "About",
+    "service": "Service"
+  },
   "paths": {
-    "/algoritme": "Overview"
+    "/algoritme": "Overview",
+    "/over": "About",
+    "/contact": "Contact us",
+    "/privacyverklaring": "Privacy statement",
+    "/kwetsbaarheid": "Report vulnerability",
+    "/toegankelijkheid": "Accessibility",
+    "/cookies": "Cookies"
   },
   "algoritmeRegister": "Algorithm register",
   "goBack": "back to summary",
