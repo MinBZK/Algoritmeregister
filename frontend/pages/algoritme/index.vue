@@ -1,5 +1,6 @@
 <template>
   <Page>
+    {{ parsedQuery }}
     <v-row>
       <v-col>
         <v-text-field
@@ -18,8 +19,7 @@
     </v-row>
     <v-row>
       <v-col :cols="3">
-        {{ aggregatedAlgoritmes }}
-        <AlgoritmeFilters
+        <AlgoritmeFilters :aggregatedAlgoritmes="aggregatedAlgoritmes"
       /></v-col>
       <v-col>
         <v-row>
@@ -79,8 +79,11 @@ import Page from '~~/components/PageWrapper.vue'
 import algoritmeService from '@/services/algoritme'
 import { useI18n } from 'vue-i18n'
 import { summaryTiles } from '@/config/config'
-import type { Algoritme } from '@/types/algoritme'
+import type { Algoritme, AggregatedAlgoritmes } from '@/types/algoritme'
 import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
+import qs from 'qs'
+
+const routeQuery = useRouteQuery()
 
 const { t } = useI18n()
 const searchHint = computed(() => t('searchHint'))
@@ -95,16 +98,24 @@ let algoritmes = ref(data.value as Algoritme[])
 
 const searchQuery = ref(useRoute().query.q || '')
 
-const filteredAlgoritmes = computed(() =>
-  algoritmes.value.filter((algoritme) => {
-    const algoritmeName = algoritme.name
-    const searchQueryString = String(searchQuery.value)
-    const allowed =
-      searchQueryString.length > 0 && typeof algoritmeName === 'string'
-        ? algoritmeName.toLowerCase().includes(searchQueryString.toLowerCase())
-        : true
-    return allowed
-  })
+const filteredAlgoritmes = computed(
+  () =>
+    algoritmes.value.filter((algoritme) => {
+      const algoritmeName = algoritme.name
+      const searchQueryString = String(searchQuery.value)
+      const allowed =
+        searchQueryString.length > 0 && typeof algoritmeName === 'string'
+          ? algoritmeName
+              .toLowerCase()
+              .includes(searchQueryString.toLowerCase())
+          : true
+      return allowed
+    })
+  // .filter((algoritme) => {
+  //   return parsedFilters.value.every(
+  //     (f) => algoritme[f.attribute as keyof Algoritme] == f.value
+  //   )
+  // })
 )
 
 const page = ref(1)
@@ -119,19 +130,35 @@ const paginatedAlgoritmes = computed(() =>
   )
 )
 
+const parsedFilters = computed(() => {
+  const query = useRoute().query.q
+  const queryString = (Array.isArray(query) ? query[0] : query) || ''
+  const parsed = qs.parse(queryString.toString())
+  const parsedFilters: { attribute: string; value: string }[] =
+    parsed.filters || []
+  return parsedFilters
+})
+
 const aggregatedAlgoritmes = computed(() => {
   const groupOnAttributes = ['organization', 'type']
-  return groupOnAttributes.map((attribute) =>
-    algoritmes.value.reduce((obj, algoritme) => {
-      const value = algoritme[attribute]
-      if (obj[value]) {
-        obj[value] = obj[value]
-      } else {
-        obj[value] = 1
+  const result: AggregatedAlgoritmes[] = groupOnAttributes.map(
+    (aggregationAttribute) => {
+      return {
+        aggregationAttribute,
+        aggregationType: 'count',
+        aggregatedValues: filteredAlgoritmes.value.reduce((obj, algoritme) => {
+          const value = algoritme[aggregationAttribute as keyof Algoritme]
+          if (obj[value]) {
+            obj[value] = obj[value] + 1
+          } else {
+            obj[value] = 1
+          }
+          return obj
+        }, {} as Record<string, number>),
       }
-      return obj
-    }, {})
+    }
   )
+  return result
 })
 
 watch(searchQuery, () => {
