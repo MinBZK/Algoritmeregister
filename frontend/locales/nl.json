@@ -12,8 +12,8 @@
   "no": "Nee",
   "hello": "Hallo, {name}!",
   "language": "Taal",
-  "homepageTitle": "Algoritmeregister van de Nederlandse Overheid",
-  "homepageSubtitle": "Zoek naar algoritmes bij Nederlandse Overheidsorganisaties.",
+  "homepageTitle": "Algoritmeregister van de Nederlandse overheid",
+  "homepageSubtitle": "Zoek naar algoritmes bij Nederlandse overheidsorganisaties",
   "searchHint": "Zoek op organisatie, titel of omschrijving",
   "search": "Zoeken",
   "algorithmProperties": {

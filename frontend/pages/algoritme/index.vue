@@ -1,6 +1,5 @@
 <template>
   <Page>
-    {{ parsedQuery }}
     <v-row>
       <v-col>
         <v-text-field
@@ -79,11 +78,13 @@ import Page from '~~/components/PageWrapper.vue'
 import algoritmeService from '@/services/algoritme'
 import { useI18n } from 'vue-i18n'
 import { summaryTiles } from '@/config/config'
-import type { Algoritme, AggregatedAlgoritmes } from '@/types/algoritme'
+import type {
+  Algoritme,
+  AggregatedAlgoritmes,
+  AlgoritmeFilter,
+} from '@/types/algoritme'
 import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
 import qs from 'qs'
-
-const routeQuery = useRouteQuery()
 
 const { t } = useI18n()
 const searchHint = computed(() => t('searchHint'))
@@ -93,30 +94,43 @@ definePageMeta({
   title: 'Algoritmeoverzicht',
 })
 
+const parsedQuery = computed(() => useRouteQuery())
+const searchQuery = ref((parsedQuery.value.search || '') as string)
+const parsedFilters = computed(
+  () => parsedQuery.value.filters as AlgoritmeFilter[]
+)
+
 const { data } = await algoritmeService.getAll()
 let algoritmes = ref(data.value as Algoritme[])
 
-const searchQuery = ref(useRoute().query.q || '')
+const filteredAlgoritmes = computed(() => {
+  const searchQueryString = String(searchQuery.value)
 
-const filteredAlgoritmes = computed(
-  () =>
-    algoritmes.value.filter((algoritme) => {
-      const algoritmeName = algoritme.name
-      const searchQueryString = String(searchQuery.value)
-      const allowed =
-        searchQueryString.length > 0 && typeof algoritmeName === 'string'
-          ? algoritmeName
-              .toLowerCase()
-              .includes(searchQueryString.toLowerCase())
-          : true
-      return allowed
-    })
-  // .filter((algoritme) => {
-  //   return parsedFilters.value.every(
-  //     (f) => algoritme[f.attribute as keyof Algoritme] == f.value
-  //   )
-  // })
-)
+  return algoritmes.value.filter((algoritme) => {
+    const includedSearchFields = ['organization', 'name', 'description_short']
+
+    const allowedBySearch =
+      searchQueryString.length > 0
+        ? includedSearchFields
+            .map((field) => {
+              const value = algoritme[field as keyof typeof algoritme]
+              return value
+                ? value.toLowerCase().includes(searchQueryString.toLowerCase())
+                : false
+            })
+            .some((v) => v)
+        : true
+
+    const allowedByQueryFilters = (parsedFilters.value || [])
+      .map(
+        ({ attribute, value }) =>
+          algoritme[attribute as keyof Algoritme] == value
+      )
+      .every((v) => v)
+
+    return allowedByQueryFilters && allowedBySearch
+  })
+})
 
 const page = ref(1)
 const pageLength = 10
@@ -129,15 +143,6 @@ const paginatedAlgoritmes = computed(() =>
     page.value * pageLength
   )
 )
-
-const parsedFilters = computed(() => {
-  const query = useRoute().query.q
-  const queryString = (Array.isArray(query) ? query[0] : query) || ''
-  const parsed = qs.parse(queryString.toString())
-  const parsedFilters: { attribute: string; value: string }[] =
-    parsed.filters || []
-  return parsedFilters
-})
 
 const aggregatedAlgoritmes = computed(() => {
   const groupOnAttributes = ['organization', 'type']
