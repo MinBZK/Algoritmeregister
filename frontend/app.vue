@@ -21,8 +21,8 @@ const algoritmeRegister = computed(() => t('algoritmeRegister'))
 
 <style lang="scss">
 #content {
-  width: $page-width;
+  max-width: $page-width;
+  padding: 0.5em $page-side-padding 0 $page-side-padding;
   margin: 0 auto;
-  padding-top: 0.5em;
 }
 </style>
