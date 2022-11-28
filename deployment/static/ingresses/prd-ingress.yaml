@@ -24,7 +24,7 @@ spec:
               service:
                 name: algreg-frontend
                 port:
-                  number: 8080
+                  number: 3000
           - path: /api
             pathType: Prefix
             backend:
@@ -41,7 +41,7 @@ spec:
               service:
                 name: algreg-frontend
                 port:
-                  number: 8080
+                  number: 3000
           - path: /api
             pathType: Prefix
             backend:
