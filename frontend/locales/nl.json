@@ -1,11 +1,23 @@
 {
+  "english?": "false",
+  "Ontbreekt": "Ontbreekt",
   "locale-en": "Engels",
   "locale-nl": "Nederlands",
   "selectLanguage": "Kies taal",
   "foundResults": "{n} resultaten gevonden",
   "noResults": "Geen algoritmes gevonden voor de huidige zoekopdracht.",
+  "footerColumns": {
+    "over": "Over",
+    "service": "Service"
+  },
   "paths": {
-    "/algoritme": "Algoritmeoverzicht"
+    "/algoritme": "Algoritmeoverzicht",
+    "/over": "Over",
+    "/contact": "Contact",
+    "/privacyverklaring": "Privacyverklaring",
+    "/kwetsbaarheid": "Kwetsbaarheid melden",
+    "/toegankelijkheid": "Toegankelijkheid",
+    "/cookies": "Cookies"
   },
   "algoritmeRegister": "Algoritmeregister",
   "goBack": "terug",
@@ -13,8 +25,8 @@
   "no": "Nee",
   "hello": "Hallo, {name}!",
   "language": "Taal",
-  "homepageTitle": "Algoritmeregister van de Nederlandse Overheid",
-  "homepageSubtitle": "Zoek naar algoritmes bij Nederlandse Overheidsorganisaties.",
+  "homepageTitle": "Algoritmeregister van de Nederlandse overheid",
+  "homepageSubtitle": "Zoek naar algoritmes bij Nederlandse overheidsorganisaties",
   "searchHint": "Zoek op organisatie, titel of omschrijving",
   "search": "Zoeken",
   "algorithmProperties": {

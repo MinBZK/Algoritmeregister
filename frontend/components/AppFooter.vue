@@ -1,19 +1,19 @@
 <template>
   <v-spacer></v-spacer>
-  <v-footer bottom fixed class="site-footer">
+  <v-footer class="site-footer">
     <div class="wrapper">
-      <div class="payoff">
-        <!-- <span>De Rijksoverheid. Voor Nederland</span> -->
-      </div>
-
-      <div class="column" v-for="column in footer" :key="column.title">
+      <div
+        class="column"
+        v-for="column in footerTranslated"
+        :key="column.title"
+      >
         <h2>{{ column.title }}</h2>
 
         <ul>
           <li v-for="page in column.pages" :key="page.label">
-            <!-- <router-link :to="{ name: page.label }">{{
-              page.label
-            }}</router-link> -->
+            <NuxtLink :to="`/footer${page.path}`">
+              {{ page.label }}
+            </NuxtLink>
           </li>
         </ul>
       </div>
@@ -23,6 +23,20 @@
 
 <script setup lang="ts">
 import footer from '@/config/footer'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
+const footerTranslated = computed(() => {
+  return footer.map((column) => {
+    column.title = t(`footerColumns.${column.key}`)
+    column.pages.map((page) => {
+      page.label = t(`paths.${page.path}`)
+      return page
+    })
+    return column
+  })
+})
 </script>
 
 <style scoped>
@@ -39,7 +53,9 @@ import footer from '@/config/footer'
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  background-color: #01689b;
+  background-color: #007bc7;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .site-footer > .wrapper {
@@ -53,8 +69,8 @@ import footer from '@/config/footer'
   margin-inline-end: -16px;
   -webkit-margin-start: -16px;
   margin-inline-start: -16px;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .site-footer .column {

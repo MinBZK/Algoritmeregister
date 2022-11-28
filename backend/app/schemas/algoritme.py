@@ -59,11 +59,7 @@ class Toezicht(BaseModelOrmMode):
     algoritme_id: str | None
 
 
-class AlgemeneInformatie2(BaseModelOrmMode):
-    category: str
-
-
-class AlgemeneInformatie(BaseModelOrmMode):
+class Algoritme(BaseModelOrmMode):
     id: str
     name: str
     organization: str

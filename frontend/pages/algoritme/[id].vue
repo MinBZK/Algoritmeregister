@@ -42,7 +42,7 @@
                   <i> {{ property.attributeKeyDescription }} </i>
                 </p>
                 <p class="mb-1">
-                  {{ property.attributeValue }}
+                  {{ property.attributeValue || t('Ontbreekt') }}
                 </p>
               </v-col>
               <v-divider></v-divider>
@@ -51,6 +51,7 @@
         </v-expansion-panel>
       </v-expansion-panels>
     </v-row>
+    <div>''</div>
   </Page>
 </template>
 
@@ -61,6 +62,8 @@ import algoritmeService from '@/services/algoritme'
 import { summaryTiles, keys } from '~~/config/config'
 import { useI18n } from 'vue-i18n'
 import type { Algoritme } from '~~/types/algoritme'
+import requiredFields from '~~/config/fields.json'
+import { assertJSXAttribute } from '@babel/types'
 
 // get data
 const route = useRoute()
@@ -130,6 +133,19 @@ const structuredProperties = computed(() => {
               `algorithmProperties.${attributeGroupKey}.${key}.label`
             ),
           }
+        })
+        .filter((attribute) => {
+          console.log(
+            requiredFields.properties[
+              attribute.attributeKey as keyof typeof requiredFields.properties
+            ]?.required,
+            attribute.attributeKey
+          )
+          return (
+            requiredFields.properties[
+              attribute.attributeKey as keyof typeof requiredFields.properties
+            ]?.required == true || !!attribute.attributeValue
+          )
         }),
     }
   })

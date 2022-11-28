@@ -9,3 +9,14 @@ export interface Algoritme {
   website: string
   status: string
 }
+
+export type AggregatedAlgoritmes = {
+  aggregationAttribute: string
+  aggregationType: string
+  aggregatedValues: Record<string, number>
+}
+
+export type AlgoritmeFilter = {
+  attribute: string
+  value: string
+}

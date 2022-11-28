@@ -1,5 +1,5 @@
 <template>
-  <div class="locale-changer text-grey">
+  <div class="locale-changer text-grey text-end">
     <span
       v-for="(locale, index) in $i18n.availableLocales"
       class="locale"

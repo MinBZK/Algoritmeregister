@@ -1,11 +1,23 @@
 {
+  "english?": "true",
+  "Ontbreekt": "Missing",
   "locale-en": "English",
   "locale-nl": "Dutch",
   "selectLanguage": "Choose language",
   "foundResults": "Found {n} results",
   "noResults": "No algorithm was found for this search request.",
+  "footerColumns": {
+    "over": "About",
+    "service": "Service"
+  },
   "paths": {
-    "/algoritme": "Overview"
+    "/algoritme": "Overview",
+    "/over": "About",
+    "/contact": "Contact us",
+    "/privacyverklaring": "Privacy statement",
+    "/kwetsbaarheid": "Report vulnerability",
+    "/toegankelijkheid": "Accessibility",
+    "/cookies": "Cookies"
   },
   "algoritmeRegister": "Algorithm register",
   "goBack": "back to summary",
@@ -13,7 +25,7 @@
   "no": "No",
   "hello": "Hello, {name}!",
   "language": "Language",
-  "homepageTitle": "Algorithm register from the Dutch Government",
+  "homepageTitle": "Algorithm register of the Dutch government",
   "homepageSubtitle": "Search for algorithms at Dutch government agencies",
   "searchHint": "Find algorithms by organisation, title or description",
   "search": "Search",

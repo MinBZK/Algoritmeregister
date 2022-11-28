@@ -8,15 +8,16 @@ const algoritmeRegister = computed(() => t('algoritmeRegister'))
 
 <template>
   <v-app>
-    <NuxtLoadingIndicator
-      color="repeating-linear-gradient(to right,#01689b 0%,#81c0df 50%,#4fb6e9 100%)"
-      :height="5"
-    />
+    <div>
+      <NuxtLoadingIndicator
+        color="repeating-linear-gradient(to right,#01689b 0%,#81c0df 50%,#4fb6e9 100%)"
+        :height="5"
+      />
 
-    <AppHeader :title="algoritmeRegister" :pages="['algoritme']" />
+      <AppHeader :title="algoritmeRegister" :pages="['algoritme']" />
 
-    <NuxtPage />
-
+      <NuxtPage />
+    </div>
     <AppFooter />
   </v-app>
 </template>

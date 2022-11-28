@@ -14,8 +14,6 @@ class Metadata(Base):
     area = Column(VARCHAR(1024))
     lang = Column(VARCHAR(1024))
     revision_date = Column(VARCHAR(1024))
-    algoritme_id = Column(Integer, ForeignKey("algemene_informatie.id"))
+    algoritme_id = Column(Integer, ForeignKey("algoritme.id"))
 
-    algemene_informatie = relationship(
-        "AlgemeneInformatie", back_populates="metadata_algorithm"
-    )
+    algoritme = relationship("Algoritme", back_populates="metadata_algorithm")

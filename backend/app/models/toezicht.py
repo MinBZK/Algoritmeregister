@@ -11,6 +11,6 @@ class Toezicht(Base):
     human_intervention = Column(VARCHAR(5000))
     risks = Column(VARCHAR(5000))
     performance_standard = Column(VARCHAR(5000))
-    algoritme_id = Column(Integer, ForeignKey("algemene_informatie.id"))
+    algoritme_id = Column(Integer, ForeignKey("algoritme.id"))
 
-    algemene_informatie = relationship("AlgemeneInformatie", back_populates="toezicht")
+    algoritme = relationship("Algoritme", back_populates="toezicht")

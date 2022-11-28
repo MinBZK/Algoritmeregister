@@ -13,8 +13,6 @@ class Toepassing(Base):
     mprd = Column(Boolean)
     source_data = Column(VARCHAR(5000))
     methods_and_models = Column(VARCHAR(5000))
-    algoritme_id = Column(Integer, ForeignKey("algemene_informatie.id"))
+    algoritme_id = Column(Integer, ForeignKey("algoritme.id"))
 
-    algemene_informatie = relationship(
-        "AlgemeneInformatie", back_populates="toepassing"
-    )
+    algoritme = relationship("Algoritme", back_populates="toepassing")
