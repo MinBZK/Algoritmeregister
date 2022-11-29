@@ -135,12 +135,12 @@ const structuredProperties = computed(() => {
           }
         })
         .filter((attribute) => {
-          console.log(
-            requiredFields.properties[
-              attribute.attributeKey as keyof typeof requiredFields.properties
-            ]?.required,
-            attribute.attributeKey
-          )
+          // console.log(
+          //   requiredFields.properties[
+          //     attribute.attributeKey as keyof typeof requiredFields.properties
+          //   ]?.required,
+          //   attribute.attributeKey
+          // )
           return (
             requiredFields.properties[
               attribute.attributeKey as keyof typeof requiredFields.properties
