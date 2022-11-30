@@ -8,6 +8,7 @@
     - tags
   environment:
     name: ${CLUSTER}
+    action: verify
   script:
     - PASSWORD_DECODED=$(echo ${HARBOR_ROBOT_SECRET} | base64 -d)
     - echo ${PASSWORD_DECODED} | helm registry login -u ${HARBOR_ROBOT_NAME} harbor.cicd.s15m.nl --password-stdin
