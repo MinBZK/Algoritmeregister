@@ -1,13 +1,4 @@
-export type FooterPage = {
-  label: string
-  path: string
-}
-
-export type FooterColumn = {
-  key: string
-  title: string
-  pages: FooterPage[]
-}
+import type { FooterColumn } from '~~/types/footer'
 
 const footer: FooterColumn[] = [
   {
@@ -22,16 +13,16 @@ const footer: FooterColumn[] = [
         label: '',
         path: '/over',
       },
+      {
+        label: '',
+        path: '/privacyverklaring',
+      },
     ],
   },
   {
     key: 'over',
     title: '',
     pages: [
-      {
-        label: '',
-        path: '/privacyverklaring',
-      },
       {
         label: '',
         path: '/cookies',

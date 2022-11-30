@@ -4,29 +4,30 @@
       <v-card elevation="0" color="tertiary">
         <div class="card-margins">
           <v-card-title>
-            <h2 align="center">
+            <h2>
               {{ homepageTitle }}
             </h2></v-card-title
           >
           <v-card-subtitle
-            ><h4 align="center">
+            ><h4>
               {{ homepageSubtitle }}
             </h4></v-card-subtitle
           >
-          <v-card-text>
-            <v-text-field
-              bg-color="white"
-              color="primary"
-              v-model="searchQuery"
-              :label="searchHint"
-              variant="outlined"
-              @keyup.enter="doSearch"
-              prepend-inner-icon="mdi-magnify"
-            ></v-text-field>
-            <v-btn block elevation="0" class="btn-dark" @click="doSearch"
-              ><b> {{ search }}</b>
-            </v-btn>
-          </v-card-text>
+          <v-row>
+            <v-col :cols="10">
+              <v-text-field
+                bg-color="white"
+                color="primary"
+                v-model="searchQuery"
+                :label="searchHint"
+                variant="outlined"
+                @keyup.enter="doSearch"
+                prepend-inner-icon="mdi-magnify"
+              ></v-text-field></v-col
+            ><v-col>
+              <ButtonVue :label="search" icon="mdi-magnify" @click="doSearch" />
+            </v-col>
+          </v-row>
         </div>
       </v-card>
     </v-container>
@@ -37,6 +38,7 @@
 import Page from '@/components/PageWrapper.vue'
 import { useI18n } from 'vue-i18n'
 import qs from 'qs'
+import ButtonVue from '@/components/form/Button.vue'
 
 const { t } = useI18n()
 const searchHint = computed(() => t('searchHint'))

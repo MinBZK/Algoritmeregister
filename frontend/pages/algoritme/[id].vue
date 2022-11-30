@@ -1,11 +1,5 @@
 <template>
   <Page>
-    <div class="text-field-sheet">
-      <v-col>
-        <NuxtLink to="/algoritme"> {{ i18nGoBack }} </NuxtLink>
-      </v-col>
-    </div>
-
     <h2>
       {{ algoritme.name }}
     </h2>
@@ -57,13 +51,12 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import Page from '~~/components/PageWrapper.vue'
+import Page from '@/components/PageWrapper.vue'
 import algoritmeService from '@/services/algoritme'
-import { summaryTiles, keys } from '~~/config/config'
+import { summaryTiles } from '~~/config/config'
 import { useI18n } from 'vue-i18n'
 import type { Algoritme } from '~~/types/algoritme'
 import requiredFields from '~~/config/fields.json'
-import { assertJSXAttribute } from '@babel/types'
 
 // get data
 const route = useRoute()

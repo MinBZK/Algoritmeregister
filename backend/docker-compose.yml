@@ -34,25 +34,9 @@ services:
       PORT_CON1: 5432
       ENGINE_CON1: postgres@dbgate-plugin-postgres
 
-  # pgadmin:
-  #   image: dpage/pgadmin4:6.2
-  #   container_name: ${DEV_DOCKER_CONTAINER_NAME_PREFIX}_pgadmin
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: dummy@admin.com
-  #     PGADMIN_DEFAULT_PASSWORD: dummy
-  #   volumes:
-  #     - pgadmin:/var/lib/pgadmin
-  #     - ./dev_db/pgadmin/servers.json:/pgadmin4/servers.json # preconfigured servers/connections
-  #     - ./dev_db/pgadmin/config_local.py:/pgadmin4/config_local.py
-  #     - ./dev_db/pgadmin/pgpass:/pgadmin4/pgpass      
-  #   ports:
-  #     - 5056:80
-  #   restart: unless-stopped
 
 
 volumes:
-  # pgadmin:
-  #   name: ${DEV_DOCKER_CONTAINER_NAME_PREFIX}_pgadmin
   dbgate:
     name: ${DEV_DOCKER_CONTAINER_NAME_PREFIX}_dbgate
   postgres:

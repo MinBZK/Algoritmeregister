@@ -1,9 +1,16 @@
 <template>
   <div class="search-filters">
     <div v-if="parsedFilters.length > 0" class="search-filter-item">
-      <h4>Geslecteerde algoritmes</h4>
-      <div v-for="f in parsedFilters" @click="removeFilter(f)">
-        {{ f.value || '-' }}
+      <h4>{{ $t('selectedAlgorithms') }}</h4>
+      <div
+        v-for="f in parsedFilters"
+        @click="removeFilter(f)"
+        @keyup.enter="removeFilter(f)"
+        tabindex="0"
+      >
+        <a>
+          {{ f.value || '-' }}
+        </a>
         <v-icon icon="mdi-close" size="small"></v-icon>
       </div>
     </div>
@@ -13,7 +20,14 @@
       :key="aggregationType.aggregationAttribute"
       class="search-filter-item"
     >
-      <h4>{{ aggregationType.aggregationAttribute }}</h4>
+      <h4>
+        {{
+          $t(
+            `algorithmProperties.algemeneInformatie.${aggregationType.aggregationAttribute}.label`
+          )
+        }}
+      </h4>
+
       <div
         v-for="[k, v] in Object.entries(aggregationType.aggregatedValues)"
         :key="k"

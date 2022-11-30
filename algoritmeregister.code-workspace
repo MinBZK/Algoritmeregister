@@ -21,7 +21,9 @@
       "*.sql": true,
       "**/.nuxt": true,
       "**/.output": true,
-      "**/dist/_nuxt": true
+      "**/dist/_nuxt": true,
+      "**/dist/": true,
+      "**/alembic/scripts": true
     }
   }
 }

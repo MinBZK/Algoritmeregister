@@ -7,12 +7,12 @@
       @click="setLocale(locale)"
     >
       <template v-if="$i18n.locale !== locale">
-        <a>{{ $t(`locale-${locale}`) }}</a>
+        <a> {{ $t(`switchToLanguage.${locale}`) }}</a>
       </template>
 
-      <template v-else> {{ $t(`locale-${locale}`) }}</template>
+      <!-- <template v-else> {{ $t(`locale-${locale}`) }}</template> -->
 
-      <span v-if="index < $i18n.availableLocales.length - 1">|</span>
+      <!-- <span v-if="index < $i18n.availableLocales.length - 1">|</span> -->
     </span>
   </div>
 </template>

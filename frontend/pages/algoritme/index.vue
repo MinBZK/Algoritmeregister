@@ -1,19 +1,16 @@
 <template>
   <Page>
     <v-row>
-      <v-col>
+      <v-col :cols="10">
         <v-text-field
           bg-color="white"
           v-model="searchQuery"
           :label="searchHint"
           variant="outlined"
-        >
-          <template v-slot:append>
-            <v-btn class="btn-dark" block variant="text">
-              {{ search }}
-            </v-btn>
-          </template>
-        </v-text-field>
+        />
+      </v-col>
+      <v-col>
+        <ButtonVue icon="mdi-magnify" :label="search" />
       </v-col>
     </v-row>
     <v-row>
@@ -84,7 +81,7 @@ import type {
   AlgoritmeFilter,
 } from '@/types/algoritme'
 import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
-import qs from 'qs'
+import ButtonVue from '@/components/form/Button.vue'
 
 const { t } = useI18n()
 const searchHint = computed(() => t('searchHint'))
@@ -178,9 +175,5 @@ watch(searchQuery, () => {
 }
 .text-field-sheet {
   background-color: $quaternary;
-}
-.btn-dark {
-  background-color: $primary;
-  color: white;
 }
 </style>

@@ -7,26 +7,23 @@
       <figure>
         <img alt="Overheidlogo" src="../assets/images/logo.svg" class="logo" />
       </figure>
-      <div class="logo-caption">Algoritmes in de overheid</div>
+      <div class="logo-caption">{{ t(`logoCaption`) }}</div>
     </div>
   </header>
 
   <div id="bar" class="bar-wrapper">
     <div class="bar-wrapper-content">
       <div class="center-flex">
-        <NuxtLink to="/">
-          {{ title }}
-        </NuxtLink>
-      </div>
-      <nav>
         <ul>
-          <li v-for="nR in navigationRoutes" :key="nR.name">
-            <NuxtLink :to="nR.path">
-              {{ nR.meta.title }}
-            </NuxtLink>
+          <li
+            v-for="item in navigationItems"
+            :key="item.label"
+            :class="{ active: currentRoute.name == item.routeName }"
+          >
+            <NuxtLink :to="{ name: item.routeName }">{{ item.label }}</NuxtLink>
           </li>
         </ul>
-      </nav>
+      </div>
     </div>
   </div>
 </template>
@@ -41,19 +38,20 @@ const props = defineProps<{
   pages?: string[]
 }>()
 
-const router = useRouter()
-const routes = router.getRoutes()
-const navigationRoutes = computed(() => {
-  return routes
-    .filter((r) => {
-      const routeName = typeof r.name === 'string' ? r.name : ''
-      return (props.pages || []).includes(routeName)
-    })
-    .map((r) => {
-      r.meta.title = t(`paths.${r.path}`)
-      return r
-    })
-})
+const navigationItems = [
+  {
+    label: 'Home',
+    routeName: 'index',
+  },
+  {
+    label: 'Algoritmeregister',
+    routeName: 'algoritme',
+  },
+]
+
+// const router = useRouter()
+// const routes = router.getRoutes()
+const currentRoute = useRoute()
 </script>
 
 <style scoped lang="scss">
@@ -156,5 +154,34 @@ nav ul > li {
 
 nav ul > li a:hover {
   text-decoration: underline;
+}
+
+ul > li {
+  display: inline-block;
+  height: 50px;
+  vertical-align: middle;
+  display: table-cell;
+  color: white;
+  padding: 0 15px;
+}
+
+.active {
+  background-color: white;
+}
+
+ul > li a {
+  text-decoration: none;
+}
+
+.active a {
+  color: $primary-dark !important;
+}
+
+ul > li:hover:not(.active) {
+  background-color: $secondary;
+}
+
+ul > li:hover a {
+  color: $primary-dark !important;
 }
 </style>

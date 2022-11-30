@@ -7,7 +7,7 @@
         v-for="column in footerTranslated"
         :key="column.title"
       >
-        <h2>{{ column.title }}</h2>
+        <!-- <h2>{{ column.title }}</h2> -->
 
         <ul>
           <li v-for="page in column.pages" :key="page.label">
@@ -39,7 +39,7 @@ const footerTranslated = computed(() => {
 })
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .site-footer .column {
   position: relative;
 }
@@ -53,7 +53,8 @@ const footerTranslated = computed(() => {
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  background-color: #007bc7;
+  background-color: $tertiary;
+  border-top: 14px solid $secondary;
   padding-top: 0px;
   padding-bottom: 0px;
 }
@@ -114,7 +115,15 @@ const footerTranslated = computed(() => {
 .site-footer .column li,
 .site-footer .column a,
 .site-footer .column a:hover {
-  color: #fff;
+  text-decoration: underline;
+}
+
+a {
+  color: $primary-dark;
+}
+
+a:hover {
+  color: $primary;
 }
 
 .site-footer .column h2 {
@@ -175,7 +184,7 @@ const footerTranslated = computed(() => {
   position: relative;
   display: block;
   text-decoration: none;
-  font-size: inherit;
+  font-size: 1em;
   line-height: inherit;
   font-weight: normal;
   -webkit-padding-before: 6.4px;
@@ -338,7 +347,7 @@ const footerTranslated = computed(() => {
 }
 
 .site-footer .column ul a:visited:before {
-  color: #fff;
+  color: $primary-dark;
 }
 
 @media (min-width: 768px) {
