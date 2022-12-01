@@ -14,7 +14,7 @@ const algoritmeRegister = computed(() => t('algoritmeRegister'))
         :height="5"
       />
 
-      <AppHeader :title="algoritmeRegister" :pages="['algoritme']" />
+      <AppHeader />
 
       <NuxtPage />
     </div>

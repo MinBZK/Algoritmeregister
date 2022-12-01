@@ -1,7 +1,7 @@
 <template>
   <div class="locale-changer text-grey text-end">
     <span
-      v-for="(locale, index) in $i18n.availableLocales"
+      v-for="locale in $i18n.availableLocales"
       class="locale"
       :key="`locale-${locale}`"
       @click="setLocale(locale)"
@@ -43,9 +43,11 @@ label {
 
 span {
   padding-left: 0.25em;
+  font-size: 85%;
 }
 
 span a {
   cursor: pointer;
+  color: white;
 }
 </style>

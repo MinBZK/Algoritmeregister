@@ -66,8 +66,6 @@ import qs from 'qs'
 import type { AggregatedAlgoritmes, AlgoritmeFilter } from '@/types/algoritme'
 import { useDisplay } from 'vuetify'
 
-const display = useDisplay()
-
 const { mdAndDown } = useDisplay()
 
 const props = defineProps<{ aggregatedAlgoritmes: AggregatedAlgoritmes[] }>()
@@ -92,7 +90,6 @@ const removeFilter = (filter: AlgoritmeFilter) => {
     const newFilters = [...parsedFilters.value]
     const filterIndex = newFilters.indexOf(filterToBeRemoved)
     newFilters.splice(filterIndex, 1)
-    console.log({ filterIndex, newFilters, filterToBeRemoved })
     const router = useRouter()
     router.push({
       name: 'algoritme',

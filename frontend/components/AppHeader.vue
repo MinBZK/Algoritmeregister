@@ -13,30 +13,36 @@
 
   <div id="bar" class="bar-wrapper">
     <div class="bar-wrapper-content">
-      <div class="center-flex">
-        <ul>
-          <li
-            v-for="item in navigationItems"
-            :key="item.label"
-            :class="{ active: currentRoute.name == item.routeName }"
-          >
-            <NuxtLink :to="{ name: item.routeName }">{{ item.label }}</NuxtLink>
-          </li>
-        </ul>
-      </div>
+      <v-row no-gutters>
+        <v-col>
+          <ul>
+            <li
+              v-for="item in navigationItems"
+              :key="item.label"
+              :class="{ active: currentRoute.name == item.routeName }"
+            >
+              <NuxtLink :to="{ name: item.routeName }">{{
+                item.label
+              }}</NuxtLink>
+            </li>
+          </ul>
+        </v-col>
+        <v-col class="v-center-flex"> <LanguagePicker /> </v-col>
+      </v-row>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import LanguagePicker from '@/components/LanguagePicker.vue'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
-const props = defineProps<{
-  title?: string
-  pages?: string[]
-}>()
+// const props = defineProps<{
+//   title?: string
+//   pages?: string[]
+// }>()
 
 const navigationItems = computed(() => [
   {
@@ -114,9 +120,10 @@ figure {
 .bar-wrapper-content nav {
   color: white;
 }
-.center-flex {
+.v-center-flex {
   align-items: center;
   display: flex;
+  justify-content: flex-end;
 }
 
 nav {
