@@ -15,7 +15,7 @@ const footer: FooterColumn[] = [
       },
       {
         label: '',
-        path: '/privacyverklaring',
+        path: '/vragen',
       },
     ],
   },
@@ -25,12 +25,16 @@ const footer: FooterColumn[] = [
     pages: [
       {
         label: '',
-        path: '/cookies',
+        path: '/privacyverklaring',
       },
-      {
-        label: ' melden',
-        path: '/kwetsbaarheid',
-      },
+      // {
+      //   label: '',
+      //   path: '/cookies',
+      // },
+      // {
+      //   label: ' melden',
+      //   path: '/kwetsbaarheid',
+      // },
       {
         label: '',
         path: '/toegankelijkheid',
