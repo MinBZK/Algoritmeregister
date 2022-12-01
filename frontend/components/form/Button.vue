@@ -21,8 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
 <style scoped lang="scss">
 button {
   text-transform: none !important;
-  // background-color: $primary-dark !important;
-  background-color: #154273;
+  background-color: $primary-darker !important;
   color: white;
   font-weight: bold;
 }

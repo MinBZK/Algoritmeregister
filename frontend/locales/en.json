@@ -14,10 +14,11 @@
     "/algoritme": "Overview",
     "/over": "About",
     "/contact": "Contact us",
-    "/privacyverklaring": "Privacy statement",
+    "/privacyverklaring": "Privacy",
     "/kwetsbaarheid": "Report vulnerability",
     "/toegankelijkheid": "Accessibility",
-    "/cookies": "Cookies"
+    "/cookies": "Cookies",
+    "/vragen": "Questions"
   },
   "algoritmeRegister": "Algorithm register",
   "goBack": "back to summary",
@@ -33,6 +34,12 @@
   "selectedAlgorithms": "Selected algorithms",
   "switchToLanguage": {
     "nl": "Toon in het Nederlands"
+  },
+  "showFilters": "Show filters",
+  "hideFilters": "Hide filters",
+  "navigation": {
+    "home": "Home",
+    "algorithmRegister": "Algorithms"
   },
   "algorithmProperties": {
     "algemeneInformatie": {

@@ -1,12 +1,21 @@
 <template>
-  <div class="search-filters">
-    <template v-if="mdAndDown">Test </template>
-    <template v-else>
-      <div v-if="parsedFilters.length > 0">
+  <div
+    class="search-filters"
+    :aria-expanded="filtersExpanded ? 'true' : 'false'"
+  >
+    <template v-if="mdAndDown"
+      ><v-icon icon="mdi-filter" /><a
+        @click="toggleFilters"
+        @keyup.enter="toggleFilters"
+        tabindex="0"
+        >{{ $t(filtersExpanded ? 'hideFilters' : 'showFilters') }}</a
+      >
+    </template>
+    <template v-if="filtersExpanded">
+      <div v-if="parsedFilters.length > 0" class="search-filter-item">
         <h4>{{ $t('selectedAlgorithms') }}</h4>
         <div
           v-for="f in parsedFilters"
-          class="search-filter-item"
           @click="removeFilter(f)"
           @keyup.enter="removeFilter(f)"
           tabindex="0"
@@ -57,8 +66,6 @@ import qs from 'qs'
 import type { AggregatedAlgoritmes, AlgoritmeFilter } from '@/types/algoritme'
 import { useDisplay } from 'vuetify'
 
-const display = useDisplay()
-
 const { mdAndDown } = useDisplay()
 
 const props = defineProps<{ aggregatedAlgoritmes: AggregatedAlgoritmes[] }>()
@@ -83,7 +90,6 @@ const removeFilter = (filter: AlgoritmeFilter) => {
     const newFilters = [...parsedFilters.value]
     const filterIndex = newFilters.indexOf(filterToBeRemoved)
     newFilters.splice(filterIndex, 1)
-    console.log({ filterIndex, newFilters, filterToBeRemoved })
     const router = useRouter()
     router.push({
       name: 'algoritme',
@@ -91,6 +97,11 @@ const removeFilter = (filter: AlgoritmeFilter) => {
     })
   }
 }
+
+// mobile only
+const showFilters = ref(false)
+const filtersExpanded = computed(() => !mdAndDown.value || showFilters.value)
+const toggleFilters = () => (showFilters.value = !showFilters.value)
 </script>
 
 <style scoped lang="scss">
@@ -109,5 +120,9 @@ const removeFilter = (filter: AlgoritmeFilter) => {
 
 .search-filter-item {
   padding-top: 1.5em;
+}
+
+.search-filters a {
+  cursor: pointer;
 }
 </style>

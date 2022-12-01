@@ -1,33 +1,25 @@
 <template>
   <Page>
-    <h1>{{ t('paths./contact') }}</h1>
     <div v-if="!englishSelected">
+      <h1>Contact over het algoritmeregister van de overheid</h1>
+      <p class="mb-4">Deze site is nog volop in ontwikkeling.</p>
       <p class="mb-4">
-        Inhoudelijke vragen, zoals beleidsvragen over projecten, kunt u via het
-        contactformulier op rijksoverheid.nl sturen.
-      </p>
-      <!-- <p class="mb-4">
-        Vragen, opmerkingen en/of suggesties over de werking en vormgeving van
-        het ICT-dashboard zijn van harte welkom. U kunt deze sturen naar
-        Postbus.ICTdashboard@minbzk.nl. Wij nemen uw reactie mee bij de
-        ontwikkeling van onze website.
-      </p> -->
-      <p class="mb-4">
-        Uw persoonsgegevens worden alleen gebruikt voor het beantwoorden van uw
-        verzoek. De gegevens worden dus niet langer bewaard dan nodig is.
-        Informatie hierover vindt u in onze privacyverklaring.
-      </p>
-      <p class="mb-4">
-        Uw vraag handelen wij af conform de e-mailgedragslijn voor overheden.
-        Daarin staat beschreven hoe de overheid omgaat met het afhandelen en
-        bewaren van e-mail.
+        Ben je een (overheids)professionals en wil jij of je organisatie meedoen
+        aan de verdere ontwikkeling van het Algoritmeregisteroverheid.nl? Of heb
+        je andere vragen over dit project? .Neem dan direct contact op
+        algoritmeregister@minbzk.nl.
       </p>
     </div>
 
     <div v-if="englishSelected">
-      <p>
-        Contact information is not available at this time. It will be added
-        soon.
+      <h1>
+        How to get in contact about the Dutch Government algorithm register
+      </h1>
+      <p class="mb-4">This site is continuously developing.</p>
+      <p class="mb-4">
+        Are you a (government) professional and do you or your organization want
+        to contribute to the development of algoritme.overheid.nl? Or do you
+        have questions about the project? Please contact algoritme.overheid.nl
       </p>
     </div>
   </Page>

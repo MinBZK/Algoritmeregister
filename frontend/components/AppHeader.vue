@@ -13,41 +13,47 @@
 
   <div id="bar" class="bar-wrapper">
     <div class="bar-wrapper-content">
-      <div class="center-flex">
-        <ul>
-          <li
-            v-for="item in navigationItems"
-            :key="item.label"
-            :class="{ active: currentRoute.name == item.routeName }"
-          >
-            <NuxtLink :to="{ name: item.routeName }">{{ item.label }}</NuxtLink>
-          </li>
-        </ul>
-      </div>
+      <v-row no-gutters>
+        <v-col>
+          <ul>
+            <li
+              v-for="item in navigationItems"
+              :key="item.label"
+              :class="{ active: currentRoute.name == item.routeName }"
+            >
+              <NuxtLink :to="{ name: item.routeName }">{{
+                item.label
+              }}</NuxtLink>
+            </li>
+          </ul>
+        </v-col>
+        <v-col class="v-center-flex"> <LanguagePicker /> </v-col>
+      </v-row>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import LanguagePicker from '@/components/LanguagePicker.vue'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
-const props = defineProps<{
-  title?: string
-  pages?: string[]
-}>()
+// const props = defineProps<{
+//   title?: string
+//   pages?: string[]
+// }>()
 
-const navigationItems = [
+const navigationItems = computed(() => [
   {
-    label: 'Home',
+    label: t('navigation.home'),
     routeName: 'index',
   },
   {
-    label: 'Algoritmeregister',
+    label: t('navigation.algorithmRegister'),
     routeName: 'algoritme',
   },
-]
+])
 
 // const router = useRouter()
 // const routes = router.getRoutes()
@@ -77,19 +83,20 @@ figure {
 }
 
 #header div {
-  height: 84px;
+  height: 93px;
 }
 
 #header div img {
-  width: 180px;
-  padding-top: 15px;
+  width: 200px;
+  padding-top: 16px;
 }
 
 #header div .logo-caption {
   margin-top: 0px;
-  color: $primary-dark;
+  color: $primary-darker;
   margin-top: 5px;
-  font-size: 0.8em;
+  font-size: 0.9em;
+  -webkit-font-smoothing: antialiased;
 }
 
 .bar-wrapper {
@@ -97,8 +104,8 @@ figure {
   align-items: center;
   justify-content: center;
   background-color: $primary;
-  height: 58px;
-  border-bottom: 9px solid $secondary;
+  height: 62px;
+  border-bottom: 8px solid $secondary;
 }
 
 .bar-wrapper-content {
@@ -114,9 +121,10 @@ figure {
 .bar-wrapper-content nav {
   color: white;
 }
-.center-flex {
+.v-center-flex {
   align-items: center;
   display: flex;
+  justify-content: flex-end;
 }
 
 nav {
@@ -158,7 +166,7 @@ nav ul > li a:hover {
 
 ul > li {
   display: inline-block;
-  height: 50px;
+  height: 54px;
   vertical-align: middle;
   display: table-cell;
   color: white;
