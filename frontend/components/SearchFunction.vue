@@ -30,8 +30,4 @@ const search = computed(() => t('search'))
 const searchHint = computed(() => t('searchHint'))
 </script>
 
-<style scoped lang="css">
-.v-text-field >>> label {
-  font-size: 1.2em;
-}
-</style>
+<style lang="scss"></style>
