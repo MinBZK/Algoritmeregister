@@ -12,6 +12,7 @@
       <v-col>
         <ButtonVue icon="mdi-magnify" :label="search" />
       </v-col>
+      <!-- <SearchFunction @doSearch="doSearch" :searchQuery="searchQuery"></SearchFunction> -->
     </v-row>
     <v-row>
       <ClientOnly>
