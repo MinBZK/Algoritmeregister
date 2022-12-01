@@ -1,6 +1,5 @@
 <template>
   <Page>
-    <!-- <v-container> -->
     <v-card elevation="0" color="tertiary">
       <div class="card-margins">
         <v-card-title>
@@ -14,25 +13,15 @@
           </h4></v-card-subtitle
         >
         <v-row>
-          {{ searchQuery }}
-          <SearchFunction v-model="searchQuery"> </SearchFunction>
-          <v-col :cols="10">
-            <v-text-field
-              bg-color="white"
-              color="primary"
-              v-model="searchQuery"
-              :label="searchHint"
-              variant="outlined"
-              @keyup.enter="doSearch"
-              prepend-inner-icon="mdi-magnify"
-            ></v-text-field></v-col
-          ><v-col>
-            <ButtonVue :label="search" icon="mdi-magnify" @click="doSearch" />
-          </v-col>
+          <SearchFunction
+            v-bind:value="searchQuery"
+            @input="(v) => (searchQuery = v)"
+            @doSearch="doSearch"
+          >
+          </SearchFunction>
         </v-row>
       </div>
     </v-card>
-    <!-- </v-container> -->
   </Page>
 </template>
 
@@ -40,12 +29,10 @@
 import Page from '@/components/PageWrapper.vue'
 import { useI18n } from 'vue-i18n'
 import qs from 'qs'
-import ButtonVue from '@/components/form/Button.vue'
 import { useDisplay } from 'vuetify'
 import SearchFunction from '@/components/SearchFunction.vue'
 
 const { mdAndDown } = useDisplay()
-
 const { t } = useI18n()
 const searchHint = computed(() => t('searchHint'))
 const homepageTitle = computed(() => t('homepageTitle'))
@@ -54,6 +41,10 @@ const search = computed(() => t('search'))
 
 const searchQuery = ref('')
 
+const showChange = computed(() => {
+  console.log('trigger')
+  return 1
+})
 const doSearch = () => {
   const router = useRouter()
   const stringifiedQuery = qs.stringify({
