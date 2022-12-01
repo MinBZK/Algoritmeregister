@@ -1,18 +1,18 @@
 <template>
   <Page>
     <div v-if="!englishSelected">
-      <h1>Toegankelijkheidverklaring</h1>
+      <h1>Toegankelijkheidsverklaring</h1>
 
       <p class="mb-4">
-        Deze site is nog in ontwikkeling en heeft nog geen
-        toegankelijkheidsverklaring. We ontwikkelen de site met de eisen voor
-        toegankelijkheid op ons netvlies. Ons team is getraind in digitale
-        toegankelijkheid. En we vragen regelmatig advies aan een onafhankelijke
-        toegankelijkheidsexpert.
+        Deze website is in ontwikkeling en heeft nog geen
+        toegankelijkheidsverklaring. Het bouwteam ontwikkelt de website met de
+        eisen voor toegankelijkheid op ons netvlies. Ze zijn getraind in
+        digitale toegankelijkheid. Een onafhankelijke toegankelijkheidsexpert
+        levert regelmatig advies.
       </p>
       <p class="mb-4">
         In 2023 start de procedure voor een toegankelijkheidsverklaring, en komt
-        de algoritmen.overheid.nl in het
+        algoritme.overheid.nl in het
         <a href="https://www.toegankelijkheidsverklaring.nl/register">
           Register van Toegankelijkheidsverklaringen van de overheid
         </a>
@@ -24,13 +24,13 @@
 
       <p class="mb-4">
         This site is under development and does not have an accessibility
-        statement yet. We are developing the site with accessibility
-        requirements in mind. Our team is trained in digital accessibility. And
-        we regularly seek advice from an independent accessibility expert.
+        statement yet. This website is being developed with accessibility
+        requirements in mind. The team is trained in digital accessibility. An
+        independent accessibility expert regularly advises.
       </p>
       <p class="mb-4">
-        The procedure for an accessibility statement will start in 2023, and
-        algorithms.overheid.nl will be included in the government's
+        The procedure for an accessibility statement will start in 2023, and the
+        website will be included in the government's
         <a href="https://www.toegankelijkheidsverklaring.nl/register">
           Register van Toegankelijkheidsverklaringen.
         </a>

@@ -4,20 +4,7 @@ const footer: FooterColumn[] = [
   {
     key: 'service',
     title: '',
-    pages: [
-      {
-        label: '',
-        path: '/contact',
-      },
-      {
-        label: '',
-        path: '/over',
-      },
-      {
-        label: '',
-        path: '/vragen',
-      },
-    ],
+    pages: [],
   },
   {
     key: 'over',
@@ -27,6 +14,22 @@ const footer: FooterColumn[] = [
         label: '',
         path: '/privacyverklaring',
       },
+      {
+        label: '',
+        path: '/toegankelijkheid',
+      },
+      {
+        label: '',
+        path: '/over',
+      },
+      {
+        label: '',
+        path: '/vragen',
+      },
+      {
+        label: '',
+        path: '/contact',
+      },
       // {
       //   label: '',
       //   path: '/cookies',
@@ -35,10 +38,6 @@ const footer: FooterColumn[] = [
       //   label: ' melden',
       //   path: '/kwetsbaarheid',
       // },
-      {
-        label: '',
-        path: '/toegankelijkheid',
-      },
     ],
   },
 ]

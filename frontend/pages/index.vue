@@ -71,6 +71,6 @@ const doSearch = () => {
 }
 .homepage-subtitle {
   color: #154273;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 </style>

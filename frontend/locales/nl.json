@@ -12,13 +12,13 @@
   },
   "paths": {
     "/algoritme": "Algoritmeoverzicht",
-    "/over": "Over",
+    "/over": "Over deze website",
     "/contact": "Contact",
     "/privacyverklaring": "Privacy",
     "/kwetsbaarheid": "Kwetsbaarheid melden",
     "/toegankelijkheid": "Toegankelijkheid",
     "/cookies": "Cookies",
-    "/vragen": "Vragen"
+    "/vragen": "Vaak gestelde vragen"
   },
   "algoritmeRegister": "Algoritmeregister",
   "goBack": "terug",
