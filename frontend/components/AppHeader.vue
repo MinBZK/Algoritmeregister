@@ -38,16 +38,16 @@ const props = defineProps<{
   pages?: string[]
 }>()
 
-const navigationItems = [
+const navigationItems = computed(() => [
   {
-    label: 'Home',
+    label: t('navigation.home'),
     routeName: 'index',
   },
   {
-    label: 'Algoritmeregister',
+    label: t('navigation.algorithmRegister'),
     routeName: 'algoritme',
   },
-]
+])
 
 // const router = useRouter()
 // const routes = router.getRoutes()
