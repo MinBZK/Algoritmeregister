@@ -11,6 +11,10 @@
 
 <script setup lang="ts">
 import LanguagePicker from '@/components/LanguagePicker.vue'
+import { useI18n } from 'vue-i18n'
+const { t, locale } = useI18n()
+const title = computed(() => t('homepageTitle'))
+useHead({ title, htmlAttrs: { lang: locale } })
 </script>
 
 <style scoped>

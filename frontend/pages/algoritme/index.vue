@@ -14,9 +14,12 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col :cols="mdAndDown ? 12 : 3">
-        <AlgoritmeFilters :aggregatedAlgoritmes="aggregatedAlgoritmes"
-      /></v-col>
+      <ClientOnly>
+        <v-col :cols="useMobile ? 12 : 3">
+          <AlgoritmeFilters :aggregatedAlgoritmes="aggregatedAlgoritmes" />
+        </v-col>
+      </ClientOnly>
+
       <v-col>
         <v-row>
           <v-col
@@ -89,6 +92,8 @@ import ButtonVue from '@/components/form/Button.vue'
 import { useDisplay } from 'vuetify'
 
 const { mdAndDown } = useDisplay()
+
+const useMobile = ref(mdAndDown)
 
 const { t } = useI18n()
 const searchHint = computed(() => t('searchHint'))
@@ -173,6 +178,14 @@ const aggregatedAlgoritmes = computed(() => {
 watch(searchQuery, () => {
   page.value = 1
 })
+
+watch(
+  mdAndDown,
+  () => {
+    useMobile.value = mdAndDown.value
+  },
+  { immediate: true }
+)
 </script>
 
 <style scoped lang="scss">
