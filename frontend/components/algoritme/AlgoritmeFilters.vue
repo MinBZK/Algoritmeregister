@@ -1,6 +1,5 @@
 <template>
   <div class="search-filters">
-    {{ display }}
     <template v-if="mdAndDown">Test </template>
     <template v-else>
       <div v-if="parsedFilters.length > 0">
