@@ -83,19 +83,20 @@ figure {
 }
 
 #header div {
-  height: 84px;
+  height: 93px;
 }
 
 #header div img {
-  width: 180px;
-  padding-top: 15px;
+  width: 200px;
+  padding-top: 16px;
 }
 
 #header div .logo-caption {
   margin-top: 0px;
-  color: $primary-dark;
+  color: $primary-darker;
   margin-top: 5px;
-  font-size: 0.8em;
+  font-size: 0.9em;
+  -webkit-font-smoothing: antialiased;
 }
 
 .bar-wrapper {
@@ -103,8 +104,8 @@ figure {
   align-items: center;
   justify-content: center;
   background-color: $primary;
-  height: 59px;
-  border-bottom: 9px solid $secondary;
+  height: 62px;
+  border-bottom: 8px solid $secondary;
 }
 
 .bar-wrapper-content {
@@ -165,7 +166,7 @@ nav ul > li a:hover {
 
 ul > li {
   display: inline-block;
-  height: 50px;
+  height: 54px;
   vertical-align: middle;
   display: table-cell;
   color: white;
@@ -173,7 +174,7 @@ ul > li {
 }
 
 .active {
-  background-color: white;
+  background-color: $secondary;
 }
 
 ul > li a {
