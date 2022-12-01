@@ -1,36 +1,25 @@
 <template>
   <Page>
-    <v-container>
-      <v-card elevation="0" color="tertiary">
-        <div class="card-margins">
-          <v-card-title>
-            <h2>
-              {{ homepageTitle }}
-            </h2></v-card-title
+    <div>
+      <h1 class="homepage-title">
+        {{ homepageTitle }}
+      </h1>
+    </div>
+    <v-card elevation="0" color="tertiary">
+      <div class="card-margins">
+        <h4 class="homepage-subtitle">
+          {{ homepageSubtitle }}
+        </h4>
+        <v-row>
+          <SearchFunction
+            v-bind:value="searchQuery"
+            @input="(v) => (searchQuery = v)"
+            @doSearch="doSearch"
           >
-          <v-card-subtitle
-            ><h4>
-              {{ homepageSubtitle }}
-            </h4></v-card-subtitle
-          >
-          <v-row>
-            <v-col :cols="10">
-              <v-text-field
-                bg-color="white"
-                color="primary"
-                v-model="searchQuery"
-                :label="searchHint"
-                variant="outlined"
-                @keyup.enter="doSearch"
-                prepend-inner-icon="mdi-magnify"
-              ></v-text-field></v-col
-            ><v-col>
-              <ButtonVue :label="search" icon="mdi-magnify" @click="doSearch" />
-            </v-col>
-          </v-row>
-        </div>
-      </v-card>
-    </v-container>
+          </SearchFunction>
+        </v-row>
+      </div>
+    </v-card>
   </Page>
 </template>
 
@@ -38,8 +27,10 @@
 import Page from '@/components/PageWrapper.vue'
 import { useI18n } from 'vue-i18n'
 import qs from 'qs'
-import ButtonVue from '@/components/form/Button.vue'
+import { useDisplay } from 'vuetify'
+import SearchFunction from '@/components/SearchFunction.vue'
 
+const { mdAndDown } = useDisplay()
 const { t } = useI18n()
 const searchHint = computed(() => t('searchHint'))
 const homepageTitle = computed(() => t('homepageTitle'))
@@ -48,6 +39,10 @@ const search = computed(() => t('search'))
 
 const searchQuery = ref('')
 
+const showChange = computed(() => {
+  console.log('trigger')
+  return 1
+})
 const doSearch = () => {
   const router = useRouter()
   const stringifiedQuery = qs.stringify({
@@ -68,5 +63,14 @@ const doSearch = () => {
   padding-top: 40px;
   padding-right: 80px;
   padding-bottom: 40px;
+}
+.homepage-title {
+  color: #154273;
+  text-align: center;
+  margin-bottom: 50px;
+}
+.homepage-subtitle {
+  color: #154273;
+  margin-bottom: 5px;
 }
 </style>
