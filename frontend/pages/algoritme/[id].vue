@@ -30,7 +30,7 @@
             <v-row v-for="property in groupedProperty.properties">
               <v-col>
                 <p class="mt-2">
-                  <b> {{ property.attributeKeyLabel }} </b>
+                  <h4> {{ property.attributeKeyLabel }} </h4>
                 </p>
                 <p class="mb-1">
                   <i> {{ property.attributeKeyDescription }} </i>
@@ -90,7 +90,6 @@ const enrichedAlgoritme = computed(() => {
 // const title = computed(() => algoritme?.value.name)
 
 const { t } = useI18n()
-const i18nGoBack = computed(() => t(`goBack`))
 
 const structuredProperties = computed(() => {
   const algoritme = enrichedAlgoritme

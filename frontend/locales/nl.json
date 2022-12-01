@@ -34,6 +34,12 @@
   "switchToLanguage": {
     "en": "Switch to English"
   },
+  "showFilters": "Toon filters",
+  "hideFilters": "Verberg filters",
+  "navigation": {
+    "home": "Home",
+    "algorithmRegister": "Algoritmes"
+  },
   "algorithmProperties": {
     "algemeneInformatie": {
       "label": "Algemene informatie",
