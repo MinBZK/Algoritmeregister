@@ -97,7 +97,7 @@ figure {
   align-items: center;
   justify-content: center;
   background-color: $primary;
-  height: 59px;
+  height: 58px;
   border-bottom: 9px solid $secondary;
 }
 
@@ -166,7 +166,8 @@ ul > li {
 }
 
 .active {
-  background-color: white;
+  background-color: $secondary;
+  color: black;
 }
 
 ul > li a {
@@ -174,14 +175,16 @@ ul > li a {
 }
 
 .active a {
-  color: $primary-dark !important;
+  color: black !important;
 }
 
 ul > li:hover:not(.active) {
-  background-color: $secondary;
+  transition: 0.3s;
+  background-color: $secondary !important;
 }
 
 ul > li:hover a {
+  transition: 0.3s;
   color: $primary-dark !important;
 }
 </style>

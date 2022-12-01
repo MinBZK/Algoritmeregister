@@ -1,17 +1,15 @@
 <template>
   <Page>
+    <div>
+      <h1 class="homepage-title">
+        {{ homepageTitle }}
+      </h1>
+    </div>
     <v-card elevation="0" color="tertiary">
       <div class="card-margins">
-        <v-card-title>
-          <h2>
-            {{ homepageTitle }}
-          </h2></v-card-title
-        >
-        <v-card-subtitle
-          ><h4>
-            {{ homepageSubtitle }}
-          </h4></v-card-subtitle
-        >
+        <h4 class="homepage-subtitle">
+          {{ homepageSubtitle }}
+        </h4>
         <v-row>
           <SearchFunction
             v-bind:value="searchQuery"
@@ -65,5 +63,14 @@ const doSearch = () => {
   padding-top: 40px;
   padding-right: 80px;
   padding-bottom: 40px;
+}
+.homepage-title {
+  color: #154273;
+  text-align: center;
+  margin-bottom: 50px;
+}
+.homepage-subtitle {
+  color: #154273;
+  margin-bottom: 5px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-btn class="btn-dark" :size="props.size">
+  <v-btn elevation="0" class="btn-dark" :size="props.size">
     {{ label
     }}<template v-if="icon"
       >&nbsp;<v-icon right dark> {{ icon }} </v-icon></template
@@ -11,7 +11,7 @@
 type Props = {
   label: string
   icon?: string
-  size?: string
+  size?: string | number
 }
 const props = withDefaults(defineProps<Props>(), {
   size: 'x-large',
@@ -21,7 +21,8 @@ const props = withDefaults(defineProps<Props>(), {
 <style scoped lang="scss">
 button {
   text-transform: none !important;
-  background-color: $primary-dark !important;
+  // background-color: $primary-dark !important;
+  background-color: #154273;
   color: white;
   font-weight: bold;
 }
