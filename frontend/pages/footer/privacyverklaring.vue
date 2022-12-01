@@ -5,22 +5,15 @@
 
       <p class="mb-2">
         Deze website maakt gebruik van analytische cookies. Cookies zijn kleine tekstbestanden die wefbsites op uw computer opslaan. Daarmee is uw computer te herkennen tijdens uw bezoek. Deze informatie helpt ons om de site te verbeteren. Analytische cookies geven antwoord op de volgende vragen:  
-        </p>
-        <p class="mb-4">
-            <p>
-              1. Is de bezoeker nieuw of heeft de bezoeker de site al eerder bezocht 
-            </p>
-           <p>
-            2. Welke pagina's zijn tijdens het bezoek geraadpleegd
-           </p>
-           <p>
-            3. Van welke site is de bezoeker gekomen
-           </p>
-           <p>
-            4. Heeft de bezoeker de site meteen weer verlaten ('bouncing').
-           </p>
       </p>
-      <p class="mb-4">
+        <ol type="1">
+          <li>Is de bezoeker nieuw of heeft de bezoeker de site al eerder bezocht </li>
+          <li>Welke pagina's zijn tijdens het bezoek geraadpleegd </li>
+          <li>Van welke site is de bezoeker gekomen </li>
+          <li>Heeft de bezoeker de site meteen weer verlaten ('bouncing').</li>
+        </ol>
+
+      <p class="mb-4 mt-4">
         Deze cookies worden niet gebruikt om een profiel aan te maken of u verder te volgen. Deze website plaatst geen cookies van derde partijen (third-party cookies).         </p>
         <h2>Gegevens via e-mail</h2>
         <p class="mb-4">

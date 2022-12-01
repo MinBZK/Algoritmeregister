@@ -3,6 +3,11 @@ import { fileURLToPath } from 'url'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
 
 export default defineNuxtConfig({
+  app: {
+    head: {
+      link: [{ rel: 'icon', type: 'image/png', href: '/favicon.ico' }],
+    },
+  },
   vite: {
     css: {
       preprocessorOptions: {
