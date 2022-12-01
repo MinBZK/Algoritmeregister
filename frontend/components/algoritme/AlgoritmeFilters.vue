@@ -1,56 +1,66 @@
 <template>
   <div class="search-filters">
-    <div v-if="parsedFilters.length > 0" class="search-filter-item">
-      <h4>{{ $t('selectedAlgorithms') }}</h4>
-      <div
-        v-for="f in parsedFilters"
-        @click="removeFilter(f)"
-        @keyup.enter="removeFilter(f)"
-        tabindex="0"
-      >
-        <a>
-          {{ f.value || '-' }}
-        </a>
-        <v-icon icon="mdi-close" size="small"></v-icon>
-      </div>
-    </div>
-
-    <div
-      v-for="aggregationType in props.aggregatedAlgoritmes"
-      :key="aggregationType.aggregationAttribute"
-      class="search-filter-item"
-    >
-      <h4>
-        {{
-          $t(
-            `algorithmProperties.algemeneInformatie.${aggregationType.aggregationAttribute}.label`
-          )
-        }}
-      </h4>
-
-      <div
-        v-for="[k, v] in Object.entries(aggregationType.aggregatedValues)"
-        :key="k"
-      >
-        <NuxtLink
-          :to="{
-            name: 'algoritme',
-            query: {
-              q: getEncodedQuery(aggregationType.aggregationAttribute, k),
-            },
-          }"
+    {{ display }}
+    <template v-if="mdAndDown">Test </template>
+    <template v-else>
+      <div v-if="parsedFilters.length > 0">
+        <h4>{{ $t('selectedAlgorithms') }}</h4>
+        <div
+          v-for="f in parsedFilters"
+          class="search-filter-item"
+          @click="removeFilter(f)"
+          @keyup.enter="removeFilter(f)"
+          tabindex="0"
         >
-          <span>{{ k || '-' }}</span
-          >&nbsp;<span class="text-secondary">({{ v }})</span>
-        </NuxtLink>
+          <a>
+            {{ f.value || '-' }}
+          </a>
+          <v-icon icon="mdi-close" size="small"></v-icon>
+        </div>
       </div>
-    </div>
+
+      <div
+        v-for="aggregationType in props.aggregatedAlgoritmes"
+        :key="aggregationType.aggregationAttribute"
+        class="search-filter-item"
+      >
+        <h4>
+          {{
+            $t(
+              `algorithmProperties.algemeneInformatie.${aggregationType.aggregationAttribute}.label`
+            )
+          }}
+        </h4>
+
+        <div
+          v-for="[k, v] in Object.entries(aggregationType.aggregatedValues)"
+          :key="k"
+        >
+          <NuxtLink
+            :to="{
+              name: 'algoritme',
+              query: {
+                q: getEncodedQuery(aggregationType.aggregationAttribute, k),
+              },
+            }"
+          >
+            <span>{{ k || '-' }}</span
+            >&nbsp;<span class="text-secondary">({{ v }})</span>
+          </NuxtLink>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
 <script setup lang="ts">
 import qs from 'qs'
 import type { AggregatedAlgoritmes, AlgoritmeFilter } from '@/types/algoritme'
+import { useDisplay } from 'vuetify'
+
+const display = useDisplay()
+
+const { mdAndDown } = useDisplay()
 
 const props = defineProps<{ aggregatedAlgoritmes: AggregatedAlgoritmes[] }>()
 

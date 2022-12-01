@@ -1,5 +1,5 @@
 <template>
-  <v-btn class="btn-dark" :size="size">
+  <v-btn class="btn-dark" :size="props.size">
     {{ label
     }}<template v-if="icon"
       >&nbsp;<v-icon right dark> {{ icon }} </v-icon></template

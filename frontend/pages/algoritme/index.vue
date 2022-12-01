@@ -14,7 +14,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col :cols="3">
+      <v-col :cols="mdAndDown ? 12 : 3">
         <AlgoritmeFilters :aggregatedAlgoritmes="aggregatedAlgoritmes"
       /></v-col>
       <v-col>
@@ -61,7 +61,11 @@
             >{{ $t(`foundResults`, { n: filteredAlgoritmes.length }) }}
           </v-col>
           <v-col :cols="6"
-            ><v-pagination v-model="page" :length="nPages"></v-pagination
+            ><v-pagination
+              v-if="nPages > 1"
+              v-model="page"
+              :length="nPages"
+            ></v-pagination
           ></v-col>
         </v-row>
       </v-col>
@@ -82,6 +86,9 @@ import type {
 } from '@/types/algoritme'
 import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
 import ButtonVue from '@/components/form/Button.vue'
+import { useDisplay } from 'vuetify'
+
+const { mdAndDown } = useDisplay()
 
 const { t } = useI18n()
 const searchHint = computed(() => t('searchHint'))

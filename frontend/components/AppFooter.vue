@@ -55,6 +55,7 @@ const footerTranslated = computed(() => {
   width: 100%;
   background-color: $tertiary;
   border-top: 14px solid $secondary;
+  margin-top: 14px;
   padding-top: 0px;
   padding-bottom: 0px;
 }
