@@ -21,6 +21,9 @@
             <p class="visually-hidden">U bent nu hier:</p>
             <p>{{ t(`logoCaption`) }}</p>
           </div>
+          <div class="header__meta">
+            <LanguagePicker class="align-right"> </LanguagePicker>
+          </div>
         </div>
       </div>
     </div>

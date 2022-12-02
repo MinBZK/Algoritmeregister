@@ -78,7 +78,6 @@ import type {
   AlgoritmeFilter,
 } from '@/types/algoritme'
 import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
-import ButtonVue from '@/components/form/Button.vue'
 import { useDisplay } from 'vuetify'
 
 const { mdAndDown } = useDisplay()
@@ -86,8 +85,6 @@ const { mdAndDown } = useDisplay()
 const useMobile = ref(mdAndDown)
 
 const { t } = useI18n()
-const searchHint = computed(() => t('searchHint'))
-const search = computed(() => t('search'))
 
 definePageMeta({
   title: 'Algoritmeoverzicht',
@@ -185,5 +182,13 @@ watch(
 }
 .text-field-sheet {
   background-color: $quaternary;
+}
+
+h3 {
+  margin-bottom: 0.5em;
+}
+
+h3 a {
+  text-decoration: none;
 }
 </style>

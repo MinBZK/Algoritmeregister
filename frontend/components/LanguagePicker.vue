@@ -48,6 +48,6 @@ span {
 
 span a {
   cursor: pointer;
-  color: white;
+  color: $primary-dark;
 }
 </style>
