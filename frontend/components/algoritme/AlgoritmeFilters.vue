@@ -3,13 +3,10 @@
     class="search-filters"
     :aria-expanded="filtersExpanded ? 'true' : 'false'"
   >
-    <template v-if="mdAndDown"
-      ><v-icon icon="mdi-filter" /><a
-        @click="toggleFilters"
-        @keyup.enter="toggleFilters"
-        tabindex="0"
-        >{{ $t(filtersExpanded ? 'hideFilters' : 'showFilters') }}</a
-      >
+    <template v-if="mdAndDown">
+      <a @click="toggleFilters" @keyup.enter="toggleFilters" tabindex="0">{{
+        $t(filtersExpanded ? 'hideFilters' : 'showFilters')
+      }}</a>
     </template>
     <template v-if="filtersExpanded">
       <div v-if="parsedFilters.length > 0" class="search-filter-item">
@@ -23,7 +20,7 @@
           <a>
             {{ f.value || '-' }}
           </a>
-          <v-icon icon="mdi-close" size="small"></v-icon>
+          (verwijder)
         </div>
       </div>
 
@@ -52,9 +49,8 @@
               },
             }"
           >
-            <span>{{ k || '-' }}</span
-            >&nbsp;<span class="text-secondary">({{ v }})</span>
-          </NuxtLink>
+            <span>{{ k || '-' }}</span></NuxtLink
+          >&nbsp;<span class="text-secondary">({{ v }})</span>
         </div>
       </div>
     </template>

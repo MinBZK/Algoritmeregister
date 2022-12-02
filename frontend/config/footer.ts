@@ -1,11 +1,11 @@
 import type { FooterColumn } from '~~/types/footer'
 
 const footer: FooterColumn[] = [
-  {
-    key: 'service',
-    title: '',
-    pages: [],
-  },
+  // {
+  //   key: 'service',
+  //   title: '',
+  //   pages: [],
+  // },
   {
     key: 'over',
     title: '',
