@@ -17,8 +17,8 @@
           target="_blank"
           href="https://www.toegankelijkheidsverklaring.nl/register"
         >
-          Register van Toegankelijkheidsverklaringen van de overheid
-        </a>
+          Register van Toegankelijkheidsverklaringen van de overheid </a
+        >.
       </p>
     </div>
 
