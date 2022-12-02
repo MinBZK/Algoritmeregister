@@ -1,19 +1,10 @@
 <template>
   <Page>
-    <v-row>
-      <v-col :cols="10">
-        <v-text-field
-          bg-color="white"
-          v-model="searchQuery"
-          :label="searchHint"
-          variant="outlined"
-        />
-      </v-col>
-      <v-col>
-        <ButtonVue icon="mdi-magnify" :label="search" />
-      </v-col>
-      <!-- <SearchFunction @doSearch="doSearch" :searchQuery="searchQuery"></SearchFunction> -->
-    </v-row>
+    <SearchFunction
+      v-bind:value="searchQuery"
+      @input="(v) => (searchQuery = v)"
+    >
+    </SearchFunction>
     <v-row>
       <v-col :cols="useMobile ? 12 : 3">
         <AlgoritmeFilters :aggregatedAlgoritmes="aggregatedAlgoritmes" />

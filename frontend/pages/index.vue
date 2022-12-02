@@ -6,19 +6,19 @@
       </h1>
     </div>
     <v-card elevation="0" color="tertiary">
-      <div class="card-margins">
-        <h4 class="homepage-subtitle">
-          {{ homepageSubtitle }}
-        </h4>
-        <v-row>
+      <ClientOnly>
+        <div :class="[smAndDown ? 'card-margins-xs' : 'card-margins']">
+          <h4 class="homepage-subtitle">
+            {{ homepageSubtitle }}
+          </h4>
           <SearchFunction
             v-bind:value="searchQuery"
             @input="(v) => (searchQuery = v)"
             @doSearch="doSearch"
           >
           </SearchFunction>
-        </v-row>
-      </div>
+        </div>
+      </ClientOnly>
     </v-card>
   </Page>
 </template>
@@ -30,7 +30,7 @@ import qs from 'qs'
 import { useDisplay } from 'vuetify'
 import SearchFunction from '@/components/SearchFunction.vue'
 
-const { mdAndDown } = useDisplay()
+const { smAndDown, xs } = useDisplay()
 const { t } = useI18n()
 const searchHint = computed(() => t('searchHint'))
 const homepageTitle = computed(() => t('homepageTitle'))
@@ -63,6 +63,12 @@ const doSearch = () => {
   padding-top: 40px;
   padding-right: 80px;
   padding-bottom: 40px;
+}
+.card-margins-xs {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
 }
 .homepage-title {
   color: #154273;
