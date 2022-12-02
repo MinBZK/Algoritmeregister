@@ -4,7 +4,7 @@
       <h1>Privacy</h1>
 
       <p class="mb-2">
-        Deze website maakt gebruik van analytische cookies. Cookies zijn kleine tekstbestanden die wefbsites op uw computer opslaan. Daarmee is uw computer te herkennen tijdens uw bezoek. Deze informatie helpt ons om de site te verbeteren. Analytische cookies geven antwoord op de volgende vragen:  
+        Deze website maakt gebruik van analytische cookies. Cookies zijn kleine tekstbestanden die websites op uw computer opslaan. Daarmee is uw computer te herkennen tijdens uw bezoek. Deze informatie helpt ons om de site te verbeteren. Analytische cookies geven antwoord op de volgende vragen:  
       </p>
         <ol type="1" class="ml-4">
           <li>Is de bezoeker nieuw of heeft de bezoeker de site al eerder bezocht </li>
