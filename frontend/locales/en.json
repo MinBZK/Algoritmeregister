@@ -27,7 +27,7 @@
   "hello": "Hello, {name}!",
   "language": "Language",
   "homepageTitle": "Algorithm register of the Dutch government",
-  "homepageSubtitle": "Find algorithms by organisation, title or description",
+  "searchExplanation": "Find algorithms by organisation, title or description",
   "logoCaption": "Algorithm register of the government",
   "searchHint": "What are you looking for?",
   "search": "Search",

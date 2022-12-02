@@ -1,22 +1,43 @@
 <template>
-  <v-col :cols="10">
-    <v-text-field
-      bg-color="white"
-      color="primary"
-      :label="searchHint"
-      variant="outlined"
-      :value="value"
-      @input="$emit('input', $event.target.value)"
-      @keyup.enter="$emit('doSearch')"
-      prepend-inner-icon="mdi-magnify"
-    ></v-text-field> </v-col
-  ><v-col>
-    <ButtonVue :label="search" icon="mdi-magnify" @click="$emit('doSearch')" />
-  </v-col>
+  <div class="block-search">
+    <div class="columns">
+      <div class="column column-d-5">
+        <div class="form__row">
+          <label
+            for="input-text-98789"
+            class="form__label form__label--accent"
+            >{{ searchExplanation }}</label
+          >
+
+          <input
+            type="text"
+            id="input-text-98789"
+            name="98789"
+            class="input input-text"
+            :placeholder="searchHint"
+            aria-invalid="false"
+            :value="value"
+            @input="$emit('input', $event.target!.value)"
+            @keyup.enter="$emit('doSearch')"
+          />
+        </div>
+      </div>
+      <div class="column column-d-3">
+        <div class="form__row">
+          <button
+            class="button button--primary button--block button--nolabel"
+            type="submit"
+            @click="$emit('doSearch')"
+          >
+            <span class="button__label">{{ search }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import ButtonVue from '@/components/form/Button.vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
@@ -28,6 +49,7 @@ const props = defineProps<{
 
 const search = computed(() => t('search'))
 const searchHint = computed(() => t('searchHint'))
+const searchExplanation = computed(() => t('searchExplanation'))
 </script>
 
 <style scoped lang="css">

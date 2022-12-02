@@ -27,9 +27,9 @@
   "hello": "Hallo, {name}!",
   "language": "Taal",
   "homepageTitle": "Algoritmeregister van de Nederlandse overheid",
-  "homepageSubtitle": "Zoek algoritmes op organisatie, titel of omschrijving",
+  "searchExplanation": "Zoek algoritmes op organisatie, titel of omschrijving",
   "logoCaption": "Algoritmeregister van de overheid",
-  "searchHint": "Waar ben je naar op zoek?",
+  "searchHint": "Waar bent u naar op zoek?",
   "search": "Zoeken",
   "selectedAlgorithms": "Geselecteerde algoritmes",
   "switchToLanguage": {
