@@ -15,11 +15,9 @@
       <!-- <SearchFunction @doSearch="doSearch" :searchQuery="searchQuery"></SearchFunction> -->
     </v-row>
     <v-row>
-      <ClientOnly>
-        <v-col :cols="useMobile ? 12 : 3">
-          <AlgoritmeFilters :aggregatedAlgoritmes="aggregatedAlgoritmes" />
-        </v-col>
-      </ClientOnly>
+      <v-col :cols="useMobile ? 12 : 3">
+        <AlgoritmeFilters :aggregatedAlgoritmes="aggregatedAlgoritmes" />
+      </v-col>
 
       <v-col>
         <v-row>
