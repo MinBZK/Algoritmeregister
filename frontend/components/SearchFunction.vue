@@ -16,13 +16,12 @@
             class="input input-text"
             :placeholder="searchHint"
             aria-invalid="false"
-            :value="value"
-            @input="$emit('input', $event.target!.value)"
+            v-model="searchValue"
             @keyup.enter="$emit('doSearch')"
           />
         </div>
       </div>
-      <div class="column column-d-3">
+      <div class="column column-d-0.5">
         <div class="form__row">
           <button
             class="button button--primary button--block button--nolabel"
@@ -39,10 +38,10 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { useDisplay } from 'vuetify'
+// import { useDisplay } from 'vuetify'
 
 const { t } = useI18n()
-const { xs } = useDisplay()
+// const { xs } = useDisplay()
 
 const emit = defineEmits(['input', 'doSearch'])
 
@@ -50,9 +49,15 @@ const props = defineProps<{
   value: string
 }>()
 
+const searchValue = ref(props.value)
+
 const search = computed(() => t('search'))
 const searchHint = computed(() => t('searchHint'))
 const searchExplanation = computed(() => t('searchExplanation'))
+
+watch(searchValue, () => {
+  emit('input', searchValue.value)
+})
 </script>
 
 <style scoped lang="css">
