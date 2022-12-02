@@ -39,7 +39,10 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { useDisplay } from 'vuetify'
+
 const { t } = useI18n()
+const { xs } = useDisplay()
 
 const emit = defineEmits(['input', 'doSearch'])
 
@@ -53,6 +56,12 @@ const searchExplanation = computed(() => t('searchExplanation'))
 </script>
 
 <style scoped lang="css">
+.wrapper-2 {
+  display: flex;
+}
+.wrapper-1 {
+  margin-bottom: 10px;
+}
 .v-text-field :deep(label) {
   font-size: 1.1em;
 }
