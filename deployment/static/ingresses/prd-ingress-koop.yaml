@@ -1,0 +1,72 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: algreg-ingress-koop
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 20m
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - algoritme.overheid.nl
+      secretName: algoritme-overheid-nl-certificate
+    - hosts:
+        - algoritmes.overheid.nl
+      secretName: algoritme-overheid-nl-certificate  
+    - hosts:
+        - algoritmen.overheid.nl
+      secretName: algoritme-overheid-nl-certificate 
+  rules:
+    - host: algoritme.overheid.nl
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: algreg-frontend
+                port:
+                  number: 3000
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: algreg-backend
+                port:
+                  number: 8000
+    - host: algoritmes.overheid.nl
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: algreg-frontend
+                port:
+                  number: 3000
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: algreg-backend
+                port:
+                  number: 8000 
+    - host: algoritmen.overheid.nl
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: algreg-frontend
+                port:
+                  number: 3000
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: algreg-backend
+                port:
+                  number: 8000
+ 
