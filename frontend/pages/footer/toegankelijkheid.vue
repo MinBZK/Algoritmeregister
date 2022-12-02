@@ -13,7 +13,10 @@
       <p class="mb-4">
         In 2023 start de procedure voor een toegankelijkheidsverklaring, en komt
         algoritme.overheid.nl in het
-        <a href="https://www.toegankelijkheidsverklaring.nl/register">
+        <a
+          target="_blank"
+          href="https://www.toegankelijkheidsverklaring.nl/register"
+        >
           Register van Toegankelijkheidsverklaringen van de overheid
         </a>
       </p>
@@ -31,7 +34,10 @@
       <p class="mb-4">
         The procedure for an accessibility statement will start in 2023, and the
         website will be included in the government's
-        <a href="https://www.toegankelijkheidsverklaring.nl/register">
+        <a
+          target="_blank"
+          href="https://www.toegankelijkheidsverklaring.nl/register"
+        >
           Register van Toegankelijkheidsverklaringen.
         </a>
       </p>

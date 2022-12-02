@@ -8,7 +8,10 @@
         melding heet Coordinated Vulnerability Disclosure (CVD).
       </p>
       <p class="mb-4">
-        <a href="https://www.ncsc.nl/contact/kwetsbaarheid-melden">
+        <a
+          target="_blank"
+          href="https://www.ncsc.nl/contact/kwetsbaarheid-melden"
+        >
           Klik hier om een kwetsbaarheid te melden.
         </a>
       </p>
@@ -30,7 +33,10 @@
         possible.
       </p>
       <p class="mb-4">
-        <a href="https://www.ncsc.nl/contact/kwetsbaarheid-melden">
+        <a
+          target="_blank"
+          href="https://www.ncsc.nl/contact/kwetsbaarheid-melden"
+        >
           Report vulnerability
         </a>
       </p>

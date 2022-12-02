@@ -2,8 +2,8 @@
   <Page>
     <div v-if="!englishSelected">
       <h1>Contact over het Algoritmeregister van de overheid</h1>
-      <p class="mb-4 ml-8">Deze site is nog volop in ontwikkeling.</p>
-      <p class="mb-4 ml-8">
+      <p class="mb-4">Deze site is nog volop in ontwikkeling.</p>
+      <p class="mb-4">
         Ben je een (overheids)professional en wil jij of je organisatie meedoen
         aan de verdere ontwikkeling van het Algoritmeregister? Of heb je vragen
         over dit project? Neem dan contact op met:
@@ -17,8 +17,8 @@
       <h1>
         How to get in contact about the Dutch Government Algorithm register
       </h1>
-      <p class="mb-4 ml-8">This site is continuously developing.</p>
-      <p class="mb-4 ml-8">
+      <p class="mb-4">This site is continuously developing.</p>
+      <p class="mb-4">
         Are you a (government) professional and do you and your organisation
         want to contribute to the development of algoritme.overheid.nl? Or do
         you have questions about the project? Please contact us at:
