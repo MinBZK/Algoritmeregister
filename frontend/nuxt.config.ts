@@ -1,6 +1,8 @@
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'url'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
+// https://next.vuetifyjs.com/en/features/treeshaking/#automatic-treeshaking
+import vuetify from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   app: {
@@ -8,15 +10,21 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', type: 'image/png', href: '/favicon.ico' }],
     },
   },
+  modules: [
+    async (options, nuxt) => {
+      nuxt.hooks.hook('vite:extendConfig', (config) =>
+        // @ts-ignore
+        config.plugins.push(vuetify())
+      )
+    },
+  ],
   vite: {
     css: {
       preprocessorOptions: {
         scss: {
           // https://stackoverflow.com/a/71071183
-          additionalData: `
-            @use "@/assets/styles/_colors.scss" as *;
-            @import "@/assets/styles/_variables.scss";
-          `,
+          // https://stackoverflow.com/a/71540999
+          additionalData: `@import "@/assets/styles/global.scss";`,
         },
       },
     },
