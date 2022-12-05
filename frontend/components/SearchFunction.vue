@@ -1,36 +1,33 @@
 <template>
-  <div class="block-search">
-    <div class="columns">
-      <div class="column column-d-5">
-        <div class="form__row">
-          <label
-            for="input-text-98789"
-            class="form__label form__label--accent"
-            >{{ searchExplanation }}</label
-          >
-
-          <input
-            type="text"
-            id="input-text-98789"
-            name="98789"
-            class="input input-text"
-            :placeholder="searchHint"
-            aria-invalid="false"
-            v-model="searchValue"
-            @keyup.enter="$emit('doSearch')"
-          />
-        </div>
-      </div>
-      <div class="column column-d-0.5">
-        <div class="form__row">
-          <button
-            class="button button--primary button--block button--nolabel"
-            type="submit"
-            @click="$emit('doSearch')"
-          >
-            <span class="button__label">{{ search }}</span>
-          </button>
-        </div>
+  <div class="wrapper-1">
+    <div class="wrapper-2">
+      <v-text-field
+        hide-details
+        bg-color="white"
+        color="primary"
+        :label="searchHint"
+        variant="outlined"
+        :value="value"
+        @input="$emit('input', $event.target.value)"
+        @keyup.enter="$emit('doSearch')"
+        prepend-inner-icon="mdi-magnify"
+      ></v-text-field>
+      <ButtonVue
+        isAttached="left"
+        v-if="!xs"
+        :label="search"
+        icon="mdi-magnify"
+        @click="$emit('doSearch')"
+      />
+    </div>
+    <div class="text-right">
+      <div v-if="xs">
+        <ButtonVue
+          isAttached="top"
+          :label="search"
+          icon="mdi-magnify"
+          @click="$emit('doSearch')"
+        />
       </div>
     </div>
   </div>
@@ -38,10 +35,10 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-// import { useDisplay } from 'vuetify'
+import { useDisplay } from 'vuetify'
 
 const { t } = useI18n()
-// const { xs } = useDisplay()
+const { xs } = useDisplay()
 
 const emit = defineEmits(['input', 'doSearch'])
 
