@@ -22,8 +22,8 @@
               <dt>
                 {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
               </dt>
-              <dd>
-                <span class="icon icon--housing">{{
+              <dd class="word-break">
+                <span>{{
                   algoritme[sT as keyof typeof algoritme] || t('Ontbreekt')
                 }}</span>
               </dd>
@@ -42,7 +42,9 @@
                   aria-expanded="false"
                   aria-controls="con1"
                   id="header1"
-                  @click="toggleAccordion(p.attributeGroupKey)"
+                  @click="
+                    ;[toggleAccordion(p.attributeGroupKey), clearToggledKeys()]
+                  "
                 >
                   {{ p.attributeGroupKeyLabel }}
                 </span>
@@ -58,12 +60,27 @@
             >
               <div>
                 {{ property.attributeKeyLabel }}
-                <span @click="swapInfo = !swapInfo" class="bg-image"></span>
+                <span
+                  @click="toggleKey(property.attributeKey)"
+                  class="bg-image"
+                ></span>
               </div>
-              <div v-if="swapInfo">
-                <i>{{ property.attributeKeyDescription || t('Ontbreekt') }} </i>
+              <div
+                class="word-break"
+                v-if="isKeyToggled(property.attributeKey)"
+              >
+                <i
+                  >{{
+                    `Uitleg: ${
+                      property.attributeKeyDescription || t('Ontbreekt')
+                    }`
+                  }}
+                </i>
               </div>
-              <div v-if="!swapInfo">
+              <div
+                class="word-break"
+                v-if="!isKeyToggled(property.attributeKey)"
+              >
                 {{ property.attributeValue || t('Ontbreekt') }}
               </div>
             </div>
@@ -91,14 +108,21 @@
               <tr v-for="(property, index) in activeAttributeProperties">
                 <th scope="row">
                   {{ property.attributeKeyLabel }}
-                  <span @click="swapInfo = !swapInfo" class="bg-image"></span>
+                  <span
+                    @click="toggleKey(property.attributeKey)"
+                    class="bg-image"
+                  ></span>
                 </th>
-                <td v-if="!swapInfo">
+                <td v-if="!isKeyToggled(property.attributeKey)">
                   {{ property.attributeValue || t('Ontbreekt') }}
                 </td>
-                <td v-if="swapInfo">
+                <td v-if="isKeyToggled(property.attributeKey)">
                   <i>
-                    {{ property.attributeKeyDescription || t('Ontbreekt') }}
+                    {{
+                      `Uitleg: ${
+                        property.attributeKeyDescription || t('Ontbreekt')
+                      }`
+                    }}
                   </i>
                 </td>
               </tr>
@@ -174,6 +198,24 @@ function toggleAccordion(key: string) {
     activeAttributeKey.value = key
   }
 }
+
+let keyToggles = ref([''])
+function toggleKey(key: string) {
+  if (keyToggles.value.includes(key)) {
+    keyToggles.value = keyToggles.value.filter((e: any) => e !== key)
+  } else {
+    keyToggles.value.push(key)
+  }
+}
+
+function isKeyToggled(key: string) {
+  return keyToggles.value.includes(key)
+}
+
+function clearToggledKeys() {
+  keyToggles.value = ['']
+}
+
 const structuredProperties = computed(() => {
   const algoritme = enrichedAlgoritme
   const keysWithObjectValues = Object.keys(algoritme.value).filter(
@@ -272,5 +314,9 @@ watch(smAndDown, (newValue, oldValue) => {
 }
 .accordion__item__header {
   cursor: pointer;
+}
+.word-break {
+  // word-break: break-all;
+  word-break: break-word;
 }
 </style>
