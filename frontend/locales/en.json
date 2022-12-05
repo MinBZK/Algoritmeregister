@@ -21,7 +21,9 @@
     "/vragen": "FAQ"
   },
   "algoritmeRegister": "Algorithm register",
-  "goBack": "back to summary",
+  "goBack": "Back to all algorithms",
+  "short-description": "Short description",
+  "short-description-missing": "A short description is missing",
   "yes": "Yes",
   "no": "No",
   "hello": "Hello, {name}!",

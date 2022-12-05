@@ -21,7 +21,9 @@
     "/vragen": "Vaak gestelde vragen"
   },
   "algoritmeRegister": "Algoritmeregister",
-  "goBack": "terug",
+  "goBack": "Terug naar alle algoritmes",
+  "short-description": "Korte beschrijving",
+  "short-description-missing": "Een korte beschrijving ontbreekt",
   "yes": "Ja",
   "no": "Nee",
   "hello": "Hallo, {name}!",
