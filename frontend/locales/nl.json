@@ -43,6 +43,9 @@
     "home": "Home",
     "algorithmRegister": "Algoritmes"
   },
+  "pagination": {
+    "goTo": "Ga naar pagina {n}"
+  },
   "algorithmProperties": {
     "algemeneInformatie": {
       "label": "Algemene informatie",

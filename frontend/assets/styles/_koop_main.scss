@@ -887,7 +887,7 @@ label {
 .button--icon-hamburger {
   background-position: 0.75em 50%;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-hamburger.svg);
+  background-image: url(@/assets/images/icons/icon-hamburger.svg);
   background-size: 1em;
   padding-left: 2em;
 }
@@ -7432,7 +7432,7 @@ dl--publication > div {
   }
 }
 .buttonswitch__button.icon--hamburger {
-  background: url(../images/icon-hamburger.svg) no-repeat left 1em center;
+  background: url(@/assets/images/icons/icon-hamburger.svg) no-repeat left 1em center;
   background-size: 0.7em;
 }
 @media (min-width: 51em) {
@@ -11701,7 +11701,8 @@ table.ui-datepicker-calendar tbody tr td {
   width: 4em;
   height: 4em;
   border-radius: 100%;
-  background: #007bc7 url(@/assets/images/icons/icon-dart-top-white.svg) no-repeat 50% 0.5em;
+  background: #007bc7 url(@/assets/images/icons/icon-dart-top-white.svg)
+    no-repeat 50% 0.5em;
   background-size: 1.5em;
   color: #fff;
   text-indent: -999em;
