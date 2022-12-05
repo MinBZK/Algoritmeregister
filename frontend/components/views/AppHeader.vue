@@ -14,7 +14,7 @@
         <div class="logo">
           <a href=""
             ><img
-              src="../assets/images/logo.svg"
+              src="../../assets/images/logo.svg"
               alt="Logo Overheid.nl, ga naar de startpagina"
           /></a>
           <div class="logo__you-are-here">

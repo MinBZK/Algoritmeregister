@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import AppContentBar from '@/components/views/AppContentBar.vue'
+import AppHeader from '@/components/views/AppHeader.vue'
+import AppBreadcrumb from '@/components/views/AppBreadcrumb.vue'
+import AppFooter from '@/components/views/AppFooter.vue'
 
 const { t } = useI18n()
 </script>

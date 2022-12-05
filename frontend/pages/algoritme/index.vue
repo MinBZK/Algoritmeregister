@@ -6,7 +6,7 @@
     >
     </SearchFunction>
     <v-row>
-      <v-col :cols="useMobile ? 12 : 3">
+      <v-col :cols="mdAndDown ? 12 : 3">
         <AlgoritmeFilters :aggregatedAlgoritmes="aggregatedAlgoritmes" />
       </v-col>
 
@@ -49,14 +49,13 @@
           <v-col :cols="6" class="text-grey"
             >{{ $t(`foundResults`, { n: filteredAlgoritmes.length }) }}
           </v-col>
-          <v-col :cols="6"
-            ><v-pagination
-              v-if="nPages > 1"
-              v-model="page"
-              :length="nPages"
-              class="pagination"
-            ></v-pagination
-          ></v-col>
+          <v-col :cols="mdAndDown ? 12 : 6">
+            <Pagination
+              :current-page="page"
+              :page-length="nPages"
+              @setPage="(p) => (page = p)"
+            />
+          </v-col>
         </v-row>
       </v-col>
     </v-row>
@@ -65,7 +64,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import Page from '~~/components/PageWrapper.vue'
+import Page from '@/components/PageWrapper.vue'
 import algoritmeService from '@/services/algoritme'
 import { useI18n } from 'vue-i18n'
 import { summaryTiles } from '@/config/config'
@@ -78,8 +77,6 @@ import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
 import { useDisplay } from 'vuetify'
 
 const { mdAndDown } = useDisplay()
-
-const useMobile = ref(mdAndDown)
 
 const { t } = useI18n()
 
@@ -162,14 +159,6 @@ const aggregatedAlgoritmes = computed(() => {
 watch(searchQuery, () => {
   page.value = 1
 })
-
-watch(
-  mdAndDown,
-  () => {
-    useMobile.value = mdAndDown.value
-  },
-  { immediate: true }
-)
 </script>
 
 <style scoped lang="scss">

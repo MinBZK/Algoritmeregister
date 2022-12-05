@@ -41,6 +41,9 @@
     "home": "Home",
     "algorithmRegister": "Algorithms"
   },
+  "pagination": {
+    "goTo": "Go to page {n}"
+  },
   "algorithmProperties": {
     "algemeneInformatie": {
       "label": "General information",
