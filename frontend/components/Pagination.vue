@@ -41,6 +41,7 @@
       class="pagenumber"
       :class="pageLength == props.currentPage && 'current-page'"
       :aria-current="pageLength == props.currentPage && `true`"
+      v-if="pageLength > 1"
       @click="$emit('setPage', pageLength)"
       :aria-label="t('pagination.goTo', { n: pageLength })"
     >

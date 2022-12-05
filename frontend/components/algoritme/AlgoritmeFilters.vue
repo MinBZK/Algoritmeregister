@@ -3,7 +3,7 @@
     class="search-filters"
     :aria-expanded="filtersExpanded ? 'true' : 'false'"
   >
-    <template v-if="mdAndDown">
+    <template v-if="isMobile">
       <a @click="toggleFilters" @keyup.enter="toggleFilters" tabindex="0">{{
         $t(filtersExpanded ? 'hideFilters' : 'showFilters')
       }}</a>
@@ -82,9 +82,6 @@
 <script setup lang="ts">
 import qs from 'qs'
 import type { AggregatedAlgoritmes, AlgoritmeFilter } from '@/types/algoritme'
-import { useDisplay } from 'vuetify'
-
-const { mdAndDown } = useDisplay()
 
 const props = defineProps<{ aggregatedAlgoritmes: AggregatedAlgoritmes[] }>()
 
@@ -94,6 +91,8 @@ const getEncodedQuery = (attribute: string, value: string): string => {
   })
   return stringified
 }
+
+const isMobile = useMobileBreakpoint()
 
 const parsedQuery = computed(() => useRouteQuery())
 const parsedFilters = computed(
@@ -141,7 +140,7 @@ const hasFilter = (attribute: string, attributeValue: string): boolean =>
 
 // mobile only
 const showFilters = ref(false)
-const filtersExpanded = computed(() => !mdAndDown.value || showFilters.value)
+const filtersExpanded = computed(() => !isMobile.value || showFilters.value)
 const toggleFilters = () => (showFilters.value = !showFilters.value)
 </script>
 

@@ -6,7 +6,7 @@
     >
     </SearchFunction>
     <v-row>
-      <v-col :cols="mdAndDown ? 12 : 3">
+      <v-col :cols="isMobile ? 12 : 3">
         <AlgoritmeFilters :aggregatedAlgoritmes="aggregatedAlgoritmes" />
       </v-col>
 
@@ -49,7 +49,7 @@
           <v-col :cols="6" class="text-grey"
             >{{ $t(`foundResults`, { n: filteredAlgoritmes.length }) }}
           </v-col>
-          <v-col :cols="mdAndDown ? 12 : 6">
+          <v-col :cols="isMobile ? 12 : 6">
             <Pagination
               :current-page="page"
               :page-length="nPages"
@@ -75,8 +75,7 @@ import type {
 } from '@/types/algoritme'
 import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
 import { useDisplay } from 'vuetify'
-
-const { mdAndDown } = useDisplay()
+const isMobile = useMobileBreakpoint()
 
 const { t } = useI18n()
 
