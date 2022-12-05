@@ -268,7 +268,7 @@ definePageMeta({
 })
 
 onMounted(() => {
-  if (!smAndDown) {
+  if (!smAndDown.value) {
     // Opens the first tab.
     activeAttributeKey = ref(structuredProperties.value[0].attributeGroupKey)
   }
