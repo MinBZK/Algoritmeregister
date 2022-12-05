@@ -1,54 +1,3 @@
-
-<!-- <template>
-  <Page>
-    <h2>
-      {{ algoritme.name }}
-    </h2>
-    <v-row>
-      <v-col>
-        {{ algoritme.description_short }}
-      </v-col>
-    </v-row>
-    <v-row class="mt-3">
-      <v-col v-for="sT in summaryTiles"
-        ><h4>
-          {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
-        </h4>
-        {{ algoritme[sT as keyof typeof algoritme] }}</v-col
-      >
-    </v-row>
-    <v-row class="mt-8">
-      <v-expansion-panels variant="default">
-        <v-expansion-panel
-          bg-color="quaternary"
-          v-for="groupedProperty in structuredProperties"
-          :title="groupedProperty.attributeGroupKeyLabel"
-          elevation="1"
-          expand-icon="mdi-menu-down"
-        >
-          <v-expansion-panel-text>
-            <v-row v-for="property in groupedProperty.properties">
-              <v-col>
-                <p class="mt-2">
-                  <h4> {{ property.attributeKeyLabel }} </h4>
-                </p>
-                <p class="mb-1">
-                  <i> {{ property.attributeKeyDescription }} </i>
-                </p>
-                <p class="mb-1">
-                  {{ property.attributeValue || t('Ontbreekt') }}
-                </p>
-              </v-col>
-              <v-divider></v-divider>
-            </v-row>
-          </v-expansion-panel-text>
-        </v-expansion-panel>
-      </v-expansion-panels>
-    </v-row>
-    <div>''</div>
-  </Page>
-</template> -->
-
 <template>
   <Page>
     <ClientOnly>
@@ -64,7 +13,7 @@
         <h1>{{ algoritme.name }}</h1>
         <div class="well well--pageblock">
           <!-- <h3>{{ shortDescription }}</h3> -->
-          <p> {{ algoritme.description_short || shortDescriptionMissing }}</p>
+          <p>{{ algoritme.description_short || shortDescriptionMissing }}</p>
           <!-- <p>
             <a href="#" class="link link--forward">Alle datasets van deze eigenaar</a>
           </p> -->
@@ -75,39 +24,89 @@
               </dt>
               <dd>
                 <span class="icon icon--housing">{{
-                    algoritme[sT as keyof typeof algoritme] || t('Ontbreekt')
+                  algoritme[sT as keyof typeof algoritme] || t('Ontbreekt')
                 }}</span>
               </dd>
             </div>
           </dl>
         </div>
-        <div class="tabs" data-decorator="init-tabs">
-          <ul class="tabs__list" role="tablist">
-            <li role="presentation" v-for="(p, index) in structuredProperties">
-              <span @click="activeAttributeKey = p.attributeGroupKey" :class="[
-                p.attributeGroupKey == activeAttributeKey ? 'is-selected' : '',
-              ]" role="tab" :aria-controls="`panel-${index + 1}`">{{ p.attributeGroupKeyLabel }}</span>
-            </li>
-          </ul>
-          <div class="tabs__panels">
-            <div v-for="(property, index) in activeAttributeProperties" role="tabpanel"
-              :aria-labelledby="`tab-${index + 1}`">
-              <p class="mt-2">
-              <h4> {{ property.attributeKeyLabel }} </h4>
-              </p>
-              <p class="mb-1">
-                <i> {{ property.attributeKeyDescription }} </i>
-              </p>
-              <p class="mb-1">
+        <div v-if="smAndDown" class="accordion" data-decorator="init-accordion">
+          <div
+            v-for="(p, index) in structuredProperties"
+            class="accordion__item"
+          >
+            <div class="accordion__item__header">
+              <h3 class="accordion__item__heading">
+                <span
+                  class="accordion__item__header-trigger"
+                  aria-expanded="false"
+                  aria-controls="con1"
+                  id="header1"
+                  @click="toggleAccordion(p.attributeGroupKey)"
+                >
+                  {{ p.attributeGroupKeyLabel }}
+                </span>
+              </h3>
+            </div>
+            <div
+              v-if="p.attributeGroupKey == activeAttributeKey"
+              v-for="(property, index) in p.properties"
+              class="accordion__item__content"
+              id="con1"
+              role="region"
+              aria-labelledby="header1"
+            >
+              <div>
+                {{ property.attributeKeyLabel }}
+                <span @click="swapInfo = !swapInfo" class="bg-image"></span>
+              </div>
+              <div v-if="swapInfo">
+                <i>{{ property.attributeKeyDescription || t('Ontbreekt') }} </i>
+              </div>
+              <div v-if="!swapInfo">
                 {{ property.attributeValue || t('Ontbreekt') }}
-              </p>
+              </div>
             </div>
           </div>
         </div>
+
+        <div v-if="!smAndDown" class="tabs" data-decorator="init-tabs">
+          <ul class="tabs__list" role="tablist">
+            <li role="presentation" v-for="(p, index) in structuredProperties">
+              <span
+                @click="activeAttributeKey = p.attributeGroupKey"
+                :class="[
+                  p.attributeGroupKey == activeAttributeKey
+                    ? 'is-selected'
+                    : '',
+                ]"
+                role="tab"
+                :aria-controls="`panel-${index + 1}`"
+                >{{ p.attributeGroupKeyLabel }}</span
+              >
+            </li>
+          </ul>
+          <table class="table__data-overview">
+            <tbody>
+              <tr v-for="(property, index) in activeAttributeProperties">
+                <th scope="row">
+                  {{ property.attributeKeyLabel }}
+                  <span @click="swapInfo = !swapInfo" class="bg-image"></span>
+                </th>
+                <td v-if="!swapInfo">
+                  {{ property.attributeValue || t('Ontbreekt') }}
+                </td>
+                <td v-if="swapInfo">
+                  <i>
+                    {{ property.attributeKeyDescription || t('Ontbreekt') }}
+                  </i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-
     </ClientOnly>
-
   </Page>
 </template>
 
@@ -119,6 +118,9 @@ import { summaryTiles } from '~~/config/config'
 import { useI18n } from 'vue-i18n'
 import type { Algoritme } from '~~/types/algoritme'
 import requiredFields from '~~/config/fields.json'
+import { useDisplay } from 'vuetify'
+
+const { smAndDown } = useDisplay()
 
 // get data
 const route = useRoute()
@@ -127,6 +129,9 @@ const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
 const { data } = await algoritmeService.getOne(id)
 let algoritme = ref(data.value as Algoritme)
 
+function ping() {
+  console.log('ping!')
+}
 const enrichedAlgoritme = computed(() => {
   // add algemene informatie as object
   const groupKey = 'algemeneInformatie'
@@ -149,6 +154,8 @@ const enrichedAlgoritme = computed(() => {
   return { [groupKey]: group, ...algoritme.value }
 })
 
+const swapInfo = ref(false)
+
 const { t } = useI18n()
 const shortDescription = computed(() => t('short-description'))
 const shortDescriptionMissing = computed(() => t('short-description-missing'))
@@ -160,6 +167,13 @@ const activeAttributeProperties = computed(() => {
   })[0]?.properties
 })
 
+function toggleAccordion(key: string) {
+  if (activeAttributeKey.value == key) {
+    activeAttributeKey.value = ''
+  } else {
+    activeAttributeKey.value = key
+  }
+}
 const structuredProperties = computed(() => {
   const algoritme = enrichedAlgoritme
   const keysWithObjectValues = Object.keys(algoritme.value).filter(
@@ -182,8 +196,8 @@ const structuredProperties = computed(() => {
             typeof value != 'boolean'
               ? value
               : value == true
-                ? t(`yes`)
-                : t(`no`)
+              ? t(`yes`)
+              : t(`no`)
           return {
             attributeKey: key,
             attributeValue: parsedValue,
@@ -210,7 +224,19 @@ definePageMeta({
   title: 'Algoritme details',
 })
 
-onMounted(() => activeAttributeKey = ref(structuredProperties.value[0].attributeGroupKey))
+onMounted(() => {
+  if (!smAndDown) {
+    activeAttributeKey = ref(structuredProperties.value[0].attributeGroupKey)
+  }
+})
+
+watch(smAndDown, (newValue, oldValue) => {
+  if (newValue == true) {
+    activeAttributeKey.value = ''
+  } else {
+    activeAttributeKey = ref(structuredProperties.value[0].attributeGroupKey)
+  }
+})
 </script>
 
 <style scoped lang="scss">
@@ -243,5 +269,8 @@ onMounted(() => activeAttributeKey = ref(structuredProperties.value[0].attribute
 .tabs__list span.is-selected:hover,
 .tabs__list span[aria-selected='true']:hover {
   background-color: #fff;
+}
+.accordion__item__header {
+  cursor: pointer;
 }
 </style>
