@@ -38,10 +38,10 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-// import { useDisplay } from 'vuetify'
+import { useDisplay } from 'vuetify'
 
 const { t } = useI18n()
-// const { xs } = useDisplay()
+const { xs } = useDisplay()
 
 const emit = defineEmits(['input', 'doSearch'])
 
