@@ -7,7 +7,8 @@
           class="hidden-desktop button button--icon-hamburger"
           data-handler="toggle-nav"
           aria-controls="nav"
-          aria-expanded="false"
+          :aria-expanded="menuExpanded ? 'true' : 'false'"
+          @click="menuExpanded = !menuExpanded"
         >
           Menu
         </button>
@@ -27,7 +28,11 @@
         </div>
       </div>
     </div>
-    <nav class="header__nav header__nav--closed" id="nav">
+    <nav
+      class="header__nav"
+      :class="!menuExpanded && 'header__nav--closed'"
+      id="nav"
+    >
       <div class="container">
         <ul class="header__primary-nav list list--unstyled">
           <li
@@ -38,7 +43,7 @@
             <NuxtLink :to="{ name: item.routeName }">{{ item.label }}</NuxtLink>
           </li>
         </ul>
-        <a
+        <!-- <a
           href="#other-sites"
           class="hidden-desktop"
           data-handler="toggle-other-sites"
@@ -48,7 +53,7 @@
           data-decorator-initialized="true"
           ><span class="visually-hidden">Andere sites binnen&nbsp;</span>
           &nbsp;Overheid.nl</a
-        >
+        > -->
       </div>
     </nav>
   </header>
@@ -59,11 +64,6 @@ import LanguagePicker from '@/components/LanguagePicker.vue'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
-
-// const props = defineProps<{
-//   title?: string
-//   pages?: string[]
-// }>()
 
 const navigationItems = computed(() => [
   {
@@ -76,7 +76,9 @@ const navigationItems = computed(() => [
   },
 ])
 
-// const router = useRouter()
-// const routes = router.getRoutes()
 const currentRoute = useRoute()
+const menuExpanded = ref(false)
+
+// set expanded to false after route change
+watch(currentRoute, () => (menuExpanded.value = false))
 </script>

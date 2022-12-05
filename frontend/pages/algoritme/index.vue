@@ -74,7 +74,7 @@ import type {
   AlgoritmeFilter,
 } from '@/types/algoritme'
 import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
-import { useDisplay } from 'vuetify'
+
 const isMobile = useMobileBreakpoint()
 
 const { t } = useI18n()
