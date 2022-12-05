@@ -11,6 +11,12 @@ export default defineNuxtConfig({
     },
   },
   modules: [
+    [
+      'nuxt-icon',
+      // {
+      //   /* options */
+      // },
+    ],
     async (options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) =>
         // @ts-ignore

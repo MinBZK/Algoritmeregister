@@ -1,9 +1,7 @@
 <script setup lang="ts">
-// // import AppHeader from '@/components/AppHeader.vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
-// const algoritmeRegister = computed(() => t('algoritmeRegister'))
 </script>
 
 <template>
@@ -15,9 +13,7 @@ const { t } = useI18n()
   <AppBreadcrumb v-if="false" />
 
   <div class="container columns columns--sidebar-left row">
-    <div>
-      <NuxtPage />
-    </div>
+    <NuxtPage />
   </div>
 
   <AppFooter />

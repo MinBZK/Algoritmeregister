@@ -45,11 +45,7 @@
           {{ $t('noResults') }}
         </div>
 
-        <v-row
-          v-if="filteredAlgoritmes.length > 1"
-          align="center"
-          justify="center"
-        >
+        <v-row v-if="filteredAlgoritmes.length > 1">
           <v-col :cols="6" class="text-grey"
             >{{ $t(`foundResults`, { n: filteredAlgoritmes.length }) }}
           </v-col>
@@ -58,6 +54,7 @@
               v-if="nPages > 1"
               v-model="page"
               :length="nPages"
+              class="pagination"
             ></v-pagination
           ></v-col>
         </v-row>

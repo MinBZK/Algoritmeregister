@@ -27,6 +27,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "nuxt": "3.0.0"
+    "nuxt": "3.0.0",
+    "nuxt-icon": "^0.1.8"
   }
 }

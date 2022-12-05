@@ -20,39 +20,61 @@
           <a>
             {{ f.value || '-' }}
           </a>
-          (verwijder)
+          <NuxtIcon name="system-uicons:cross" class="text-secondary" />
         </div>
       </div>
-
-      <div
+      <template
         v-for="aggregationType in props.aggregatedAlgoritmes"
         :key="aggregationType.aggregationAttribute"
-        class="search-filter-item"
-      >
-        <h4>
-          {{
-            $t(
-              `algorithmProperties.algemeneInformatie.${aggregationType.aggregationAttribute}.label`
-            )
-          }}
-        </h4>
-
-        <div
-          v-for="[k, v] in Object.entries(aggregationType.aggregatedValues)"
-          :key="k"
+        ><div
+          class="search-filter-item"
+          v-if="
+            getAttributeFilters(aggregationType.aggregationAttribute).length > 0
+          "
         >
-          <NuxtLink
-            :to="{
-              name: 'algoritme',
-              query: {
-                q: getEncodedQuery(aggregationType.aggregationAttribute, k),
-              },
-            }"
+          <h4>
+            {{
+              $t(
+                `algorithmProperties.algemeneInformatie.${aggregationType.aggregationAttribute}.label`
+              )
+            }}
+          </h4>
+
+          <div
+            v-for="[attributeValue, count] in getAttributeFilters(
+              aggregationType.aggregationAttribute
+            )"
+            :key="attributeValue"
           >
-            <span>{{ k || '-' }}</span></NuxtLink
-          >&nbsp;<span class="text-secondary">({{ v }})</span>
+            <NuxtLink
+              v-if="
+                !hasFilter(aggregationType.aggregationAttribute, attributeValue)
+              "
+              :to="{
+                name: 'algoritme',
+                query: {
+                  q: getEncodedQuery(
+                    aggregationType.aggregationAttribute,
+                    attributeValue
+                  ),
+                },
+              }"
+            >
+              <span>{{ attributeValue || '-' }}</span></NuxtLink
+            >
+
+            <span
+              v-if="
+                hasFilter(aggregationType.aggregationAttribute, attributeValue)
+              "
+              class="link-disabled"
+              >{{ attributeValue || '-' }}</span
+            >
+
+            &nbsp;<span class="text-secondary">({{ count }})</span>
+          </div>
         </div>
-      </div>
+      </template>
     </template>
   </div>
 </template>
@@ -94,6 +116,29 @@ const removeFilter = (filter: AlgoritmeFilter) => {
   }
 }
 
+const getAttributeFilters = (attribute: string) => {
+  const values = props.aggregatedAlgoritmes.find(
+    (a) => a.aggregationAttribute == attribute
+  )?.aggregatedValues
+
+  const filterdValues = Object.entries(values || []).filter(
+    ([filterAttributeValue, filterAttributeCount]) => {
+      return (
+        parsedFilters.value.filter(
+          (pF) => pF.attribute == attribute && pF.value == filterAttributeValue
+        ).length == 0
+      )
+    }
+  )
+
+  return filterdValues
+}
+
+const hasFilter = (attribute: string, attributeValue: string): boolean =>
+  parsedFilters.value.filter(
+    (pF) => pF.attribute == attribute && pF.value == attributeValue
+  ).length > 0
+
 // mobile only
 const showFilters = ref(false)
 const filtersExpanded = computed(() => !mdAndDown.value || showFilters.value)
@@ -120,5 +165,10 @@ const toggleFilters = () => (showFilters.value = !showFilters.value)
 
 .search-filters a {
   cursor: pointer;
+}
+
+.link-disabled {
+  cursor: not-allowed;
+  color: #7ca1c9;
 }
 </style>

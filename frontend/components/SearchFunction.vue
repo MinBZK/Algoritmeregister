@@ -3,11 +3,9 @@
     <div class="columns">
       <div class="column column-d-5">
         <div class="form__row">
-          <label
-            for="input-text-98789"
-            class="form__label form__label--accent"
-            >{{ searchExplanation }}</label
-          >
+          <label class="form__label form__label--accent">{{
+            searchExplanation
+          }}</label>
 
           <input
             type="text"
@@ -28,7 +26,9 @@
             type="submit"
             @click="$emit('doSearch')"
           >
-            <span class="button__label">{{ search }}</span>
+            <span class="button__label"
+              >{{ search }} <NuxtIcon name="ic:round-search"
+            /></span>
           </button>
         </div>
       </div>
