@@ -178,8 +178,6 @@ const enrichedAlgoritme = computed(() => {
   return { [groupKey]: group, ...algoritme.value }
 })
 
-const swapInfo = ref(false)
-
 const { t } = useI18n()
 const shortDescription = computed(() => t('short-description'))
 const shortDescriptionMissing = computed(() => t('short-description-missing'))
@@ -191,6 +189,7 @@ const activeAttributeProperties = computed(() => {
   })[0]?.properties
 })
 
+// Handle accordion
 function toggleAccordion(key: string) {
   if (activeAttributeKey.value == key) {
     activeAttributeKey.value = ''
@@ -199,6 +198,7 @@ function toggleAccordion(key: string) {
   }
 }
 
+// Handle toggling of description of the keys
 let keyToggles = ref([''])
 function toggleKey(key: string) {
   if (keyToggles.value.includes(key)) {
@@ -216,6 +216,7 @@ function clearToggledKeys() {
   keyToggles.value = ['']
 }
 
+// construct the list of data
 const structuredProperties = computed(() => {
   const algoritme = enrichedAlgoritme
   const keysWithObjectValues = Object.keys(algoritme.value).filter(
@@ -268,11 +269,13 @@ definePageMeta({
 
 onMounted(() => {
   if (!smAndDown) {
+    // Opens the first tab.
     activeAttributeKey = ref(structuredProperties.value[0].attributeGroupKey)
   }
 })
 
 watch(smAndDown, (newValue, oldValue) => {
+  // Closes tabs if the screen is becoming smaller.
   if (newValue == true) {
     activeAttributeKey.value = ''
   } else {
