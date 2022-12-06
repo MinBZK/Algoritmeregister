@@ -1,10 +1,9 @@
 export type FooterPage = {
-  label: string
   path: string
+  key: string
+  label?: string
 }
 
 export type FooterColumn = {
-  key: string
-  title: string
-  pages: FooterPage[]
+  [key: string]: FooterPage[]
 }

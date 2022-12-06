@@ -9,3 +9,4 @@ spec:
     - port: {{ .Values.fePort }}
       targetPort: {{ .Values.fePort }}
       protocol: TCP
+      name: 'http-port'
