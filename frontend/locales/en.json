@@ -9,11 +9,7 @@
   "noResults": "No algorithm was found for this search request.",
   "footer": {
     "text": "Note: this website is under development. Information will change often. Do you want to help?",
-<<<<<<< HEAD
-    "textAskApply": "Please apply.",
-=======
-    "textAskApply": "Please apply at",
->>>>>>> main
+    "textAskApply": "Please apply",
     "paths": {
       "algoritme": "Overview",
       "over": "About this website",
