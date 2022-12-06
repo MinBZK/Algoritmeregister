@@ -80,16 +80,13 @@
               >
                 <i
                   >{{
-                    `Uitleg: ${
+                    `${explanation}: ${
                       property.attributeKeyDescription || t('Ontbreekt')
                     }`
                   }}
                 </i>
               </div>
-              <div
-                class="word-break"
-                v-if="!isKeyToggled(property.attributeKey)"
-              >
+              <div class="word-break">
                 {{ property.attributeValue || t('Ontbreekt') }}
               </div>
             </div>
@@ -121,18 +118,19 @@
                     @click="toggleKey(property.attributeKey)"
                     class="question-mark"
                   ></span>
+                  <p v-if="isKeyToggled(property.attributeKey)">
+                    <i>
+                      {{
+                        `${explanation}: ${
+                          property.attributeKeyDescription || t('Ontbreekt')
+                        }`
+                      }}
+                    </i>
+                  </p>
                 </th>
-                <td v-if="!isKeyToggled(property.attributeKey)">
+
+                <td>
                   {{ property.attributeValue || t('Ontbreekt') }}
-                </td>
-                <td v-if="isKeyToggled(property.attributeKey)">
-                  <i>
-                    {{
-                      `Uitleg: ${
-                        property.attributeKeyDescription || t('Ontbreekt')
-                      }`
-                    }}
-                  </i>
                 </td>
               </tr>
             </tbody>
@@ -185,6 +183,7 @@ const enrichedAlgoritme = computed(() => {
 
 const { t } = useI18n()
 const shortDescriptionMissing = computed(() => t('short-description-missing'))
+const explanation = computed(() => t('explanation'))
 
 let activeAttributeKey = ref('')
 const activeAttributeProperties = computed(() => {
