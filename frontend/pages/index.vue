@@ -7,7 +7,7 @@
     </div>
     <v-card elevation="0" color="tertiary">
       <ClientOnly>
-        <div :class="[smAndDown ? 'card-margins-xs' : 'card-margins']">
+        <div :class="[isMobile ? 'card-margins-xs' : 'card-margins']">
           <h4 class="homepage-subtitle">
             {{ homepageSubtitle }}
           </h4>
@@ -28,8 +28,8 @@ import Page from '@/components/PageWrapper.vue'
 import { useI18n } from 'vue-i18n'
 import qs from 'qs'
 import SearchFunction from '@/components/SearchFunction.vue'
+const isMobile = useMobileBreakpoint()
 
-const { smAndDown, xs } = useDisplay()
 const { t } = useI18n()
 const homepageTitle = computed(() => t('homepageTitle'))
 

@@ -30,7 +30,7 @@
             </div>
           </dl>
         </div>
-        <div v-if="smAndDown" class="accordion" data-decorator="init-accordion">
+        <div v-if="isMobile" class="accordion" data-decorator="init-accordion">
           <div
             v-for="(p, index) in structuredProperties"
             class="accordion__item"
@@ -87,7 +87,7 @@
           </div>
         </div>
 
-        <div v-if="!smAndDown" class="tabs" data-decorator="init-tabs">
+        <div v-if="!isMobile" class="tabs" data-decorator="init-tabs">
           <ul class="tabs__list" role="tablist">
             <li role="presentation" v-for="(p, index) in structuredProperties">
               <span
@@ -144,7 +144,7 @@ import type { Algoritme } from '~~/types/algoritme'
 import requiredFields from '~~/config/fields.json'
 import { useDisplay } from 'vuetify'
 
-const { smAndDown } = useDisplay()
+const isMobile = useMobileBreakpoint()
 
 // get data
 const route = useRoute()
@@ -225,6 +225,7 @@ const structuredProperties = computed(() => {
   )
   const excludedKeys = ['id', 'algoritme_id']
   return keysWithObjectValues.map((attributeGroupKey) => {
+    console.log(algoritme.value, attributeGroupKey)
     return {
       attributeGroupKey,
       attributeGroupKeyLabel:
@@ -268,13 +269,13 @@ definePageMeta({
 })
 
 onMounted(() => {
-  if (!smAndDown.value) {
+  if (!isMobile.value) {
     // Opens the first tab.
     activeAttributeKey = ref(structuredProperties.value[0].attributeGroupKey)
   }
 })
 
-watch(smAndDown, (newValue, oldValue) => {
+watch(isMobile, (newValue) => {
   // Closes tabs if the screen is becoming smaller.
   if (newValue == true) {
     activeAttributeKey.value = ''
