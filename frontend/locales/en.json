@@ -7,19 +7,23 @@
   "selectLanguage": "Choose language",
   "foundResults": "Found {n} results",
   "noResults": "No algorithm was found for this search request.",
-  "footerColumns": {
-    "over": "About",
-    "service": "Service"
-  },
-  "paths": {
-    "/algoritme": "Overview",
-    "/over": "About this website",
-    "/contact": "Contact us",
-    "/privacyverklaring": "Privacy",
-    "/kwetsbaarheid": "Report vulnerability",
-    "/toegankelijkheid": "Accessibility",
-    "/cookies": "Cookies",
-    "/vragen": "FAQ"
+  "footer": {
+    "text": "Note: this website is under development. Information will change often. Do you want to help?",
+    "textAskApply": "Please apply at",
+    "paths": {
+      "algoritme": "Overview",
+      "over": "About this website",
+      "contact": "Contact us",
+      "privacyverklaring": "Privacy",
+      "kwetsbaarheid": "Report vulnerability",
+      "toegankelijkheid": "Accessibility",
+      "cookies": "Cookies",
+      "vragen": "FAQ",
+      "ext_overheid_nl": "Overheid.nl",
+      "ext_rijksoverheid_nl": "Rijksoverheid.nl",
+      "ext_digitaleoverheid_nl": "Digitale overheid",
+      "ext_data_overheid_nl": "Data.overheid.nl"
+    }
   },
   "algoritmeRegister": "Algorithm register",
   "goBack": "Back to all algorithms",
