@@ -27,7 +27,7 @@
             @click="$emit('doSearch')"
           >
             <span class="button__label"
-              >{{ search }} <NuxtIcon name="ic:round-search"
+              >{{ search }} <NuxtIcon size="0.9em" name="ic:round-search"
             /></span>
           </button>
         </div>
