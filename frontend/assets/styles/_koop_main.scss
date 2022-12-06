@@ -7678,21 +7678,21 @@ dl--publication > div {
   color: #154273;
   font-weight: 700;
 }
-.accordion__item__header-trigger:after {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 1.875em;
-  bottom: 0;
-  background: url(@/assets/images/icons/icon-cta-right.svg) no-repeat center center;
-  content: '';
-  pointer-events: none;
-}
-.accordion__item__header-trigger[aria-checked='true']:after,
-.accordion__item__header-trigger[aria-expanded='true']:after {
-  background-image: url(@/assets/images/icons/icon-arrow-up-blue.svg);
-  background-size: 1.3em;
-}
+// .accordion__item__header-trigger:after {
+  // position: absolute;
+  // left: 0;
+  // top: 0;
+  // width: 1.875em;
+  // bottom: 0;
+  // background: url(@/assets/images/icons/icon-cta-right.svg) no-repeat center center;
+  // content: '';
+  // pointer-events: none;
+// }
+// .accordion__item__header-trigger[aria-checked='true']:after,
+// .accordion__item__header-trigger[aria-expanded='true']:after {
+//   background-image: url(@/assets/images/icons/icon-arrow-up-blue.svg);
+//   background-size: 1.3em;
+// }
 .accordion__item__heading {
   font-size: 1em;
   margin: 0 !important;
