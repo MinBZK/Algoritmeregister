@@ -66,7 +66,9 @@
               aria-labelledby="header1"
             >
               <div>
-                {{ property.attributeKeyLabel }}
+                <b>
+                  {{ property.attributeKeyLabel }}
+                </b>
                 <span
                   @click="toggleKey(property.attributeKey)"
                   class="question-mark"
