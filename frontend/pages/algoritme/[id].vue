@@ -30,7 +30,7 @@
             </div>
           </dl>
         </div>
-        <div v-if="smAndDown" class="accordion" data-decorator="init-accordion">
+        <div v-if="isMobile" class="accordion" data-decorator="init-accordion">
           <div
             v-for="(p, index) in structuredProperties"
             class="accordion__item"
@@ -46,6 +46,13 @@
                     ;[toggleAccordion(p.attributeGroupKey), clearToggledKeys()]
                   "
                 >
+                  <span
+                    :class="
+                      p.attributeGroupKey == activeAttributeKey
+                        ? 'accordion-arrow-up'
+                        : 'accordion-arrow-right'
+                    "
+                  ></span>
                   {{ p.attributeGroupKeyLabel }}
                 </span>
               </h3>
@@ -62,7 +69,7 @@
                 {{ property.attributeKeyLabel }}
                 <span
                   @click="toggleKey(property.attributeKey)"
-                  class="bg-image"
+                  class="question-mark"
                 ></span>
               </div>
               <div
@@ -87,8 +94,8 @@
           </div>
         </div>
 
-        <div v-if="!smAndDown" class="tabs" data-decorator="init-tabs">
-          <ul class="tabs__list" role="tablist">
+        <div v-if="!isMobile" class="tabs" data-decorator="init-tabs">
+          <ul class="tabs__list bottom-margin" role="tablist">
             <li role="presentation" v-for="(p, index) in structuredProperties">
               <span
                 @click="activeAttributeKey = p.attributeGroupKey"
@@ -110,7 +117,7 @@
                   {{ property.attributeKeyLabel }}
                   <span
                     @click="toggleKey(property.attributeKey)"
-                    class="bg-image"
+                    class="question-mark"
                   ></span>
                 </th>
                 <td v-if="!isKeyToggled(property.attributeKey)">
@@ -142,9 +149,8 @@ import { summaryTiles } from '~~/config/config'
 import { useI18n } from 'vue-i18n'
 import type { Algoritme } from '~~/types/algoritme'
 import requiredFields from '~~/config/fields.json'
-import { useDisplay } from 'vuetify'
 
-const { smAndDown } = useDisplay()
+const isMobile = useMobileBreakpoint()
 
 // get data
 const route = useRoute()
@@ -268,13 +274,13 @@ definePageMeta({
 })
 
 onMounted(() => {
-  if (!smAndDown.value) {
+  if (!isMobile.value) {
     // Opens the first tab.
     activeAttributeKey = ref(structuredProperties.value[0].attributeGroupKey)
   }
 })
 
-watch(smAndDown, (newValue, oldValue) => {
+watch(isMobile, (newValue) => {
   // Closes tabs if the screen is becoming smaller.
   if (newValue == true) {
     activeAttributeKey.value = ''
@@ -321,5 +327,8 @@ watch(smAndDown, (newValue, oldValue) => {
 .word-break {
   // word-break: break-all;
   word-break: break-word;
+}
+.bottom-margin {
+  margin-bottom: 10px;
 }
 </style>
