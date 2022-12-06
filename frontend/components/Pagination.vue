@@ -1,4 +1,28 @@
 <template>
+  <!-- <div class="pagination">
+    <div class="pagination__index">
+      <ul>
+        <li class="prev">
+          <a href="#"><span class="">Vorige pagina</span></a>
+        </li>
+        <li class="">
+          <a href="#"><span class="visually-hidden">Pagina: </span>3</a>
+        </li>
+        <li aria-current="page" class="active">
+          <span class="visually-hidden">Pagina: </span>4
+        </li>
+        <li class="">
+          <a href="#"><span class="visually-hidden">Pagina: </span>...</a>
+        </li>
+        <li class="">
+          <a href="#"><span class="visually-hidden">Pagina: </span>102</a>
+        </li>
+        <li class="next">
+          <a href="#"><span class="">Volgende pagina</span></a>
+        </li>
+      </ul>
+    </div>
+  </div> -->
   <nav role="navigation" aria-label="Paginering navigatie">
     <div
       class="pagenumber"
