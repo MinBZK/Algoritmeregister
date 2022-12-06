@@ -46,6 +46,13 @@
                     ;[toggleAccordion(p.attributeGroupKey), clearToggledKeys()]
                   "
                 >
+                  <span
+                    :class="
+                      p.attributeGroupKey == activeAttributeKey
+                        ? 'accordion-arrow-up'
+                        : 'accordion-arrow-right'
+                    "
+                  ></span>
                   {{ p.attributeGroupKeyLabel }}
                 </span>
               </h3>
@@ -59,10 +66,12 @@
               aria-labelledby="header1"
             >
               <div>
-                {{ property.attributeKeyLabel }}
+                <b>
+                  {{ property.attributeKeyLabel }}
+                </b>
                 <span
                   @click="toggleKey(property.attributeKey)"
-                  class="bg-image"
+                  class="question-mark"
                 ></span>
               </div>
               <div
@@ -88,7 +97,7 @@
         </div>
 
         <div v-if="!isMobile" class="tabs" data-decorator="init-tabs">
-          <ul class="tabs__list" role="tablist">
+          <ul class="tabs__list bottom-margin" role="tablist">
             <li role="presentation" v-for="(p, index) in structuredProperties">
               <a
                 @click="activeAttributeKey = p.attributeGroupKey"
@@ -110,7 +119,7 @@
                   {{ property.attributeKeyLabel }}
                   <span
                     @click="toggleKey(property.attributeKey)"
-                    class="bg-image"
+                    class="question-mark"
                   ></span>
                 </th>
                 <td v-if="!isKeyToggled(property.attributeKey)">
@@ -211,7 +220,6 @@ const structuredProperties = computed(() => {
   )
   const excludedKeys = ['id', 'algoritme_id']
   return keysWithObjectValues.map((attributeGroupKey) => {
-    console.log(algoritme.value, attributeGroupKey)
     return {
       attributeGroupKey,
       attributeGroupKeyLabel:

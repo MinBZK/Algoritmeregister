@@ -23,7 +23,7 @@
 //   color: $primary-dark;
 //   text-decoration: underline;
 // }
-.bg-image {
+.question-mark {
     background-image: url(../images/icons/icon-explanation.svg);
     background-size: 1em !important;
     background-position: center 50%;
@@ -32,3 +32,21 @@
     padding-left: 2em;
     cursor: pointer;
   }
+
+.accordion-arrow-right {
+  background-image: url(../images/icons/icon-cta-right.svg);
+  background-size: 1em !important;
+  background-repeat: no-repeat;
+  padding-right: 0em;
+  padding-left: 2em;
+  cursor: pointer;
+}
+
+.accordion-arrow-up {
+  background-image: url(../images/icons/icon-arrow-up-blue.svg);
+  background-size: 1.2em !important;
+  background-repeat: no-repeat;
+  padding-right: 0em;
+  padding-left: 2em;
+  cursor: pointer;
+}

@@ -6,7 +6,7 @@
     >
     </SearchFunction>
     <v-row>
-      <v-col :cols="isMobile ? 12 : 3">
+      <v-col :cols="useMobile ? 12 : 3">
         <AlgoritmeFilters :aggregatedAlgoritmes="aggregatedAlgoritmes" />
       </v-col>
 
