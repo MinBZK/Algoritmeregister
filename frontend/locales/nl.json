@@ -9,11 +9,7 @@
   "noResults": "Geen algoritmes gevonden voor de huidige zoekopdracht.",
   "footer": {
     "text": "Let op: deze website is in ontwikkeling. De informatie verandert vaak. Wil je meehelpen?",
-<<<<<<< HEAD
-    "textAskApply": "Meld je dan aan.",
-=======
-    "textAskApply": "Meld je aan bij",
->>>>>>> main
+    "textAskApply": "Meld je dan aan",
     "paths": {
       "algoritme": "Algoritmeoverzicht",
       "over": "Over deze website",

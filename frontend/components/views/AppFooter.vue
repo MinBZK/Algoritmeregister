@@ -2,16 +2,9 @@
   <div class="footer row--footer" role="contentinfo">
     <div class="container columns">
       <div>
-<<<<<<< HEAD
         {{ t('footer.text') }}&nbsp;<NuxtLink :to="'/footer/over'">{{
           t('footer.textAskApply')
         }}</NuxtLink>
-=======
-        {{ t('footer.text') }} {{ t('footer.textAskApply') }} '<NuxtLink
-          :to="'footer/over'"
-          >{{ t('footer.paths.over') }}</NuxtLink
-        >'.
->>>>>>> main
       </div>
       <div></div>
       <div v-for="footerKey in footerKeys" :key="footerKey">
