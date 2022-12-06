@@ -45,21 +45,17 @@
           {{ $t('noResults') }}
         </div>
 
-        <v-row
-          v-if="filteredAlgoritmes.length > 1"
-          align="center"
-          justify="center"
-        >
+        <v-row v-if="filteredAlgoritmes.length > 1">
           <v-col :cols="6" class="text-grey"
             >{{ $t(`foundResults`, { n: filteredAlgoritmes.length }) }}
           </v-col>
-          <v-col :cols="6"
-            ><v-pagination
-              v-if="nPages > 1"
-              v-model="page"
-              :length="nPages"
-            ></v-pagination
-          ></v-col>
+          <v-col :cols="isMobile ? 12 : 6">
+            <Pagination
+              :current-page="page"
+              :page-length="nPages"
+              @setPage="(p) => (page = p)"
+            />
+          </v-col>
         </v-row>
       </v-col>
     </v-row>
@@ -68,7 +64,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import Page from '~~/components/PageWrapper.vue'
+import Page from '@/components/PageWrapper.vue'
 import algoritmeService from '@/services/algoritme'
 import { useI18n } from 'vue-i18n'
 import { summaryTiles } from '@/config/config'
@@ -78,16 +74,10 @@ import type {
   AlgoritmeFilter,
 } from '@/types/algoritme'
 import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
-import ButtonVue from '@/components/form/Button.vue'
-import { useDisplay } from 'vuetify'
 
-const { mdAndDown } = useDisplay()
-
-const useMobile = ref(mdAndDown)
+const isMobile = useMobileBreakpoint()
 
 const { t } = useI18n()
-const searchHint = computed(() => t('searchHint'))
-const search = computed(() => t('search'))
 
 definePageMeta({
   title: 'Algoritmeoverzicht',
@@ -168,14 +158,6 @@ const aggregatedAlgoritmes = computed(() => {
 watch(searchQuery, () => {
   page.value = 1
 })
-
-watch(
-  mdAndDown,
-  () => {
-    useMobile.value = mdAndDown.value
-  },
-  { immediate: true }
-)
 </script>
 
 <style scoped lang="scss">
@@ -185,5 +167,13 @@ watch(
 }
 .text-field-sheet {
   background-color: $quaternary;
+}
+
+h3 {
+  margin-bottom: 0.5em;
+}
+
+h3 a {
+  text-decoration: none;
 }
 </style>

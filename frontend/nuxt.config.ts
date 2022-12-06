@@ -11,6 +11,8 @@ export default defineNuxtConfig({
     },
   },
   modules: [
+    'nuxt-icon',
+    '@vueuse/nuxt',
     async (options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) =>
         // @ts-ignore
@@ -36,7 +38,10 @@ export default defineNuxtConfig({
       }),
     ],
   },
-  css: ['@/assets/styles/main.scss', 'vuetify/lib/styles/main.sass'],
+  css: [
+    '@/assets/styles/main.scss',
+    //  'vuetify/lib/styles/main.sass'
+  ],
   build: {
     transpile: ['vuetify'],
   },

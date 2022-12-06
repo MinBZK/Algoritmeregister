@@ -1,5 +1,6 @@
 {
   "english?": "true",
+  "explanation": "Explanation",
   "Ontbreekt": "Missing",
   "locale-en": "English",
   "locale-nl": "Dutch",
@@ -21,13 +22,15 @@
     "/vragen": "FAQ"
   },
   "algoritmeRegister": "Algorithm register",
-  "goBack": "back to summary",
+  "goBack": "Back to all algorithms",
+  "short-description": "Short description",
+  "short-description-missing": "A short description is missing",
   "yes": "Yes",
   "no": "No",
   "hello": "Hello, {name}!",
   "language": "Language",
   "homepageTitle": "Algorithm register of the Dutch government",
-  "homepageSubtitle": "Find algorithms by organisation, title or description",
+  "searchExplanation": "Find algorithms by organisation, title or description",
   "logoCaption": "Algorithm register of the government",
   "searchHint": "What are you looking for?",
   "search": "Search",
@@ -40,6 +43,9 @@
   "navigation": {
     "home": "Home",
     "algorithmRegister": "Algorithms"
+  },
+  "pagination": {
+    "goTo": "Go to page {n}"
   },
   "algorithmProperties": {
     "algemeneInformatie": {

@@ -60,3 +60,7 @@ This project uses Volar. Install Volar in Visual Studio Code and enable [take ov
 
 Note:
 Vue linting config inspired by a repository on [Github](https://github.com/weicheng2138/nuxt3-eslint-starter).
+
+## Icons
+
+Icons library can be found at `https://icones.js.org/`.

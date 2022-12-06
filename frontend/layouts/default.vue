@@ -1,10 +1,5 @@
 <template>
   <div id="content">
-    <v-row>
-      <v-col class="align-right">
-        <LanguagePicker class="align-right"> </LanguagePicker>
-      </v-col>
-    </v-row>
     <slot />
   </div>
 </template>

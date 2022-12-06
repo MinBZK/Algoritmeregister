@@ -1,5 +1,6 @@
 {
   "english?": "false",
+  "explanation": "Uitleg",
   "Ontbreekt": "Ontbreekt",
   "locale-en": "Engels",
   "locale-nl": "Nederlands",
@@ -21,15 +22,17 @@
     "/vragen": "Vaak gestelde vragen"
   },
   "algoritmeRegister": "Algoritmeregister",
-  "goBack": "terug",
+  "goBack": "Terug naar alle algoritmes",
+  "short-description": "Korte beschrijving",
+  "short-description-missing": "Een korte beschrijving ontbreekt",
   "yes": "Ja",
   "no": "Nee",
   "hello": "Hallo, {name}!",
   "language": "Taal",
   "homepageTitle": "Algoritmeregister van de Nederlandse overheid",
-  "homepageSubtitle": "Zoek algoritmes op organisatie, titel of omschrijving",
+  "searchExplanation": "Zoek algoritmes op organisatie, titel of omschrijving",
   "logoCaption": "Algoritmeregister van de overheid",
-  "searchHint": "Waar ben je naar op zoek?",
+  "searchHint": "Waar bent u naar op zoek?",
   "search": "Zoeken",
   "selectedAlgorithms": "Geselecteerde algoritmes",
   "switchToLanguage": {
@@ -40,6 +43,9 @@
   "navigation": {
     "home": "Home",
     "algorithmRegister": "Algoritmes"
+  },
+  "pagination": {
+    "goTo": "Ga naar pagina {n}"
   },
   "algorithmProperties": {
     "algemeneInformatie": {

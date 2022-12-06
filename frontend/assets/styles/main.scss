@@ -1,21 +1,52 @@
 @import '_colors.scss';
-@import '_rijksoverheid.scss';
+// @import '_rijksoverheid.scss';
+@import '_koop_index.scss';
+@import '_koop_main.scss';
+@import '_koop_print.scss';
+
 @import '_skiplinks.scss';
-@import '_rijksoverheid-header.scss';
+// @import '_rijksoverheid-header.scss';
 @import '_fonts.scss';
 
-body {
-  margin: 0;
-  padding: 0;
-  overflow-y: hidden;
+// body {
+//   margin: 0;
+//   padding: 0;
+//   overflow-y: hidden;
+// }
+
+// a {
+//   color: $primary;
+//   text-decoration: none;
+// }
+
+// a:hover {
+//   color: $primary-dark;
+//   text-decoration: underline;
+// }
+.question-mark {
+    background-image: url(../images/icons/icon-explanation.svg);
+    background-size: 1em !important;
+    background-position: center 50%;
+    background-repeat: no-repeat;
+    padding-right: 2em;
+    padding-left: 2em;
+    cursor: pointer;
+  }
+
+.accordion-arrow-right {
+  background-image: url(../images/icons/icon-cta-right.svg);
+  background-size: 1em !important;
+  background-repeat: no-repeat;
+  padding-right: 0em;
+  padding-left: 2em;
+  cursor: pointer;
 }
 
-a {
-  color: $primary;
-  text-decoration: none;
-}
-
-a:hover {
-  color: $primary-dark;
-  text-decoration: underline;
+.accordion-arrow-up {
+  background-image: url(../images/icons/icon-arrow-up-blue.svg);
+  background-size: 1.2em !important;
+  background-repeat: no-repeat;
+  padding-right: 0em;
+  padding-left: 2em;
+  cursor: pointer;
 }
