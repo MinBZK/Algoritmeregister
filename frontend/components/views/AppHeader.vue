@@ -82,3 +82,12 @@ const menuExpanded = ref(false)
 // set expanded to false after route change
 watch(currentRoute, () => (menuExpanded.value = false))
 </script>
+
+<style scoped lang="scss">
+
+.active a {
+  background-color: $secondary;
+  color: $primary-darker !important;
+}
+
+</style>
