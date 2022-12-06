@@ -90,7 +90,7 @@
         <div v-if="!isMobile" class="tabs" data-decorator="init-tabs">
           <ul class="tabs__list" role="tablist">
             <li role="presentation" v-for="(p, index) in structuredProperties">
-              <span
+              <a
                 @click="activeAttributeKey = p.attributeGroupKey"
                 :class="[
                   p.attributeGroupKey == activeAttributeKey
@@ -99,7 +99,7 @@
                 ]"
                 role="tab"
                 :aria-controls="`panel-${index + 1}`"
-                >{{ p.attributeGroupKeyLabel }}</span
+                >{{ p.attributeGroupKeyLabel }}</a
               >
             </li>
           </ul>
@@ -142,7 +142,6 @@ import { summaryTiles } from '~~/config/config'
 import { useI18n } from 'vue-i18n'
 import type { Algoritme } from '~~/types/algoritme'
 import requiredFields from '~~/config/fields.json'
-import { useDisplay } from 'vuetify'
 
 const isMobile = useMobileBreakpoint()
 
@@ -153,9 +152,6 @@ const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
 const { data } = await algoritmeService.getOne(id)
 let algoritme = ref(data.value as Algoritme)
 
-function ping() {
-  console.log('ping!')
-}
 const enrichedAlgoritme = computed(() => {
   // add algemene informatie as object
   const groupKey = 'algemeneInformatie'
@@ -179,7 +175,6 @@ const enrichedAlgoritme = computed(() => {
 })
 
 const { t } = useI18n()
-const shortDescription = computed(() => t('short-description'))
 const shortDescriptionMissing = computed(() => t('short-description-missing'))
 
 let activeAttributeKey = ref('')
@@ -190,17 +185,12 @@ const activeAttributeProperties = computed(() => {
 })
 
 // Handle accordion
-function toggleAccordion(key: string) {
-  if (activeAttributeKey.value == key) {
-    activeAttributeKey.value = ''
-  } else {
-    activeAttributeKey.value = key
-  }
-}
+const toggleAccordion = (key: string) =>
+  (activeAttributeKey.value = activeAttributeKey.value == key ? '' : key)
 
 // Handle toggling of description of the keys
-let keyToggles = ref([''])
-function toggleKey(key: string) {
+let keyToggles = ref<string[]>([])
+const toggleKey = (key: string) => {
   if (keyToggles.value.includes(key)) {
     keyToggles.value = keyToggles.value.filter((e: any) => e !== key)
   } else {
@@ -208,13 +198,9 @@ function toggleKey(key: string) {
   }
 }
 
-function isKeyToggled(key: string) {
-  return keyToggles.value.includes(key)
-}
+const isKeyToggled = (key: string) => keyToggles.value.includes(key)
 
-function clearToggledKeys() {
-  keyToggles.value = ['']
-}
+const clearToggledKeys = () => (keyToggles.value = [])
 
 // construct the list of data
 const structuredProperties = computed(() => {
@@ -271,56 +257,30 @@ definePageMeta({
 onMounted(() => {
   if (!isMobile.value) {
     // Opens the first tab.
-    activeAttributeKey = ref(structuredProperties.value[0].attributeGroupKey)
+    activeAttributeKey.value = structuredProperties.value[0].attributeGroupKey
   }
 })
 
-watch(isMobile, (newValue) => {
-  // Closes tabs if the screen is becoming smaller.
-  if (newValue == true) {
-    activeAttributeKey.value = ''
-  } else {
-    activeAttributeKey = ref(structuredProperties.value[0].attributeGroupKey)
-  }
-})
+watch(
+  isMobile,
+  (newValue) =>
+    // Closes tabs if the screen is becoming smaller.
+    (activeAttributeKey.value = newValue
+      ? ''
+      : structuredProperties.value[0].attributeGroupKey)
+)
 </script>
 
 <style scoped lang="scss">
-// These are similar styles to '.tabs__list a' options from _koop_main.scss
-.tabs__list span {
-  display: inline-block;
-  text-align: center;
-  padding: 0.5em 0.75em;
-  background: #fff;
-  text-decoration: none;
-  position: relative;
-  border-top: 2px solid transparent;
-  cursor: pointer;
-}
-
-.tabs__list span:hover {
-  color: #154273;
-  background-color: #f3f3f3;
-}
-
-.tabs__list span.is-selected,
-.tabs__list span[aria-selected='true'] {
-  border-left: 1px solid #e6e6e6;
-  border-right: 1px solid #e6e6e6;
-  border-top: 2px solid #154273;
-  border-bottom-color: #fff;
-  bottom: -1px;
-}
-
-.tabs__list span.is-selected:hover,
-.tabs__list span[aria-selected='true']:hover {
-  background-color: #fff;
-}
 .accordion__item__header {
   cursor: pointer;
 }
 .word-break {
   // word-break: break-all;
   word-break: break-word;
+}
+
+.tabs__list a {
+  cursor: pointer;
 }
 </style>

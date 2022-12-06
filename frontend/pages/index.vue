@@ -5,21 +5,14 @@
         {{ homepageTitle }}
       </h1>
     </div>
-    <v-card elevation="0" color="tertiary">
-      <ClientOnly>
-        <div :class="[isMobile ? 'card-margins-xs' : 'card-margins']">
-          <h4 class="homepage-subtitle">
-            {{ homepageSubtitle }}
-          </h4>
-          <SearchFunction
-            v-bind:value="searchQuery"
-            @input="(v) => (searchQuery = v)"
-            @doSearch="doSearch"
-          >
-          </SearchFunction>
-        </div>
-      </ClientOnly>
-    </v-card>
+    <div :class="[isMobile ? 'card-margins-xs' : 'card-margins']">
+      <SearchFunction
+        v-bind:value="searchQuery"
+        @input="(v) => (searchQuery = v)"
+        @doSearch="doSearch"
+      >
+      </SearchFunction>
+    </div>
   </Page>
 </template>
 
@@ -28,8 +21,8 @@ import Page from '@/components/PageWrapper.vue'
 import { useI18n } from 'vue-i18n'
 import qs from 'qs'
 import SearchFunction from '@/components/SearchFunction.vue'
-const isMobile = useMobileBreakpoint()
 
+const isMobile = useMobileBreakpoint()
 const { t } = useI18n()
 const homepageTitle = computed(() => t('homepageTitle'))
 
@@ -63,7 +56,7 @@ const doSearch = () => {
   padding-bottom: 10px;
 }
 .homepage-title {
-  color: #154273;
+  color: $primary-darker;
   text-align: center;
   margin-bottom: 50px;
 }
