@@ -5,7 +5,7 @@
   "locale-en": "English",
   "locale-nl": "Dutch",
   "selectLanguage": "Choose language",
-  "foundResults": "Found {n} results",
+  "foundResults": "{n} results found",
   "noResults": "No algorithm was found for this search request.",
   "footer": {
     "text": "Note: this website is under development. Information will change often. Do you want to help?",

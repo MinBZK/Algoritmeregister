@@ -3,79 +3,53 @@
     <SearchFunction
       v-bind:value="searchQuery"
       @input="(v) => (searchQuery = v)"
-    >
-    </SearchFunction>
-    <v-row>
-      <v-col :cols="isMobile ? 12 : 3">
+    ></SearchFunction>
+
+    <div class="row container columns columns--sidebar-left">
+      <div>
+        <h1>{{ t(`foundResults`, { n: filteredAlgoritmes.length }) }}</h1>
+        <Pagination
+          v-if="paginatedAlgoritmes.length != 0"
+          :current-page="page"
+          :page-length="nPages"
+          @setPage="(p) => (page = p)"
+        />
+        <!-- <Sort /> -->
+        <div class="result--list result--list__data">
+          <ul v-if="paginatedAlgoritmes.length != 0">
+            <SearchResultCard
+              :algoritme="algoritme"
+              v-for="algoritme in paginatedAlgoritmes"
+            ></SearchResultCard>
+          </ul>
+          <div v-if="paginatedAlgoritmes.length == 0">
+            {{ t('noResults') }}
+          </div>
+        </div>
+        <Pagination
+          v-if="paginatedAlgoritmes.length != 0"
+          :current-page="page"
+          :page-length="nPages"
+          @setPage="(p) => (page = p)"
+        />
+      </div>
+      <div v-if="paginatedAlgoritmes.length != 0">
         <AlgoritmeFilters :aggregatedAlgoritmes="aggregatedAlgoritmes" />
-      </v-col>
-
-      <v-col>
-        <v-row>
-          <v-col
-            ><h2>
-              {{ $t(`foundResults`, { n: filteredAlgoritmes.length }) }}
-            </h2></v-col
-          >
-        </v-row>
-
-        <div v-for="algoritme in paginatedAlgoritmes">
-          <h3>
-            <NuxtLink :to="`/algoritme/${algoritme.id}`">
-              {{ algoritme.name }}
-            </NuxtLink>
-          </h3>
-          <v-row>
-            <v-col>
-              {{ algoritme.description_short }}
-            </v-col>
-          </v-row>
-          <v-row class="mt-3">
-            <v-col v-for="sT in summaryTiles"
-              ><h4>
-                {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
-              </h4>
-              {{ algoritme[sT as keyof typeof algoritme] }}</v-col
-            >
-          </v-row>
-          <v-divider></v-divider>
-        </div>
-
-        <div v-if="paginatedAlgoritmes.length == 0">
-          {{ $t('noResults') }}
-        </div>
-
-        <v-row v-if="filteredAlgoritmes.length > 1">
-          <v-col :cols="6" class="text-grey"
-            >{{ $t(`foundResults`, { n: filteredAlgoritmes.length }) }}
-          </v-col>
-          <v-col :cols="isMobile ? 12 : 6">
-            <Pagination
-              :current-page="page"
-              :page-length="nPages"
-              @setPage="(p) => (page = p)"
-            />
-          </v-col>
-        </v-row>
-      </v-col>
-    </v-row>
+      </div>
+    </div>
   </Page>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import Page from '@/components/PageWrapper.vue'
 import algoritmeService from '@/services/algoritme'
 import { useI18n } from 'vue-i18n'
-import { summaryTiles } from '@/config/config'
 import type {
   Algoritme,
   AggregatedAlgoritmes,
   AlgoritmeFilter,
 } from '@/types/algoritme'
 import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
-
-const isMobile = useMobileBreakpoint()
 
 const { t } = useI18n()
 
@@ -162,18 +136,11 @@ watch(searchQuery, () => {
 
 <style scoped lang="scss">
 @import '/assets/styles/main.scss';
-.v-divider {
-  margin: 1em 0;
-}
-.text-field-sheet {
-  background-color: $quaternary;
-}
 
-h3 {
-  margin-bottom: 0.5em;
+.item-header {
+  margin-bottom: 15px;
 }
-
-h3 a {
-  text-decoration: none;
+.word-break {
+  word-break: break-word;
 }
 </style>
