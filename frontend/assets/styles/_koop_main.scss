@@ -650,7 +650,7 @@ label {
   position: absolute;
   left: 1em;
   top: 0.95em;
-  background: url(../images/icon-loader.svg) no-repeat left top;
+  background: url(@/assets/images/icons/icon-loader.svg) no-repeat left top;
   background-size: 1em;
 }
 .button--large.is-loading {
@@ -752,7 +752,7 @@ label {
   margin-top: 0.25em;
 }
 .button--erase {
-  background: #fff url(../images/icon-remove-blue.svg) no-repeat right 1em
+  background: #fff url(@/assets/images/icons/icon-remove-blue.svg) no-repeat right 1em
     center;
   background-size: 1em;
   background-color: #fff;
@@ -768,7 +768,7 @@ label {
   color: #fff;
 }
 .button--profile {
-  background: #fff url(../images/icon-profile.svg) no-repeat right 1em center;
+  background: #fff url(@/assets/images/icons/icon-profile.svg) no-repeat right 1em center;
   background-size: 1em;
   background-color: #fff;
   color: #154273;
@@ -791,7 +791,7 @@ label {
 }
 .button--share {
   background-color: #e5f1f9;
-  background-image: url(../images/icon-share.svg);
+  background-image: url(@/assets/images/icons/icon-share.svg);
   background-position: right 1em center;
   background-repeat: no-repeat;
   background-size: 1.1em;
@@ -810,7 +810,7 @@ label {
 .button--icon-external {
   background-position: right 0.75em center;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-link-external-v2.svg);
+  background-image: url(@/assets/images/icons/icon-link-external-v2.svg);
   background-size: 0.9em;
   padding-right: 3.125em;
   position: relative;
@@ -828,7 +828,7 @@ label {
   padding-right: 2em;
   background-position: 90% 50%;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-search.svg);
+  background-image: url(@/assets/images/icons/icon-search.svg);
   background-size: 1.25em;
 }
 .button--icon-right {
@@ -862,26 +862,26 @@ label {
 .button--icon-upload {
   background-position: 1em center;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-upload.svg);
+  background-image: url(@/assets/images/icons/icon-upload.svg);
   padding-left: 3em;
 }
 .button--icon-download {
   background-position: 1em center;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-download.svg);
+  background-image: url(@/assets/images/icons/icon-download.svg);
   padding-left: 3em;
 }
 .button--icon-filter {
   background-position: 1em center;
   background-size: 1em;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-filter.svg);
+  background-image: url(@/assets/images/icons/icon-filter.svg);
   padding-left: 2.75em;
 }
 .button--icon-download-white {
   background-position: 1em center;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-download-white.svg);
+  background-image: url(@/assets/images/icons/icon-download-white.svg);
   padding-left: 3em;
 }
 .button--icon-hamburger {
@@ -894,19 +894,19 @@ label {
 .button--icon-refreshdocuments {
   background-position: 0.75em 50%;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-refresh-document.svg);
+  background-image: url(@/assets/images/icons/icon-refresh-document.svg);
   background-size: 1.5em;
   padding-left: 3em;
 }
 .button--icon-refreshdocuments-white {
   background-position: 0.75em 50%;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-refresh-document-white.svg);
+  background-image: url(@/assets/images/icons/icon-refresh-document-white.svg);
   background-size: 1.75em;
   padding-left: 3em;
 }
 .button--divider-icon {
-  background-image: url(../images/icon-refresh-document-white.svg);
+  background-image: url(@/assets/images/icons/icon-refresh-document-white.svg);
   background-repeat: no-repeat;
   padding-right: 3em;
   background-size: 1.75em;
@@ -919,7 +919,7 @@ label {
   margin-right: 0.2em;
 }
 .button--divider-icon-draw {
-  background-image: url(../images/icon-draw.svg);
+  background-image: url(@/assets/images/icons/icon-draw.svg);
   background-repeat: no-repeat;
   padding-right: 3em;
   background-size: 1.25em;
@@ -932,7 +932,7 @@ label {
   margin-right: 0.2em;
 }
 .button--divider-icon-map {
-  background-image: url(../images/icon-map.svg);
+  background-image: url(@/assets/images/icons/icon-map.svg);
   background-repeat: no-repeat;
   padding-right: 3em;
   background-size: 1.25em;
@@ -980,7 +980,7 @@ label {
   padding: 1.3em;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-search.svg);
+  background-image: url(@/assets/images/icons/icon-search.svg);
   background-size: 0.8em;
   cursor: pointer;
   margin-right: 0.5em;
@@ -1015,40 +1015,40 @@ label {
   background-size: 1em;
 }
 .button-icon--marker {
-  background-image: url(../images/icon-marker.svg);
+  background-image: url(@/assets/images/icons/icon-marker.svg);
 }
 .button-icon--download {
-  background-image: url(../images/icon-download-white.svg);
+  background-image: url(@/assets/images/icons/icon-download-white.svg);
 }
 .button-icon--dots {
-  background-image: url(../images/icon-dots.svg);
+  background-image: url(@/assets/images/icons/icon-dots.svg);
 }
 .button-icon--crosshair {
-  background-image: url(../images/icon-crosshair.svg);
+  background-image: url(@/assets/images/icons/icon-crosshair.svg);
 }
 .button-icon--remove {
-  background-image: url(../images/icon-remove-white.svg);
+  background-image: url(@/assets/images/icons/icon-remove-white.svg);
 }
 .button-icon--plus {
-  background-image: url(../images/icon-plus-white.svg);
+  background-image: url(@/assets/images/icons/icon-plus-white.svg);
 }
 .button-icon--cross {
-  background-image: url(../images/icon-close-white.svg);
+  background-image: url(@/assets/images/icons/icon-close-white.svg);
 }
 .button-icon--edit {
-  background-image: url(../images/icon-bewerken.svg);
+  background-image: url(@/assets/images/icons/icon-bewerken.svg);
 }
 .button-icon--calendar {
-  background-image: url(../images/icon-calendar.svg);
+  background-image: url(@/assets/images/icons/icon-calendar.svg);
 }
 .button-icon--remove {
-  background-image: url(../images/icon-remove.svg);
+  background-image: url(@/assets/images/icons/icon-remove.svg);
 }
 .button-icon--arrow-up {
-  background-image: url(../images/icon-arrow-up.svg);
+  background-image: url(@/assets/images/icons/icon-arrow-up.svg);
 }
 .button-icon--arrow-down {
-  background-image: url(../images/icon-arrow-down.svg);
+  background-image: url(@/assets/images/icons/icon-arrow-down.svg);
 }
 .button-icon--plain {
   background-color: transparent;
@@ -1147,34 +1147,34 @@ button.subselection__trigger.is-filled:hover {
 }
 .icon--download,
 .link--download {
-  background-image: url(../images/icon-download.svg);
+  background-image: url(@/assets/images/icons/icon-download.svg);
 }
 .icon--remove-right {
-  background-image: url(../images/icon-remove.svg);
+  background-image: url(@/assets/images/icons/icon-remove.svg);
   background-position: right 50%;
   padding-left: 0;
   padding-right: 1.5em;
 }
 .icon--remove {
-  background-image: url(../images/icon-remove.svg);
+  background-image: url(@/assets/images/icons/icon-remove.svg);
 }
 .icon--remove-blue {
-  background-image: url(../images/icon-remove-blue.svg);
+  background-image: url(@/assets/images/icons/icon-remove-blue.svg);
   background-position: right 50%;
   padding-left: 0;
   padding-right: 1.5em;
 }
 .icon--remove-blue-left {
-  background-image: url(../images/icon-remove-blue.svg);
+  background-image: url(@/assets/images/icons/icon-remove-blue.svg);
 }
 .icon--openall {
-  background-image: url(../images/icon-plus.svg);
+  background-image: url(@/assets/images/icons/icon-plus.svg);
   background-position: right 50%;
   padding-left: 0;
   padding-right: 1.5em;
 }
 .icon--closeall {
-  background-image: url(../images/icon-minus.svg);
+  background-image: url(@/assets/images/icons/icon-minus.svg);
   background-position: right 50%;
   padding-left: 0;
   padding-right: 1.5em;
@@ -1183,7 +1183,7 @@ button.subselection__trigger.is-filled:hover {
   display: block;
   padding: 0 0 0.5em 1.5em;
   margin-bottom: 0.5em;
-  background-image: url(../images/icon-double-left.svg);
+  background-image: url(@/assets/images/icons/icon-double-left.svg);
   background-size: 16px;
   background-repeat: no-repeat;
   background-position: left 0.25em;
@@ -1191,7 +1191,7 @@ button.subselection__trigger.is-filled:hover {
 .icon--downloadfile {
   display: inline-block;
   padding: 0 0 0 1.5em;
-  background-image: url(../images/icon-download.svg) !important;
+  background-image: url(@/assets/images/icons/icon-download.svg) !important;
   background-size: 1em !important;
   background-repeat: no-repeat !important;
   background-position: left 0.25em !important;
@@ -1199,7 +1199,7 @@ button.subselection__trigger.is-filled:hover {
 .icon--publication {
   display: inline-block;
   padding: 0 1.5em 0 0;
-  background-image: url(../images/icon-publicatie.svg);
+  background-image: url(@/assets/images/icons/icon-publicatie.svg);
   background-size: 16px;
   background-repeat: no-repeat;
   background-position: left -3px center;
@@ -1343,27 +1343,27 @@ button.subselection__trigger.is-filled:hover {
 .icon--arrow-right {
   display: inline-block;
   padding: 0 1.5em 0 0;
-  background-image: url(../images/icon-arrow-right.svg);
+  background-image: url(@/assets/images/icons/icon-arrow-right.svg);
   background-size: 16px;
   background-repeat: no-repeat;
   background-position: right 50%;
 }
 .icon--arrow-cta-left {
-  background-image: url(../images/icon-cta-right.svg);
+  background-image: url(@/assets/images/icons/icon-cta-right.svg);
 }
 .icon--arrow-cta-right {
-  background-image: url(../images/icon-cta-left.svg);
+  background-image: url(@/assets/images/icons/icon-cta-left.svg);
   background-size: 1em;
 }
 .icon--dart-left {
   background-image: url(@/assets/images/icons/icon-dart-left.svg);
 }
 .icon--cross-blue {
-  background-image: url(../images/icon-cross-blue.svg);
+  background-image: url(@/assets/images/icons/icon-cross-blue.svg);
   background-position: left 50%;
 }
 .icon--cross-blue--small {
-  background-image: url(../images/icon-cross-blue.svg);
+  background-image: url(@/assets/images/icons/icon-cross-blue.svg);
   background-position: left 50%;
   background-size: 0.5em;
   padding-left: 1em;
@@ -1373,236 +1373,236 @@ button.subselection__trigger.is-filled:hover {
 }
 .icon--bin,
 .link--remove {
-  background-image: url(../images/icon-remove-blue.svg);
+  background-image: url(@/assets/images/icons/icon-remove-blue.svg);
 }
 .icon--check2Blue,
 .link--check {
-  background-image: url(../images/icon-check2-blue.svg);
+  background-image: url(@/assets/images/icons/icon-check2-blue.svg);
 }
 .icon--check2White,
 .input-group__label:before {
-  background-image: url(../images/icon-check2-white.svg);
+  background-image: url(@/assets/images/icons/icon-check2-white.svg);
 }
 .icon--check2Green {
-  background-image: url(../images/icon-check2-green.svg);
+  background-image: url(@/assets/images/icons/icon-check2-green.svg);
 }
 .icon--edit,
 .link--edit,
 .subselection__trigger.is-filled {
-  background-image: url(../images/icon-bewerken-blue.svg);
+  background-image: url(@/assets/images/icons/icon-bewerken-blue.svg);
 }
 .icon--feed,
 .link--feed {
-  background-image: url(../images/icon-feed-blue.svg);
+  background-image: url(@/assets/images/icons/icon-feed-blue.svg);
 }
 .icon--list,
 .subselection-checkbox__trigger.is-empty,
 .subselection__trigger.is-empty {
-  background-image: url(../images/icon-list.svg);
+  background-image: url(@/assets/images/icons/icon-list.svg);
 }
 .form__row h2.u-nomargin ~ p > a,
 .icon--refresh {
-  background-image: url(../images/icon-refresh.svg);
+  background-image: url(@/assets/images/icons/icon-refresh.svg);
 }
 .icon--document,
 .link--document {
-  background-image: url(../images/icon-publicatie.svg);
+  background-image: url(@/assets/images/icons/icon-publicatie.svg);
 }
 .icon--map {
-  background-image: url(../images/icon-map-blue.svg);
+  background-image: url(@/assets/images/icons/icon-map-blue.svg);
 }
 .icon--house {
-  background-image: url(../images/icon-home.svg);
+  background-image: url(@/assets/images/icons/icon-home.svg);
 }
 .icon--search {
-  background-image: url(../images/icon-search.svg);
+  background-image: url(@/assets/images/icons/icon-search.svg);
 }
 .icon--searchBlue {
-  background-image: url(../images/icon-search-blue.svg);
+  background-image: url(@/assets/images/icons/icon-search-blue.svg);
 }
 .icon--news {
-  background-image: url(../images/icon-news.svg);
+  background-image: url(@/assets/images/icons/icon-news.svg);
 }
 .icon--plus {
-  background-image: url(../images/icon-plus.svg);
+  background-image: url(@/assets/images/icons/icon-plus.svg);
 }
 .icon--plusshape {
-  background-image: url(../images/icon-plus-shape.svg);
+  background-image: url(@/assets/images/icons/icon-plus-shape.svg);
 }
 .icon--plus-white {
-  background-image: url(../images/icon-plus-white.svg);
+  background-image: url(@/assets/images/icons/icon-plus-white.svg);
 }
 .icon--mail,
 .link--forgotpw,
 .link--mail {
-  background-image: url(../images/icon-mail.svg);
+  background-image: url(@/assets/images/icons/icon-mail.svg);
 }
 .icon--play {
-  background-image: url(../images/icon-play.svg);
+  background-image: url(@/assets/images/icons/icon-play.svg);
 }
 .icon--profile,
 .link--profile {
-  background-image: url(../images/icon-profile.svg);
+  background-image: url(@/assets/images/icons/icon-profile.svg);
 }
 .icon--logout,
 .link--logout {
-  background-image: url(../images/icon-logout.svg);
+  background-image: url(@/assets/images/icons/icon-logout.svg);
 }
 .icon--fullscreen {
   background-image: url(../images/kpm/FullScreen.svg);
 }
 .icon--shareBlue,
 .link--share {
-  background-image: url(../images/icon-share-blue.svg);
+  background-image: url(@/assets/images/icons/icon-share-blue.svg);
 }
 .icon--facebook {
-  background-image: url(../images/icon-facebook.svg);
+  background-image: url(@/assets/images/icons/icon-facebook.svg);
 }
 .icon--linkedin {
-  background-image: url(../images/icon-linkedin.svg);
+  background-image: url(@/assets/images/icons/icon-linkedin.svg);
 }
 .icon--twitter {
-  background-image: url(../images/icon-twitter.svg);
+  background-image: url(@/assets/images/icons/icon-twitter.svg);
 }
 .icon--whatsapp {
-  background-image: url(../images/icon-whatsapp.svg);
+  background-image: url(@/assets/images/icons/icon-whatsapp.svg);
 }
 .icon--instagram {
-  background-image: url(../images/icon-instagram.svg);
+  background-image: url(@/assets/images/icons/icon-instagram.svg);
 }
 .icon--external,
 .link--external {
-  background-image: url(../images/icon-link-external-v2.svg);
+  background-image: url(@/assets/images/icons/icon-link-external-v2.svg);
 }
 .icon--explanation,
 .link--question {
-  background-image: url(../images/icon-explanation.svg);
+  background-image: url(@/assets/images/icons/icon-explanation.svg);
 }
 .icon--tel,
 .link--tel {
-  background-image: url(../images/icon-tel.svg);
+  background-image: url(@/assets/images/icons/icon-tel.svg);
 }
 .icon--info,
 .link--info {
-  background-image: url(../images/icon-info-blue.svg);
+  background-image: url(@/assets/images/icons/icon-info-blue.svg);
 }
 .icon--cta {
-  background-image: url(../images/icon-cta-right.svg);
+  background-image: url(@/assets/images/icons/icon-cta-right.svg);
 }
 .icon--arrow-down,
 .link--arrow-down,
 .link--r-arrow-down {
-  background-image: url(../images/icon-arrow-down.svg);
+  background-image: url(@/assets/images/icons/icon-arrow-down.svg);
 }
 .icon--lockBlue {
-  background-image: url(../images/icon-24-lock-blue.svg);
+  background-image: url(@/assets/images/icons/icon-24-lock-blue.svg);
 }
 .icon-bg--bin {
-  background-image: url(../images/icon-remove-blue.svg) !important;
+  background-image: url(@/assets/images/icons/icon-remove-blue.svg) !important;
 }
 .icon-bg--check2Blue {
-  background-image: url(../images/icon-check2-blue.svg) !important;
+  background-image: url(@/assets/images/icons/icon-check2-blue.svg) !important;
 }
 .icon-bg--check2White {
-  background-image: url(../images/icon-check2-white.svg) !important;
+  background-image: url(@/assets/images/icons/icon-check2-white.svg) !important;
 }
 .icon-bg--check2Green {
-  background-image: url(../images/icon-check2-green.svg) !important;
+  background-image: url(@/assets/images/icons/icon-check2-green.svg) !important;
 }
 .icon-bg--edit {
-  background-image: url(../images/icon-bewerken-blue.svg) !important;
+  background-image: url(@/assets/images/icons/icon-bewerken-blue.svg) !important;
 }
 .icon-bg--feed {
-  background-image: url(../images/icon-feed-blue.svg) !important;
+  background-image: url(@/assets/images/icons/icon-feed-blue.svg) !important;
 }
 .icon-bg--list {
-  background-image: url(../images/icon-list.svg) !important;
+  background-image: url(@/assets/images/icons/icon-list.svg) !important;
 }
 .icon-bg--refresh {
-  background-image: url(../images/icon-refresh.svg) !important;
+  background-image: url(@/assets/images/icons/icon-refresh.svg) !important;
 }
 .icon-bg--document {
-  background-image: url(../images/icon-publicatie.svg) !important;
+  background-image: url(@/assets/images/icons/icon-publicatie.svg) !important;
 }
 .icon-bg--map {
-  background-image: url(../images/icon-map-blue.svg) !important;
+  background-image: url(@/assets/images/icons/icon-map-blue.svg) !important;
 }
 .icon-bg--house {
-  background-image: url(../images/icon-home.svg) !important;
+  background-image: url(@/assets/images/icons/icon-home.svg) !important;
 }
 .icon-bg--search {
-  background-image: url(../images/icon-search.svg) !important;
+  background-image: url(@/assets/images/icons/icon-search.svg) !important;
 }
 .icon-bg--searchBlue {
-  background-image: url(../images/icon-search-blue.svg) !important;
+  background-image: url(@/assets/images/icons/icon-search-blue.svg) !important;
 }
 .icon-bg--news {
-  background-image: url(../images/icon-news.svg) !important;
+  background-image: url(@/assets/images/icons/icon-news.svg) !important;
 }
 .icon-bg--plus {
-  background-image: url(../images/icon-plus.svg) !important;
+  background-image: url(@/assets/images/icons/icon-plus.svg) !important;
 }
 .icon-bg--plusshape {
-  background-image: url(../images/icon-plus-shape.svg) !important;
+  background-image: url(@/assets/images/icons/icon-plus-shape.svg) !important;
 }
 .icon-bg--plus-white {
-  background-image: url(../images/icon-plus-white.svg) !important;
+  background-image: url(@/assets/images/icons/icon-plus-white.svg) !important;
 }
 .icon-bg--mail {
-  background-image: url(../images/icon-mail.svg) !important;
+  background-image: url(@/assets/images/icons/icon-mail.svg) !important;
 }
 .icon-bg--play {
-  background-image: url(../images/icon-play.svg) !important;
+  background-image: url(@/assets/images/icons/icon-play.svg) !important;
 }
 .button--profile,
 .icon-bg--profile {
-  background-image: url(../images/icon-profile.svg) !important;
+  background-image: url(@/assets/images/icons/icon-profile.svg) !important;
 }
 .button--logout,
 .icon-bg--logout {
-  background-image: url(../images/icon-logout.svg) !important;
+  background-image: url(@/assets/images/icons/icon-logout.svg) !important;
 }
 .icon-bg--fullscreen {
   background-image: url(../images/kpm/FullScreen.svg) !important;
 }
 .icon-bg--shareBlue {
-  background-image: url(../images/icon-share-blue.svg) !important;
+  background-image: url(@/assets/images/icons/icon-share-blue.svg) !important;
 }
 .icon-bg--facebook {
-  background-image: url(../images/icon-facebook.svg) !important;
+  background-image: url(@/assets/images/icons/icon-facebook.svg) !important;
 }
 .icon-bg--linkedin {
-  background-image: url(../images/icon-linkedin.svg) !important;
+  background-image: url(@/assets/images/icons/icon-linkedin.svg) !important;
 }
 .icon-bg--twitter {
-  background-image: url(../images/icon-twitter.svg) !important;
+  background-image: url(@/assets/images/icons/icon-twitter.svg) !important;
 }
 .icon-bg--whatsapp {
-  background-image: url(../images/icon-whatsapp.svg) !important;
+  background-image: url(@/assets/images/icons/icon-whatsapp.svg) !important;
 }
 .icon-bg--instagram {
-  background-image: url(../images/icon-instagram.svg) !important;
+  background-image: url(@/assets/images/icons/icon-instagram.svg) !important;
 }
 .icon-bg--external {
-  background-image: url(../images/icon-link-external-v2.svg) !important;
+  background-image: url(@/assets/images/icons/icon-link-external-v2.svg) !important;
 }
 .icon-bg--explanation {
-  background-image: url(../images/icon-explanation.svg) !important;
+  background-image: url(@/assets/images/icons/icon-explanation.svg) !important;
 }
 .icon-bg--tel {
-  background-image: url(../images/icon-tel.svg) !important;
+  background-image: url(@/assets/images/icons/icon-tel.svg) !important;
 }
 .icon-bg--info {
-  background-image: url(../images/icon-info-blue.svg) !important;
+  background-image: url(@/assets/images/icons/icon-info-blue.svg) !important;
 }
 .icon-bg--cta {
-  background-image: url(../images/icon-cta-right.svg) !important;
+  background-image: url(@/assets/images/icons/icon-cta-right.svg) !important;
 }
 .icon-bg--arrow-down {
-  background-image: url(../images/icon-arrow-down.svg) !important;
+  background-image: url(@/assets/images/icons/icon-arrow-down.svg) !important;
 }
 .icon-bg--lockBlue {
-  background-image: url(../images/icon-24-lock-blue.svg) !important;
+  background-image: url(@/assets/images/icons/icon-24-lock-blue.svg) !important;
 }
 .browse {
   margin-bottom: 1em;
@@ -1626,7 +1626,7 @@ button.subselection__trigger.is-filled:hover {
   background-color: #fff;
   text-decoration: none;
   overflow: hidden;
-  background-image: url(../images/icon-double-right.svg);
+  background-image: url(@/assets/images/icons/icon-double-right.svg);
   background-repeat: no-repeat;
   background-position: right 0.5em center;
   background-size: 1em;
@@ -1829,7 +1829,7 @@ h3.ankered:before {
   content: '';
   width: 40px;
   height: 19px;
-  background: url(../images/icon-permalink.svg);
+  background: url(@/assets/images/icons/icon-permalink.svg);
   background-repeat: no-repeat;
   background-size: 16px;
 }
@@ -2026,7 +2026,7 @@ a {
 }
 .related--primaryBlue a[href*="://"]:not(.button):not(.to-top):not(.copydata__trigger):not(.ui-datepicker-close):not(.link):not(.pull-right):not(.pull-left):not([href*=".overheid.nl"]):not([href*=".officielebekendmakingen.nl"]):not([href*=".officiele-overheidspublicaties.nl"]):after,.related--primaryBlue a[rel=external]:after
 {
-  background-image: url(../images/icon-link-external-white-standard.svg);
+  background-image: url(@/assets/images/icons/icon-link-external-white-standard.svg);
 }
 a:empty {
   visibility: hidden;
@@ -2041,7 +2041,7 @@ a.is-external:after {
   display: inline-block;
   margin: 0 0.25em;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-link-external-v2.svg);
+  background-image: url(@/assets/images/icons/icon-link-external-v2.svg);
   background-position: right center;
   background-size: 0.75em;
   width: 1em;
@@ -2062,7 +2062,7 @@ a.cta {
   padding: 0 2em 0 0;
   font-size: 1.125rem;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-cta-right.svg);
+  background-image: url(@/assets/images/icons/icon-cta-right.svg);
   background-position: right 1px top 0.25em;
   background-size: 1em;
 }
@@ -2072,7 +2072,7 @@ a.cta--left {
 }
 a.cta--external {
   background-repeat: no-repeat;
-  background-image: url(../images/icon-link-external-v2.svg);
+  background-image: url(@/assets/images/icons/icon-link-external-v2.svg);
   background-position: right 3px top 1px;
   background-size: 1em;
 }
@@ -2082,7 +2082,7 @@ a.cta__backwards {
   font-size: 1.25rem;
   font-weight: 700;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-cta-left.svg);
+  background-image: url(@/assets/images/icons/icon-cta-left.svg);
   background-position: left 3px;
   background-size: 1em;
 }
@@ -2131,7 +2131,7 @@ li.link--up a {
 .link--delete {
   font-size: 90%;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-remove.svg);
+  background-image: url(@/assets/images/icons/icon-remove.svg);
   background-position: left center;
   background-size: 1em;
   padding-left: 1.5em;
@@ -2153,7 +2153,7 @@ li.link--up a {
 .link--map {
   background-position: 0 center;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-map-blue.svg);
+  background-image: url(@/assets/images/icons/icon-map-blue.svg);
   padding-left: 2em;
 }
 .link--question {
@@ -2176,19 +2176,19 @@ li.link--up a {
   background-position: right center;
 }
 .link-iconed--print {
-  background-image: url(../images/icon-print.svg);
+  background-image: url(@/assets/images/icons/icon-print.svg);
   background-size: 1em;
 }
 .link-iconed--download {
-  background-image: url(../images/icon-download.svg);
+  background-image: url(@/assets/images/icons/icon-download.svg);
   background-size: 0.8em;
 }
 .link-iconed--mail {
-  background-image: url(../images/icon-mail.svg);
+  background-image: url(@/assets/images/icons/icon-mail.svg);
   background-size: 0.8em;
 }
 .link-iconed--publication {
-  background-image: url(../images/icon-publicatie.svg);
+  background-image: url(@/assets/images/icons/icon-publicatie.svg);
   background-size: 1em;
 }
 ul {
@@ -2649,7 +2649,7 @@ ol > li > ol > li > ol {
   top: 0;
   width: 1.25em;
   height: 1.25em;
-  background: url(../images/icon-check2-green.svg) no-repeat;
+  background: url(@/assets/images/icons/icon-check2-green.svg) no-repeat;
   opacity: 0;
 }
 .list--checked li.is-active,
@@ -2676,7 +2676,7 @@ ol > li > ol > li > ol {
   top: 0;
   width: 1.25em;
   height: 1.25em;
-  background: url(../images/icon-check2-green.svg) no-repeat;
+  background: url(@/assets/images/icons/icon-check2-green.svg) no-repeat;
 }
 .list--inline,
 .table-topbar__list {
@@ -2748,7 +2748,7 @@ ol > li > ol > li > ol {
 }
 .list--action > li a.is-external,
 .list--action > li a[rel='external'] {
-  background-image: url(../images/icon-link-external-v2.svg);
+  background-image: url(@/assets/images/icons/icon-link-external-v2.svg);
   background-size: 0.75em;
   background-position: center right;
 }
@@ -2960,19 +2960,19 @@ ol > li > ol > li > ol {
   }
 }
 .list--iconedcontainer .list__item--kids:before {
-  background-image: url(../images/icon-64-kids.svg);
+  background-image: url(@/assets/images/icons/icon-64-kids.svg);
 }
 .list--iconedcontainer .list__item--family:before {
-  background-image: url(../images/icon-64-family.svg);
+  background-image: url(@/assets/images/icons/icon-64-family.svg);
 }
 .list--iconedcontainer .list__item--people:before {
-  background-image: url(../images/icon-64-people.svg);
+  background-image: url(@/assets/images/icons/icon-64-people.svg);
 }
 .list--iconedcontainer .list__item--finance:before {
-  background-image: url(../images/icon-64-finance.svg);
+  background-image: url(@/assets/images/icons/icon-64-finance.svg);
 }
 .list--iconedcontainer .list__item--living:before {
-  background-image: url(../images/icon-64-living.svg);
+  background-image: url(@/assets/images/icons/icon-64-living.svg);
 }
 .list--stepcontainer {
   margin: 0;
@@ -3181,7 +3181,7 @@ ol > li > ol > li > ol {
   overflow: hidden;
   padding: 0.5em 2em 0.5em 0.5em;
   background-color: #fff;
-  background-image: url(../images/icon-copy.svg);
+  background-image: url(@/assets/images/icons/icon-copy.svg);
   background-position: 99% 0.25em;
   background-size: 1em;
   background-repeat: no-repeat;
@@ -3528,7 +3528,7 @@ q {
 }
 .label--ok {
   background-color: #e4f0ef;
-  background-image: url(../images/icon-ok.svg);
+  background-image: url(@/assets/images/icons/icon-ok.svg);
   background-repeat: no-repeat;
   background-position: 0.75em 50%;
   background-size: 1em;
@@ -3536,7 +3536,7 @@ q {
 }
 .label--characteristic {
   background-color: #f7f0fe;
-  background-image: url(../images/icon-characteristic.svg);
+  background-image: url(@/assets/images/icons/icon-characteristic.svg);
   background-repeat: no-repeat;
   background-position: 0.5em 50%;
   background-size: 1.3em;
@@ -3544,7 +3544,7 @@ q {
 }
 .label--area {
   background-color: #f5e4e0;
-  background-image: url(../images/icon-area.svg);
+  background-image: url(@/assets/images/icons/icon-area.svg);
   background-repeat: no-repeat;
   background-position: 0.5em 50%;
   background-size: 1.3em;
@@ -3552,7 +3552,7 @@ q {
 }
 .label--basis {
   background-color: #a4b3c6;
-  background-image: url(../images/icon-basis.svg);
+  background-image: url(@/assets/images/icons/icon-basis.svg);
   background-repeat: no-repeat;
   background-position: 0.5em 50%;
   background-size: 1.3em;
@@ -3615,7 +3615,7 @@ q {
   justify-content: center;
 }
 .video__play__trigger {
-  background: #154273 url(../images/icon-play.svg) no-repeat center;
+  background: #154273 url(@/assets/images/icons/icon-play.svg) no-repeat center;
   width: 60px;
   height: 60px;
   display: inline-block;
@@ -3711,13 +3711,13 @@ q {
   background-color: transparent;
   text-indent: -9999em;
   cursor: pointer;
-  background-image: url(../images/icon-close.svg);
+  background-image: url(@/assets/images/icons/icon-close.svg);
   background-repeat: no-repeat;
   background-position: center center;
 }
 .table--container__closefullscreen:hover,
 .table__container__closefullscreen:hover {
-  background-image: url(../images/icon-close-hover.svg);
+  background-image: url(@/assets/images/icons/icon-close-hover.svg);
 }
 .table--container__fullscreen.is-fullscreen .table--container__closefullscreen,
 .table--container__fullscreen.is-fullscreen .table__container__closefullscreen,
@@ -4304,7 +4304,7 @@ table.table--headerhighlight.table--condensed thead tr th {
   padding: 1em;
   margin: 1em 0;
   padding-left: 3em;
-  background-image: url(../images/icon-info.svg);
+  background-image: url(@/assets/images/icons/icon-info.svg);
 }
 .alert--update {
   background-color: #fff0e1;
@@ -4343,18 +4343,18 @@ table.table--headerhighlight.table--condensed thead tr th {
 }
 .alert--loading {
   background-color: #c7eaff;
-  background-image: url(../images/icon-loader.svg);
+  background-image: url(@/assets/images/icons/icon-loader.svg);
 }
 .alert--warning {
   background-color: #fff0e1;
-  background-image: url(../images/icon-warning.svg);
+  background-image: url(@/assets/images/icons/icon-warning.svg);
   border-color: #e17000;
   padding-left: 2.5em;
 }
 .alert--info,
 .verschilmarkering {
   background-color: #c7eaff;
-  background-image: url(../images/icon-info.svg);
+  background-image: url(@/assets/images/icons/icon-info.svg);
   border-color: #007bc7;
   padding-left: 2.5em;
 }
@@ -4362,7 +4362,7 @@ table.table--headerhighlight.table--condensed thead tr th {
   border-color: #39870c;
   padding-left: 2.5em;
   background-color: #e4f0ef;
-  background-image: url(../images/icon-ok-green.svg);
+  background-image: url(@/assets/images/icons/icon-ok-green.svg);
 }
 .alert--fixed {
   position: fixed;
@@ -4382,7 +4382,7 @@ table.table--headerhighlight.table--condensed thead tr th {
   top: 1.5em;
   right: 0.5em;
   bottom: 0;
-  background: url(../images/icon-close.svg) no-repeat center center;
+  background: url(@/assets/images/icons/icon-close.svg) no-repeat center center;
   border: none;
   cursor: pointer;
 }
@@ -4497,7 +4497,7 @@ body > .verschilmarkering {
     background-color: #fff0e1;
   }
   body > .alert--warning .alert__inner {
-    background-image: url(../images/icon-warning.svg);
+    background-image: url(@/assets/images/icons/icon-warning.svg);
   }
   body > .alert--info,
   body > .verschilmarkering {
@@ -4505,13 +4505,13 @@ body > .verschilmarkering {
   }
   body > .alert--info .alert__inner,
   body > .verschilmarkering .alert__inner {
-    background-image: url(../images/icon-info.svg);
+    background-image: url(@/assets/images/icons/icon-info.svg);
   }
   body > .alert--success {
     background-color: #e4f0ef;
   }
   body > .alert--success .alert__inner {
-    background-image: url(../images/icon-ok-green.svg);
+    background-image: url(@/assets/images/icons/icon-ok-green.svg);
   }
 }
 .figure,
@@ -4607,13 +4607,13 @@ picture img {
   background-position: left 50%;
   background-size: 11px;
   background-color: transparent;
-  background-image: url(../images/icon-plus.svg);
+  background-image: url(@/assets/images/icons/icon-plus.svg);
 }
 .collapsible .collapsible__header a:hover {
   text-decoration: underline;
 }
 .collapsible .collapsible__header a[aria-expanded='true'] {
-  background-image: url(../images/icon-minus.svg);
+  background-image: url(@/assets/images/icons/icon-minus.svg);
 }
 .collapsible .collapsible__header > span {
   margin-left: 1em;
@@ -4633,12 +4633,12 @@ picture img {
   font-size: 1.5rem;
   background-position: right 50%;
   background-size: 18px;
-  background-image: url(../images/icon-plus-shape.svg);
+  background-image: url(@/assets/images/icons/icon-plus-shape.svg);
   padding-left: 0;
   width: 100%;
 }
 .collapsible--primary .collapsible__header a[aria-expanded='true'] {
-  background-image: url(../images/icon-minus-shape.svg);
+  background-image: url(@/assets/images/icons/icon-minus-shape.svg);
 }
 .collapsible--primary .collapsible__content {
   margin: 0;
@@ -4730,12 +4730,12 @@ picture img {
   background-color: transparent;
   text-indent: -9999em;
   cursor: pointer;
-  background-image: url(../images/icon-close.svg);
+  background-image: url(@/assets/images/icons/icon-close.svg);
   background-repeat: no-repeat;
   background-position: center center;
 }
 .modal__close:hover {
-  background-image: url(../images/icon-close-hover.svg);
+  background-image: url(@/assets/images/icons/icon-close-hover.svg);
 }
 .modal--tooltip {
   background: 0 0;
@@ -5119,12 +5119,12 @@ picture img {
   background-color: transparent;
   text-indent: -9999em;
   cursor: pointer;
-  background-image: url(../images/icon-close.svg);
+  background-image: url(@/assets/images/icons/icon-close.svg);
   background-repeat: no-repeat;
   background-position: center center;
 }
 .modal-sidebar__close:hover {
-  background-image: url(../images/icon-close-hover.svg);
+  background-image: url(@/assets/images/icons/icon-close-hover.svg);
 }
 .modal-sidebar.is-open .modal-sidebar__close {
   display: block;
@@ -5166,7 +5166,7 @@ picture img {
   background-position: left top;
   background-size: 11px;
   background-color: transparent;
-  background-image: url(../images/icon-minus.svg);
+  background-image: url(@/assets/images/icons/icon-minus.svg);
   width: 1em;
   height: 1em;
   border: 0;
@@ -5177,7 +5177,7 @@ picture img {
 }
 .nav.nav-tree li a button[aria-expanded='false'],
 .treeview li a button[aria-expanded='false'] {
-  background-image: url(../images/icon-plus.svg);
+  background-image: url(@/assets/images/icons/icon-plus.svg);
 }
 .nav.nav-tree li span,
 .treeview li span {
@@ -5535,7 +5535,7 @@ picture img {
   width: 22px;
   height: 15px;
   display: inline-block;
-  background-image: url(../images/icon-map-blue.svg);
+  background-image: url(@/assets/images/icons/icon-map-blue.svg);
   background-repeat: no-repeat;
   background-position: center left;
   position: relative;
@@ -5547,7 +5547,7 @@ picture img {
 }
 .nav-sub--treeview .nav-sub__item .is-mother,
 .nav-sub--treeview .nav-sub__sub-item .is-mother {
-  background: url(../images/icon-chevron-left-blue.svg) no-repeat left top 0.4em !important;
+  background: url(@/assets/images/icons/icon-chevron-left-blue.svg) no-repeat left top 0.4em !important;
   background-size: 0.5em !important;
   padding-left: 1em;
 }
@@ -5627,7 +5627,7 @@ picture img {
   text-decoration: underline;
 }
 .homepageblock ul li a[rel='external'] {
-  background-image: url(../images/icon-link-external-white-standard.svg);
+  background-image: url(@/assets/images/icons/icon-link-external-white-standard.svg);
 }
 .homepageblock.related--orange {
   position: relative;
@@ -5648,7 +5648,7 @@ picture img {
 }
 .homepageblock.related--orange .content--inner {
   background-color: rgba(225, 112, 0, 0.8);
-  background-image: url(../images/icon-link-external-white-standard.svg);
+  background-image: url(@/assets/images/icons/icon-link-external-white-standard.svg);
   background-repeat: no-repeat;
   background-position: 97% 0.75em;
   background-size: 2.5em;
@@ -5678,7 +5678,7 @@ picture img {
 }
 .homepageblock.related--darkBlue .content--inner {
   background-color: rgba(21, 66, 115, 0.8);
-  background-image: url(../images/icon-link-external-white-standard.svg);
+  background-image: url(@/assets/images/icons/icon-link-external-white-standard.svg);
   background-repeat: no-repeat;
   background-position: 97% 0.75em;
   background-size: 2.5em;
@@ -5708,7 +5708,7 @@ picture img {
 }
 .homepageblock.related--lightBlue .content--inner {
   background-color: rgba(0, 119, 192, 0.8);
-  background-image: url(../images/icon-link-external-white-standard.svg);
+  background-image: url(@/assets/images/icons/icon-link-external-white-standard.svg);
   background-repeat: no-repeat;
   background-position: 97% 0.75em;
   background-size: 2.5em;
@@ -5933,7 +5933,7 @@ img {
   color: #fff;
   border-color: #154273;
   font-style: normal;
-  background: #154273 url(../images/icon-check2-white.svg) no-repeat left 1.25em
+  background: #154273 url(@/assets/images/icons/icon-check2-white.svg) no-repeat left 1.25em
     center;
 }
 .steps li > ::after {
@@ -6094,27 +6094,27 @@ img {
   z-index: 2;
 }
 .article__header--law li.action--version a {
-  background-image: url(../images/icon-info.svg);
+  background-image: url(@/assets/images/icons/icon-info.svg);
 }
 .article__header--law li.action--compare a {
-  background-image: url(../images/icon-compare.svg);
+  background-image: url(@/assets/images/icons/icon-compare.svg);
 }
 .article__header--law li.action--relations a {
-  background-image: url(../images/icon-relations.svg);
+  background-image: url(@/assets/images/icons/icon-relations.svg);
   background-size: 0.85em;
 }
 .article__header--law li.action--permalink a {
-  background-image: url(../images/icon-permalink.svg);
+  background-image: url(@/assets/images/icons/icon-permalink.svg);
 }
 .article__header--law li.action--download:hover div {
   min-width: 4em;
   left: -1.25em;
 }
 .article__header--law li.action--download a {
-  background-image: url(../images/icon-download.svg);
+  background-image: url(@/assets/images/icons/icon-download.svg);
 }
 .article__header--law li.action--print a {
-  background-image: url(../images/icon-print.svg);
+  background-image: url(@/assets/images/icons/icon-print.svg);
 }
 .article__header--main {
   background: #e5f1f9;
@@ -6572,7 +6572,7 @@ pre {
   clear: both;
   width: 3em;
   height: 3em;
-  background-image: url(../images/icon-loader.svg);
+  background-image: url(@/assets/images/icons/icon-loader.svg);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -6587,7 +6587,7 @@ pre {
 }
 .highlight--next {
   background-color: #e17000;
-  background-image: url(../images/icon-next.svg);
+  background-image: url(@/assets/images/icons/icon-next.svg);
   background-position: left 50%;
   background-repeat: no-repeat;
   background-size: 1em;
@@ -6754,7 +6754,7 @@ dl--publication > div {
 }
 .list--sources li .list--source__information {
   font-weight: 700;
-  background-image: url(../images/icon-publicatie.svg);
+  background-image: url(@/assets/images/icons/icon-publicatie.svg);
   background-size: 1.325em;
   background-position: 0.75em 0.1em;
   background-repeat: no-repeat;
@@ -6763,10 +6763,10 @@ dl--publication > div {
   width: 100%;
 }
 .list--sources li .list--source__information.icon--publication {
-  background-image: url(../images/icon-document.svg);
+  background-image: url(@/assets/images/icons/icon-document.svg);
 }
 .list--sources li .list--source__information.icon--publication-new {
-  background-image: url(../images/icon-document-new.svg);
+  background-image: url(@/assets/images/icons/icon-document-new.svg);
 }
 .list--sources li .list--source__information .list--sources__item__filesize {
   display: block;
@@ -7202,7 +7202,7 @@ dl--publication > div {
   line-height: 1.25em;
 }
 .facetgroup__list > li a.is-selected {
-  background: url(../images/icon-remove-blue.svg) no-repeat left top -0.1em;
+  background: url(@/assets/images/icons/icon-remove-blue.svg) no-repeat left top -0.1em;
   padding-left: 1.75em;
   font-weight: 700;
   margin-left: -0.2em;
@@ -7217,7 +7217,7 @@ dl--publication > div {
   padding: 0 0 0 2em;
   font-weight: 400;
   text-decoration: underline;
-  background: url(../images/icon-list.svg) no-repeat left center;
+  background: url(@/assets/images/icons/icon-list.svg) no-repeat left center;
 }
 .facetgroup [data-handler='open-modal']:hover {
   -webkit-box-shadow: none;
@@ -7249,7 +7249,7 @@ dl--publication > div {
 }
 .characteristics .characteristic--ok::before {
   background-color: #e4f0ef !important;
-  background-image: url(../images/icon-ok.svg);
+  background-image: url(@/assets/images/icons/icon-ok.svg);
   background-size: 0.8em;
 }
 .characteristics .characteristic--basis::before {
@@ -7258,7 +7258,7 @@ dl--publication > div {
 }
 .characteristics .characteristic--share::before {
   background-color: #e5f1f9;
-  background-image: url(../images/icon-share.svg);
+  background-image: url(@/assets/images/icons/icon-share.svg);
 }
 .characteristics .characteristic--international::before {
   background-color: #f5e4e0;
@@ -7319,37 +7319,37 @@ dl--publication > div {
   opacity: 1;
 }
 .toolbar__link--relations::before {
-  background-image: url(../images/icon-relations.svg);
+  background-image: url(@/assets/images/icons/icon-relations.svg);
 }
 .toolbar__link--permalink::before {
-  background-image: url(../images/icon-permalink.svg);
+  background-image: url(@/assets/images/icons/icon-permalink.svg);
 }
 .toolbar__link--version::before {
-  background-image: url(../images/icon-info.svg);
+  background-image: url(@/assets/images/icons/icon-info.svg);
 }
 .toolbar__link--compare::before {
-  background-image: url(../images/icon-compare.svg);
+  background-image: url(@/assets/images/icons/icon-compare.svg);
 }
 .toolbar__link--print::before {
-  background-image: url(../images/icon-print.svg);
+  background-image: url(@/assets/images/icons/icon-print.svg);
 }
 .toolbar__link--download::before {
-  background-image: url(../images/icon-download.svg);
+  background-image: url(@/assets/images/icons/icon-download.svg);
 }
 .toolbar__link--edit::before {
-  background-image: url(../images/icon-bewerken.svg);
+  background-image: url(@/assets/images/icons/icon-bewerken.svg);
 }
 .toolbar__link--calendar::before {
-  background-image: url(../images/icon-calendar.svg);
+  background-image: url(@/assets/images/icons/icon-calendar.svg);
 }
 .toolbar__link--remove::before {
-  background-image: url(../images/icon-remove.svg);
+  background-image: url(@/assets/images/icons/icon-remove.svg);
 }
 .toolbar__link--arrow-up::before {
-  background-image: url(../images/icon-arrow-up.svg);
+  background-image: url(@/assets/images/icons/icon-arrow-up.svg);
 }
 .toolbar__link--arrow-down::before {
-  background-image: url(../images/icon-arrow-down.svg);
+  background-image: url(@/assets/images/icons/icon-arrow-down.svg);
 }
 .buttonswitch {
   border: 2px solid #154273;
@@ -7441,10 +7441,10 @@ dl--publication > div {
   }
 }
 .buttonswitch__button.icon--hamburger.is-active {
-  background-image: url(../images/icon-hamburger-white.svg);
+  background-image: url(@/assets/images/icons/icon-hamburger-white.svg);
 }
 .buttonswitch__button.icon--marker {
-  background: url(../images/icon-marker-blue.svg) no-repeat left 1.1em center;
+  background: url(@/assets/images/icons/icon-marker-blue.svg) no-repeat left 1.1em center;
   background-size: 0.5em;
 }
 @media (min-width: 51em) {
@@ -7453,7 +7453,7 @@ dl--publication > div {
   }
 }
 .buttonswitch__button.icon--marker.is-active {
-  background-image: url(../images/icon-marker.svg);
+  background-image: url(@/assets/images/icons/icon-marker.svg);
 }
 .buttonswitch__button:first-child {
   border-bottom-left-radius: 4px;
@@ -7684,13 +7684,13 @@ dl--publication > div {
   top: 0;
   width: 1.875em;
   bottom: 0;
-  background: url(../images/icon-cta-right.svg) no-repeat center center;
+  background: url(@/assets/images/icons/icon-cta-right.svg) no-repeat center center;
   content: '';
   pointer-events: none;
 }
 .accordion__item__header-trigger[aria-checked='true']:after,
 .accordion__item__header-trigger[aria-expanded='true']:after {
-  background-image: url(../images/icon-arrow-up-blue.svg);
+  background-image: url(@/assets/images/icons/icon-arrow-up-blue.svg);
   background-size: 1.3em;
 }
 .accordion__item__heading {
@@ -7769,7 +7769,7 @@ dl--publication > div {
   }
 }
 .beeldelement__inner {
-  background: url(../images/icon-24-lock-blue.svg) no-repeat left center;
+  background: url(@/assets/images/icons/icon-24-lock-blue.svg) no-repeat left center;
 }
 @media (min-width: 51em) {
   .beeldelement__inner {
@@ -7805,7 +7805,7 @@ form.is-submitted button[type='submit'] {
 form.is-submitted button[type='submit']:before {
   content: '';
   width: 1.25em;
-  background: url(../images/icon-loader.svg);
+  background: url(@/assets/images/icons/icon-loader.svg);
   background-repeat: no-repeat;
   background-position: center center;
   position: absolute;
@@ -8064,10 +8064,10 @@ fieldset legend {
   display: inline-block;
   padding-left: 2em;
   margin-bottom: 0.25em;
-  background: url(../images/icon-alert-red.svg) no-repeat left center;
+  background: url(@/assets/images/icons/icon-alert-red.svg) no-repeat left center;
 }
 .form__errors ul > li > a.line-through {
-  background-image: url(../images/icon-check-filled-green.svg);
+  background-image: url(@/assets/images/icons/icon-check-filled-green.svg);
 }
 .form__row {
   margin-bottom: 1em;
@@ -8204,7 +8204,7 @@ fieldset ~ .form__rowsubmit {
   font-weight: 400;
 }
 .form__success {
-  background: url(../images/icon-check-filled-green.svg) no-repeat left center;
+  background: url(@/assets/images/icons/icon-check-filled-green.svg) no-repeat left center;
   background-color: transparent;
   padding-left: 1.75em;
   color: #39870c;
@@ -8216,7 +8216,7 @@ fieldset ~ .form__rowsubmit {
 .form__error {
   font-style: italic;
   color: #d52b1e;
-  background: url(../images/icon-alert-red.svg) top -6px left;
+  background: url(@/assets/images/icons/icon-alert-red.svg) top -6px left;
   background-color: transparent;
   background-repeat: no-repeat;
   padding-left: 1.75em;
@@ -8227,7 +8227,7 @@ fieldset ~ .form__rowsubmit {
 .form__suggestion {
   font-style: italic;
   color: #154273;
-  background: url(../images/icon-info-blue.svg) top -1px left;
+  background: url(@/assets/images/icons/icon-info-blue.svg) top -1px left;
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: 1em;
@@ -8291,7 +8291,7 @@ fieldset ~ .form__rowsubmit {
 .form__selectedfilter:active .form__selectedfilter__remove,
 .subselection__summary > div:active:not(.link) .form__selectedfilter__remove,
 .subselection__summary > span:active .form__selectedfilter__remove {
-  background-image: url(../images/icon-close-white.svg);
+  background-image: url(@/assets/images/icons/icon-close-white.svg);
 }
 .form__selectedfilter--noremove {
   padding-right: 0.5em;
@@ -8307,7 +8307,7 @@ fieldset ~ .form__rowsubmit {
   content: '"';
 }
 .form__selectedfilter__remove {
-  background: url(../images/icon-cross-blue.svg);
+  background: url(@/assets/images/icons/icon-cross-blue.svg);
   background-repeat: no-repeat;
   background-size: 0.4em;
   background-position: center;
@@ -8632,7 +8632,7 @@ input[type='text'].datepicker__input ~ .ui-datepicker-trigger {
   font-size: 0;
   width: 38px;
   color: #fff;
-  background-image: url(../images/icon-calendar-white.svg);
+  background-image: url(@/assets/images/icons/icon-calendar-white.svg);
   background-size: 22px;
   background-repeat: no-repeat;
   background-position: center;
@@ -8724,7 +8724,7 @@ input[type='text'].is-invalid {
   top: 0;
   width: 1.875em;
   bottom: 0;
-  background: url(../images/icon-arrow-down.svg) no-repeat center center;
+  background: url(@/assets/images/icons/icon-arrow-down.svg) no-repeat center center;
   background-size: 0.9em;
   content: '';
   pointer-events: none;
@@ -8803,7 +8803,7 @@ input[type='text'].input-text--search {
   padding-left: 3em !important;
   background-position: 0.75em center;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-search-blue.svg);
+  background-image: url(@/assets/images/icons/icon-search-blue.svg);
   background-size: 1.5em;
 }
 .input-text__remove {
@@ -8812,7 +8812,7 @@ input[type='text'].input-text--search {
   top: 0;
   width: 2em;
   bottom: 0;
-  background: url(../images/icon-close.svg) no-repeat center center;
+  background: url(@/assets/images/icons/icon-close.svg) no-repeat center center;
   z-index: 9999;
 }
 .input-text__remove.invisible {
@@ -9140,7 +9140,7 @@ input[type='text'].input-text--search {
 .input-inputsubmit--s .input ~ .copydata__trigger,
 .input-inputsubmit--s .input ~ .to-top,
 .input-inputsubmit--s .input ~ .ui-datepicker-close {
-  background-image: url(../images/icon-search.svg);
+  background-image: url(@/assets/images/icons/icon-search.svg);
   background-repeat: no-repeat;
   background-position: center center;
   padding-right: 0.75em;
@@ -9365,7 +9365,7 @@ input[type='text'].input-text--search {
   border: 0;
   width: 3em;
   height: 100%;
-  background: url(../images/icon-close.svg) no-repeat center center;
+  background: url(@/assets/images/icons/icon-close.svg) no-repeat center center;
 }
 .combobox-input {
   width: 100%;
@@ -9433,7 +9433,7 @@ input[type='text'].input-text--search {
 }
 .ui-datepicker-next,
 .ui-datepicker-prev {
-  background-image: url(../images/icon-chevron-right.svg);
+  background-image: url(@/assets/images/icons/icon-chevron-right.svg);
   background-repeat: no-repeat;
   background-size: 0.5em;
   display: inline-block;
@@ -9444,7 +9444,7 @@ input[type='text'].input-text--search {
   top: 0.4em;
 }
 .ui-datepicker-prev {
-  background-image: url(../images/icon-chevron-left.svg);
+  background-image: url(@/assets/images/icons/icon-chevron-left.svg);
   right: auto;
   left: 0;
 }
@@ -9567,7 +9567,7 @@ table.ui-datepicker-calendar tbody tr td {
 }
 .multiselect__result.is-selected:after {
   content: '';
-  background: #b2d7ee url(../images/icon-check.svg) no-repeat center center;
+  background: #b2d7ee url(@/assets/images/icons/icon-check.svg) no-repeat center center;
   background-size: 0.75em;
   position: absolute;
   right: 0;
@@ -9670,7 +9670,7 @@ table.ui-datepicker-calendar tbody tr td {
   width: 1.5em;
   bottom: 0;
   text-indent: -9999em;
-  background: #b2d7ee url(../images/icon-close.svg) no-repeat center center;
+  background: #b2d7ee url(@/assets/images/icons/icon-close.svg) no-repeat center center;
   background-size: 0.5em;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -9757,7 +9757,7 @@ table.ui-datepicker-calendar tbody tr td {
   display: none;
 }
 .has-js .question-explanation__link {
-  background-image: url(../images/icon-explanation.svg);
+  background-image: url(@/assets/images/icons/icon-explanation.svg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 14px;
@@ -9772,7 +9772,7 @@ table.ui-datepicker-calendar tbody tr td {
 }
 .has-js .question-explanation__link:focus,
 .has-js .question-explanation__link:hover {
-  background-image: url(../images/icon-explanation.svg);
+  background-image: url(@/assets/images/icons/icon-explanation.svg);
 }
 .question-explanation__content {
   font-size: 0.875rem;
@@ -9883,7 +9883,7 @@ table.ui-datepicker-calendar tbody tr td {
   display: block;
 }
 .has-js .tooltip__trigger {
-  background-image: url(../images/icon-explanation.svg);
+  background-image: url(@/assets/images/icons/icon-explanation.svg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 14px;
@@ -9900,7 +9900,7 @@ table.ui-datepicker-calendar tbody tr td {
 }
 .has-js .tooltip__trigger:focus,
 .has-js .tooltip__trigger:hover {
-  background-image: url(../images/icon-explanation.svg);
+  background-image: url(@/assets/images/icons/icon-explanation.svg);
 }
 .has-js .tooltip__close {
   position: absolute;
@@ -10007,12 +10007,12 @@ table.ui-datepicker-calendar tbody tr td {
   padding: 1em 1em 2.5em;
 }
 .tooltip--info .tooltip__trigger {
-  background-image: url(../images/icon-info.svg);
+  background-image: url(@/assets/images/icons/icon-info.svg);
   background-size: 18px;
 }
 .tooltip--info .tooltip__trigger:focus,
 .tooltip--info .tooltip__trigger:hover {
-  background-image: url(../images/icon-info.svg);
+  background-image: url(@/assets/images/icons/icon-info.svg);
 }
 .remove-element {
   -webkit-appearance: none;
@@ -10026,7 +10026,7 @@ table.ui-datepicker-calendar tbody tr td {
   background-position: left top;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-remove.svg);
+  background-image: url(@/assets/images/icons/icon-remove.svg);
   display: inline-block;
   -webkit-transition: background-color 150ms ease-in-out,
     outline-offset 150ms ease-in-out;
@@ -10089,12 +10089,12 @@ table.ui-datepicker-calendar tbody tr td {
   > div:not(.link):active
   .subselection__summaryitem__remove,
 .subselection__summary > span:active .subselection__summaryitem__remove {
-  background-image: url(../images/icon-close-white.svg);
+  background-image: url(@/assets/images/icons/icon-close-white.svg);
 }
 .subselection__summary > div:not(.link) .subselection__summaryitem__remove,
 .subselection__summary > span .subselection__summaryitem__remove {
   position: absolute;
-  background: url(../images/icon-cross-blue.svg) no-repeat center;
+  background: url(@/assets/images/icons/icon-cross-blue.svg) no-repeat center;
   background-size: 0.4em;
   width: 30px;
   right: 0;
@@ -11012,7 +11012,7 @@ table.ui-datepicker-calendar tbody tr td {
     width: 2.5em;
     height: 2.5em;
     top: 18em;
-    background-image: url(../images/icon-double-right.svg);
+    background-image: url(@/assets/images/icons/icon-double-right.svg);
     background-repeat: no-repeat;
     background-size: 2em;
     background-color: #fff;
@@ -11035,7 +11035,7 @@ table.ui-datepicker-calendar tbody tr td {
     left: 80%;
     z-index: 3;
     top: 1em;
-    background-image: url(../images/icon-double-left.svg);
+    background-image: url(@/assets/images/icons/icon-double-left.svg);
   }
 }
 @media only screen {
@@ -11164,7 +11164,7 @@ table.ui-datepicker-calendar tbody tr td {
     width: 2.5em;
     height: 2.5em;
     top: 18em;
-    background-image: url(../images/icon-double-right.svg);
+    background-image: url(@/assets/images/icons/icon-double-right.svg);
     background-repeat: no-repeat;
     background-size: 2em;
     background-color: #fff;
@@ -11188,7 +11188,7 @@ table.ui-datepicker-calendar tbody tr td {
     left: 80%;
     z-index: 3;
     top: 1em;
-    background-image: url(../images/icon-double-left.svg);
+    background-image: url(@/assets/images/icons/icon-double-left.svg);
   }
 }
 .container,
@@ -11477,7 +11477,7 @@ table.ui-datepicker-calendar tbody tr td {
   -moz-appearance: none;
   appearance: none;
   background-color: #000;
-  background-image: url(../images/icon-search.svg);
+  background-image: url(@/assets/images/icons/icon-search.svg);
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: 30px;
@@ -11636,7 +11636,7 @@ table.ui-datepicker-calendar tbody tr td {
   padding-right: 1.5em;
   font-size: 0.75rem;
   cursor: pointer;
-  background: transparent url(../images/icon-copy.svg) no-repeat 99% 0.25em;
+  background: transparent url(@/assets/images/icons/icon-copy.svg) no-repeat 99% 0.25em;
   background-size: 1em;
 }
 .form-conditionals__citem,
@@ -11734,7 +11734,7 @@ table.ui-datepicker-calendar tbody tr td {
   transform: translate(1em, 0, 0, 0);
 }
 .toast-message__body {
-  background-image: url(../images/icon-info-blue.svg);
+  background-image: url(@/assets/images/icons/icon-info-blue.svg);
   background-size: 1em;
   background-repeat: no-repeat;
   background-position: 1em 0.125em;
@@ -11744,7 +11744,7 @@ table.ui-datepicker-calendar tbody tr td {
   background-color: #e4f0ef;
 }
 .toast-message--success .toast-message__body {
-  background-image: url(../images/icon-check-filled-green.svg);
+  background-image: url(@/assets/images/icons/icon-check-filled-green.svg);
   background-position: 1em -0.125em !important;
   background-size: 1.5em;
 }
@@ -11752,7 +11752,7 @@ table.ui-datepicker-calendar tbody tr td {
   background-color: #e5f1f9;
 }
 .toast-message--info .toast-message__body {
-  background-image: url(../images/icon-info-blue.svg);
+  background-image: url(@/assets/images/icons/icon-info-blue.svg);
   background-size: 1em;
   background-position: 1.125em 0.125em !important;
 }
@@ -11760,7 +11760,7 @@ table.ui-datepicker-calendar tbody tr td {
   background-color: #fae4e3;
 }
 .toast-message--warning .toast-message__body {
-  background-image: url(../images/icon-alert-red.svg);
+  background-image: url(@/assets/images/icons/icon-alert-red.svg);
   background-position: 1.125em 0 !important;
 }
 .actionblock {
@@ -11884,7 +11884,7 @@ input[type='text'].input-text--searchmedium {
   padding: 0.625em 2em 0.625em 3em;
   background-position: 0.75em center;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-search-blue.svg);
+  background-image: url(@/assets/images/icons/icon-search-blue.svg);
   background-size: 1.5em;
 }
 input[type='password'].input-text--searchmedium
@@ -11953,7 +11953,7 @@ input[type='text'].datepicker__input ~ .ui-datepicker-trigger {
   background-color: #fff;
   border: 1px solid #154273;
   border-left: 0;
-  background-image: url(../images/icon-calendar-blue.svg);
+  background-image: url(@/assets/images/icons/icon-calendar-blue.svg);
   background-size: 22px;
   width: 53px;
   padding: 4em 0.5em 0.5em 0.5em;
@@ -12035,10 +12035,10 @@ form fieldset .passwordstrength__regexcontainer__regexoptions:last-child {
   top: -0.25em;
 }
 .pagination__index li.next a {
-  background: #fff url(../images/icon-cta-right.svg) no-repeat center center;
+  background: #fff url(@/assets/images/icons/icon-cta-right.svg) no-repeat center center;
 }
 .pagination__index li.prev a {
-  background: #fff url(../images/icon-cta-left.svg) no-repeat center center;
+  background: #fff url(@/assets/images/icons/icon-cta-left.svg) no-repeat center center;
 }
 .pagination__index li.next a,
 .pagination__index li.prev a {
@@ -12318,7 +12318,7 @@ p__intro {
   box-shadow: none;
 }
 .button-texticon--marker {
-  background: url(../images/icon-marker-blue.svg) no-repeat left center;
+  background: url(@/assets/images/icons/icon-marker-blue.svg) no-repeat left center;
   background-size: 0.75em;
 }
 .button--block {
@@ -12394,7 +12394,7 @@ p__intro {
   border: none;
 }
 .button--arrowed {
-  background-image: url(../images/icon-cta-right-white.svg);
+  background-image: url(@/assets/images/icons/icon-cta-right-white.svg);
   background-repeat: no-repeat;
   background-position: right 0.625em center;
   padding-right: 3em !important;
@@ -12411,7 +12411,7 @@ p__intro {
   background: #fff;
 }
 .button--bin {
-  background-image: url(../images/icon-remove-blue.svg);
+  background-image: url(@/assets/images/icons/icon-remove-blue.svg);
   padding-right: 3.75em;
   background-position: right 0.5em center;
   background-repeat: no-repeat;
@@ -12431,7 +12431,7 @@ p__intro {
   background: #154273;
 }
 .button--ctaright {
-  background-image: url(../images/icon-cta-right.svg);
+  background-image: url(@/assets/images/icons/icon-cta-right.svg);
   padding-right: 3.75em;
   background-position: right 0.9em center;
   background-repeat: no-repeat;
@@ -12516,13 +12516,13 @@ p__intro {
 .button-icon--thumb-up {
   background-position: right 0.75em center;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-thumb-up.svg);
+  background-image: url(@/assets/images/icons/icon-thumb-up.svg);
   background-size: 1.325em;
 }
 .button-icon--thumb-down {
   background-position: right 0.75em center;
   background-repeat: no-repeat;
-  background-image: url(../images/icon-thumb-down.svg);
+  background-image: url(@/assets/images/icons/icon-thumb-down.svg);
   background-size: 1.325em;
 }
 .button-icon[hidden] {
@@ -12554,46 +12554,46 @@ p__intro {
   background-size: 1em;
 }
 .button-icon--marker {
-  background-image: url(../images/icon-marker.svg);
+  background-image: url(@/assets/images/icons/icon-marker.svg);
 }
 .button-icon--bin {
-  background-image: url(../images/icon-remove-blue.svg);
+  background-image: url(@/assets/images/icons/icon-remove-blue.svg);
 }
 .button-icon--download {
-  background-image: url(../images/icon-download-white.svg);
+  background-image: url(@/assets/images/icons/icon-download-white.svg);
 }
 .button-icon--dots {
-  background-image: url(../images/icon-dots.svg);
+  background-image: url(@/assets/images/icons/icon-dots.svg);
 }
 .button-icon--crosshair {
-  background-image: url(../images/icon-crosshair.svg);
+  background-image: url(@/assets/images/icons/icon-crosshair.svg);
 }
 .button-icon--remove {
-  background-image: url(../images/icon-remove-white.svg);
+  background-image: url(@/assets/images/icons/icon-remove-white.svg);
 }
 .button-icon--plus {
-  background-image: url(../images/icon-plus-shape.svg);
+  background-image: url(@/assets/images/icons/icon-plus-shape.svg);
 }
 .button-icon--min {
-  background-image: url(../images/icon-minus-shape.svg);
+  background-image: url(@/assets/images/icons/icon-minus-shape.svg);
 }
 .button-icon--cross {
-  background-image: url(../images/icon-close-white.svg);
+  background-image: url(@/assets/images/icons/icon-close-white.svg);
 }
 .button-icon--edit {
-  background-image: url(../images/icon-bewerken.svg);
+  background-image: url(@/assets/images/icons/icon-bewerken.svg);
 }
 .button-icon--calendar {
-  background-image: url(../images/icon-calendar.svg);
+  background-image: url(@/assets/images/icons/icon-calendar.svg);
 }
 .button-icon--remove {
-  background-image: url(../images/icon-remove.svg);
+  background-image: url(@/assets/images/icons/icon-remove.svg);
 }
 .button-icon--arrow-up {
-  background-image: url(../images/icon-arrow-up.svg);
+  background-image: url(@/assets/images/icons/icon-arrow-up.svg);
 }
 .button-icon--arrow-down {
-  background-image: url(../images/icon-arrow-down.svg);
+  background-image: url(@/assets/images/icons/icon-arrow-down.svg);
 }
 .button-icon--plain {
   background-color: #fff;
@@ -12703,7 +12703,7 @@ p__intro {
 .checkbox__input:checked + input + label:before,
 .checkbox__input:checked + label:before {
   background-color: #154273 !important;
-  background-image: url(../images/icon-checkbox-white.svg);
+  background-image: url(@/assets/images/icons/icon-checkbox-white.svg);
 }
 .checkbox__input:disabled + input + label,
 .checkbox__input:disabled + label {
@@ -12748,7 +12748,7 @@ p__intro {
   right: 0.5em;
   width: 2em;
   bottom: 0.6em;
-  background: url(../images/icon-cross-filled.svg) no-repeat center center;
+  background: url(@/assets/images/icons/icon-cross-filled.svg) no-repeat center center;
   height: 1.5em;
 }
 .input-text--medium ~ .input-text__remove,
@@ -12799,7 +12799,7 @@ p__intro {
 }
 .modal__close,
 .modal__close:hover {
-  background-image: url(../images/icon-cross-blue.svg);
+  background-image: url(@/assets/images/icons/icon-cross-blue.svg);
   background-position: center center;
 }
 .modal__close:hover {
@@ -13065,10 +13065,10 @@ p__intro {
   color: #154273;
   line-height: 1.2em;
   text-decoration: underline;
-  background: url(../images/icon-plus-filled-blue.svg) no-repeat left top -0.1em;
+  background: url(@/assets/images/icons/icon-plus-filled-blue.svg) no-repeat left top -0.1em;
 }
 .collapsible .collapsible__header a[aria-expanded='true'] {
-  background-image: url(../images/icon-min-filled-blue.svg);
+  background-image: url(@/assets/images/icons/icon-min-filled-blue.svg);
 }
 .collapsible--small .collapsible__header a {
   padding-left: 1.5em;
@@ -13280,7 +13280,7 @@ h4.facet--heading ~ .list--relations {
 .to-top {
   left: 1.325em;
   text-indent: 0;
-  background-image: url(../images/icon-arrow-up-blue.svg);
+  background-image: url(@/assets/images/icons/icon-arrow-up-blue.svg);
   background-repeat: no-repeat;
   background-position: right 0.5em top 0.5em;
   background-size: 1.5em;
@@ -13434,14 +13434,14 @@ h4.facet--heading ~ .list--relations {
 .alert--info,
 .verschilmarkering {
   background-color: #e5f1f9;
-  background-image: url(../images/icon-info-blue.svg);
+  background-image: url(@/assets/images/icons/icon-info-blue.svg);
 }
 .alert--loading {
   background-color: #e5f1f9;
 }
 .alert--warning {
   background-color: #fae4e3;
-  background-image: url(../images/icon-alert-red.svg);
+  background-image: url(@/assets/images/icons/icon-alert-red.svg);
   background-size: 1.5em;
   background-position: 1em 1em;
 }
@@ -13465,7 +13465,7 @@ body > .alert--warning {
     background-color: #fae4e3;
   }
   body > .alert--warning .alert__inner {
-    background-image: url(../images/icon-alert-red.svg);
+    background-image: url(@/assets/images/icons/icon-alert-red.svg);
     background-size: 1.5em;
     background-position: 0 -0.1em;
   }
@@ -13475,7 +13475,7 @@ body > .alert--warning {
   }
   body > .alert--info .alert__inner,
   body > .verschilmarkering .alert__inner {
-    background-image: url(../images/icon-info-blue.svg);
+    background-image: url(@/assets/images/icons/icon-info-blue.svg);
     background-position: 0 0.125em;
   }
   body > .alert--success .alert__inner {
@@ -13494,7 +13494,7 @@ body > .alert--warning {
 .browse__list a {
   font-weight: 700;
   border-bottom: 1px solid #ccc;
-  background-image: url(../images/icon-chevron-right.svg);
+  background-image: url(@/assets/images/icons/icon-chevron-right.svg);
   background-repeat: no-repeat;
   background-position: right 0.5em center;
   background-size: 0.325em;
@@ -13520,7 +13520,7 @@ body > .alert--warning {
   top: calc(50% - 0.75em);
   width: 1.5em;
   height: 1.5em;
-  background-image: url(../images/icon-alert-blue.svg);
+  background-image: url(@/assets/images/icons/icon-alert-blue.svg);
 }
 .browse__count {
   float: none;
@@ -13539,7 +13539,7 @@ body > .alert--warning {
   font-family: inherit;
   font-size: 0.8em;
   top: 12em;
-  background-image: url(../images/icon-chevronround-right-white.svg);
+  background-image: url(@/assets/images/icons/icon-chevronround-right-white.svg);
   background-repeat: no-repeat;
   background-size: 1.25em;
   background-color: #154273;
@@ -13570,7 +13570,7 @@ body > .alert--warning {
 }
 .columns--sidebar [data-handler='toggle-sidebar'].is-column-filters,
 .columns--sticky-sidebar [data-handler='toggle-sidebar'].is-column-filters {
-  background-image: url(../images/icon-filter-rotated-white.svg);
+  background-image: url(@/assets/images/icons/icon-filter-rotated-white.svg);
   background-repeat: no-repeat;
   background-size: 1em;
   background-color: #154273;
@@ -13583,7 +13583,7 @@ body > .alert--warning {
 }
 .columns--sidebar [data-handler='toggle-sidebar'][aria-expanded='true'],
 .columns--sticky-sidebar [data-handler='toggle-sidebar'][aria-expanded='true'] {
-  background-image: url(../images/icon-cross-white.svg);
+  background-image: url(@/assets/images/icons/icon-cross-white.svg);
   background-repeat: no-repeat;
   background-size: 1em;
   background-color: #154273;
@@ -13699,7 +13699,7 @@ body > .alert--warning {
   text-decoration: none;
 }
 .copydata__trigger.is-active {
-  background-image: url(../images/icon-check2-white.svg);
+  background-image: url(@/assets/images/icons/icon-check2-white.svg);
   background-position: center;
   background-size: 1.325em;
   min-width: 6.6em;
@@ -13823,7 +13823,7 @@ body > .alert--warning {
   display: block;
   padding: 0 0 0.5em 1.75em;
   margin-bottom: 1em;
-  background-image: url(../images/icon-cta-left.svg);
+  background-image: url(@/assets/images/icons/icon-cta-left.svg);
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: left 0.25em;
@@ -13911,7 +13911,7 @@ body > .alert--warning {
 }
 .multiselect__result.is-selected::before {
   background-color: #154273 !important;
-  background-image: url(../images/icon-checkbox-white.svg);
+  background-image: url(@/assets/images/icons/icon-checkbox-white.svg);
 }
 .multiselect__result.is-selected:after {
   display: none;
@@ -13932,12 +13932,12 @@ body > .alert--warning {
   border: 1px solid #154273;
 }
 .multiselect--multiplemode.multiselect__container {
-  background: #fff url(../images/icon-arrow-down.svg) no-repeat right 0.75em
+  background: #fff url(@/assets/images/icons/icon-arrow-down.svg) no-repeat right 0.75em
     center;
   background-size: 0.9em;
 }
 .multiselect--multiplemode.is-open.multiselect__container {
-  background: #fff url(../images/icon-arrow-up.svg) no-repeat right 0.75em
+  background: #fff url(@/assets/images/icons/icon-arrow-up.svg) no-repeat right 0.75em
     center;
   background-size: 0.9em;
 }
@@ -13996,7 +13996,7 @@ body > .alert--warning {
   padding-right: 3.75em;
   border: 1px solid #154273;
   border-radius: 0.25em;
-  background: #fff url(../images/icon-profile.svg) no-repeat right 0.75em center;
+  background: #fff url(@/assets/images/icons/icon-profile.svg) no-repeat right 0.75em center;
   background-size: 1.25em;
   font-weight: 700;
   line-height: 1;
@@ -14008,7 +14008,7 @@ body > .alert--warning {
   .profile p[data-toggler] {
     font-size: 1em;
     padding-bottom: 0.8em;
-    background: #fff url(../images/icon-profile.svg) no-repeat right 0.8em
+    background: #fff url(@/assets/images/icons/icon-profile.svg) no-repeat right 0.8em
       center;
     background-size: 1.25em;
   }
@@ -14220,11 +14220,11 @@ body > .alert--warning {
   background-position: left top 0.05em;
   background-size: 1em;
   background-color: transparent;
-  background-image: url(../images/icon-min-filled-blue.svg);
+  background-image: url(@/assets/images/icons/icon-min-filled-blue.svg);
 }
 .nav.nav-tree li a button[aria-expanded='false'],
 .treeview li a button[aria-expanded='false'] {
-  background-image: url(../images/icon-plus-filled-blue.svg);
+  background-image: url(@/assets/images/icons/icon-plus-filled-blue.svg);
 }
 #broodtekst .table thead th[scope='col'],
 #broodtekst .table thead th[scope='row'],
