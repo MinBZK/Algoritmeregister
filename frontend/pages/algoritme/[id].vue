@@ -94,7 +94,7 @@
         </div>
 
         <div v-if="!isMobile" class="tabs" data-decorator="init-tabs">
-          <ul class="tabs__list bottom-margin" role="tablist">
+          <ul class="tabs__list" role="tablist">
             <li role="presentation" v-for="(p, index) in structuredProperties">
               <a
                 @click="activeAttributeKey = p.attributeGroupKey"
@@ -282,8 +282,8 @@ watch(
 .accordion__item__header {
   cursor: pointer;
 }
+
 .word-break {
-  // word-break: break-all;
   word-break: break-word;
 }
 
