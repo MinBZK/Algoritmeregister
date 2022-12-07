@@ -1,6 +1,7 @@
 {
   "english?": "false",
   "explanation": "Uitleg",
+  "you-are-here": "U bent hier",
   "Ontbreekt": "Ontbreekt",
   "locale-en": "Engels",
   "locale-nl": "Nederlands",
@@ -46,7 +47,13 @@
   "hideFilters": "Verberg filters",
   "navigation": {
     "home": "Home",
-    "algorithmRegister": "Algoritmes"
+    "algorithmRegister": "Algoritmes",
+    "footer": "Home",
+    "over": "Over",
+    "contact": "Contact",
+    "vragen": "Vaak gestelde vragen",
+    "privacyverklaring": "Privacyverklaring",
+    "toegankelijkheid": "Toegankelijkheid"
   },
   "pagination": {
     "goTo": "Ga naar pagina {n}"

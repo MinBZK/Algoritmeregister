@@ -28,3 +28,10 @@ async def get_one(id: str, db: Session = Depends(get_db)):
         .filter(models.algoritme.Algoritme.id == id)
         .first()
     )
+
+
+@router.get("/algoritme-simple-list/")
+async def get_simple_list(db: Session = Depends(get_db)):
+    return db.query(
+        models.algoritme.Algoritme.id, models.algoritme.Algoritme.name
+    ).all()

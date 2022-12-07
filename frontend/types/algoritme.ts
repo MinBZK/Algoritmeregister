@@ -20,3 +20,8 @@ export type AlgoritmeFilter = {
   attribute: string
   value: string
 }
+
+export interface AlgNamesOnly {
+  id: string
+  name: string
+}
