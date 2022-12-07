@@ -41,6 +41,7 @@
 </template>
 
 <script setup lang="ts">
+import Page from '@/components/PageWrapper.vue'
 import { computed } from 'vue'
 import algoritmeService from '@/services/algoritme'
 import { useI18n } from 'vue-i18n'
