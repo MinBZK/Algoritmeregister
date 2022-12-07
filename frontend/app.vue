@@ -14,7 +14,7 @@ const { t } = useI18n()
   </div>
   <AppHeader />
   <AppContentBar v-if="false" />
-  <AppBreadcrumb v-if="false" />
+  <AppBreadcrumb />
 
   <div class="container columns columns--sidebar-left row">
     <NuxtPage />

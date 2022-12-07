@@ -61,7 +61,6 @@
 
 <script setup lang="ts">
 import LanguagePicker from '@/components/LanguagePicker.vue'
-import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
@@ -75,7 +74,6 @@ const navigationItems = computed(() => [
     routeName: 'algoritme',
   },
 ])
-
 const currentRoute = useRoute()
 const menuExpanded = ref(false)
 
@@ -84,10 +82,8 @@ watch(currentRoute, () => (menuExpanded.value = false))
 </script>
 
 <style scoped lang="scss">
-
 .active a {
   background-color: $secondary;
   color: $primary-darker !important;
 }
-
 </style>
