@@ -21,12 +21,12 @@
 import { navigationItems } from '@/config/config'
 import { useI18n } from 'vue-i18n'
 import algoritmeService from '@/services/algoritme'
-import { AlgNamesOnly } from '~~/types/algoritme'
+import { AlgNameIdOrg } from '~~/types/algoritme'
 const { t } = useI18n()
 const currentRoute = useRoute()
 
-const { data } = await algoritmeService.getNames()
-let nameList = ref(data.value as AlgNamesOnly[])
+const { data } = await algoritmeService.getNameIdOrg()
+let nameList = ref(data.value as AlgNameIdOrg[])
 
 const navigationItemsTranslated = computed(() =>
   navigationItems.map((item) => {

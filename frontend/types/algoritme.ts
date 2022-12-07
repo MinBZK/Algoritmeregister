@@ -21,7 +21,8 @@ export type AlgoritmeFilter = {
   value: string
 }
 
-export interface AlgNamesOnly {
+export interface AlgNameIdOrg {
   id: string
   name: string
+  organization: string
 }

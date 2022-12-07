@@ -12,6 +12,7 @@
         @doSearch="doSearch"
       >
       </SearchFunction>
+      <HighlightedAlgorithms />
     </div>
   </Page>
 </template>
