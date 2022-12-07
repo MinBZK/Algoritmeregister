@@ -1,5 +1,5 @@
 // import { apiFetch } from '@/utils/fetchApi'
-import type { Algoritme, AlgNamesOnly } from '@/types/algoritme'
+import type { Algoritme, AlgNameIdOrg } from '@/types/algoritme'
 
 const getAll = () =>
   useFetch<Algoritme[]>('/algoritme/', {
@@ -11,9 +11,9 @@ const getOne = (id: string) =>
     baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
 
-const getNames = () =>
-  useFetch<AlgNamesOnly[]>('/algoritme-simple-list/', {
+const getNameIdOrg = () =>
+  useFetch<AlgNameIdOrg[]>('/algoritme-simple-list/', {
     baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
 
-export default { getAll, getOne, getNames }
+export default { getAll, getOne, getNameIdOrg }
