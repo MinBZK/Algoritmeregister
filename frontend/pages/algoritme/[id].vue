@@ -1,149 +1,136 @@
 <template>
-  <Page>
-    <ClientOnly>
-      <div class="skiplinks container">
-        <a href="#content">Direct naar content</a>
-      </div>
-      <div class="container row">
-        <NuxtLink class="link cta__backwards" :to="`/algoritme/`">
-          {{ t('goBack') }}
-        </NuxtLink>
-      </div>
-      <div class="container row container--centered">
-        <h1>{{ algoritme.name }}</h1>
-        <div class="well well--pageblock">
-          <!-- <h3>{{ shortDescription }}</h3> -->
-          <p>{{ algoritme.description_short || shortDescriptionMissing }}</p>
-          <!-- <p>
+  <div class="skiplinks container">
+    <a href="#content">Direct naar content</a>
+  </div>
+  <div class="container row">
+    <NuxtLink class="link cta__backwards" :to="`/algoritme/`">
+      {{ t('goBack') }}
+    </NuxtLink>
+  </div>
+  <div class="container row container--centered">
+    <h1>{{ algoritme.name }}</h1>
+    <div class="well well--pageblock">
+      <!-- <h3>{{ shortDescription }}</h3> -->
+      <p>{{ algoritme.description_short || shortDescriptionMissing }}</p>
+      <!-- <p>
             <a href="#" class="link link--forward">Alle datasets van deze eigenaar</a>
           </p> -->
-          <dl class="dl columns--data">
-            <div v-for="sT in summaryTiles">
-              <dt>
-                {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
-              </dt>
-              <dd class="word-break">
-                <span>{{
-                  algoritme[sT as keyof typeof algoritme] || t('Ontbreekt')
-                }}</span>
-              </dd>
-            </div>
-          </dl>
+      <dl class="dl columns--data">
+        <div v-for="sT in summaryTiles">
+          <dt>
+            {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
+          </dt>
+          <dd class="word-break">
+            <span>{{
+              algoritme[sT as keyof typeof algoritme] || t('Ontbreekt')
+            }}</span>
+          </dd>
         </div>
-        <div v-if="isMobile" class="accordion" data-decorator="init-accordion">
-          <div
-            v-for="(p, index) in structuredProperties"
-            class="accordion__item"
-          >
-            <div class="accordion__item__header">
-              <h3 class="accordion__item__heading">
-                <span
-                  class="accordion__item__header-trigger"
-                  aria-expanded="false"
-                  aria-controls="con1"
-                  id="header1"
-                  @click="
-                    ;[toggleAccordion(p.attributeGroupKey), clearToggledKeys()]
-                  "
-                >
-                  <span
-                    :class="
-                      p.attributeGroupKey == activeAttributeKey
-                        ? 'accordion-arrow-up'
-                        : 'accordion-arrow-right'
-                    "
-                  ></span>
-                  {{ p.attributeGroupKeyLabel }}
-                </span>
-              </h3>
-            </div>
-            <div
-              v-if="p.attributeGroupKey == activeAttributeKey"
-              v-for="(property, index) in p.properties"
-              class="accordion__item__content"
-              id="con1"
-              role="region"
-              aria-labelledby="header1"
+      </dl>
+    </div>
+    <div v-if="isMobile" class="accordion" data-decorator="init-accordion">
+      <div v-for="(p, index) in structuredProperties" class="accordion__item">
+        <div class="accordion__item__header">
+          <h3 class="accordion__item__heading">
+            <span
+              class="accordion__item__header-trigger"
+              aria-expanded="false"
+              aria-controls="con1"
+              id="header1"
+              @click="
+                ;[toggleAccordion(p.attributeGroupKey), clearToggledKeys()]
+              "
             >
-              <div>
-                <b>
-                  {{ property.attributeKeyLabel }}
-                </b>
-                <span
-                  @click="toggleKey(property.attributeKey)"
-                  class="question-mark"
-                ></span>
-              </div>
-              <div
-                class="word-break"
-                v-if="isKeyToggled(property.attributeKey)"
-              >
-                <i
-                  >{{
+              <span
+                :class="
+                  p.attributeGroupKey == activeAttributeKey
+                    ? 'accordion-arrow-up'
+                    : 'accordion-arrow-right'
+                "
+              ></span>
+              {{ p.attributeGroupKeyLabel }}
+            </span>
+          </h3>
+        </div>
+        <div
+          v-if="p.attributeGroupKey == activeAttributeKey"
+          v-for="(property, index) in p.properties"
+          class="accordion__item__content"
+          id="con1"
+          role="region"
+          aria-labelledby="header1"
+        >
+          <div>
+            <b>
+              {{ property.attributeKeyLabel }}
+            </b>
+            <span
+              @click="toggleKey(property.attributeKey)"
+              class="question-mark"
+            ></span>
+          </div>
+          <div class="word-break" v-if="isKeyToggled(property.attributeKey)">
+            <i
+              >{{
+                `${explanation}: ${
+                  property.attributeKeyDescription || t('Ontbreekt')
+                }`
+              }}
+            </i>
+          </div>
+          <div class="word-break">
+            {{ property.attributeValue || t('Ontbreekt') }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="!isMobile" class="tabs" data-decorator="init-tabs">
+      <ul class="tabs__list" role="tablist">
+        <li role="presentation" v-for="(p, index) in structuredProperties">
+          <a
+            @click="activeAttributeKey = p.attributeGroupKey"
+            :class="[
+              p.attributeGroupKey == activeAttributeKey ? 'is-selected' : '',
+            ]"
+            role="tab"
+            :aria-controls="`panel-${index + 1}`"
+            >{{ p.attributeGroupKeyLabel }}</a
+          >
+        </li>
+      </ul>
+      <table class="table__data-overview">
+        <tbody>
+          <tr v-for="(property, index) in activeAttributeProperties">
+            <th scope="row">
+              {{ property.attributeKeyLabel }}
+              <span
+                @click="toggleKey(property.attributeKey)"
+                class="question-mark"
+              ></span>
+              <p v-if="isKeyToggled(property.attributeKey)">
+                <i>
+                  {{
                     `${explanation}: ${
                       property.attributeKeyDescription || t('Ontbreekt')
                     }`
                   }}
                 </i>
-              </div>
-              <div class="word-break">
-                {{ property.attributeValue || t('Ontbreekt') }}
-              </div>
-            </div>
-          </div>
-        </div>
+              </p>
+            </th>
 
-        <div v-if="!isMobile" class="tabs" data-decorator="init-tabs">
-          <ul class="tabs__list" role="tablist">
-            <li role="presentation" v-for="(p, index) in structuredProperties">
-              <a
-                @click="activeAttributeKey = p.attributeGroupKey"
-                :class="[
-                  p.attributeGroupKey == activeAttributeKey
-                    ? 'is-selected'
-                    : '',
-                ]"
-                role="tab"
-                :aria-controls="`panel-${index + 1}`"
-                >{{ p.attributeGroupKeyLabel }}</a
-              >
-            </li>
-          </ul>
-          <table class="table__data-overview">
-            <tbody>
-              <tr v-for="(property, index) in activeAttributeProperties">
-                <th scope="row">
-                  {{ property.attributeKeyLabel }}
-                  <span
-                    @click="toggleKey(property.attributeKey)"
-                    class="question-mark"
-                  ></span>
-                  <p v-if="isKeyToggled(property.attributeKey)">
-                    <i>
-                      {{
-                        `${explanation}: ${
-                          property.attributeKeyDescription || t('Ontbreekt')
-                        }`
-                      }}
-                    </i>
-                  </p>
-                </th>
-
-                <td>
-                  {{ property.attributeValue || t('Ontbreekt') }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </ClientOnly>
-  </Page>
+            <td>
+              {{ property.attributeValue || t('Ontbreekt') }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import Page from '@/components/PageWrapper.vue'
 import algoritmeService from '@/services/algoritme'
 import { summaryTiles } from '~~/config/config'
 import { useI18n } from 'vue-i18n'

@@ -1,80 +1,50 @@
 <template>
-  <!-- <div class="pagination">
-    <div class="pagination__index">
-      <ul>
-        <li class="prev">
-          <a href="#"><span class="">Vorige pagina</span></a>
-        </li>
-        <li class="">
-          <a href="#"><span class="visually-hidden">Pagina: </span>3</a>
-        </li>
-        <li aria-current="page" class="active">
-          <span class="visually-hidden">Pagina: </span>4
-        </li>
-        <li class="">
-          <a href="#"><span class="visually-hidden">Pagina: </span>...</a>
-        </li>
-        <li class="">
-          <a href="#"><span class="visually-hidden">Pagina: </span>102</a>
-        </li>
-        <li class="next">
-          <a href="#"><span class="">Volgende pagina</span></a>
-        </li>
-      </ul>
-    </div>
-  </div> -->
   <nav role="navigation" aria-label="Paginering navigatie">
     <div
       class="pagenumber"
-      :class="props.currentPage == 1 && 'disabled'"
+      :tabindex="currentPage == 1 ? -1 : 0"
+      :class="currentPage == 1 && 'disabled'"
+      aria-role="button"
       :aria-label="
-        props.currentPage !== 1
-          ? t('pagination.goTo', { n: props.currentPage - 1 })
-          : ''
+        currentPage !== 1 ? t('pagination.goTo', { n: currentPage - 1 }) : ''
       "
     >
-      <NuxtIcon name="mdi:chevron-left" @click="navigate(-1)" />
+      <NuxtIcon
+        name="mdi:chevron-left"
+        @click="navigate(-1)"
+        @keydown.enter="navigate(-1)"
+      />
     </div>
+    <template v-for="(pageNumber, index) in range" :key="pageNumber">
+      <div v-if="index == 1 && pageNumber != 2" class="pagenumber-elipsis">
+        ...
+      </div>
+      <div
+        :class="pageNumber == currentPage && 'current-page'"
+        tabindex="0"
+        :aria-current="pageNumber == currentPage && `true`"
+        aria-role="button"
+        class="pagenumber"
+        @keydown.enter="$emit('setPage', pageNumber)"
+        @click="$emit('setPage', pageNumber)"
+        :aria-label="t('pagination.goTo', { n: pageNumber })"
+      >
+        {{ pageNumber }}
+      </div>
+      <div
+        v-if="index == range.length - 2 && pageNumber != pageLength - 1"
+        class="pagenumber-elipsis"
+      >
+        ...
+      </div>
+    </template>
     <div
       class="pagenumber"
-      :class="1 == props.currentPage && 'current-page'"
-      @click="$emit('setPage', 1)"
-      :aria-label="t('pagination.goTo', { n: 1 })"
-      :aria-current="1 == props.currentPage && `true`"
-    >
-      1
-    </div>
-    <div v-if="range[0] > 2" class="pagenumber-elipsis">...</div>
-    <div
-      v-for="index in range"
-      :class="index == props.currentPage && 'current-page'"
-      :aria-current="index == props.currentPage && `true`"
-      class="pagenumber"
-      @click="$emit('setPage', index)"
-      :aria-label="t('pagination.goTo', { n: index })"
-    >
-      {{ index }}
-    </div>
-    <div
-      class="pagenumber-elipsis"
-      v-if="range[range.length - 1] < props.pageLength - 1"
-    >
-      ...
-    </div>
-    <div
-      class="pagenumber"
-      :class="pageLength == props.currentPage && 'current-page'"
-      :aria-current="pageLength == props.currentPage && `true`"
-      v-if="pageLength > 1"
-      @click="$emit('setPage', pageLength)"
-      :aria-label="t('pagination.goTo', { n: pageLength })"
-    >
-      {{ pageLength }}
-    </div>
-    <div
-      class="pagenumber"
+      :tabindex="props.currentPage == props.pageLength ? -1 : 0"
+      aria-role="button"
       :class="props.currentPage == props.pageLength && 'disabled'"
       @click="navigate(1)"
+      @keydown.enter="navigate(1)"
       :aria-label="
         props.currentPage !== props.pageLength
           ? t('pagination.goTo', { n: props.currentPage + 1 })
@@ -96,22 +66,31 @@ const props = defineProps<{
 
 const emit = defineEmits(['setPage'])
 
-const maxPages = 3
-const range = computed(() =>
-  [...Array(props.pageLength > maxPages ? maxPages : props.pageLength).keys()]
-    .map((r) => {
-      let delta
-      if (props.currentPage == props.pageLength) {
-        delta = 3
-      } else if (props.currentPage == 1) {
-        delta = 0
-      } else {
-        delta = 1
-      }
-      return r + props.currentPage - delta
-    })
-    .filter((r) => r > 1 && r <= props.pageLength - 1)
-)
+const range = computed(() => {
+  const maxPages = 3
+  const min = 2
+  const _windowMin = props.currentPage - (maxPages - 1) / 2
+
+  let windowMin: number = _windowMin
+  if (_windowMin < min) {
+    windowMin = min
+  } else if (_windowMin + maxPages >= props.pageLength) {
+    windowMin = props.pageLength - maxPages
+  }
+
+  // const windowMin = _windowMin >= min ? _windowMin : min
+  const _windowMax = windowMin + maxPages - 1
+  const windowMax =
+    _windowMax > props.pageLength - 1 ? props.pageLength - 1 : _windowMax
+
+  const arrayLength = 1 + windowMax - windowMin
+  const visiblePages: number[] =
+    arrayLength > 0
+      ? [...Array(arrayLength).keys()].map((v) => v + windowMin)
+      : []
+
+  return props.pageLength > 1 ? [1, ...visiblePages, props.pageLength] : [1]
+})
 
 const navigate = (delta: number) => {
   const newPage = props.currentPage + delta
@@ -152,6 +131,7 @@ nav {
 
 .disabled {
   color: $secondary;
+  cursor: not-allowed;
 }
 
 .pagenumber-elipsis {

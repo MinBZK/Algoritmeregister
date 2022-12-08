@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import AppContentBar from '@/components/views/AppContentBar.vue'
 import AppHeader from '@/components/views/AppHeader.vue'
 import AppBreadcrumb from '@/components/views/AppBreadcrumb.vue'
 import AppFooter from '@/components/views/AppFooter.vue'
-
-const { t } = useI18n()
 </script>
 
 <template>
@@ -17,7 +14,9 @@ const { t } = useI18n()
   <AppBreadcrumb />
 
   <div class="container columns columns--sidebar-left row">
-    <NuxtPage />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 
   <AppFooter />

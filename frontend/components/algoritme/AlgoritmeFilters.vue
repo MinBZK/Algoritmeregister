@@ -53,7 +53,7 @@
               :to="{
                 name: 'algoritme',
                 query: {
-                  q: getEncodedQuery(
+                  q: getEncodedFiltersQuery(
                     aggregationType.aggregationAttribute,
                     attributeValue
                   ),
@@ -85,7 +85,7 @@ import type { AggregatedAlgoritmes, AlgoritmeFilter } from '@/types/algoritme'
 
 const props = defineProps<{ aggregatedAlgoritmes: AggregatedAlgoritmes[] }>()
 
-const getEncodedQuery = (attribute: string, value: string): string => {
+const getEncodedFiltersQuery = (attribute: string, value: string): string => {
   const stringified = qs.stringify({
     filters: [{ attribute, value }, ...parsedFilters.value],
   })
@@ -121,7 +121,7 @@ const getAttributeFilters = (attribute: string) => {
   )?.aggregatedValues
 
   const filterdValues = Object.entries(values || []).filter(
-    ([filterAttributeValue, filterAttributeCount]) => {
+    ([filterAttributeValue]) => {
       return (
         parsedFilters.value.filter(
           (pF) => pF.attribute == attribute && pF.value == filterAttributeValue
