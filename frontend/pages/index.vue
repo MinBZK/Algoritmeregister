@@ -1,24 +1,21 @@
 <template>
-  <Page>
-    <div>
-      <h1 class="homepage-title">
-        {{ homepageTitle }}
-      </h1>
-    </div>
-    <div :class="[isMobile ? 'card-margins-xs' : 'card-margins']">
-      <SearchFunction
-        v-bind:value="searchQuery"
-        @input="(v) => (searchQuery = v)"
-        @doSearch="doSearch"
-      >
-      </SearchFunction>
-      <HighlightedAlgorithms />
-    </div>
-  </Page>
+  <div>
+    <h1 class="homepage-title">
+      {{ homepageTitle }}
+    </h1>
+  </div>
+  <div :class="[isMobile ? 'card-margins-xs' : 'card-margins']">
+    <SearchFunction
+      v-bind:value="searchQuery"
+      @input="(v) => (searchQuery = v)"
+      @doSearch="doSearch"
+    >
+    </SearchFunction>
+    <HighlightedAlgorithms />
+  </div>
 </template>
 
 <script setup>
-import Page from '@/components/PageWrapper.vue'
 import { useI18n } from 'vue-i18n'
 import qs from 'qs'
 import SearchFunction from '@/components/SearchFunction.vue'
