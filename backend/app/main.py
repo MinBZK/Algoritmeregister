@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from fastapi import APIRouter
 from app.routers import default
-from etl.load import load
+from app.etl.load import load
 from app.util.logger import get_logger
 
 logger = get_logger(__name__)
