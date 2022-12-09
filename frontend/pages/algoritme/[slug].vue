@@ -99,6 +99,7 @@
           >
         </li>
       </ul>
+
       <table class="table__data-overview">
         <tbody>
           <tr v-for="(property, index) in activeAttributeProperties">
@@ -131,20 +132,31 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import algoritmeService from '@/services/algoritme'
 import { summaryTiles } from '~~/config/config'
 import { useI18n } from 'vue-i18n'
 import type { Algoritme } from '~~/types/algoritme'
 import requiredFields from '~~/config/fields.json'
+// import algoritmeStore from '@/stores/algoritme'
+import algoritmeService from '@/services/algoritme'
 
 const isMobile = useMobileBreakpoint()
 
 // get data
 const route = useRoute()
-const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
+const slug = Array.isArray(route.params.slug)
+  ? route.params.slug[0]
+  : route.params.slug
 
-const { data } = await algoritmeService.getOne(id)
+// get store
+// const store = useAlgoritmeStore()
+
+const { setAlgoritme } = useAlgoritme()
+const { data } = await algoritmeService.getOne(slug)
 let algoritme = ref(data.value as Algoritme)
+setAlgoritme(algoritme.value)
+
+// algoritmeStore.state.currentAlgoritme = algoritme.value
+// store.currentAlgoritme = algoritme
 
 const enrichedAlgoritme = computed(() => {
   // add algemene informatie as object
@@ -233,13 +245,13 @@ const structuredProperties = computed(() => {
             ),
           }
         })
-        .filter((attribute) => {
-          return (
+        // only show field that are either required or not empty. An empty string is considered empty.
+        .filter(
+          (attribute) =>
             requiredFields.properties[
               attribute.attributeKey as keyof typeof requiredFields.properties
             ]?.required == true || !!attribute.attributeValue
-          )
-        }),
+        ),
     }
   })
 })

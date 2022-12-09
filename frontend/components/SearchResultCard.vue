@@ -1,13 +1,13 @@
 <template>
   <li class="item">
     <div class="item-header">
-      <a :href="`/algoritme/${algoritme.id}`" class="result--title">
+      <a :href="`/algoritme/${algoritme.slug}`" class="result--title">
         {{ props.algoritme.name }}
       </a>
     </div>
     <p>
       {{ truncatedDescription }}&nbsp;<a
-        :href="`/algoritme/${algoritme.id} `"
+        :href="`/algoritme/${algoritme.slug} `"
         v-if="isTruncated"
         >lees meer
       </a>

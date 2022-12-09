@@ -8,7 +8,7 @@
     <div>
       <h1>{{ t(`foundResults`, { n: filteredAlgoritmes.length }) }}</h1>
       <Pagination
-        v-if="paginatedAlgoritmes.length != 0"
+        v-if="nPages > 1"
         :current-page="page"
         :page-length="nPages"
         @setPage="(p) => setPage(p)"
@@ -26,7 +26,7 @@
         </div>
       </div>
       <Pagination
-        v-if="paginatedAlgoritmes.length != 0"
+        v-if="nPages > 1"
         :current-page="page"
         :page-length="nPages"
         @setPage="(p) => setPage(p)"
@@ -101,7 +101,7 @@ const page = computed(() => {
   return parseInt(page || '1')
 })
 
-const pageLength = 5
+const pageLength = 10
 const nPages = computed(() =>
   Math.ceil(filteredAlgoritmes.value.length / pageLength)
 )
@@ -144,10 +144,6 @@ const setPage = (newPage: number) => {
 }
 
 watch(searchQuery, () => {
-  setPage(1)
-})
-
-watch(parsedFilters, () => {
   setPage(1)
 })
 </script>

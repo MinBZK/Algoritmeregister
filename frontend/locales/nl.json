@@ -3,7 +3,7 @@
   "home-highlight-algorithm-text": "Of bekijk gelijk één van de volgende algoritmes",
   "explanation": "Uitleg",
   "you-are-here": "U bent hier",
-  "Ontbreekt": "Ontbreekt",
+  "Ontbreekt": "Niet ingevuld",
   "locale-en": "Engels",
   "locale-nl": "Nederlands",
   "selectLanguage": "Kies taal",
@@ -173,6 +173,14 @@
       "lawful_basis": {
         "label": "Wettelijke grondslag",
         "description": "Een omschrijving van de wettelijke grondslag voor de inzet van het algoritme, of URL van het formele besluit."
+      },
+      "iama": {
+        "label": "Impact Assessment Mensenrechten en Algoritmes",
+        "description": "Is er een impact assessment mensenrechten en algoritmes (IAMA) uitgevoerd?"
+      },
+      "iama_description": {
+        "label": "Omschrijving van de IAMA",
+        "description": "Een overzicht van de belangrijkste zaken die uit de  impact assessment mensenrechten en algoritmes (IAMA) naar voren kwamen."
       },
       "dpia": {
         "label": "Data protection impact assessment",

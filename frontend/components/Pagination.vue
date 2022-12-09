@@ -1,7 +1,7 @@
 <template>
   <nav role="navigation" aria-label="Paginering navigatie">
     <div
-      class="pagenumber"
+      class="pagenumber noselect"
       :tabindex="currentPage == 1 ? -1 : 0"
       :class="currentPage == 1 && 'disabled'"
       aria-role="button"
@@ -16,7 +16,10 @@
       />
     </div>
     <template v-for="(pageNumber, index) in range" :key="pageNumber">
-      <div v-if="index == 1 && pageNumber != 2" class="pagenumber-elipsis">
+      <div
+        v-if="index == 1 && pageNumber != 2"
+        class="pagenumber-elipsis noselect"
+      >
         ...
       </div>
       <div
@@ -24,7 +27,7 @@
         tabindex="0"
         :aria-current="pageNumber == currentPage && `true`"
         aria-role="button"
-        class="pagenumber"
+        class="pagenumber noselect"
         @keydown.enter="$emit('setPage', pageNumber)"
         @click="$emit('setPage', pageNumber)"
         :aria-label="t('pagination.goTo', { n: pageNumber })"
@@ -33,13 +36,13 @@
       </div>
       <div
         v-if="index == range.length - 2 && pageNumber != pageLength - 1"
-        class="pagenumber-elipsis"
+        class="pagenumber-elipsis noselect"
       >
         ...
       </div>
     </template>
     <div
-      class="pagenumber"
+      class="pagenumber noselect"
       :tabindex="props.currentPage == props.pageLength ? -1 : 0"
       aria-role="button"
       :class="props.currentPage == props.pageLength && 'disabled'"
@@ -113,11 +116,6 @@ nav {
   background-color: $tertiary;
   cursor: pointer;
   display: inline-block;
-  user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -o-user-select: none;
 }
 
 .pagenumber:hover:not(.disabled) {

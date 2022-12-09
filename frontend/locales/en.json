@@ -3,7 +3,7 @@
   "home-highlight-algorithm-text": "Or go directly to one of these algorithms",
   "explanation": "Explanation",
   "you-are-here": "You are here",
-  "Ontbreekt": "Missing",
+  "Ontbreekt": "Not filled out",
   "locale-en": "English",
   "locale-nl": "Dutch",
   "selectLanguage": "Choose language",
@@ -172,6 +172,14 @@
       },
       "lawful_basis": {
         "label": "Lawful basis",
+        "description": "** nog te vertalen **"
+      },
+      "iama": {
+        "label": "IAMA",
+        "description": "** nog te vertalen **"
+      },
+      "iama_description": {
+        "label": "Description of the IAMA",
         "description": "** nog te vertalen **"
       },
       "dpia": {

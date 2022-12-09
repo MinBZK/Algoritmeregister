@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, VARCHAR
+from sqlalchemy import Column, Integer, VARCHAR, DateTime
 from app.database.database import Base
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
 
 
 class Algoritme(Base):
@@ -15,6 +16,9 @@ class Algoritme(Base):
     category = Column(VARCHAR(1024))
     website = Column(VARCHAR(1024))
     status = Column(VARCHAR(1024))
+    slug = Column(VARCHAR(128))
+
+    toegevoegd_op = Column(DateTime(timezone=True), server_default=func.now())
 
     inzet = relationship("Inzet", back_populates="algoritme", uselist=False)
     juridisch = relationship("Juridisch", back_populates="algoritme", uselist=False)

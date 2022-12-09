@@ -8,30 +8,15 @@
 // @import '_rijksoverheid-header.scss';
 @import '_fonts.scss';
 
-// body {
-//   margin: 0;
-//   padding: 0;
-//   overflow-y: hidden;
-// }
-
-// a {
-//   color: $primary;
-//   text-decoration: none;
-// }
-
-// a:hover {
-//   color: $primary-dark;
-//   text-decoration: underline;
-// }
 .question-mark {
-    background-image: url(../images/icons/icon-explanation.svg);
-    background-size: 1em !important;
-    background-position: center 50%;
-    background-repeat: no-repeat;
-    padding-right: 2em;
-    padding-left: 2em;
-    cursor: pointer;
-  }
+  background-image: url(../images/icons/icon-explanation.svg);
+  background-size: 1em !important;
+  background-position: center 50%;
+  background-repeat: no-repeat;
+  padding-right: 2em;
+  padding-left: 2em;
+  cursor: pointer;
+}
 
 .accordion-arrow-right {
   background-image: url(../images/icons/icon-cta-right.svg);
@@ -49,4 +34,12 @@
   padding-right: 0em;
   padding-left: 2em;
   cursor: pointer;
+}
+
+.noselect {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }

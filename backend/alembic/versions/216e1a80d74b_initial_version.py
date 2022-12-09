@@ -24,4 +24,5 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
-    op.drop_table("default")
+    # op.drop_table("default")
+    pass

@@ -12,6 +12,8 @@ python-dotenv = "^0.21.0"
 alembic = "^1.8.1"
 psycopg2-binary = "^2.9.5"
 pandas = "^1.5.1"
+openpyxl = "^3.0.10"
+python-slugify = "^7.0.0"
 
 [tool.poetry.dev-dependencies]
 black = {extras = ["jupyter"], version = "^22.10.0"}

@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, VARCHAR, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, VARCHAR, Boolean, ForeignKey, DateTime
 from app.database.database import Base
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
 
 
 class Toepassing(Base):
@@ -14,5 +15,6 @@ class Toepassing(Base):
     source_data = Column(VARCHAR(5000))
     methods_and_models = Column(VARCHAR(5000))
     algoritme_id = Column(Integer, ForeignKey("algoritme.id"))
+    toegevoegd_op = Column(DateTime(timezone=True), server_default=func.now())
 
     algoritme = relationship("Algoritme", back_populates="toepassing")

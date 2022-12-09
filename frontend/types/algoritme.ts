@@ -1,5 +1,6 @@
 export interface Algoritme {
   id: string
+  slug: string
   name: string
   organization: string
   department: string
@@ -25,4 +26,5 @@ export interface AlgNameIdOrg {
   id: string
   name: string
   organization: string
+  slug: string
 }
