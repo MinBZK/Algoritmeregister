@@ -29,14 +29,17 @@
       </dl>
     </div>
     <div v-if="isMobile" class="accordion" data-decorator="init-accordion">
-      <div v-for="(p, index) in structuredProperties" class="accordion__item">
+      <div
+        v-for="(p, index) in structuredProperties"
+        class="accordion__item"
+        :id="`header-${p.attributeGroupKey}`"
+      >
         <div class="accordion__item__header">
           <h3 class="accordion__item__heading">
             <span
               class="accordion__item__header-trigger"
               aria-expanded="false"
               aria-controls="con1"
-              id="header1"
               @click="
                 ;[toggleAccordion(p.attributeGroupKey), clearToggledKeys()]
               "
@@ -180,8 +183,17 @@ const activeAttributeProperties = computed(() => {
 })
 
 // Handle accordion
-const toggleAccordion = (key: string) =>
-  (activeAttributeKey.value = activeAttributeKey.value == key ? '' : key)
+const toggleAccordion = async (key: string) => {
+  const header = document.getElementById(`header-${key}`)
+  const storePosition = header?.getBoundingClientRect().y || 0
+
+  activeAttributeKey.value = activeAttributeKey.value == key ? '' : key
+  await new Promise((res) => setTimeout(res, 1)).then((response) => {
+    if (header) {
+      window.scrollTo(0, header.offsetTop - storePosition)
+    }
+  })
+}
 
 // Handle toggling of description of the keys
 let keyToggles = ref<string[]>([])
