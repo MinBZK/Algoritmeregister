@@ -34,7 +34,12 @@ const navigationItemsTranslated = computed(() =>
   })
 )
 
-const navigationItemsWithoutLink = ['footer']
+const navigationItemsWithCustomLink = [
+  {
+    label: 'footer',
+    routeName: ' ',
+  },
+]
 
 const breadcrumbs = computed(() => {
   const path = currentRoute.path
@@ -49,7 +54,9 @@ const breadcrumbs = computed(() => {
           ?.label || // translate path parts with a name matching an algorithm slug
         algoritme.value?.name ||
         crumb,
-      routeName: navigationItemsWithoutLink.includes(crumb) ? null : crumb,
+      routeName:
+        navigationItemsWithCustomLink.find((item) => item.label == crumb)
+          ?.routeName || crumb,
     }
   })
 })
