@@ -3,6 +3,7 @@
     <b class="highlight-text">
       {{ t('home-highlight-algorithm-text') }}
     </b>
+    <div class="bottom-margin"></div>
     <ul class="bar__list">
       <li v-for="algo in selectedAlgorithms" class="bar__list__item">
         <p class="bar__list__item-icon">
@@ -41,3 +42,8 @@ const selectedAlgorithms = computed(() => {
   })
 })
 </script>
+<style lang="scss">
+.bottom-margin {
+  padding-bottom: 15px;
+}
+</style>
