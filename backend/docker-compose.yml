@@ -9,10 +9,11 @@ services:
       - ./dev_db/init.sql:/docker-entrypoint-initdb.d/init.sql
       - postgres:/var/lib/postgresql/data
     ports:
-      - ${POSTGRES_PORT}:5432
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    command: -p ${POSTGRES_PORT}
 
 
   dbgate:
@@ -31,7 +32,7 @@ services:
       SERVER_CON1: 'db'
       USER_CON1: ${POSTGRES_USER}
       PASSWORD_CON1: ${POSTGRES_PASSWORD}
-      PORT_CON1: 5432
+      PORT_CON1: ${POSTGRES_PORT}
       ENGINE_CON1: postgres@dbgate-plugin-postgres
 
 

@@ -1,4 +1,3 @@
-// import { apiFetch } from '@/utils/fetchApi'
 import type { Algoritme, AlgNameIdOrg } from '@/types/algoritme'
 
 const getAll = () =>
@@ -6,8 +5,8 @@ const getAll = () =>
     baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
 
-const getOne = (id: string) =>
-  useFetch<Algoritme>(`/algoritme/${id}/`, {
+const getOne = (slug: string) =>
+  useFetch<Algoritme>(`/algoritme/${slug}/`, {
     baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
 

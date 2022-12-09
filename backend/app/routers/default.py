@@ -19,21 +19,22 @@ async def get_all(db: Session = Depends(get_db)):
 
 
 @router.get(
-    "/algoritme/{id}/",
+    "/algoritme/{slug}/",
     response_model=schemas.algoritme.Algoritme,
 )
-async def get_one(id: str, db: Session = Depends(get_db)):
-    return (
+async def get_one(slug: str, db: Session = Depends(get_db)):
+    x = (
         db.query(models.algoritme.Algoritme)
-        .filter(models.algoritme.Algoritme.id == id)
+        .filter(models.algoritme.Algoritme.slug == slug)
         .first()
     )
+    return x
 
 
 @router.get("/algoritme-simple-list/")
 async def get_simple_list(db: Session = Depends(get_db)):
     return db.query(
-        models.algoritme.Algoritme.id,
+        models.algoritme.Algoritme.slug,
         models.algoritme.Algoritme.name,
         models.algoritme.Algoritme.organization,
     ).all()

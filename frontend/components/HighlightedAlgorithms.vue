@@ -10,9 +10,9 @@
             size="0.8em"
             name="material-symbols:arrow-forward-ios-rounded"
           />&nbsp;
-          <a :href="`/algoritme/${algo.id}`" class="link"
-            >{{ algo.name || '' }} | {{ algo.organization || '' }}</a
-          >
+          <NuxtLink :to="`/algoritme/${algo.slug}`" class="link">
+            {{ algo.name || '' }} | {{ algo.organization || '' }}
+          </NuxtLink>
         </p>
       </li>
     </ul>
@@ -28,16 +28,15 @@ const { t } = useI18n()
 const { data } = await algoritmeService.getNameIdOrg()
 let nameList = ref(data.value as AlgNameIdOrg[])
 
-const selectedAlgorithmIds = ['32', '25', '1']
+const selectedAlgorithmSlugs = [
+  'public-eye-gemeente-amsterdam',
+  'uitrekenen-woz-waarde-gemeente-den-haag',
+  'parkeercontrole-gemeente-rotterdam',
+]
 
-const selectedAlgorithms = computed(() => {
-  return selectedAlgorithmIds.map((id) => {
-    const alg = nameList.value.find((alg) => alg.id == id) || {
-      id: null,
-      name: null,
-      organization: null,
-    }
-    return alg
-  })
-})
+const selectedAlgorithms = computed(() =>
+  nameList.value.filter((algoritme) =>
+    selectedAlgorithmSlugs.includes(algoritme.slug)
+  )
+)
 </script>

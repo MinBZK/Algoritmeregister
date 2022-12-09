@@ -177,6 +177,12 @@
       "description": "Een omschrijving van de wettelijke grondslag voor de inzet van het algoritme, of URL van het formele besluit.",
       "required": true
     },
+    "iama": {
+      "required": true
+    },
+    "iama_description": {
+      "required": true
+    },
     "dpia": {
       "name": "Data protection impact assessment",
       "category": "JURIDISCH",

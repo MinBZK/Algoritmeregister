@@ -57,6 +57,7 @@
                     aggregationType.aggregationAttribute,
                     attributeValue
                   ),
+                  page: 1,
                 },
               }"
             >

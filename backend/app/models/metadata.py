@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, VARCHAR, ForeignKey
+from sqlalchemy import Column, Integer, VARCHAR, ForeignKey, DateTime
 from app.database.database import Base
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
 
 
 class Metadata(Base):
@@ -15,5 +16,6 @@ class Metadata(Base):
     lang = Column(VARCHAR(1024))
     revision_date = Column(VARCHAR(1024))
     algoritme_id = Column(Integer, ForeignKey("algoritme.id"))
+    toegevoegd_op = Column(DateTime(timezone=True), server_default=func.now())
 
     algoritme = relationship("Algoritme", back_populates="metadata_algorithm")

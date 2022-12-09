@@ -24,4 +24,6 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
-    pass
+    tables = ["algemene_informatie", "inzet", "juridisch", "toepassing", "toezicht", "metadata"]
+    for table in tables:
+        op.execute(f"drop table {table} cascade")

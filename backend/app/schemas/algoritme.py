@@ -20,6 +20,8 @@ class Juridisch(BaseModelOrmMode):
     id: str
     competent_authority: str | None
     lawful_basis: str
+    iama: str | None
+    iama_description: str | None
     dpia: bool | None
     dpia_description: str | None
     objection_procedure: str
@@ -60,6 +62,7 @@ class Toezicht(BaseModelOrmMode):
 
 
 class Algoritme(BaseModelOrmMode):
+    slug: str
     id: str
     name: str
     organization: str
@@ -69,7 +72,6 @@ class Algoritme(BaseModelOrmMode):
     category: str
     website: str | None
     status: str
-
     inzet: Inzet | None
     juridisch: Juridisch | None
     metadata_algorithm: Metadata | None
