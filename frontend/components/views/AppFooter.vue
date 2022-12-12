@@ -1,12 +1,12 @@
 <template>
   <div class="footer row--footer" role="contentinfo">
     <div class="container columns">
-      <div>
+      <div class="bottom-margin">
         {{ t('footer.text') }}&nbsp;<NuxtLink :to="'/footer/over'">{{
           t('footer.textAskApply')
         }}</NuxtLink>
       </div>
-      <div></div>
+      <!-- <div></div> -->
       <div v-for="footerKey in footerKeys" :key="footerKey">
         <div class="">
           <ul class="list list--linked">
@@ -53,3 +53,9 @@ const footerKeys = Object.keys(footer)
 //   })
 // })
 </script>
+
+<style scoped lang="scss">
+.bottom-margin {
+  padding-bottom: 1.75em;
+}
+</style>
