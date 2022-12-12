@@ -289,4 +289,7 @@ dl.columns--data div {
 .tabs__list a {
   cursor: pointer;
 }
+.well--pageblock {
+  padding: 1.5em 10% !important;
+}
 </style>
