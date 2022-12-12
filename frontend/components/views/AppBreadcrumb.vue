@@ -30,18 +30,22 @@ const currentRoute = useRoute()
 
 const navigationItemsTranslated = computed(() =>
   navigationItems.map((item) => {
-    return { label: t(item.label), routeName: item.routeName }
+    return { label: t(item.localeName), routeName: item.routeName }
   })
 )
 
-const navigationItemsWithoutLink = ['footer']
+const ignoredNavigationItems = ['footer']
 
 const breadcrumbs = computed(() => {
   const path = currentRoute.path
-  const breadCrumbs = path != '/' ? path.split('/').slice(1) : []
+  // the added '/ ' is interpreted in the mapping as the link to Home
+  var crumbStrings: string[] =
+    path != '/' ? ('/ ' + path).split('/').slice(1) : []
 
-  return breadCrumbs.map((crumb) => {
-    // console.log(nameList.value.find((alg) => alg.slug == crumb)?.name)
+  crumbStrings = crumbStrings.filter(
+    (crumb) => !ignoredNavigationItems.includes(crumb)
+  )
+  return crumbStrings.map((crumb: any) => {
     return {
       label:
         // translate path parts with a name matching a navigation item
@@ -49,7 +53,7 @@ const breadcrumbs = computed(() => {
           ?.label || // translate path parts with a name matching an algorithm slug
         algoritme.value?.name ||
         crumb,
-      routeName: navigationItemsWithoutLink.includes(crumb) ? null : crumb,
+      routeName: crumb,
     }
   })
 })

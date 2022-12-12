@@ -13,11 +13,12 @@
           Menu
         </button>
         <div class="logo">
-          <a href=""
-            ><img
+          <NuxtLink :to="`../`">
+            <img
               src="../../assets/images/logo.svg"
               alt="Logo Overheid.nl, ga naar de startpagina"
-          /></a>
+            />
+          </NuxtLink>
           <div class="logo__you-are-here">
             <p class="visually-hidden">U bent nu hier:</p>
             <p>{{ t(`logoCaption`) }}</p>
