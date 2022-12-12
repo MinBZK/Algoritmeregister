@@ -17,7 +17,7 @@
     <dl class="dl columns--data">
       <div v-for="sT in summaryTiles">
         <dt>{{ t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}</dt>
-        <dd class="word-break">
+        <dd class="no-bottom-margin">
           {{ algoritme[sT as keyof typeof algoritme] }}
         </dd>
       </div>
@@ -53,3 +53,13 @@ const isTruncated = computed(() => {
   )
 })
 </script>
+
+<style scoped lang="scss">
+.dl.columns--data div {
+  padding: 0.5em;
+}
+
+.no-bottom-margin {
+  margin-bottom: 0;
+}
+</style>
