@@ -46,7 +46,7 @@ const breadcrumbs = computed(() => {
   crumbStrings = crumbStrings.filter(
     (crumb) => !ignoredNavigationItems.includes(crumb)
   )
-  const result = crumbStrings.map((crumb: any) => {
+  return crumbStrings.map((crumb: any) => {
     return {
       label:
         // translate path parts with a name matching a navigation item
@@ -57,8 +57,6 @@ const breadcrumbs = computed(() => {
       routeName: crumb,
     }
   })
-  console.log(result)
-  return result
 })
 
 const breadcrumbsWithLinks = computed(() => breadcrumbs.value.slice(0, -1))
