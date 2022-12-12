@@ -22,7 +22,7 @@
       <div class="column column-d-0.5">
         <div class="form__row">
           <button
-            class="button button--primary button--block button--nolabel button--more-margin"
+            class="button button--primary button--block button--nolabel button--align-to-search-field"
             type="submit"
             @click="$emit('doSearch')"
           >
@@ -70,7 +70,10 @@ watch(searchValue, () => {
 .v-text-field :deep(label) {
   font-size: 1.1em;
 }
-.button--more-margin {
+.button--align-to-search-field {
   margin-top: 1.75em;
+}
+.form__label {
+  margin-bottom: 0.5em !important;
 }
 </style>
