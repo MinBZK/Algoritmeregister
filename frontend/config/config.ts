@@ -19,35 +19,35 @@ const keys = {
 
 const navigationItems = [
   {
-    label: 'navigation.home',
-    routeName: 'index',
+    localeName: 'navigation.home',
+    routeName: ' ',
   },
   {
-    label: 'navigation.algorithmRegister',
+    localeName: 'navigation.algorithmRegister',
     routeName: 'algoritme',
   },
   {
-    label: 'navigation.footer',
+    localeName: 'navigation.footer',
     routeName: 'footer',
   },
   {
-    label: 'navigation.over',
+    localeName: 'navigation.over',
     routeName: 'over',
   },
   {
-    label: 'navigation.contact',
+    localeName: 'navigation.contact',
     routeName: 'contact',
   },
   {
-    label: 'navigation.vragen',
+    localeName: 'navigation.vragen',
     routeName: 'vragen',
   },
   {
-    label: 'navigation.privacyverklaring',
+    localeName: 'navigation.privacyverklaring',
     routeName: 'privacyverklaring',
   },
   {
-    label: 'navigation.toegankelijkheid',
+    localeName: 'navigation.toegankelijkheid',
     routeName: 'toegankelijkheid',
   },
 ]

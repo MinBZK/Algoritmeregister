@@ -30,22 +30,23 @@ let nameList = ref(data.value as AlgNameIdOrg[])
 
 const navigationItemsTranslated = computed(() =>
   navigationItems.map((item) => {
-    return { label: t(item.label), routeName: item.routeName }
+    console.log(item)
+    return { label: t(item.localeName), routeName: item.routeName }
   })
 )
 
-const navigationItemsWithCustomLink = [
-  {
-    label: 'footer',
-    routeName: ' ',
-  },
-]
+const ignoredNavigationItems = ['footer']
 
 const breadcrumbs = computed(() => {
   const path = currentRoute.path
-  const breadCrumbs = path != '/' ? path.split('/').slice(1) : []
+  // the added '/ ' is interpreted in the mapping as the link to Home
+  var crumbStrings: string[] =
+    path != '/' ? ('/ ' + path).split('/').slice(1) : []
 
-  return breadCrumbs.map((crumb) => {
+  crumbStrings = crumbStrings.filter(
+    (crumb) => !ignoredNavigationItems.includes(crumb)
+  )
+  const result = crumbStrings.map((crumb: any) => {
     return {
       label:
         // translate path parts with a name matching a navigation item
@@ -53,11 +54,11 @@ const breadcrumbs = computed(() => {
           ?.label || // translate path parts with a name matching an algorithm id
         nameList.value.find((alg: any) => alg.id == crumb)?.name ||
         crumb,
-      routeName:
-        navigationItemsWithCustomLink.find((item) => item.label == crumb)
-          ?.routeName || crumb,
+      routeName: crumb,
     }
   })
+  console.log(result)
+  return result
 })
 
 const breadcrumbsWithLinks = computed(() => breadcrumbs.value.slice(0, -1))
