@@ -30,10 +30,6 @@ const currentRoute = useRoute()
 
 const navigationItemsTranslated = computed(() =>
   navigationItems.map((item) => {
-<<<<<<< HEAD
-=======
-    console.log(item)
->>>>>>> 40e7ce294cd43586c36e5413cbbaf4cf10075a20
     return { label: t(item.localeName), routeName: item.routeName }
   })
 )
