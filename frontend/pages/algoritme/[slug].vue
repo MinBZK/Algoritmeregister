@@ -20,7 +20,7 @@
           <dt>
             {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
           </dt>
-          <dd class="word-break">
+          <dd>
             <span>{{
               algoritme[sT as keyof typeof algoritme] || t('Ontbreekt')
             }}</span>
@@ -272,12 +272,9 @@ definePageMeta({
   title: 'Algoritme details',
 })
 
-onMounted(() => {
-  if (!isMobile.value) {
-    // Opens the first tab.
-    activeAttributeKey.value = structuredProperties.value[0].attributeGroupKey
-  }
-})
+if (!isMobile.value) {
+  activeAttributeKey.value = structuredProperties.value[0].attributeGroupKey
+}
 
 watch(
   isMobile,
@@ -298,7 +295,13 @@ watch(
   word-break: break-word;
 }
 
+dl.columns--data div {
+  padding: 0.5em;
+}
 .tabs__list a {
   cursor: pointer;
+}
+.well--pageblock {
+  padding: 1.5em 10% !important;
 }
 </style>
