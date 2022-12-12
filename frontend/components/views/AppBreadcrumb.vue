@@ -1,9 +1,9 @@
 <template>
-  <ClientOnly>
-    <div class="row row--page-opener" v-if="breadcrumbs.length != 0">
-      <div class="container">
-        <div class="breadcrumb">
-          <p>{{ t('you-are-here') }}:</p>
+  <div class="row row--page-opener" v-if="breadcrumbs.length != 0">
+    <div class="container">
+      <div class="breadcrumb">
+        <p>{{ t('you-are-here') }}:</p>
+        <ClientOnly>
           <ol>
             <li v-for="crumb in breadcrumbsWithLinks">
               <a v-if="crumb.routeName != null" :href="`/${crumb.routeName}`">{{
@@ -13,10 +13,10 @@
             </li>
             <li>{{ pathTail.label }}</li>
           </ol>
-        </div>
+        </ClientOnly>
       </div>
     </div>
-  </ClientOnly>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -45,17 +45,20 @@ const breadcrumbs = computed(() => {
   crumbStrings = crumbStrings.filter(
     (crumb) => !ignoredNavigationItems.includes(crumb)
   )
-  return crumbStrings.map((crumb: any) => {
-    return {
-      label:
-        // translate path parts with a name matching a navigation item
-        navigationItemsTranslated.value.find((item) => item.routeName == crumb)
-          ?.label || // translate path parts with a name matching an algorithm slug
-        algoritme.value?.name ||
-        crumb,
-      routeName: crumb,
-    }
-  })
+  return crumbStrings
+    .map((crumb: any) => {
+      return {
+        label:
+          // translate path parts with a name matching a navigation item
+          navigationItemsTranslated.value.find(
+            (item) => item.routeName == crumb
+          )?.label || // translate path parts with a name matching an algorithm slug
+          algoritme.value?.name ||
+          crumb,
+        routeName: crumb,
+      }
+    })
+    .filter((bc) => bc.routeName) // remove empty routes when URL has a trailing /
 })
 
 const breadcrumbsWithLinks = computed(() => breadcrumbs.value.slice(0, -1))

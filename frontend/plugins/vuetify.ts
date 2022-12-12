@@ -1,5 +1,5 @@
 import { createVuetify } from 'vuetify'
-import '@mdi/font/css/materialdesignicons.css'
+// import '@mdi/font/css/materialdesignicons.css'
 import { nl, en } from 'vuetify/locale'
 
 export default defineNuxtPlugin((nuxtApp) => {

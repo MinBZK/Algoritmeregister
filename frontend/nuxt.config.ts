@@ -2,7 +2,7 @@ import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'url'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
 // https://next.vuetifyjs.com/en/features/treeshaking/#automatic-treeshaking
-import vuetify from 'vite-plugin-vuetify'
+// import vuetify from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   app: {
@@ -12,13 +12,13 @@ export default defineNuxtConfig({
   },
   modules: [
     'nuxt-icon',
-    '@vueuse/nuxt',
-    async (options, nuxt) => {
-      nuxt.hooks.hook('vite:extendConfig', (config) =>
-        // @ts-ignore
-        config.plugins.push(vuetify())
-      )
-    },
+    // '@vueuse/nuxt',
+    // async (options, nuxt) => {
+    //   nuxt.hooks.hook('vite:extendConfig', (config) =>
+    //     // @ts-ignore
+    //     config.plugins.push(vuetify())
+    //   )
+    // },
   ],
   vite: {
     css: {
@@ -38,13 +38,10 @@ export default defineNuxtConfig({
       }),
     ],
   },
-  css: [
-    '@/assets/styles/main.scss',
-    //  'vuetify/lib/styles/main.sass'
-  ],
-  build: {
-    transpile: ['vuetify'],
-  },
+  css: ['@/assets/styles/main.scss'],
+  // build: {
+  // transpile: ['vuetify'],
+  // },
   runtimeConfig: {
     public: {
       apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || '',

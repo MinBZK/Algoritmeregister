@@ -1,11 +1,14 @@
 <template>
-  <SearchFunction
-    v-bind:value="searchQuery"
-    @input="(v) => (searchQuery = v)"
-  ></SearchFunction>
+  <SearchBar v-bind:value="searchQuery" @input="(v) => (searchQuery = v)" />
 
-  <div class="row container columns columns--sidebar-left">
-    <div>
+  <div class="row container columns">
+    <div class="column-d-3">
+      <AlgoritmeFilters
+        :aggregatedAlgoritmes="aggregatedAlgoritmes"
+        v-if="paginatedAlgoritmes.length != 0"
+      />
+    </div>
+    <div class="column-d-9">
       <h1>{{ t(`foundResults`, { n: filteredAlgoritmes.length }) }}</h1>
       <Pagination
         v-if="nPages > 1"
@@ -31,9 +34,6 @@
         :page-length="nPages"
         @setPage="(p) => setPage(p)"
       />
-    </div>
-    <div v-if="paginatedAlgoritmes.length != 0">
-      <AlgoritmeFilters :aggregatedAlgoritmes="aggregatedAlgoritmes" />
     </div>
   </div>
 </template>
@@ -149,8 +149,6 @@ watch(searchQuery, () => {
 </script>
 
 <style scoped lang="scss">
-@import '/assets/styles/main.scss';
-
 .item-header {
   margin-bottom: 15px;
 }

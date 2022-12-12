@@ -10,7 +10,7 @@
     </template>
     <template v-if="filtersExpanded">
       <div v-if="parsedFilters.length > 0" class="search-filter-item">
-        <h4>{{ $t('selectedAlgorithms') }}</h4>
+        <h2>{{ $t('selectedAlgorithms') }}</h2>
         <div
           v-for="f in parsedFilters"
           @click="removeFilter(f)"
@@ -32,13 +32,13 @@
             getAttributeFilters(aggregationType.aggregationAttribute).length > 0
           "
         >
-          <h4>
+          <h2>
             {{
               $t(
                 `algorithmProperties.algemeneInformatie.${aggregationType.aggregationAttribute}.label`
               )
             }}
-          </h4>
+          </h2>
 
           <div
             v-for="[attributeValue, count] in getAttributeFilters(
