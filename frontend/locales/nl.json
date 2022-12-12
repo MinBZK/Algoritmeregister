@@ -46,6 +46,9 @@
   },
   "showFilters": "Toon filters",
   "hideFilters": "Verberg filters",
+  "searchResultCard": {
+    "readMore": "lees meer"
+  },
   "navigation": {
     "home": "Home",
     "algorithmRegister": "Algoritmes",

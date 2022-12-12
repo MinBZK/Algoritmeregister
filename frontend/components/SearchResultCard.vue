@@ -9,7 +9,7 @@
       {{ truncatedDescription }}&nbsp;<a
         :href="`/algoritme/${algoritme.slug} `"
         v-if="isTruncated"
-        >lees meer
+        >{{ readMore }}
       </a>
     </p>
 
@@ -32,6 +32,7 @@ import { useI18n } from 'vue-i18n'
 import type { Algoritme } from '@/types/algoritme'
 
 const { t } = useI18n()
+const readMore = computed(() => t('searchResultCard.readMore'))
 
 const props = defineProps<{
   algoritme: Algoritme
