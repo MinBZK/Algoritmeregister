@@ -5,12 +5,11 @@
     </h1>
   </div>
   <div :class="[isMobile ? 'card-margins-xs' : 'card-margins']">
-    <SearchFunction
+    <SearchBar
       v-bind:value="searchQuery"
       @input="(v) => (searchQuery = v)"
       @doSearch="doSearch"
-    >
-    </SearchFunction>
+    />
     <HighlightedAlgorithms />
   </div>
 </template>
@@ -18,7 +17,6 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
 import qs from 'qs'
-import SearchFunction from '@/components/SearchFunction.vue'
 
 const isMobile = useMobileBreakpoint()
 const { t } = useI18n()

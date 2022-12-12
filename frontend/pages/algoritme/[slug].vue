@@ -1,7 +1,4 @@
 <template>
-  <div class="skiplinks container">
-    <a href="#content">Direct naar content</a>
-  </div>
   <div class="container row">
     <NuxtLink class="link cta__backwards" :to="`/algoritme/`">
       {{ t('goBack') }}
@@ -93,6 +90,14 @@
         <li role="presentation" v-for="(p, index) in structuredProperties">
           <a
             @click="activeAttributeKey = p.attributeGroupKey"
+            :tabindex="p.attributeGroupKey == activeAttributeKey ? 0 : -1"
+            :key="p.attributeGroupKey"
+            :aria-selected="p.attributeGroupKey == activeAttributeKey"
+            @keydown.enter="activeAttributeKey = p.attributeGroupKey"
+            @keydown.left.prevent="navigateTab(-1)"
+            @keydown.right.prevent="navigateTab(1)"
+            ref="tabHeaders"
+            class="noselect"
             :class="[
               p.attributeGroupKey == activeAttributeKey ? 'is-selected' : '',
             ]"
@@ -105,11 +110,14 @@
 
       <table class="table__data-overview">
         <tbody>
-          <tr v-for="(property, index) in activeAttributeProperties">
+          <tr v-for="property in activeAttributeProperties">
             <th scope="row">
               {{ property.attributeKeyLabel }}
               <span
                 @click="toggleKey(property.attributeKey)"
+                @keydown.enter="toggleKey(property.attributeKey)"
+                role="button"
+                tabindex="0"
                 class="question-mark"
               ></span>
               <p v-if="isKeyToggled(property.attributeKey)">
@@ -268,6 +276,20 @@ const structuredProperties = computed(() => {
   })
 })
 
+const tabHeaders = ref([])
+const navigateTab = (increment: number) => {
+  const currentIndex = structuredProperties.value
+    .map((sP) => sP.attributeGroupKey)
+    .indexOf(activeAttributeKey.value)
+  const newIndex = currentIndex + increment
+  if (newIndex >= 0 && newIndex < structuredProperties.value.length) {
+    activeAttributeKey.value =
+      structuredProperties.value[newIndex].attributeGroupKey
+    const selectedTabHeader: HTMLAnchorElement = tabHeaders.value[newIndex]
+    selectedTabHeader.focus()
+  }
+}
+
 definePageMeta({
   title: 'Algoritme details',
 })
@@ -300,6 +322,14 @@ dl.columns--data div {
 }
 .tabs__list a {
   cursor: pointer;
+}
+
+.question-mark {
+  padding-left: 0;
+}
+
+li a:focus {
+  box-shadow: none;
 }
 .well--pageblock {
   padding: 1.5em 10% !important;

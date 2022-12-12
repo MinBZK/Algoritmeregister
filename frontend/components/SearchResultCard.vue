@@ -1,16 +1,16 @@
 <template>
   <li class="item">
     <div class="item-header">
-      <a :href="`/algoritme/${algoritme.slug}`" class="result--title">
-        {{ props.algoritme.name }}
-      </a>
+      <NuxtLink :to="`/algoritme/${algoritme.slug}`" class="result--title">
+        <h2>{{ props.algoritme.name }}</h2>
+      </NuxtLink>
     </div>
     <p>
-      {{ truncatedDescription }}&nbsp;<a
-        :href="`/algoritme/${algoritme.slug} `"
+      {{ truncatedDescription }}&nbsp;<NuxtLink
+        :to="`/algoritme/${algoritme.slug} `"
         v-if="isTruncated"
         >{{ readMore }}
-      </a>
+      </NuxtLink>
     </p>
 
     <!-- <p> -->
@@ -55,6 +55,11 @@ const isTruncated = computed(() => {
 </script>
 
 <style scoped lang="scss">
+h2 {
+  font-size: 1.1em;
+  margin-bottom: 0.2em;
+}
+
 .dl.columns--data div {
   padding: 0.5em;
 }

@@ -3,7 +3,7 @@
     <div class="columns">
       <div class="column column-d-5">
         <div class="form__row">
-          <label class="form__label form__label--accent">{{
+          <label id="search-label" class="form__label form__label--accent">{{
             searchExplanation
           }}</label>
 
@@ -15,6 +15,7 @@
             :placeholder="searchHint"
             aria-invalid="false"
             v-model="searchValue"
+            aria-labelledby="search-label"
             @keyup.enter="$emit('doSearch')"
           />
         </div>
@@ -38,12 +39,13 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { useDisplay } from 'vuetify'
 
 const { t } = useI18n()
-const { xs } = useDisplay()
 
-const emit = defineEmits(['input', 'doSearch'])
+const emit = defineEmits<{
+  (e: 'input', searchValue: string): void
+  (e: 'doSearch'): void
+}>()
 
 const props = defineProps<{
   value: string
