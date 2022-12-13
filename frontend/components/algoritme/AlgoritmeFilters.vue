@@ -171,4 +171,8 @@ const toggleFilters = () => (showFilters.value = !showFilters.value)
   cursor: not-allowed;
   color: #7ca1c9;
 }
+
+h2 {
+  font-size: 1em;
+}
 </style>
