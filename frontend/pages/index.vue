@@ -1,22 +1,24 @@
 <template>
   <div>
-    <h1 class="homepage-title">
-      {{ homepageTitle }}
-    </h1>
-  </div>
-  <div :class="[isMobile ? 'card-margins-xs' : 'card-margins']">
-    <SearchBar
-      v-bind:value="searchQuery"
-      @input="(v) => (searchQuery = v)"
-      @doSearch="doSearch"
-    />
-    <HighlightedAlgorithms />
+    <div>
+      <h1 class="homepage-title">
+        {{ homepageTitle }}
+      </h1>
+    </div>
+    <div :class="[isMobile ? 'card-margins-xs' : 'card-margins']">
+      <SearchBar
+        :value="searchQuery"
+        @input="(v) => (searchQuery = v)"
+        @do-search="doSearch"
+      />
+      <HighlightedAlgorithms />
+    </div>
   </div>
 </template>
 
 <script setup>
 import { useI18n } from 'vue-i18n'
-import qs from 'qs'
+import { stringify } from 'qs'
 
 const isMobile = useMobileBreakpoint()
 const { t } = useI18n()
@@ -26,7 +28,7 @@ const searchQuery = ref('')
 
 const doSearch = () => {
   const router = useRouter()
-  const stringifiedQuery = qs.stringify({
+  const stringifiedQuery = stringify({
     search: searchQuery.value,
   })
   router.push(`/algoritme?q=${stringifiedQuery}`)

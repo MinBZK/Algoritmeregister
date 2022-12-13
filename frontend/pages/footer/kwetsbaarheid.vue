@@ -50,7 +50,7 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
 const englishSelected = computed(() => {
-  return t(`english?`) == 'true'
+  return t(`english?`) === 'true'
 })
 
 definePageMeta({

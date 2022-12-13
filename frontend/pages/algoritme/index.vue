@@ -1,47 +1,50 @@
 <template>
-  <SearchBar v-bind:value="searchQuery" @input="(v) => (searchQuery = v)" />
+  <div>
+    <SearchBar :value="searchQuery" @input="(v) => (searchQuery = v)" />
 
-  <div class="row container columns">
-    <div class="column-d-3">
-      <AlgoritmeFilters
-        :aggregatedAlgoritmes="aggregatedAlgoritmes"
-        v-if="paginatedAlgoritmes.length != 0"
-      />
-    </div>
-    <div class="column-d-9">
-      <h1>{{ t(`foundResults`, { n: filteredAlgoritmes.length }) }}</h1>
-      <Pagination
-        v-if="nPages > 1"
-        :current-page="page"
-        :page-length="nPages"
-        @setPage="(p) => setPage(p)"
-      />
-      <!-- <Sort /> -->
-      <div class="result--list result--list__data">
-        <ul v-if="paginatedAlgoritmes.length != 0">
-          <SearchResultCard
-            :algoritme="algoritme"
-            v-for="algoritme in paginatedAlgoritmes"
-          ></SearchResultCard>
-        </ul>
-        <div v-if="paginatedAlgoritmes.length == 0">
-          {{ t('noResults') }}
-        </div>
+    <div class="row container columns">
+      <div class="column-d-3">
+        <AlgoritmeFilters
+          v-if="paginatedAlgoritmes.length != 0"
+          :aggregated-algoritmes="aggregatedAlgoritmes"
+        />
       </div>
-      <Pagination
-        v-if="nPages > 1"
-        :current-page="page"
-        :page-length="nPages"
-        @setPage="(p) => setPage(p)"
-      />
+      <div class="column-d-9">
+        <h1>{{ t(`foundResults`, { n: filteredAlgoritmes.length }) }}</h1>
+        <Pagination
+          v-if="nPages > 1"
+          :current-page="page"
+          :page-length="nPages"
+          @set-page="(p) => setPage(p)"
+        />
+        <!-- <Sort /> -->
+        <div class="result--list result--list__data">
+          <ul v-if="paginatedAlgoritmes.length != 0">
+            <SearchResultCard
+              v-for="algoritme in paginatedAlgoritmes"
+              :key="algoritme.slug"
+              :algoritme="algoritme"
+            ></SearchResultCard>
+          </ul>
+          <div v-if="paginatedAlgoritmes.length == 0">
+            {{ t('noResults') }}
+          </div>
+        </div>
+        <Pagination
+          v-if="nPages > 1"
+          :current-page="page"
+          :page-length="nPages"
+          @set-page="(p) => setPage(p)"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import algoritmeService from '@/services/algoritme'
 import { useI18n } from 'vue-i18n'
+import algoritmeService from '@/services/algoritme'
 import type {
   Algoritme,
   AggregatedAlgoritmes,
@@ -62,7 +65,7 @@ const parsedFilters = computed(
 )
 
 const { data } = await algoritmeService.getAll()
-let algoritmes = ref(data.value as Algoritme[])
+const algoritmes = ref(data.value as Algoritme[])
 
 const filteredAlgoritmes = computed(() => {
   const searchQueryString = String(searchQuery.value)
@@ -85,7 +88,7 @@ const filteredAlgoritmes = computed(() => {
     const allowedByQueryFilters = (parsedFilters.value || [])
       .map(
         ({ attribute, value }) =>
-          algoritme[attribute as keyof Algoritme] == value
+          algoritme[attribute as keyof Algoritme] === value
       )
       .every((v) => v)
 
