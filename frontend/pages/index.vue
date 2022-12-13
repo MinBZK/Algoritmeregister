@@ -7,11 +7,18 @@
     </div>
     <div :class="[isMobile ? 'card-margins-xs' : 'card-margins']">
       <SearchBar
-        :value="searchQuery"
+        v-bind:value="searchQuery"
         @input="(v) => (searchQuery = v)"
-        @do-search="doSearch"
+        @doSearch="doSearch"
       />
-      <HighlightedAlgorithms />
+      <div class="columns">
+        <div class="column">
+          <HighlightedAlgorithms />
+        </div>
+        <div class="column">
+          <HomePageText />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -56,6 +63,6 @@ const doSearch = () => {
 .homepage-title {
   color: $primary-darker;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 0px;
 }
 </style>
