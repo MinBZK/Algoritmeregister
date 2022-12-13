@@ -2,8 +2,8 @@
   <div class="locale-changer text-grey text-end">
     <span
       v-for="locale in $i18n.availableLocales"
-      class="locale"
       :key="`locale-${locale}`"
+      class="locale"
       @click="setLocale(locale)"
     >
       <template v-if="$i18n.locale !== locale">

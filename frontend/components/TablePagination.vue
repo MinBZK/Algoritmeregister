@@ -24,13 +24,13 @@
       </div>
       <div
         :class="pageNumber == currentPage && 'current-page'"
+        :aria-label="t('pagination.goTo', { n: pageNumber })"
         tabindex="0"
         :aria-current="pageNumber == currentPage && `true`"
         aria-role="button"
         class="pagenumber noselect"
         @keydown.enter="$emit('setPage', pageNumber)"
         @click="$emit('setPage', pageNumber)"
-        :aria-label="t('pagination.goTo', { n: pageNumber })"
       >
         {{ pageNumber }}
       </div>
@@ -44,15 +44,15 @@
     <div
       class="pagenumber noselect"
       :tabindex="props.currentPage == props.pageLength ? -1 : 0"
-      aria-role="button"
-      :class="props.currentPage == props.pageLength && 'disabled'"
-      @click="navigate(1)"
-      @keydown.enter="navigate(1)"
       :aria-label="
         props.currentPage !== props.pageLength
           ? t('pagination.goTo', { n: props.currentPage + 1 })
           : ``
       "
+      aria-role="button"
+      :class="props.currentPage == props.pageLength && 'disabled'"
+      @click="navigate(1)"
+      @keydown.enter="navigate(1)"
     >
       <NuxtIcon name="mdi:chevron-right" />
     </div>

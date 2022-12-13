@@ -30,9 +30,9 @@
       </div>
     </div>
     <nav
+      id="nav"
       class="header__nav"
       :class="!menuExpanded && 'header__nav--closed'"
-      id="nav"
     >
       <div class="container">
         <ul class="header__primary-nav list list--unstyled">
@@ -61,8 +61,8 @@
 </template>
 
 <script setup lang="ts">
-import LanguagePicker from '@/components/LanguagePicker.vue'
 import { useI18n } from 'vue-i18n'
+import LanguagePicker from '@/components/LanguagePicker.vue'
 const { t } = useI18n()
 
 const navigationItems = computed(() => [

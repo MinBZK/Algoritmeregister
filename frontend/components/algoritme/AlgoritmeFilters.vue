@@ -4,7 +4,7 @@
     :aria-expanded="filtersExpanded ? 'true' : 'false'"
   >
     <template v-if="isMobile">
-      <a @click="toggleFilters" @keyup.enter="toggleFilters" tabindex="0">{{
+      <a tabindex="0" @click="toggleFilters" @keyup.enter="toggleFilters">{{
         $t(filtersExpanded ? 'hideFilters' : 'showFilters')
       }}</a>
     </template>
@@ -13,9 +13,10 @@
         <h2>{{ $t('selectedAlgorithms') }}</h2>
         <div
           v-for="f in parsedFilters"
+          :key="f.attribute"
+          tabindex="0"
           @click="removeFilter(f)"
           @keyup.enter="removeFilter(f)"
-          tabindex="0"
         >
           <a>
             {{ f.value || '-' }}
@@ -27,10 +28,10 @@
         v-for="aggregationType in props.aggregatedAlgoritmes"
         :key="aggregationType.aggregationAttribute"
         ><div
-          class="search-filter-item"
           v-if="
             getAttributeFilters(aggregationType.aggregationAttribute).length > 0
           "
+          class="search-filter-item"
         >
           <h2>
             {{
@@ -81,13 +82,13 @@
 </template>
 
 <script setup lang="ts">
-import qs from 'qs'
+import { stringify } from 'qs'
 import type { AggregatedAlgoritmes, AlgoritmeFilter } from '@/types/algoritme'
 
 const props = defineProps<{ aggregatedAlgoritmes: AggregatedAlgoritmes[] }>()
 
 const getEncodedFiltersQuery = (attribute: string, value: string): string => {
-  const stringified = qs.stringify({
+  const stringified = stringify({
     filters: [{ attribute, value }, ...parsedFilters.value],
   })
   return stringified
@@ -102,7 +103,7 @@ const parsedFilters = computed(
 
 const removeFilter = (filter: AlgoritmeFilter) => {
   const filterToBeRemoved = parsedFilters.value.find(
-    (f) => f.attribute == filter.attribute
+    (f) => f.attribute === filter.attribute
   )
   if (filterToBeRemoved) {
     const newFilters = [...parsedFilters.value]
@@ -111,22 +112,23 @@ const removeFilter = (filter: AlgoritmeFilter) => {
     const router = useRouter()
     router.push({
       name: 'algoritme',
-      query: { q: qs.stringify({ filters: newFilters }) },
+      query: { q: stringify({ filters: newFilters }) },
     })
   }
 }
 
 const getAttributeFilters = (attribute: string) => {
   const values = props.aggregatedAlgoritmes.find(
-    (a) => a.aggregationAttribute == attribute
+    (a) => a.aggregationAttribute === attribute
   )?.aggregatedValues
 
   const filterdValues = Object.entries(values || []).filter(
     ([filterAttributeValue]) => {
       return (
         parsedFilters.value.filter(
-          (pF) => pF.attribute == attribute && pF.value == filterAttributeValue
-        ).length == 0
+          (pF) =>
+            pF.attribute === attribute && pF.value === filterAttributeValue
+        ).length === 0
       )
     }
   )
@@ -136,7 +138,7 @@ const getAttributeFilters = (attribute: string) => {
 
 const hasFilter = (attribute: string, attributeValue: string): boolean =>
   parsedFilters.value.filter(
-    (pF) => pF.attribute == attribute && pF.value == attributeValue
+    (pF) => pF.attribute === attribute && pF.value === attributeValue
   ).length > 0
 
 // mobile only

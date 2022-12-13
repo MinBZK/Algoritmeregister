@@ -6,8 +6,8 @@
           {{ title }}
         </h3>
         <div class="row button--block">
-          <select aria-describedby="select-helptext-1" v-model="listValue">
-            <option v-for="column in columns" :value="column.key">
+          <select v-model="listValue" aria-describedby="select-helptext-1">
+            <option v-for="column in columns" :key="column" :value="column.key">
               {{ column.label }}
             </option>
           </select>
@@ -34,7 +34,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="org in parsedCountData">
+              <tr v-for="org in parsedCountData" :key="org.descriptor">
                 <td class="word-break">
                   {{ org.descriptor }}
                 </td>
@@ -95,8 +95,9 @@ const columns = computed(() =>
     })
 )
 
-var countData = ref<[{ descriptor: string; count: string; fraction: number }]>()
-var listValue = ref(interestingColumns[0])
+const countData =
+  ref<[{ descriptor: string; count: string; fraction: number }]>()
+const listValue = ref(interestingColumns[0])
 const selectType = async () => {
   await algoritmeService.getCount(listValue.value).then((response) => {
     countData.value = response.data.value?.map((data: any) => {
@@ -105,7 +106,6 @@ const selectType = async () => {
         count: data.count,
         fraction: Math.floor((data.count / props.nAlgorithms) * 100),
       }
-      console.log(result)
       return result
     })
   })
@@ -116,8 +116,8 @@ const parsedCountData = computed(() => {
     const parsedValue = () => {
       if (data.descriptor === '' || data.descriptor === null) {
         return t('ontbreekt')
-      } else if (typeof data.descriptor == 'boolean') {
-        return data.descriptor == true ? t('yes') : t('no')
+      } else if (typeof data.descriptor === 'boolean') {
+        return data.descriptor === true ? t('yes') : t('no')
       } else {
         return data.descriptor
       }
