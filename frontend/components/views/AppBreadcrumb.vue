@@ -1,5 +1,5 @@
 <template>
-  <div v-if="breadcrumbs.length != 0" class="row row--page-opener">
+  <div v-if="breadcrumbs.length != 0 && !error" class="row row--page-opener">
     <div class="container">
       <div class="breadcrumb">
         <p>{{ t('you-are-here') }}:</p>
@@ -22,6 +22,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { navigationItems } from '@/config/config'
+
+const error = useError()
 
 const { algoritme } = useAlgoritme()
 
