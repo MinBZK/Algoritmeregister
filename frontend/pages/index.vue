@@ -7,9 +7,9 @@
     </div>
     <div :class="[isMobile ? 'card-margins-xs' : 'card-margins']">
       <SearchBar
-        v-bind:value="searchQuery"
+        :value="searchQuery"
         @input="(v) => (searchQuery = v)"
-        @doSearch="doSearch"
+        @do-search="doSearch"
       />
       <div class="columns">
         <div class="column">
