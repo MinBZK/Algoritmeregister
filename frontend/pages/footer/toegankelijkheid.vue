@@ -14,6 +14,7 @@
         In 2023 start de procedure voor een toegankelijkheidsverklaring, en komt
         algoritme.overheid.nl in het
         <a
+          class="is-external"
           target="_blank"
           href="https://www.toegankelijkheidsverklaring.nl/register"
         >
@@ -35,6 +36,7 @@
         The procedure for an accessibility statement will start in 2023, and the
         website will be included in the government's
         <a
+          class="is-external"
           target="_blank"
           href="https://www.toegankelijkheidsverklaring.nl/register"
         >
