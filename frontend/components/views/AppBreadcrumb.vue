@@ -64,3 +64,9 @@ const breadcrumbs = computed(() => {
 const breadcrumbsWithLinks = computed(() => breadcrumbs.value.slice(0, -1))
 const pathTail = computed(() => breadcrumbs.value.slice(-1)[0])
 </script>
+
+<style scoped lang="scss">
+.container {
+  width: $page-width;
+}
+</style>

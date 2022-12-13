@@ -229,5 +229,9 @@
         "description": "** nog te vertalen **"
       }
     }
+  },
+  "error": {
+    "pageNotFound": "Page not found",
+    "goToHome": "Go to the home page"
   }
 }

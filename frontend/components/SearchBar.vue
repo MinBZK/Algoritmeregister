@@ -8,13 +8,13 @@
           }}</label>
 
           <input
-            type="text"
             id="input-text-98789"
+            v-model="searchValue"
+            type="text"
             name="98789"
             class="input input-text"
             :placeholder="searchHint"
             aria-invalid="false"
-            v-model="searchValue"
             aria-labelledby="search-label"
             @keyup.enter="$emit('doSearch')"
           />
@@ -22,15 +22,13 @@
       </div>
       <div class="column column-d-0.5">
         <div class="form__row">
-          <button
-            class="button button--primary button--block button--nolabel button--align-to-search-field"
-            type="submit"
+          <FormOverheidButton
+            class="button--align-to-search-field"
+            :label="search"
+            icon="ic:round-search"
+            :full-width="true"
             @click="$emit('doSearch')"
-          >
-            <span class="button__label"
-              >{{ search }} <NuxtIcon size="0.9em" name="ic:round-search"
-            /></span>
-          </button>
+          />
         </div>
       </div>
     </div>

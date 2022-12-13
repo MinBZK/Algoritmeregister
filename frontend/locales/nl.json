@@ -229,5 +229,9 @@
         "description": "De datum waarvoor deze registratie moet worden herzien."
       }
     }
+  },
+  "error": {
+    "pageNotFound": "Pagina niet gevonden",
+    "goToHome": "Ga naar de homepagina"
   }
 }
