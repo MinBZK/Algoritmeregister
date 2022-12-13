@@ -70,16 +70,20 @@
             ></span>
           </div>
           <div class="word-break" v-if="isKeyToggled(property.attributeKey)">
-            <i
-              >{{
-                `${explanation}: ${
-                  property.attributeKeyDescription || t('Ontbreekt')
-                }`
-              }}
+            <i>
+              <ParseUrl>
+                {{
+                  `${explanation}: ${
+                    property.attributeKeyDescription || t('Ontbreekt')
+                  }`
+                }}
+              </ParseUrl>
             </i>
           </div>
           <div class="word-break">
-            {{ property.attributeValue || t('Ontbreekt') }}
+            <ParseUrl>
+              {{ property.attributeValue || t('Ontbreekt') }}
+            </ParseUrl>
           </div>
         </div>
       </div>
@@ -93,7 +97,7 @@
             :tabindex="p.attributeGroupKey == activeAttributeKey ? 0 : -1"
             :key="p.attributeGroupKey"
             :aria-selected="p.attributeGroupKey == activeAttributeKey"
-            @keydown.enter="activeAttributeKey = p.attributeGroupKey"
+            @keydown.enter="selectTab()"
             @keydown.left.prevent="navigateTab(-1)"
             @keydown.right.prevent="navigateTab(1)"
             ref="tabHeaders"
@@ -122,17 +126,21 @@
               ></span>
               <p v-if="isKeyToggled(property.attributeKey)">
                 <i>
-                  {{
-                    `${explanation}: ${
-                      property.attributeKeyDescription || t('Ontbreekt')
-                    }`
-                  }}
+                  <ParseUrl>
+                    {{
+                      `${explanation}: ${
+                        property.attributeKeyDescription || t('Ontbreekt')
+                      }`
+                    }}
+                  </ParseUrl>
                 </i>
               </p>
             </th>
 
             <td>
-              {{ property.attributeValue || t('Ontbreekt') }}
+              <ParseUrl :key="property.attributeValue">
+                {{ property.attributeValue || t('Ontbreekt') }}
+              </ParseUrl>
             </td>
           </tr>
         </tbody>
@@ -147,7 +155,7 @@ import { summaryTiles } from '~~/config/config'
 import { useI18n } from 'vue-i18n'
 import type { Algoritme } from '~~/types/algoritme'
 import requiredFields from '~~/config/fields.json'
-// import algoritmeStore from '@/stores/algoritme'
+import { useActiveElement } from '@vueuse/core'
 import algoritmeService from '@/services/algoritme'
 
 const isMobile = useMobileBreakpoint()
@@ -158,16 +166,10 @@ const slug = Array.isArray(route.params.slug)
   ? route.params.slug[0]
   : route.params.slug
 
-// get store
-// const store = useAlgoritmeStore()
-
 const { setAlgoritme } = useAlgoritme()
 const { data } = await algoritmeService.getOne(slug)
 let algoritme = ref(data.value as Algoritme)
 setAlgoritme(algoritme.value)
-
-// algoritmeStore.state.currentAlgoritme = algoritme.value
-// store.currentAlgoritme = algoritme
 
 const enrichedAlgoritme = computed(() => {
   // add algemene informatie as object
@@ -276,18 +278,34 @@ const structuredProperties = computed(() => {
   })
 })
 
-const tabHeaders = ref([])
-const navigateTab = (increment: number) => {
-  const currentIndex = structuredProperties.value
+const activeElement = useActiveElement()
+
+const focusedTabIndex = computed(() => {
+  const currentIndexSelected = structuredProperties.value
     .map((sP) => sP.attributeGroupKey)
     .indexOf(activeAttributeKey.value)
-  const newIndex = currentIndex + increment
+
+  const currentIndexWithFocus = activeElement.value
+    ? tabHeaders.value.indexOf(activeElement.value as HTMLAnchorElement)
+    : -1
+
+  const currentIndex =
+    currentIndexWithFocus > -1 ? currentIndexWithFocus : currentIndexSelected
+
+  return currentIndex
+})
+
+const tabHeaders = ref<HTMLAnchorElement[]>([])
+const navigateTab = (increment: number) => {
+  const newIndex = focusedTabIndex.value + increment
   if (newIndex >= 0 && newIndex < structuredProperties.value.length) {
-    activeAttributeKey.value =
-      structuredProperties.value[newIndex].attributeGroupKey
-    const selectedTabHeader: HTMLAnchorElement = tabHeaders.value[newIndex]
-    selectedTabHeader.focus()
+    tabHeaders.value[newIndex].focus()
   }
+}
+
+const selectTab = () => {
+  activeAttributeKey.value =
+    structuredProperties.value[focusedTabIndex.value].attributeGroupKey
 }
 
 definePageMeta({
@@ -329,8 +347,15 @@ dl.columns--data div {
 }
 
 li a:focus {
-  box-shadow: none;
+  box-shadow: 0 0 0 0 #000 !important;
+  outline: 0;
+  background-color: $grey;
 }
+
+li a:link {
+  color: red;
+}
+
 .well--pageblock {
   padding: 1.5em 10% !important;
 }

@@ -67,7 +67,7 @@
       "label": "Algemene informatie",
       "name": {
         "label": "Naam",
-        "description": "De naam die gebruikt wordt om dit algoritme aan te duiden."
+        "description": "De naam die gebruikt wordt om dit algoritme aan te duiden. bijv https://nu.nl"
       },
       "organization": {
         "label": "Organisatie",
@@ -132,7 +132,7 @@
         "description": "URL van de applicatiepagina van de ontwikkelaar/aanbieder van het algoritme."
       },
       "publiccode": {
-        "label": "** Onbekend **",
+        "label": "** Onbekend (publiccode) **",
         "description": "** Onbekend **"
       },
       "mprd": {
@@ -144,7 +144,7 @@
         "description": "Een overzicht van de databronnen die gebruikt worden door of bij het maken of trainen van het algoritme."
       },
       "methods_and_models": {
-        "label": "** Onbekend **",
+        "label": "** Onbekend (methods and models) **",
         "description": "** Onbekend **"
       }
     },
