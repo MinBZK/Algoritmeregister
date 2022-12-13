@@ -36,7 +36,10 @@
       <p class="mb-4">
         algoritme.overheid.nl wordt ontwikkeld met open source software (volg
         ons op
-        <a target="_blank" href="https://github.com/MinBZK/Algoritmeregister"
+        <a
+          target="_blank"
+          class="is-external"
+          href="https://github.com/MinBZK/Algoritmeregister"
           >Github</a
         >). Deze site wordt ontwikkeld zodat deze voor zoveel mogelijk mensen
         bruikbaar is.
@@ -78,9 +81,13 @@
       <p class="mb-4">
         algoritme.overheid.nl is developed with open source software (follow us
         on
-        <a target="_blank" href="https://github.com/MinBZK/Algoritmeregister"
+        <a
+          target="_blank"
+          class="is-external"
+          href="https://github.com/MinBZK/Algoritmeregister"
           >Github</a
-        >). This website is being developed to serve as many people as possible.
+        >
+        ). This website is being developed to serve as many people as possible.
       </p>
     </div>
   </Page>

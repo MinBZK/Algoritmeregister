@@ -24,11 +24,18 @@
       </p>
       <p class="mb-4">
         Wil je meer weten over algoritmes?
-        <a target="_blank" href="https://www.mediawijsheid.nl/algoritmes/">
+        <a
+          target="_blank"
+          class="is-external"
+          href="https://www.mediawijsheid.nl/algoritmes/"
+        >
           Bekijk de informatie op Mediawijsheid
         </a>
         of bekijk de (gratis)
-        <a target="_blank" href="https://ethiek.ai-cursus.nl/home"
+        <a
+          target="_blank"
+          class="is-external"
+          href="https://ethiek.ai-cursus.nl/home"
           >Nationale AI-cursus.
         </a>
       </p>
@@ -83,11 +90,18 @@
       </p>
       <p class="mb-4">
         Do you want to know more about algorithms? View the information on
-        <a target="_blank" href="https://www.mediawijsheid.nl/algoritmes/">
+        <a
+          target="_blank"
+          class="is-external"
+          href="https://www.mediawijsheid.nl/algoritmes/"
+        >
           Media Literacy
         </a>
         or view the (free)
-        <a target="_blank" href="https://ethiek.ai-cursus.nl/home"
+        <a
+          class="is-external"
+          target="_blank"
+          href="https://ethiek.ai-cursus.nl/home"
           >National AI-course.
         </a>
       </p>
