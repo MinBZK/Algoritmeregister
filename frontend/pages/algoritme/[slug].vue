@@ -16,7 +16,7 @@
         <dl class="dl columns--data">
           <div v-for="sT in summaryTiles" :key="sT">
             <dt>
-              {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
+              {{ $t(`algorithmProperties.${sT}.label`) }}
             </dt>
             <dd>
               <span>{{
@@ -94,7 +94,11 @@
         </div>
       </div>
 
-      <div v-if="!isMobile" class="tabs" data-decorator="init-tabs">
+      <div
+        v-if="!isMobile && tabHeaders"
+        class="tabs"
+        data-decorator="init-tabs"
+      >
         <ul class="tabs__list" role="tablist">
           <li
             v-for="(p, index) in structuredProperties"
@@ -170,6 +174,7 @@ import { summaryTiles } from '~~/config/config'
 import type { Algoritme } from '~~/types/algoritme'
 import requiredFields from '~~/config/fields.json'
 import algoritmeService from '@/services/algoritme'
+const { t } = useI18n()
 
 const isMobile = useMobileBreakpoint()
 
@@ -182,6 +187,12 @@ const slug = Array.isArray(route.params.slug)
 const { setAlgoritme } = useAlgoritme()
 const { data } = await algoritmeService.getOne(slug)
 const algoritme = ref(data.value as Algoritme)
+if (!algoritme.value) {
+  throw createError({
+    statusCode: 404,
+  })
+}
+
 setAlgoritme(algoritme.value)
 
 const enrichedAlgoritme = computed(() => {
@@ -206,7 +217,6 @@ const enrichedAlgoritme = computed(() => {
   return { [groupKey]: group, ...algoritme.value }
 })
 
-const { t } = useI18n()
 const shortDescriptionMissing = computed(() => t('short-description-missing'))
 const explanation = computed(() => t('explanation'))
 
