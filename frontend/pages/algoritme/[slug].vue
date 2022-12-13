@@ -16,7 +16,7 @@
         <dl class="dl columns--data">
           <div v-for="sT in summaryTiles" :key="sT">
             <dt>
-              {{ $t(`algorithmProperties.algemeneInformatie.${sT}.label`) }}
+              {{ $t(`algorithmProperties.${sT}.label`) }}
             </dt>
             <dd>
               <span>{{
