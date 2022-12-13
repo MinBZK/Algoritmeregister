@@ -1,6 +1,6 @@
 {
   "english?": "false",
-  "home-highlight-algorithm-text": "Of bekijk gelijk één van de volgende algoritmes",
+  "home-highlight-algorithm-text": "Of bekijk direct één van de volgende algoritmes",
   "explanation": "Uitleg",
   "you-are-here": "U bent hier",
   "ontbreekt": "Niet ingevuld",
@@ -62,6 +62,13 @@
   },
   "pagination": {
     "goTo": "Ga naar pagina {n}"
+  },
+  "homePageText": {
+    "paragraph1": "Op deze website publiceren overheidsorganisatie de algoritmes die zij gebruiken in hun werk.",
+    "paragraph2": "Alle algoritmes die openbaar zijn, worden de komende tijd kunnen, ook openbaar te maken.  Zodat helder is wat algoritmes doen en mensen deze kunnen controleren.",
+    "paragraph3Header": "Voortgang",
+    "paragraph3part1": "Op dit moment kun je hier ",
+    "paragraph3part2": " algoritmes vinden."
   },
   "dashboard": {
     "informationType": "Type informatie",
