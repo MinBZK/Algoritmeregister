@@ -63,6 +63,13 @@
   "pagination": {
     "goTo": "Go to page {n}"
   },
+  "homePageText": {
+    "paragraph1": "Op deze website publiceren overheidsorganisatie de algoritmes die zij gebruiken in hun werk.",
+    "paragraph2": "Effort is made to publish all algorithms that are public. This to ensure the purpose of algorithms and to make sure people involved can examine the algorithms.",
+    "paragraph3Header": "Progress",
+    "paragraph3part1": "At this moment you will find ",
+    "paragraph3part2": " algorithms on this website."
+  },
   "dashboard": {
     "informationType": "Information type",
     "select": "Select",
