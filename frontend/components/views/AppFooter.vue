@@ -11,13 +11,13 @@
         <div class="">
           <ul class="list list--linked">
             <li
-              class="list__item"
               v-for="page in footer[footerKey]"
               :key="page.label"
+              class="list__item"
             >
               <NuxtLink
-                :to="`/footer${page.path}`"
                 v-if="footerKey != 'external'"
+                :to="`/footer${page.path}`"
               >
                 {{ t(`footer.paths.${page.key}`) }}
               </NuxtLink>
@@ -37,21 +37,11 @@
 </template>
 
 <script setup lang="ts">
-import footer from '@/config/footer'
-// import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import footer from '@/config/footer'
 const { t } = useI18n()
 
 const footerKeys = Object.keys(footer)
-
-// const footerTranslated = computed(() => {
-//   return footerKeys.map((footerKey) => {
-//     footer[footerKey as keyof typeof footer].map((page) => {
-//       page.label = t(`paths.${page.path}`)
-//       return page
-//     })
-//   })
-// })
 </script>
 
 <style scoped lang="scss">

@@ -1,7 +1,7 @@
 <template>
   <div
-    class="header__more header__more--closed"
     id="other-sites"
+    class="header__more header__more--closed"
     aria-hidden="false"
   >
     <div class="container columns">

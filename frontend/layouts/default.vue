@@ -1,16 +1,18 @@
 <template>
-  <div class="skiplinks container">
-    <a href="#content">Direct naar content</a>
-  </div>
-  <AppHeader />
-  <AppContentBar v-if="false" />
-  <AppBreadcrumb />
-  <div class="container columns columns--sidebar-left row">
-    <div id="content">
-      <slot />
+  <div>
+    <div class="skiplinks container">
+      <a href="#content">Direct naar content</a>
     </div>
+    <AppHeader />
+    <AppContentBar v-if="false" />
+    <AppBreadcrumb />
+    <div class="container columns columns--sidebar-left row">
+      <div id="content">
+        <slot />
+      </div>
+    </div>
+    <AppFooter />
   </div>
-  <AppFooter />
 </template>
 
 <script setup lang="ts">

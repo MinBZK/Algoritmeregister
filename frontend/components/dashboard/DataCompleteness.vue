@@ -6,8 +6,8 @@
           {{ title }}
         </h3>
         <div class="row">
-          <div class="loading-text" v-if="loading">{{ loadingText }}...</div>
-          <table class="table" v-show="!loading">
+          <div v-if="loading" class="loading-text">{{ loadingText }}...</div>
+          <table v-show="!loading" class="table">
             <thead>
               <tr>
                 <th class="u-columnwidth-50p">{{ tableHeader }}:</th>
@@ -15,7 +15,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="agg in aggregates">
+              <tr v-for="agg in aggregates" :key="agg.label">
                 <td>{{ agg.label }}</td>
                 <td>{{ agg.value }}</td>
               </tr>
@@ -47,13 +47,13 @@ const getFullyComplete = async () => {
 
 const getMandatoryComplete = async () => {
   const notNullableColumns = data.value.filter(
-    (column: any) => column.is_nullable == 'NO'
+    (column: any) => column.is_nullable === 'NO'
   )
   const columns = notNullableColumns.map(
     (c: any) => `${c.table_name}.${c.column_name}`
   )
   const result = await algoritmeService.getCountWithFilledColumns(columns)
-  loading = false
+  loading.value = false
   return result.data.value
 }
 
@@ -83,7 +83,7 @@ const setAggregates = async () => {
   ]
 }
 
-var loading = true
+const loading = ref(true)
 const { data } = await algoritmeService.getColumns().then((value) => {
   setAggregates()
   return value

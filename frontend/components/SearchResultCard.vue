@@ -7,15 +7,15 @@
     </div>
     <p>
       {{ truncatedDescription }}&nbsp;<NuxtLink
-        :to="`/algoritme/${algoritme.slug} `"
         v-if="isTruncated"
+        :to="`/algoritme/${algoritme.slug} `"
         >{{ readMore }}
       </NuxtLink>
     </p>
 
     <!-- <p> -->
     <dl class="dl columns--data">
-      <div v-for="sT in summaryTiles">
+      <div v-for="sT in summaryTiles" :key="sT">
         <dt>{{ t(`algorithmProperties.${sT}.label`) }}</dt>
         <dd class="no-bottom-margin">
           {{ algoritme[sT as keyof typeof algoritme] }}
@@ -27,8 +27,8 @@
 </template>
 
 <script setup lang="ts">
-import { summaryTiles } from '@/config/config'
 import { useI18n } from 'vue-i18n'
+import { summaryTiles } from '@/config/config'
 import type { Algoritme } from '@/types/algoritme'
 
 const { t } = useI18n()
@@ -41,14 +41,14 @@ const props = defineProps<{
 const length = 300
 const truncatedDescription = computed(() => {
   const truncatedString = props.algoritme.description_short.substring(0, length)
-  return truncatedString == props.algoritme.description_short
+  return truncatedString === props.algoritme.description_short
     ? props.algoritme.description_short
     : truncatedString + '...'
 })
 
 const isTruncated = computed(() => {
   return (
-    truncatedDescription.value !=
+    truncatedDescription.value !==
     props.algoritme.description_short.substring(0, length)
   )
 })

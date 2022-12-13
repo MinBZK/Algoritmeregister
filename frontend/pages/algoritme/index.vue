@@ -11,7 +11,7 @@
       </div>
       <div class="column-d-9">
         <h1>{{ t(`foundResults`, { n: filteredAlgoritmes.length }) }}</h1>
-        <Pagination
+        <TablePagination
           v-if="nPages > 1"
           :current-page="page"
           :page-length="nPages"
@@ -30,7 +30,7 @@
             {{ t('noResults') }}
           </div>
         </div>
-        <Pagination
+        <TablePagination
           v-if="nPages > 1"
           :current-page="page"
           :page-length="nPages"
