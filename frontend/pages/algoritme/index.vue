@@ -113,7 +113,7 @@ const paginatedAlgoritmes = computed(() =>
 )
 
 const aggregatedAlgoritmes = computed(() => {
-  const groupOnAttributes = ['organization', 'type']
+  const groupOnAttributes = ['organization']
   const result: AggregatedAlgoritmes[] = groupOnAttributes.map(
     (aggregationAttribute) => {
       return {
