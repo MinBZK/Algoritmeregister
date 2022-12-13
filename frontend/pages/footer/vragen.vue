@@ -116,8 +116,8 @@
       <h2>6. Who develops and maintains the register?</h2>
       <p class="mb-4">
         The Ministry of the Interior and Kingdom Relations and ICTU collaborate
-        with leading organizations within the government to develop the website.
-        These organizations are UvW, RvIG, SVB, and the municipalities of
+        with leading organisations within the government to develop the website.
+        These organisations are UvW, RvIG, SVB, and the municipalities of
         Amsterdam, Rotterdam, The Hague and Utrecht.
       </p>
     </div>
