@@ -6,18 +6,20 @@ import AppFooter from '@/components/views/AppFooter.vue'
 </script>
 
 <template>
-  <div class="skiplinks container">
-    <a href="#content">Direct naar content</a>
-  </div>
-  <AppHeader />
-  <AppContentBar v-if="false" />
-  <AppBreadcrumb />
+  <div>
+    <div class="skiplinks container">
+      <a href="#content">Direct naar content</a>
+    </div>
+    <AppHeader />
+    <AppContentBar v-if="false" />
+    <AppBreadcrumb />
 
-  <div class="container columns columns--sidebar-left row">
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-  </div>
+    <div class="container columns columns--sidebar-left row">
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+    </div>
 
-  <AppFooter />
+    <AppFooter />
+  </div>
 </template>

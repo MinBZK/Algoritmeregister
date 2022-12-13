@@ -6,7 +6,7 @@ export const useAlgoritme = () => {
 
   const route = useRoute()
   watch(route, () => {
-    if (route.name != 'algoritme-slug') setAlgoritme(null)
+    if (route.name !== 'algoritme-slug') setAlgoritme(null)
   })
 
   return {
