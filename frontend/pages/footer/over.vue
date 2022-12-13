@@ -64,7 +64,7 @@
       <h2>Joining in</h2>
       <p class="mb-4">
         Are you a (government) professional? Then you can join in. Make the
-        algorithms of your own government organization available to the public
+        algorithms of your own government organisation available to the public
         via the Algorithm register. Or make suggestions for further development
         of the Algorithm register.
       </p>
