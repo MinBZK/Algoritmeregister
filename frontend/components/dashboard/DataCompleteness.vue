@@ -58,11 +58,7 @@ const getMandatoryComplete = async () => {
 }
 
 const getMandatoryMissing = async () => {
-  return (
-    props.nAlgorithms -
-    (await getFullyComplete()) -
-    (await getMandatoryComplete())
-  )
+  return props.nAlgorithms - (await getMandatoryComplete())
 }
 
 const aggregates = ref<{ label: string; value: string }[]>([])
