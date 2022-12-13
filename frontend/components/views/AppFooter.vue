@@ -6,7 +6,7 @@
           t('footer.textAskApply')
         }}</NuxtLink>
       </div>
-      <!-- <div></div> -->
+      <div></div>
       <div v-for="footerKey in footerKeys" :key="footerKey">
         <div class="">
           <ul class="list list--linked">
