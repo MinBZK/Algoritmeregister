@@ -50,6 +50,10 @@ const navigationItems = [
     localeName: 'navigation.toegankelijkheid',
     routeName: 'toegankelijkheid',
   },
+  {
+    localeName: 'navigation.db',
+    routeName: 'dashboard',
+  },
 ]
 
 export { summaryTiles, keys, navigationItems }

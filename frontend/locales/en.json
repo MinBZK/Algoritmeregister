@@ -3,7 +3,7 @@
   "home-highlight-algorithm-text": "Or go directly to one of these algorithms",
   "explanation": "Explanation",
   "you-are-here": "You are here",
-  "Ontbreekt": "Not filled out",
+  "ontbreekt": "Not filled out",
   "locale-en": "English",
   "locale-nl": "Dutch",
   "selectLanguage": "Choose language",
@@ -57,181 +57,238 @@
     "contact": "Contact",
     "vragen": "FAQ",
     "privacyverklaring": "Privacy",
-    "toegankelijkheid": "Accessibility"
+    "toegankelijkheid": "Accessibility",
+    "db": "Dashboard"
   },
   "pagination": {
     "goTo": "Go to page {n}"
   },
+  "dashboard": {
+    "informationType": "Information type",
+    "select": "Select",
+    "searchFor": "Search For",
+    "dashboardHeading": "Insight into the register data",
+    "countPerTypeTitle": "Algorithms in the register per type",
+    "dateToday": "Date",
+    "completenessTitle": "Level of completeness",
+    "totalCountText": "Algorithms",
+    "tableHeader": "Number of registered algorithms with",
+    "fullyComplete": "All mandatory and optional fields filled",
+    "mandatoryComplete": "Only all mandatory fields filled",
+    "mandatoryMissing": "Some mandatory fields left open",
+    "value": "Value",
+    "numberOfMatches": "Matches",
+    "loadingText": "Loading"
+  },
   "algorithmProperties": {
+    "toegevoegd_op": {
+      "label": "Toegevoegd op"
+    },
+    "slug": {
+      "label": ""
+    },
     "algemeneInformatie": {
       "label": "General information",
-      "name": {
-        "label": "Name",
-        "description": "** nog te vertalen **"
-      },
-      "organization": {
-        "label": "Organization",
-        "description": "** nog te vertalen **"
-      },
-      "department": {
-        "label": "Department",
-        "description": "** nog te vertalen **"
-      },
-      "description_short": {
-        "label": "Short description",
-        "description": "** nog te vertalen **"
-      },
-      "type": {
-        "label": "Algorithm type",
-        "description": "** nog te vertalen **"
-      },
-      "category": {
-        "label": "Category",
-        "description": "** nog te vertalen **"
-      },
-      "website": {
-        "label": "Website",
-        "description": "** nog te vertalen **"
-      },
-      "status": {
-        "label": "Status",
-        "description": "** nog te vertalen **"
-      }
+      "description": "No description"
+    },
+    "name": {
+      "label": "Name",
+      "description": "** nog te vertalen **"
+    },
+    "organization": {
+      "label": "Organization",
+      "description": "** nog te vertalen **"
+    },
+    "department": {
+      "label": "Department",
+      "description": "** nog te vertalen **"
+    },
+    "description_short": {
+      "label": "Short description",
+      "description": "** nog te vertalen **"
+    },
+    "type": {
+      "label": "Algorithm type",
+      "description": "** nog te vertalen **"
+    },
+    "category": {
+      "label": "Category",
+      "description": "** nog te vertalen **"
+    },
+    "website": {
+      "label": "Website",
+      "description": "** nog te vertalen **"
+    },
+    "status": {
+      "label": "Status",
+      "description": "** nog te vertalen **"
     },
     "inzet": {
       "label": "Application",
-      "goal": {
-        "label": "Goal",
-        "description": "** nog te vertalen **"
-      },
-      "impact": {
-        "label": "Impact",
-        "description": "** nog te vertalen **"
-      },
-      "proportionality": {
-        "label": "Proportionality",
-        "description": "** nog te vertalen **"
-      },
-      "decision_making_process": {
-        "label": "Decision making process",
-        "description": "** nog te vertalen **"
-      },
-      "documentation": {
-        "label": "Documentation",
-        "description": "** nog te vertalen **"
-      }
+      "description": "No description"
+    },
+    "goal": {
+      "label": "Goal",
+      "description": "** nog te vertalen **"
+    },
+    "impact": {
+      "label": "Impact",
+      "description": "** nog te vertalen **"
+    },
+    "proportionality": {
+      "label": "Proportionality",
+      "description": "** nog te vertalen **"
+    },
+    "decision_making_process": {
+      "label": "Decision making process",
+      "description": "** nog te vertalen **"
+    },
+    "documentation": {
+      "label": "Documentation",
+      "description": "** nog te vertalen **"
     },
     "toepassing": {
       "label": "Use-case",
-      "description": {
-        "label": "Description",
-        "description": "** nog te vertalen **"
-      },
-      "application_url": {
-        "label": "Application URL",
-        "description": "** nog te vertalen **"
-      },
-      "publiccode": {
-        "label": "** Onbekend ** publiccode",
-        "description": "** Onbekend **"
-      },
-      "mprd": {
-        "label": "Coupling with basic registration",
-        "description": "** nog te vertalen **"
-      },
-      "source_data": {
-        "label": "Source data",
-        "description": "** nog te vertalen **"
-      },
-      "methods_and_models": {
-        "label": "** Onbekend ** methods_and_models",
-        "description": "** Onbekend **"
-      }
+      "description": "No description"
+    },
+    "description": {
+      "label": "Description",
+      "description": "** nog te vertalen **"
+    },
+    "application_url": {
+      "label": "Application URL",
+      "description": "** nog te vertalen **"
+    },
+    "publiccode": {
+      "label": "Codebase URL",
+      "description": "** Onbekend **"
+    },
+    "mprd": {
+      "label": "Coupling with basic registration",
+      "description": "** nog te vertalen **"
+    },
+    "source_data": {
+      "label": "Source data",
+      "description": "** nog te vertalen **"
+    },
+    "methods_and_models": {
+      "label": "Methods and models",
+      "description": "** Onbekend **"
     },
     "toezicht": {
       "label": "Supervision",
-      "monitoring": {
-        "label": "Monitoring",
-        "description": "** nog te vertalen **"
-      },
-      "human_intervention": {
-        "label": "Human intervention",
-        "description": "** nog te vertalen **"
-      },
-      "risks": {
-        "label": "Risks",
-        "description": "** nog te vertalen **"
-      },
-      "performance_standard": {
-        "label": "Performance standard",
-        "description": "** nog te vertalen **"
-      }
+      "description": "No description"
+    },
+    "monitoring": {
+      "label": "Monitoring",
+      "description": "** nog te vertalen **"
+    },
+    "human_intervention": {
+      "label": "Human intervention",
+      "description": "** nog te vertalen **"
+    },
+    "risks": {
+      "label": "Risks",
+      "description": "** nog te vertalen **"
+    },
+    "performance_standard": {
+      "label": "Performance standard",
+      "description": "** nog te vertalen **"
     },
     "juridisch": {
       "label": "Legal",
-      "competent_authority": {
-        "label": "Competent authority",
-        "description": "** nog te vertalen **"
-      },
-      "lawful_basis": {
-        "label": "Lawful basis",
-        "description": "** nog te vertalen **"
-      },
-      "iama": {
-        "label": "IAMA",
-        "description": "** nog te vertalen **"
-      },
-      "iama_description": {
-        "label": "Description of the IAMA",
-        "description": "** nog te vertalen **"
-      },
-      "dpia": {
-        "label": "Data protection impact assessment",
-        "description": "** nog te vertalen **"
-      },
-      "dpia_description": {
-        "label": "Description of the DPIA",
-        "description": "** nog te vertalen **"
-      },
-      "objection_procedure": {
-        "label": "Objection procedure",
-        "description": "** nog te vertalen **"
-      }
+      "description": "No description"
+    },
+    "competent_authority": {
+      "label": "Competent authority",
+      "description": "** nog te vertalen **"
+    },
+    "lawful_basis": {
+      "label": "Lawful basis",
+      "description": "** nog te vertalen **"
+    },
+    "iama": {
+      "label": "IAMA",
+      "description": "** nog te vertalen **"
+    },
+    "iama_description": {
+      "label": "Description of the IAMA",
+      "description": "** nog te vertalen **"
+    },
+    "dpia": {
+      "label": "Data protection impact assessment",
+      "description": "** nog te vertalen **"
+    },
+    "dpia_description": {
+      "label": "Description of the DPIA",
+      "description": "** nog te vertalen **"
+    },
+    "objection_procedure": {
+      "label": "Objection procedure",
+      "description": "** nog te vertalen **"
     },
     "metadata_algorithm": {
       "label": "Metadata",
-      "schema_metadata": {
-        "label": "Schema",
-        "description": "** nog te vertalen **"
-      },
-      "uuid": {
-        "label": "UUID",
-        "description": "** nog te vertalen **"
-      },
-      "url": {
-        "label": "Source registration URL",
-        "description": "** nog te vertalen **"
-      },
-      "contact_email": {
-        "label": "Email for point of contact",
-        "description": "** nog te vertalen **"
-      },
-      "area": {
-        "label": "Geographical area",
-        "description": "** nog te vertalen **"
-      },
-      "lang": {
-        "label": "Language",
-        "description": "** nog te vertalen **"
-      },
-      "revision_date": {
-        "label": "Revision date",
-        "description": "** nog te vertalen **"
-      }
+      "description": "No description"
+    },
+    "schema_metadata": {
+      "label": "Schema",
+      "description": "** nog te vertalen **"
+    },
+    "schema": {
+      "label": "Schema",
+      "description": "** nog te vertalen **"
+    },
+    "uuid": {
+      "label": "UUID",
+      "description": "** nog te vertalen **"
+    },
+    "url": {
+      "label": "Source registration URL",
+      "description": "** nog te vertalen **"
+    },
+    "contact_email": {
+      "label": "Email for point of contact",
+      "description": "** nog te vertalen **"
+    },
+    "area": {
+      "label": "Geographical area",
+      "description": "** nog te vertalen **"
+    },
+    "lang": {
+      "label": "Language",
+      "description": "** nog te vertalen **"
+    },
+    "revision_date": {
+      "label": "Revision date",
+      "description": "** nog te vertalen **"
     }
   },
   "error": {
     "pageNotFound": "Page not found",
     "goToHome": "Go to the home page"
+  },
+  "weekDays": {
+    "1": "Sunday",
+    "2": "Monday",
+    "3": "Tuesday",
+    "4": "Wednesday",
+    "5": "Thursday",
+    "6": "Friday",
+    "7": "Saturday"
+  },
+  "months": {
+    "1": "January",
+    "2": "February",
+    "3": "March",
+    "4": "April",
+    "5": "May",
+    "6": "June",
+    "7": "July",
+    "8": "August",
+    "9": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December"
   }
 }

@@ -79,9 +79,7 @@
                 <i>
                   <ParseUrl>
                     {{
-                      `${explanation}: ${
-                        property.attributeKeyDescription || t('Ontbreekt')
-                      }`
+                      `${property.attributeKeyDescription || t('ontbreekt')}`
                     }}
                   </ParseUrl>
                 </i>
@@ -285,11 +283,9 @@ const structuredProperties = computed(() => {
             attributeKey: key,
             attributeValue: parsedValue,
             attributeKeyDescription: t(
-              `algorithmProperties.${attributeGroupKey}.${key}.description`
+              `algorithmProperties.${key}.description`
             ),
-            attributeKeyLabel: t(
-              `algorithmProperties.${attributeGroupKey}.${key}.label`
-            ),
+            attributeKeyLabel: t(`algorithmProperties.${key}.label`),
           }
         })
         // only show field that are either required or not empty. An empty string is considered empty.
