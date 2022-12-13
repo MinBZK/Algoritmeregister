@@ -1,11 +1,11 @@
 <template>
-  <div class="row row--page-opener" v-if="breadcrumbs.length != 0">
+  <div v-if="breadcrumbs.length != 0" class="row row--page-opener">
     <div class="container">
       <div class="breadcrumb">
         <p>{{ t('you-are-here') }}:</p>
         <ClientOnly>
           <ol>
-            <li v-for="crumb in breadcrumbsWithLinks">
+            <li v-for="crumb in breadcrumbsWithLinks" :key="crumb.routeName">
               <a v-if="crumb.routeName != null" :href="`/${crumb.routeName}`">{{
                 crumb.label
               }}</a>
@@ -20,8 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import { navigationItems } from '@/config/config'
 import { useI18n } from 'vue-i18n'
+import { navigationItems } from '@/config/config'
 
 const { algoritme } = useAlgoritme()
 
@@ -39,8 +39,8 @@ const ignoredNavigationItems = ['footer']
 const breadcrumbs = computed(() => {
   const path = currentRoute.path
   // the added '/ ' is interpreted in the mapping as the link to Home
-  var crumbStrings: string[] =
-    path != '/' ? ('/ ' + path).split('/').slice(1) : []
+  let crumbStrings: string[] =
+    path !== '/' ? ('/ ' + path).split('/').slice(1) : []
 
   crumbStrings = crumbStrings.filter(
     (crumb) => !ignoredNavigationItems.includes(crumb)
@@ -51,7 +51,7 @@ const breadcrumbs = computed(() => {
         label:
           // translate path parts with a name matching a navigation item
           navigationItemsTranslated.value.find(
-            (item) => item.routeName == crumb
+            (item) => item.routeName === crumb
           )?.label || // translate path parts with a name matching an algorithm slug
           algoritme.value?.name ||
           crumb,
