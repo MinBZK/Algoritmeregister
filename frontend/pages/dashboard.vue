@@ -13,7 +13,7 @@
     </div>
     <div class="block-cards">
       <DashboardCountPerType :n-algorithms="algoCount!" />
-      <DashboardCompleteness :n-algorithms="algoCount!" />
+      <DashboardDataCompleteness :n-algorithms="algoCount!" />
     </div>
   </div>
 </template>
