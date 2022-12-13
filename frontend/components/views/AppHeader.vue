@@ -74,6 +74,10 @@ const navigationItems = computed(() => [
     label: t('navigation.algorithmRegister'),
     routeName: 'algoritme',
   },
+  // {
+  //   label: 'DEV_dashboard',
+  //   routeName: 'dashboard',
+  // },
 ])
 const currentRoute = useRoute()
 const menuExpanded = ref(false)
