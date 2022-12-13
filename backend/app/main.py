@@ -5,11 +5,14 @@ from app.routers import default, aggregations
 from app.etl.load import load
 from app.util.logger import get_logger
 
+
 logger = get_logger(__name__)
 
 data_loaded = load()
 if data_loaded:
-    logger.info("Algoritmes loaded.")
+    logger.info("Algoritmes loaded")
+else:
+    logger.info("Data not loaded")
 
 app = FastAPI(docs_url="/api-docs", title="Application API")
 

@@ -2,6 +2,6 @@ from app.etl.resources.loader import AlgoritmeLoader
 
 
 def load():
-    json_file = "app/etl/data/algoritmes_081222.json"
-    loader = AlgoritmeLoader(json_file=json_file)
+    excel_file = "app/etl/data/2022_12_13_Masterlijst_Algoritmeregister.xlsx"
+    loader = AlgoritmeLoader(excel_file=excel_file)
     return loader.load_algoritmes()

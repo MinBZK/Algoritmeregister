@@ -3,37 +3,67 @@ import numpy as np
 import json
 from app.database.database import SessionLocal
 from app.etl.config.main import models, column_grouping
-from dataclasses import dataclass
+from app.etl.config.excel_column_mapping import excel_column_mapping
 from slugify import slugify
 
 
-@dataclass
 class AlgoritmeLoader:
     """Load algoritmes from a json file. Existing algoritmes will be removed."""
 
-    json_file: str
+    def __init__(self, excel_file: str | None = None, json_file: str | None = None):
 
-    @property
-    def __algoritmes(self):
-        with open(self.json_file) as f:
+        if excel_file is not None:
+            df = self.__get_df_algoritme_from_excel(excel_file)
+        elif json_file is not None:
+            df = self.__get_df_algoritme_from_json(json_file=json_file)
+        else:
+            raise RuntimeError("Either excel_file or json_file must be specified")
+
+        self.__algoritmes = self.process_df(df)
+
+    @staticmethod
+    def __get_df_algoritme_from_excel(excel_file: str) -> pd.DataFrame:
+        sheet_names = pd.read_excel(excel_file, sheet_name=None).keys()
+        included_sheet_names = [
+            sheet_name
+            for sheet_name in sheet_names
+            if sheet_name not in ["Template (dupliceer dit blad)", "Lege invullijst"]
+        ]
+        sheet_name = included_sheet_names[0]
+        df_all = pd.DataFrame()
+        for sheet_name in included_sheet_names:
+            df = (
+                pd.read_excel(excel_file, sheet_name=sheet_name, header=None)
+                .drop(columns=[0])
+                .set_index(1)
+                .T
+            )
+            df_all = pd.concat([df_all, df])
+        return df_all.rename(columns=excel_column_mapping)
+
+    @staticmethod
+    def __get_df_algoritme_from_json(json_file: str) -> pd.DataFrame:
+        with open(json_file) as f:
             algoritmes: list[dict] = json.load(f)
         df = pd.DataFrame(algoritmes)[3:]
+        return df
+
+    @staticmethod
+    def process_df(df: pd.DataFrame) -> list[dict]:
         df.columns = df.columns.str.lower()
 
         boolean_cols = ["dpia", "mprd"]
-        # non_null_columns = [c for c in list(df.columns) if c not in boolean_cols]
+        non_null_columns = [c for c in list(df.columns) if c not in boolean_cols]
+
         string_cols = [
-            # "description_short",
-            # "description",
             "source_data",
-            # "methods_and_models",
         ]
 
         for bc in boolean_cols:
             df[bc] = df[bc].map({"Ja": True, "Nee": False, np.nan: None})
 
-        # for nc in non_null_columns:
-        #     df[nc] = df[nc].fillna("-")
+        for nc in non_null_columns:
+            df[nc] = df[nc].fillna("-")
 
         for sc in string_cols:
             df[sc] = df[sc].str.slice(0, 5000)
