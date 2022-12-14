@@ -26,7 +26,7 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
 import { stringify } from 'qs'
-
+import { useMobileBreakpoint } from '~~/composables/mobile'
 const isMobile = useMobileBreakpoint()
 const { t } = useI18n()
 const homepageTitle = computed(() => t('homepageTitle'))

@@ -29,6 +29,7 @@ import { useI18n } from 'vue-i18n'
 import type { Algoritme } from '~~/types/algoritme'
 import requiredFields from '~~/config/fields.json'
 import algoritmeService from '@/services/algoritme'
+import { useMobileBreakpoint } from '~~/composables/mobile'
 const { t } = useI18n()
 
 const isMobile = useMobileBreakpoint()
