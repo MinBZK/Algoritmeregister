@@ -100,3 +100,15 @@ const isKeyToggled = (key: string) => keyToggles.value.includes(key)
 
 const clearToggledKeys = () => (keyToggles.value = [])
 </script>
+
+<style langs="scss">
+.accordion__item__header {
+  cursor: pointer;
+}
+.word-break {
+  word-break: break-word;
+}
+.question-mark {
+  padding-left: 0;
+}
+</style>
