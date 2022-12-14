@@ -12,72 +12,14 @@
         :algoritme="algoritme"
         mode="default"
       ></SearchResultCard>
-      <div v-if="isMobile" class="accordion" data-decorator="init-accordion">
-        <div
-          v-for="p in structuredProperties"
-          :id="`header-${p.attributeGroupKey}`"
+      <div class="accordion" v-if="isMobile">
+        <AlgoritmeSlugAccordionRow
+          v-for="(p, index) in structuredProperties"
           :key="p.attributeGroupKey"
-          class="accordion__item"
-        >
-          <div class="accordion__item__header">
-            <h3 class="accordion__item__heading">
-              <span
-                class="accordion__item__header-trigger"
-                aria-expanded="false"
-                aria-controls="con1"
-                @click="
-                  ;[toggleAccordion(p.attributeGroupKey), clearToggledKeys()]
-                "
-              >
-                <span
-                  :class="
-                    p.attributeGroupKey == activeAttributeKey
-                      ? 'accordion-arrow-up'
-                      : 'accordion-arrow-right'
-                  "
-                ></span>
-                {{ p.attributeGroupKeyLabel }}
-              </span>
-            </h3>
-          </div>
-          <div v-if="p.attributeGroupKey == activeAttributeKey">
-            <div
-              v-for="property in p.properties"
-              id="con1"
-              :key="property.attributeKey"
-              class="accordion__item__content"
-              role="region"
-              aria-labelledby="header1"
-            >
-              <div>
-                <b>
-                  {{ property.attributeKeyLabel }}
-                </b>
-                <span
-                  class="question-mark"
-                  @click="toggleKey(property.attributeKey)"
-                ></span>
-              </div>
-              <div
-                v-if="isKeyToggled(property.attributeKey)"
-                class="word-break"
-              >
-                <i>
-                  <ParseUrl>
-                    {{
-                      `${property.attributeKeyDescription || t('ontbreekt')}`
-                    }}
-                  </ParseUrl>
-                </i>
-              </div>
-              <div class="word-break">
-                <ParseUrl>
-                  {{ property.attributeValue || t('Ontbreekt') }}
-                </ParseUrl>
-              </div>
-            </div>
-          </div>
-        </div>
+          :group-props="p"
+          v-bind:toggled="toggledRows[index]"
+          @toggle-this-row="toggleRows(index)"
+        />
       </div>
 
       <div
@@ -207,19 +149,6 @@ const activeAttributeProperties = computed(() => {
   })[0]?.properties
 })
 
-// Handle accordion
-const toggleAccordion = async (key: string) => {
-  const header = document.getElementById(`header-${key}`)
-  const storePosition = header?.getBoundingClientRect().y || 0
-
-  activeAttributeKey.value = activeAttributeKey.value === key ? '' : key
-  await new Promise((resolve) => setTimeout(resolve, 1)).then(() => {
-    if (header) {
-      window.scrollTo(0, header.offsetTop - storePosition)
-    }
-  })
-}
-
 // Handle toggling of description of the keys
 const keyToggles = ref<string[]>([])
 const toggleKey = (key: string) => {
@@ -299,6 +228,7 @@ const focusedTabIndex = computed(() => {
 const tabHeaders = ref<HTMLAnchorElement[]>([])
 const navigateTab = (increment: number) => {
   const newIndex = focusedTabIndex.value + increment
+  clearToggledKeys()
   if (newIndex >= 0 && newIndex < structuredProperties.value.length) {
     tabHeaders.value[newIndex].focus()
   }
@@ -307,6 +237,16 @@ const navigateTab = (increment: number) => {
 const selectTab = () => {
   activeAttributeKey.value =
     structuredProperties.value[focusedTabIndex.value].attributeGroupKey
+}
+
+const toggledRows = ref<boolean[]>(
+  Array(structuredProperties.value.length).fill(false)
+)
+const toggleRows = (index: number) => {
+  const currentRowToggled = toggledRows.value[index]
+  toggledRows.value = Array(structuredProperties.value.length).fill(false)
+  toggledRows.value[index] = !currentRowToggled
+  return 0
 }
 
 definePageMeta({
