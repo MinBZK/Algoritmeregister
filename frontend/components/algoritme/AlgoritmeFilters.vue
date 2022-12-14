@@ -84,6 +84,7 @@
 <script setup lang="ts">
 import { stringify } from 'qs'
 import type { AggregatedAlgoritmes, AlgoritmeFilter } from '@/types/algoritme'
+import { useMobileBreakpoint } from '~~/composables/mobile'
 
 const props = defineProps<{ aggregatedAlgoritmes: AggregatedAlgoritmes[] }>()
 
