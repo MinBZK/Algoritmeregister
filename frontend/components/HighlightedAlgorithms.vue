@@ -35,7 +35,7 @@ const nameList = ref(data.value as AlgNameIdOrg[])
 
 const selectedAlgorithmSlugs = [
   'public-eye-gemeente-amsterdam',
-  'uitrekenen-woz-waarde-gemeente-den-haag',
+  'wmo-voorspelmodel-gemeente-den-haag',
   'parkeercontrole-gemeente-rotterdam',
 ]
 
