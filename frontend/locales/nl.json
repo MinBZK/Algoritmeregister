@@ -64,8 +64,8 @@
     "goTo": "Ga naar pagina {n}"
   },
   "homePageText": {
-    "paragraph1": "Op deze website publiceren overheidsorganisatie de algoritmes die zij gebruiken in hun werk.",
-    "paragraph2": "Alle algoritmes die openbaar zijn, worden de komende tijd kunnen, ook openbaar te maken.  Zodat helder is wat algoritmes doen en mensen deze kunnen controleren.",
+    "paragraph1": "Op deze website publiceren overheidsorganisatie de algoritmes die zij gebruiken in hun dagelijkse werk.",
+    "paragraph2": "Er wordt aan gewerkt om alle algoritmes (die publiek toegankelijk zijn) openbaar te maken. Zodat helder is hoe deze algoritmes werken en hoe deze ingezet worden.",
     "paragraph3Header": "Voortgang",
     "paragraph3part1": "Op dit moment kun je hier ",
     "paragraph3part2": " algoritmes vinden."
