@@ -154,7 +154,6 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useActiveElement } from '@vueuse/core'
-import { summaryTiles } from '~~/config/config'
 import type { Algoritme } from '~~/types/algoritme'
 import requiredFields from '~~/config/fields.json'
 import algoritmeService from '@/services/algoritme'
@@ -200,9 +199,6 @@ const enrichedAlgoritme = computed(() => {
 
   return { [groupKey]: group, ...algoritme.value }
 })
-
-const shortDescriptionMissing = computed(() => t('short-description-missing'))
-const explanation = computed(() => t('explanation'))
 
 const activeAttributeKey = ref('')
 const activeAttributeProperties = computed(() => {

@@ -41,6 +41,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const { t } = useI18n()
 const readMore = computed(() => t('searchResultCard.readMore'))
+const shortDescriptionMissing = computed(() => t('short-description-missing'))
 
 const length = 300
 const truncatedDescription = computed(() => {
@@ -52,7 +53,7 @@ const truncatedDescription = computed(() => {
 const description =
   props.mode === 'compact'
     ? truncatedDescription
-    : props.algoritme.description_short
+    : props.algoritme.description_short || shortDescriptionMissing
 
 const isTruncated = computed(() => {
   return (
