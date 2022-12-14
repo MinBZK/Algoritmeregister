@@ -28,29 +28,16 @@
         data-decorator="init-tabs"
       >
         <ul class="tabs__list" role="tablist">
-          <li
+          <AlgoritmeSlugTab
             v-for="(p, index) in structuredProperties"
             :key="p.attributeGroupKey"
+            :tab-props="p"
+            :index="index"
+            :toggled="toggledRows[index]"
             role="presentation"
-          >
-            <a
-              ref="tabHeaders"
-              :key="p.attributeGroupKey"
-              :tabindex="p.attributeGroupKey == activeAttributeKey ? 0 : -1"
-              :aria-selected="p.attributeGroupKey == activeAttributeKey"
-              class="noselect"
-              :class="[
-                p.attributeGroupKey == activeAttributeKey ? 'is-selected' : '',
-              ]"
-              role="tab"
-              :aria-controls="`panel-${index + 1}`"
-              @click="activeAttributeKey = p.attributeGroupKey"
-              @keydown.enter="selectTab()"
-              @keydown.left.prevent="navigateTab(-1)"
-              @keydown.right.prevent="navigateTab(1)"
-              >{{ p.attributeGroupKeyLabel }}</a
-            >
-          </li>
+            @navigate-tab="(v) => navigateTab(v, index)"
+            @click="toggleRows(index)"
+          />
         </ul>
 
         <table class="table__data-overview">
@@ -215,18 +202,28 @@ const focusedTabIndex = computed(() => {
     .map((sP) => sP.attributeGroupKey)
     .indexOf(activeAttributeKey.value)
 
+  console.log('currentIndexSelected', currentIndexSelected)
   const currentIndexWithFocus = activeElement.value
     ? tabHeaders.value.indexOf(activeElement.value as HTMLAnchorElement)
     : -1
 
+  console.log('currentIndexWithFocus', currentIndexWithFocus)
   const currentIndex =
     currentIndexWithFocus > -1 ? currentIndexWithFocus : currentIndexSelected
 
+  console.log('currentIndex', currentIndex)
   return currentIndex
 })
 
 const tabHeaders = ref<HTMLAnchorElement[]>([])
-const navigateTab = (increment: number) => {
+const navigateTab = (increment: number, index: number) => {
+  // const newTabHeaderIndex = index + direction
+  // console.log(toggledRows.value, index)
+  // toggledRows.value = Array(structuredProperties.value.length).fill(false)
+  // toggledRows.value[newTabHeaderIndex] = true
+  // console.log(toggledRows.value)
+  // // tabHeaders.value[newTabHeaderIndex].focus()
+  // console.log(focusedTabIndex.value)
   const newIndex = focusedTabIndex.value + increment
   clearToggledKeys()
   if (newIndex >= 0 && newIndex < structuredProperties.value.length) {
