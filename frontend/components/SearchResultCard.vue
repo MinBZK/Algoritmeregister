@@ -1,19 +1,19 @@
 <template>
-  <li class="item">
-    <div class="item-header">
+  <li :class="`item ${mode}`">
+    <div class="item-header" v-if="mode === 'compact'">
       <NuxtLink :to="`/algoritme/${algoritme.slug}`" class="result--title">
         <h2>{{ props.algoritme.name }}</h2>
       </NuxtLink>
     </div>
     <p>
-      {{ truncatedDescription }}&nbsp;<NuxtLink
-        v-if="isTruncated"
+      {{ description }}&nbsp;
+      <NuxtLink
+        v-if="isTruncated && mode === 'compact'"
         :to="`/algoritme/${algoritme.slug} `"
         >{{ readMore }}
       </NuxtLink>
     </p>
 
-    <!-- <p> -->
     <dl class="dl columns--data">
       <div v-for="sT in summaryTiles" :key="sT">
         <dt>{{ t(`algorithmProperties.${sT}.label`) }}</dt>
@@ -22,21 +22,25 @@
         </dd>
       </div>
     </dl>
-    <!-- </p> -->
   </li>
 </template>
 
 <script setup lang="ts">
+export interface Props {
+  algoritme: Algoritme
+  mode?: string
+}
+
 import { useI18n } from 'vue-i18n'
 import { summaryTiles } from '@/config/config'
 import type { Algoritme } from '@/types/algoritme'
 
+const props = withDefaults(defineProps<Props>(), {
+  mode: 'default',
+})
+
 const { t } = useI18n()
 const readMore = computed(() => t('searchResultCard.readMore'))
-
-const props = defineProps<{
-  algoritme: Algoritme
-}>()
 
 const length = 300
 const truncatedDescription = computed(() => {
@@ -45,6 +49,10 @@ const truncatedDescription = computed(() => {
     ? props.algoritme.description_short
     : truncatedString + '...'
 })
+const description =
+  props.mode === 'compact'
+    ? truncatedDescription
+    : props.algoritme.description_short
 
 const isTruncated = computed(() => {
   return (
@@ -66,5 +74,30 @@ h2 {
 
 .no-bottom-margin {
   margin-bottom: 0;
+}
+li.default {
+  background: $tertiary !important;
+  list-style: none;
+  padding: 1em;
+  margin-bottom: 0.5em;
+  border: 0;
+}
+@media (min-width: 51em) {
+  li.default {
+    padding: 1.5em 10% !important;
+  }
+}
+
+li.compact {
+  background: #fff;
+  list-style: none;
+  padding: 1em;
+  margin-bottom: 0.5em;
+  border: 0;
+}
+@media (min-width: 51em) {
+  li.compact {
+    padding: 1.75em 1.25em 1.5em 2em !important;
+  }
 }
 </style>
