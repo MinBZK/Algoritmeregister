@@ -144,9 +144,7 @@
                   <i>
                     <ParseUrl>
                       {{
-                        `${explanation}: ${
-                          property.attributeKeyDescription || t('Ontbreekt')
-                        }`
+                        `${property.attributeKeyDescription || t('Ontbreekt')}`
                       }}
                     </ParseUrl>
                   </i>
