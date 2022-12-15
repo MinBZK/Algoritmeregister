@@ -22,7 +22,6 @@ const props = defineProps<{
   }[]
 }>()
 
-console.log(props.tabsTableProperties)
 const tabProperties = props.tabsTableProperties.map((s) => {
   return {
     label: s.groupKeyLabel,
