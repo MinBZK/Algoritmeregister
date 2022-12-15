@@ -88,7 +88,4 @@ li a:focus {
   outline: 0;
   background-color: $grey;
 }
-li a:link {
-  color: red;
-}
 </style>

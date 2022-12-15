@@ -134,7 +134,7 @@ const getAttributeFilters = (attribute: string) => {
     }
   )
 
-  return filterdValues
+  return filterdValues.sort()
 }
 
 const hasFilter = (attribute: string, attributeValue: string): boolean =>

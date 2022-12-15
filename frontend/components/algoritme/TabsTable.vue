@@ -1,10 +1,10 @@
 <template>
   <div class="tabs" data-decorator="init-tabs">
-    <AlgoritmeTabs
+    <AlgoritmeAppTabs
       :tab-properties="tabProperties"
       @focus-changed="(v) => (activeKey = v)"
     />
-    <AlgoritmeTable :table-properties="activeProperties" />
+    <AlgoritmeAppTable :table-properties="activeProperties" />
   </div>
 </template>
 
