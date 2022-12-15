@@ -217,7 +217,6 @@ const enrichedAlgoritme = computed(() => {
 })
 
 const shortDescriptionMissing = computed(() => t('short-description-missing'))
-const explanation = computed(() => t('explanation'))
 
 const activeAttributeKey = ref('')
 const activeAttributeProperties = computed(() => {
