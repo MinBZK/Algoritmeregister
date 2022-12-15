@@ -29,9 +29,9 @@
 import { useI18n } from 'vue-i18n'
 import { summaryTiles } from '@/config/config'
 import type { Algoritme } from '@/types/algoritme'
-export interface Props {
+interface Props {
   algoritme: Algoritme
-  mode?: string
+  mode?: 'compact' | 'default'
 }
 
 const props = withDefaults(defineProps<Props>(), {

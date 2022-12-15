@@ -4,7 +4,8 @@
       <div class="bottom-margin">
         {{ t('footer.text') }}&nbsp;<NuxtLink :to="'/footer/over'">{{
           t('footer.textAskApply')
-        }}</NuxtLink>
+        }}</NuxtLink
+        >.
       </div>
       <div></div>
       <div v-for="footerKey in footerKeys" :key="footerKey">
