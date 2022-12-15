@@ -175,16 +175,21 @@
           >Github</a
         >). This website is being developed to serve as many people as possible.
       </p>
-      <!-- <h2>Algoritmebeleid</h2>
+      <h2>Algorithm policy</h2>
       <p class="mb-4">
-        ** nog te vertalen **
+        The Algorithm Register is one of the actions made on behalf of
+        responsible use of algorithms within the government. The government also
+        puts effort into the supervision of algorithms. Also there is an
+        implementation framework. Also, the government is making an effort for
+        quality requirements for artificial intelligence in the European Union.
+        You can find more information on this in the
         <a
           class="is-external"
           href="https://open.overheid.nl/repository/ronl-0de79e5c4c0c9b203c0a1c263efca7eca410958b/1/pdf/bijlage-1-werkagenda-waardengedreven-digitaliseren.pdf"
         >
           werkagenda Waardegedreven Digitaliseren</a
         >.
-      </p> -->
+      </p>
     </div>
   </div>
 </template>
