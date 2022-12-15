@@ -23,7 +23,7 @@
         Een algoritme is een set van regels en instructies die een computer
         uitvoert. Algoritmes helpen bijvoorbeeld om problemen te analyseren maar
         ook om beslissingen te nemen. Zo kan de overheid grote hoeveelheden
-        gegevens (data) combineren en analyseren. (bron: Algemene Rekenkamer).
+        gegevens (data) combineren en analyseren (bron: Algemene Rekenkamer).
       </p>
       <p class="mb-4">
         Wil je meer weten over algoritmes?
@@ -84,8 +84,8 @@
       <h2>7. Wie werken er aan het Algoritmeregister?</h2>
       <p class="mb-4">
         De ontwikkeling van het Algoritmeregister is begonnen met het consortium
-        Publieke controle op algoritmen. Daarin werkten overheidsorganisaties
-        aan beleidsinstrumenten voor een verantwoorde inzet van algoritmen. Een
+        Publieke controle op algoritmes. Daarin werkten overheidsorganisaties
+        aan beleidsinstrumenten voor een verantwoorde inzet van algoritmes. Een
         van de resultaten is onderzoek naar het Algoritmeregister. Het
         ministerie van Binnenlandse Zaken en Koninkrijksrelaties heeft
         voortgebouwd op deze opgedane kennis om tot dit Algoritmeregister te
@@ -133,7 +133,7 @@
         An algorithm is a set of rules and instructions executed by a computer.
         Algorithms help, for example, to analyse problems, but also to make
         decisions. This allows the government to combine and analyse large
-        amounts of data. (source: Algemene Rekenkamer)
+        amounts of data (source: Algemene Rekenkamer).
       </p>
       <p class="mb-4">
         Do you want to know more about algorithms? Find more information on
@@ -161,7 +161,7 @@
         ‘owner’ of the algorithm. Contact details can be found in the
         description of the algorithm.
         <p class="mb-4">
-          For any other questions please email:
+          For other questions please email:
                <a href="mailto:algoritmeregister@minbzk.nl">
           algoritmeregister@minbzk.nl</a
         >.
