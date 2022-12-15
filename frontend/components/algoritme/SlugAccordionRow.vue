@@ -49,6 +49,7 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 export interface Props {
   groupProps: {
     attributeGroupKey: string
@@ -62,7 +63,6 @@ export interface Props {
   }
   toggled?: boolean
 }
-import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
 const props = withDefaults(defineProps<Props>(), {

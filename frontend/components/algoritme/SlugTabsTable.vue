@@ -1,8 +1,8 @@
 <template>
   <div class="tabs" data-decorator="init-tabs">
     <AlgoritmeSlugTabs
-      @focus-changed="(v) => (activeAttributeKey = v)"
       :algorithm-properties="algorithmProperties"
+      @focus-changed="(v) => (activeAttributeKey = v)"
     />
     <AlgoritmeSlugTable :table-properties="activeAttributeProperties" />
   </div>

@@ -32,16 +32,26 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
-const props = defineProps<{
-  tableProperties: {
+export interface Props {
+  tableProperties?: {
     attributeKey: string
     attributeValue: string
     attributeKeyDescription: string
     attributeKeyLabel: string
   }[]
-}>()
+  toggled?: boolean
+}
+const props = withDefaults(defineProps<Props>(), {
+  tableProperties: {
+    attributeKey: '',
+    attributeValue: '',
+    attributeKeyDescription: '',
+    attributeKeyLabel: '',
+  },
+  toggled: false,
+})
 
+const { t } = useI18n()
 // Handle toggling of description of the keys
 const keyToggles = ref<string[]>([])
 const toggleKey = (key: string) => {
@@ -53,8 +63,6 @@ const toggleKey = (key: string) => {
 }
 
 const isKeyToggled = (key: string) => keyToggles.value.includes(key)
-
-const clearToggledKeys = () => (keyToggles.value = [])
 </script>
 
 <style lang="scss">

@@ -1,6 +1,6 @@
 <template>
   <li :class="`item ${mode}`">
-    <div class="item-header" v-if="mode === 'compact'">
+    <div v-if="mode === 'compact'" class="item-header">
       <NuxtLink :to="`/algoritme/${algoritme.slug}`" class="result--title">
         <h2>{{ props.algoritme.name }}</h2>
       </NuxtLink>
@@ -26,14 +26,13 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import { summaryTiles } from '@/config/config'
+import type { Algoritme } from '@/types/algoritme'
 export interface Props {
   algoritme: Algoritme
   mode?: string
 }
-
-import { useI18n } from 'vue-i18n'
-import { summaryTiles } from '@/config/config'
-import type { Algoritme } from '@/types/algoritme'
 
 const props = withDefaults(defineProps<Props>(), {
   mode: 'default',

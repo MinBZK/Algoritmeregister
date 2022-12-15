@@ -4,7 +4,7 @@
       v-for="(p, index) in algorithmProperties"
       :key="p.attributeGroupKey"
       :group-props="p"
-      v-bind:toggled="toggledRows[index]"
+      :toggled="toggledRows[index]"
       @toggle-this-row="toggleRows(index)"
     />
   </div>
