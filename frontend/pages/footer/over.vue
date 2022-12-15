@@ -58,7 +58,7 @@
         feedback op kan geven:
       </p>
       <ul type="disc" class="ml-4">
-        <li>Feedback geven op de ‘standaard’</li>
+        <li>Feedback geven op de standaard</li>
         <li>Feedback op de gepubliceerde beschrijving</li>
         <li>Feedback op de gebruikservaring van de website (UX)</li>
         <li>Feedback op de code van deze website</li>
@@ -104,7 +104,7 @@
       <h1>About the Algorithm Register</h1>
       <p class="mb-4">
         The government increasingly works digitally and uses more and more
-        algorithms when doing so. Since digitalization does not always work
+        algorithms when doing so. Since digitalisation does not always work
         well, the government wants to work towards transparent and responsible
         use of these algorithms. Therefore, the government is making information
         about the algorithms used by the government available to everyone:
@@ -128,9 +128,7 @@
       </p>
       <ul type="disc" class="ml-4">
         <li>Algorithms are added, or algorithms are removed</li>
-        <li>
-          The 'standard' (fields of information) is changed and/or expanded
-        </li>
+        <li>The standard (fields of information) is changed and/or expanded</li>
         <li>
           The published description of algorithms is changed and/or expanded.
         </li>
