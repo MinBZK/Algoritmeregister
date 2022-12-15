@@ -7,25 +7,11 @@
     </div>
     <div class="container row container--centered">
       <h1>{{ algoritme.name }}</h1>
-      <div class="well well--pageblock">
-        <!-- <h3>{{ shortDescription }}</h3> -->
-        <p>{{ algoritme.description_short || shortDescriptionMissing }}</p>
-        <!-- <p>
-            <a href="#" class="link link--forward">Alle datasets van deze eigenaar</a>
-          </p> -->
-        <dl class="dl columns--data">
-          <div v-for="sT in summaryTiles" :key="sT">
-            <dt>
-              {{ $t(`algorithmProperties.${sT}.label`) }}
-            </dt>
-            <dd>
-              <span>{{
-                algoritme[sT as keyof typeof algoritme] || t('Ontbreekt')
-              }}</span>
-            </dd>
-          </div>
-        </dl>
-      </div>
+      <SearchResultCard
+        :key="algoritme.slug"
+        :algoritme="algoritme"
+        mode="default"
+      ></SearchResultCard>
       <div v-if="isMobile" class="accordion" data-decorator="init-accordion">
         <div
           v-for="p in structuredProperties"
@@ -168,7 +154,6 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useActiveElement } from '@vueuse/core'
-import { summaryTiles } from '~~/config/config'
 import type { Algoritme } from '~~/types/algoritme'
 import requiredFields from '~~/config/fields.json'
 import algoritmeService from '@/services/algoritme'
@@ -215,8 +200,6 @@ const enrichedAlgoritme = computed(() => {
 
   return { [groupKey]: group, ...algoritme.value }
 })
-
-const shortDescriptionMissing = computed(() => t('short-description-missing'))
 
 const activeAttributeKey = ref('')
 const activeAttributeProperties = computed(() => {

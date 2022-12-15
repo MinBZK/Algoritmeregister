@@ -24,6 +24,7 @@
               v-for="algoritme in paginatedAlgoritmes"
               :key="algoritme.slug"
               :algoritme="algoritme"
+              mode="compact"
             ></SearchResultCard>
           </ul>
           <div v-if="paginatedAlgoritmes.length == 0">
