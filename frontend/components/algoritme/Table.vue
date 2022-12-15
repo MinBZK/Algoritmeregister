@@ -1,28 +1,28 @@
 <template>
   <table class="table__data-overview">
     <tbody>
-      <tr v-for="property in tableProperties" :key="property.attributeKey">
+      <tr v-for="property in tableProperties" :key="property.key">
         <th scope="row">
-          {{ property.attributeKeyLabel }}
+          {{ property.keyLabel }}
           <span
             class="question-mark"
             role="button"
             tabindex="0"
-            @click="toggleKey(property.attributeKey)"
-            @keydown.enter="toggleKey(property.attributeKey)"
+            @click="toggleKey(property.key)"
+            @keydown.enter="toggleKey(property.key)"
           ></span>
-          <p v-if="isKeyToggled(property.attributeKey)">
+          <p v-if="isKeyToggled(property.key)">
             <i>
               <ParseUrl>
-                {{ `${property.attributeKeyDescription || t('Ontbreekt')}` }}
+                {{ `${property.keyDescription || t('Ontbreekt')}` }}
               </ParseUrl>
             </i>
           </p>
         </th>
 
         <td>
-          <ParseUrl :key="property.attributeValue">
-            {{ property.attributeValue || t('Ontbreekt') }}
+          <ParseUrl :key="property.value">
+            {{ property.value || t('Ontbreekt') }}
           </ParseUrl>
         </td>
       </tr>
@@ -34,10 +34,10 @@
 import { useI18n } from 'vue-i18n'
 defineProps<{
   tableProperties: {
-    attributeKey: string
-    attributeValue: string
-    attributeKeyDescription: string
-    attributeKeyLabel: string
+    key: string
+    value: string
+    keyDescription: string
+    keyLabel: string
   }[]
 }>()
 

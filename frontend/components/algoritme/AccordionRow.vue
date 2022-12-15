@@ -1,5 +1,5 @@
 <template>
-  <div :id="`header-${groupProps.attributeGroupKey}`" class="accordion__item">
+  <div :id="`header-${groupProps.groupKey}`" class="accordion__item">
     <div class="accordion__item__header">
       <h3 class="accordion__item__heading">
         <span
@@ -10,37 +10,34 @@
           <span
             :class="toggled ? 'accordion-arrow-up' : 'accordion-arrow-right'"
           ></span>
-          {{ groupProps.attributeGroupKeyLabel }}
+          {{ groupProps.groupKeyLabel }}
         </span>
       </h3>
     </div>
     <div v-if="toggled">
       <div
         v-for="property in groupProps.properties"
-        :key="property.attributeKey"
+        :key="property.key"
         class="accordion__item__content"
         role="region"
         aria-labelledby="header1"
       >
         <div>
           <b>
-            {{ property.attributeKeyLabel }}
+            {{ property.keyLabel }}
           </b>
-          <span
-            class="question-mark"
-            @click="toggleKey(property.attributeKey)"
-          ></span>
+          <span class="question-mark" @click="toggleKey(property.key)"></span>
         </div>
-        <div v-if="isKeyToggled(property.attributeKey)" class="word-break">
+        <div v-if="isKeyToggled(property.key)" class="word-break">
           <i>
             <ParseUrl>
-              {{ `${property.attributeKeyDescription || t('ontbreekt')}` }}
+              {{ `${property.keyDescription || t('ontbreekt')}` }}
             </ParseUrl>
           </i>
         </div>
         <div class="word-break">
           <ParseUrl>
-            {{ property.attributeValue || t('Ontbreekt') }}
+            {{ property.value || t('Ontbreekt') }}
           </ParseUrl>
         </div>
       </div>
@@ -52,13 +49,13 @@
 import { useI18n } from 'vue-i18n'
 export interface Props {
   groupProps: {
-    attributeGroupKey: string
-    attributeGroupKeyLabel: string
+    groupKey: string
+    groupKeyLabel: string
     properties: {
-      attributeKey: string
-      attributeValue: string
-      attributeKeyDescription: string
-      attributeKeyLabel: string
+      key: string
+      value: string
+      keyDescription: string
+      keyLabel: string
     }[]
   }
   toggled?: boolean
@@ -74,9 +71,7 @@ const emit = defineEmits<{
 
 // Handle accordion
 const toggleAccordion = async () => {
-  const header = document.getElementById(
-    `header-${props.groupProps.attributeGroupKey}`
-  )
+  const header = document.getElementById(`header-${props.groupProps.groupKey}`)
   const storePosition = header?.getBoundingClientRect().y || 0
 
   emit('toggleThisRow')

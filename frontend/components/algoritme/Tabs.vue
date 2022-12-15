@@ -1,26 +1,20 @@
 <template>
   <ul class="tabs__list" role="tablist">
-    <li
-      v-for="(p, index) in algorithmProperties"
-      :key="p.attributeGroupKey"
-      role="presentation"
-    >
+    <li v-for="(p, index) in tabProperties" :key="p.key" role="presentation">
       <a
         ref="tabHeaders"
-        :key="p.attributeGroupKey"
-        :tabindex="p.attributeGroupKey == activeAttributeKey ? 0 : -1"
-        :aria-selected="p.attributeGroupKey == activeAttributeKey"
+        :key="p.key"
+        :tabindex="p.key == activeTab ? 0 : -1"
+        :aria-selected="p.key == activeTab"
         class="noselect"
-        :class="[
-          p.attributeGroupKey == activeAttributeKey ? 'is-selected' : '',
-        ]"
+        :class="[p.key == activeTab ? 'is-selected' : '']"
         role="tab"
         :aria-controls="`panel-${index + 1}`"
-        @click="selectTab(p.attributeGroupKey)"
+        @click="selectTab(p.key)"
         @keydown.enter="selectTab('selectFocus')"
         @keydown.left.prevent="navigateTab(-1)"
         @keydown.right.prevent="navigateTab(1)"
-        >{{ p.attributeGroupKeyLabel }}</a
+        >{{ p.label }}</a
       >
     </li>
   </ul>
@@ -29,32 +23,26 @@
 <script setup lang="ts">
 import { useActiveElement } from '@vueuse/core'
 const props = defineProps<{
-  algorithmProperties: {
-    attributeGroupKey: string
-    attributeGroupKeyLabel: string
-    properties: {
-      attributeKey: string
-      attributeValue: string
-      attributeKeyDescription: string
-      attributeKeyLabel: string
-    }[]
+  tabProperties: {
+    key: string
+    label: string
   }[]
 }>()
 
 const emit = defineEmits<{
-  (e: 'focusChanged', activeAttributeKey: string): void
+  (e: 'focusChanged', activeTab: string): void
 }>()
 
 const isMobile = useMobileBreakpoint()
 
-const activeAttributeKey = ref('')
+const activeTab = ref('')
 
 const activeElement = useActiveElement()
 
 const focusedTabIndex = computed(() => {
-  const currentIndexSelected = props.algorithmProperties
-    .map((sP) => sP.attributeGroupKey)
-    .indexOf(activeAttributeKey.value)
+  const currentIndexSelected = props.tabProperties
+    .map((sP) => sP.key)
+    .indexOf(activeTab.value)
 
   const currentIndexWithFocus = activeElement.value
     ? tabHeaders.value.indexOf(activeElement.value as HTMLAnchorElement)
@@ -69,28 +57,25 @@ const focusedTabIndex = computed(() => {
 const tabHeaders = ref<HTMLAnchorElement[]>([])
 const navigateTab = (increment: number) => {
   const newIndex = focusedTabIndex.value + increment
-  if (newIndex >= 0 && newIndex < props.algorithmProperties.length) {
+  if (newIndex >= 0 && newIndex < props.tabProperties.length) {
     tabHeaders.value[newIndex].focus()
   }
 }
 
 const selectTab = (key: string) => {
   if (key === 'selectFocus') {
-    activeAttributeKey.value =
-      props.algorithmProperties[focusedTabIndex.value].attributeGroupKey
+    activeTab.value = props.tabProperties[focusedTabIndex.value].key
   } else {
-    activeAttributeKey.value = key
+    activeTab.value = key
   }
-  emit('focusChanged', activeAttributeKey.value)
+  emit('focusChanged', activeTab.value)
 }
 
 watch(
   isMobile,
   (newValue) =>
     // Closes tabs if the screen is becoming smaller.
-    (activeAttributeKey.value = newValue
-      ? ''
-      : props.algorithmProperties[0].attributeGroupKey)
+    (activeTab.value = newValue ? '' : props.tabProperties[0].key)
 )
 </script>
 

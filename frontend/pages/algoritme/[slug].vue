@@ -11,13 +11,13 @@
         :algoritme="algoritme"
         mode="default"
       ></SearchResultCard>
-      <AlgoritmeSlugAccordionRows
+      <AlgoritmeAccordionRows
         v-if="isMobile"
-        :algorithm-properties="structuredProperties"
+        :accordion-properties="structuredProperties"
       />
-      <AlgoritmeSlugTabsTable
+      <AlgoritmeTabsTable
         v-if="!isMobile"
-        :algorithm-properties="structuredProperties"
+        :tabs-table-properties="structuredProperties"
       />
     </div>
   </div>
@@ -81,14 +81,12 @@ const structuredProperties = computed(() => {
       typeof algoritme.value[key as keyof typeof algoritme.value] === 'object'
   )
   const excludedKeys = ['id', 'algoritme_id']
-  return keysWithObjectValues.map((attributeGroupKey) => {
+  return keysWithObjectValues.map((groupKey) => {
     return {
-      attributeGroupKey,
-      attributeGroupKeyLabel:
-        t(`algorithmProperties.${attributeGroupKey}.label`) ||
-        attributeGroupKey,
+      groupKey,
+      groupKeyLabel: t(`algorithmProperties.${groupKey}.label`) || groupKey,
       properties: Object.entries(
-        algoritme.value[attributeGroupKey as keyof typeof algoritme.value]
+        algoritme.value[groupKey as keyof typeof algoritme.value]
       )
         .filter(([key]) => !excludedKeys.includes(key))
         .map(([key, value]) => {
@@ -99,20 +97,18 @@ const structuredProperties = computed(() => {
               ? t(`yes`)
               : t(`no`)
           return {
-            attributeKey: key,
-            attributeValue: parsedValue,
-            attributeKeyDescription: t(
-              `algorithmProperties.${key}.description`
-            ),
-            attributeKeyLabel: t(`algorithmProperties.${key}.label`),
+            key: key,
+            value: parsedValue,
+            keyDescription: t(`algorithmProperties.${key}.description`),
+            keyLabel: t(`algorithmProperties.${key}.label`),
           }
         })
         // only show field that are either required or not empty. An empty string is considered empty.
         .filter(
           (attribute) =>
             requiredFields.properties[
-              attribute.attributeKey as keyof typeof requiredFields.properties
-            ]?.required === true || !!attribute.attributeValue
+              attribute.key as keyof typeof requiredFields.properties
+            ]?.required === true || !!attribute.value
         ),
     }
   })
