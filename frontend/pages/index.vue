@@ -52,13 +52,13 @@ const doSearch = () => {
   padding-left: 80px;
   padding-top: 40px;
   padding-right: 80px;
-  padding-bottom: 40px;
+  padding-bottom: 0px !important;
 }
 .card-margins-xs {
   padding-left: 10px;
   padding-top: 10px;
   padding-right: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
 }
 .homepage-title {
   color: $primary-darker;

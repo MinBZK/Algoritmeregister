@@ -30,6 +30,74 @@
         Die open ontwikkeling betekent dat de inhoud door de tijd heen zal
         wijzigen, bijvoorbeeld:
       </p>
+      <ul type="disc" class="ml-4">
+        <li>Er komen algoritmes bij of gaan algoritmes af</li>
+        <li>
+          De ‘standaard’ (velden met informatie) wordt gewijzigd en/of
+          uitgebreid
+        </li>
+        <li>
+          De reeds gepubliceerde beschrijving van algoritmes wordt gewijzigd
+          en/of uitgebreid.
+        </li>
+      </ul>
+
+      <h2>Open meedoen</h2>
+      <p class="mb-4">
+        Een aantal overheidsorganisaties heeft op dit moment al algoritmes
+        gepubliceerd in het algoritmeregister. Het doel is om alle
+        overheidsorganisaties met relevante algoritmes aangesloten te hebben.
+        Uiteindelijk zal registratie ook wettelijk verplicht worden.
+      </p>
+      <p class="mb-4">
+        Overheidsorganisaties kunnen algoritmes aanleveren voor registratie in
+        het Algoritmeregister.
+      </p>
+      <p class="mb-4">
+        Er zijn verschillende onderdelen waar je aan mee kan doen of waar je
+        feedback op kan geven:
+      </p>
+      <ul type="disc" class="ml-4">
+        <li>Feedback geven op de ‘standaard’</li>
+        <li>Feedback op de gepubliceerde beschrijving</li>
+        <li>Feedback op de gebruikservaring van de website (UX)</li>
+        <li>Feedback op de code van deze website</li>
+      </ul>
+
+      <p class="mb-4">
+        Wil je meedoen? Heb je feedback op bijvoorbeeld een van deze
+        onderwerpen? Neem dan contact op met:
+        <a href="mailto:algoritmeregister@minbzk.nl">
+          algoritmeregister@minbzk.nl</a
+        >.
+      </p>
+      <h2>Open source software</h2>
+      <p class="mb-4">
+        Het Algoritmeregister wordt ontwikkeld met open source software (volg
+        ons op
+        <a
+          target="_blank"
+          class="is-external"
+          href="https://github.com/MinBZK/Algoritmeregister"
+          >Github</a
+        >). Deze site wordt ontwikkeld zodat deze voor zoveel mogelijk mensen
+        bruikbaar is.
+      </p>
+      <h2>Algoritmebeleid</h2>
+      <p class="mb-4">
+        Het Algoritmeregister is een volgende stap in het verantwoord gebruik
+        van algoritmes binnen de overheid. Daarnaast werkt de overheid aan het
+        versterken van het toezicht op algoritmes. Ook wordt er gewerkt aan een
+        implementatiekader. Daarnaast zet de overheid zicht in voor eisen aan
+        kunstmatige intelligentie in de Europese Unie. Meer informatie over de
+        plannen kun je vinden in de
+        <a
+          class="is-external"
+          href="https://open.overheid.nl/repository/ronl-0de79e5c4c0c9b203c0a1c263efca7eca410958b/1/pdf/bijlage-1-werkagenda-waardengedreven-digitaliseren.pdf"
+        >
+          werkagenda Waardegedreven Digitaliseren</a
+        >.
+      </p>
     </div>
 
     <div v-if="englishSelected">
@@ -58,7 +126,7 @@
         >. This open development style means that the content will change over
         time, for example:
       </p>
-      <ul type="1" class="ml-4">
+      <ul type="disc" class="ml-4">
         <li>Algorithms are added, or algorithms are removed</li>
         <li>
           The 'standard' (fields of information) is changed and/or expanded
@@ -82,7 +150,7 @@
       <p class="mb-4">
         There are several areas that you can participate by giving:
       </p>
-      <ul type="1" class="ml-4">
+      <ul type="disc" class="ml-4">
         <li>Feedback on the 'standard'</li>
         <li>Feedback on the published description</li>
         <li>Feedback on the website’s user experience (UX)</li>

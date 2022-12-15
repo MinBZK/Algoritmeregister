@@ -47,3 +47,9 @@
   -webkit-user-select: none;
   -o-user-select: none;
 }
+
+@media (min-width: 65em) {
+  html {
+    padding-bottom: 14em !important;
+  }
+}
