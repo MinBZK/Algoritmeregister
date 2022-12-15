@@ -10,14 +10,14 @@
         bouwteam om de site te verbeteren. Analytische cookies geven antwoord op
         bijvoorbeeld de volgende vragen:
       </p>
-      <ol type="1" class="ml-4">
+      <ul type="disc" class="ml-4">
         <li>
           Is de bezoeker nieuw of heeft de bezoeker de site al eerder bezocht
         </li>
         <li>Welke pagina's zijn tijdens het bezoek geraadpleegd</li>
         <li>Van welke site is de bezoeker gekomen</li>
         <li>Heeft de bezoeker de site meteen weer verlaten ('bouncing').</li>
-      </ol>
+      </ul>
 
       <p class="mb-4 mt-4">
         Deze cookies worden niet gebruikt om een profiel aan te maken of jou
@@ -43,14 +43,14 @@
         development team to improve the site. Analytical cookies answer the
         following questions:
       </p>
-      <ol type="1" class="ml-4">
+      <ul type="disc" class="ml-4">
         <li>
           Is this a new visitor or has the visitor visited the site before
         </li>
         <li>Which pages were consulted during the visit</li>
         <li>Which site was the visitor directed from</li>
         <li>Did the visitor immediately leave the site ('bouncing').</li>
-      </ol>
+      </ul>
       <p class="mb-4">
         The cookies are not used to create a profile or to follow you further.
         This website does not place third-party cookies.
