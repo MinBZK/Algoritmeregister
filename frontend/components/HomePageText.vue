@@ -35,6 +35,7 @@ const nAlgorithms = data
 <style lang="scss">
 .green-color {
   background-color: #f0f8e8;
+  margin-bottom: 0px !important;
 }
 .no-bottom-padding {
   padding-bottom: 0px !important;
