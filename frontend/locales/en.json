@@ -34,9 +34,9 @@
   "no": "No",
   "hello": "Hello, {name}!",
   "language": "Language",
-  "homepageTitle": "Algorithm register of the Dutch government",
+  "homepageTitle": "The Algorithm Register of the Dutch government",
   "searchExplanation": "Find algorithms by organisation, title or description",
-  "logoCaption": "Algorithm register of the government",
+  "logoCaption": "The Algorithm Register",
   "searchHint": "What are you looking for?",
   "search": "Search",
   "selectedAlgorithms": "Selected algorithms",
@@ -64,7 +64,7 @@
   },
   "homePageText": {
     "paragraph1": "On this website governmental organisations publish the algorithms that are in use.",
-    "paragraph2": "Effort is made to publish all algorithms that are public. This to ensure the purpose of algorithms and to make sure people involved can examine the algorithms.",
+    "paragraph2": "Effort is made to publish impactful algorithms. This to ensure the purpose of algorithms and to make sure people involved can examine the algorithms. ",
     "paragraph3Header": "Progress",
     "paragraph3part1": "At this moment you will find ",
     "paragraph3part2": " algorithms on this website."
