@@ -1,6 +1,6 @@
 {
   "english?": "false",
-  "home-highlight-algorithm-text": "Of bekijk direct één van de volgende algoritmes",
+  "home-highlight-algorithm-text": "Of bekijk direct een van de volgende algoritmes",
   "you-are-here": "U bent hier",
   "ontbreekt": "Niet ingevuld",
   "locale-en": "Engels",
@@ -19,7 +19,7 @@
       "kwetsbaarheid": "Kwetsbaarheid melden",
       "toegankelijkheid": "Toegankelijkheid",
       "cookies": "Cookies",
-      "vragen": "Vaak gestelde vragen",
+      "vragen": "Veelgestelde vragen",
       "ext_overheid_nl": "Overheid.nl",
       "ext_rijksoverheid_nl": "Rijksoverheid.nl",
       "ext_digitaleoverheid_nl": "Digitale Overheid",
@@ -34,9 +34,9 @@
   "no": "Nee",
   "hello": "Hallo, {name}!",
   "language": "Taal",
-  "homepageTitle": "Algoritmeregister van de Nederlandse overheid",
+  "homepageTitle": "Het Algoritmeregister van de Nederlandse overheid",
   "searchExplanation": "Zoek algoritmes op organisatie, titel of omschrijving",
-  "logoCaption": "Algoritmeregister van de overheid",
+  "logoCaption": "Het Algoritmeregister",
   "searchHint": "Waar ben je naar op zoek?",
   "search": "Zoeken",
   "selectedAlgorithms": "Geselecteerde algoritmes",
@@ -54,7 +54,7 @@
     "footer": "Home",
     "over": "Over deze website",
     "contact": "Contact",
-    "vragen": "Vaak gestelde vragen",
+    "vragen": "Veelgestelde vragen",
     "privacyverklaring": "Privacy",
     "toegankelijkheid": "Toegankelijkheid",
     "db": "Dashboard"
@@ -63,8 +63,8 @@
     "goTo": "Ga naar pagina {n}"
   },
   "homePageText": {
-    "paragraph1": "Op deze website publiceren overheidsorganisatie de algoritmes die zij gebruiken in hun dagelijkse werk.",
-    "paragraph2": "Er wordt aan gewerkt om alle algoritmes (die publiek toegankelijk zijn) openbaar te maken. Zodat helder is hoe deze algoritmes werken en hoe deze ingezet worden.",
+    "paragraph1": "Op deze website publiceren overheidsorganisaties de algoritmes die zij gebruiken in hun werk.",
+    "paragraph2": "Er wordt aan gewerkt om impactvolle algoritmes openbaar te maken. Zodat helder is hoe deze algoritmes werken en hoe deze ingezet worden.",
     "paragraph3Header": "Voortgang",
     "paragraph3part1": "Op dit moment kun je hier ",
     "paragraph3part2": " algoritmes vinden."
