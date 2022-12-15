@@ -15,7 +15,11 @@ logger = logging.getLogger(__name__)
     response_model=list[schemas.algoritme.Algoritme],
 )
 async def get_all(db: Session = Depends(get_db)):
-    return db.query(models.algoritme.Algoritme).all()
+    return (
+        db.query(models.algoritme.Algoritme)
+        .order_by(models.algoritme.Algoritme.slug)
+        .all()
+    )
 
 
 @router.get(
