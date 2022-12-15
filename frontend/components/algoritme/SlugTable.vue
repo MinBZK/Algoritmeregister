@@ -32,24 +32,14 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-export interface Props {
-  tableProperties?: {
+defineProps<{
+  tableProperties: {
     attributeKey: string
     attributeValue: string
     attributeKeyDescription: string
     attributeKeyLabel: string
   }[]
-  toggled?: boolean
-}
-const props = withDefaults(defineProps<Props>(), {
-  tableProperties: {
-    attributeKey: '',
-    attributeValue: '',
-    attributeKeyDescription: '',
-    attributeKeyLabel: '',
-  },
-  toggled: false,
-})
+}>()
 
 const { t } = useI18n()
 // Handle toggling of description of the keys
