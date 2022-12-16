@@ -23,7 +23,11 @@
           <div class="column-d-6" :class="!isMobile && 'align-right'">
             <a :href="algoritmeService.downloadUrl()">
               <FormOverheidButton
+<<<<<<< HEAD
+                label="Download alle algoritmes"
+=======
                 label="Download"
+>>>>>>> main
                 class="no-margin"
                 icon="mdi:download"
                 :primary="false"
