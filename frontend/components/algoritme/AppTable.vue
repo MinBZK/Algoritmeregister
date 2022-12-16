@@ -14,7 +14,7 @@
           <p v-if="isKeyToggled(property.key)">
             <i>
               <ParseUrl>
-                {{ `${property.keyDescription || t('Ontbreekt')}` }}
+                {{ `${property.keyDescription || t('ontbreekt')}` }}
               </ParseUrl>
             </i>
           </p>
@@ -22,7 +22,7 @@
 
         <td>
           <ParseUrl :key="property.value">
-            {{ property.value || t('Ontbreekt') }}
+            {{ property.value || t('ontbreekt') }}
           </ParseUrl>
         </td>
       </tr>

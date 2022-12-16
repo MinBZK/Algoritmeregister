@@ -118,8 +118,8 @@
       "description": "Is het algoritme op regels gebaseerd of zelflerend? Regelgebaseerde algoritmes zijn handmatig door mensen gebouwd, meestal op basis van wetten of verordeningen. Zelflerende algoritmes kunnen zelf verbanden ontdekken in gegevens."
     },
     "category": {
-      "label": "Domein",
-      "description": "Trefwoorden over het domein waarin het algoritme wordt ingezet."
+      "label": "Beleidsterrein",
+      "description": "Trefwoorden over het beleidsterrein waarin het algoritme wordt ingezet."
     },
     "website": {
       "label": "Link naar publiekspagina",

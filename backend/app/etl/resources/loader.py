@@ -63,7 +63,7 @@ class AlgoritmeLoader:
             df[bc] = df[bc].map({"Ja": True, "Nee": False, np.nan: None})
 
         for nc in non_null_columns:
-            df[nc] = df[nc].fillna("-")
+            df[nc] = df[nc].fillna("")
 
         for sc in string_cols:
             df[sc] = df[sc].str.slice(0, 5000)
