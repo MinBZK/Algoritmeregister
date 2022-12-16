@@ -8,6 +8,7 @@
         $t(filtersExpanded ? 'hideFilters' : 'showFilters')
       }}</a>
     </template>
+
     <template v-if="filtersExpanded">
       <div v-if="parsedFilters.length > 0" class="search-filter-item">
         <h2>{{ $t('selectedAlgorithms') }}</h2>
@@ -25,55 +26,50 @@
         </div>
       </div>
       <template
-        v-for="aggregationType in props.aggregatedAlgoritmes"
-        :key="aggregationType.aggregationAttribute"
+        v-for="aggregation in props.aggregatedAlgoritmes"
+        :key="aggregation.aggregation_attribute"
         ><div
           v-if="
-            getAttributeFilters(aggregationType.aggregationAttribute).length > 0
+            getAttributeFilters(aggregation.aggregation_attribute).length > 0
           "
           class="search-filter-item"
         >
           <h2>
             {{
               $t(
-                `algorithmProperties.${aggregationType.aggregationAttribute}.label`
+                `algorithmProperties.${aggregation.aggregation_attribute}.label`
               )
             }}
           </h2>
 
           <div
-            v-for="[attributeValue, count] in getAttributeFilters(
-              aggregationType.aggregationAttribute
+            v-for="aggregationValue in getAttributeFilters(
+              aggregation.aggregation_attribute
             )"
-            :key="attributeValue"
+            :key="aggregationValue.aggregation_value"
           >
             <NuxtLink
-              v-if="
-                !hasFilter(aggregationType.aggregationAttribute, attributeValue)
-              "
               :to="{
                 name: 'algoritme',
                 query: {
                   q: getEncodedFiltersQuery(
-                    aggregationType.aggregationAttribute,
-                    attributeValue
+                    aggregation.aggregation_attribute,
+                    aggregationValue.aggregation_value
                   ),
                   page: 1,
                 },
               }"
             >
-              <span>{{ attributeValue || '-' }}</span></NuxtLink
+              <span>{{
+                aggregationValue.aggregation_value || '-'
+              }}</span></NuxtLink
             >
 
-            <span
-              v-if="
-                hasFilter(aggregationType.aggregationAttribute, attributeValue)
-              "
-              class="link-disabled"
-              >{{ attributeValue || '-' }}</span
-            >
+            <!-- <span class="link-disabled">{{ aggregationValue || '-' }}</span> -->
 
-            &nbsp;<span class="text-secondary">({{ count }})</span>
+            &nbsp;<span class="text-secondary"
+              >({{ aggregationValue.count }})</span
+            >
           </div>
         </div>
       </template>
@@ -83,10 +79,10 @@
 
 <script setup lang="ts">
 import { stringify } from 'qs'
-import type { AggregatedAlgoritmes, AlgoritmeFilter } from '@/types/algoritme'
+import type { AggregatedAlgoritme, AlgoritmeFilter } from '@/types/algoritme'
 import { useMobileBreakpoint } from '~~/composables/mobile'
 
-const props = defineProps<{ aggregatedAlgoritmes: AggregatedAlgoritmes[] }>()
+const props = defineProps<{ aggregatedAlgoritmes: AggregatedAlgoritme[] }>()
 
 const getEncodedFiltersQuery = (attribute: string, value: string): string => {
   const stringified = stringify({
@@ -120,27 +116,26 @@ const removeFilter = (filter: AlgoritmeFilter) => {
 
 const getAttributeFilters = (attribute: string) => {
   const values = props.aggregatedAlgoritmes.find(
-    (a) => a.aggregationAttribute === attribute
-  )?.aggregatedValues
+    (a) => a.aggregation_attribute === attribute
+  )?.values
 
-  const filterdValues = Object.entries(values || []).filter(
-    ([filterAttributeValue]) => {
-      return (
-        parsedFilters.value.filter(
-          (pF) =>
-            pF.attribute === attribute && pF.value === filterAttributeValue
-        ).length === 0
-      )
-    }
+  const filteredValues = (values || []).filter((a) => {
+    return (
+      parsedFilters.value.filter(
+        (pF) => pF.attribute === attribute && pF.value === a.aggregation_value
+      ).length === 0
+    )
+  })
+
+  return filteredValues.sort((a, b) =>
+    a.aggregation_value > b.aggregation_value ? 1 : -1
   )
-
-  return filterdValues.sort()
 }
 
-const hasFilter = (attribute: string, attributeValue: string): boolean =>
-  parsedFilters.value.filter(
-    (pF) => pF.attribute === attribute && pF.value === attributeValue
-  ).length > 0
+// const hasFilter = (attribute: string, attributeValue: string): boolean =>
+//   parsedFilters.value.filter(
+//     (pF) => pF.attribute === attribute && pF.value === attributeValue
+//   ).length > 0
 
 // mobile only
 const showFilters = ref(false)

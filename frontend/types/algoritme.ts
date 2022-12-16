@@ -11,15 +11,20 @@ export interface Algoritme {
   status: string
 }
 
-export type AggregatedAlgoritmes = {
-  aggregationAttribute: string
-  aggregationType: string
-  aggregatedValues: Record<string, number>
+type AggregationValue = {
+  aggregation_value: string
+  count: number
+}
+
+export type AggregatedAlgoritme = {
+  aggregation_attribute: string
+  // aggregationType: string
+  values: AggregationValue[]
 }
 
 export type AlgoritmeFilter = {
   attribute: string
-  value: string
+  value: string | string[]
 }
 
 export interface AlgNameIdOrg {
