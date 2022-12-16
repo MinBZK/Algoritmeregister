@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import TypedDict
 
 
 class BaseModelOrmMode(BaseModel):
@@ -77,3 +78,34 @@ class Algoritme(BaseModelOrmMode):
     metadata_algorithm: Metadata | None
     toepassing: Toepassing | None
     toezicht: Toezicht | None
+
+
+class AlgoritmeFilters(BaseModel):
+    attribute: str
+    value: str | list[str]
+
+
+class AlgoritmeQuery(BaseModel):
+    filters: list[AlgoritmeFilters] = []
+    page: int = 1
+    limit: int = 10
+    search: str = ""
+
+
+class AlgoritmeAggregation(BaseModel):
+    aggregation_value: str
+    count: int
+
+    class Config:
+        orm_mode = True
+
+
+class AggregatedAttribute(TypedDict):
+    aggregation_attribute: str
+    values: list[AlgoritmeAggregation]
+
+
+class AlgoritmeQueryResponse(BaseModel):
+    results: list[Algoritme]
+    total_count: int
+    aggregations: list[AggregatedAttribute]

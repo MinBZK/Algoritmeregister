@@ -1,8 +1,28 @@
-import type { Algoritme, AlgNameIdOrg } from '@/types/algoritme'
+import type {
+  Algoritme,
+  AlgNameIdOrg,
+  AlgoritmeFilter,
+  AggregatedAlgoritme,
+} from '@/types/algoritme'
 
-const getAll = () =>
-  useFetch<Algoritme[]>('/algoritme/', {
+type AlgoritmeQuery = {
+  filters: AlgoritmeFilter[]
+  page: number
+  limit: number
+  search?: string
+}
+
+type AlgoritmeQueryResult = {
+  results: Algoritme[]
+  total_count: number
+  aggregations: AggregatedAlgoritme[]
+}
+
+const getAll = (query: AlgoritmeQuery) =>
+  useFetch<AlgoritmeQueryResult>('/algoritme/', {
     baseURL: useRuntimeConfig().public.apiBaseUrl,
+    method: 'POST',
+    body: query,
   })
 
 const getOne = (slug: string) =>

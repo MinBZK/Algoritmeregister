@@ -5,12 +5,12 @@
     <div class="row container columns">
       <div class="column-d-3">
         <AlgoritmeFilters
-          v-if="paginatedAlgoritmes.length != 0"
-          :aggregated-algoritmes="aggregatedAlgoritmes"
+          v-if="aggregations.length > 0"
+          :aggregated-algoritmes="aggregations"
         />
       </div>
       <div class="column-d-9">
-        <h1>{{ t(`foundResults`, { n: filteredAlgoritmes.length }) }}</h1>
+        <h1>{{ t(`foundResults`, { n: totalCount }) }}</h1>
         <div class="row container columns">
           <div class="column-d-6">
             <TablePagination
@@ -23,11 +23,7 @@
           <div class="column-d-6" :class="!isMobile && 'align-right'">
             <a :href="algoritmeService.downloadUrl()">
               <FormOverheidButton
-<<<<<<< HEAD
                 label="Download alle algoritmes"
-=======
-                label="Download"
->>>>>>> main
                 class="no-margin"
                 icon="mdi:download"
                 :primary="false"
@@ -37,15 +33,15 @@
         </div>
         <!-- <Sort /> -->
         <div class="result--list result--list__data">
-          <ul v-if="paginatedAlgoritmes.length != 0">
+          <ul v-if="algoritmes.length != 0">
             <SearchResultCard
-              v-for="algoritme in paginatedAlgoritmes"
+              v-for="algoritme in algoritmes"
               :key="algoritme.slug"
               :algoritme="algoritme"
               mode="compact"
             ></SearchResultCard>
           </ul>
-          <div v-if="paginatedAlgoritmes.length == 0">
+          <div v-if="algoritmes.length == 0">
             {{ t('noResults') }}
           </div>
         </div>
@@ -65,8 +61,8 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import algoritmeService from '@/services/algoritme'
 import type {
-  Algoritme,
-  AggregatedAlgoritmes,
+  // Algoritme,
+  // AggregatedAlgoritme,
   AlgoritmeFilter,
 } from '@/types/algoritme'
 import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
@@ -82,40 +78,8 @@ definePageMeta({
 const parsedQuery = computed(() => useRouteQuery())
 const searchQuery = ref<string>((parsedQuery.value.search as string) || '')
 const parsedFilters = computed(
-  () => parsedQuery.value.filters as AlgoritmeFilter[]
+  () => (parsedQuery.value.filters || []) as AlgoritmeFilter[]
 )
-
-const { data } = await algoritmeService.getAll()
-const algoritmes = ref(data.value as Algoritme[])
-
-const filteredAlgoritmes = computed(() => {
-  const searchQueryString = String(searchQuery.value)
-
-  return algoritmes.value.filter((algoritme) => {
-    const includedSearchFields = ['organization', 'name', 'description_short']
-
-    const allowedBySearch =
-      searchQueryString.length > 0
-        ? includedSearchFields
-            .map((field) => {
-              const value = algoritme[field as keyof typeof algoritme]
-              return value
-                ? value.toLowerCase().includes(searchQueryString.toLowerCase())
-                : false
-            })
-            .some((v) => v)
-        : true
-
-    const allowedByQueryFilters = (parsedFilters.value || [])
-      .map(
-        ({ attribute, value }) =>
-          algoritme[attribute as keyof Algoritme] === value
-      )
-      .every((v) => v)
-
-    return allowedByQueryFilters && allowedBySearch
-  })
-})
 
 const page = computed(() => {
   const route = useRoute()
@@ -126,37 +90,29 @@ const page = computed(() => {
 })
 
 const pageLength = 10
-const nPages = computed(() =>
-  Math.ceil(filteredAlgoritmes.value.length / pageLength)
-)
-const paginatedAlgoritmes = computed(() =>
-  filteredAlgoritmes.value.slice(
-    (page.value - 1) * pageLength,
-    page.value * pageLength
-  )
-)
 
-const aggregatedAlgoritmes = computed(() => {
-  const groupOnAttributes = ['organization']
-  const result: AggregatedAlgoritmes[] = groupOnAttributes.map(
-    (aggregationAttribute) => {
-      return {
-        aggregationAttribute,
-        aggregationType: 'count',
-        aggregatedValues: filteredAlgoritmes.value.reduce((obj, algoritme) => {
-          const value = algoritme[aggregationAttribute as keyof Algoritme]
-          if (obj[value]) {
-            obj[value] = obj[value] + 1
-          } else {
-            obj[value] = 1
-          }
-          return obj
-        }, {} as Record<string, number>),
-      }
-    }
-  )
-  return result
+let { data } = await algoritmeService.getAll({
+  filters: parsedFilters.value,
+  page: page.value,
+  limit: pageLength,
+  search: searchQuery.value,
 })
+
+const updateData = async () => {
+  const response = await algoritmeService.getAll({
+    filters: parsedFilters.value,
+    page: page.value,
+    limit: pageLength,
+    search: searchQuery.value,
+  })
+  data = response.data
+}
+
+const totalCount = computed(() => data.value?.total_count || 0)
+const aggregations = computed(() => data.value?.aggregations || [])
+const algoritmes = computed(() => data.value?.results || [])
+
+const nPages = computed(() => Math.ceil(totalCount.value / pageLength))
 
 const setPage = (newPage: number) => {
   const router = useRouter()
@@ -167,9 +123,13 @@ const setPage = (newPage: number) => {
   })
 }
 
-watch(searchQuery, () => {
+watch(searchQuery, async () => {
+  await updateData()
   setPage(1)
 })
+
+watch(parsedFilters, () => updateData())
+watch(page, () => updateData())
 </script>
 
 <style scoped lang="scss">
