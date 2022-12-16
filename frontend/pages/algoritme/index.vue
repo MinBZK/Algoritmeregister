@@ -11,12 +11,24 @@
       </div>
       <div class="column-d-9">
         <h1>{{ t(`foundResults`, { n: filteredAlgoritmes.length }) }}</h1>
-        <TablePagination
-          v-if="nPages > 1"
-          :current-page="page"
-          :page-length="nPages"
-          @set-page="(p) => setPage(p)"
-        />
+        <div class="row container columns">
+          <div class="column-d-6">
+            <TablePagination
+              v-if="nPages > 1"
+              :current-page="page"
+              :page-length="nPages"
+              @set-page="(p) => setPage(p)"
+            />
+          </div>
+          <div class="column-d-6" :class="!isMobile && 'align-right'">
+            <FormOverheidButton
+              label="Download"
+              class="no-margin"
+              icon="mdi:download"
+              :primary="false"
+            />
+          </div>
+        </div>
         <!-- <Sort /> -->
         <div class="result--list result--list__data">
           <ul v-if="paginatedAlgoritmes.length != 0">
@@ -54,6 +66,8 @@ import type {
 import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
 
 const { t } = useI18n()
+
+const isMobile = useMobileBreakpoint()
 
 definePageMeta({
   title: 'Algoritmeoverzicht',
@@ -158,5 +172,13 @@ watch(searchQuery, () => {
 }
 .word-break {
   word-break: break-word;
+}
+
+.no-margin {
+  margin-top: 9px;
+}
+
+.align-right {
+  justify-content: right;
 }
 </style>
