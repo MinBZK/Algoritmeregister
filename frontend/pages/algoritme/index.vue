@@ -21,12 +21,14 @@
             />
           </div>
           <div class="column-d-6" :class="!isMobile && 'align-right'">
-            <FormOverheidButton
-              label="Download"
-              class="no-margin"
-              icon="mdi:download"
-              :primary="false"
-            />
+            <a :href="algoritmeService.downloadUrl()">
+              <FormOverheidButton
+                label="Download"
+                class="no-margin"
+                icon="mdi:download"
+                :primary="false"
+              />
+            </a>
           </div>
         </div>
         <!-- <Sort /> -->
