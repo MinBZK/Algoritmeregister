@@ -1,7 +1,10 @@
 <template>
   <button
-    class="button button--primary button--nolabel"
-    :class="fullWidth && 'button--block'"
+    class="button button--nolabel"
+    :class="{
+      'button--block': fullWidth,
+      'button--primary': primary,
+    }"
     type="submit"
     @click="$emit('click')"
   >
@@ -13,10 +16,16 @@
 
 <script setup lang="ts">
 withDefaults(
-  defineProps<{ label: string; icon?: string | null; fullWidth?: boolean }>(),
+  defineProps<{
+    label: string
+    icon?: string | null
+    fullWidth?: boolean
+    primary?: boolean
+  }>(),
   {
     icon: null,
     fullWidth: false,
+    primary: true,
   }
 )
 

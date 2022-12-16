@@ -37,6 +37,9 @@ const getCountWithFilledColumns = (columns: string[] | string) =>
     query: { columns },
   })
 
+const downloadUrl = () =>
+  `${useRuntimeConfig().public.apiBaseUrl}/file/algoritme`
+
 export default {
   getAll,
   getOne,
@@ -45,4 +48,5 @@ export default {
   getTotalCount,
   getColumns,
   getCountWithFilledColumns,
+  downloadUrl,
 }
