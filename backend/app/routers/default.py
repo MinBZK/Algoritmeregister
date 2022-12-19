@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 @router.post(
     "/algoritme/",
-    # response_model=AlgoritmeQueryResponse,
+    # response_model=schemas.algoritme.AlgoritmeQueryResponse,
 )
 async def get_all(
     algoritme_query: schemas.algoritme.AlgoritmeQuery, db: Session = Depends(get_db)
