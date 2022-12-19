@@ -97,7 +97,7 @@ const structuredProperties = computed(() => {
               ? t(`yes`)
               : t(`no`)
           return {
-            key: key,
+            key,
             value: parsedValue,
             keyDescription: t(`algorithmProperties.${key}.description`),
             keyLabel: t(`algorithmProperties.${key}.label`),
