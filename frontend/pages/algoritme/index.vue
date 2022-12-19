@@ -2,7 +2,7 @@
   <div>
     <SearchBar :value="searchQuery" @input="(v) => (searchQuery = v)" />
 
-    <div class="row container columns">
+    <div class="row container columns" id="search-container">
       <div class="column-d-3">
         <AlgoritmeFilters
           v-if="aggregations.length > 0"
@@ -144,5 +144,9 @@ watch(parsedFilters, () => updateData())
 
 .align-right {
   justify-content: right;
+}
+
+#search-container {
+  padding: 0 0;
 }
 </style>

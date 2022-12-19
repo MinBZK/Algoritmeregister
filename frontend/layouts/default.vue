@@ -39,4 +39,8 @@ useHead({ title, htmlAttrs: { lang: locale } })
 .align-right {
   margin-left: auto;
 }
+
+#content {
+  margin-left: 0;
+}
 </style>
