@@ -6,9 +6,11 @@
         <ClientOnly>
           <ol>
             <li v-for="crumb in breadcrumbsWithLinks" :key="crumb.routeName">
-              <a v-if="crumb.routeName != null" :href="`/${crumb.routeName}`">{{
-                crumb.label
-              }}</a>
+              <NuxtLink
+                v-if="crumb.routeName != null"
+                :to="`/${crumb.routeName}`"
+                >{{ crumb.label }}</NuxtLink
+              >
               <span v-if="crumb.routeName == null">{{ crumb.label }}</span>
             </li>
             <li>{{ pathTail.label }}</li>
