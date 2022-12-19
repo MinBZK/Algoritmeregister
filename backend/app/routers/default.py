@@ -127,7 +127,6 @@ async def download_algoritme(db: Session = Depends(get_db)):
     stream = io.BytesIO()
     df = df[relevant_columns].replace(r"\n", "", regex=True)
     df.to_csv(stream, index=False, quoting=csv.QUOTE_ALL, encoding="utf-8-sig")
-    df.to_csv("test.csv", index=False, quoting=csv.QUOTE_ALL, encoding="utf-8-sig")
 
     response = StreamingResponse(iter([stream.getvalue()]), media_type="text/csv")
     timestamp = datetime.datetime.now().strftime("%Y%m%d")
