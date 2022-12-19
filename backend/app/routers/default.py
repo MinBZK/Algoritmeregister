@@ -89,12 +89,11 @@ async def get_all(
     response_model=schemas.algoritme.Algoritme,
 )
 async def get_one(slug: str, db: Session = Depends(get_db)):
-    x = (
+    return (
         db.query(models.algoritme.Algoritme)
         .filter(models.algoritme.Algoritme.slug == slug)
         .first()
     )
-    return x
 
 
 @router.get("/algoritme-simple-list/")
