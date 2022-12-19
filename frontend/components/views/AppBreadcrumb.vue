@@ -7,7 +7,7 @@
           <ol>
             <li v-for="crumb in breadcrumbsWithLinks" :key="crumb.routeName">
               <NuxtLink
-                v-if="crumb.routeName != null"
+                v-if="crumb.routeName !== null"
                 :to="`/${crumb.routeName}`"
                 >{{ crumb.label }}</NuxtLink
               >
@@ -44,25 +44,32 @@ const breadcrumbs = computed(() => {
   const path = currentRoute.path
   // the added '/ ' is interpreted in the mapping as the link to Home
   let crumbStrings: string[] =
-    path !== '/' ? ('/ ' + path).split('/').slice(1) : []
+    path !== '/' ? ('/' + path).split('/').slice(1) : []
 
   crumbStrings = crumbStrings.filter(
     (crumb) => !ignoredNavigationItems.includes(crumb)
   )
-  return crumbStrings
-    .map((crumb: any) => {
-      return {
-        label:
-          // translate path parts with a name matching a navigation item
-          navigationItemsTranslated.value.find(
-            (item) => item.routeName === crumb
-          )?.label || // translate path parts with a name matching an algorithm slug
-          algoritme.value?.name ||
-          crumb,
-        routeName: crumb,
-      }
-    })
-    .filter((bc) => bc.routeName) // remove empty routes when URL has a trailing /
+
+  return [
+    {
+      label: 'Home',
+      routeName: '',
+    },
+    ...crumbStrings
+      .map((crumb: any) => {
+        return {
+          label:
+            // translate path parts with a name matching a navigation item
+            navigationItemsTranslated.value.find(
+              (item) => item.routeName === crumb
+            )?.label || // translate path parts with a name matching an algorithm slug
+            algoritme.value?.name ||
+            crumb,
+          routeName: crumb,
+        }
+      })
+      .filter((bc) => bc.routeName), // remove empty routes when URL has a trailing /
+  ]
 })
 
 const breadcrumbsWithLinks = computed(() => breadcrumbs.value.slice(0, -1))
