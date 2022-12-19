@@ -3,7 +3,7 @@ import VueMatomo from 'vue-matomo'
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(VueMatomo, {
     host: 'https://statistiek.rijksoverheid.nl',
-    // siteId: '84d596d9-0f31-41da-9aae-cf4e5d82c4a1',
+    siteId: '1b44fec4-d938-4d4e-90dd-8973d4ca5459',
     trackerFileName: 'matomo',
     router: nuxtApp.router,
     enableLinkTracking: true,
