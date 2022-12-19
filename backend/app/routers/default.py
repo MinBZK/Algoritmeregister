@@ -10,6 +10,7 @@ import pandas as pd
 from fastapi.responses import StreamingResponse
 import io
 import datetime
+import csv
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -123,13 +124,17 @@ async def download_algoritme(db: Session = Depends(get_db)):
             [excluded_string not in c for excluded_string in ["algoritme_id", ".id"]]
         )
     ]
-    stream = io.StringIO()
-    df[relevant_columns].to_csv(stream, index=False)
+    stream = io.BytesIO()
+    df = df[relevant_columns].replace(r"\n", "", regex=True)
+    df.to_csv(stream, index=False, quoting=csv.QUOTE_ALL, encoding="utf-8-sig")
+    df.to_csv("test.csv", index=False, quoting=csv.QUOTE_ALL, encoding="utf-8-sig")
 
     response = StreamingResponse(iter([stream.getvalue()]), media_type="text/csv")
-    timestamp = datetime.datetime.now().strftime("%Y%M%d")
+    timestamp = datetime.datetime.now().strftime("%Y%m%d")
     filename = f"algoritmeregister_{timestamp}.csv"
 
+    response.headers["Content-Encoding"] = "UTF-8"
+    response.headers["Content-type"] = "text/csv; charset=UTF-8"
     response.headers["Content-Disposition"] = f"attachment; filename={filename}"
 
     return response
