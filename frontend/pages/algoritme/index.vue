@@ -23,7 +23,7 @@
           <div class="column-d-6" :class="!isMobile && 'align-right'">
             <a :href="algoritmeService.downloadUrl()">
               <FormOverheidButton
-                label="Download alle algoritmes"
+                label="Download alle algoritmes (.csv)"
                 class="no-margin"
                 icon="mdi:download"
                 :primary="false"
