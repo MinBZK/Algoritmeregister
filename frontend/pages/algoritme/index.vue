@@ -59,12 +59,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useDebounceFn } from '@vueuse/core'
 import algoritmeService from '@/services/algoritme'
-import type {
-  // Algoritme,
-  // AggregatedAlgoritme,
-  AlgoritmeFilter,
-} from '@/types/algoritme'
+import type { AlgoritmeFilter } from '@/types/algoritme'
 import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
 
 const { t } = useI18n()
@@ -123,13 +120,14 @@ const setPage = (newPage: number) => {
   })
 }
 
-watch(searchQuery, async () => {
+const debouncedUpdate = useDebounceFn(async () => {
   await updateData()
   setPage(1)
-})
+}, 500)
+
+watch(searchQuery, () => debouncedUpdate())
 
 watch(parsedFilters, () => updateData())
-watch(page, () => updateData())
 </script>
 
 <style scoped lang="scss">

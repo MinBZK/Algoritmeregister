@@ -35,7 +35,7 @@ const emit = defineEmits<{
 
 const isMobile = useMobileBreakpoint()
 
-const activeTab = ref('')
+const activeTab = ref<string>(props.tabProperties[0].key)
 
 const activeElement = useActiveElement()
 

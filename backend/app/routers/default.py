@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 @router.post(
     "/algoritme/",
-    # response_model=AlgoritmeQueryResponse,
+    # response_model=schemas.algoritme.AlgoritmeQueryResponse,
 )
 async def get_all(
     algoritme_query: schemas.algoritme.AlgoritmeQuery, db: Session = Depends(get_db)
@@ -89,12 +89,11 @@ async def get_all(
     response_model=schemas.algoritme.Algoritme,
 )
 async def get_one(slug: str, db: Session = Depends(get_db)):
-    x = (
+    return (
         db.query(models.algoritme.Algoritme)
         .filter(models.algoritme.Algoritme.slug == slug)
         .first()
     )
-    return x
 
 
 @router.get("/algoritme-simple-list/")

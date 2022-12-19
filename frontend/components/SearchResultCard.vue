@@ -9,7 +9,7 @@
       {{ description }}&nbsp;
       <NuxtLink
         v-if="isTruncated && mode === 'compact'"
-        :to="`/algoritme/${algoritme.slug} `"
+        :to="`/algoritme/${algoritme.slug}`"
         >{{ readMore }}
       </NuxtLink>
     </p>
