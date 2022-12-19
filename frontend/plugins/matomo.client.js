@@ -5,7 +5,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     host: 'https://statistiek.rijksoverheid.nl',
     siteId: '1b44fec4-d938-4d4e-90dd-8973d4ca5459',
     trackerFileName: 'matomo',
-    router: nuxtApp.router,
+    router: nuxtApp.$router,
     enableLinkTracking: true,
     requireConsent: false,
     trackInitialView: true,
