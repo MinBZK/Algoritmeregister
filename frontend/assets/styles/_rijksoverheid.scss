@@ -1,0 +1,154 @@
+@font-face {
+  font-family: 'RO Serif';
+  src: url('@/assets/fonts/RO-SerifWeb-Regular.woff') format('woff');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'RO Icons';
+  font-weight: normal;
+  font-style: normal;
+  src: url('@/assets/fonts/ro-icons-2.1.woff2') format('woff');
+}
+
+@media (min-width: 768px) {
+  :root {
+    font-size: 90%;
+  }
+}
+
+:root {
+  font-family: 'RO Rijksoverheid Sans', Calibri, sans-serif;
+  font-size: 80%;
+}
+@media (min-width: 768px) {
+  :root {
+    font-size: 90%;
+  }
+}
+@media (min-width: 992px) {
+  :root {
+    font-size: 100%;
+  }
+}
+body {
+  font-size: 100%;
+}
+@media (min-width: 768px) {
+  body {
+    font-size: 110%;
+  }
+}
+@media (min-width: 992px) {
+  body {
+    font-size: 120%;
+  }
+}
+h1,
+.h1 {
+  font-size: 2.0272865295rem;
+  line-height: 1.2331754607;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+h2,
+.h2 {
+  font-size: 1.8020324707rem;
+  line-height: 1.3873223933;
+  display: block;
+  font-weight: bold;
+  margin: 0rem 0rem 1rem 0rem;
+}
+h3,
+.h3 {
+  font-size: 1.423828125rem;
+  line-height: 1.4046639232;
+  display: block;
+  font-weight: bold;
+  margin: 0rem 0rem 0.5rem 0rem;
+}
+h4,
+.h4 {
+  font-size: 1.265625rem;
+  line-height: 1.1851851852;
+  display: block;
+  font-weight: bold;
+  margin: 0rem 0rem 0.5rem 0rem;
+}
+h5,
+.h5 {
+  font-size: 1.265625rem;
+  line-height: 1.1851851852;
+  display: block;
+  font-weight: bold;
+  margin: 0rem 0rem 0.5rem 0rem;
+  font-style: italic;
+  margin: 0rem 0rem 0.5rem 0rem;
+}
+.block h2 {
+  padding-top: 0.5rem;
+  border-top: 1px solid #e1e1e1;
+}
+:root {
+  --font-family: RO Sans, Calibri, Arial, Verdana, sans-serif;
+  --default-text-color: #333;
+  --default-button-color: #01689b;
+}
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  overflow-x: hidden;
+}
+body:after {
+  display: none;
+  content: 'mobile';
+}
+@media (min-width: 576px) {
+  body:after {
+    display: none;
+    content: 'phablet';
+  }
+}
+@media (min-width: 768px) {
+  body:after {
+    display: none;
+    content: 'tablet';
+  }
+}
+@media (min-width: 992px) {
+  body:after {
+    display: none;
+    content: 'desktop';
+  }
+}
+
+a:focus {
+  outline: 2px dashed #000;
+  z-index: 1010;
+  outline-offset: 0;
+  -webkit-box-shadow: 0 0 0 2px #fff;
+  box-shadow: 0 0 0 2px #fff;
+}
+
+#mainwrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  #mainwrapper *::-ms-backdrop {
+    display: inline;
+  }
+
+  #mainwrapper {
+    display: inline;
+  }
+}

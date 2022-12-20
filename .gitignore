@@ -1,0 +1,18 @@
+backend/.venv
+__pycache__/
+.env
+*.pyc
+
+node_modules
+*.log*
+.nuxt
+.nitro
+.cache
+.output
+.env
+dist
+
+# deployment dir
+deployment
+gitlab-templates
+.gitlab-ci.yml

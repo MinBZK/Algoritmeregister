@@ -1,0 +1,55 @@
+@import '_colors.scss';
+// @import '_rijksoverheid.scss';
+// @import '_koop_index.scss';
+@import '_koop_main.scss';
+@import '_koop_print.scss';
+
+@import '_skiplinks.scss';
+// @import '_rijksoverheid-header.scss';
+@import '_fonts.scss';
+
+.question-mark {
+  background-image: url(../images/icons/icon-explanation.svg);
+  background-size: 1em !important;
+  background-position: center 50%;
+  background-repeat: no-repeat;
+  padding-right: 2em;
+  padding-left: 2em;
+  cursor: pointer;
+}
+
+.accordion-arrow-right {
+  background-image: url(../images/icons/icon-cta-right.svg);
+  background-size: 1em !important;
+  background-repeat: no-repeat;
+  padding-right: 0em;
+  padding-left: 2em;
+  cursor: pointer;
+}
+
+.accordion-arrow-up {
+  background-image: url(../images/icons/icon-arrow-up-blue.svg);
+  background-size: 1.2em !important;
+  background-repeat: no-repeat;
+  padding-right: 0em;
+  padding-left: 2em;
+  cursor: pointer;
+}
+
+.block-info {
+  max-width: 600px;
+}
+
+.noselect {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+@media (min-width: 65em) {
+  html {
+    padding-bottom: 14em !important;
+  }
+}

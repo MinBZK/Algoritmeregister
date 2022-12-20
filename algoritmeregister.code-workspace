@@ -1,0 +1,28 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "frontend"
+    },
+    {
+      "path": "backend"
+    }
+  ],
+  "settings": {
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "prettier.enable": true,
+    "editor.formatOnSave": true,
+    "search.exclude": {
+      "*.mjs": true,
+      "*.sql": true,
+      "**/.nuxt": true,
+      "**/.output": true,
+      "**/dist/_nuxt": true,
+      "**/dist/": true,
+      "**/alembic/scripts": true
+    }
+  }
+}

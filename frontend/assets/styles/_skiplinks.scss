@@ -1,0 +1,77 @@
+@import "_colors.scss";
+
+.skiplinks {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  max-width: 1200px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+header .skiplinks {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.skiplinks > a {
+  font-size: 1.265625rem;
+  line-height: 1.5802469136;
+  width: auto;
+  min-height: 44px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 0;
+  position: relative;
+  color: #fff;
+  background-color: $primary;
+  position: absolute;
+  top: -100vh;
+  left: -100vw;
+  text-decoration: none;
+}
+
+.skiplinks > a:focus {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+  z-index: 1010;
+  -webkit-box-shadow: 0 0 0 0 transparent;
+  box-shadow: 0 0 0 0 transparent;
+}
+
+.skiplinks > a:focus::before {
+  content: "";
+  position: absolute;
+  z-index: 99;
+  inset: -6px;
+  border: 2px dashed #000;
+}
+
+.skiplinks > a:hover {
+  color: #fff;
+  outline: none;
+  background-color: $primary;
+}
+
+.skiplinks > a:hover::before {
+  border: 2px dashed transparent;
+}
+
+.skiplinks > a:focus {
+  top: 15px;
+  left: 15px;
+}
+
+.skiplinks > a:visited {
+  color: #fff;
+}
+
+@media print {
+  .skiplinks {
+    display: none;
+  }
+}
