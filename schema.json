@@ -79,7 +79,21 @@
         "name": "Proportionaliteit",
         "category": "INZET",
         "type": "string",
-        "description": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is.",
+        "description": "Een afweging van de mogelijke impact van de inzet van het algoritme en waarom dit in verhouding staat tot het beoogde doel.",
+        "required": true
+      },
+       "subsidiarity": {
+        "name": "Subsidiariteit",
+        "category": "INZET",
+        "type": "string",
+        "description": "Een onderbouwing van het ontbreken van minder vergaande alternatieven.",
+        "required": true
+      },
+      "necessity": {
+        "name": "Noodzakelijkheid",
+        "category": "INZET",
+        "type": "string",
+        "description": "Een afweging van de noodzaak van de inzet van het algoritme.",
         "required": true
       },
       "decision_making_process": {
