@@ -191,7 +191,7 @@
         "name": "Omschrijving van de DPIA",
         "category": "JURIDISCH",
         "type": "string",
-        "description": "Een overzicht van de belangrijkste zaken die uit de data protection impact assessment (DPIA) naar voren kwamen.",
+        "description": "Een overzicht van de risico's en de beoordeling ervan die in de data protection impact assessment (DPIA) zijn geëvalueerd.",
         "required": false
       },
       "objection_procedure": {
