@@ -201,6 +201,27 @@
         "description": "Een omschrijving van hoe burgers en bedrijven bezwaar kunnen maken tegen de uitkomsten van het algoritme.",
         "required": true
       },
+      "processors": {
+        "name": "Verwerkers",
+        "category": "JURIDISCH",
+        "type": "string",
+        "description": "Een lijst met AVG-verwerkers aan wie de verwerking is uitbesteed maar die niet eventuele persoonsgegevens voor eigen doeleinden mogen gebruiken.",
+        "required": true
+      },
+      "joint_controllers": {
+        "name": "Gezamenlijke verwerkingsverantwoordelijken",
+        "category": "JURIDISCH",
+        "type": "string",
+        "description": "Een lijst met AVG-verantwoordelijken met wie de gegevens door het algoritme voor gezamenlijke doelen worden verwerkt.",
+        "required": true
+      },
+      "recipients": {
+        "name": "Ontvangers",
+        "category": "JURIDISCH",
+        "type": "string",
+        "description": "Een lijst (groepen van) personen of verantwoordelijken die persoonsgegevens die worden verwerkt kunnen ontvangen.",
+        "required": true
+      },
       "schema": {
         "name": "Schema",
         "category": "METADATA",
