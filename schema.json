@@ -201,6 +201,13 @@
         "description": "Een omschrijving van hoe burgers en bedrijven bezwaar kunnen maken tegen de uitkomsten van het algoritme.",
         "required": true
       },
+      "dasr_limitations": {
+        "name": "Beperkingen inzagerecht",
+        "category": "JURIDISCH",
+        "type": "string",
+        "description": "Een omschrijving van de soorten gegevens die niet altijd verstrekt kunnen worden als betrokkenen daar om verzoeken. Denk bijvorbeeld aan informatie over de logica van de verwerking, inzage in technische logs over de verwerking en informatie over de ontvangers van de persoonsgegevens.",
+        "required": false
+      },
       "schema": {
         "name": "Schema",
         "category": "METADATA",
@@ -228,6 +235,13 @@
         "type": "string",
         "description": "e-mailadres van de organisatie of de contactpersoon voor deze registratie.",
         "required": true
+      },
+      "data_subject_request_contact": {
+        "name": "Contactpunt voor betrokkenen om hun AVG-rechten uit te oefenen.",
+        "category": "METADATA",
+        "type": "string",
+        "description": "e-mailadres of URL waar betrokkenen hun AVG-rechten kunnen uitoefenen.",
+        "required": false
       },
       "area": {
         "name": "Geografisch gebied",
