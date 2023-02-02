@@ -220,7 +220,7 @@
         "category": "JURIDISCH",
         "type": "string",
         "description": "Een lijst met (groepen van) personen of verantwoordelijken die persoonsgegevens die worden verwerkt kunnen ontvangen.",
-        "required": true
+        "required": false
       },
       "schema": {
         "name": "Schema",
