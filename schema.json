@@ -219,7 +219,7 @@
         "name": "Taal",
         "category": "METADATA",
         "type": "string",
-        "description": "De taal waarin deze registratie is ingevoerd.",
+        "description": "De taal waarin deze registratie is ingevoerd, volgens ISO-standaard.",
         "required": false
       },
       "revision_date": {
