@@ -221,6 +221,13 @@
         "type": "string",
         "description": "De datum waarvoor deze registratie moet worden herzien.",
         "required": false
+      },
+      "tags": {
+        "name": "Tags",
+        "category": "METADATA",
+        "type": "string",
+        "description": "Termen gerelateerd aan dit algoritme.",
+        "required": false
       }
     }
   }
