@@ -165,6 +165,13 @@
         "type": "boolean",
         "description": "Is er een data protection impact assessment (DPIA) uitgevoerd?",
         "required": false
+      },      
+      "human_rights": {
+        "name": "Mensenrechtentoets",
+        "category": "JURIDISCH",
+        "type": "string",
+        "description": "Is er een mensenrechtentoets uitgevoerd, zoals een IAMA? Indien deze online beschikbaar is, linkt dit veld naar de publicatie.",
+        "required": false
       },
       "objection_procedure": {
         "name": "Bezwaarprocedure",
