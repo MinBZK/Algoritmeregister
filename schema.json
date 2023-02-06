@@ -212,7 +212,7 @@
         "name": "Geografisch gebied",
         "category": "METADATA",
         "type": "string",
-        "description": "Het geografische gebied waarin het algoritme wordt ingezet.",
+        "description": "Het geografische gebied waarin het algoritme wordt ingezet, met geodata.",
         "required": false
       },
       "lang": {
