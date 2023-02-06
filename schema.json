@@ -16,7 +16,7 @@
         "name": "Organisatie",
         "category": "ALGEMENE INFORMATIE",
         "type": "string",
-        "description": "De volledige naam van de organisatie verantwoordelijk voor de inzet van het algoritme.",
+        "description": "De volledige naam van de organisatie verantwoordelijk voor de inzet van het algoritme. Kan linken naar de organisatieregistratie op organisaties.overheid.nl",
         "required": true
       },
       "department": {
