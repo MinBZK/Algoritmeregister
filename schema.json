@@ -191,7 +191,7 @@
         "name": "UUID",
         "category": "METADATA",
         "type": "string",
-        "description": "De unieke identificatie (UUID) voor deze registratie.",
+        "description": "De unieke identificatiecode (UUID) voor deze registratie.",
         "required": false
       },
       "url": {
