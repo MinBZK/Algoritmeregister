@@ -173,13 +173,6 @@
         "description": "Is er een data protection impact assessment (DPIA) uitgevoerd?",
         "required": false
       },
-      "DPIA_description": {
-        "name": "Omschrijving van de DPIA",
-        "category": "JURIDISCH",
-        "type": "string",
-        "description": "Een overzicht van de belangrijkste zaken die uit de data protection impact assessment (DPIA) naar voren kwamen.",
-        "required": false
-      },
       "objection_procedure": {
         "name": "Bezwaarprocedure",
         "category": "JURIDISCH",
