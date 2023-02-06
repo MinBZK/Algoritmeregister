@@ -3,7 +3,11 @@ The Ministry of the Interior and Kingdom Relations is developing the Algorithm R
 The Algorithm Register (algoritmes.overheid.nl) is being developed with open source software. The source code can be viewed here on GitHub. It can be downloaded and reused. Github is a platform with transparent version control, where technology in development can be easily shared. 
 ## Motivation 
 The government increasingly works digitally and uses more and more algorithms when doing so. The government wants to work towards transparent and responsible use of these algorithms. Therefore, the government is making information about the algorithms used by the government available to everyone: citizens, their representatives, the media and (government) professionals. 
+
+The aim is to make all information about algorithms centrally accessible for everyone. That allows everyone to see in which impactful processes these algorithms are used. The information on this website provides the ability to oversee algorithms. For example, discrimination or unlawfulness can be exposed, and whether the algorithm provides desirable outcomes can be checked. When someone does not agree with the use of algorithms, the Algorithm Register indicates how objections can be made.
+
 See the Frequently Asked Questions on the Algorithm Register for more information. 
+
 ### Open source software 
 Will you join us and add your thoughts? To contribute, create an account on GitHub (https://github.com/signup ) and read this readme and the code of conduct to get started. 
 Once signed-up, you can provide feedback on the code of this website, on the algorithm 'standard', on the published description or on the user-friendliness of the website, etc. 
