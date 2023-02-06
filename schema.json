@@ -159,13 +159,6 @@
         "description": "Een omschrijving van de verwachte prestaties van het algoritme en hoe die worden gemeten.",
         "required": false
       },
-      "competent_authority": {
-        "name": "Bevoegde autoriteit",
-        "category": "JURIDISCH",
-        "type": "string",
-        "description": "Volledige naam van de bevoegde autoriteit verantwoordelijk voor de inzet van het algoritme.",
-        "required": false
-      },
       "lawful_basis": {
         "name": "Wettelijke grondslag",
         "category": "JURIDISCH",
