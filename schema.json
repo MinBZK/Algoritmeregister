@@ -89,13 +89,6 @@
         "description": "De naam van het bedrijfs- of besluitvormingsproces in de organisatie waarbinnen het algoritme wordt ingezet.",
         "required": true
       },
-      "documentation": {
-        "name": "Projectpagina",
-        "category": "INZET",
-        "type": "string",
-        "description": "URL van de projectpagina van de organisatie zelf over dit specifieke gebruik van het algoritme.",
-        "required": false
-      },
       "description": {
         "name": "Omschrijving",
         "category": "TOEPASSING",
