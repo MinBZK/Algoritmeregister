@@ -117,6 +117,13 @@
         "description": "Standaard methoden of modellen die het algoritme gebruikt.",
         "required": false
       },
+      "provider": {
+        "name": "Leverancier",
+        "category": "TOEPASSING",
+        "type": "string",
+        "description": "Indien van toepassing, de derde partij die het algoritme heeft geproduceerd.",
+        "required": false
+      },
       "monitoring": {
         "name": "Monitoring",
         "category": "TOEZICHT",
