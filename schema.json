@@ -82,13 +82,6 @@
         "description": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is.",
         "required": true
       },
-      "decision_making_process": {
-        "name": "Proces",
-        "category": "INZET",
-        "type": "string",
-        "description": "De naam van het bedrijfs- of besluitvormingsproces in de organisatie waarbinnen het algoritme wordt ingezet.",
-        "required": true
-      },
       "description": {
         "name": "Omschrijving",
         "category": "TOEPASSING",
