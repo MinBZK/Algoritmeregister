@@ -138,6 +138,118 @@
         "description": "Standaard methoden of modellen die het algoritme gebruikt.",
         "required": false
       },
+      "protected_religion": {
+        "name": "Data over religie",
+        "category": "TOEPASSING",
+        "type": "boolean",
+        "description": "Gebruikt het algoritme data die direct of indirect betrekkig hebben op de religie van personen?",
+        "required": true
+      },  
+      "protected_religion_compliance_evidence": {
+        "name": "Data over religie - onderbouwing",
+        "category": "TOEPASSING",
+        "type": "string",
+        "description": "Waaruit blijkt dat bij de inzet van het algoritme geen gegevens worden verwerkt die direct of indirect (bijvoorbeeld via correlaties of af te leiden uit een foto) iets zeggen over de religie van personen? En indien dergelijke gegevens wel worden verwekt een onderbouwing waarom het gebruik rechtmatig is.",
+        "required": true
+      },
+      "protected_philosophy_of_life": {
+        "name": "Data over levensovertuiging",
+        "category": "TOEPASSING",
+        "type": "boolean",
+        "description": "Gebruikt het algoritme data die direct of indirect betrekkig hebben op de levensovertuiging van personen?",
+        "required": true
+      },  
+      "protected_philosophy_of_life_compliance_evidence": {
+        "name": "Data over levensovertuiging - onderbouwing",
+        "category": "TOEPASSING",
+        "type": "string",
+        "description": "Waaruit blijkt dat bij de inzet van het algoritme geen gegevens worden verwerkt die direct of indirect (bijvoorbeeld via correlaties of af te leiden uit een foto) iets zeggen over de levensovertuiging van personen? En indien dergelijke gegevens wel worden verwekt een onderbouwing waarom het gebruik rechtmatig is.",
+        "required": true
+      },
+      "protected_politics": {
+        "name": "Data over politieke gezindheid",
+        "category": "TOEPASSING",
+        "type": "boolean",
+        "description": "Gebruikt het algoritme data die direct of indirect betrekkig hebben op de politieke gezindheid van personen?",
+        "required": true
+      },  
+      "protected_politics_compliance_evidence": {
+        "name": "Data over politieke gezindheid - onderbouwing",
+        "category": "TOEPASSING",
+        "type": "string",
+        "description": "Waaruit blijkt dat bij de inzet van het algoritme geen gegevens worden verwerkt die direct of indirect (bijvoorbeeld via correlaties of af te leiden uit een foto) iets zeggen over de politieke gezindheid van personen? En indien dergelijke gegevens wel worden verwekt een onderbouwing waarom het gebruik rechtmatig is.",
+        "required": true
+      },  
+      "protected_race": {
+        "name": "Data over ras",
+        "category": "TOEPASSING",
+        "type": "boolean",
+        "description": "Gebruikt het algoritme data die direct of indirect betrekkig hebben op het ras van personen?",
+        "required": true
+      },  
+      "protected_race_compliance_evidence": {
+        "name": "Data over ras - onderbouwing",
+        "category": "TOEPASSING",
+        "type": "string",
+        "description": "Waaruit blijkt dat bij de inzet van het algoritme geen gegevens worden verwerkt die direct of indirect (bijvoorbeeld via correlaties of af te leiden uit een foto) iets zeggen over het ras van personen? En indien dergelijke gegevens wel worden verwekt een onderbouwing waarom het gebruik rechtmatig is.",
+        "required": true
+      },
+      "protected_gender": {
+        "name": "Data over geslacht",
+        "category": "TOEPASSING",
+        "type": "boolean",
+        "description": "Gebruikt het algoritme data die direct of indirect betrekkig hebben op het geslacht van personen?",
+        "required": true
+      },  
+      "protected_gender_compliance_evidence": {
+        "name": "Data over geslacht - onderbouwing",
+        "category": "TOEPASSING",
+        "type": "string",
+        "description": "Waaruit blijkt dat bij de inzet van het algoritme geen gegevens worden verwerkt die direct of indirect (bijvoorbeeld via correlaties of af te leiden uit een foto) iets zeggen over het geslacht van personen? En indien dergelijke gegevens wel worden verwekt een onderbouwing waarom het gebruik rechtmatig is.",
+        "required": true
+      },
+      "protected_nationality": {
+        "name": "Data over nationaliteit",
+        "category": "TOEPASSING",
+        "type": "boolean",
+        "description": "Gebruikt het algoritme data die direct of indirect betrekkig hebben op de nationaliteit van personen?",
+        "required": true
+      },  
+      "protected_nationality_compliance_evidence": {
+        "name": "Data over nationaliteit - onderbouwing",
+        "category": "TOEPASSING",
+        "type": "string",
+        "description": "Waaruit blijkt dat bij de inzet van het algoritme geen gegevens worden verwerkt die direct of indirect (bijvoorbeeld via correlaties of af te leiden uit een foto) iets zeggen over de nationaliteit van personen? En indien dergelijke gegevens wel worden verwekt een onderbouwing waarom het gebruik rechtmatig is.",
+        "required": true
+      },
+      "protected_sexual_preference": {
+        "name": "Data over seksuele voorkeur",
+        "category": "TOEPASSING",
+        "type": "boolean",
+        "description": "Gebruikt het algoritme data die direct of indirect betrekkig hebben op de seksuele voorkeur van personen?",
+        "required": true
+      },  
+      "protected_sexual_preference_compliance_evidence": {
+        "name": "Data over seksuele voorkeur - onderbouwing",
+        "category": "TOEPASSING",
+        "type": "string",
+        "description": "Waaruit blijkt dat bij de inzet van het algoritme geen gegevens worden verwerkt die direct of indirect (bijvoorbeeld via correlaties of af te leiden uit een foto) iets zeggen over de seksuele voorkeur van personen? En indien dergelijke gegevens wel worden verwekt een onderbouwing waarom het gebruik rechtmatig is.",
+        "required": true
+      },
+      "protected_marital_status": {
+        "name": "Data over burgerlijke staat",
+        "category": "TOEPASSING",
+        "type": "boolean",
+        "description": "Gebruikt het algoritme data die direct of indirect betrekkig hebben op de burgerlijke staat van personen?",
+        "required": true
+      },  
+      "protected_marital_status_compliance_evidence": {
+        "name": "Data over burgerlijke staat - onderbouwing",
+        "category": "TOEPASSING",
+        "type": "string",
+        "description": "Waaruit blijkt dat bij de inzet van het algoritme geen gegevens worden verwerkt die direct of indirect (bijvoorbeeld via correlaties of af te leiden uit een foto) iets zeggen over de burgerlijke staat van personen? En indien dergelijke gegevens wel worden verwekt een onderbouwing waarom het gebruik rechtmatig is.",
+        "required": true
+      },
       "monitoring": {
         "name": "Monitoring",
         "category": "TOEZICHT",
