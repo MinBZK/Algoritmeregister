@@ -228,6 +228,13 @@
         "type": "string",
         "description": "Termen gerelateerd aan dit algoritme.",
         "required": false
+      },
+      "link_processing_register": {
+        "name": "Link naar verwerkingsregister",
+        "category": "METADATA",
+        "type": "string",
+        "description": "Indien van toepassing, de link naar de AVG-verwerking van het algoritme",
+        "required": false
       }
     }
   }
