@@ -110,13 +110,6 @@
         "description": "URL van de code base van het algoritme.",
         "required": false
       },
-      "MPRD": {
-        "name": "Koppelingen met basisregistraties",
-        "category": "TOEPASSING",
-        "type": "boolean",
-        "description": "Is het algoritme direct gekoppeld aan een basisregistratie?",
-        "required": false
-      },
       "source_data": {
         "name": "Brondata",
         "category": "TOEPASSING",
