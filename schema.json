@@ -16,7 +16,7 @@
         "name": "Organisatie",
         "category": "ALGEMENE INFORMATIE",
         "type": "string",
-        "description": "De volledige naam van de organisatie verantwoordelijk voor de inzet van het algoritme.",
+        "description": "De volledige naam van de organisatie verantwoordelijk voor de inzet van het algoritme. Kan linken naar de organisatieregistratie op organisaties.overheid.nl",
         "required": true
       },
       "department": {
@@ -82,20 +82,6 @@
         "description": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is.",
         "required": true
       },
-      "decision_making_process": {
-        "name": "Proces",
-        "category": "INZET",
-        "type": "string",
-        "description": "De naam van het bedrijfs- of besluitvormingsproces in de organisatie waarbinnen het algoritme wordt ingezet.",
-        "required": true
-      },
-      "documentation": {
-        "name": "Projectpagina",
-        "category": "INZET",
-        "type": "string",
-        "description": "URL van de projectpagina van de organisatie zelf over dit specifieke gebruik van het algoritme.",
-        "required": false
-      },
       "description": {
         "name": "Omschrijving",
         "category": "TOEPASSING",
@@ -117,13 +103,6 @@
         "description": "URL van de code base van het algoritme.",
         "required": false
       },
-      "MPRD": {
-        "name": "Koppelingen met basisregistraties",
-        "category": "TOEPASSING",
-        "type": "boolean",
-        "description": "Is het algoritme direct gekoppeld aan een basisregistratie?",
-        "required": false
-      },
       "source_data": {
         "name": "Brondata",
         "category": "TOEPASSING",
@@ -136,6 +115,13 @@
         "category": "TOEPASSING",
         "type": "string",
         "description": "Standaard methoden of modellen die het algoritme gebruikt.",
+        "required": false
+      },
+      "provider": {
+        "name": "Leverancier",
+        "category": "TOEPASSING",
+        "type": "string",
+        "description": "Indien van toepassing, de derde partij die het algoritme heeft geproduceerd.",
         "required": false
       },
       "monitoring": {
@@ -166,13 +152,6 @@
         "description": "Een omschrijving van de verwachte prestaties van het algoritme en hoe die worden gemeten.",
         "required": false
       },
-      "competent_authority": {
-        "name": "Bevoegde autoriteit",
-        "category": "JURIDISCH",
-        "type": "string",
-        "description": "Volledige naam van de bevoegde autoriteit verantwoordelijk voor de inzet van het algoritme.",
-        "required": false
-      },
       "lawful_basis": {
         "name": "Wettelijke grondslag",
         "category": "JURIDISCH",
@@ -186,12 +165,12 @@
         "type": "boolean",
         "description": "Is er een data protection impact assessment (DPIA) uitgevoerd?",
         "required": false
-      },
-      "DPIA_description": {
-        "name": "Omschrijving van de DPIA",
+      },      
+      "human_rights": {
+        "name": "Mensenrechtentoets",
         "category": "JURIDISCH",
         "type": "string",
-        "description": "Een overzicht van de belangrijkste zaken die uit de data protection impact assessment (DPIA) naar voren kwamen.",
+        "description": "Is er een mensenrechtentoets uitgevoerd, zoals een IAMA? Indien deze online beschikbaar is, linkt dit veld naar de publicatie.",
         "required": false
       },
       "objection_procedure": {
@@ -212,7 +191,7 @@
         "name": "UUID",
         "category": "METADATA",
         "type": "string",
-        "description": "De unieke identificatie (UUID) voor deze registratie.",
+        "description": "De unieke identificatiecode (UUID) voor deze registratie.",
         "required": false
       },
       "url": {
@@ -233,14 +212,14 @@
         "name": "Geografisch gebied",
         "category": "METADATA",
         "type": "string",
-        "description": "Het geografische gebied waarin het algoritme wordt ingezet.",
+        "description": "Het geografische gebied waarin het algoritme wordt ingezet, met geodata.",
         "required": false
       },
       "lang": {
         "name": "Taal",
         "category": "METADATA",
         "type": "string",
-        "description": "De taal waarin deze registratie is ingevoerd.",
+        "description": "De taal waarin deze registratie is ingevoerd, volgens ISO-standaard.",
         "required": false
       },
       "revision_date": {
@@ -248,6 +227,20 @@
         "category": "METADATA",
         "type": "string",
         "description": "De datum waarvoor deze registratie moet worden herzien.",
+        "required": false
+      },
+      "tags": {
+        "name": "Tags",
+        "category": "METADATA",
+        "type": "string",
+        "description": "Termen gerelateerd aan dit algoritme.",
+        "required": false
+      },
+      "link_processing_register": {
+        "name": "Link naar verwerkingsregister",
+        "category": "METADATA",
+        "type": "string",
+        "description": "Indien van toepassing, de link naar de AVG-verwerking van het algoritme",
         "required": false
       }
     }
