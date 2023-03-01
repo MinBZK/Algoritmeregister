@@ -4,7 +4,7 @@ The Algorithm Register (algoritmes.overheid.nl) is being developed with open sou
 ## Motivation 
 The government increasingly works digitally and uses more and more algorithms when doing so. The government wants to work towards transparent and responsible use of these algorithms. Therefore, the government is making information about the algorithms used by the government available to everyone: citizens, their representatives, the media and (government) professionals. 
 
-The aim is to make all information about algorithms required to demonstrate the algorithm doesn't unlawfully discriminate centrally accessible for everyone. That allows everyone to see in which impactful processes these algorithms are used. The information on this website provides the ability to oversee algorithms. For example, discrimination or unlawfulness can be exposed, and whether the algorithm provides desirable outcomes can be checked. When someone does not agree with the use of algorithms, the Algorithm Register indicates how objections can be made.
+The aim is to make information about algorithms centrally accessible for everyone. That allows everyone to see in which impactful processes these algorithms are used. The information on this website provides the ability to oversee algorithms. For example, discrimination or unlawfulness can be exposed, and whether the algorithm provides desirable outcomes can be checked. When someone does not agree with the use of algorithms, the Algorithm Register indicates how objections can be made.
 
 See the Frequently Asked Questions on the Algorithm Register for more information. 
 
