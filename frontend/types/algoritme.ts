@@ -1,14 +1,10 @@
 export interface Algoritme {
-  id: string
-  slug: string
+  algoritme_id: string
   name: string
-  organization: string
-  department: string
-  description_short: string
-  type: string
-  category: string
-  website: string
-  status: string
+  lars: string
+  standard_version: string
+
+  [key: string]: string
 }
 
 type AggregationValue = {
@@ -25,11 +21,4 @@ export type AggregatedAlgoritme = {
 export type AlgoritmeFilter = {
   attribute: string
   value: string | string[]
-}
-
-export interface AlgNameIdOrg {
-  id: string
-  name: string
-  organization: string
-  slug: string
 }

@@ -1,18 +1,15 @@
-backend/.venv
+backend/*venv
 __pycache__/
-.env
+.idea
+backend/.env
+frontend/.env
 *.pyc
-
+.vscode
 node_modules
 *.log*
 .nuxt
 .nitro
 .cache
 .output
-.env
 dist
-
-# deployment dir
-deployment
-gitlab-templates
-.gitlab-ci.yml
+.coverage

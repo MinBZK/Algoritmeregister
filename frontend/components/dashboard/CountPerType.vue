@@ -28,17 +28,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="org in parsedCountData" :key="org.descriptor">
+              <tr v-for="row in parsedCountData" :key="row.descriptor">
                 <td class="word-break">
-                  {{ org.descriptor }}
+                  {{ row.descriptor }}
                 </td>
                 <td>
                   <b>
-                    {{ org.count }}
+                    {{ row.count }}
                   </b>
                 </td>
                 <td class="borderless-left">
-                  <span> {{ org.fraction }}% </span>
+                  <span> {{ row.fraction }}% </span>
                 </td>
               </tr>
             </tbody>
@@ -50,7 +50,6 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import algoritmeService from '@/services/algoritme'
 const props = defineProps<{
   nAlgorithms: number
@@ -62,17 +61,17 @@ const value = computed(() => t('dashboard.value'))
 const numberOfMatches = computed(() => t('dashboard.numberOfMatches'))
 
 const interestingColumns: string[] = [
-  'algoritme.organization',
-  'algoritme.department',
-  'algoritme.type',
-  'algoritme.category',
-  'algoritme.status',
-  'juridisch.competent_authority',
-  'juridisch.dpia',
-  'juridisch.iama',
-  'metadata.area',
-  'metadata.lang',
-  'toepassing.mprd',
+  'organization',
+  'department',
+  'type',
+  'category',
+  'status',
+  'competent_authority',
+  'dpia',
+  'iama',
+  'area',
+  'lang',
+  'mprd',
 ]
 
 const columnApi = await algoritmeService.getColumns()
@@ -80,7 +79,7 @@ const columns = computed(() =>
   columnApi.data.value
     .map((column: any) => {
       return {
-        key: `${column.table_name}.${column.column_name}`,
+        key: column.column_name,
         label: t(`algorithmProperties.${column.column_name}.label`),
       }
     })

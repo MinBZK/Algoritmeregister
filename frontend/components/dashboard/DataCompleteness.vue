@@ -38,7 +38,6 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import algoritmeService from '@/services/algoritme'
 
 const { t } = useI18n()
@@ -89,7 +88,7 @@ const setAggregates = async () => {
 }
 
 const loading = ref(true)
-const { data } = await algoritmeService.getColumns().then((value) => {
+await algoritmeService.getColumns().then((value) => {
   setAggregates()
   return value
 })

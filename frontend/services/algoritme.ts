@@ -1,6 +1,5 @@
 import type {
   Algoritme,
-  AlgNameIdOrg,
   AlgoritmeFilter,
   AggregatedAlgoritme,
 } from '@/types/algoritme'
@@ -25,13 +24,8 @@ const getAll = (query: AlgoritmeQuery) =>
     body: query,
   })
 
-const getOne = (slug: string) =>
-  useFetch<Algoritme>(`/algoritme/${slug}/`, {
-    baseURL: useRuntimeConfig().public.apiBaseUrl,
-  })
-
-const getNameIdOrg = () =>
-  useFetch<AlgNameIdOrg[]>('/algoritme-simple-list/', {
+const getOne = (id: string) =>
+  useFetch<Algoritme>(`/algoritme/${id}/`, {
     baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
 
@@ -57,16 +51,21 @@ const getCountWithFilledColumns = (columns: string[] | string) =>
     query: { columns },
   })
 
+const getApiStandard = (version: string) =>
+  useFetch<any>('/v' + version.replace(/\./g, '_') + '/openapi.json', {
+    baseURL: useRuntimeConfig().public.aanleverBaseUrl,
+  })
+
 const downloadUrl = () =>
   `${useRuntimeConfig().public.apiBaseUrl}/file/algoritme`
 
 export default {
   getAll,
   getOne,
-  getNameIdOrg,
   getCount,
   getTotalCount,
   getColumns,
   getCountWithFilledColumns,
+  getApiStandard,
   downloadUrl,
 }

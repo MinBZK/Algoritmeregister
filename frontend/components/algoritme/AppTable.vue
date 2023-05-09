@@ -2,13 +2,19 @@
   <table class="table__data-overview">
     <tbody>
       <tr v-for="property in tableProperties" :key="property.key">
-        <th scope="row">
+        <th scope="row" width="33%">
           <div class="space-for-question-mark">
             {{ property.keyLabel }}
             <span
               class="question-mark"
               role="button"
               tabindex="0"
+              :aria-expanded="isKeyToggled(property.key) ? 'true' : 'false'"
+              :title="
+                t('getAlgorithmPropertyExplanation', {
+                  field: property.keyLabel.toLowerCase(),
+                })
+              "
               @click="toggleKey(property.key)"
               @keydown.enter="toggleKey(property.key)"
             ></span>
@@ -22,7 +28,7 @@
           </div>
         </th>
 
-        <td>
+        <td :lang="backendContentLanguage">
           <ParseUrl :key="property.value || t('ontbreekt')">
             {{ property.value || t('ontbreekt') }}
           </ParseUrl>
@@ -33,7 +39,8 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
+import { backendContentLanguage } from '@/config/config'
+
 defineProps<{
   tableProperties: {
     key: string

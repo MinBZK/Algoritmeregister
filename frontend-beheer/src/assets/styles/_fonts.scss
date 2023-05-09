@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'Rijksoverheid Sans';
+  src: url('@/assets/fonts/ROsanswebtextregular.woff') format('opentype');
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Rijksoverheid Sans';
+  src: url('@/assets/fonts/ROsanswebtextbold.woff') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Rijksoverheid Sans';
+  src: url('@/assets/fonts/ROsanswebtextitalic.woff') format('opentype');
+  font-style: italic;
+  font-weight: 400;
+}

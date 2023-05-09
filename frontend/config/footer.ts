@@ -34,11 +34,15 @@ const footer: FooterColumn = {
     },
     {
       key: 'ext_digitaleoverheid_nl',
-      path: 'https://digitaleoverheid.nl',
+      path: 'https://digitaleoverheid.nl/overzicht-van-alle-onderwerpen/algoritmes/',
     },
     {
       key: 'ext_data_overheid_nl',
       path: 'https://data.overheid.nl',
+    },
+    {
+      key: 'ext_pleio',
+      path: 'https://algoritmes.pleio.nl/',
     },
   ],
 }

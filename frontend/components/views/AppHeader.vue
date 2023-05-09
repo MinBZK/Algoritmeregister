@@ -7,13 +7,14 @@
           class="hidden-desktop button button--icon-hamburger"
           data-handler="toggle-nav"
           aria-controls="nav"
+          tabindex="3"
           :aria-expanded="menuExpanded ? 'true' : 'false'"
           @click="menuExpanded = !menuExpanded"
         >
           Menu
         </button>
         <div class="logo">
-          <NuxtLink :to="`../`">
+          <NuxtLink :to="localePath(`/`)" tabindex="2">
             <img
               src="../../assets/images/logo.svg"
               alt="Logo Overheid.nl, ga naar de startpagina"
@@ -22,9 +23,6 @@
           <div class="logo__you-are-here">
             <p class="visually-hidden">U bent nu hier:</p>
             <p>{{ t(`logoCaption`) }}</p>
-          </div>
-          <div class="header__meta">
-            <LanguagePicker class="align-right"> </LanguagePicker>
           </div>
         </div>
       </div>
@@ -39,40 +37,39 @@
           <li
             v-for="item in navigationItems"
             :key="item.label"
-            :class="{ active: currentRoute.name == item.routeName }"
+            :class="{
+              active: item.highlightOnRoutes.includes(currentRoute.name as string),
+            }"
           >
-            <NuxtLink :to="{ name: item.routeName }">{{ item.label }}</NuxtLink>
+            <ClientOnly>
+              <NuxtLink
+                :to="localePath({ name: item.routeName })"
+                class="focus-border"
+                >{{ item.label }}</NuxtLink
+              >
+            </ClientOnly>
           </li>
         </ul>
-        <!-- <a
-          href="#other-sites"
-          class="hidden-desktop"
-          data-handler="toggle-other-sites"
-          data-decorator="init-toggle-other-sites"
-          aria-controls="other-sites"
-          aria-expanded="false"
-          data-decorator-initialized="true"
-          ><span class="visually-hidden">Andere sites binnen&nbsp;</span>
-          &nbsp;Overheid.nl</a
-        > -->
       </div>
     </nav>
   </header>
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-import LanguagePicker from '@/components/LanguagePicker.vue'
 const { t } = useI18n()
+
+const localePath = useLocalePath()
 
 const navigationItems = computed(() => [
   {
     label: t('navigation.home'),
     routeName: 'index',
+    highlightOnRoutes: ['index'],
   },
   {
     label: t('navigation.algorithmRegister'),
     routeName: 'algoritme',
+    highlightOnRoutes: ['algoritme', 'algoritme-id'],
   },
   // {
   //   label: 'DEV_dashboard',
@@ -90,5 +87,9 @@ watch(currentRoute, () => (menuExpanded.value = false))
 .active a {
   background-color: $secondary;
   color: $primary-darker !important;
+}
+a:focus {
+  background-color: $secondary;
+  color: $primary-dark;
 }
 </style>

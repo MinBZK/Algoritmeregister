@@ -16,7 +16,7 @@
             :placeholder="searchHint"
             aria-invalid="false"
             aria-labelledby="search-label"
-            @keyup.enter="$emit('doSearch')"
+            @keyup.enter="doSearch()"
           />
         </div>
       </div>
@@ -27,7 +27,7 @@
             :label="search"
             icon="ic:round-search"
             :full-width="true"
-            @click="$emit('doSearch')"
+            @click="doSearch()"
           />
         </div>
       </div>
@@ -36,28 +36,34 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 const emit = defineEmits<{
   (e: 'input', searchValue: string): void
   (e: 'doSearch'): void
 }>()
 
-const props = defineProps<{
-  value: string
-}>()
-
-const searchValue = ref(props.value)
+const searchValue = ref(useRoute().query.search || '')
 
 const search = computed(() => t('search'))
 const searchHint = computed(() => t('searchHint'))
 const searchExplanation = computed(() => t('searchExplanation'))
 
-watch(searchValue, () => {
-  emit('input', searchValue.value)
-})
+const doSearch = () => {
+  const router = useRouter()
+  // const query = useRoute().query
+  router.push(
+    localePath({
+      name: 'algoritme',
+      query: {
+        search: searchValue.value,
+        // q: query.q,
+      },
+    })
+  )
+  emit('doSearch')
+}
 </script>
 
 <style scoped lang="css">

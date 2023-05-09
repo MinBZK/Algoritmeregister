@@ -1,53 +1,34 @@
 <template>
-  <div class="locale-changer text-grey text-end">
-    <span
-      v-for="locale in $i18n.availableLocales"
-      :key="`locale-${locale}`"
-      class="locale"
-      @click="setLocale(locale)"
-    >
-      <template v-if="$i18n.locale !== locale">
-        <a> {{ $t(`switchToLanguage.${locale}`) }}</a>
-      </template>
-
-      <!-- <template v-else> {{ $t(`locale-${locale}`) }}</template> -->
-
-      <!-- <span v-if="index < $i18n.availableLocales.length - 1">|</span> -->
-    </span>
-  </div>
+  <p>{{ t('selectLanguage') }}:</p>
+  <FormOverheidButton
+    v-for="(locale, index) in availableLocales"
+    :key="index"
+    :button-id="locale"
+    :align-horizontally="true"
+    :label="t(`locales.${locale}`)"
+    :style="locale == currentLocale ? 'primary' : 'secondary'"
+    :disabled="locale == currentLocale"
+    :aria-label="t('switchToLanguage', { language: t('locales.' + locale) })"
+    @click="setLocale(locale)"
+    @keydown.enter.prevent="changeLocale(locale)"
+    @keydown.space.prevent="changeLocale(locale)"
+  />
 </template>
 
-<script setup>
-import { useI18n } from 'vue-i18n'
-import { useLocale } from 'vuetify'
+<script setup lang="ts">
+const { setLocale, currentLocale } = useLocale()
+const { t } = useI18n()
 
-const { current } = useLocale()
+const availableLocales = ['nl', 'en']
 
-const composer = useI18n()
-
-const setLocale = (newLocale) => {
-  composer.locale.value = newLocale
-  current.value = newLocale
+const changeLocale = (locale: string) => {
+  document.getElementById(currentLocale.value)?.focus()
+  setLocale(locale)
 }
 </script>
 
 <style scoped lang="scss">
-input[type='radio'] {
-  opacity: 0;
-}
-
-label {
-  color: $primary;
-  cursor: pointer;
-}
-
-span {
-  padding-left: 0.25em;
-  font-size: 85%;
-}
-
-span a {
-  cursor: pointer;
-  color: $primary-dark;
+p {
+  margin: 0;
 }
 </style>

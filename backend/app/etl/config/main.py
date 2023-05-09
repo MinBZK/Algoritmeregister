@@ -1,14 +1,3 @@
-import app.models
-
-models = {
-    "inzet": app.models.Inzet,
-    "algoritme": app.models.Algoritme,
-    "juridisch": app.models.Juridisch,
-    "metadata_algorithm": app.models.Metadata,
-    "toepassing": app.models.Toepassing,
-    "toezicht": app.models.Toezicht,
-}
-
 column_grouping = {
     "inzet": [
         "goal",

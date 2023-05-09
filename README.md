@@ -1,18 +1,18 @@
-# About the Algorithm Register 
-The Ministry of the Interior and Kingdom Relations is developing the Algorithm Register. The team does this using an open development style, through open source software. Anyone can view the team’s progress on the GitHub of the Ministry of the Interior and Kingdom Relations. The Algorithm Register is under development. The content changes over time. New algorithms are added and algorithms are updated. 
-The Algorithm Register (algoritmes.overheid.nl) is being developed with open source software. The source code can be viewed here on GitHub. It can be downloaded and reused. Github is a platform with transparent version control, where technology in development can be easily shared. 
-## Motivation 
-The government increasingly works digitally and uses more and more algorithms when doing so. The government wants to work towards transparent and responsible use of these algorithms. Therefore, the government is making information about the algorithms used by the government available to everyone: citizens, their representatives, the media and (government) professionals. 
+# About the Algorithm Register
 
-The aim is to make all information about algorithms required to demonstrate the algorithm doesn't unlawfully discriminate centrally accessible for everyone. That allows everyone to see in which impactful processes these algorithms are used. The information on this website provides the ability to oversee algorithms. For example, discrimination or unlawfulness can be exposed, and whether the algorithm provides desirable outcomes can be checked. When someone does not agree with the use of algorithms, the Algorithm Register indicates how objections can be made.
+The Ministry of the Interior and Kingdom Relations is developing the Algorithm Register. The team does this using an open development style, through open source software. Anyone can view the team’s progress on the GitHub of the Ministry of the Interior and Kingdom Relations. The Algorithm Register is under development. The content changes over time. New algorithms are added and algorithms are updated.
+The Algorithm Register (algoritmes.overheid.nl) is being developed with open source software. The source code can be viewed here on GitHub. It can be downloaded and reused. Github is a platform with transparent version control, where technology in development can be easily shared.
 
-See the Frequently Asked Questions on the Algorithm Register for more information. 
+## Motivation
 
-### Open source software 
-Will you join us and add your thoughts? To contribute, create an account on GitHub (https://github.com/signup ) and read this readme and the code of conduct to get started. 
-Once signed-up, you can provide feedback on the code of this website, on the algorithm 'standard', on the published description or on the user-friendliness of the website, etc. 
-Get started: join us and add your thoughts! 
+The government increasingly works digitally and uses more and more algorithms when doing so. The government wants to work towards transparent and responsible use of these algorithms. Therefore, the government is making information about the algorithms used by the government available to everyone: citizens, their representatives, the media and (government) professionals.
+See the Frequently Asked Questions on the Algorithm Register for more information.
 
+### Open source software
+
+Will you join us and add your thoughts? To contribute, create an account on GitHub (https://github.com/signup ) and read this readme and the code of conduct to get started.
+Once signed-up, you can provide feedback on the code of this website, on the algorithm 'standard', on the published description or on the user-friendliness of the website, etc.
+Get started: join us and add your thoughts!
 
 # Technical information
 
@@ -29,11 +29,11 @@ The documentation below is tested on Ubuntu, but it should work on Windows as we
 
 ### Environment variables
 
-Environment variables are stored in `.env`, but because they can contain secrets (passwords), it is not in the repository. Therefore, copy and paste `.env.dummy` to `.env`. For local development, no changes are needed.
+Environment variables are stored in `.env` in the frontend and backend, but because they can contain secrets (passwords), it is not in the repository. Therefore, copy and paste `.env.dummy` to `.env`.
 
 ### Database
 
-1. Start database. Run from root folder: `docker compose up -d`.
+1. Start database. Run from `/backend` folder: `docker compose up -d`.
 
 Validate the backend is running by navigating to the GUI (DBgate) on `http://localhost:8093`. There you should be able to open the database `algreg_db`.
 
@@ -43,26 +43,24 @@ All commnands below should be run from the `/backend` directory.
 
 2. Specify Python version to use for virtual environment: `poetry env use <python_version>`. (The required Python version is specified in `backend/.python-version`.)
 3. Install packages: `poetry install`.
-4. Run database migrations: `poetry run uvicorn upgrade head`.
+4. Run database migrations: `poetry run alembic upgrade head`.
 5. Start backend: `poetry run uvicorn app.main:app --reload`
 
-Validate the backend is running by navigating to the documentation on `http://localhost:8000/api-docs`.
+Validate the backend is running by navigating to the documentation on `http://localhost:8000/api/api-docs`.
 
 ### Frontend
 
 1.  Install dependencies. Run from '`/frontend`: `npm install`.
-2.  Start local server. Run from '`/frontend`: `npm run dev -- -o`.
+2.  Start local server. Run from '`/frontend`: `npm run dev -- --port 3000`.
 
 Validate the frontend is running by navigating to `http://localhost:3000`.
 
-## Run locally
+There is also a second frontend: 'frontend-beheer' (management frontend). This frontend is used to manage the algorithms. To run it, follow these steps:
 
-1. Start database from backend. Run from `/backend`: `docker compose up -d`
-2. Ensure latest migration has been completed. Run from `/backend`: `poetry run alembic upgrade head`
-3. Navigate to `/frontend` and run `npm run dev`.
-4. Navigate to `/backend` and run `poetry run uvicorn app.main:app --reload`
+1. Install dependencies. Run from '`/frontend-beheer`: `npm install`.
+2. Start local server. Run from '`/frontend-beheer`: `npm run dev -- --port 3001`.
 
-## Other
+Validate that frontend-beheer is running by navigating to `http://localhost:3001`.
 
 ### Linting
 
@@ -76,6 +74,16 @@ This project uses Volar. Install Volar in Visual Studio Code and enable [take ov
 
 Note:
 Vue linting config inspired by a repository on [Github](https://github.com/weicheng2138/nuxt3-eslint-starter).
+
+### Versioning
+
+This register allows use of multiple versions of the metadatastandard. To add a new version (`v0_x_x`), follow these steps:
+
+1. in `/backend/app/schemas/config`, you see the metadatastandard in JSON format. Create a new file with your file version name, e.g. `v0_x_x.json`. Change the standard as you see fit.
+2. in `/backend/app/routers`, duplicate one of the version folders. Rename it the same as your version in step 1, e.g. `v0_x_x`. Do not change the content.
+3. add the name of this file in the \_\_init\_\_.py file in the same folder, e.g. `from . import v0_1_0, v0_x_x  # noqa`.
+4. If your new schema involves changes to the database (notably for new columns) you'll have to do a SQLAlchemy model change (in `/backend/app/models/algoritme_version.py`) as well as a database migration.
+5. The frontend needs a configuration file in `/frontend/public/layouts` named similar to the other files, e.g. `v0_x_x.json`. The configuration file defines how the data should be displayed in the tabs.
 
 ### Icons
 

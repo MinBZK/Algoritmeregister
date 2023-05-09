@@ -17,7 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import algoritmeService from '@/services/algoritme'
 
 const { t } = useI18n()
@@ -65,6 +64,11 @@ const currentDate = computed(() => {
 
 const { data } = await algoritmeService.getTotalCount()
 const algoCount = data
+
+definePageMeta({
+  title: 'Dashboard',
+})
+useHead({ title: 'Dashboard' })
 </script>
 
 <style lang="scss">
