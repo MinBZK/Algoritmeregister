@@ -15,7 +15,6 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     command: -p ${POSTGRES_PORT}
 
-
   dbgate:
     image: dbgate/dbgate:alpine
     container_name: ${DEV_DOCKER_CONTAINER_NAME_PREFIX}_dbgate
@@ -34,8 +33,6 @@ services:
       PASSWORD_CON1: ${POSTGRES_PASSWORD}
       PORT_CON1: ${POSTGRES_PORT}
       ENGINE_CON1: postgres@dbgate-plugin-postgres
-
-
 
 volumes:
   dbgate:

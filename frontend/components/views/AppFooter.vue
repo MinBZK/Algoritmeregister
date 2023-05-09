@@ -2,9 +2,9 @@
   <div class="footer row--footer" role="contentinfo">
     <div class="container columns">
       <div class="bottom-margin">
-        {{ t('footer.text') }}&nbsp;<NuxtLink :to="'/footer/over'">{{
-          t('footer.textAskApply')
-        }}</NuxtLink
+        {{ t('footer.text') }}&nbsp;<NuxtLink
+          :to="localePath('/footer/over')"
+          >{{ t('footer.textAskApply') }}</NuxtLink
         >.
       </div>
       <div></div>
@@ -18,29 +18,28 @@
             >
               <NuxtLink
                 v-if="footerKey != 'external'"
-                :to="`/footer${page.path}`"
+                :to="localePath(`/footer${page.path}`)"
               >
                 {{ t(`footer.paths.${page.key}`) }}
               </NuxtLink>
-              <a
-                v-if="footerKey == 'external'"
-                :href="page.path"
-                target="_blank"
-                class="is-external"
-                >{{ t(`footer.paths.${page.key}`) }}</a
-              >
+              <ExternalLink v-if="footerKey == 'external'" :href="page.path">{{
+                t(`footer.paths.${page.key}`)
+              }}</ExternalLink>
             </li>
           </ul>
         </div>
       </div>
     </div>
+    <div class="after-footer">
+      <slot name="after-footer" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import footer from '@/config/footer'
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 const footerKeys = Object.keys(footer)
 </script>
@@ -48,5 +47,9 @@ const footerKeys = Object.keys(footer)
 <style scoped lang="scss">
 .bottom-margin {
   padding-bottom: 1.75em;
+}
+
+.after-footer {
+  padding: 1em 0;
 }
 </style>

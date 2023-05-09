@@ -1,13 +1,28 @@
 {
+  "algoritmeIndex": {
+    "pageTitle": "Search for algorithms",
+    "noResults": {
+      "p1": "Please try again. You can search in the following categories:",
+      "l1": "Words contained in the name (title) of the algorithm",
+      "l2": "Words contained in the description of the algorithm",
+      "l3": "The name of the responsible organisation of the algorithm."
+    }
+  },
   "english?": "true",
   "home-highlight-algorithm-text": "Or go directly to one of these algorithms",
   "you-are-here": "You are here",
   "ontbreekt": "Field not filled in.",
-  "locale-en": "English",
-  "locale-nl": "Dutch",
-  "selectLanguage": "Choose language",
-  "foundResults": "No results found | 1 result found | {n} results found",
+  "locales": {
+    "en": "English",
+    "nl": "Dutch"
+  },
+  "currentLanguage": "English",
+  "selectLanguage": "This website in other languages",
+  "foundResults": "No algorithms were found | 1 result found | {n} results found",
+  "forSearch": " for {searchQuery}",
   "noResults": "No algorithm was found for this search request.",
+  "externalLink": "Link to external page",
+  "mailLink": "Link to mailing address",
   "footer": {
     "text": "Note: this website is under development. Information will change often. Do you want to help?",
     "textAskApply": "Please apply",
@@ -23,7 +38,8 @@
       "ext_overheid_nl": "Overheid.nl",
       "ext_rijksoverheid_nl": "Rijksoverheid.nl",
       "ext_digitaleoverheid_nl": "Digitale Overheid",
-      "ext_data_overheid_nl": "Data.overheid.nl"
+      "ext_data_overheid_nl": "Data.overheid.nl",
+      "ext_pleio": "Algoritmes.pleio.nl"
     }
   },
   "algoritmeRegister": "Algorithm register",
@@ -40,13 +56,15 @@
   "searchHint": "What are you looking for?",
   "search": "Search",
   "selectedAlgorithms": "Selected algorithms",
-  "switchToLanguage": {
-    "nl": "Toon in het Nederlands"
+  "filters": {
+    "aria/remove": "Remove {what} as filter"
   },
+  "downloadAllAlgorithms": "Download all algorithms (.csv)",
+  "switchToLanguage": "Switch to {language}",
   "showFilters": "Show filters",
   "hideFilters": "Hide filters",
   "searchResultCard": {
-    "readMore": "read more"
+    "readMore": "Read more"
   },
   "navigation": {
     "home": "Home",
@@ -60,14 +78,17 @@
     "db": "Dashboard"
   },
   "pagination": {
-    "goTo": "Go to page {n}"
+    "page": "Page",
+    "goTo": "Go to page {n}",
+    "goToNextPage": "Go to next page",
+    "goToPreviousPage": "Go to previous page"
   },
   "homePageText": {
     "paragraph1": "On this website governmental organisations publish the algorithms that are in use.",
     "paragraph2": "Effort is made to publish impactful algorithms. This to ensure the purpose of algorithms and to make sure people involved can examine the algorithms. ",
     "paragraph3Header": "Progress",
-    "paragraph3part1": "At this moment you will find ",
-    "paragraph3part2": " algorithms on this website."
+    "paragraph3part1": "At this moment there are ",
+    "paragraph3part2": " algorithms published on this website."
   },
   "dashboard": {
     "informationType": "Information type",
@@ -85,7 +106,24 @@
     "numberOfMatches": "Matches",
     "loadingText": "Loading"
   },
+  "getAlgorithmPropertyExplanation": "Explanation of algorithm property '{field}'",
   "algorithmProperties": {
+    "source_id": {
+      "label": "Source-ID",
+      "description": "The unique code the owner uses for this algorithm."
+    },
+    "provider": {
+      "label": "External provider",
+      "description": "If applicable, the external provider of the algorithm."
+    },
+    "process_index_url": {
+      "label": "Link to Processing Index",
+      "description": "The link to the GDPR-processing in a public register of the algorithm."
+    },
+    "tags": {
+      "label": "Tags",
+      "description": "Keywords describing the algorithm to improve search engine results in this register."
+    },
     "toegevoegd_op": {
       "label": "Toegevoegd op"
     },
@@ -236,11 +274,7 @@
       "label": "Metadata",
       "description": "No description"
     },
-    "schema_metadata": {
-      "label": "Scheme",
-      "description": "The registration scheme; in machine readable format."
-    },
-    "schema": {
+    "standard_version": {
       "label": "Scheme",
       "description": "The registration scheme; in machine readable format."
     },

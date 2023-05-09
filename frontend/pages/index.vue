@@ -6,11 +6,7 @@
       </h1>
     </div>
     <div :class="[isMobile ? 'card-margins-xs' : 'card-margins']">
-      <SearchBar
-        :value="searchQuery"
-        @input="(v) => (searchQuery = v)"
-        @do-search="doSearch"
-      />
+      <SearchBar />
       <div class="columns">
         <div class="column">
           <HighlightedAlgorithms />
@@ -24,22 +20,18 @@
 </template>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
-import { stringify } from 'qs'
 import { useMobileBreakpoint } from '~~/composables/mobile'
-const isMobile = useMobileBreakpoint()
+const isMobile = useMobileBreakpoint().medium
 const { t } = useI18n()
 const homepageTitle = computed(() => t('homepageTitle'))
 
-const searchQuery = ref('')
-
-const doSearch = () => {
-  const router = useRouter()
-  const stringifiedQuery = stringify({
-    search: searchQuery.value,
-  })
-  router.push(`/algoritme?q=${stringifiedQuery}`)
-}
+definePageMeta({
+  title: 'Home',
+})
+providePageTitle({
+  title: 'homepageTitle',
+  labelType: 'locale-index',
+})
 </script>
 
 <style scoped lang="scss">

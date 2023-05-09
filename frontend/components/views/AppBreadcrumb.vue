@@ -8,7 +8,7 @@
             <li v-for="crumb in breadcrumbsWithLinks" :key="crumb.routeName">
               <NuxtLink
                 v-if="crumb.routeName !== null"
-                :to="`/${crumb.routeName}`"
+                :to="localePath(`/${crumb.routeName}`)"
                 >{{ crumb.label }}</NuxtLink
               >
               <span v-if="crumb.routeName == null">{{ crumb.label }}</span>
@@ -22,10 +22,10 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import { navigationItems } from '@/config/config'
 
 const error = useError()
+const localePath = useLocalePath()
 
 const { algoritme } = useAlgoritme()
 
@@ -38,7 +38,7 @@ const navigationItemsTranslated = computed(() =>
   })
 )
 
-const ignoredNavigationItems = ['footer']
+const ignoredNavigationItems = ['footer', 'en', 'nl']
 
 type Crumb = {
   label: string
@@ -62,7 +62,7 @@ const breadcrumbs = computed<Crumb[]>(() => {
           // translate path parts with a name matching a navigation item
           navigationItemsTranslated.value.find(
             (item) => item.routeName === crumb
-          )?.label || // translate path parts with a name matching an algorithm slug
+          )?.label || // translate path parts with a name matching an algorithm id
           algoritme.value?.name ||
           crumb,
         routeName: crumb,

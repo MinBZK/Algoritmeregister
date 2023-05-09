@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="skiplinks container">
-      <a href="#content">Direct naar content</a>
+      <a href="#content" class="no-margin" tabindex="1">Direct naar content</a>
     </div>
     <AppHeader />
     <AppContentBar v-if="false" />
@@ -11,20 +11,43 @@
         <slot />
       </div>
     </div>
-    <AppFooter />
+    <AppFooter>
+      <template #after-footer>
+        <div class="container"><LanguagePicker /></div>
+      </template>
+    </AppFooter>
+    <div class="visually-hidden" disabled aria-live="polite">
+      {{ readAfterLanguageChange }}
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import AppContentBar from '@/components/views/AppContentBar.vue'
 import AppHeader from '@/components/views/AppHeader.vue'
 import AppBreadcrumb from '@/components/views/AppBreadcrumb.vue'
 import AppFooter from '@/components/views/AppFooter.vue'
+import LanguagePicker from '~~/components/LanguagePicker.vue'
+import { pageTitleInfo } from '~~/utils'
 
 const { t, locale } = useI18n()
-const title = computed(() => t('homepageTitle'))
-useHead({ title, htmlAttrs: { lang: locale } })
+const siteTitle = computed(() => t('homepageTitle'))
+useHead({
+  htmlAttrs: { lang: locale },
+  titleTemplate: (pageTitle) => {
+    return pageTitle ? `${pageTitle} - ${siteTitle.value}` : siteTitle.value
+  },
+})
+
+const readAfterLanguageChange = ref<string>()
+watch(locale, () => {
+  readAfterLanguageChange.value =
+    t('currentLanguage') +
+    '; ' +
+    (pageTitleInfo.value.labelType === 'locale-index'
+      ? t(pageTitleInfo.value.title)
+      : pageTitleInfo.value.title)
+})
 </script>
 
 <style scoped>
@@ -38,5 +61,9 @@ useHead({ title, htmlAttrs: { lang: locale } })
 
 .align-right {
   margin-left: auto;
+}
+
+#content {
+  margin: 0;
 }
 </style>

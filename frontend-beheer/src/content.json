@@ -1,0 +1,76 @@
+{
+  "shared": {
+    "error": {
+      "400": "Er is een fout opgetreden bij het verwerken van uw verzoek. Controleer de ingevoerde gegevens en probeer het opnieuw.",
+      "401": "U moet ingelogd zijn om deze actie uit te voeren. Log in of registreer om toegang te krijgen.",
+      "403": "U heeft geen toestemming om deze actie uit te voeren of toegang te krijgen tot deze bron.",
+      "404": "Het algoritme dat u zoekt is niet gevonden. Controleer de zoekopdracht of ga terug naar het overzicht van algoritmes.",
+      "500": "Er is een interne applicatiefout opgetreden. Neem contact op met de beheerder."
+    }
+  },
+  "metadataManual": {
+    "title": "Handleiding metadatastandaard",
+    "url": "https://algoritmes.pleio.nl/groups/view/fc9e6489-91e6-4177-b564-2cbea8e56132/kennisbank/files/6254c700-85ae-48dc-8f3b-31bcf6814cfc"
+  },
+  "overviewTable": {
+    "fetchAlgoritms": {
+      "error": "Er is een fout opgetreden bij het ophalen van de algoritmes."
+    }
+  },
+  "formGenerator": {
+    "fetchMetadata": {
+      "error": "Er is een fout opgetreden bij het ophalen van het aanlevervoorschrift."
+    }
+  },
+  "formDataStore": {
+    "fetch": {
+      "error": "Er is iets fout gegaan bij het opvragen van het algoritme."
+    },
+    "create": {
+      "success": "Het algoritme is succesvol opgeslagen.",
+      "error": "Er is iets fout gegaan bij het aanmaken van het algoritme. De volgende velden geven een foutmelding:"
+    },
+    "update": {
+      "success": "Het algoritme is succesvol opgeslagen.",
+      "error": "Er is iets fout gegaan bij het opslaan van het algoritme. De volgende velden geven een foutmelding:"
+    },
+    "retract": {
+      "error": "Er is iets fout gegaan bij het intrekken van het algoritme.",
+      "success": "Dit algoritme is ingetrokken."
+    },
+    "publish": {
+      "error": "Er is iets fout gegaan bij het publiceren van het algoritme.",
+      "success": "Het algoritme is succesvol gepubliceerd."
+    },
+    "release": {
+      "error": "Er is iets fout gegaan bij het vrijgeven van het algoritme.",
+      "success": "Het algoritme is succesvol vrijgegeven."
+    },
+    "preview": {
+      "error": "Er is iets fout gegaan bij het genereren van de voorbeeldpagina."
+    },
+    "remove": {
+      "error": "Er is iets fout gegaan bij het verwijderen van het algoritme.",
+      "success": "Het algoritme is succesvol verwijderd."
+    }
+  },
+  "Misc": {
+    "noOrgSelected": {
+      "error": "Er kan geen algoritme worden aangemaakt zonder een organisatie."
+    }
+  },
+  "warningDialog": {
+    "publish": {
+      "text": "Weet u zeker dat u dit algoritme wilt publiceren? Het algoritme wordt dan gepubliceerd naar de conceptwebsite."
+    },
+    "retract": {
+      "text": "Weet u zeker dat u de vrijgave van dit algoritme wilt intrekken? Het algoritme wordt dan verwijderd van de conceptwebsite."
+    },
+    "release": {
+      "text": "Weet u zeker dat u dit algoritme wilt vrijgeven? Het algoritme kan dan worden gepubliceerd door BZK."
+    },
+    "remove": {
+      "text": "Weet u zeker dat u dit algoritme wilt verwijderen? Het algoritme word volledig uit de database gehaald."
+    }
+  }
+}

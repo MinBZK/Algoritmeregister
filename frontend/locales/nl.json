@@ -1,13 +1,28 @@
 {
+  "algoritmeIndex": {
+    "pageTitle": "Zoek naar algoritmes",
+    "noResults": {
+      "p1": "Probeer het opnieuw. Je kan zoeken op de volgende woorden:",
+      "l1": "Woorden in de naam (titel) van het algoritme",
+      "l2": "Woorden in de omschrijving van het algoritme",
+      "l3": "De naam van de organisatie die verantwoordelijk is voor het algoritme."
+    }
+  },
   "english?": "false",
   "home-highlight-algorithm-text": "Of bekijk direct een van de volgende algoritmes",
   "you-are-here": "U bent hier",
   "ontbreekt": "Veld niet ingevuld.",
-  "locale-en": "Engels",
-  "locale-nl": "Nederlands",
-  "selectLanguage": "Kies taal",
-  "foundResults": "Geen resultaten gevonden | 1 resultaat gevonden | {n} resultaten gevonden",
+  "locales": {
+    "en": "Engels",
+    "nl": "Nederlands"
+  },
+  "currentLanguage": "Nederlands",
+  "selectLanguage": "Deze website in andere talen",
+  "foundResults": "Er zijn geen algoritmes gevonden | 1 resultaat gevonden | {n} resultaten gevonden",
+  "forSearch": " voor {searchQuery}",
   "noResults": "Geen algoritmes gevonden voor de huidige zoekopdracht.",
+  "externalLink": "Link naar externe pagina",
+  "mailLink": "Link naar een e-mailadres",
   "footer": {
     "text": "Let op: deze website is in ontwikkeling. De informatie verandert vaak. Wil je meehelpen?",
     "textAskApply": "Meld je dan aan",
@@ -23,7 +38,8 @@
       "ext_overheid_nl": "Overheid.nl",
       "ext_rijksoverheid_nl": "Rijksoverheid.nl",
       "ext_digitaleoverheid_nl": "Digitale Overheid",
-      "ext_data_overheid_nl": "Data.overheid.nl"
+      "ext_data_overheid_nl": "Data.overheid.nl",
+      "ext_pleio": "Algoritmes.pleio.nl"
     }
   },
   "algoritmeRegister": "Algoritmeregister",
@@ -40,13 +56,15 @@
   "searchHint": "Waar ben je naar op zoek?",
   "search": "Zoeken",
   "selectedAlgorithms": "Geselecteerde algoritmes",
-  "switchToLanguage": {
-    "en": "Switch to English"
+  "filters": {
+    "aria/remove": "{what} verwijderen als filter"
   },
+  "downloadAllAlgorithms": "Download alle algoritmes (.csv)",
+  "switchToLanguage": "Toon in het {language}",
   "showFilters": "Toon filters",
   "hideFilters": "Verberg filters",
   "searchResultCard": {
-    "readMore": "lees meer"
+    "readMore": "Lees meer"
   },
   "navigation": {
     "home": "Home",
@@ -60,7 +78,10 @@
     "db": "Dashboard"
   },
   "pagination": {
-    "goTo": "Ga naar pagina {n}"
+    "page": "Pagina",
+    "goTo": "Ga naar pagina {n}",
+    "goToNextPage": "Ga naar volgende pagina",
+    "goToPreviousPage": "Ga naar vorige pagina"
   },
   "homePageText": {
     "paragraph1": "Op deze website publiceren overheidsorganisaties de algoritmes die zij gebruiken in hun werk.",
@@ -85,7 +106,24 @@
     "numberOfMatches": "Aantal",
     "loadingText": "Aan het laden"
   },
+  "getAlgorithmPropertyExplanation": "Uitleg over het algoritme-eigenschap '{field}'",
   "algorithmProperties": {
+    "source_id": {
+      "label": "Bron-ID",
+      "description": "De unieke code van dit algoritme in het register van de eigenaar"
+    },
+    "provider": {
+      "label": "Leverancier",
+      "description": "Indien van toepassing, de externe leverancier van het algoritme."
+    },
+    "process_index_url": {
+      "label": "Link naar verwerkingsregister",
+      "description": "De link naar de AVG-verwerking in een publiek register van het algoritme."
+    },
+    "tags": {
+      "label": "Tags",
+      "description": "Trefwoorden over het algoritme, om de vindbaarheid van een algoritmeregistratie te vergroten."
+    },
     "toegevoegd_op": {
       "label": "Toegevoegd op"
     },
@@ -236,11 +274,7 @@
       "label": "Metadata",
       "description": "Geen beschrijving"
     },
-    "schema_metadata": {
-      "label": "Schema",
-      "description": "Het schema gebruikt voor deze registratie in machine leesbaar format."
-    },
-    "schema": {
+    "standard_version": {
       "label": "Schema",
       "description": "Het schema gebruikt voor deze registratie in machine leesbaar format."
     },

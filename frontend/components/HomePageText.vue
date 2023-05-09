@@ -3,11 +3,9 @@
     <div class="block-info green-color">
       <p>{{ paragraph1 }}</p>
       <p>{{ paragraph2 }}</p>
-      <p>
-        <b>
-          {{ paragraph3Header }}
-        </b>
-      </p>
+      <h2 class="small-header">
+        {{ paragraph3Header }}
+      </h2>
       <p>
         {{ paragraph3part1 }}<b>{{ nAlgorithms }}</b
         >{{ paragraph3part2 }}
@@ -17,7 +15,6 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import algoritmeService from '@/services/algoritme'
 
 const { t } = useI18n()
@@ -40,5 +37,9 @@ const nAlgorithms = data
 .no-bottom-padding {
   padding-bottom: 0px !important;
   margin-bottom: 0px !important;
+}
+.small-header {
+  margin-top: 1em;
+  font-size: 1em;
 }
 </style>

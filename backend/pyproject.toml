@@ -6,7 +6,7 @@ authors = ["Terry Crapts <terry.crapts@ictu.nl>", "Lars Musters <lars.musters@ic
 
 [tool.poetry.dependencies]
 python = "^3.11"
-fastapi = {extras = ["all"], version = "^0.85.1"}
+fastapi = {version = "0.92.0", extras = ["all"]}
 SQLAlchemy = "^1.4.42"
 python-dotenv = "^0.21.0"
 alembic = "^1.8.1"
@@ -14,6 +14,15 @@ psycopg2-binary = "^2.9.5"
 pandas = "^1.5.1"
 openpyxl = "^3.0.10"
 python-slugify = "^7.0.0"
+grequests = "^0.6.0"
+python-jose = "^3.3.0"
+cryptography = "^39.0.1"
+passlib = "^1.7.4"
+wheel = "^0.38.1"
+pytest = "^7.1.2"
+coverage = "^6.0"
+python-keycloak = "2.9.0"
+pyjwt = {version = "2.6.0", extras = ["crypto"]}
 
 [tool.poetry.dev-dependencies]
 black = {extras = ["jupyter"], version = "^22.10.0"}

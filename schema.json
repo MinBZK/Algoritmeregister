@@ -1,254 +1,276 @@
 {
-    "$id": "https://standaard.algoritmeregister.org/schemas/registration-v0.2.nl.schema.json",
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "NL Standaard voor Registratie van Algoritmes en AI",
-    "description": "Standaard voor de registratie van de inzet van modellen, algoritmes en AI in beleid en besluitvormingsprocessen in Nederlandse overheidsorganisaties.",
-    "type": "object",
-    "properties": {
-      "name": {
-        "name": "Naam",
-        "category": "ALGEMENE INFORMATIE",
-        "type": "string",
-        "description": "De naam die gebruikt wordt om dit algoritme aan te duiden.",
-        "required": true
-      },
-      "organization": {
-        "name": "Organisatie",
-        "category": "ALGEMENE INFORMATIE",
-        "type": "string",
-        "description": "De volledige naam van de organisatie verantwoordelijk voor de inzet van het algoritme.",
-        "required": true
-      },
-      "department": {
-        "name": "Afdeling",
-        "category": "ALGEMENE INFORMATIE",
-        "type": "string",
-        "description": "De volledige naam van de afdeling of divisie verantwoordelijk voor de inzet van het algoritme.",
-        "required": true
-      },
-      "description_short": {
-        "name": "Korte omschrijving",
-        "category": "ALGEMENE INFORMATIE",
-        "type": "string",
-        "description": "Een korte omschrijving van maximaal 150 karakters waarin hoog over omschreven wordt wat de rol is van het algoritme.",
-        "required": true
-      },
-      "type": {
-        "name": "Type algoritme",
-        "category": "ALGEMENE INFORMATIE",
-        "type": "string",
-        "description": "Is het algoritme regelgebaseerd of zelflerend?",
-        "required": true
-      },
-      "category": {
-        "name": "Thema",
-        "category": "ALGEMENE INFORMATIE",
-        "type": "string",
-        "description": "Het domein waarin het algoritme wordt ingezet.",
-        "required": true
-      },
-      "website": {
-        "name": "Publiekspagina",
-        "category": "ALGEMENE INFORMATIE",
-        "type": "string",
-        "description": "URL van de publieke algoritmeregister pagina over de inzet van het algoritme van de organisatie zelf",
-        "required": false
-      },
-      "status": {
-        "name": "Status",
-        "category": "ALGEMENE INFORMATIE",
-        "type": "string",
-        "description": "Is het algoritme in ontwikkeling, in gebruik, of buiten gebruik?",
-        "required": true
-      },
-      "goal": {
-        "name": "Doel",
-        "category": "INZET",
-        "type": "string",
-        "description": "Het doel waarvoor het algoritme ontwikkeld is en/of hoe de inzet ervan bijdraagt aan het behalen van die doelen.",
-        "required": true
-      },
-      "impact": {
-        "name": "Impact",
-        "category": "INZET",
-        "type": "string",
-        "description": "(1) De impact op burgers van de effecten van het algoritme, (2) onder welke omstandigheden dit gebeurt, en (3) wat de verwachte consequenties daarvan zijn voor het individu en/of de samenleving.",
-        "required": true
-      },
-      "proportionality": {
-        "name": "Proportionaliteit",
-        "category": "INZET",
-        "type": "string",
-        "description": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is.",
-        "required": true
-      },
-      "decision_making_process": {
-        "name": "Proces",
-        "category": "INZET",
-        "type": "string",
-        "description": "De naam van het bedrijfs- of besluitvormingsproces in de organisatie waarbinnen het algoritme wordt ingezet.",
-        "required": true
-      },
-      "documentation": {
-        "name": "Projectpagina",
-        "category": "INZET",
-        "type": "string",
-        "description": "URL van de projectpagina van de organisatie zelf over dit specifieke gebruik van het algoritme.",
-        "required": false
-      },
-      "description": {
-        "name": "Omschrijving",
-        "category": "TOEPASSING",
-        "type": "string",
-        "description": "Een uitgebreide uitleg tussen de 500 en 10000 karakters van hoe het  algoritme werkt.",
-        "required": false
-      },
-      "application_url": {
-        "name": "URL van de applicatie",
-        "category": "TOEPASSING",
-        "type": "string",
-        "description": "URL van de applicatiepagina van de ontwikkelaar/aanbieder van het algoritme.",
-        "required": false
-      },
-      "publiccode": {
-        "name": "URL van code base",
-        "category": "TOEPASSING",
-        "type": "string",
-        "description": "URL van de code base van het algoritme.",
-        "required": false
-      },
-      "MPRD": {
-        "name": "Koppelingen met basisregistraties",
-        "category": "TOEPASSING",
-        "type": "boolean",
-        "description": "Is het algoritme direct gekoppeld aan een basisregistratie?",
-        "required": false
-      },
-      "source_data": {
-        "name": "Brondata",
-        "category": "TOEPASSING",
-        "type": "string",
-        "description": "Een overzicht van de databronnen die gebruikt worden door of bij het maken of trainen van het algoritme.",
-        "required": false
-      },
-      "methods_and_models": {
-        "name": "Methoden en modellen",
-        "category": "TOEPASSING",
-        "type": "string",
-        "description": "Standaard methoden of modellen die het algoritme gebruikt.",
-        "required": false
-      },
-      "monitoring": {
-        "name": "Monitoring",
-        "category": "TOEZICHT",
-        "type": "string",
-        "description": "Een overzicht van hoe de inzet van het algoritme wordt gemonitord.",
-        "required": false
-      },
-      "human_intervention": {
-        "name": "Menselijke tussenkomst",
-        "category": "TOEZICHT",
-        "type": "string",
-        "description": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gecontroleerd en bijgesteld (kunnen) worden.",
-        "required": true
-      },
-      "risks": {
-        "name": "Risico's",
-        "category": "TOEZICHT",
-        "type": "string",
-        "description": "Een overzicht van de voorziene risico's.",
-        "required": false
-      },
-      "performance_standard": {
-        "name": "Prestatienormen",
-        "category": "TOEZICHT",
-        "type": "string",
-        "description": "Een omschrijving van de verwachte prestaties van het algoritme en hoe die worden gemeten.",
-        "required": false
-      },
-      "competent_authority": {
-        "name": "Bevoegde autoriteit",
-        "category": "JURIDISCH",
-        "type": "string",
-        "description": "Volledige naam van de bevoegde autoriteit verantwoordelijk voor de inzet van het algoritme.",
-        "required": false
-      },
-      "lawful_basis": {
-        "name": "Wettelijke grondslag",
-        "category": "JURIDISCH",
-        "type": "string",
-        "description": "Een omschrijving van de wettelijke grondslag voor de inzet van het algoritme, of URL van het formele besluit.",
-        "required": true
-      },
-      "DPIA": {
-        "name": "Data protection impact assessment",
-        "category": "JURIDISCH",
-        "type": "boolean",
-        "description": "Is er een data protection impact assessment (DPIA) uitgevoerd?",
-        "required": false
-      },
-      "DPIA_description": {
-        "name": "Omschrijving van de DPIA",
-        "category": "JURIDISCH",
-        "type": "string",
-        "description": "Een overzicht van de belangrijkste zaken die uit de data protection impact assessment (DPIA) naar voren kwamen.",
-        "required": false
-      },
-      "objection_procedure": {
-        "name": "Bezwaarprocedure",
-        "category": "JURIDISCH",
-        "type": "string",
-        "description": "Een omschrijving van hoe burgers en bedrijven bezwaar kunnen maken tegen de uitkomsten van het algoritme.",
-        "required": true
-      },
-      "schema": {
-        "name": "Schema",
-        "category": "METADATA",
-        "type": "string",
-        "description": "Het schema gebruikt voor deze registratie in machine leesbaar format.",
-        "required": false
-      },
-      "id": {
-        "name": "UUID",
-        "category": "METADATA",
-        "type": "string",
-        "description": "De unieke identificatie (UUID) voor deze registratie.",
-        "required": false
-      },
-      "url": {
-        "name": "URL van de bronregistratie",
-        "category": "METADATA",
-        "type": "string",
-        "description": "URL van deze registratie of van het algoritmeregister waarin deze registratie is vastgelegd in machine leesbaar format.",
-        "required": false
-      },
-      "contact_email": {
-        "name": "E-mailadres van de contactpersoon",
-        "category": "METADATA",
-        "type": "string",
-        "description": "e-mailadres van de organisatie of de contactpersoon voor deze registratie.",
-        "required": true
-      },
-      "area": {
-        "name": "Geografisch gebied",
-        "category": "METADATA",
-        "type": "string",
-        "description": "Het geografische gebied waarin het algoritme wordt ingezet.",
-        "required": false
-      },
-      "lang": {
-        "name": "Taal",
-        "category": "METADATA",
-        "type": "string",
-        "description": "De taal waarin deze registratie is ingevoerd.",
-        "required": false
-      },
-      "revision_date": {
-        "name": "Herzieningsdatum",
-        "category": "METADATA",
-        "type": "string",
-        "description": "De datum waarvoor deze registratie moet worden herzien.",
-        "required": false
-      }
+  "$id": "https://standaard.algoritmeregister.org/schemas/registration-v0.2.nl.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NL Standaard voor Registratie van Algoritmes en AI",
+  "description": "Standaard voor de registratie van de inzet van modellen, algoritmes en AI in beleid en besluitvormingsprocessen in Nederlandse overheidsorganisaties.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "title": "Naam",
+      "maxLength": 100,
+      "type": "string",
+      "help_text": "De naam die gebruikt wordt om het algoritme aan te duiden",
+      "show_always": true
+    },
+    "organization": {
+      "title": "Organisatie",
+      "maxLength": 100,
+      "type": "string",
+      "help_text": "De volledige naam van de organisatie verantwoordelijk voor de inzet van het algoritme.",
+      "show_always": true
+    },
+    "department": {
+      "title": "Afdeling",
+      "maxLength": 500,
+      "type": "string",
+      "help_text": "De volledige naam van de afdeling of divisie verantwoordelijk voor de inzet van het algoritme.",
+      "show_always": true
+    },
+    "description_short": {
+      "title": "Korte omschrijving",
+      "maxLength": 150,
+      "type": "string",
+      "help_text": "Een korte, abstracte beschrijving van het algoritme.",
+      "show_always": true
+    },
+    "type": {
+      "title": "Type algoritme",
+      "type": "enum",
+      "allOf": [
+        "Regelgebaseerd",
+        "Zelflerend"
+      ],
+      "help_text": "Is het algoritme op regels gebaseerd of zelflerend? Regelgebaseerde algoritmes zijn handmatig door mensen gebouwd, meestal op basis van wetten of verordeningen. Zelflerende algoritmes kunnen zelf verbanden ontdekken in gegevens.",
+      "show_always": true
+    },
+    "category": {
+      "title": "Beleidsterrein",
+      "maxLength": 500,
+      "type": "string",
+      "help_text": "Het beleidsterrein waarin het algoritme wordt ingezet.",
+      "show_always": true
+    },
+    "website": {
+      "title": "Link naar publiekspagina",
+      "maxLength": 500,
+      "type": "string",
+      "help_text": "Een URL naar een publiekspagina van de organisatie zelf. Op deze pagina kunt u meer vinden over de inzet van het algoritme binnen de organisatie.",
+      "show_always": false
+    },
+    "status": {
+      "title": "Status",
+      "type": "enum",
+      "allOf": [
+        "In ontwikkeling",
+        "In gebruik",
+        "Buiten gebruik"
+      ],
+      "help_text": "De status van het algoritme: in ontwikkeling, in gebruik, of buiten gebruik.",
+      "show_always": true
+    },
+    "goal": {
+      "title": "Doel",
+      "maxLength": 2500,
+      "type": "string",
+      "help_text": "Het doel waarvoor het algoritme ontwikkeld is en/of hoe de inzet ervan bijdraagt aan het behalen van die doelen.",
+      "show_always": true
+    },
+    "impact": {
+      "title": "Impact",
+      "maxLength": 2500,
+      "type": "string",
+      "help_text": "De impact van het algoritme op burgers en bedrijven. Bijvoorbeeld: hoe werkt het algoritme en wat zijn de verwachte consequenties daarvan voor het individu of bedrijf?",
+      "show_always": true
+    },
+    "proportionality": {
+      "title": "Proportionaliteit",
+      "maxLength": 2500,
+      "type": "string",
+      "help_text": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is.",
+      "show_always": true
+    },
+    "provider": {
+      "title": "Leverancier",
+      "maxLength": 100,
+      "type": "string",
+      "help_text": "Indien van toepassing, de externe leverancier van het algoritme.",
+      "show_always": false
+    },
+    "application_url": {
+      "title": "Link naar leverancier",
+      "maxLength": 500,
+      "type": "string",
+      "help_text": "Indien van toepassing, de link naar de externe leverancier.",
+      "show_always": false
+    },
+    "process_index_url": {
+      "title": "Link naar verwerkingsregister",
+      "maxLength": 500,
+      "type": "string",
+      "help_text": "De link naar de AVG-verwerking in een publiek register van het algoritme.",
+      "show_always": false
+    },
+    "lawful_basis": {
+      "title": "Wettelijke grondslag",
+      "maxLength": 2500,
+      "type": "string",
+      "help_text": "Een omschrijving of een link naar de wettelijke grondslag voor de inzet van het algoritme. Bijvoorbeeld: een wet, een verordening of een formeel besluit.",
+      "show_always": true
+    },
+    "iama": {
+      "title": "Mensenrechtentoets",
+      "type": "enum",
+      "allOf": [
+        "Ja",
+        "Nee"
+      ],
+      "help_text": "Is het algoritme getoetst op het nakomen van mensenrechten zoals middels een Impact Assessment Mensenrechten en Algoritmes (IAMA)?",
+      "show_always": true
+    },
+    "iama_description": {
+      "title": "Link naar Mensenrechtentoets",
+      "maxLength": 500,
+      "type": "string",
+      "help_text": "Link naar de resultaten van een uitgevoerde mensenrechtentoets, zoals een IAMA.",
+      "show_always": true
+    },
+    "dpia": {
+      "title": "Data Protection Impact Assessment (DPIA)",
+      "type": "enum",
+      "allOf": [
+        "Ja",
+        "Nee"
+      ],
+      "help_text": "Is het algoritme getoetst op veilig gebruik van gegevens met een Data Protection Impact Assessment (DPIA).",
+      "show_always": false
+    },
+    "objection_procedure": {
+      "title": "Bezwaarprocedure",
+      "maxLength": 2500,
+      "type": "string",
+      "help_text": "Een omschrijving van hoe burgers en bedrijven bezwaar kunnen maken tegen de uitkomsten van het algoritme.",
+      "show_always": true
+    },
+    "url": {
+      "title": "Link naar bronregistratie",
+      "maxLength": 500,
+      "type": "string",
+      "help_text": "De URL van de locatie waar dit algoritme eerder al is vastgelegd; in machine leesbaar formaat.",
+      "show_always": false
+    },
+    "contact_email": {
+      "title": "E-mailadres van de contactpersoon",
+      "maxLength": 500,
+      "type": "string",
+      "help_text": "De e-mail voor contact over deze registratie.",
+      "show_always": true
+    },
+    "area": {
+      "title": "Geografisch gebied",
+      "maxLength": 100,
+      "type": "string",
+      "help_text": "Het geografische gebied waarin het algoritme wordt ingezet.",
+      "show_always": false
+    },
+    "lang": {
+      "title": "Taal",
+      "maxLength": 3,
+      "type": "string",
+      "help_text": "De taal waarin deze registratie is ingevoerd.",
+      "show_always": false
+    },
+    "standard_version": {
+      "title": "Schema",
+      "type": "enum",
+      "allOf": [
+        "0.3.1"
+      ],
+      "help_text": "De versie van de publicatiestandaard waar dit algoritme in is geregistreed.",
+      "show_always": false
+    },
+    "uuid": {
+      "title": "UUID",
+      "maxLength": 100,
+      "type": "string",
+      "help_text": "De unieke code van dit algoritme in het landelijke register.",
+      "show_always": true
+    },
+    "source_id": {
+      "title": "Bron-ID",
+      "maxLength": 100,
+      "type": "string",
+      "help_text": "De unieke code van dit algoritme in het register van de eigenaar",
+      "show_always": false
+    },
+    "revision_date": {
+      "title": "Herzieningsdatum",
+      "maxLength": 10,
+      "type": "string",
+      "help_text": "De datum waarvoor deze registratie moet worden herzien.",
+      "show_always": false
+    },
+    "tags": {
+      "title": "Tags",
+      "maxLength": 2500,
+      "type": "string",
+      "help_text": "Trefwoorden over het algoritme, om de vindbaarheid van een algoritmeregistratie te vergroten.",
+      "show_always": false
+    },
+    "description": {
+      "title": "Omschrijving",
+      "maxLength": 2500,
+      "type": "string",
+      "help_text": "Een uitgebreide beschrijving van het algoritme (500-5000 tekens).",
+      "show_always": false
+    },
+    "source_data": {
+      "title": "Databronnen",
+      "maxLength": 5000,
+      "type": "string",
+      "help_text": "Een overzicht van de databronnen die op dit moment gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme",
+      "show_always": false
+    },
+    "methods_and_models": {
+      "title": "Methoden en modellen",
+      "maxLength": 5000,
+      "type": "string",
+      "help_text": "Standaardmethoden of modellen die het algoritme gebruikt.",
+      "show_always": false
+    },
+    "publiccode": {
+      "title": "Link naar broncode",
+      "maxLength": 500,
+      "type": "string",
+      "help_text": "Een URL naar de codepagina van de ontwikkelaar. Op deze pagina kunt u meer vinden over de code van het algoritme zelf.",
+      "show_always": false
+    },
+    "monitoring": {
+      "title": "Monitoring",
+      "maxLength": 2500,
+      "type": "string",
+      "help_text": "Een overzicht van hoe de inzet van het algoritme wordt gemonitord.",
+      "show_always": false
+    },
+    "human_intervention": {
+      "title": "Menselijke tussenkomst",
+      "maxLength": 2500,
+      "type": "string",
+      "help_text": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gecontroleerd en bijgesteld (kunnen) worden.",
+      "show_always": true
+    },
+    "risks": {
+      "title": "Risico's",
+      "maxLength": 2500,
+      "type": "string",
+      "help_text": "Een overzicht van de voorziene risico's bij de inzet van het algoritme",
+      "show_always": false
+    },
+    "performance_standard": {
+      "title": "Prestatienormen",
+      "maxLength": 2500,
+      "type": "string",
+      "help_text": "Een omschrijving van de verwachte prestaties van het algoritme en hoe die worden gemeten.",
+      "show_always": false
     }
   }
+}

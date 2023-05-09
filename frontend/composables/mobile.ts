@@ -14,5 +14,8 @@ export const useMobileBreakpoint = () => {
   //   { immediate: true }
   // )
 
-  return useDisplay().smAndDown
+  return {
+    medium: useDisplay().smAndDown,
+    small: useDisplay().xs,
+  }
 }

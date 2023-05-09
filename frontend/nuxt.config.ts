@@ -1,6 +1,5 @@
-import { resolve, dirname } from 'node:path'
-import { fileURLToPath } from 'url'
-import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
+import en from './locales/en.json'
+import nl from './locales/nl.json'
 // https://next.vuetifyjs.com/en/features/treeshaking/#automatic-treeshaking
 // import vuetify from 'vite-plugin-vuetify'
 
@@ -10,16 +9,21 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', type: 'image/png', href: '/favicon.ico' }],
     },
   },
-  modules: [
-    'nuxt-icon',
-    // '@vueuse/nuxt',
-    // async (options, nuxt) => {
-    //   nuxt.hooks.hook('vite:extendConfig', (config) =>
-    //     // @ts-ignore
-    //     config.plugins.push(vuetify())
-    //   )
-    // },
-  ],
+  modules: ['nuxt-icon', '@nuxtjs/i18n'],
+  i18n: {
+    strategy: 'prefix',
+    locales: ['nl', 'en'],
+    defaultLocale: 'nl',
+    vueI18n: {
+      globalInjection: true,
+      locale: 'nl',
+      fallbackLocale: 'nl',
+      messages: {
+        en,
+        nl,
+      },
+    },
+  },
   vite: {
     css: {
       preprocessorOptions: {
@@ -30,21 +34,13 @@ export default defineNuxtConfig({
         },
       },
     },
-    plugins: [
-      VueI18nVitePlugin({
-        include: [
-          resolve(dirname(fileURLToPath(import.meta.url)), './locales/*.json'),
-        ],
-      }),
-    ],
   },
   css: ['@/assets/styles/main.scss'],
-  // build: {
-  // transpile: ['vuetify'],
-  // },
   runtimeConfig: {
     public: {
       apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || '',
+      NUXT_APP_BASE_URL: process.env.NUXT_APP_BASE_URL || '/',
+      aanleverBaseUrl: process.env.NUXT_AANLEVER_BASE_URL || '',
     },
   },
   typescript: {

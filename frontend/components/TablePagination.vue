@@ -1,71 +1,85 @@
 <template>
-  <nav role="navigation" aria-label="Paginering navigatie">
-    <div
-      class="pagenumber noselect"
-      :tabindex="currentPage == 1 ? -1 : 0"
-      :class="currentPage == 1 && 'disabled'"
-      aria-role="button"
-      :aria-label="
-        currentPage !== 1 ? t('pagination.goTo', { n: currentPage - 1 }) : ''
-      "
+  <div>
+    <nav
+      role="navigation"
+      aria-label="Paginering navigatie"
+      :class="isMobile && 'pagination-mobile'"
     >
-      <NuxtIcon
-        name="mdi:chevron-left"
+      <div
+        class="pagenumber noselect"
+        :tabindex="currentPage == 1 ? -1 : 0"
+        :class="currentPage == 1 && 'disabled'"
+        role="button"
+        :aria-label="currentPage !== 1 ? t('pagination.goToPreviousPage') : ''"
         @click="navigate(-1)"
         @keydown.enter="navigate(-1)"
-      />
-    </div>
-    <template v-for="(pageNumber, index) in range" :key="pageNumber">
-      <div
-        v-if="index == 1 && pageNumber != 2"
-        class="pagenumber-elipsis noselect"
+        @keydown.space.prevent="navigate(-1)"
       >
-        ...
+        <NuxtIcon name="mdi:chevron-left" />
       </div>
+      <template v-for="(pageNumber, index) in range" :key="pageNumber">
+        <div
+          v-if="index == 1 && pageNumber != 2"
+          class="pagenumber-elipsis noselect"
+        >
+          ...
+        </div>
+        <div
+          :class="pageNumber == currentPage && 'current-page'"
+          :aria-label="t('pagination.goTo', { n: pageNumber })"
+          tabindex="0"
+          :aria-current="pageNumber == currentPage && `true`"
+          role="button"
+          class="pagenumber noselect"
+          @click=";[$emit('setPage', pageNumber), announcePage(pageNumber)]"
+          @keydown.enter="
+            ;[$emit('setPage', pageNumber), announcePage(pageNumber)]
+          "
+          @keydown.space.prevent="
+            ;[$emit('setPage', pageNumber), announcePage(pageNumber)]
+          "
+        >
+          {{ pageNumber }}
+        </div>
+        <div
+          v-if="index == range.length - 2 && pageNumber != pageLength - 1"
+          class="pagenumber-elipsis noselect"
+        >
+          ...
+        </div>
+      </template>
       <div
-        :class="pageNumber == currentPage && 'current-page'"
-        :aria-label="t('pagination.goTo', { n: pageNumber })"
-        tabindex="0"
-        :aria-current="pageNumber == currentPage && `true`"
-        aria-role="button"
         class="pagenumber noselect"
-        @keydown.enter="$emit('setPage', pageNumber)"
-        @click="$emit('setPage', pageNumber)"
+        :tabindex="props.currentPage == props.pageLength ? -1 : 0"
+        :aria-label="
+          props.currentPage !== props.pageLength
+            ? t('pagination.goToNextPage')
+            : ``
+        "
+        role="button"
+        :class="props.currentPage == props.pageLength && 'disabled'"
+        @click="navigate(1)"
+        @keydown.enter="navigate(1)"
+        @keydown.space.prevent="navigate(1)"
       >
-        {{ pageNumber }}
+        <NuxtIcon name="mdi:chevron-right" />
       </div>
-      <div
-        v-if="index == range.length - 2 && pageNumber != pageLength - 1"
-        class="pagenumber-elipsis noselect"
-      >
-        ...
-      </div>
-    </template>
-    <div
-      class="pagenumber noselect"
-      :tabindex="props.currentPage == props.pageLength ? -1 : 0"
-      :aria-label="
-        props.currentPage !== props.pageLength
-          ? t('pagination.goTo', { n: props.currentPage + 1 })
-          : ``
-      "
-      aria-role="button"
-      :class="props.currentPage == props.pageLength && 'disabled'"
-      @click="navigate(1)"
-      @keydown.enter="navigate(1)"
-    >
-      <NuxtIcon name="mdi:chevron-right" />
+    </nav>
+    <div class="visually-hidden" disabled aria-live="polite">
+      {{ pageAnnouncer }}
     </div>
-  </nav>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
+import { useMobileBreakpoint } from '~~/composables/mobile'
 
 const props = defineProps<{
   currentPage: number
   pageLength: number
 }>()
+
+const isMobile = useMobileBreakpoint().medium
 
 const emit = defineEmits(['setPage'])
 
@@ -95,13 +109,18 @@ const range = computed(() => {
   return props.pageLength > 1 ? [1, ...visiblePages, props.pageLength] : [1]
 })
 
+const pageAnnouncer = ref()
 const navigate = (delta: number) => {
   const newPage = props.currentPage + delta
   if (newPage >= 1 && newPage <= props.pageLength) {
     emit('setPage', props.currentPage + delta)
+    pageAnnouncer.value = t('pagination.page') + ' ' + newPage.toString()
   }
 }
 
+const announcePage = (pageNumber: number) => {
+  pageAnnouncer.value = t('pagination.page') + ' ' + pageNumber.toString()
+}
 const { t } = useI18n()
 </script>
 
@@ -134,5 +153,9 @@ nav {
 
 .pagenumber-elipsis {
   display: inline-block;
+}
+
+.pagination-mobile {
+  font-size: 91%;
 }
 </style>
