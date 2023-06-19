@@ -23,7 +23,8 @@ pytest = "^7.1.2"
 coverage = "^6.0"
 python-keycloak = "2.9.0"
 pyjwt = {version = "2.6.0", extras = ["crypto"]}
-
+certifi = "^2023.5.7"
+slowapi = "^0.1.8"
 [tool.poetry.dev-dependencies]
 black = {extras = ["jupyter"], version = "^22.10.0"}
 flake8 = "^5.0.4"

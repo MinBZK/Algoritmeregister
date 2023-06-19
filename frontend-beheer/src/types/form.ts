@@ -10,7 +10,8 @@ export interface FormFieldProperties {
   instructions: string
   rules?: ((v: any) => boolean | string)[]
   required: boolean
-  allowedValues?: string[]
+  allowedItems?: string[]
+  recommendedItems?: string[]
   fixedValue?: string
   placeholder?: string
 }
@@ -24,10 +25,12 @@ export interface SchemaProperties {
   maxLength?: number
   type: string
   allOf: { $ref: string }[]
+  items?: { $ref?: string; type?: string }
   example: string
   show_always: boolean
   help_text: string
   instructions: string
+  recommended_items?: string[]
 }
 
 export interface OpenApiSchemas {

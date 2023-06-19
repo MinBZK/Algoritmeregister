@@ -11,41 +11,35 @@
 
 <script setup lang="ts">
 import { watch } from 'vue'
+import { AlgorithmDisplay } from '~~/types/algoritme'
 
 const props = defineProps<{
-  tabsTableProperties: {
-    groupKey: string
-    properties: {
-      key: string
-      value: string
-      keyDescription: string
-      keyLabel: string
-    }[]
-  }[]
+  tabsTableProperties: AlgorithmDisplay[]
 }>()
 
 const tabProperties = computed(() =>
-  props.tabsTableProperties.map((s) => {
+  props.tabsTableProperties.map((group) => {
     return {
-      key: s.groupKey,
+      key: group.key,
+      keyLabel: group.keyLabel,
     }
   })
 )
 
 const activeKey = ref<string>(
-  useRoute().hash.slice(1) || props.tabsTableProperties[0]?.groupKey
+  useRoute().hash.slice(1) || props.tabsTableProperties[0]?.key
 )
 
 const activeProperties = computed(
   () =>
     props.tabsTableProperties.filter(
-      (groupedProperty) => groupedProperty.groupKey === activeKey.value
+      (groupedProperty) => groupedProperty.key === activeKey.value
     )[0]?.properties || []
 )
 
 watch(props, () => {
   if (!activeKey.value) {
-    activeKey.value = props.tabsTableProperties[0]?.groupKey
+    activeKey.value = props.tabsTableProperties[0]?.key
   }
 })
 </script>

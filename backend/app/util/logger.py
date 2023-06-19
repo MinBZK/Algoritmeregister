@@ -2,7 +2,6 @@ import logging
 
 
 def get_logger(name: str):
-
     """
     Inspired by: https://docs.python.org/3/howto/logging.html#configuring-logging
     """
@@ -17,7 +16,6 @@ def get_logger(name: str):
     # create formatter
     formatter = logging.Formatter(
         fmt="%(levelname)s | %(asctime)s | %(name)s | %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
     )
 
     # add formatter to ch

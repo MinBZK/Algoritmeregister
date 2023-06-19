@@ -24,14 +24,16 @@
 </template>
 
 <script setup lang="ts">
+import { ComputedRef } from 'nuxt/dist/app/compat/capi'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { Algoritme } from '~~/types/algoritme'
+import type { AlgorithmDisplay, Algoritme } from '~~/types/algoritme'
 import { AlgorithmIn } from '@/types/apiStandard'
 import algoritmeService from '@/services/algoritme'
 import { useMobileBreakpoint } from '~~/composables/mobile'
 import { objectMap } from '@/utils'
 import { tabsGrouping } from '@/types/layout'
+import { textVersionMapping } from '~~/config/config'
 
 const { t } = useI18n()
 const localePath = useLocalePath()
@@ -93,18 +95,22 @@ const parsedAlgoritme = computed(() => {
   })
 })
 
-const structuredAlgoritme = computed(() =>
+const structuredAlgoritme: ComputedRef<AlgorithmDisplay[]> = computed(() => {
+  const helpTextVersion = textVersionMapping[algoritme.value.standard_version]
+
   // Uses the columnGrouping config to map the flat algoritme fields into groups.
-  columnGrouping.value.map((grouping) => {
-    const groupKey = grouping.key
+  return columnGrouping.value.map((grouping) => {
+    const key = grouping.key
     // Builds property list of a single group.
     const properties = grouping.rows
       .map((key) => {
         return {
           key,
           value: parsedAlgoritme.value[key as keyof Algoritme],
-          keyDescription: t(`algorithmProperties.${key}.description`),
-          keyLabel: t(`algorithmProperties.${key}.label`),
+          keyDescription: t(
+            `algorithmProperties.${helpTextVersion}.${key}.description`
+          ),
+          keyLabel: t(`algorithmProperties.${helpTextVersion}.${key}.label`),
         }
       })
       // Filters empty and not required fields. An empty string is considered empty.
@@ -114,11 +120,12 @@ const structuredAlgoritme = computed(() =>
           : false
       })
     return {
-      groupKey,
+      key,
+      keyLabel: t(`algorithmProperties.${helpTextVersion}.headers.${key}`),
       properties,
     }
   })
-)
+})
 
 definePageMeta({
   title: 'Algoritme details',

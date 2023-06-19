@@ -1,9 +1,7 @@
 <template v-show="supportingTextLoaded">
-  <ClientOnly>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-  </ClientOnly>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
 <script setup lang="ts">
@@ -16,7 +14,8 @@ const supportingText = useState<SupportingText | null>(
   'supportingText',
   () => null
 )
-const { data } = getAllContent()
+
+const { data } = await getAllContent()
 supportingText.value = data.value
 if (supportingText.value) {
   supportingTextLoaded.value = true

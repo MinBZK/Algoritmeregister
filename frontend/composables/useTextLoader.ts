@@ -39,15 +39,7 @@ export const useTextLoader = () => {
     }
   }
 
-  const pNoMarkup = (key: string) => {
-    const translationWithMarkup = p(key)
-    return translationWithMarkup !== key
-      ? translationWithMarkup.replace(/<.*?>/gm, '')
-      : key
-  }
-
   return {
     p,
-    pNoMarkup,
   }
 }

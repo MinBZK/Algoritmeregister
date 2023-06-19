@@ -1,11 +1,7 @@
 <template>
-  <a :href="href" target="_blank">
+  <a :href="href" target="_blank" class="is-external-mail-icon">
+    <span class="visually-hidden">{{ t('mailLink') }}</span>
     <slot />
-    <img
-      class="is-external-icon"
-      :alt="t('mailLink')"
-      src="@/assets/images/icons/icon-mail.svg"
-    />
   </a>
 </template>
 

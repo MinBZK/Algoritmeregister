@@ -3,7 +3,7 @@
     <ClientOnly>
       <AlgoritmeAccordionRow
         v-for="p in accordionProperties"
-        :key="p.groupKey"
+        :key="p.key"
         :group-props="p"
       />
     </ClientOnly>
@@ -11,16 +11,10 @@
 </template>
 
 <script setup lang="ts">
+import { AlgorithmDisplay } from '~~/types/algoritme'
+
 defineProps<{
-  accordionProperties: {
-    groupKey: string
-    properties: {
-      key: string
-      value: string
-      keyDescription: string
-      keyLabel: string
-    }[]
-  }[]
+  accordionProperties: AlgorithmDisplay[]
 }>()
 
 const expandedTab = useState<string | undefined>('expandedTab', () => undefined)

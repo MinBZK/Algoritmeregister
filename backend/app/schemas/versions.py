@@ -12,9 +12,10 @@ class JsonSchemaProperty(BaseModel):
     show_always: bool
     help_text: str
     instructions: str
-    example: str
+    example: str | list[str]
     required: bool
     permitted_values: list[str] | None
+    recommended_items: list[str] | None
 
 
 class JsonSchema(BaseModel):
@@ -45,7 +46,7 @@ def _get_type_from_json_schema(properties: JsonSchemaProperty, key: str, version
     field_type = properties.type
     if field_type == "string":
         return str
-    elif field_type == "enum":
+    elif field_type == "enum" or field_type == "array":
         if properties.permitted_values:
             # make key from values: Text text -> becomes: text_text
             permitted_values_dict = {
@@ -56,7 +57,16 @@ def _get_type_from_json_schema(properties: JsonSchemaProperty, key: str, version
 
             versioned_name = _get_versioned_name(enum_name, version)
             dynamic_enum = enum.Enum(versioned_name, permitted_values_dict, type=str)
-            return dynamic_enum
+
+            if field_type == "enum":
+                return dynamic_enum
+            elif field_type == "array":
+                return list[dynamic_enum]
+            else:
+                raise ValueError
+        elif properties.recommended_items:
+            if field_type == "array":
+                return list[str]
     else:
         raise ValueError
 
@@ -71,6 +81,7 @@ def _get_prop_dict(field_props: JsonSchemaProperty):
         "example": field_props.example,
         "default": (...) if field_props.required else None,
         "type": field_props.type,
+        "recommended_items": field_props.recommended_items,
     }
 
     return field_dict
@@ -122,7 +133,7 @@ def create_algorithm_in_loader_schema(version: str):
     fields = {
         "create_dt": (datetime, Field(None)),
         "published": (bool, ...),
-        "algoritme_id": (str, ...),
+        "algoritme_id": (str, Field(None)),
     }
 
     model_name = _get_versioned_name("AlgorithmInLoader", version)

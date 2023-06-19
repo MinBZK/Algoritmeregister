@@ -106,203 +106,6 @@
     "numberOfMatches": "Matches",
     "loadingText": "Loading"
   },
-  "getAlgorithmPropertyExplanation": "Explanation of algorithm property '{field}'",
-  "algorithmProperties": {
-    "source_id": {
-      "label": "Source-ID",
-      "description": "The unique code the owner uses for this algorithm."
-    },
-    "provider": {
-      "label": "External provider",
-      "description": "If applicable, the external provider of the algorithm."
-    },
-    "process_index_url": {
-      "label": "Link to Processing Index",
-      "description": "The link to the GDPR-processing in a public register of the algorithm."
-    },
-    "tags": {
-      "label": "Tags",
-      "description": "Keywords describing the algorithm to improve search engine results in this register."
-    },
-    "toegevoegd_op": {
-      "label": "Toegevoegd op"
-    },
-    "slug": {
-      "label": ""
-    },
-    "algemeneInformatie": {
-      "label": "General information",
-      "description": "No description"
-    },
-    "name": {
-      "label": "Name",
-      "description": "The name used to refer to the algorithm."
-    },
-    "organization": {
-      "label": "Organisation",
-      "description": "The full name of the organisation responsible for the algorithm use."
-    },
-    "department": {
-      "label": "Department",
-      "description": "The full name of the sub-organisation or division responsible for the algorithm use."
-    },
-    "description_short": {
-      "label": "Short description",
-      "description": "A brief, high-level description of the algorithm (max. 150 characters)."
-    },
-    "type": {
-      "label": "Algorithm type",
-      "description": "Is the algorithm rule-based or based on machine learning? Rule-based algorithms are manually constructed by humans, usually based off of laws or regulations. Machine learning algorithms will find their own correlations based on the data given."
-    },
-    "category": {
-      "label": "Domain",
-      "description": "Keywords related to the domain in which the algorithm is deployed."
-    },
-    "website": {
-      "label": "Link to publication website",
-      "description": "The URL of the publication website of the organisation. On this page, you may find more information regarding the deployment of the algorithm at the organisation."
-    },
-    "status": {
-      "label": "Status",
-      "description": "The current implementation state of the algorithm: in development, in use, or out of service."
-    },
-    "inzet": {
-      "label": "Application",
-      "description": "No description"
-    },
-    "goal": {
-      "label": "Purpose",
-      "description": "The purpose for which the algorithm was developed and/or how the algorithm's deployment directly adds to this purpose."
-    },
-    "impact": {
-      "label": "Impact",
-      "description": "The impact of the algorithm on civilians and companies. For example: how does this algorithm work and what are its expected consequences for civilians and companies?"
-    },
-    "proportionality": {
-      "label": "Proportionality",
-      "description": "A consideration of pros and cons regarding the deployment of the algorithm and why this is reasonably justified."
-    },
-    "decision_making_process": {
-      "label": "Decision making process",
-      "description": "The name of the organisational process(es) within the organisation in which the algorithm is deployed."
-    },
-    "documentation": {
-      "label": "Link to project website",
-      "description": "The URL of the project website of the organisation. On this page, you may find more information regarding the project where the algorithm is deployed."
-    },
-    "toepassing": {
-      "label": "Use-case",
-      "description": "No description"
-    },
-    "description": {
-      "label": "Long description",
-      "description": "An extensive description of the algorithm (500-10000 characters)."
-    },
-    "application_url": {
-      "label": "Link to developer",
-      "description": "The URL of the application website of the developer. On this page, you may find more general information regarding the algorithm and its developer."
-    },
-    "publiccode": {
-      "label": "Link to code base",
-      "description": "The URL of the code base of the developer. On this page, you may find more specific information regarding the algorithm's code itself."
-    },
-    "mprd": {
-      "label": "Usage of base registries",
-      "description": "Does the algorithm directly use any data of the national base registries? More information is available at https://www.nldigitalgovernment.nl/"
-    },
-    "source_data": {
-      "label": "Data sources",
-      "description": "An overview of data sources that are currently being used by the algorithm and/or were initially being used to create the algorithm."
-    },
-    "methods_and_models": {
-      "label": "Methods and models",
-      "description": "Standard methodology or models that are being used by the algorithm."
-    },
-    "toezicht": {
-      "label": "Supervision",
-      "description": "No description"
-    },
-    "monitoring": {
-      "label": "Monitoring",
-      "description": "An overview of how the deployment of the algorithm is being monitored."
-    },
-    "human_intervention": {
-      "label": "Human intervention",
-      "description": "A description of how the output of the alghorithm is reviewed and may be edited by humans."
-    },
-    "risks": {
-      "label": "Risks",
-      "description": "An overview of the expected risks related to the deployment of this algorithm. "
-    },
-    "performance_standard": {
-      "label": "Evaluation metrics",
-      "description": "A description of the expected scoring of the algorithm, including its metrics."
-    },
-    "juridisch": {
-      "label": "Legal",
-      "description": "No description"
-    },
-    "competent_authority": {
-      "label": "Authorized body",
-      "description": "The full name of the authorized body responsible for the deployment of the algorithm."
-    },
-    "lawful_basis": {
-      "label": "Formal grounds",
-      "description": "A description of or link to the formal grounds that form the base of the deployment of this algorithm. For example: a law, a regulation or a formal decision."
-    },
-    "iama": {
-      "label": "Human Rights Impact Assessment (IAMA)",
-      "description": "Has the algorithm been verified through a human rights impact assessment (IAMA)?"
-    },
-    "iama_description": {
-      "label": "IAMA Description",
-      "description": "An executive summary of the IAMA results, if any."
-    },
-    "dpia": {
-      "label": "Data Protection Impact Assessment (DPIA)",
-      "description": "Has the algorithm been verified through a data protection impact assessment (DPIA)?"
-    },
-    "dpia_description": {
-      "label": "DPIA Description",
-      "description": "An executive summary of the DPIA results, if any."
-    },
-    "objection_procedure": {
-      "label": "Objection procedure",
-      "description": "A description of how civilians and companies may object against an outcome of the algorithm."
-    },
-    "metadata_algorithm": {
-      "label": "Metadata",
-      "description": "No description"
-    },
-    "standard_version": {
-      "label": "Scheme",
-      "description": "The registration scheme; in machine readable format."
-    },
-    "uuid": {
-      "label": "UUID",
-      "description": "The unique user identification (UUID) of this registration."
-    },
-    "url": {
-      "label": "Link to source registration",
-      "description": "The URL of the secondary register in which this algorithm was previously documented; in machine readable format"
-    },
-    "contact_email": {
-      "label": "Contact email",
-      "description": "The contact email for this registration."
-    },
-    "area": {
-      "label": "Geographic area",
-      "description": "The geopgrahical location in which the algorithm is deployed."
-    },
-    "lang": {
-      "label": "Language",
-      "description": "The language in which this registration is documented."
-    },
-    "revision_date": {
-      "label": "Revision date",
-      "description": "The revision date of this registration."
-    }
-  },
   "error": {
     "pageNotFound": "Page not found",
     "goToHome": "Go to the home page"
@@ -329,5 +132,305 @@
     "10": "October",
     "11": "November",
     "12": "December"
+  },
+  "getAlgorithmPropertyExplanation": "Explanation of algorithm property '{field}'",
+  "algorithmProperties": {
+    "default": {
+      "headers": {
+        "algemeneInformatie": "General information",
+        "inzet": "Application",
+        "toepassing": "Use-case",
+        "toezicht": "Supervision",
+        "juridisch": "Legal",
+        "metadata_algorithm": "Metadata"
+      },
+      "name": {
+        "label": "Name",
+        "description": "The name used to refer to the algorithm."
+      },
+      "organization": {
+        "label": "Organisation",
+        "description": "The full name of the organisation responsible for the algorithm use."
+      },
+      "department": {
+        "label": "Department",
+        "description": "The full name of the sub-organisation or division responsible for the algorithm use."
+      },
+      "description_short": {
+        "label": "Short description",
+        "description": "A brief, high-level description of the algorithm (max. 150 characters)."
+      },
+      "type": {
+        "label": "Algorithm type",
+        "description": "Is the algorithm rule-based or based on machine learning? Rule-based algorithms are manually constructed by humans, usually based off of laws or regulations. Machine learning algorithms will find their own correlations based on the data given."
+      },
+      "category": {
+        "label": "Domain",
+        "description": "Keywords related to the domain in which the algorithm is deployed."
+      },
+      "website": {
+        "label": "Link to publication website",
+        "description": "The URL of the publication website of the organisation. On this page, you may find more information regarding the deployment of the algorithm at the organisation."
+      },
+      "status": {
+        "label": "Status",
+        "description": "The current implementation state of the algorithm: in development, in use, or out of service."
+      },
+      "goal": {
+        "label": "Purpose",
+        "description": "The purpose for which the algorithm was developed and/or how the algorithm's deployment directly adds to this purpose."
+      },
+      "impact": {
+        "label": "Impact",
+        "description": "The impact of the algorithm on civilians and companies. For example: how does this algorithm work and what are its expected consequences for civilians and companies?"
+      },
+      "proportionality": {
+        "label": "Proportionality",
+        "description": "A consideration of pros and cons regarding the deployment of the algorithm and why this is reasonably justified."
+      },
+      "decision_making_process": {
+        "label": "Decision making process",
+        "description": "The name of the organisational process(es) within the organisation in which the algorithm is deployed."
+      },
+      "documentation": {
+        "label": "Link to project website",
+        "description": "The URL of the project website of the organisation. On this page, you may find more information regarding the project where the algorithm is deployed."
+      },
+      "description": {
+        "label": "Long description",
+        "description": "An extensive description of the algorithm (500-10000 characters)."
+      },
+      "application_url": {
+        "label": "Link to developer",
+        "description": "The URL of the application website of the developer. On this page, you may find more general information regarding the algorithm and its developer."
+      },
+      "publiccode": {
+        "label": "Link to code base",
+        "description": "The URL of the code base of the developer. On this page, you may find more specific information regarding the algorithm's code itself."
+      },
+      "mprd": {
+        "label": "Usage of base registries",
+        "description": "Does the algorithm directly use any data of the national base registries? More information is available at https://www.nldigitalgovernment.nl/"
+      },
+      "source_data": {
+        "label": "Data sources",
+        "description": "An overview of data sources that are currently being used by the algorithm and/or were initially being used to create the algorithm."
+      },
+      "methods_and_models": {
+        "label": "Methods and models",
+        "description": "Standard methodology or models that are being used by the algorithm."
+      },
+      "monitoring": {
+        "label": "Monitoring",
+        "description": "An overview of how the deployment of the algorithm is being monitored."
+      },
+      "human_intervention": {
+        "label": "Human intervention",
+        "description": "A description of how the output of the alghorithm is reviewed and may be edited by humans."
+      },
+      "risks": {
+        "label": "Risks",
+        "description": "An overview of the expected risks related to the deployment of this algorithm. "
+      },
+      "performance_standard": {
+        "label": "Evaluation metrics",
+        "description": "A description of the expected scoring of the algorithm, including its metrics."
+      },
+      "competent_authority": {
+        "label": "Authorized body",
+        "description": "The full name of the authorized body responsible for the deployment of the algorithm."
+      },
+      "lawful_basis": {
+        "label": "Formal grounds",
+        "description": "A description of or link to the formal grounds that form the base of the deployment of this algorithm. For example: a law, a regulation or a formal decision."
+      },
+      "iama": {
+        "label": "Human Rights Impact Assessment (IAMA)",
+        "description": "Has the algorithm been verified through a human rights impact assessment (IAMA)?"
+      },
+      "iama_description": {
+        "label": "IAMA Description",
+        "description": "An executive summary of the IAMA results, if any."
+      },
+      "dpia": {
+        "label": "Data Protection Impact Assessment (DPIA)",
+        "description": "Has the algorithm been verified through a data protection impact assessment (DPIA)?"
+      },
+      "dpia_description": {
+        "label": "DPIA Description",
+        "description": "An executive summary of the DPIA results, if any."
+      },
+      "objection_procedure": {
+        "label": "Objection procedure",
+        "description": "A description of how civilians and companies may object against an outcome of the algorithm."
+      },
+      "standard_version": {
+        "label": "Scheme",
+        "description": "The registration scheme; in machine readable format."
+      },
+      "uuid": {
+        "label": "UUID",
+        "description": "The unique user identification (UUID) of this registration."
+      },
+      "url": {
+        "label": "Link to source registration",
+        "description": "The URL of the secondary register in which this algorithm was previously documented; in machine readable format"
+      },
+      "contact_email": {
+        "label": "Contact email",
+        "description": "The contact email for this registration."
+      },
+      "area": {
+        "label": "Geographic area",
+        "description": "The geopgrahical location in which the algorithm is deployed."
+      },
+      "lang": {
+        "label": "Language",
+        "description": "The language in which this registration is documented."
+      },
+      "revision_date": {
+        "label": "Revision date",
+        "description": "The revision date of this registration."
+      },
+      "source_id": {
+        "label": "Source-ID",
+        "description": "The unique code the owner uses for this algorithm."
+      },
+      "provider": {
+        "label": "External provider",
+        "description": "If applicable, the external provider of the algorithm."
+      },
+      "process_index_url": {
+        "label": "Link to Processing Index",
+        "description": "The link to the GDPR-processing in a public register of the algorithm."
+      },
+      "tags": {
+        "label": "Tags",
+        "description": "Keywords describing the algorithm to improve search engine results in this register."
+      }
+    },
+    "0_4_0": {
+      "headers": {
+        "algemeneInformatie": "General information",
+        "verantwoordGebruik": "Responsible use",
+        "technischeWerking": "Technical references"
+      },
+      "name": {
+        "label": "Name",
+        "description": "The name used to refer to the algorithm."
+      },
+      "organization": {
+        "label": "Organisation",
+        "description": "The full name of the organisation using the algorithm."
+      },
+      "description_short": {
+        "label": "Short description",
+        "description": "A brief description of the algorithm"
+      },
+      "type": {
+        "label": "Self-learning",
+        "description": "Is it algorithm or self-learning? In a non-self-learning algorithm, the human specifies the rules for the computer to follow. If it's a self-learning algorithm, the machine learns about the patterns in the data."
+      },
+      "category": {
+        "label": "Theme",
+        "description": "Keywords related to the domain in which the algorithm is deployed."
+      },
+      "website": {
+        "label": "Link to publication website",
+        "description": "The URL of the publication website of the organisation. On this page, you may find more information regarding the deployment of the algorithm at the organisation."
+      },
+      "status": {
+        "label": "Status",
+        "description": "The current implementation state of the algorithm: in development, in use, or out of service."
+      },
+      "begin_date": {
+        "label": "Begin date",
+        "description": "Month and year in which the algorithm was launched."
+      },
+      "end_date": {
+        "label": "End date",
+        "description": "Month in which the algorithm was retired."
+      },
+      "goal": {
+        "label": "Goal and impact",
+        "description": "The purpose for which the algorithm was developed and the impact it has on civilians and companies."
+      },
+      "proportionality": {
+        "label": "Considerations",
+        "description": "A consideration of pros and cons regarding the deployment of the algorithm and why this is reasonably justified."
+      },
+      "provider": {
+        "label": "External provider",
+        "description": "If applicable, the external provider of the algorithm."
+      },
+      "lawful_basis": {
+        "label": "Legal basis",
+        "description": "A description of the legal basis for the process in which the algorithm is used."
+      },
+      "lawful_basis_link": {
+        "label": "Link to legal basis",
+        "description": "A link to the legal basis for the process in which the algorithm is used."
+      },
+      "impacttoetsen": {
+        "label": "Impact assessments",
+        "description": "The impact assessments that were used, such as the Data Protection Impact Asssesment (DPIA) or Impact Assessment Mensenrechten en Algoritmes (IAMA)?"
+      },
+      "iama_description": {
+        "label": "Link to impact assessment",
+        "description": "Link to the results of a conducted impact assessment such as a DPIA or IAMA."
+      },
+      "url": {
+        "label": "Link to source registration",
+        "description": "The URL of the secondary register in which this algorithm was previously documented; in machine readable format"
+      },
+      "contact_email": {
+        "label": "Contact information",
+        "description": "Contact information for this registration."
+      },
+      "lang": {
+        "label": "Language",
+        "description": "The language in which this registration is documented."
+      },
+      "standard_version": {
+        "label": "Publication Standard",
+        "description": "The registration scheme; in machine readable format."
+      },
+      "uuid": {
+        "label": "National-ID",
+        "description": "The unique user identification (UUID) of this registration."
+      },
+      "source_id": {
+        "label": "Source-ID",
+        "description": "The unique code the owner uses for this algorithm."
+      },
+      "tags": {
+        "label": "Tags",
+        "description": "Keywords describing the algorithm to improve search engine results in this register."
+      },
+      "source_data": {
+        "label": "Data",
+        "description": "An overview of data that are used by the algorithm and/or were initially being used to create the algorithm."
+      },
+      "source_data_link": {
+        "label": "Link to data sources",
+        "description": "Links to additional information about the used data sources."
+      },
+      "methods_and_models": {
+        "label": "Technical design",
+        "description": "Explanation of how the algorithm works."
+      },
+      "publiccode": {
+        "label": "Link to code base",
+        "description": "The URL of the code base of the developer. On this page, you may find more specific information regarding the algorithm's code itself."
+      },
+      "human_intervention": {
+        "label": "Human intervention",
+        "description": "A description of how the output of the algorithm is used by humans and how they can be reviewed and edited."
+      },
+      "risks": {
+        "label": "Risk management",
+        "description": "An overview of how risks are dealt with."
+      }
+    }
   }
 }

@@ -1,11 +1,7 @@
 <template>
-  <a :href="href" target="_blank">
+  <a :href="href" target="_blank" class="is-external-link-icon">
+    <span class="visually-hidden">{{ t('externalLink') }}</span>
     <slot />
-    <img
-      class="is-external-icon"
-      :alt="t('externalLink')"
-      src="@/assets/images/icons/icon-link-external-v2.svg"
-    />
   </a>
 </template>
 

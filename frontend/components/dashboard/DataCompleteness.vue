@@ -94,7 +94,10 @@ await algoritmeService.getColumns().then((value) => {
 })
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+.block-info {
+  max-width: 100%;
+}
 .word-break {
   word-break: break-word;
 }

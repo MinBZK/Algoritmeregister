@@ -1,5 +1,4 @@
-# FROM harbor.cicd.s15m.nl/ictu-devops-pub/rid_base:3.11_alpine_3.16
-FROM harbor.cicd.s15m.nl/ictu-devops-pub/rid_base:3.11-slim2-0.1 as buildstep
+FROM harbor.cicd.s15m.nl/ictu-devops-pub/algreg_base as buildstep
 
 ENV YOUR_ENV=${YOUR_ENV} \
   PYTHONFAULTHANDLER=1 \
@@ -46,13 +45,27 @@ RUN sudo apt-get clean
 
 FROM harbor.cicd.s15m.nl/ictu-devops-pub/python:3.11.1-lunar-devops_base_0.2
 WORKDIR /backend
-
 COPY --from=buildstep /backend /backend
+
+# Copy python binaries ensuring a clean install without overhead
 COPY --from=buildstep /usr/local/lib /usr/local/lib
 RUN ln -f -s /usr/bin/python3.11 /usr/bin/python3
 ENV PYTHONPATH="${PYTHONPATH}:/usr/local/lib/python3.11/site-packages"
 
-RUN sudo chmod 777 /backend/start.sh
+# remove unused dist-packages to prevent false positives for trivy
+RUN rm -rf /usr/local/lib/python3.11/dist-packages
 
+# add testing tools
+RUN pip install pytest==7.3.1 coverage==7.2.7
+
+# # add non root user for security with home directory for test files
+RUN groupadd -r nonroot &&\
+  useradd -r -g nonroot nonroot
+RUN chown -R nonroot:nonroot /backend
+
+# make start.sh executable
+RUN chmod 777 /backend/start.sh
+
+USER nonroot
 EXPOSE 8000:8000
 CMD ["./start.sh"]

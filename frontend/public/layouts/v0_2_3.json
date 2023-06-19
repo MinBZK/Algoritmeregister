@@ -1,4 +1,14 @@
 {
+    "headerCardGrouping": {
+        "mainElement": "description_short",
+        "subElements": [
+            "organization",
+            "department",
+            "category",
+            "type",
+            "status"
+        ]
+    },
     "tabsGrouping": [
         {
             "key": "algemeneInformatie",

@@ -21,13 +21,13 @@ const linkify = (inputText: string) => {
       regex:
         // eslint-disable-next-line
         /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim,
-      template: `<a href="$1" target="_blank">$1 <img class="is-external-icon" alt="${externalLinkLabel}" src="/icon-link-external-v2.svg"/></a>`,
+      template: `<a href="$1" target="_blank" class="is-external-link-icon"><span class="visually-hidden">${externalLinkLabel}</span> $1</a>`,
     },
     mail: {
       // eslint-disable-next-line
       regex: /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim,
-      template: `<a href="mailto:$1" class="is-mail" alt="${mailLinkLabel}">$1</a>`,
-      // template: `<a href="mailto:$1" target="_blank">$1 <img class="is-external-icon" alt="${mailLinkLabel}" src="/icon-mail.svg"/></a>`,
+      // template: `<a href="mailto:$1" class="is-mail" alt="${mailLinkLabel}">$1</a>`,
+      template: `<a href="mailto:$1" target="_blank" class="is-external-mail-icon"><span class="visually-hidden">${mailLinkLabel}</span> $1</a>`,
     },
   }
 
@@ -64,9 +64,3 @@ watch(currentLocale, () => {
   parseTarget()
 })
 </script>
-
-<style lang="scss">
-.word-break {
-  word-break: break-word;
-}
-</style>

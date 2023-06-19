@@ -8,7 +8,7 @@
       <v-select
         v-model="dataStore.data.standard_version"
         :items="selectableVersions"
-        label="Versie"
+        label="Publicatiestandaard"
         outlined
         dense
         variant="outlined"
@@ -44,7 +44,9 @@
         class="text-lowercase elevation-0 text-body-1 mb-2"
         block
         color="success"
-        :disabled="isReleased || !lars"
+        :disabled="
+          (isPublished && !dataStore.unsavedChanges) || isReleased || !lars
+        "
         @click="dialogs.release = true"
       >
         <span id="btn-title">
@@ -216,7 +218,7 @@ const handlePreview = async (lars?: string) => {
   dataStore.resetFeedback()
   const response = await handleSubmit(lars)
   if (response.status == 200) {
-    dataStore.handlePreview(
+    await dataStore.handlePreview(
       lars ? lars : (response.data as { lars_code: string }).lars_code
     )
   }
@@ -247,11 +249,11 @@ const handlePublish = async (lars?: string) => {
   const response = await handleSubmit(lars)
   if (response.status == 200) {
     if (!isReleased.value) {
-      dataStore.handleRelease(
+      await dataStore.handleRelease(
         lars ? lars : (response.data as { lars_code: string }).lars_code
       )
     }
-    dataStore.handlePublish(
+    await dataStore.handlePublish(
       lars ? lars : (response.data as { lars_code: string }).lars_code
     )
   }

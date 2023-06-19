@@ -51,13 +51,44 @@
       v-else-if="field.type === 'enum'"
       ref="select"
       v-model="dataStore.data[fieldKey]"
-      :items="field.allowedValues!"
+      class="v-select-details"
+      :items="field.allowedItems!"
       :label="field.title + (field.required ? '*' : '')"
       :hint="field.helpText ?? ''"
       :rules="field.rules"
       clearable
       variant="outlined"
-      :hide-details="!focused && ruleCompliant"
+      @click:clear.prevent="select.resetValidation()"
+      @update:model-value="declareUnsavedChanges"
+    />
+    <v-combobox
+      v-else-if="field.type === 'array' && field.recommendedItems"
+      ref="select"
+      v-model="dataStore.data[fieldKey]"
+      class="v-select-details"
+      :items="field.recommendedItems!"
+      :label="field.title + (field.required ? '*' : '')"
+      :hint="field.helpText ?? ''"
+      :rules="field.rules"
+      multiple
+      chips
+      clearable
+      variant="outlined"
+      @click:clear.prevent="select.resetValidation()"
+      @update:model-value="declareUnsavedChanges"
+    />
+    <v-select
+      v-else-if="field.type === 'array' && field.allowedItems"
+      ref="select"
+      v-model="dataStore.data[fieldKey]"
+      class="v-select-details"
+      :items="field.allowedItems!"
+      :label="field.title + (field.required ? '*' : '')"
+      :hint="field.helpText ?? ''"
+      :rules="field.rules"
+      multiple
+      clearable
+      variant="outlined"
       @click:clear.prevent="select.resetValidation()"
       @update:model-value="declareUnsavedChanges"
     />
@@ -145,12 +176,6 @@ const handleFocusUpdate = (component: any) => {
   }
 }
 
-// v-select is not able to detect focus. Need to watch the 'focused' attribute
-const selectFocusWatcher = computed(() => select.value?.focused || undefined)
-watch(selectFocusWatcher, () => {
-  handleFocusUpdate(select.value)
-})
-
 // Make errors persistent on feedback of calls.
 const feedbackWatcher = computed(() => dataStore.feedback.error)
 watch(feedbackWatcher, () => {
@@ -169,12 +194,14 @@ watch(positiveFeedbackWatcher, () => {
   padding-bottom: 0 !important;
 }
 
+// Give disabled text-fields a grey background color.
 .disabled-normal-colour .v-field {
   .v-field__field {
     background-color: #f1f1f1;
   }
 }
 
+// Give all field same color scheme, even when disabled.
 :root {
   --v-medium-emphasis-opacity: 1;
   --v-disabled-opacity: 1;
@@ -185,13 +212,17 @@ watch(positiveFeedbackWatcher, () => {
   --v-disabled-opacity: 1;
 }
 
+// Show the tooltip as enabled even though it is disabled
 .show-as-enabled.v-btn--disabled {
   opacity: 1;
 }
 
+// Make the field use a big font size
 .field-name .v-field__input {
   font-size: 3em !important;
 }
+
+// Make title and text bold
 .bold-title {
   .v-field-label {
     font-weight: bold !important;
@@ -199,5 +230,15 @@ watch(positiveFeedbackWatcher, () => {
   .v-field__input {
     font-weight: bold !important;
   }
+}
+
+// The v-select has issues as you cannot detect focus.
+// This decreases the details, but increases the message size, giving the same effect overall.
+.v-select-details > .v-input__details {
+  margin-bottom: -2em !important;
+}
+
+.v-select-details > .v-input__details > .v-messages > .v-messages__message {
+  margin-bottom: 1.5em;
 }
 </style>

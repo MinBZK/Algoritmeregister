@@ -30,7 +30,10 @@
 
         <td :lang="backendContentLanguage">
           <ParseUrl :key="property.value || t('ontbreekt')">
-            {{ property.value || t('ontbreekt') }}
+            <ListifyString
+              list-style="padding-left: 1em;"
+              :text="property.value || t('ontbreekt')"
+            />
           </ParseUrl>
         </td>
       </tr>

@@ -13,6 +13,7 @@
         <h2>{{ algoritme.name }}</h2>
       </NuxtLink>
     </div>
+
     <p :lang="backendContentLanguage">
       <ParseUrl :key="algoritme.lars"> {{ description }}</ParseUrl
       >&nbsp;
@@ -25,14 +26,18 @@
 
     <dl class="dl columns--data">
       <div
-        v-for="sT in summaryTiles"
+        v-for="sT in cardGrouping?.subElements"
         :key="sT"
         :class="smallBreakpoint && 'column--fullwidth'"
       >
-        <dt>{{ t(`algorithmProperties.${sT}.label`) }}</dt>
+        <dt>
+          {{ t(`algorithmProperties.${helpTextVersion}.${sT}.label`) }}
+        </dt>
         <dd class="no-bottom-margin" :lang="backendContentLanguage">
           <ParseUrl :key="sT">
-            {{ algoritme[sT as keyof Algoritme] || t('ontbreekt') }}
+            <ListifyString
+              :text="algoritme[sT as keyof Algoritme] || t('ontbreekt')"
+            />
           </ParseUrl>
         </dd>
       </div>
@@ -50,8 +55,9 @@
 </template>
 
 <script setup lang="ts">
-import { summaryTiles, backendContentLanguage } from '@/config/config'
+import { backendContentLanguage, textVersionMapping } from '@/config/config'
 import type { Algoritme } from '@/types/algoritme'
+import type { headerCardGrouping } from '@/types/layout'
 
 interface Props {
   algoritme: Algoritme
@@ -78,11 +84,14 @@ const shortDescriptionMissing = computed(() => t('short-description-missing'))
 
 const length = 300
 const truncatedDescription = computed(() => {
-  const truncatedString = props.algoritme.description_short.substring(0, length)
+  const truncatedString = (
+    props.algoritme.description_short as string | null
+  )?.substring(0, length)
   return truncatedString === props.algoritme.description_short
     ? props.algoritme.description_short
     : truncatedString + '...'
 })
+
 const description =
   props.mode === 'compact'
     ? truncatedDescription
@@ -91,7 +100,7 @@ const description =
 const isTruncated = computed(() => {
   return (
     truncatedDescription.value !==
-    props.algoritme.description_short.substring(0, length)
+    (props.algoritme.description_short as string | null)?.substring(0, length)
   )
 })
 
@@ -99,7 +108,16 @@ const algorithmLink = ref<HTMLAnchorElement>()
 
 onMounted(() => {
   focusCardLink()
+  getGrouping(props.algoritme.standard_version)
 })
+
+const cardGrouping = ref<headerCardGrouping>()
+const getGrouping = async (version: string) => {
+  const layoutUrl = '/layouts/v' + version.replace(/\./g, '_') + '.json'
+  const fetchResponse = await fetch(layoutUrl)
+  const layout = await fetchResponse.json()
+  cardGrouping.value = layout.headerCardGrouping
+}
 
 const focusCardLink = () => {
   if (algorithmLink.value?.firstChild && props.setFocus) {
@@ -107,6 +125,10 @@ const focusCardLink = () => {
     emit('focusHasBeenSet')
   }
 }
+
+const helpTextVersion = computed(
+  () => textVersionMapping[props.algoritme.standard_version]
+)
 
 const setFocusWatcher = computed(() => props.setFocus)
 watch(setFocusWatcher, (newValue) => {

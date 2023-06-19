@@ -1,35 +1,90 @@
 <template>
+  <v-snackbar
+    v-model="showSnackbar"
+    color="red"
+    location="top"
+    class="mt-8"
+  >
+    {{ errorMessage }}
+    <template #actions>
+      <v-btn icon @click=";[(errorMessage = ''), (showSnackbar = false)]">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </template>
+  </v-snackbar>
   <v-row>
     <v-col>
-      <h1 :class="singleOrgOverview ? 'text-h4 px-0' : 'text-h4 px-0 mt-10'">
-        Overzicht {{ authStore.selectedOrg.name }}
+      <h1 :class="{ 'text-h4 px-0': true, 'mt-10': !singleOrgOverview }">
+        Overzicht {{ authStore.selectedOrg?.name }}
       </h1>
     </v-col>
-    <div class="pt-1" style="display: grid">
-      <div
-        v-if="authStore.selectedOrg.id && !singleOrgOverview"
-        style="justify-self: end; width: 15em"
-      >
-        <v-label> Organisatie </v-label>
-        <v-select
-          :value="authStore.selectedOrg.name"
-          :items="authStore.organizations"
-          item-title="name"
-          item-value="id"
-          variant="outlined"
-          hide-details
-          @update:model-value="authStore.selectOrganization($event)"
-        />
-      </div>
-      <v-btn
-        class="mt-3 text-lowercase rounded-0 block"
-        color="blue-darken-2"
-        flat
-        @click="navigateToForm"
-      >
-        <span id="btn-title"> Nieuw algoritme </span>
-      </v-btn>
-    </div>
+    <v-col
+      v-if="authStore.organizations.length != 0"
+      lg="4"
+      md="5"
+      cols="12"
+    >
+      <template v-if="!singleOrgOverview">
+        <v-row>
+          <v-label> Organisatie </v-label>
+        </v-row>
+        <v-row>
+          <v-select
+            :value="authStore.selectedOrg?.name"
+            :items="authStore.organizations"
+            item-title="name"
+            item-value="id"
+            variant="outlined"
+            hide-details
+            @update:model-value="authStore.selectOrganization($event)"
+          />
+        </v-row>
+      </template>
+      <v-row>
+        <v-col cols="6" class="pl-0 pt-3 pr-2">
+          <v-btn
+            v-if="authStore.selectedOrg?.id"
+            class="text-lowercase rounded-0 block btn-title"
+            color="blue-darken-2"
+            flat
+            block
+            :disabled="loading || algorithmStore.algorithms.length === 0"
+            @click="downloadExcel"
+          >
+            <template v-if="loading">
+              <v-progress-circular
+                indeterminate
+                class="mr-4"
+                :size="21"
+                :width="3"
+              />
+              <span class="btn-title">Even geduld ...</span>
+            </template>
+            <template v-else>
+              <v-icon class="mr-2" size="21">
+                mdi-microsoft-excel
+              </v-icon>
+              <span class="btn-title"> Download Excel </span>
+            </template>
+          </v-btn>
+        </v-col>
+        <v-col cols="6" class="pl-2 pt-3 pr-0">
+          <v-btn
+            v-if="!(authStore.organizations.length == 0)"
+            class="text-lowercase rounded-0 block"
+            color="blue-darken-2"
+            flat
+            block
+            @click="navigateToForm"
+          >
+            <v-icon class="mr-2" size="21">
+              mdi-playlist-plus
+            </v-icon>
+            <span class="btn-title"> Nieuw algoritme </span>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-col>
   </v-row>
   <v-row v-if="!algorithmStore.loaded">
     <v-col cols="12" align="center">
@@ -81,13 +136,14 @@
       </template>
     </v-data-table>
     <v-col
-      v-else-if="!authStore.selectedOrg.id"
+      v-else-if="!authStore.selectedOrg?.id"
       class="light-border text-center"
     >
-      Er zijn nog geen organisaties aan dit account gekoppeld
+      Je bent nog niet aan een organisatie gekoppeld. Neem contact op met de
+      beheerder om rechten tot een organisatie te verkrijgen.
     </v-col>
     <v-col v-else class="light-border text-center">
-      Er zijn nog geen algoritmes toegevoegd aan deze organisatie.
+      Dit overzicht is nog leeg. Voer een eerste algoritmebeschrijving in.
     </v-col>
   </v-row>
 </template>
@@ -95,14 +151,17 @@
 <script lang="ts" setup>
 import { useAuthStore } from '@/store/auth'
 import { useAlgorithmStore } from '@/store/overview'
-import { computed, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { Algorithm } from '@/types/algorithm'
+import { getExcelFile } from '@/services'
 
 const router = useRouter()
 const authStore = useAuthStore()
 const algorithmStore = useAlgorithmStore()
-algorithmStore.fetchAlgorithms(authStore.selectedOrg)
+if (authStore.selectedOrg) {
+  algorithmStore.fetchAlgorithms(authStore.selectedOrg)
+}
 
 const algorithms = computed<Algorithm[]>(() => {
   return algorithmStore.algorithmsFormatted
@@ -111,7 +170,7 @@ const headers = [
   { title: 'Naam', value: 'name' },
   { title: 'Status', value: 'overviewStatus' },
   { title: 'Laatst bewerkt', value: 'last_update_dt' },
-  { title: 'Versie', value: 'schema_version' },
+  { title: 'Publicatiestandaard', value: 'schema_version' },
   { title: 'ID', value: 'lars' },
   { title: '', key: 'actions', sortable: false },
 ]
@@ -125,11 +184,41 @@ const navigateToForm = (event: Event, data: any) => {
   }
 }
 
+const loading = ref(false)
+const errorMessage = ref('')
+const showSnackbar = ref(false)
+const downloadExcel = async () => {
+  const organization = authStore.selectedOrg
+  if (!organization) {
+    return
+  }
+  loading.value = true
+  showSnackbar.value = false
+  errorMessage.value = ''
+  await getExcelFile(organization)
+    .then((response) => {
+      const blob = new Blob([response.data as BlobPart], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      })
+      const fileURL = window.URL.createObjectURL(blob)
+      const fileLink = document.createElement('a')
+      fileLink.href = fileURL
+      fileLink.setAttribute('download', 'overzicht_algoritmes.xlsx')
+      document.body.appendChild(fileLink)
+      fileLink.click()
+    })
+    .catch((error) => {
+      errorMessage.value = error.data
+      showSnackbar.value = true
+    })
+    .finally(() => (loading.value = false))
+}
+
 const singleOrgOverview = computed(() => authStore.organizations.length == 1)
 
 watch(
   () => authStore.selectedOrg,
-  () => algorithmStore.fetchAlgorithms(authStore.selectedOrg)
+  () => algorithmStore.fetchAlgorithms(authStore.selectedOrg!)
 )
 </script>
 
@@ -149,7 +238,7 @@ watch(
   }
 }
 
-#btn-title:first-letter {
+.btn-title:first-letter {
   text-transform: capitalize;
 }
 </style>

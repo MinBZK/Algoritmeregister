@@ -14,10 +14,10 @@ export function buildRulesFromProperties(
     }
   }
   if (field.type == 'enum') {
-    if (field.allowedValues) {
+    if (field.allowedItems) {
       rules.push(
         (v: string | null) =>
-          (v ? Object.values(field.allowedValues!).includes(v) : true) ||
+          (v ? Object.values(field.allowedItems!).includes(v) : true) ||
           'Selecteer 1 van de toegestane waardes.'
       )
     }

@@ -7,11 +7,21 @@
         </h3>
 
         <div class="row button--block">
-          <select v-model="listValue" aria-describedby="select-helptext-1">
-            <option v-for="column in columns" :key="column" :value="column.key">
-              {{ column.label }}
-            </option>
-          </select>
+          <div>
+            <select
+              v-model="listValue"
+              style="width: 100%"
+              aria-describedby="select-helptext-1"
+            >
+              <option
+                v-for="column in columns"
+                :key="column"
+                :value="column.key"
+              >
+                {{ column.label }}
+              </option>
+            </select>
+          </div>
         </div>
 
         <div class="row">
@@ -72,19 +82,20 @@ const interestingColumns: string[] = [
   'area',
   'lang',
   'mprd',
+  'standard_version',
 ]
 
 const columnApi = await algoritmeService.getColumns()
 const columns = computed(() =>
   columnApi.data.value
+    .filter((column: any) => {
+      return interestingColumns.includes(column.column_name)
+    })
     .map((column: any) => {
       return {
         key: column.column_name,
-        label: t(`algorithmProperties.${column.column_name}.label`),
+        label: t(`algorithmProperties.default.${column.column_name}.label`),
       }
-    })
-    .filter((column: { key: string; label: string }) => {
-      return interestingColumns.includes(column.key)
     })
 )
 
@@ -131,6 +142,9 @@ watch(listValue, () => {
 </script>
 
 <style lang="scss">
+.block-info {
+  max-width: 100%;
+}
 .word-break {
   word-break: break-word;
 }

@@ -71,9 +71,25 @@ definePageMeta({
 useHead({ title: 'Dashboard' })
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+@media (min-width: 85em) {
+  .block-cards__card:first-child {
+    padding-right: 2em !important;
+  }
+  .block-cards__card {
+    width: 50% !important;
+    height: 100%;
+  }
+}
 .block-cards__card {
-  margin-right: 20px;
+  width: 100%;
+}
+.block-cards {
+  padding-top: 2em;
+}
+.block-cards__card {
+  margin-bottom: 0em;
+  padding-bottom: 1em;
 }
 h2 {
   font-size: 1.4rem !important;
@@ -81,8 +97,5 @@ h2 {
 }
 h1 {
   margin-bottom: 0.4em;
-}
-.block-cards {
-  padding-top: 2em;
 }
 </style>

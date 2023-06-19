@@ -29,7 +29,7 @@ class Columns(str, Enum):
     juridisch_dpia_description = "dpia_description"
     juridisch_objection_procedure = "objection_procedure"
 
-    metadata_schema = "schema"
+    metadata_standard_version = "standard_version"
     metadata_uuid = "uuid"
     metadata_url = "url"
     metadata_contact_email = "contact_email"

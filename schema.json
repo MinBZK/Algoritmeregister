@@ -1,276 +1,333 @@
 {
-  "$id": "https://standaard.algoritmeregister.org/schemas/registration-v0.2.nl.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "NL Standaard voor Registratie van Algoritmes en AI",
+  "title": "NL Standaard voor Registratie van Algoritmes en AI, v0.4.0",
   "description": "Standaard voor de registratie van de inzet van modellen, algoritmes en AI in beleid en besluitvormingsprocessen in Nederlandse overheidsorganisaties.",
   "type": "object",
   "properties": {
     "name": {
-      "title": "Naam",
-      "maxLength": 100,
       "type": "string",
+      "title": "Naam",
+      "max_length": 100,
+      "show_always": true,
       "help_text": "De naam die gebruikt wordt om het algoritme aan te duiden",
-      "show_always": true
+      "instructions": "De algemeen gehanteerde naam van het algoritme.",
+      "example": "Automatische Verkeersregeling Ringweg",
+      "required": true
     },
     "organization": {
+      "type": "string",
       "title": "Organisatie",
-      "maxLength": 100,
-      "type": "string",
-      "help_text": "De volledige naam van de organisatie verantwoordelijk voor de inzet van het algoritme.",
-      "show_always": true
-    },
-    "department": {
-      "title": "Afdeling",
-      "maxLength": 500,
-      "type": "string",
-      "help_text": "De volledige naam van de afdeling of divisie verantwoordelijk voor de inzet van het algoritme.",
-      "show_always": true
+      "max_length": 250,
+      "show_always": true,
+      "help_text": "De volledige naam van de organisatie waar het algoritme ingezet wordt.",
+      "instructions": "De volledige naam van de organisatie waar het algoritme ingezet wordt. In het geval van een uitvoeringsorganisatie vallend onder een ministerie: gebruik de naam van de uitvoeringsorganisatie zelf, gevolgd door de afkorting tussen haakjes.",
+      "example": "Gemeente Noorderhaaks",
+      "required": true
     },
     "description_short": {
-      "title": "Korte omschrijving",
-      "maxLength": 150,
       "type": "string",
-      "help_text": "Een korte, abstracte beschrijving van het algoritme.",
-      "show_always": true
+      "title": "Korte omschrijving",
+      "max_length": 250,
+      "show_always": true,
+      "help_text": "Een korte beschrijving van het algoritme.",
+      "instructions": "Een korte, duidelijke beschrijving van het algoritme en het proces waarin deze gebruikt wordt. Bij voorkeur in één of twee zinnen. Doel van dit veld is om bij het zoeken naar algoritmes een korte omschrijving van het algoritme te geven. Vul dit veld in op B1-taalniveau. ",
+      "example": "Dit algoritme zorgt met sensoren in het wegdek ervoor dat het verkeer zo makkelijk mogelijk doorstroomt.",
+      "required": false
     },
     "type": {
-      "title": "Type algoritme",
       "type": "enum",
-      "allOf": [
-        "Regelgebaseerd",
-        "Zelflerend"
-      ],
-      "help_text": "Is het algoritme op regels gebaseerd of zelflerend? Regelgebaseerde algoritmes zijn handmatig door mensen gebouwd, meestal op basis van wetten of verordeningen. Zelflerende algoritmes kunnen zelf verbanden ontdekken in gegevens.",
-      "show_always": true
+      "title": "(Zelf)lerend",
+      "show_always": true,
+      "help_text": "Is het algoritme zelflerend? In een niet-zelflerend algoritme specificeert de mens de regels die de computer moet volgen. Als het een zelflerend algoritme is, leert de machine over de patronen in de data.  ",
+      "instructions": "Is het algoritme zelflerend? In een niet-zelflerend algoritme specificeert de mens de regels die de computer moet volgen. Als het een zelflerend algoritme is, leert de machine over de patronen in de data. In het geval dat een algoritme deels beiden doet, kies voor dan voor zelflerend. Ten behoeve van de websitefunctionaliteit is het noodzakelijk om geen andere informatie in dit veld op te nemen dan een van de keuzes hierboven.",
+      "example": "Nee",
+      "required": false,
+      "permitted_values": [
+        "Ja",
+        "Nee"
+      ]
     },
     "category": {
+      "type": "array",
       "title": "Beleidsterrein",
-      "maxLength": 500,
-      "type": "string",
-      "help_text": "Het beleidsterrein waarin het algoritme wordt ingezet.",
-      "show_always": true
+      "show_always": true,
+      "help_text": "Het beleidsterrein waarin het algoritme wordt ingezet",
+      "instructions": "Beleidsterrein(en) waarin het algoritme wordt ingezet.",
+      "example": [
+        "Verkeer",
+        "Landbouw"
+      ],
+      "required": false,
+      "permitted_values": [
+        "Bestuur",
+        "Cultuur en recreatie",
+        "Economie",
+        "Financiën",
+        "Huisvesting",
+        "Internationaal",
+        "Landbouw",
+        "Migratie en integratie",
+        "Natuur en milieu",
+        "Onderwijs en wetenschap",
+        "Openbare orde en veiligheid",
+        "Recht",
+        "Ruimte en infrastructuur",
+        "Sociale zekerheid",
+        "Verkeer",
+        "Werk",
+        "Zorg en gezondheid"
+      ]
     },
     "website": {
-      "title": "Link naar publiekspagina",
-      "maxLength": 500,
       "type": "string",
+      "title": "Link naar publiekspagina",
+      "max_length": 500,
+      "show_always": false,
       "help_text": "Een URL naar een publiekspagina van de organisatie zelf. Op deze pagina kunt u meer vinden over de inzet van het algoritme binnen de organisatie.",
-      "show_always": false
+      "instructions": "Een URL naar een publiekspagina over het algoritme van uw organisatie. Op deze pagina kan iemand meer vinden over het proces waarin het algoritme ingezet wordt. Dit is een andere pagina dan de link naar het decentrale register. Begin een URL met https:// ",
+      "example": "https://gemeentenoorderhaaks/hoe-werkt-een-VRI",
+      "required": false
     },
     "status": {
-      "title": "Status",
       "type": "enum",
-      "allOf": [
+      "title": "Status",
+      "show_always": true,
+      "help_text": "De status van het algoritme: in ontwikkeling, in gebruik, of buiten gebruik.",
+      "instructions": "De huidige status van het algoritme: In ontwikkeling, In gebruik, Buiten gebruik. Indien het algoritme zowel in ontwikkeling als in gebruik is, kies voor ‘In gebruik’. Ten behoeve van de websitefunctionaliteit is het noodzakelijk om geen andere informatie in dit veld op te nemen dan een van de keuzes hierboven. Het is niet verplicht algoritmes in ontwikkeling te vermelden in het Algoritmeregister. De mogelijkheid wordt wel geboden voor organisaties die burgers willen betrekken al tijdens de ontwikkelingen van algoritmes. ",
+      "example": "In gebruik",
+      "required": false,
+      "permitted_values": [
         "In ontwikkeling",
         "In gebruik",
         "Buiten gebruik"
-      ],
-      "help_text": "De status van het algoritme: in ontwikkeling, in gebruik, of buiten gebruik.",
-      "show_always": true
+      ]
+    },
+    "begin_date": {
+      "type": "string",
+      "title": "Begindatum",
+      "max_length": 7,
+      "show_always": true,
+      "help_text": "Maand waarin het algoritme in gebruik is genomen.",
+      "instructions": "Maand en jaar waarin het algoritme in gebruik is genomen.",
+      "example": "2023-01",
+      "required": false
+    },
+    "end_date": {
+      "type": "string",
+      "title": "Einddatum",
+      "max_length": 7,
+      "show_always": false,
+      "help_text": "Maand waarin het algoritme buiten gebruik is genomen.",
+      "instructions": "Maand en jaar waarin het algoritme buiten gebruik is genomen. Als het algoritme nog in gebruik is, moet dit veld leegblijven. ",
+      "example": "2023-05",
+      "required": false
     },
     "goal": {
-      "title": "Doel",
-      "maxLength": 2500,
       "type": "string",
-      "help_text": "Het doel waarvoor het algoritme ontwikkeld is en/of hoe de inzet ervan bijdraagt aan het behalen van die doelen.",
-      "show_always": true
-    },
-    "impact": {
-      "title": "Impact",
-      "maxLength": 2500,
-      "type": "string",
-      "help_text": "De impact van het algoritme op burgers en bedrijven. Bijvoorbeeld: hoe werkt het algoritme en wat zijn de verwachte consequenties daarvan voor het individu of bedrijf?",
-      "show_always": true
+      "title": "Doel en impact",
+      "max_length": 2500,
+      "show_always": true,
+      "help_text": "Het doel waarvoor het algoritme ontwikkeld is en wat voor impact de inzet heeft op burgers en bedrijven. ",
+      "instructions": "Het doel waarvoor het algoritme ontwikkeld is en wat voor impact de inzet heeft op burgers en bedrijven. Vul dit veld in op B1-taalniveau. ",
+      "example": "",
+      "required": false
     },
     "proportionality": {
-      "title": "Proportionaliteit",
-      "maxLength": 2500,
       "type": "string",
+      "title": "Afwegingen",
+      "max_length": 2500,
+      "show_always": true,
       "help_text": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is.",
-      "show_always": true
+      "instructions": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is. Benoem daarbij ook welke andere alternatieven overwogen zijn. Neem ook de ethische afwegingen mee in het invullen. Voor het invullen van dit veld kan gebruik gemaakt worden van de antwoorden uit het IAMA en de DPIA. Vul dit veld in op B1-taalniveau.",
+      "example": "De voordelen van de inzet van dit algoritme zijn bewezen door het gebruik ervan over de hele wereld. Op plekken waar dit algoritme gebruikt wordt, is de verkeersdoorstroming aanzienlijk beter dan op plekken waar dit niet gedaan wordt. Het alternatief is een standaardvolgorde aanhouden, wat bewezen trager is voor weggebruikers.",
+      "required": false
     },
     "provider": {
+      "type": "string",
       "title": "Leverancier",
-      "maxLength": 100,
-      "type": "string",
+      "max_length": 200,
+      "show_always": false,
       "help_text": "Indien van toepassing, de externe leverancier van het algoritme.",
-      "show_always": false
-    },
-    "application_url": {
-      "title": "Link naar leverancier",
-      "maxLength": 500,
-      "type": "string",
-      "help_text": "Indien van toepassing, de link naar de externe leverancier.",
-      "show_always": false
-    },
-    "process_index_url": {
-      "title": "Link naar verwerkingsregister",
-      "maxLength": 500,
-      "type": "string",
-      "help_text": "De link naar de AVG-verwerking in een publiek register van het algoritme.",
-      "show_always": false
+      "instructions": "Naam van de externe leverancier van het algoritme. Als het intern ontwikkeld is, noteer dan ‘Intern ontwikkeld’. Het gaat hierbij bijvoorbeeld niet om het gebruik van open source packages die gebruikt worden in een groter algoritme. Indien u zelf het algoritme hebt ontwikkeld, dient dit veld leeg te blijven. ",
+      "example": "Haaks softwarebedrijf",
+      "required": false
     },
     "lawful_basis": {
-      "title": "Wettelijke grondslag",
-      "maxLength": 2500,
       "type": "string",
-      "help_text": "Een omschrijving of een link naar de wettelijke grondslag voor de inzet van het algoritme. Bijvoorbeeld: een wet, een verordening of een formeel besluit.",
-      "show_always": true
+      "title": "Wettelijke basis",
+      "max_length": 2500,
+      "show_always": false,
+      "help_text": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt ",
+      "instructions": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt ",
+      "example": "",
+      "required": false
     },
-    "iama": {
-      "title": "Mensenrechtentoets",
-      "type": "enum",
-      "allOf": [
-        "Ja",
-        "Nee"
+    "lawful_basis_link": {
+      "type": "string",
+      "title": "Link naar wettelijke basis",
+      "max_length": 200,
+      "show_always": false,
+      "help_text": "Een link naar de wettelijke grondslag(en) voor het proces waarin het algoritme ingezet wordt.",
+      "instructions": "Een link naar de wettelijke grondslag(en) voor het proces waarin het algoritme ingezet wordt. Bijvoorbeeld: een wet, een verordening of een formeel besluit.",
+      "example": "https://wetten.overheid.nl/BWBR0006622/2023-01-01 ",
+      "required": false
+    },
+    "impacttoetsen": {
+      "type": "array",
+      "title": "Impacttoetsen",
+      "show_always": true,
+      "help_text": "Welke impacttoetsen zijn gebruikt, zoals Data Protection Impact Asssesment (DPIA) of Impact Assessment Mensenrechten en Algoritmes (IAMA)? ",
+      "instructions": "Naam/namen van uitgevoerde impacttoetsen.",
+      "example": [
+        "Impact Assessment Mensenrechten en Algoritmes (IAMA)"
       ],
-      "help_text": "Is het algoritme getoetst op het nakomen van mensenrechten zoals middels een Impact Assessment Mensenrechten en Algoritmes (IAMA)?",
-      "show_always": true
+      "required": false,
+      "recommended_items": [
+        "Data Protection Impact Asssesment (DPIA)",
+        "Impact Assessment Mensenrechten en Algoritmes (IAMA)"
+      ]
     },
     "iama_description": {
+      "type": "string",
       "title": "Link naar Mensenrechtentoets",
-      "maxLength": 500,
-      "type": "string",
-      "help_text": "Link naar de resultaten van een uitgevoerde mensenrechtentoets, zoals een IAMA.",
-      "show_always": true
-    },
-    "dpia": {
-      "title": "Data Protection Impact Assessment (DPIA)",
-      "type": "enum",
-      "allOf": [
-        "Ja",
-        "Nee"
-      ],
-      "help_text": "Is het algoritme getoetst op veilig gebruik van gegevens met een Data Protection Impact Assessment (DPIA).",
-      "show_always": false
-    },
-    "objection_procedure": {
-      "title": "Bezwaarprocedure",
-      "maxLength": 2500,
-      "type": "string",
-      "help_text": "Een omschrijving van hoe burgers en bedrijven bezwaar kunnen maken tegen de uitkomsten van het algoritme.",
-      "show_always": true
+      "max_length": 500,
+      "show_always": false,
+      "help_text": "Link naar de resultaten van een uitgevoerde impacttoets, zoals een DPIA IAMA.",
+      "instructions": "Link naar de resultaten van een impacttoets, indien deze is uitgevoerd en publiek beschikbaar is. Een voorbeeld hiervan is het impact assessment mensenrechten en algoritmes (IAMA) of het data protection impact assessment (DPIA). Formateer het dusdanig dat de naam van de toets gevold wordt door een dubbele punt en de URL. Als er meerdere zijn, kunnen deze gescheiden worden door komma's. Begin een URL met https://",
+      "example": "DPIA: https://link.com, IAMA: https://link.nl",
+      "required": false
     },
     "url": {
-      "title": "Link naar bronregistratie",
-      "maxLength": 500,
       "type": "string",
+      "title": "Link naar bronregistratie",
+      "max_length": 500,
+      "show_always": false,
       "help_text": "De URL van de locatie waar dit algoritme eerder al is vastgelegd; in machine leesbaar formaat.",
-      "show_always": false
+      "instructions": "Als de organisatie zelf ook een algoritmeregister gepubliceerd heeft waarvandaan uiteindelijk de informatie opgehaald wordt, dan kan vanaf hiernaar verwezen worden.",
+      "example": "https://algoritmes.gemeentenoorderhaaks.nl/",
+      "required": false
     },
     "contact_email": {
-      "title": "E-mailadres van de contactpersoon",
-      "maxLength": 500,
       "type": "string",
-      "help_text": "De e-mail voor contact over deze registratie.",
-      "show_always": true
-    },
-    "area": {
-      "title": "Geografisch gebied",
-      "maxLength": 100,
-      "type": "string",
-      "help_text": "Het geografische gebied waarin het algoritme wordt ingezet.",
-      "show_always": false
+      "title": "Contactgegevens",
+      "max_length": 500,
+      "show_always": true,
+      "help_text": "De contactgegevens voor deze registratie ",
+      "instructions": "Het e-mailadres voor contact over deze registratie. Dit moet een geldig mailadres zijn waar burgers, media of andere betrokkenen vragen kunnen stellen over het algoritme zelf of over de gevolgen op basis van uitkomsten van het algoritme. Begin een URL met https:// ",
+      "example": "algoritmes@gemeentenoorderhaaks.nl",
+      "required": false
     },
     "lang": {
-      "title": "Taal",
-      "maxLength": 3,
       "type": "string",
+      "title": "Taal",
+      "max_length": 3,
+      "show_always": false,
       "help_text": "De taal waarin deze registratie is ingevoerd.",
-      "show_always": false
+      "instructions": "De code van de taal van de registratie. Dit veld is aanwezig, omdat het Algoritmeregister meertalig aangeboden kan worden. Op dit moment wordt alleen Nederlands (nld) aangeboden. ",
+      "example": "nld",
+      "required": false
     },
     "standard_version": {
-      "title": "Schema",
       "type": "enum",
-      "allOf": [
-        "0.3.1"
-      ],
+      "title": "Versie publicatiestandaard",
+      "show_always": false,
       "help_text": "De versie van de publicatiestandaard waar dit algoritme in is geregistreed.",
-      "show_always": false
+      "instructions": "De versie van de publicatiestandaard die gehanteerd is voor deze registratie.Op dit moment is dat '0.4.0'.",
+      "example": "0.4.0",
+      "required": false,
+      "permitted_values": [
+        "0.4.0"
+      ]
     },
     "uuid": {
-      "title": "UUID",
-      "maxLength": 100,
       "type": "string",
+      "title": "Landelijk-ID",
+      "max_length": 100,
+      "show_always": false,
       "help_text": "De unieke code van dit algoritme in het landelijke register.",
-      "show_always": true
+      "instructions": "De unieke identificatie van deze registratie in het landelijke Algoritmeregister. Bij het aanleveren van deze registratie wordt er automatisch een UUID gegenereerd door de database van het landelijk Algoritmeregister. Hier dient bij de eerste aanlevering dus niks handmatig ingevuld te worden. Bij het wijzigen van registraties kan naar deze ID verwezen worden om de juiste registratie te vinden. In het geval van een update van een al bestaand en gepubliceerde registratie, moet de ID in de toekomst wel worden ingevuld. ",
+      "example": "n.v.t.",
+      "required": false
     },
     "source_id": {
+      "type": "string",
       "title": "Bron-ID",
-      "maxLength": 100,
-      "type": "string",
+      "max_length": 100,
+      "show_always": false,
       "help_text": "De unieke code van dit algoritme in het register van de eigenaar",
-      "show_always": false
-    },
-    "revision_date": {
-      "title": "Herzieningsdatum",
-      "maxLength": 10,
-      "type": "string",
-      "help_text": "De datum waarvoor deze registratie moet worden herzien.",
-      "show_always": false
+      "instructions": "Indien van toepassing, de unieke identificatie voor deze registratie zoals door de eigenaar wordt gehanteerd. Dit is dus de verwijzing naar het algoritme in de interne database of het interne register van uw organisatie.",
+      "example": "n.v.t.",
+      "required": false
     },
     "tags": {
-      "title": "Tags",
-      "maxLength": 2500,
       "type": "string",
+      "title": "Zoektermen",
+      "max_length": 2500,
+      "show_always": false,
       "help_text": "Trefwoorden over het algoritme, om de vindbaarheid van een algoritmeregistratie te vergroten.",
-      "show_always": false
-    },
-    "description": {
-      "title": "Omschrijving",
-      "maxLength": 2500,
-      "type": "string",
-      "help_text": "Een uitgebreide beschrijving van het algoritme (500-5000 tekens).",
-      "show_always": false
+      "instructions": "Termen gerelateerd aan dit algoritme. Gescheiden door komma's. Dit veld wordt niet weergegeven op de website en kan worden gebruikt om de vindbaarheid van de registratie te verbeteren. Zo kan bijvoorbeeld de naam van het relevante ministerie worden toegevoegd om als uitvoerorganisatie beter vindbaar te zijn met de zoekfunctie.",
+      "example": "Verkeer, Mobiliteit, VRI, Infrastructuur, Waddengebied",
+      "required": false
     },
     "source_data": {
-      "title": "Databronnen",
-      "maxLength": 5000,
       "type": "string",
-      "help_text": "Een overzicht van de databronnen die op dit moment gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme",
-      "show_always": false
+      "title": "Gegevens",
+      "max_length": 5000,
+      "show_always": true,
+      "help_text": "Een overzicht van de gegevens die gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme.",
+      "instructions": "Een overzicht van de gegevens die gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme.",
+      "example": "Sensordata van de verkeersregelinstallaties bij kruispunten op de ringweg van gemeente Noorderhaaks.",
+      "required": false
+    },
+    "source_data_link": {
+      "type": "string",
+      "title": "Link naar gegevensbronnen",
+      "max_length": 500,
+      "show_always": false,
+      "help_text": "Links naar aanvullende informatie over de gebruikte gegevensbronnen",
+      "instructions": "Een overzicht van de gegevens die gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme.",
+      "example": "Lijst van links naar aanvullende informatie over de gebruikte gegevensbronnen. Hierbij kan bijvoorbeeld gelinkt worden naar metadata in publieke datacatalogi of naar sensorenregistraties.",
+      "required": false
     },
     "methods_and_models": {
-      "title": "Methoden en modellen",
-      "maxLength": 5000,
       "type": "string",
-      "help_text": "Standaardmethoden of modellen die het algoritme gebruikt.",
-      "show_always": false
+      "title": "Technische werking",
+      "max_length": 5000,
+      "show_always": false,
+      "help_text": "Uitleg van hoe het algoritme werkt.",
+      "instructions": "Een technische uitleg van hoe het algoritme werkt en uitkomsten genereert. Indien beschikbaar, komt een URL naar een schematisch overzicht van het model (zoals een stroomdiagram van een beslisboom) goed van pas. Indien complexe machine learning modellen worden gebruikt (zoals Neurale Netwerken), komen URL’s naar extra documentatie of wetenschappelijke publicaties goed van pas. Dit veld is hoofdzakelijk bedoeld voor de lezer met technische expertise, en mag daarom complexere concepten en taal bevatten.",
+      "example": "Het model maakt gebruik van een eenvoudige beslisboom zodra een nieuwe bezette voorsorteerstrook zich voordoet (= wanneer de sensor een weggebruiker ontdekt). De beslisboom loopt als volgt: Eerst wordt er gekeken of er al andere partijen staan te wachten, en vervolgens of er op dat moment een andere voorsorteerstrook op groen licht staat. Zo niet, dan springt het stoplicht van de betreffende strook meteen op groen. Zo wel, dan wacht het tot er geen verkeer meer wordt waargenomen bij de andere voorsorteerstrook. Als er andere weggebruikers op andere stroken staan te wachten, sluit de betreffende strook achteraan in de wachtrij. Een grafische weergave van dit model is te vinden op https://algoritmes.gemeentenoorderhaaks.nl/VRI",
+      "required": false
     },
     "publiccode": {
+      "type": "string",
       "title": "Link naar broncode",
-      "maxLength": 500,
-      "type": "string",
+      "max_length": 500,
+      "show_always": false,
       "help_text": "Een URL naar de codepagina van de ontwikkelaar. Op deze pagina kunt u meer vinden over de code van het algoritme zelf.",
-      "show_always": false
-    },
-    "monitoring": {
-      "title": "Monitoring",
-      "maxLength": 2500,
-      "type": "string",
-      "help_text": "Een overzicht van hoe de inzet van het algoritme wordt gemonitord.",
-      "show_always": false
+      "instructions": "Een URL naar de codepagina van de ontwikkelaar. Op deze pagina is de code van het algoritme te vinden. Indien er geen codebase publiekelijk beschikbaar is, dient dit veld leeg te blijven. Begin een URL met https://",
+      "example": "https://github.com/haakssoftwarebedrijf.nl/vrisoftware",
+      "required": false
     },
     "human_intervention": {
-      "title": "Menselijke tussenkomst",
-      "maxLength": 2500,
       "type": "string",
-      "help_text": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gecontroleerd en bijgesteld (kunnen) worden.",
-      "show_always": true
+      "title": "Menselijke tussenkomst",
+      "max_length": 2500,
+      "show_always": true,
+      "help_text": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gebruikt worden, en op welke wijze deze gebruikt, gecontroleerd en bijgesteld (kunnen) worden.",
+      "instructions": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gebruikt worden, en op welke wijze deze gebruikt, gecontroleerd en bijgesteld (kunnen) worden. Vul dit veld in op B1-taalniveau. ",
+      "example": "Bij het maken van fouten door het algoritme zou een medewerker van de afdeling handmatig de verkeersregeling aan kunnen passen en stoplichten op groen kunnen zetten. Buiten normale werktijden is er 24/7 toezicht.",
+      "required": false
     },
     "risks": {
-      "title": "Risico's",
-      "maxLength": 2500,
       "type": "string",
+      "title": "Risicobeheer",
+      "max_length": 2500,
+      "show_always": true,
       "help_text": "Een overzicht van de voorziene risico's bij de inzet van het algoritme",
-      "show_always": false
-    },
-    "performance_standard": {
-      "title": "Prestatienormen",
-      "maxLength": 2500,
-      "type": "string",
-      "help_text": "Een omschrijving van de verwachte prestaties van het algoritme en hoe die worden gemeten.",
-      "show_always": false
+      "instructions": "Een overzicht van de voorziene risico's bij de inzet van het algoritme",
+      "example": "",
+      "required": false
     }
   }
 }

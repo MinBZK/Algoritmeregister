@@ -95,13 +95,14 @@ a.focus-border:focus {
   margin-bottom: 0.5em;
 }
 
-.is-external-icon {
-  content: '';
-  margin: 0.15em 0.15em 0 0.25em;
-  width: 1em;
-  top: 1px;
-  height: 0.8em;
-  position: relative;
+.is-external-link-icon {
+  text-decoration: underline !important;
+  padding-right: 1.25em;
+  margin-right: 0.25em;
+  background-repeat: no-repeat;
+  background-position: right 3px;
+  background-size: 13px 12px;
+  background-image: url(@/assets/images/icons/icon-link-external.svg);
 }
 
 a {

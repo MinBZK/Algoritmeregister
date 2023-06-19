@@ -147,6 +147,7 @@ const setPage = (newPage: number) => {
       query: { ...route.query, page: newPage.toString() },
     })
   )
+  scroll(0, 0)
 }
 
 const searchPageTitle = computed(() =>
