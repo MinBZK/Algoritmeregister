@@ -59,10 +59,17 @@ class AlgoritmeVersion(Base):
     performance_standard = Column(VARCHAR(5000))
 
     # Additions by 0.3.1
-    provider = Column(VARCHAR(100))
+    provider = Column(VARCHAR(200))
     process_index_url = Column(VARCHAR(500))
     tags = Column(VARCHAR(2500))
     source_id = Column(VARCHAR(100))
+
+    # Additions by 0.4.0
+    begin_date = Column(VARCHAR(7))
+    end_date = Column(VARCHAR(7))
+    lawful_basis_link = Column(VARCHAR(200))
+    impacttoetsen = Column(VARCHAR(1024))
+    source_data_link = Column(VARCHAR(500))
 
     published = Column(Boolean, nullable=False, default=False)
     released = Column(Boolean, nullable=False, default=False)
@@ -73,4 +80,3 @@ class AlgoritmeVersion(Base):
 
     lars = association_proxy("algoritme", "lars")
     owner = association_proxy("algoritme", "owner")
-    leverancier_id = association_proxy("algoritme", "leverancier_id")

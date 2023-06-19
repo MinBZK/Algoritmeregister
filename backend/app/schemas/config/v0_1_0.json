@@ -316,7 +316,7 @@
       "type": "string",
       "title": "UUID",
       "max_length": 1024,
-      "show_always": true,
+      "show_always": false,
       "help_text": "",
       "instructions": "",
       "example": "",

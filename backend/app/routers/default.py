@@ -10,6 +10,7 @@ import csv
 import json
 from app.config.settings import Settings
 from app.middleware.middleware import get_db
+from app.services.algoritme_version import db_list_to_python_list
 from app import models, schemas, controllers
 
 router = APIRouter()
@@ -99,7 +100,8 @@ async def get_all(
 
     results = []
     for q in query.all():
-        algo_dict = q.__dict__.copy()
+        parsed_algo = db_list_to_python_list(q)
+        algo_dict = parsed_algo.__dict__.copy()
         algo_dict["lars"] = q.lars
         results.append(algo_dict)
 
@@ -161,6 +163,8 @@ async def get_one(lars: str, db: Session = Depends(get_db)):
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Kan algoritme niet vinden.",
         )
+
+    result = db_list_to_python_list(result)
     return result
 
 
@@ -206,7 +210,7 @@ if (env_settings.type == "API") or (env_settings.type == "DEV"):
         result = (
             db.query(models.algoritme_version.AlgoritmeVersion)
             .filter(models.AlgoritmeVersion.published)
-            .order_by(models.AlgoritmeVersion.create_dt)
+            .order_by(models.AlgoritmeVersion.algoritme_id)
             .all()
         )
 

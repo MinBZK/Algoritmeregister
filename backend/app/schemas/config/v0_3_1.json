@@ -33,10 +33,10 @@
         "description_short": {
             "type": "string",
             "title": "Korte omschrijving",
-            "max_length": 150,
+            "max_length": 250,
             "show_always": true,
             "help_text": "Een korte, abstracte beschrijving van het algoritme.",
-            "instructions": "Een korte, abstracte beschrijving van het algoritme (<150 tekens). Bij voorkeur in één of twee zinnen. Vul dit veld in op B1-taalniveau.",
+            "instructions": "Een korte, abstracte beschrijving van het algoritme (<250 tekens). Bij voorkeur in één of twee zinnen. Vul dit veld in op B1-taalniveau.",
             "example": "Dit algoritme optimaliseert de doorstroom van verkeer bij kruispunten op basis van sensoren in het wegdek.",
             "required": false
         },
@@ -259,7 +259,7 @@
             "type": "string",
             "title": "UUID",
             "max_length": 100,
-            "show_always": true,
+            "show_always": false,
             "help_text": "De unieke code van dit algoritme in het landelijke register.",
             "instructions": "De unieke identificatie voor deze registratie in landelijke register. Bij het aanleveren van deze registraties wordt er automatisch een identificatie gegenereerd door de website van het landelijk algoritmeregister. Hier dient bij de eerste aanlevering dus niks handmatig ingevuld te worden. Bij het wijzigen van registraties kan naar deze identificatie verwezen worden om de juiste registratie te vinden. In het geval van een update van een al bestaand en gepubliceerde registratie, moet de identificatie in de toekomst wel worden ingevuld.",
             "example": "n.v.t.",

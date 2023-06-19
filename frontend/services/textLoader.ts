@@ -1,7 +1,7 @@
 import { SupportingText } from '@/types/textLoader'
 
-const getAllContent = () =>
-  useFetch<SupportingText>(`/supporting-text`, {
+const getAllContent = async () =>
+  await useFetch<SupportingText>(`/supporting-text`, {
     baseURL: useRuntimeConfig().public.apiBaseUrl,
     method: 'GET',
   })

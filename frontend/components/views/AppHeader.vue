@@ -64,12 +64,18 @@ const navigationItems = computed(() => [
   {
     label: t('navigation.home'),
     routeName: 'index',
-    highlightOnRoutes: ['index'],
+    highlightOnRoutes: ['index', 'index___nl', 'index___en'],
   },
   {
     label: t('navigation.algorithmRegister'),
     routeName: 'algoritme',
-    highlightOnRoutes: ['algoritme', 'algoritme-id'],
+    highlightOnRoutes: [
+      'algoritme',
+      'algoritme___nl',
+      'algoritme___en',
+      'algoritme-lars___nl',
+      'algoritme-lars___en',
+    ],
   },
   // {
   //   label: 'DEV_dashboard',

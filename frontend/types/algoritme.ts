@@ -4,7 +4,7 @@ export interface Algoritme {
   lars: string
   standard_version: string
 
-  [key: string]: string
+  [key: string]: null | string | string[]
 }
 
 type AggregationValue = {
@@ -21,4 +21,17 @@ export type AggregatedAlgoritme = {
 export type AlgoritmeFilter = {
   attribute: string
   value: string | string[]
+}
+
+export interface AlgorithmFieldDisplay {
+  key: string
+  value: string
+  keyDescription: string
+  keyLabel: string
+}
+
+export interface AlgorithmDisplay {
+  key: string
+  keyLabel: string
+  properties: AlgorithmFieldDisplay[]
 }

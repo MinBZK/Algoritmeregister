@@ -4,13 +4,13 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-const { p, pNoMarkup } = useTextLoader()
+const { p } = useTextLoader()
 
 definePageMeta({
   title: 'Contact',
 })
 
-const pageTitle = computed(() => pNoMarkup('Footer: Contact.pageTitle'))
+const pageTitle = computed(() => p('Footer: Contact.pageTitle'))
 useHead({ title: pageTitle })
 providePageTitle({ title: 'footer.paths.contact', labelType: 'locale-index' })
 </script>

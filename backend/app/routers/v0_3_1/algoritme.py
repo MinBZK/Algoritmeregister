@@ -1,6 +1,11 @@
 from fastapi import Depends, Path, FastAPI, APIRouter, BackgroundTasks, routing
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.middleware import SlowAPIMiddleware
+from slowapi.errors import RateLimitExceeded
 from sqlalchemy.orm import Session
 from app import schemas, models, middleware, controllers
+from app.controllers import generate_excel_download
 from app.middleware.decorators import authorized_user_only, publisher_only, admin_only
 from app.middleware.keycloak_authenticator import get_current_user
 from app.config.api import api_text, responses
@@ -18,10 +23,27 @@ api = FastAPI(
         "defaultModelsExpandDepth": -1,
     },
 )
+limiter = Limiter(key_func=get_remote_address, default_limits=["15/minute"])
+api.state.limiter = limiter
+api.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+api.add_middleware(SlowAPIMiddleware)
 
 router = APIRouter()
 published_router = APIRouter()
 action_router = APIRouter()
+
+
+@router.get(
+    "/organizations/{organization_name}/algorithms/download-excel",
+    include_in_schema=False,
+)
+@authorized_user_only
+async def download_excel(
+    db: Session = Depends(middleware.get_db),
+    as_org: str = Path(alias="organization_name"),
+    user: schemas.User = Depends(middleware.get_current_user),
+):
+    return generate_excel_download(db, as_org)
 
 
 @router.get(
@@ -170,12 +192,15 @@ async def retract_one_published_algorithm(
 )
 @authorized_user_only
 async def release_one_algorithm(
+    background_tasks: BackgroundTasks,
     as_org: str = Path(alias="organization_name"),
     lars: str = Path(alias="algorithm_id"),
     db: Session = Depends(middleware.get_db),
     user: schemas.User = Depends(get_current_user),
 ) -> schemas.AlgorithmActionResponse | None:
-    return controllers.algoritme_version.release_one(lars=lars, db=db, user=user)
+    response = controllers.algoritme_version.release_one(lars=lars, db=db, user=user)
+    background_tasks.add_task(controllers.handle_release_mail, lars, db)
+    return response
 
 
 @action_router.put(

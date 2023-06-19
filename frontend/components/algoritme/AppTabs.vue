@@ -19,7 +19,7 @@
         @keydown.left.prevent="navigateTab(-1)"
         @keydown.right.prevent="navigateTab(1)"
       >
-        {{ t(`algorithmProperties.${p.key}.label`) }}
+        {{ p.keyLabel }}
       </a>
     </li>
   </ul>
@@ -28,12 +28,12 @@
 <script setup lang="ts">
 import { useActiveElement } from '@vueuse/core'
 import { changeHash } from '~~/utils'
-const { t } = useI18n()
 
 const props = defineProps<{
   activeTab: string | undefined
   tabProperties: {
     key: string
+    keyLabel: string
   }[]
 }>()
 

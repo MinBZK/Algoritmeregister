@@ -1,10 +1,10 @@
-const summaryTiles: Array<string> = [
-  'organization',
-  'department',
-  'category',
-  'type',
-  'status',
-]
+// To accomodate varying titles and helptext for different versions
+const textVersionMapping: { [key: string]: string } = {
+  '0.1.0': 'default',
+  '0.2.3': 'default',
+  '0.3.1': 'default',
+  '0.4.0': '0_4_0',
+}
 
 const keys = {
   id: 'id',
@@ -16,68 +16,6 @@ const keys = {
   theme: 'category',
   status: 'status',
 }
-
-const columnGrouping = [
-  {
-    label: 'algemeneInformatie',
-    group: [
-      'name',
-      'organization',
-      'department',
-      'description_short',
-      'type',
-      'category',
-      'website',
-      'status',
-    ],
-  },
-  {
-    label: 'inzet',
-    group: [
-      'goal',
-      'impact',
-      'proportionality',
-      'decision_making_process',
-      'documentation',
-    ],
-  },
-  {
-    label: 'juridisch',
-    group: [
-      'competent_authority',
-      'lawful_basis',
-      'iama',
-      'iama_description',
-      'dpia',
-      'dpia_description',
-      'objection_procedure',
-    ],
-  },
-  {
-    label: 'metadata_algorithm',
-    group: ['url', 'contact_email', 'area', 'lang', 'revision_date'],
-  },
-  {
-    label: 'toepassing',
-    group: [
-      'description',
-      'application_url',
-      'publiccode',
-      'mprd',
-      'source_data',
-      'methods_and_models',
-    ],
-  },
-  {
-    label: 'toezicht',
-    group: [
-      'monitoring',
-      'human_intervention',
-      'risks',
-      'performance_standard',
-    ],
-  },
-]
 
 const navigationItems = [
   {
@@ -120,10 +58,4 @@ const navigationItems = [
 
 const backendContentLanguage = 'nl'
 
-export {
-  columnGrouping,
-  summaryTiles,
-  keys,
-  navigationItems,
-  backendContentLanguage,
-}
+export { textVersionMapping, keys, navigationItems, backendContentLanguage }

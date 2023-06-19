@@ -1,11 +1,7 @@
 <template>
-  <a :href="href" target="_blank">
+  <a :href="href" target="_blank" class="is-external-link-icon ">
     <slot />
-    <img
-      class="is-external-icon"
-      alt="Externe link"
-      src="@/assets/images/icons/icon-link-external-v2.svg"
-    >
+    <span class="visually-hidden">(Externe link)</span>
   </a>
 </template>
 

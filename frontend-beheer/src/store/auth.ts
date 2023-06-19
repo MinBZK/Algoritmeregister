@@ -2,6 +2,7 @@
 import { defineStore } from 'pinia'
 import Keycloak from 'keycloak-js'
 import { Organization } from '@/types'
+import { OrganizationNames, organizationNames } from '@/config/organization'
 import { useLocalStorage } from '@vueuse/core'
 
 export const useAuthStore = defineStore('auth', {
@@ -9,10 +10,7 @@ export const useAuthStore = defineStore('auth', {
     keycloak: {} as Keycloak,
     APIurl: 'http://localhost:8000/api',
     organizations: [] as Organization[],
-    selectedOrg: useLocalStorage<Organization>(
-      'webform-selected-org',
-      {} as Organization
-    ),
+    selectedOrg: null as Organization | null,
   }),
   getters: {
     canPublish(): boolean {
@@ -35,15 +33,14 @@ export const useAuthStore = defineStore('auth', {
         if (!orgId) {
           throw new Error('Could not parse Keycloak organization string.')
         }
-        let orgName = orgId.replaceAll('-', ' ')
-        orgName = orgName.replace(/\b\w/g, (l: string) => l.toUpperCase())
-        return { id: orgId, name: orgName }
+        let defaultOrgName = orgId.replaceAll('-', ' ')
+        // Regex detects first letter of each word.
+        defaultOrgName = defaultOrgName.replace(/\b\w/g, (l: string) =>
+          l.toUpperCase()
+        )
+        const orgName = organizationNames[orgId as keyof OrganizationNames]
+        return { id: orgId, name: orgName || defaultOrgName }
       })
-      try {
-        this.selectOrganization(this.selectedOrg.id)
-      } catch {
-        this.selectedOrg = this.organizations[0]!
-      }
     },
     selectOrganization(orgId: string) {
       const organization = this.organizations.find((org) => org.id === orgId)
@@ -52,6 +49,7 @@ export const useAuthStore = defineStore('auth', {
           'Selected organization is not found in organizations array.'
         )
       }
+      useLocalStorage('webform-selected-org', {}).value = organization!
       this.selectedOrg = organization!
     },
   },

@@ -14,7 +14,6 @@ class OperationEnum(str, enum.Enum):
     preview_activated = "preview activated"
     preview_used = "preview used"
     preview_timeout = "preview timeout"
-    removed = "removed"
 
 
 class ActionHistory(Base):

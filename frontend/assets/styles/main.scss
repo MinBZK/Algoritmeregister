@@ -56,13 +56,19 @@
   margin: 0;
 }
 
-.is-external-icon {
-  content: '';
-  margin: 0.15em 0.15em 0 0.25em;
-  width: 1em;
-  top: 1px;
-  height: 0.8em;
-  position: relative;
+.is-external-link-icon {
+  text-decoration: underline !important;
+  padding-right: 1.25em !important;
+  margin-right: 0.25em !important;
+  background-repeat: no-repeat;
+  background-position: right 3px;
+  background-size: 13px 12px;
+  background-image: url(@/assets/images/icons/icon-link-external.svg) !important;
+}
+
+.is-external-mail-icon {
+  @extend .is-external-link-icon;
+  background-image: url(@/assets/images/icons/icon-mail.svg) !important;
 }
 
 a.is-mail {
@@ -112,4 +118,16 @@ a.focus-border:focus {
   border-left: 2px dashed $primary-darker;
   border-right: 2px dashed $primary-darker;
   border-bottom: 2px dashed $primary-darker;
+}
+
+.word-break {
+  -ms-word-break: break-all;
+  -ms-word-wrap: break-all;
+  -webkit-word-break: break-word;
+  -webkit-word-wrap: break-word;
+  word-break: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
 }

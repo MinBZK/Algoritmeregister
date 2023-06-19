@@ -94,6 +94,20 @@ def release_latest_version_algo(id: str, db: Session) -> str | None:
         return str(latest_version.id)
 
 
+def unrelease_all_versions_algo(id: str, db: Session) -> str | None:
+    n_unreleased = (
+        db.query(models.AlgoritmeVersion)
+        .filter(models.AlgoritmeVersion.lars == id)
+        .update(
+            {
+                models.AlgoritmeVersion.released: False,
+            },
+            synchronize_session="fetch",
+        )
+    )
+    return n_unreleased
+
+
 def publish_latest_version_algo(id: str, db: Session) -> str | None:
     latest_version = get_latest_version_algo(id, db)
     if latest_version:

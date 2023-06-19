@@ -44,6 +44,7 @@
     },
     "release": {
       "error": "Er is iets fout gegaan bij het vrijgeven van het algoritme.",
+      "noReleaseOnPublished": "Dit algoritme kan niet worden vrijgegeven. Deze fout kan voorkomen als een gepubliceerd en ongewijzigd algoritme word vrijgegeven.",
       "success": "Het algoritme is succesvol vrijgegeven."
     },
     "preview": {

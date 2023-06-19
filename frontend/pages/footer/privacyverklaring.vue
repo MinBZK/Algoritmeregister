@@ -4,15 +4,13 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-const { p, pNoMarkup } = useTextLoader()
+const { p } = useTextLoader()
 
 definePageMeta({
   title: 'Privacyverklaring',
 })
 
-const pageTitle = computed(() =>
-  pNoMarkup('Footer: Privacyverklaring.pageTitle')
-)
+const pageTitle = computed(() => p('Footer: Privacyverklaring.pageTitle'))
 useHead({ title: pageTitle })
 providePageTitle({
   title: 'footer.paths.privacyverklaring',

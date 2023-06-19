@@ -14,7 +14,9 @@ from .util import (
     set_preview_active,
     find_version_changes,
     remove_all_versions_algo,
+    unrelease_all_versions_algo,
 )
+from app.services.algoritme_version import db_list_to_python_list
 
 # Version agnostic database handling
 env_settings = Settings()
@@ -73,6 +75,7 @@ def get_one_newest(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Er is geen algoritme met LARS-code: {lars}.",
         )
+    newest_algo = db_list_to_python_list(newest_algo)
     return newest_algo
 
 
@@ -87,6 +90,7 @@ def get_one_published(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Er is geen gepubliceerd algoritme met LARS-code: {lars}.",
         )
+    newest_algo = db_list_to_python_list(newest_algo)
     return newest_algo
 
 
@@ -153,9 +157,15 @@ def release_one(
     latest_version = get_latest_version_algo(lars, db)
     if getattr(latest_version, "released"):
         return schemas.AlgorithmActionResponse(
-            message="Latest version is already released."
+            message="De laatste versie is al vrijgegeven."
+        )
+    elif getattr(latest_version, "published"):
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="De laatste versie is al gepubliceerd. Deze kan niet worden vrijgegeven.",
         )
 
+    unrelease_all_versions_algo(lars, db)
     released_id = release_latest_version_algo(lars, db)
     if released_id:
         controllers.action_history.post_action(
@@ -191,6 +201,7 @@ def publish_one(
             models.OperationEnum.retracted, retracted_id, db, user
         )
 
+    unrelease_all_versions_algo(lars, db)
     published_id = publish_latest_version_algo(lars, db)
     if published_id:
         controllers.action_history.post_action(

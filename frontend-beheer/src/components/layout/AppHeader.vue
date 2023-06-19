@@ -1,20 +1,24 @@
 <template>
-  <v-container fluid>
-    <nav class="row">
-      <v-container class="inner-container">
-        <v-row class="row-no-margin">
-          <div class="logo">
-            <router-link to="/">
-              <img
-                src="../../assets/images/logo.svg"
-                alt="Logo Overheid.nl, ga naar de startpagina"
-              >
-            </router-link>
-          </div>
-          <v-col class="breadcrumb">
-            <breadcrumb :items="breadcrumbItems" />
-          </v-col>
-          <div class="logout-block">
+  <nav>
+    <v-container class="inner-container">
+      <v-row
+        class="header-row"
+        no-gutters
+        align="center"
+      >
+        <div class="logo">
+          <router-link to="/">
+            <img
+              src="../../assets/images/logo.svg"
+              alt="Logo Overheid.nl, ga naar de startpagina"
+            >
+          </router-link>
+        </div>
+        <v-col class="breadcrumb">
+          <breadcrumb :items="breadcrumbItems || []" />
+        </v-col>
+        <v-col align="right">
+          <div>
             <div class="username">
               {{ authStore.keycloak.tokenParsed?.family_name }},
               {{ authStore.keycloak.tokenParsed?.given_name[0] }}. ({{
@@ -25,10 +29,10 @@
               Uitloggen
             </button>
           </div>
-        </v-row>
-      </v-container>
-    </nav>
-  </v-container>
+        </v-col>
+      </v-row>
+    </v-container>
+  </nav>
 </template>
 
 <script setup lang="ts">
@@ -54,7 +58,9 @@ const allBreadcrumbs: Record<string, BreadcrumbType[]> = {
   'algorithm.edit': [{ text: 'Algoritme bewerken', to: '#' }],
 }
 const breadcrumbItems = computed(() => {
-  return allBreadcrumbs[route.name as any] as BreadcrumbType[] | undefined
+  return allBreadcrumbs[route.name as keyof typeof allBreadcrumbs] as
+    | BreadcrumbType[]
+    | undefined
 })
 
 const logout = () => {
@@ -85,34 +91,20 @@ nav {
   padding-left: 1.5em;
   padding-right: 1.5em;
   background-color: white;
-}
-.row-no-margin {
-  margin: 0;
   height: 3.5em;
 }
-.breadcrumb {
-  padding-top: 0.3em;
+.header-row {
+  height: 3.5em;
 }
-.username {
-  text-align: end;
-  padding-top: 0.25em;
-}
+
 .logout-button {
-  font-size: 0.75em;
-  color: $primary;
-  background-color: $tertiary;
-  margin-bottom: 0.5em;
-  width: 5em;
-  justify-self: end;
+  font-size: 0.85em;
+}
+.logout-button:hover {
+  text-decoration: underline;
 }
 
 .inner-container {
-  max-width: 1200px;
-}
-.logout-block {
-  float: right;
-  padding-right: 0.5em;
-  display: grid;
-  align-items: center;
+  max-width: 1450px;
 }
 </style>

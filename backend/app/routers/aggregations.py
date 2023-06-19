@@ -42,11 +42,16 @@ async def get_total_count(db: Session = Depends(get_db)) -> int:
 
 @router.get("/db-count/{column}")
 async def get_count_per_type(column: Columns, db: Session = Depends(get_db)):
+    if (env_settings.type == "API") or (env_settings.type == "DEV"):
+        column_filter = "algoritme_version.released"
+    else:
+        column_filter = "algoritme_version.published"
+
     stmt = text(
         f"""
             SELECT count(1), {column.value} as descriptor
             FROM algoritme_version
-            WHERE algoritme_version.published IS TRUE
+            WHERE {column_filter} IS TRUE
             GROUP BY {column.value}
             ORDER BY count(1) desc
             LIMIT 10

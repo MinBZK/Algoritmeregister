@@ -4,6 +4,7 @@ from app import schemas
 default_responses = {
     401: {"description": "Authentication Error", "model": schemas.Message},
     404: {"description": "Not Found Error", "model": schemas.Message},
+    429: {"description": "Too Many Requests Error", "model": schemas.Message},
 }
 
 responses = {
@@ -39,7 +40,10 @@ responses = {
     "put": {**default_responses},
     "delete": {**default_responses},
     "publish": {**default_responses},
-    "release": {**default_responses},
+    "release": {
+        **default_responses,
+        409: {"description": "Conflict Error", "model": schemas.Message},
+    },
     "preview": {**default_responses},
     "remove": {**default_responses},
 }

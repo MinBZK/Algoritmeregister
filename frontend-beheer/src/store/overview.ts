@@ -4,11 +4,12 @@ import { Algorithm } from '@/types/algorithm'
 import { getAlgorithmList } from '@/services'
 import content from '@/content.json'
 import { Organization } from '@/types'
+import { useAuthStore } from './auth'
 
 export const useAlgorithmStore = defineStore('algorithm', {
   state: () => ({
     algorithms: [] as Algorithm[],
-    loaded: false as boolean,
+    loaded: true as boolean,
     error: '',
     success: '',
   }),
@@ -30,37 +31,41 @@ export const useAlgorithmStore = defineStore('algorithm', {
     },
   },
   actions: {
-    fetchAlgorithms(organization: Organization): void {
-      if (Object.keys(organization).length !== 0) {
-        this.loaded = false
-        this.algorithms = []
-        getAlgorithmList(organization)
-          .then((response) => {
-            this.algorithms = response.data.map((a) => {
-              let overviewStatus
-              if (a.current_version_published) {
-                overviewStatus = 'Gepubliceerd'
-              } else if (a.current_version_released && !a.published) {
-                overviewStatus = 'Vrijgegeven'
-              } else if (a.published && a.current_version_released) {
-                overviewStatus = 'Gepubliceerd, nieuwe versie vrijgegeven'
-              } else if (a.published) {
-                overviewStatus = 'Gepubliceerd, nieuwe versie in ontwikkeling'
-              } else {
-                overviewStatus = 'In ontwikkeling'
-              }
-              return { ...a, overviewStatus: overviewStatus }
-            })
-            this.loaded = true
-          })
-          .catch((error) => {
-            console.error(error.data)
-            this.error = content.overviewTable.fetchAlgoritms.error
-            this.loaded = true
-          })
-      } else {
-        this.loaded = true
+    async fetchAlgorithms(organization: Organization): Promise<void> {
+      this.algorithms = []
+
+      const authStore = useAuthStore()
+      // User has no organizations, exit
+      if (authStore.organizations.length == 0) {
+        return
       }
+
+      this.loaded = false
+      try {
+        this.algorithms = (await getAlgorithmList(organization)).data
+      } catch (error: any) {
+        console.error(error.data)
+        this.error = content.overviewTable.fetchAlgoritms.error
+        this.loaded = true
+        return
+      }
+
+      this.algorithms = this.algorithms.map((a) => {
+        let overviewStatus
+        if (a.current_version_published) {
+          overviewStatus = 'Gepubliceerd'
+        } else if (a.current_version_released && !a.published) {
+          overviewStatus = 'Vrijgegeven'
+        } else if (a.published && a.current_version_released) {
+          overviewStatus = 'Gepubliceerd, nieuwe versie vrijgegeven'
+        } else if (a.published) {
+          overviewStatus = 'Gepubliceerd, nieuwe versie in ontwikkeling'
+        } else {
+          overviewStatus = 'In ontwikkeling'
+        }
+        return { ...a, overviewStatus: overviewStatus }
+      })
+      this.loaded = true
     },
   },
 })

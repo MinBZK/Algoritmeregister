@@ -158,3 +158,12 @@ export async function removeAlgorithm(
   }
   return backendRequest(request)
 }
+
+export async function getExcelFile(organization: Organization) {
+  const request: AxiosRequestConfig = {
+    method: 'GET',
+    responseType: 'blob',
+    url: `${MDS_VERSION}/organizations/${organization.id}/algorithms/download-excel`,
+  }
+  return backendRequest(request)
+}

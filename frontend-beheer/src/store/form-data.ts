@@ -22,6 +22,7 @@ import {
 import content from '@/content.json'
 import { Organization } from '@/types'
 import { noOrgSelectedResponse } from '@/util'
+import router from '@/router'
 
 const authStore = useAuthStore()
 
@@ -29,7 +30,7 @@ export const useFormDataStore = defineStore('form-data', {
   state: () => ({
     schemaStore: useSchemaStore(),
     data: {} as AlgorithmForm,
-    loaded: false,
+    loaded: true,
     feedback: { success: '', error: '', errorList: [] },
     previewLoading: false,
     unsavedChanges: false,
@@ -37,7 +38,11 @@ export const useFormDataStore = defineStore('form-data', {
   getters: {
     cleanedData(): AlgorithmForm {
       return Object.fromEntries(
-        Object.entries(this.data).filter(([, v]) => v !== '')
+        Object.entries(this.data).filter(([, v]) => {
+          if (Array.isArray(v) && v.length == 0) return false
+          if (v === '') return false
+          return true
+        })
       )
     },
     orgFromData(): Organization | undefined {
@@ -48,23 +53,35 @@ export const useFormDataStore = defineStore('form-data', {
   },
   actions: {
     async fetchData(lars: string): Promise<void> {
-      this.loaded = false
+      // We do not know which organisation the algorithm belongs to.
       this.data = {}
-      await getAlgorithm(authStore.selectedOrg, lars)
-        .then((response) => {
-          this.data = response.data
-          if (
-            this.schemaStore.loadedSchema !== response.data.standard_version
-          ) {
-            this.schemaStore.fetchSchema(response.data.standard_version)
+      this.loaded = false
+      // A good try is to use the current selected org (= sometimes based on localStorage)
+      try {
+        this.data = (await getAlgorithm(authStore.selectedOrg!, lars)).data
+      } catch (error) {
+        // Loop through all of them.
+        for (let i = 0; i < authStore.organizations.length; i++) {
+          try {
+            this.data = (
+              await getAlgorithm(authStore.organizations[i]!, lars)
+            ).data
+            break
+          } catch (error) {
+            continue
           }
-          this.loaded = true
-        })
-        .catch((error) => {
-          console.error(error.data)
-          this.feedback.error = content.formDataStore.fetch.error
-          this.loaded = true
-        })
+        }
+      }
+      this.loaded = true
+      if (Object.keys(this.data).length == 0) {
+        // Data not available, push to home
+        router.push({ name: 'algorithm.index' })
+        return
+      }
+      // No duplicate loading if the schema in local cache is already good.
+      if (this.schemaStore.loadedSchema !== this.data.standard_version) {
+        this.schemaStore.fetchSchema(this.data.standard_version)
+      }
     },
     resetFeedback(): void {
       this.feedback = { success: '', error: '', errorList: [] }
@@ -146,8 +163,13 @@ export const useFormDataStore = defineStore('form-data', {
           this.data.released = true
           this.feedback.success = content.formDataStore.release.success
         })
-        .catch(() => {
-          this.feedback.error = content.formDataStore.release.error
+        .catch((response) => {
+          if (response.status == 409) {
+            this.feedback.error =
+              content.formDataStore.release.noReleaseOnPublished
+          } else {
+            this.feedback.error = content.formDataStore.release.error
+          }
         })
     },
     async handleRemove(

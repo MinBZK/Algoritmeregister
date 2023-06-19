@@ -40,7 +40,7 @@
           id="generated-form"
           ref="form"
         >
-          <v-row>
+          <v-row class="mt-5">
             <form-header />
           </v-row>
           <v-row
@@ -105,12 +105,12 @@ onBeforeRouteLeave((to, from) => {
   }
 })
 
+// Checks other routing (exit browser, back/forward)
 const handleBeforeUnload = (event: any) => {
   event.preventDefault()
   return (event.returnValue = '')
 }
 
-// Checks other routing (exit browser, back/forward)
 const changeWatcher = computed(() => dataStore.unsavedChanges)
 watch(changeWatcher, () => {
   if (dataStore.unsavedChanges) {
@@ -129,6 +129,7 @@ watch(changeWatcher, () => {
 .floating-alert {
   position: sticky;
   position: -webkit-sticky; /* Safari */
+  z-index: 1;
   left: 50%;
   top: 10px;
 }

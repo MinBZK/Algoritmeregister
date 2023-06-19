@@ -14,7 +14,7 @@
           <span
             :class="expanded ? 'accordion-arrow-up' : 'accordion-arrow-right'"
           ></span>
-          {{ t(`algorithmProperties.${groupProps.groupKey}.label`) }}
+          {{ groupProps.keyLabel }}
         </span>
       </h2>
     </div>
@@ -55,7 +55,7 @@
         </div>
         <div class="word-break">
           <ParseUrl :key="property.value || t('ontbreekt')">
-            {{ property.value || t('ontbreekt') }}
+            <ListifyString :text="property.value || t('ontbreekt')" />
           </ParseUrl>
         </div>
       </div>
@@ -64,46 +64,36 @@
 </template>
 
 <script setup lang="ts">
+import type { AlgorithmDisplay } from '~~/types/algoritme'
 import { changeHash } from '~~/utils'
 
-interface Property {
-  key: string
-  value: string
-  keyDescription: string
-  keyLabel: string
-}
-
-interface Props {
-  groupProps: {
-    groupKey: string
-    properties: Property[]
-  }
-}
 const { t } = useI18n()
 
-const props = defineProps<Props>()
+const props = defineProps<{
+  groupProps: AlgorithmDisplay
+}>()
 
 const expandedTab = useState<string | undefined>('expandedTab', () => undefined)
 
 // Handle accordion
 const resetScroll = async () => {
-  const header = document.getElementById(`header-${props.groupProps.groupKey}`)
+  const header = document.getElementById(`header-${props.groupProps.key}`)
   const storePosition = header?.getBoundingClientRect().y || 0
   await nextTick()
   if (header) window.scrollTo(0, header.offsetTop - storePosition)
 }
 
 const toggleTab = () => {
-  if (expandedTab.value === props.groupProps.groupKey) {
+  if (expandedTab.value === props.groupProps.key) {
     expandedTab.value = undefined
   } else {
-    expandedTab.value = props.groupProps.groupKey
+    expandedTab.value = props.groupProps.key
   }
   changeHash(expandedTab.value)
   resetScroll()
 }
 
-const expanded = computed(() => expandedTab.value === props.groupProps.groupKey)
+const expanded = computed(() => expandedTab.value === props.groupProps.key)
 
 const keyToggles = ref<string[]>([])
 const toggleKey = (key: string) => {

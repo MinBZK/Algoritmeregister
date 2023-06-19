@@ -35,7 +35,7 @@
           <h2>
             {{
               $t(
-                `algorithmProperties.${aggregation.aggregation_attribute}.label`
+                `algorithmProperties.default.${aggregation.aggregation_attribute}.label`
               )
             }}
           </h2>

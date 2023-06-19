@@ -50,13 +50,13 @@ def get_algorithm_export_schema(truncated: bool):
 
     if not truncated:
         fields["owner"] = (str, ...)
-        fields["leverancier_id"] = (str, None)
 
     prefix = "truncated__" if truncated else ""
     schema = create_model(prefix + "AlgoritmeInDB", **fields, __base__=ExportBase)
     return schema
 
 
+@lru_cache(maxsize=1)
 def get_all_output_schemas_union():
     file_names = os.listdir(os.path.dirname(schemas.__file__) + "/config")
     version_names = [f.replace(".json", "") for f in file_names]
