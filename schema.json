@@ -311,11 +311,11 @@
     },
     "human_intervention": {
       "type": "string",
-      "title": "Menselijke tussenkomst",
+      "title": "Menselijke controle en toezicht",
       "max_length": 2500,
       "show_always": true,
-      "help_text": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gebruikt worden, en op welke wijze deze gebruikt, gecontroleerd en bijgesteld (kunnen) worden.",
-      "instructions": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gebruikt worden, en op welke wijze deze gebruikt, gecontroleerd en bijgesteld (kunnen) worden. Vul dit veld in op B1-taalniveau. ",
+      "help_text": "Een omschrijving van de menselijke controle en toezicht op de toepassing van het algoritme en de toepassing van de resultaten.",
+      "instructions": "Een omschrijving van alle processen die zijn voorzien waarbij mensen toezicht houden op de verschillende stadia van de toepassing van het algoritme, en op welke wijze de beslissingen van het algoritme worden gebruikt. Vul dit veld in op B1-taalniveau. ",
       "example": "Bij het maken van fouten door het algoritme zou een medewerker van de afdeling handmatig de verkeersregeling aan kunnen passen en stoplichten op groen kunnen zetten. Buiten normale werktijden is er 24/7 toezicht.",
       "required": false
     },
