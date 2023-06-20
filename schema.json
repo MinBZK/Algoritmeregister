@@ -117,8 +117,8 @@
       "title": "Einddatum",
       "max_length": 7,
       "show_always": false,
-      "help_text": "Maand waarin het algoritme buiten gebruik is genomen.",
-      "instructions": "Maand en jaar waarin het algoritme buiten gebruik is genomen. Als het algoritme nog in gebruik is, moet dit veld leegblijven. ",
+      "help_text": "Maand waarin het algoritme buiten gebruik is of wordt genomen.",
+      "instructions": "Maand en jaar waarin het algoritme buiten gebruik is genomen. Als het algoritme nog in gebruik is, moet dit veld de voorgenomen einddatum bevatten of leeg worden geladen indien er geen voorgenomen eidndatum is. ",
       "example": "2023-05",
       "required": false
     },
