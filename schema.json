@@ -271,11 +271,11 @@
     },
     "source_data": {
       "type": "string",
-      "title": "Gegevens",
+      "title": "Gegevens bij ontwikkeling",
       "max_length": 5000,
       "show_always": true,
-      "help_text": "Een overzicht van de gegevens die gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme.",
-      "instructions": "Een overzicht van de gegevens die gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme.",
+      "help_text": "Een overzicht van de gegevens die gebruikt zijn bij het maken van het algoritme.",
+      "instructions": "Een overzicht van de gegevens die gebruikt zijn bij het maken van het algoritme.",
       "example": "Sensordata van de verkeersregelinstallaties bij kruispunten op de ringweg van gemeente Noorderhaaks.",
       "required": false
     },
@@ -287,6 +287,16 @@
       "help_text": "Links naar aanvullende informatie over de gebruikte gegevensbronnen",
       "instructions": "Een overzicht van de gegevens die gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme.",
       "example": "Lijst van links naar aanvullende informatie over de gebruikte gegevensbronnen. Hierbij kan bijvoorbeeld gelinkt worden naar metadata in publieke datacatalogi of naar sensorenregistraties.",
+      "required": false
+    },
+    "production_data": {
+      "type": "string",
+      "title": "Gegevens in productie",
+      "max_length": 5000,
+      "show_always": true,
+      "help_text": "Een overzicht van de gegevens die gebruikt worden door het algoritme.",
+      "instructions": "Een overzicht van de gegevens die gebruikt worden door het algoritme.",
+      "example": "Sensordata van de verkeersregelinstallaties bij kruispunten op de ringweg van gemeente Noorderhaaks.",
       "required": false
     },
     "methods_and_models": {
