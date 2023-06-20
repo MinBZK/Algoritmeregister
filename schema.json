@@ -191,11 +191,11 @@
       "type": "string",
       "title": "Link naar Mensenrechtentoets",
       "max_length": 500,
-      "show_always": false,
+      "show_always": true,
       "help_text": "Link naar de resultaten van een uitgevoerde impacttoets, zoals een DPIA IAMA.",
       "instructions": "Link naar de resultaten van een impacttoets, indien deze is uitgevoerd en publiek beschikbaar is. Een voorbeeld hiervan is het impact assessment mensenrechten en algoritmes (IAMA) of het data protection impact assessment (DPIA). Formateer het dusdanig dat de naam van de toets gevold wordt door een dubbele punt en de URL. Als er meerdere zijn, kunnen deze gescheiden worden door komma's. Begin een URL met https://",
       "example": "DPIA: https://link.com, IAMA: https://link.nl",
-      "required": false
+      "required": true
     },
     "url": {
       "type": "string",
