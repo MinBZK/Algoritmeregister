@@ -303,11 +303,11 @@
       "type": "string",
       "title": "Link naar broncode",
       "max_length": 500,
-      "show_always": false,
+      "show_always": true,
       "help_text": "Een URL naar de codepagina van de ontwikkelaar. Op deze pagina kunt u meer vinden over de code van het algoritme zelf.",
-      "instructions": "Een URL naar de codepagina van de ontwikkelaar. Op deze pagina is de code van het algoritme te vinden. Indien er geen codebase publiekelijk beschikbaar is, dient dit veld leeg te blijven. Begin een URL met https://",
+      "instructions": "Een URL naar de codepagina van de ontwikkelaar. Op deze pagina is de code van het algoritme te vinden. Indien er geen codebase publiekelijk beschikbaar is, dient dit veld een verantwoording te bevatten waaruit blijkt dat het ontbreken van deze informatie rechtmatig is. Begin een URL met https://",
       "example": "https://github.com/haakssoftwarebedrijf.nl/vrisoftware",
-      "required": false
+      "required": true
     },
     "human_intervention": {
       "type": "string",
