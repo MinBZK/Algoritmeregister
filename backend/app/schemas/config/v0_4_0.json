@@ -55,6 +55,8 @@
             ],
             "required": false,
             "permitted_values": [
+                "Organisatie en bedrijfsvoering",
+                "Dienstverlening",
                 "Bestuur",
                 "Cultuur en recreatie",
                 "Economie",
@@ -104,7 +106,7 @@
             "max_length": 7,
             "show_always": true,
             "help_text": "Maand waarin het algoritme in gebruik is genomen.",
-            "instructions": "Maand en jaar waarin het algoritme in gebruik is genomen.",
+            "instructions": "Maand en jaar waarin het algoritme in gebruik is genomen. Schrijf de datum op zoals in dit voorbeeld: 01-1970",
             "example": "2023-01",
             "required": false
         },
@@ -114,7 +116,7 @@
             "max_length": 7,
             "show_always": false,
             "help_text": "Maand waarin het algoritme buiten gebruik is genomen.",
-            "instructions": "Maand en jaar waarin het algoritme buiten gebruik is genomen. Als het algoritme nog in gebruik is, moet dit veld leegblijven. ",
+            "instructions": "Maand en jaar waarin het algoritme buiten gebruik is genomen. Als het algoritme nog in gebruik is, moet dit veld leegblijven. Schrijf de datum zoals in dit voorbeeld: 01-1970",
             "example": "2023-05",
             "required": false
         },
@@ -126,7 +128,15 @@
             "help_text": "Het doel waarvoor het algoritme ontwikkeld is en wat voor impact de inzet heeft op burgers en bedrijven. ",
             "instructions": "Het doel waarvoor het algoritme ontwikkeld is en wat voor impact de inzet heeft op burgers en bedrijven. Vul dit veld in op B1-taalniveau. ",
             "example": "",
-            "required": false
+            "required": false,
+            "allowed_html_tags": [
+                "div",
+                "br",
+                "p",
+                "ul",
+                "ol",
+                "li"
+            ]
         },
         "proportionality": {
             "type": "string",
@@ -136,7 +146,15 @@
             "help_text": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is.",
             "instructions": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is. Benoem daarbij ook welke andere alternatieven overwogen zijn. Neem ook de ethische afwegingen mee in het invullen. Voor het invullen van dit veld kan gebruik gemaakt worden van de antwoorden uit het IAMA en de DPIA. Vul dit veld in op B1-taalniveau.",
             "example": "De voordelen van de inzet van dit algoritme zijn bewezen door het gebruik ervan over de hele wereld. Op plekken waar dit algoritme gebruikt wordt, is de verkeersdoorstroming aanzienlijk beter dan op plekken waar dit niet gedaan wordt. Het alternatief is een standaardvolgorde aanhouden, wat bewezen trager is voor weggebruikers.",
-            "required": false
+            "required": false,
+            "allowed_html_tags": [
+                "div",
+                "br",
+                "p",
+                "ul",
+                "ol",
+                "li"
+            ]
         },
         "provider": {
             "type": "string",
@@ -144,7 +162,7 @@
             "max_length": 200,
             "show_always": false,
             "help_text": "Indien van toepassing, de externe leverancier van het algoritme.",
-            "instructions": "Naam van de externe leverancier van het algoritme. Als het intern ontwikkeld is, noteer dan ‘Intern ontwikkeld’. Het gaat hierbij bijvoorbeeld niet om het gebruik van open source packages die gebruikt worden in een groter algoritme. Indien u zelf het algoritme hebt ontwikkeld, dient dit veld leeg te blijven. ",
+            "instructions": "Naam van de externe leverancier van het algoritme. Als het intern ontwikkeld is, noteer dan ‘Intern ontwikkeld’. Het gaat hierbij bijvoorbeeld niet om het gebruik van open source packages die gebruikt worden in een groter algoritme.",
             "example": "Haaks softwarebedrijf",
             "required": false
         },
@@ -156,12 +174,20 @@
             "help_text": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt ",
             "instructions": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt ",
             "example": "",
-            "required": false
+            "required": false,
+            "allowed_html_tags": [
+                "div",
+                "br",
+                "p",
+                "ul",
+                "ol",
+                "li"
+            ]
         },
         "lawful_basis_link": {
             "type": "string",
             "title": "Link naar wettelijke basis",
-            "max_length": 200,
+            "max_length": 500,
             "show_always": false,
             "help_text": "Een link naar de wettelijke grondslag(en) voor het proces waarin het algoritme ingezet wordt.",
             "instructions": "Een link naar de wettelijke grondslag(en) voor het proces waarin het algoritme ingezet wordt. Bijvoorbeeld: een wet, een verordening of een formeel besluit.",
@@ -173,7 +199,7 @@
             "title": "Impacttoetsen",
             "show_always": true,
             "help_text": "Welke impacttoetsen zijn gebruikt, zoals Data Protection Impact Asssesment (DPIA) of Impact Assessment Mensenrechten en Algoritmes (IAMA)? ",
-            "instructions": "Naam/namen van uitgevoerde impacttoetsen.",
+            "instructions": "Naam/namen van uitgevoerde impacttoetsen. Dit veld is vrij in te vullen. De gegeven waardes zijn alleen suggesties.",
             "example": [
                 "Impact Assessment Mensenrechten en Algoritmes (IAMA)"
             ],
@@ -185,13 +211,21 @@
         },
         "iama_description": {
             "type": "string",
-            "title": "Link naar Mensenrechtentoets",
+            "title": "Link naar impacttoetsen",
             "max_length": 500,
             "show_always": false,
             "help_text": "Link naar de resultaten van een uitgevoerde impacttoets, zoals een DPIA IAMA.",
-            "instructions": "Link naar de resultaten van een impacttoets, indien deze is uitgevoerd en publiek beschikbaar is. Een voorbeeld hiervan is het impact assessment mensenrechten en algoritmes (IAMA) of het data protection impact assessment (DPIA). Formateer het dusdanig dat de naam van de toets gevold wordt door een dubbele punt en de URL. Als er meerdere zijn, kunnen deze gescheiden worden door komma's. Begin een URL met https://",
+            "instructions": "Link naar de resultaten van een impacttoets, indien deze is uitgevoerd en publiek beschikbaar is. Een voorbeeld hiervan is het impact assessment mensenrechten en algoritmes (IAMA) of het data protection impact assessment (DPIA). Formatteer het in een lijst en dusdanig dat de naam van de toets gevolgd wordt door een dubbele punt en de URL. Begin een URL met https://",
             "example": "DPIA: https://link.com, IAMA: https://link.nl",
-            "required": false
+            "required": false,
+            "allowed_html_tags": [
+                "div",
+                "br",
+                "p",
+                "ul",
+                "ol",
+                "li"
+            ]
         },
         "url": {
             "type": "string",
@@ -209,7 +243,7 @@
             "max_length": 500,
             "show_always": true,
             "help_text": "De contactgegevens voor deze registratie ",
-            "instructions": "Het e-mailadres voor contact over deze registratie. Dit moet een geldig mailadres zijn waar burgers, media of andere betrokkenen vragen kunnen stellen over het algoritme zelf of over de gevolgen op basis van uitkomsten van het algoritme. Begin een URL met https:// ",
+            "instructions": "Het e-mailadres voor contact over deze registratie. Dit kan een geldig mailadres zijn waar burgers, media of andere betrokkenen vragen kunnen stellen over het algoritme zelf of over de gevolgen op basis van uitkomsten van het algoritme. Het alternatief is een extern webformulier die op dezelfde manier gebruikt kan worden. Begin een URL met https://.",
             "example": "algoritmes@gemeentenoorderhaaks.nl",
             "required": false
         },
@@ -263,7 +297,15 @@
             "help_text": "Trefwoorden over het algoritme, om de vindbaarheid van een algoritmeregistratie te vergroten.",
             "instructions": "Termen gerelateerd aan dit algoritme. Gescheiden door komma's. Dit veld wordt niet weergegeven op de website en kan worden gebruikt om de vindbaarheid van de registratie te verbeteren. Zo kan bijvoorbeeld de naam van het relevante ministerie worden toegevoegd om als uitvoerorganisatie beter vindbaar te zijn met de zoekfunctie.",
             "example": "Verkeer, Mobiliteit, VRI, Infrastructuur, Waddengebied",
-            "required": false
+            "required": false,
+            "allowed_html_tags": [
+                "div",
+                "br",
+                "p",
+                "ul",
+                "ol",
+                "li"
+            ]
         },
         "source_data": {
             "type": "string",
@@ -273,7 +315,15 @@
             "help_text": "Een overzicht van de gegevens die gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme.",
             "instructions": "Een overzicht van de gegevens die gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme.",
             "example": "Sensordata van de verkeersregelinstallaties bij kruispunten op de ringweg van gemeente Noorderhaaks.",
-            "required": false
+            "required": false,
+            "allowed_html_tags": [
+                "div",
+                "br",
+                "p",
+                "ul",
+                "ol",
+                "li"
+            ]
         },
         "source_data_link": {
             "type": "string",
@@ -293,7 +343,15 @@
             "help_text": "Uitleg van hoe het algoritme werkt.",
             "instructions": "Een technische uitleg van hoe het algoritme werkt en uitkomsten genereert. Indien beschikbaar, komt een URL naar een schematisch overzicht van het model (zoals een stroomdiagram van een beslisboom) goed van pas. Indien complexe machine learning modellen worden gebruikt (zoals Neurale Netwerken), komen URL’s naar extra documentatie of wetenschappelijke publicaties goed van pas. Dit veld is hoofdzakelijk bedoeld voor de lezer met technische expertise, en mag daarom complexere concepten en taal bevatten.",
             "example": "Het model maakt gebruik van een eenvoudige beslisboom zodra een nieuwe bezette voorsorteerstrook zich voordoet (= wanneer de sensor een weggebruiker ontdekt). De beslisboom loopt als volgt: Eerst wordt er gekeken of er al andere partijen staan te wachten, en vervolgens of er op dat moment een andere voorsorteerstrook op groen licht staat. Zo niet, dan springt het stoplicht van de betreffende strook meteen op groen. Zo wel, dan wacht het tot er geen verkeer meer wordt waargenomen bij de andere voorsorteerstrook. Als er andere weggebruikers op andere stroken staan te wachten, sluit de betreffende strook achteraan in de wachtrij. Een grafische weergave van dit model is te vinden op https://algoritmes.gemeentenoorderhaaks.nl/VRI",
-            "required": false
+            "required": false,
+            "allowed_html_tags": [
+                "div",
+                "br",
+                "p",
+                "ul",
+                "ol",
+                "li"
+            ]
         },
         "publiccode": {
             "type": "string",
@@ -313,17 +371,33 @@
             "help_text": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gebruikt worden, en op welke wijze deze gebruikt, gecontroleerd en bijgesteld (kunnen) worden.",
             "instructions": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gebruikt worden, en op welke wijze deze gebruikt, gecontroleerd en bijgesteld (kunnen) worden. Vul dit veld in op B1-taalniveau. ",
             "example": "Bij het maken van fouten door het algoritme zou een medewerker van de afdeling handmatig de verkeersregeling aan kunnen passen en stoplichten op groen kunnen zetten. Buiten normale werktijden is er 24/7 toezicht.",
-            "required": false
+            "required": false,
+            "allowed_html_tags": [
+                "div",
+                "br",
+                "p",
+                "ul",
+                "ol",
+                "li"
+            ]
         },
         "risks": {
             "type": "string",
             "title": "Risicobeheer",
             "max_length": 2500,
             "show_always": true,
-            "help_text": "Een overzicht van de voorziene risico's bij de inzet van het algoritme",
-            "instructions": "Een overzicht van de voorziene risico's bij de inzet van het algoritme",
+            "help_text": "Een overzicht van de voorziene risico's bij de inzet van het algoritme en hoe deze, mits van toepassing, gemitigeerd zijn",
+            "instructions": "Een overzicht van de voorziene risico's bij de inzet van het algoritme en hoe deze, mits van toepassing, gemitigeerd zijn",
             "example": "",
-            "required": false
+            "required": false,
+            "allowed_html_tags": [
+                "div",
+                "br",
+                "p",
+                "ul",
+                "ol",
+                "li"
+            ]
         }
     }
 }

@@ -9,7 +9,7 @@ export const useTextLoader = () => {
    * Which will look up the indicated path in the supporting text from textLoader instead.
    *
    * Description. To migrate to textLoader from i18n do the following:
-   * const { t } = usei18n() -> const { p } = usetextLoader()
+   * const { t } = usei18n() -> const { p } = useTextLoader()
    * t('someKeyHere') -> p('someKeyHere')
    */
   const { currentLocale } = useLocale()
@@ -19,11 +19,10 @@ export const useTextLoader = () => {
     () => null
   )
 
+  const localPrefix = `/${currentLocale.value}`
   // Looks up key in the supporting text. language is based on currentLocale
   const p = (key: string) => {
-    if (!supportingText.value) {
-      return key
-    }
+    if (!supportingText.value) return key
 
     try {
       const localisedSupportText = supportingText.value[currentLocale.value]
@@ -32,8 +31,9 @@ export const useTextLoader = () => {
         .reduce(
           (obj, subKey) => obj[subKey as keyof SupportingText],
           localisedSupportText
-        )
-      return value
+        ) as string
+
+      return value.replace('{localised_url}', localPrefix)
     } catch (error) {
       return key
     }

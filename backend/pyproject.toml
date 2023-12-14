@@ -7,27 +7,34 @@ authors = ["Terry Crapts <terry.crapts@ictu.nl>", "Lars Musters <lars.musters@ic
 [tool.poetry.dependencies]
 python = "^3.11"
 fastapi = {version = "0.92.0", extras = ["all"]}
-SQLAlchemy = "^1.4.42"
+SQLAlchemy = "^2.0.21"
 python-dotenv = "^0.21.0"
 alembic = "^1.8.1"
 psycopg2-binary = "^2.9.5"
 pandas = "^1.5.1"
 openpyxl = "^3.0.10"
 python-slugify = "^7.0.0"
-grequests = "^0.6.0"
 python-jose = "^3.3.0"
-cryptography = "^39.0.1"
+cryptography = "^41.0.7"
 passlib = "^1.7.4"
 wheel = "^0.38.1"
 pytest = "^7.1.2"
 coverage = "^6.0"
-python-keycloak = "2.9.0"
+python-keycloak = "3.3.0"
 pyjwt = {version = "2.6.0", extras = ["crypto"]}
 certifi = "^2023.5.7"
 slowapi = "^0.1.8"
-[tool.poetry.dev-dependencies]
-black = {extras = ["jupyter"], version = "^22.10.0"}
+lxml = "^4.9.2"
+pytest-mock = "^3.11.1"
+python-docx = "^0.8.11"
 flake8 = "^5.0.4"
+black = {extras = ["jupyter"], version = "^22.10.0"}
+pymupdf = "^1.23.2"
+reportlab = "^4.0.4"
+delayed_assert = "^0.3.6"
+deepl = "^1.16.1"
+
+[tool.poetry.dev-dependencies]
 ipykernel = "^6.16.2"
 
 [tool.poetry.group.dev.dependencies]

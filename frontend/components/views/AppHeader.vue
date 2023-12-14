@@ -32,24 +32,25 @@
       class="header__nav"
       :class="!menuExpanded && 'header__nav--closed'"
     >
-      <div class="container">
+      <div class="container header-content">
         <ul class="header__primary-nav list list--unstyled">
           <li
             v-for="item in navigationItems"
             :key="item.label"
             :class="{
-              active: item.highlightOnRoutes.includes(currentRoute.name as string),
+              active: item.highlightOnRoutes.includes(
+                currentRoute.name as string
+              ),
             }"
           >
-            <ClientOnly>
-              <NuxtLink
-                :to="localePath({ name: item.routeName })"
-                class="focus-border"
-                >{{ item.label }}</NuxtLink
-              >
-            </ClientOnly>
+            <NuxtLink
+              :to="localePath({ name: item.routeName })"
+              class="focus-border"
+              >{{ item.label }}</NuxtLink
+            >
           </li>
         </ul>
+        <LanguagePicker class="language-picker" />
       </div>
     </nav>
   </header>
@@ -97,5 +98,12 @@ watch(currentRoute, () => (menuExpanded.value = false))
 a:focus {
   background-color: $secondary;
   color: $primary-dark;
+}
+
+.header-content {
+  max-width: 1175px;
+  padding: 0 1em;
+  display: flex;
+  justify-content: space-between;
 }
 </style>

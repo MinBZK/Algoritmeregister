@@ -13,8 +13,13 @@ body {
 }
 
 .v-messages__message {
+  padding-left: 0.5rem !important;
   font-size: 1rem;
   line-height: 1.2rem !important;
+}
+
+.v-input__details {
+  padding-inline-start: 0 !important;
 }
 
 .v-label {

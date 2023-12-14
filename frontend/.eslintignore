@@ -5,5 +5,5 @@
 *.woff
 *.woff2
 Dockerfile
-Dockerfile.simple
 *.md
+*.jpeg

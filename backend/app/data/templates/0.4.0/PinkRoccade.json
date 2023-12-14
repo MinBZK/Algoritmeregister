@@ -1,0 +1,37 @@
+[
+    {
+        "id": "pinkroccade-iburgerzaken",
+        "name": "iBurgerzaken e-diensten",
+        "organization": null,
+        "description_short": null,
+        "type": "Nee",
+        "category": [
+            "Dienstverlening"
+        ],
+        "website": null,
+        "status": "In gebruik",
+        "begin_date": "2014-06",
+        "end_date": null,
+        "goal": "<div><div>Doel</div>\n<div>Het doel van de e-diensten met het onderliggende algoritme is inwoners en ondernemers maximaal ondersteunen/begeleiden bij een digitale aanvraag. Daardoor kan deze aanvraag juist en volledig worden ingediend. Het algoritme controleert verschillende gegevens van de inwoner. Als er geen bijzonderheden geconstateerd worden in de aanvraag of aangifte kan deze verwerkt worden zonder tussenkomst van een burgerzakenmedewerker.25 oktober 2023 PinkRoccade Publiekszaken 3 / 5 Als er wel een of meerdere bijzonderheden geconstateerd worden komt de aanvraag/aangifte altijd terecht in een werklijst. Daar wordt deze gecontroleerd door een burgerzakenmedewerker. Het algoritme kan alleen automatisch een aanvraag/aangifte goedkeuren. Een aanvraag/aangifte afkeuren kan alleen de burgerzakenmedewerker.</div>\n<div></div>\n<div>Impact</div>\n<div>De impact is dat een dergelijke aanvraag efficiënt kan worden afgehandeld door de gemeente; burger/bedrijf heeft namelijk diverse stappen (werkzaamheden) al uitgevoerd waardoor de ambtenaar meer tijd overhoudt voor de bijzondere en/of ingewikkelde aangiften/aanvragen die de gemeente ontvangt. In een aantal gevallen kan deze aanvraag zelfs volledig automatisch worden verwerkt. De kwaliteit van de dienstverlening gaat door deze diensten omhoog, net als de kwaliteit van de gegevens in de BRP.</div></div>",
+        "proportionality": "<p>Alle aanvragen via de balie afhandelen is voor gemeenten geen optie meer. Dat komt door de aantallen en de tijdsdruk. Een algoritme biedt inwoners en ondernemers begeleiding bij (digitale) aanvragen. Een gemeente kan ervoor kiezen om elke digitale aanvraag nog ter beoordeling aan de burgerzakenmedewerker aan te bieden voordat deze wordt afgehandeld. Voor mensen die niet of minder digivaardig zijn bestaat er altijd nog de mogelijkheid om via de balie van de gemeente de aanvraag te doen.</p>",
+        "provider": "PinkRoccade Local Government",
+        "lawful_basis": "<div><div>Wet basisregistratie personen</div>\n<div>Wet rechten burgerlijke stand</div></div>",
+        "lawful_basis_link": "https://wetten.overheid.nl/BWBR0033715\nhttps://wetten.overheid.nl/BWBR0001851",
+        "impacttoetsen": [
+            "DPIA, via gemeenten"
+        ],
+        "iama_description": null,
+        "url": null,
+        "lang": "NLD",
+        "standard_version": "0.4.0",
+        "uuid": null,
+        "source_id": null,
+        "tags": null,
+        "source_data": "<div>Gegevens die worden gebruikt komen uit de BRP, burgerlijke stand registers, KvK, CRB (Centraal Rijbewijzenregister) en aangehaakte gegevens.</div>",
+        "source_data_link": "BRP: https://www.rvig.nl/basisregistratie-personen \nLV BAG: https://www.kadaster.nl/zakelijk/registraties/basisregistraties/bag \nCRB: https://www.rdw.nl/",
+        "methods_and_models": "<p>Via de website van de gemeente kan een inwoner of ondernemer een e-dienst starten. Iedere aanvraag wordt tijdens het invullen al getoetst tegen de voor de aanvraag geldende wet- en regelgeving. Een volledig ingevulde digitale aanvraag/aangifte komt ter beoordeling en afhandeling van een burgerzakenmedewerker, op de werklijst in iBurgerzaken. Bij het openen van een aanvraag of aangifte op de werklijst is het voor de burgerzakenmedewerker zichtbaar welke controle een meldingen heeft opgeleverd, voor een juiste beoordeling en afhandeling. Een gemeente kan voor een aantal digitale aanvragen kiezen of iBurgerzaken, deze zonder tussenkomst van een burgerzakenmedewerker, automatisch mag verwerken. iBurgerzaken verwerkt een aanvraag geheel automatisch als geen enkele controle een waarschuwing oplevert. Daarnaast kan de gemeente ook kiezen in welke situaties de aanvraag altijd op de werklijst ter beoordeling en afhandeling komt. Bijvoorbeeld bij Verhuizing binnen Nederland: als er sprake is van overbewoning op het nieuw adres.</p>",
+        "publiccode": null,
+        "human_intervention": "<p>Het algoritme gaat uit van een positief scenario. Daardoor worden alleen eenvoudige aangiften en aanvragen automatisch verwerkt. Wanneer een of meerdere bijzonderheden optreden, dan wordt de aanvraag/aangifte altijd door een burgerzakenmedewerker beoordeeld. De burgerzakenmedewerker controleert deze dan zelf; verwerken of afwijzen. Bij afwijzing is het altijd de burgerzakenmedewerker die dit doet en nooit het algoritme.</p>",
+        "risks": "<p>Het is aan gemeenten om vorm te geven aan het risicobeheer en aan de hand daarvan de e-diensten te configureren.</p>"
+    }
+]

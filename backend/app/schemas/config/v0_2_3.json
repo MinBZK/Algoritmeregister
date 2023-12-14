@@ -38,11 +38,7 @@
       "help_text": "Een korte, abstracte beschrijving van het algoritme.",
       "instructions": "Een korte, abstracte beschrijving van het algoritme. Bij voorkeur in één of twee zinnen. Vul dit veld in op B1-taalniveau.",
       "example": "Dit algoritme optimaliseert de doorstroom van verkeer bij kruispunten op basis van sensoren in het wegdek.",
-      "required": false,
-      "permitted_values": [
-        "Regelgebaseerd",
-        "Zelflerend"
-      ]
+      "required": false
     },
     "type": {
       "type": "enum",

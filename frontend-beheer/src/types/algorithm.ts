@@ -1,4 +1,5 @@
-import { FastApiResponse } from '@/types/index'
+import { FastApiResponse } from '.'
+import { Organisation } from './organisation'
 
 export interface Algorithm {
   name?: string
@@ -9,7 +10,7 @@ export interface Algorithm {
   published: boolean
   current_version_released: boolean
   current_version_published: boolean
-  last_update_by?: string
+  last_update_by: string
   overviewStatus?: string
 }
 
@@ -52,4 +53,8 @@ export interface AlgorithmPreviewResponse extends FastApiResponse {
 
 export interface NoOrgResponse extends FastApiResponse {
   data: null
+}
+
+export interface AlgorithmOwnerResponse extends FastApiResponse {
+  data: Organisation
 }

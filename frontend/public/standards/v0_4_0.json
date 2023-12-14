@@ -85,7 +85,7 @@
                 "type": "string",
                 "example": "2023-01",
                 "help_text": "Maand waarin het algoritme in gebruik is genomen.",
-                "instructions": "Maand en jaar waarin het algoritme in gebruik is genomen.",
+                "instructions": "Maand en jaar waarin het algoritme in gebruik is genomen. Schrijf de datum op zoals in dit voorbeeld: 01-1970",
                 "show_always": true
             },
             "end_date": {
@@ -94,7 +94,7 @@
                 "type": "string",
                 "example": "2023-05",
                 "help_text": "Maand waarin het algoritme buiten gebruik is genomen.",
-                "instructions": "Maand en jaar waarin het algoritme buiten gebruik is genomen. Als het algoritme nog in gebruik is, moet dit veld leegblijven. ",
+                "instructions": "Maand en jaar waarin het algoritme buiten gebruik is genomen. Als het algoritme nog in gebruik is, moet dit veld leegblijven. Schrijf de datum op zoals in dit voorbeeld: 01-1970",
                 "show_always": false
             },
             "goal": {
@@ -122,7 +122,7 @@
                 "example": "Haaks softwarebedrijf",
                 "help_text": "Indien van toepassing, de externe leverancier van het algoritme.",
                 "instructions": "Naam van de externe leverancier van het algoritme. Als het intern ontwikkeld is, noteer dan ‘Intern ontwikkeld’. Het gaat hierbij bijvoorbeeld niet om het gebruik van open source packages die gebruikt worden in een groter algoritme. Indien u zelf het algoritme hebt ontwikkeld, dient dit veld leeg te blijven. ",
-                "show_always": true
+                "show_always": false
             },
             "lawful_basis": {
                 "title": "Wettelijke basis",
@@ -152,7 +152,7 @@
                     "Impact Assessment Mensenrechten en Algoritmes (IAMA)"
                 ],
                 "help_text": "Welke impacttoetsen zijn gebruikt, zoals Data Protection Impact Asssesment (DPIA) of Impact Assessment Mensenrechten en Algoritmes (IAMA)? ",
-                "instructions": "Naam/namen van uitgevoerde impacttoetsen.",
+                "instructions": "Naam/namen van uitgevoerde impacttoetsen. Dit veld is vrij in te vullen, en de waardes zijn alleen suggesties.",
                 "recommended_items": [
                     "Data Protection Impact Asssesment (DPIA)",
                     "Impact Assessment Mensenrechten en Algoritmes (IAMA)"
@@ -160,12 +160,12 @@
                 "show_always": true
             },
             "iama_description": {
-                "title": "Link naar Mensenrechtentoets",
+                "title": "Link naar impacttoetsen",
                 "maxLength": 500,
                 "type": "string",
                 "example": "DPIA: https://link.com, IAMA: https://link.nl",
                 "help_text": "Link naar de resultaten van een uitgevoerde impacttoets, zoals een DPIA IAMA. ",
-                "instructions": "Link naar de resultaten van een impacttoets, indien deze is uitgevoerd en publiek beschikbaar is. Een voorbeeld hiervan is het impact assessment mensenrechten en algoritmes (IAMA) of het data protection impact assessment (DPIA). Formateer het dusdanig dat de naam van de toets gevold wordt door een dubbele punt en de URL. Als er meerdere zijn, kunnen deze gescheiden worden door komma's. Begin een URL met https://",
+                "instructions": "Link naar de resultaten van een impacttoets, indien deze is uitgevoerd en publiek beschikbaar is. Een voorbeeld hiervan is het impact assessment mensenrechten en algoritmes (IAMA) of het data protection impact assessment (DPIA). Formatteer het dusdanig dat de naam van de toets gevolgd wordt door een dubbele punt en de URL. Als er meerdere zijn, kunnen deze gescheiden worden door komma's. Begin een URL met https://",
                 "show_always": false
             },
             "url": {
@@ -183,7 +183,7 @@
                 "type": "string",
                 "example": "algoritmes@gemeentenoorderhaaks.nl",
                 "help_text": "De contactgegevens voor deze registratie ",
-                "instructions": "Het e-mailadres voor contact over deze registratie. Dit moet een geldig mailadres zijn waar burgers, media of andere betrokkenen vragen kunnen stellen over het algoritme zelf of over de gevolgen op basis van uitkomsten van het algoritme. Begin een URL met https:// ",
+                "instructions": "Het e-mailadres voor contact over deze registratie. Dit kan een geldig mailadres zijn waar burgers, media of andere betrokkenen vragen kunnen stellen over het algoritme zelf of over de gevolgen op basis van uitkomsten van het algoritme. Het alternatief is een extern webformulier die op dezelfde manier gebruikt kan worden. Begin een URL met https://.",
                 "show_always": true
             },
             "lang": {
@@ -285,8 +285,8 @@
                 "maxLength": 2500,
                 "type": "string",
                 "example": "",
-                "help_text": "Een overzicht van de voorziene risico's bij de inzet van het algoritme",
-                "instructions": "Een overzicht van de voorziene risico's bij de inzet van het algoritme",
+                "help_text": "Een overzicht van de voorziene risico's bij de inzet van het algoritme en hoe deze, mits van toepassing, gemitigeerd zijn",
+                "instructions": "Een overzicht van de voorziene risico's bij de inzet van het algoritme en hoe deze, mits van toepassing, gemitigeerd zijn",
                 "show_always": true
             }
         }

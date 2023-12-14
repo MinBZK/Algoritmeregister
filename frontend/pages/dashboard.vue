@@ -83,14 +83,13 @@ useHead({ title: 'Dashboard' })
 }
 .block-cards__card {
   width: 100%;
+  margin-bottom: 0em;
+  padding-bottom: 1em;
 }
 .block-cards {
   padding-top: 2em;
 }
-.block-cards__card {
-  margin-bottom: 0em;
-  padding-bottom: 1em;
-}
+
 h2 {
   font-size: 1.4rem !important;
   margin-bottom: 0.2em;

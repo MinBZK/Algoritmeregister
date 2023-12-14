@@ -7,6 +7,7 @@ export interface apiStandardField {
   show_always: boolean
   instructions: string
   allOf?: { $ref: string }[]
+  allowed_html_tags?: string[]
 }
 
 export interface AlgorithmIn {

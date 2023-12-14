@@ -19,7 +19,7 @@ const props = defineProps<{
 }>()
 
 const breadCrumbItems = computed(() => {
-  const homeItem = [{ text: 'Algoritmeregister webformulier', to: '/' }]
+  const homeItem = [{ title: 'Algoritmeregister webformulier', to: '/' }]
   return homeItem?.concat(props.items)
 })
 </script>

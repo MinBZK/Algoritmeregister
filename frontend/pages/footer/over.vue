@@ -1,5 +1,5 @@
 <template>
-  <div v-html="p('Footer: Over.content')" />
+  <div style="margin-bottom: 6em" v-html="p('Footer: Over.content')" />
 </template>
 
 <script setup lang="ts">

@@ -1,10 +1,18 @@
 <template>
   <div>
-    <SearchBar @do-search="reactToSearch()" />
+    <LanguageDisclaimer
+      v-if="locale == 'en'"
+      class="language-disclaimer"
+      :density="isMobile ? 'compact' : 'default'"
+    />
+    <SearchBar type="no-link" @do-search="doSearch" />
 
     <div class="row container columns no-padding">
-      <div v-if="algoritmes.length != 0 || loading" class="column-d-3">
-        <AlgoritmeFilters :aggregated-algoritmes="aggregations" />
+      <div v-if="!loading" class="column-d-3">
+        <FilterGroup
+          :filter-data="data?.filter_data"
+          :selected-filters="data?.selected_filters"
+        />
       </div>
       <div class="column-d-9">
         <h1 role="status">
@@ -18,21 +26,25 @@
           <div class="column-d-6">
             <TablePagination
               v-if="nPages > 1"
-              :current-page="page"
+              :current-page="+page"
               :page-length="nPages"
               @set-page="(p) => setPage(p)"
             />
           </div>
           <div
             v-if="algoritmes.length != 0"
-            class="column-d-6"
+            class="column-d-6 center-with-pagination"
             :class="!isMobile && 'align-right'"
           >
             <FormOverheidButton
               :label="t('downloadAllAlgorithms')"
-              :action="algoritmeService.downloadUrl()"
+              :action="
+                algoritmeService.downloadAllUrl(
+                  mapLocaleName(locale as 'en' | 'nl')
+                )
+              "
+              :hidden-query="[{ name: 'filetype', value: 'excel' }]"
               :style="'secondary'"
-              class="no-margin"
               icon="mdi:download"
             />
           </div>
@@ -49,7 +61,6 @@
               <SearchResultCard
                 :set-focus="index == 0 && newFocusIsRequested"
                 :algoritme="algoritme"
-                mode="compact"
                 @focus-has-been-set="newFocusIsRequested = false"
               >
               </SearchResultCard>
@@ -58,7 +69,7 @@
         </div>
         <TablePagination
           v-if="nPages > 1"
-          :current-page="page"
+          :current-page="+page"
           :page-length="nPages"
           @set-page="(p) => setPage(p)"
         />
@@ -82,99 +93,78 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import type { AlgoritmeQuery } from '@/services/algoritme'
+import { mapLocaleName } from '@/utils'
 import algoritmeService from '@/services/algoritme'
-import type { AlgoritmeFilter } from '@/types/algoritme'
-import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
+import FilterGroup from '@/components/filter/FilterGroup.vue'
 
-const { t } = useI18n()
-
+const { t, locale } = useI18n()
+const router = useRouter()
+const localePath = useLocalePath()
 const isMobile = useMobileBreakpoint().medium
 
-const parsedQuery = computed(() => useRouteQuery())
-const searchQuery = computed(() => (useRoute().query.search as string) || '')
+const query = computed(() => useRoute().query as AlgoritmeQuery)
+const pageLength = '10'
 
-const parsedFilters = computed(
-  () => (parsedQuery.value.filters || []) as AlgoritmeFilter[]
+let { data } = await algoritmeService.getAll(
+  {
+    page: '1',
+    limit: pageLength,
+    ...query.value,
+  },
+  mapLocaleName(locale.value as 'en' | 'nl')
 )
 
-const page = computed(() => {
-  const route = useRoute()
-  const page = Array.isArray(route.query.page)
-    ? route.query.page[0]
-    : route.query.page
-  return parseInt(page || '1')
-})
-
-const pageLength = 10
-
-let { data } = await algoritmeService.getAll({
-  filters: parsedFilters.value,
-  page: page.value,
-  limit: pageLength,
-  search: searchQuery.value,
-})
-
+// Refresh data based on the URL query
 const loading = ref(false)
-const updateData = async () => {
+watch(query, async () => {
   loading.value = true
   if (data.value) {
     data.value.results = []
   }
-  const response = await algoritmeService.getAll({
-    filters: parsedFilters.value,
-    page: page.value,
-    limit: pageLength,
-    search: searchQuery.value,
-  })
+  const response = await algoritmeService.getAll(
+    query.value,
+    mapLocaleName(locale.value as 'en' | 'nl')
+  )
   data = response.data
   loading.value = false
-}
+})
 
+const page = computed(() => query.value.page || '1')
 const totalCount = computed(() => data.value?.total_count || 0)
-const aggregations = computed(() => data.value?.aggregations || [])
 const algoritmes = computed(() => data.value?.results || [])
+const nPages = computed(() => Math.ceil(totalCount.value / +pageLength))
 
-const nPages = computed(() => Math.ceil(totalCount.value / pageLength))
-
-const localePath = useLocalePath()
 const setPage = (newPage: number) => {
-  const router = useRouter()
-  const route = useRoute()
   router.push(
-    localePath({
-      name: 'algoritme',
-      query: { ...route.query, page: newPage.toString() },
-    })
+    localePath({ query: { ...query.value, page: newPage.toString() } })
   )
   scroll(0, 0)
 }
 
-const searchPageTitle = computed(() =>
-  searchQuery.value
-    ? t(`foundResults`, { n: totalCount.value }).concat(
-        t(`forSearch`, { searchQuery: searchQuery.value })
-      )
-    : t(`algoritmeIndex.pageTitle`)
-)
-
 // default value is true, so that when we search from the homepage the focus is always placed correctly.
 const readTitle = ref<boolean>(false)
 const newFocusIsRequested = ref<boolean>(false)
-const reactToSearch = async () => {
-  await updateData()
-  setPage(1)
-  newFocusIsRequested.value = true
+const doSearch = (searchtext: string) => {
+  const newQuery = {
+    ...query.value,
+    searchtext: searchtext || undefined,
+    page: '1',
+  }
+  router.push(localePath({ query: newQuery }))
 
+  newFocusIsRequested.value = true
   // In some situations, say the page title again. Everytime state changes, the title is updated and read.
   readTitle.value = !readTitle.value
 }
 
-watch(searchQuery, () => {
-  reactToSearch()
-})
-
-watch(parsedFilters, () => updateData())
+const searchPageTitle = computed(() =>
+  query.value.searchtext
+    ? t(`foundResults`, { n: totalCount.value }).concat(
+        t(`forSearch`, { searchQuery: query.value.searchtext })
+      )
+    : t(`algoritmeIndex.pageTitle`)
+)
 
 useHead({ title: searchPageTitle })
 providePageTitle({
@@ -203,10 +193,20 @@ ul.no-results {
 }
 
 li {
-  padding-left: 1em;
+  padding: 1em !important;
 }
 
-h1.no-margin {
-  margin: 0em;
+.center-with-pagination {
+  display: flex;
+  align-items: center;
+}
+
+.language-disclaimer {
+  @media (min-width: 65em) {
+    margin: 0em 9em 1em 9em;
+  }
+  @media (max-width: 65em) {
+    margin: 0 0 1em 0;
+  }
 }
 </style>

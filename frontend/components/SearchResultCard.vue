@@ -1,55 +1,60 @@
 <template>
-  <div :class="`item ${mode}`">
-    <div
-      v-if="mode === 'compact'"
-      ref="algorithmLink"
-      class="item-header"
-      :lang="backendContentLanguage"
-    >
-      <NuxtLink
-        :to="localePath(`/algoritme/${algoritme.lars}`)"
-        class="result--title focus-border"
-      >
-        <h2>{{ algoritme.name }}</h2>
-      </NuxtLink>
-    </div>
-
-    <p :lang="backendContentLanguage">
-      <ParseUrl :key="algoritme.lars"> {{ description }}</ParseUrl
-      >&nbsp;
-      <NuxtLink
-        v-if="isTruncated && mode === 'compact'"
-        :to="localePath(`/algoritme/${algoritme.lars}`)"
-        >{{ readMore }}
-      </NuxtLink>
-    </p>
-
-    <dl class="dl columns--data">
+  <div class="card-content-flex">
+    <div class="algorithm-main-content">
       <div
-        v-for="sT in cardGrouping?.subElements"
-        :key="sT"
-        :class="smallBreakpoint && 'column--fullwidth'"
+        ref="algorithmLink"
+        class="item-header"
+        :lang="backendContentLanguage"
       >
-        <dt>
-          {{ t(`algorithmProperties.${helpTextVersion}.${sT}.label`) }}
-        </dt>
-        <dd class="no-bottom-margin" :lang="backendContentLanguage">
-          <ParseUrl :key="sT">
-            <ListifyString
-              :text="algoritme[sT as keyof Algoritme] || t('ontbreekt')"
-            />
-          </ParseUrl>
-        </dd>
-      </div>
-    </dl>
-    <div v-if="mode === 'compact'" class="read-more-text">
-      <b>
         <NuxtLink
-          v-if="mode === 'compact'"
+          :to="localePath(`/algoritme/${algoritme.lars}`)"
+          class="result--title focus-border"
+        >
+          <h2>{{ algoritme.name }}</h2>
+        </NuxtLink>
+        <h3>{{ algoritme.organization }}</h3>
+      </div>
+      <p :lang="backendContentLanguage">
+        <ClientOnly>
+          <ParseUrl :key="algoritme.lars">
+            <ListifyString :text="description"
+          /></ParseUrl>
+        </ClientOnly>
+        <NuxtLink
+          v-if="isTruncated"
           :to="localePath(`/algoritme/${algoritme.lars}`)"
           >{{ readMore }}
         </NuxtLink>
-      </b>
+      </p>
+      <div class="read-more-text">
+        <div style="font-size: 0.8em">{{ currentDate }}</div>
+        <b>
+          <NuxtLink :to="localePath(`/algoritme/${algoritme.lars}`)"
+            >{{ readMore }}
+          </NuxtLink>
+        </b>
+      </div>
+    </div>
+    <div class="grouping-content">
+      <dl>
+        <div
+          v-for="sT in cardGrouping?.subElements"
+          :key="sT"
+          :class="smallBreakpoint && 'row--fullwidth'"
+          class="add-padding-bottom"
+        >
+          <dt>
+            {{ t(`algorithmProperties.${helpTextVersion}.${sT}.label`) }}
+          </dt>
+          <dd class="no-bottom-margin" :lang="backendContentLanguage">
+            <ParseUrl :key="sT">
+              <ListifyString
+                :text="algoritme[sT as keyof Algoritme] || t('ontbreekt')"
+              />
+            </ParseUrl>
+          </dd>
+        </div>
+      </dl>
     </div>
   </div>
 </template>
@@ -57,16 +62,14 @@
 <script setup lang="ts">
 import { backendContentLanguage, textVersionMapping } from '@/config/config'
 import type { Algoritme } from '@/types/algoritme'
-import type { headerCardGrouping } from '@/types/layout'
+import type { searchResultCardGrouping } from '@/types/layout'
 
 interface Props {
   algoritme: Algoritme
-  mode?: 'compact' | 'default'
   setFocus?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  mode: 'default',
   setFocus: false,
 })
 
@@ -92,16 +95,60 @@ const truncatedDescription = computed(() => {
     : truncatedString + '...'
 })
 
-const description =
-  props.mode === 'compact'
-    ? truncatedDescription
-    : props.algoritme.description_short || shortDescriptionMissing
+const description = truncatedDescription.value || shortDescriptionMissing.value
 
 const isTruncated = computed(() => {
   return (
     truncatedDescription.value !==
     (props.algoritme.description_short as string | null)?.substring(0, length)
   )
+})
+
+const currentDate = computed(() => {
+  let dateString = ''
+  const dateToConvert = props.algoritme.create_dt
+  if (typeof dateToConvert !== 'string') {
+    return null
+  }
+  const date = new Date(dateToConvert)
+  const month: string = t(`months.${date.getMonth() + 1}`)
+  const monthDay: string = date.getDate().toString()
+  const year: string = date.getFullYear().toString()
+  const hours: string = date.getHours().toString()
+  const minutes: string =
+    date.getMinutes() < 10
+      ? '0'.concat(date.getMinutes().toString())
+      : date.getMinutes().toString()
+
+  const isEnglish = t('english?') === 'true'
+  if (isEnglish) {
+    let monthDayOrdinal = ''
+    if (['1', '21', '31'].includes(monthDay)) {
+      monthDayOrdinal = 'st'
+    } else if (['2', '22'].includes(monthDay)) {
+      monthDayOrdinal = 'nd'
+    } else if (['3', '23'].includes(monthDay)) {
+      monthDayOrdinal = 'rd'
+    } else {
+      monthDayOrdinal = 'th'
+    }
+    dateString =
+      monthDay +
+      monthDayOrdinal +
+      ' of ' +
+      month +
+      ' ' +
+      year +
+      ', at ' +
+      hours +
+      ':' +
+      minutes +
+      ' (CET)'
+  } else if (!isEnglish) {
+    dateString =
+      monthDay + ' ' + month + ' ' + year + ' om ' + hours + ':' + minutes
+  }
+  return t('searchResultCard.lastChange') + ' ' + dateString
 })
 
 const algorithmLink = ref<HTMLAnchorElement>()
@@ -111,12 +158,12 @@ onMounted(() => {
   getGrouping(props.algoritme.standard_version)
 })
 
-const cardGrouping = ref<headerCardGrouping>()
+const cardGrouping = ref<searchResultCardGrouping>()
 const getGrouping = async (version: string) => {
   const layoutUrl = '/layouts/v' + version.replace(/\./g, '_') + '.json'
   const fetchResponse = await fetch(layoutUrl)
   const layout = await fetchResponse.json()
-  cardGrouping.value = layout.headerCardGrouping
+  cardGrouping.value = layout.searchResultCardGrouping
 }
 
 const focusCardLink = () => {
@@ -141,55 +188,49 @@ watch(setFocusWatcher, (newValue) => {
 <style scoped lang="scss">
 h2 {
   font-size: 1.1em;
+  margin-bottom: 0.2em;
+}
+
+h3 {
+  font-size: 0.9em;
   margin-bottom: 0;
+}
+.add-padding-bottom {
+  padding-bottom: 1em;
 }
 
 .item-header {
   margin-bottom: 0.2em;
 }
 
-.dl.columns--data div {
-  padding: 0.5em;
-}
-
 .no-bottom-margin {
   margin-bottom: 0;
 }
 
-div.default {
-  background: $tertiary !important;
-  list-style: none;
-  padding: 1em;
-  margin-bottom: 0.5em;
-  border: 0;
-}
-
-@media (min-width: 51em) {
-  div.default {
-    padding: 1.5em 10% !important;
-  }
-}
-
-.column--fullwidth {
-  width: 100% !important;
-}
-
-div.compact {
-  background: #fff;
-  list-style: none;
-  padding: 1em;
-  margin-bottom: 0.5em;
-  border: 0;
-}
-
-@media (min-width: 51em) {
-  div.compact {
-    padding: 1.75em 1.25em 1.5em 2em !important;
-  }
-}
-
 .read-more-text {
-  text-align: right;
-  padding-right: 0.75em;
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.card-content-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.grouping-content {
+  flex: 1 0 30%;
+  border-left: 1px solid lightgray;
+  padding-left: 1.25em;
+}
+
+.algorithm-main-content {
+  flex: 1 0 70%;
+  padding-right: 1em;
+  padding-left: 0.25em;
+  display: flex;
+  flex-direction: column;
 }
 </style>

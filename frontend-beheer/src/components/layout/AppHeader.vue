@@ -15,7 +15,7 @@
           </router-link>
         </div>
         <v-col class="breadcrumb">
-          <breadcrumb :items="breadcrumbItems || []" />
+          <Breadcrumb :items="breadcrumbItems || []" />
         </v-col>
         <v-col align="right">
           <div>
@@ -54,13 +54,11 @@ watch(
 )
 const allBreadcrumbs: Record<string, BreadcrumbType[]> = {
   'algorithm.index': [],
-  'algorithm.create': [{ text: 'Algoritme aanmaken', to: '#' }],
-  'algorithm.edit': [{ text: 'Algoritme bewerken', to: '#' }],
+  'algorithm.create': [{ title: 'Algoritme aanmaken', to: '#' }],
+  'algorithm.edit': [{ title: 'Algoritme bewerken', to: '#' }],
 }
 const breadcrumbItems = computed(() => {
-  return allBreadcrumbs[route.name as keyof typeof allBreadcrumbs] as
-    | BreadcrumbType[]
-    | undefined
+  return allBreadcrumbs[route.name as keyof typeof allBreadcrumbs]
 })
 
 const logout = () => {

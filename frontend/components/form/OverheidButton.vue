@@ -7,7 +7,7 @@
     <button
       :id="buttonId"
       ref="button"
-      class="button button--nolabel"
+      class="button"
       :class="[
         {
           'button--block': fullWidth,
@@ -23,10 +23,22 @@
         >{{ label }} <NuxtIcon v-if="icon" size="0.9em" :name="icon"
       /></span>
     </button>
+    <input
+      v-for="item in hiddenQuery"
+      :key="item.name"
+      type="hidden"
+      :name="item.name"
+      :value="item.value"
+    />
   </form>
 </template>
 
 <script setup lang="ts">
+export interface Query {
+  name: string
+  value: string
+}
+
 const props = withDefaults(
   defineProps<{
     label: string
@@ -34,6 +46,7 @@ const props = withDefaults(
     fullWidth?: boolean
     style?: 'primary' | 'secondary' | 'tertiary'
     action?: string | undefined
+    hiddenQuery?: Query[]
     alignHorizontally?: boolean
     disabled?: boolean
     buttonId?: string | undefined
@@ -44,6 +57,7 @@ const props = withDefaults(
     fullWidth: false,
     primary: true,
     action: undefined,
+    hiddenQuery: undefined,
     alignHorizontally: false,
     disabled: false,
     style: 'primary',
@@ -70,10 +84,9 @@ const clickButton = (e: Event) => {
 </script>
 
 <style scoped lang="scss">
-form button {
-  margin-top: 9px;
+.button {
+  margin-bottom: 0em !important;
 }
-
 .inline-form {
   display: inline-block;
   margin-right: 1em;

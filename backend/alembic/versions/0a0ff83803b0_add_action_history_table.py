@@ -8,7 +8,7 @@ Create Date: 2023-04-13 15:12:33.051656
 from alembic import op
 import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
-from app.models import OperationEnum
+from app.schemas import OperationEnum
 
 # revision identifiers, used by Alembic.
 revision = "0a0ff83803b0"

@@ -1,9 +1,10 @@
 from pydantic import BaseModel, create_model
 from typing import Union
 from functools import lru_cache
-from sqlalchemy import Integer, Boolean, VARCHAR, DateTime
+from sqlalchemy import JSON, Integer, Boolean, VARCHAR, DateTime
 from datetime import datetime
 import os
+import re
 from app import schemas, models
 
 
@@ -13,16 +14,18 @@ class ExportBase(BaseModel):
 
 
 def _translate_type(type_class):
-    if type(type_class) == VARCHAR:
+    if isinstance(type_class, VARCHAR):
         return str
-    elif type(type_class) == Boolean:
+    elif isinstance(type_class, Boolean):
         return bool
-    elif type(type_class) == Integer:
+    elif isinstance(type_class, Integer):
         return int
-    elif type(type_class) == DateTime:
+    elif isinstance(type_class, DateTime):
         return datetime
+    elif isinstance(type_class, JSON):
+        return list[dict]
     else:
-        raise TypeError
+        raise TypeError(type_class)
 
 
 @lru_cache(maxsize=2)
@@ -33,12 +36,10 @@ def get_algorithm_export_schema(truncated: bool):
         "id",
         "algoritme_id",
         "preview_active",
+        "language",
+        "vector",
     ]
-    ignore_on_trunc = [
-        "create_dt",
-        "published",
-        "released",
-    ]
+    ignore_on_trunc = ["create_dt", "published", "released"]
     fields = {}
     for c in columns:
         if c.key in always_ignore:
@@ -58,8 +59,9 @@ def get_algorithm_export_schema(truncated: bool):
 
 @lru_cache(maxsize=1)
 def get_all_output_schemas_union():
-    file_names = os.listdir(os.path.dirname(schemas.__file__) + "/config")
-    version_names = [f.replace(".json", "") for f in file_names]
+    file_names = os.listdir("app/schemas/config")
+    version_pattern = re.compile(r"v\d_\d_\d[a-z]?")
+    version_names = [item[:-5] for item in file_names if version_pattern.match(item)]
 
     output_schemas = []
     for v in version_names:

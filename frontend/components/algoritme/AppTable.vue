@@ -2,7 +2,7 @@
   <table class="table__data-overview">
     <tbody>
       <tr v-for="property in tableProperties" :key="property.key">
-        <th scope="row" width="33%">
+        <th scope="row">
           <div class="space-for-question-mark">
             {{ property.keyLabel }}
             <span

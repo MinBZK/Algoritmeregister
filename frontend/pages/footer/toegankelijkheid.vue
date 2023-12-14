@@ -1,5 +1,8 @@
 <template>
-  <div v-html="p('Footer: Toegankelijkheid.content')" />
+  <div
+    style="margin-bottom: 6em"
+    v-html="p('Footer: Toegankelijkheid.content')"
+  />
 </template>
 
 <script setup lang="ts">

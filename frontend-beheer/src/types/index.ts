@@ -5,12 +5,7 @@ export interface FastApiResponse {
   [key: string]: any
 }
 
-export interface Organization {
-  id: string
-  name: string
-}
-
 export interface Breadcrumb {
-  text: string;
-  to: string;
+  title: string
+  to: string
 }

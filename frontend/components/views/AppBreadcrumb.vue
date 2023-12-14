@@ -3,19 +3,19 @@
     <div class="container">
       <div class="breadcrumb">
         <p>{{ t('you-are-here') }}:</p>
-        <ClientOnly>
-          <ol>
-            <li v-for="crumb in breadcrumbsWithLinks" :key="crumb.routeName">
-              <NuxtLink
-                v-if="crumb.routeName !== null"
-                :to="localePath(`/${crumb.routeName}`)"
-                >{{ crumb.label }}</NuxtLink
-              >
-              <span v-if="crumb.routeName == null">{{ crumb.label }}</span>
-            </li>
+        <ol>
+          <li v-for="crumb in breadcrumbsWithLinks" :key="crumb.routeName">
+            <NuxtLink
+              v-if="crumb.routeName !== null"
+              :to="localePath(`/${crumb.routeName}`)"
+              >{{ crumb.label }}</NuxtLink
+            >
+            <span v-if="crumb.routeName == null">{{ crumb.label }}</span>
+          </li>
+          <ClientOnly>
             <li>{{ pathTail.label }}</li>
-          </ol>
-        </ClientOnly>
+          </ClientOnly>
+        </ol>
       </div>
     </div>
   </div>

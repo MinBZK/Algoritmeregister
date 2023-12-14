@@ -7,30 +7,32 @@
         </h3>
         <div class="row">
           <div v-if="loading" class="loading-text">{{ loadingText }}...</div>
-          <table v-show="!loading" class="table table--condensed">
-            <thead>
-              <tr>
-                <th class="u-columnwidth-50p">
-                  <span>{{ value }} </span>
-                </th>
-                <th class="u-columnwidth-10p">{{ numberOfMatches }}</th>
-                <th class="u-columnwidth-10p borderless-left">
-                  <span>Percentage</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="agg in aggregates" :key="agg.label">
-                <td>{{ t(agg.label) }}</td>
-                <td>
-                  <b>{{ agg.value }} </b>
-                </td>
-                <td class="borderless-left">
-                  <span> {{ agg.fraction }}% </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <ClientOnly>
+            <table v-show="!loading" class="table table--condensed">
+              <thead>
+                <tr>
+                  <th class="u-columnwidth-50p">
+                    <span>{{ value }} </span>
+                  </th>
+                  <th class="u-columnwidth-10p">{{ numberOfMatches }}</th>
+                  <th class="u-columnwidth-10p borderless-left">
+                    <span>Percentage</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="agg in aggregates" :key="agg.label">
+                  <td>{{ t(agg.label) }}</td>
+                  <td>
+                    <b>{{ agg.value }} </b>
+                  </td>
+                  <td class="borderless-left">
+                    <span> {{ agg.fraction }}% </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </ClientOnly>
         </div>
       </div>
     </div>

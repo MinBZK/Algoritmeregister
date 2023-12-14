@@ -15,7 +15,7 @@
             >
               <option
                 v-for="column in columns"
-                :key="column"
+                :key="column.key"
                 :value="column.key"
               >
                 {{ column.label }}
@@ -38,7 +38,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="row in parsedCountData" :key="row.descriptor">
+              <tr v-for="(row, index) in parsedCountData" :key="index">
                 <td class="word-break">
                   {{ row.descriptor }}
                 </td>
@@ -86,18 +86,21 @@ const interestingColumns: string[] = [
 ]
 
 const columnApi = await algoritmeService.getColumns()
-const columns = computed(() =>
-  columnApi.data.value
-    .filter((column: any) => {
-      return interestingColumns.includes(column.column_name)
-    })
-    .map((column: any) => {
-      return {
-        key: column.column_name,
-        label: t(`algorithmProperties.default.${column.column_name}.label`),
-      }
-    })
-)
+const columns = computed(() => {
+  if (columnApi.data.value) {
+    return columnApi.data.value
+      .filter((column: any) => {
+        return interestingColumns.includes(column.column_name)
+      })
+      .map((column: any) => {
+        return {
+          key: column.column_name,
+          label: t(`algorithmProperties.default.${column.column_name}.label`),
+        }
+      })
+  }
+  return []
+})
 
 const countData =
   ref<[{ descriptor: string; count: string; fraction: number }]>()

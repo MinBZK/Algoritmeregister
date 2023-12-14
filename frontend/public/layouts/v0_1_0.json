@@ -1,79 +1,71 @@
 {
-    "headerCardGrouping": {
-        "mainElement": "description_short",
-        "subElements": [
-            "organization",
-            "department",
-            "category",
-            "type",
-            "status"
-        ]
+  "headerCardGrouping": {
+    "mainElement": "description_short",
+    "subElements": ["organization", "department", "category", "type", "status"]
+  },
+  "searchResultCardGrouping": {
+    "mainElement": "description_short",
+    "subElements": ["type", "status"]
+  },
+  "tabsGrouping": [
+    {
+      "key": "algemeneInformatie",
+      "rows": [
+        "name",
+        "organization",
+        "department",
+        "description_short",
+        "type",
+        "category",
+        "website",
+        "status"
+      ]
     },
-    "tabsGrouping": [
-        {
-            "key": "algemeneInformatie",
-            "rows": [
-                "name",
-                "organization",
-                "department",
-                "description_short",
-                "type",
-                "category",
-                "website",
-                "status"
-            ]
-        },
-        {
-            "key": "inzet",
-            "rows": [
-                "goal",
-                "impact",
-                "proportionality",
-                "decision_making_process",
-                "documentation"
-            ]
-        },
-        {
-            "key": "juridisch",
-            "rows": [
-                "competent_authority",
-                "lawful_basis",
-                "iama",
-                "iama_description",
-                "dpia",
-                "dpia_description",
-                "objection_procedure"
-            ]
-        },
-        {
-            "key": "metadata_algorithm",
-            "rows": [
-                "url",
-                "contact_email",
-                "area",
-                "lang",
-                "revision_date"
-            ]
-        },
-        {
-            "key": "toepassing",
-            "rows": [
-                "description",
-                "application_url",
-                "publiccode",
-                "mprd",
-                "source_data",
-                "methods_and_models"
-            ]
-        },
-        {
-            "key": "toezicht",
-            "rows": [
-                "monitoring",
-                "human_intervention",
-                "risks",
-                "performance_standard"
-            ]
-        }
-    ]
+    {
+      "key": "inzet",
+      "rows": [
+        "goal",
+        "impact",
+        "proportionality",
+        "decision_making_process",
+        "documentation"
+      ]
+    },
+    {
+      "key": "juridisch",
+      "rows": [
+        "competent_authority",
+        "lawful_basis",
+        "iama",
+        "iama_description",
+        "dpia",
+        "dpia_description",
+        "objection_procedure"
+      ]
+    },
+    {
+      "key": "metadata_algorithm",
+      "rows": ["url", "contact_email", "area", "lang", "revision_date"]
+    },
+    {
+      "key": "toepassing",
+      "rows": [
+        "description",
+        "application_url",
+        "publiccode",
+        "mprd",
+        "source_data",
+        "methods_and_models"
+      ]
+    },
+    {
+      "key": "toezicht",
+      "rows": [
+        "monitoring",
+        "human_intervention",
+        "risks",
+        "performance_standard"
+      ]
+    }
+  ]
 }

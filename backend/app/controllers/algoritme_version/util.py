@@ -1,131 +1,10 @@
 from sqlalchemy.orm import Session
-from sqlalchemy import desc, func, and_
 from threading import Timer
 from app.config.settings import Settings
-from app import models, controllers
+from app import schemas
+from app.repositories import ActionHistoryRepository, AlgoritmeVersionRepository
 
 env_settings = Settings()
-
-
-def get_published_version_algo(id: str, db: Session) -> models.AlgoritmeVersion | None:
-    published_algo = (
-        db.query(models.AlgoritmeVersion)
-        .filter(
-            models.AlgoritmeVersion.published,
-            models.AlgoritmeVersion.lars == id,
-        )
-        .first()
-    )
-    return published_algo
-
-
-def get_published_versions_algo(
-    as_org: str, db: Session
-) -> list[models.AlgoritmeVersion] | None:
-    published_algo = (
-        db.query(models.AlgoritmeVersion)
-        .filter(
-            models.AlgoritmeVersion.published,
-            models.AlgoritmeVersion.owner == as_org,
-        )
-        .all()
-    )
-    return published_algo
-
-
-def get_latest_version_algo(id: str, db: Session) -> models.AlgoritmeVersion | None:
-    query = (
-        db.query(models.AlgoritmeVersion)
-        .filter(models.AlgoritmeVersion.lars == id)
-        .order_by(desc(models.AlgoritmeVersion.create_dt))
-    )
-    latest_algo = query.first()
-    return latest_algo
-
-
-def get_latest_versions_algo(as_org: str, db: Session) -> list[models.AlgoritmeVersion]:
-    subquery = (
-        db.query(
-            models.AlgoritmeVersion.algoritme_id,
-            func.max(models.AlgoritmeVersion.create_dt).label("max_creation_dt"),
-        )
-        .group_by(models.AlgoritmeVersion.algoritme_id)
-        .subquery()
-    )
-    query = (
-        db.query(models.AlgoritmeVersion)
-        .join(
-            subquery,
-            and_(
-                models.AlgoritmeVersion.algoritme_id == subquery.c.algoritme_id,
-                models.AlgoritmeVersion.create_dt == subquery.c.max_creation_dt,
-            ),
-        )
-        .filter(
-            models.AlgoritmeVersion.owner == as_org,
-        )
-    )
-    query_result = query.all()
-    return query_result
-
-
-def retract_published_algo(id: str, db: Session) -> str | None:
-    query = db.query(models.AlgoritmeVersion).filter(
-        models.AlgoritmeVersion.published,
-        models.AlgoritmeVersion.lars == id,
-    )
-    row = query.first()
-    if row:
-        update_is_succesful = query.update(
-            {
-                models.AlgoritmeVersion.published: False,
-                models.AlgoritmeVersion.released: False,
-            },
-            synchronize_session=False,
-        )
-        if update_is_succesful:
-            return row.id
-
-
-def release_latest_version_algo(id: str, db: Session) -> str | None:
-    latest_version = get_latest_version_algo(id, db)
-    if latest_version:
-        setattr(latest_version, "released", True)
-        return str(latest_version.id)
-
-
-def unrelease_all_versions_algo(id: str, db: Session) -> str | None:
-    n_unreleased = (
-        db.query(models.AlgoritmeVersion)
-        .filter(models.AlgoritmeVersion.lars == id)
-        .update(
-            {
-                models.AlgoritmeVersion.released: False,
-            },
-            synchronize_session="fetch",
-        )
-    )
-    return n_unreleased
-
-
-def publish_latest_version_algo(id: str, db: Session) -> str | None:
-    latest_version = get_latest_version_algo(id, db)
-    if latest_version:
-        setattr(latest_version, "published", True)
-        return str(latest_version.id)
-
-
-def set_preview_active(lars: str, db: Session) -> str | None:
-    latest_algo = (
-        db.query(models.AlgoritmeVersion)
-        .filter(models.AlgoritmeVersion.lars == lars)
-        .order_by(desc(models.AlgoritmeVersion.create_dt))
-    ).first()
-    if not latest_algo:
-        return
-    setattr(latest_algo, "preview_active", True)
-    db.commit()
-    return latest_algo.id
 
 
 def wait_then_disable_preview(lars: str, db: Session) -> None:
@@ -136,53 +15,37 @@ def wait_then_disable_preview(lars: str, db: Session) -> None:
             "lars": lars,
             "db": db,
             "user": "system",
-            "reason": models.OperationEnum.preview_timeout,
+            "reason": schemas.OperationEnum.preview_timeout,
         },
     )
     S.start()
 
 
-def get_preview_algo(lars: str, db: Session):
-    preview_algo = (
-        db.query(models.AlgoritmeVersion)
-        .filter(
-            models.AlgoritmeVersion.lars == lars, models.AlgoritmeVersion.preview_active
-        )
-        .first()
-    )
-    return preview_algo
-
-
 def disable_preview(
-    lars: str, db: Session, user: str, reason: models.OperationEnum
+    lars: str, db: Session, user: str, reason: schemas.OperationEnum
 ) -> bool:
-    preview_algo = get_preview_algo(lars, db)
+    algoritme_version_repo = AlgoritmeVersionRepository(db)
+    action_history_repo = ActionHistoryRepository(db)
+
+    preview_algo = algoritme_version_repo.unpreview_by_lars(lars)
     if not preview_algo:
         return False
-    setattr(preview_algo, "preview_active", False)
-    controllers.action_history.post_action(
-        action=reason,
-        algoritme_version_id=preview_algo.id,
-        db=db,
-        user=user,
+    action_history_repo.add(
+        schemas.ActionHistoryIn(
+            algoritme_version_id=preview_algo.id, user_id=user, operation=reason
+        )
     )
-    db.commit()
     return True
 
 
-def find_version_changes(v1, v2) -> bool:
-    ignore_attributes = ["id", "published", "released", "preview_active", "create_dt"]
-    for each in v1.__table__.columns:
-        attribute = str(each).split(".")[-1]
-        old_attribute = getattr(v1, attribute)
-        new_attribute = getattr(v2, attribute)
-        if (old_attribute != new_attribute) and attribute not in ignore_attributes:
+def find_version_changes(
+    v1: schemas.AlgoritmeVersionContent, v2: schemas.AlgoritmeVersionContent
+) -> bool:
+    """
+    Compares two algoritme_versions.
+    Return true if at least one difference is found.
+    """
+    for key in dict(v1).keys():
+        if getattr(v1, key) != getattr(v2, key):
             return True
     return False
-
-
-def remove_all_versions_algo(lars: str, db: Session) -> int:
-    n_removed = (
-        db.query(models.Algoritme).filter(models.Algoritme.lars == lars).delete()
-    )
-    return n_removed
