@@ -1,8 +1,10 @@
 backend/*venv
+etl/*venv
 __pycache__/
 .idea
 backend/.env
 frontend/.env
+etl/.env
 *.pyc
 .vscode
 node_modules
@@ -13,3 +15,7 @@ node_modules
 .output
 dist
 .coverage
+backend/.DS_Store
+.DS_Store
+**/*secrets.txt
+**/*secret*.json

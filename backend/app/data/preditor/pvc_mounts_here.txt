@@ -1,0 +1,1 @@
+The PVC overwrites anything in this folder. For local development use the supporting_text.json in the app/data/default folder.

@@ -11,7 +11,8 @@ import {
   releaseAlgorithm,
   generatePreview,
   removeAlgorithm,
-} from '@/services'
+  getAlgorithmOwner,
+} from '@/services/algorithms'
 import {
   AlgorithmForm,
   CreateAlgorithmResponse,
@@ -20,9 +21,10 @@ import {
   NoOrgResponse,
 } from '@/types/algorithm'
 import content from '@/content.json'
-import { Organization } from '@/types'
-import { noOrgSelectedResponse } from '@/util'
+import { Organisation } from '@/types/organisation'
+import { noOrgSelectedResponse } from '@/utils'
 import router from '@/router'
+import { useAlgorithmStore } from './overview'
 
 const authStore = useAuthStore()
 
@@ -45,8 +47,8 @@ export const useFormDataStore = defineStore('form-data', {
         })
       )
     },
-    orgFromData(): Organization | undefined {
-      return authStore.organizations.find(
+    orgFromData(): Organisation | undefined {
+      return authStore.organisations.find(
         (org) => org.name == this.data.organization
       )
     },
@@ -56,27 +58,22 @@ export const useFormDataStore = defineStore('form-data', {
       // We do not know which organisation the algorithm belongs to.
       this.data = {}
       this.loaded = false
-      // A good try is to use the current selected org (= sometimes based on localStorage)
+      // Ask backend where to find the algoritmebeschrijving
+      const algorithmStore = useAlgorithmStore()
       try {
-        this.data = (await getAlgorithm(authStore.selectedOrg!, lars)).data
+        const owner = (await getAlgorithmOwner(lars)).data
+        this.data = (await getAlgorithm(owner, lars)).data
+        algorithmStore.error = ''
       } catch (error) {
-        // Loop through all of them.
-        for (let i = 0; i < authStore.organizations.length; i++) {
-          try {
-            this.data = (
-              await getAlgorithm(authStore.organizations[i]!, lars)
-            ).data
-            break
-          } catch (error) {
-            continue
-          }
-        }
-      }
-      this.loaded = true
-      if (Object.keys(this.data).length == 0) {
-        // Data not available, push to home
+        console.log(error)
         router.push({ name: 'algorithm.index' })
+
+        // algorithmStore displays its errors on the algorithm.index page
+        algorithmStore.error =
+          'Algoritme niet gevonden. U bent teruggestuurd naar uw homepagina.'
         return
+      } finally {
+        this.loaded = true
       }
       // No duplicate loading if the schema in local cache is already good.
       if (this.schemaStore.loadedSchema !== this.data.standard_version) {
@@ -92,7 +89,7 @@ export const useFormDataStore = defineStore('form-data', {
       if (!this.orgFromData) return noOrgSelectedResponse()
       return await updateAlgorithm(this.orgFromData, lars, this.cleanedData)
         .then((response) => {
-          if (response.data?.message != 'Version has no changes.') {
+          if (response.data?.message != 'NO_CHANGES') {
             this.data.released = false
             this.data.published = false
             this.unsavedChanges = false
@@ -117,8 +114,8 @@ export const useFormDataStore = defineStore('form-data', {
         .then((response) => {
           this.data.lars = response.data.lars_code
           this.unsavedChanges = false
-          // Change organization based on the saved algorithm. Needed for loading from cookies
-          authStore.selectOrganization(this.orgFromData!.id)
+          // Change organisation based on the saved algorithm. Needed for loading from cookies
+          authStore.selectOrganisation(this.orgFromData!.code)
           this.feedback.success = content.formDataStore.create.success
           return response
         })
@@ -210,6 +207,13 @@ export const useFormDataStore = defineStore('form-data', {
           delete this.data[element]
         }
       })
+    },
+    handleSchemaSwap(oldVersion: string, newVersion: string): void {
+      // Certain migrations need additional attention to detail
+      const dataStore = useFormDataStore()
+      if (oldVersion == '0.4.0' && newVersion == '1.0.0') {
+        dataStore.data.impacttoetsen = null
+      }
     },
   },
 })

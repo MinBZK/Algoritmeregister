@@ -131,3 +131,9 @@ a.focus-border:focus {
   -moz-hyphens: auto;
   hyphens: auto;
 }
+
+@media(min-width: 65em) { 
+  .row--footer {
+    height: 15em;
+  }
+}

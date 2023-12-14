@@ -1,16 +1,33 @@
 <template>
   <div>
-    <div class="container row">
-      <NuxtLink class="link cta__backwards" :to="localePath(`/algoritme/`)">
-        {{ t('goBack') }}
-      </NuxtLink>
+    <div class="container row header-width">
+      <div class="header-spacing">
+        <NuxtLink class="link cta__backwards" :to="localePath(`/algoritme/`)">
+          {{ t('goBack') }}
+        </NuxtLink>
+        <FormOverheidButton
+          label="Download dit algoritme (.xlsx)"
+          :action="
+            algoritmeService.downloadOneUrl(
+              data?.lars || '',
+              mapLocaleName(locale as 'en' | 'nl')
+            )
+          "
+          :hidden-query="[{ name: 'filetype', value: 'excel' }]"
+          :style="'secondary'"
+          icon="mdi:download"
+        />
+      </div>
     </div>
     <div class="container row container--centered">
+      <LanguageDisclaimer
+        v-if="locale == 'en'"
+        class="language-disclaimer"
+        :density="isMobile ? 'compact' : 'default'"
+      />
       <h1>{{ algoritme.name }}</h1>
-      <SearchResultCard
-        :algoritme="algoritme"
-        mode="default"
-      ></SearchResultCard>
+
+      <HeaderCard :algoritme="algoritme"></HeaderCard>
       <AlgoritmeAccordionRows
         v-if="isMobile"
         :accordion-properties="structuredAlgoritme"
@@ -25,8 +42,6 @@
 
 <script setup lang="ts">
 import { ComputedRef } from 'nuxt/dist/app/compat/capi'
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
 import type { AlgorithmDisplay, Algoritme } from '~~/types/algoritme'
 import { AlgorithmIn } from '@/types/apiStandard'
 import algoritmeService from '@/services/algoritme'
@@ -35,7 +50,7 @@ import { objectMap } from '@/utils'
 import { tabsGrouping } from '@/types/layout'
 import { textVersionMapping } from '~~/config/config'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const localePath = useLocalePath()
 
 const isMobile = useMobileBreakpoint().medium
@@ -47,7 +62,10 @@ const lars = Array.isArray(route.params.lars)
   : route.params.lars
 
 const { setAlgoritme } = useAlgoritme()
-const { data } = await algoritmeService.getOne(lars)
+const { data } = await algoritmeService.getOne(
+  lars,
+  mapLocaleName(locale.value as 'en' | 'nl')
+)
 const algoritme = ref(data.value as Algoritme)
 if (!algoritme.value) {
   throw createError({
@@ -136,3 +154,36 @@ providePageTitle({
   labelType: 'page-title',
 })
 </script>
+
+<style lang="scss">
+.language-disclaimer {
+  @media (min-width: 65em) {
+    margin: 0em 2em 1em 2em;
+  }
+  @media (max-width: 65em) {
+    margin: 0 0 1em 0;
+  }
+}
+
+.header-width {
+  max-width: 49em;
+  width: 100%;
+}
+
+.header-spacing {
+  width: inherit;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 40em) {
+  .header-spacing {
+    flex-direction: column !important;
+    row-gap: 0.5em;
+  }
+  .header-width {
+    width: auto;
+  }
+}
+</style>

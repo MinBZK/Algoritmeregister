@@ -1,5 +1,7 @@
-from sqlalchemy import Column, Integer, DateTime, VARCHAR
-from sqlalchemy.orm import relationship
+import datetime
+from sqlalchemy import Integer, DateTime, VARCHAR, ForeignKey
+from sqlalchemy.ext.associationproxy import association_proxy
+from sqlalchemy.orm import relationship, Mapped, mapped_column
 from sqlalchemy.sql import func
 from app.database.database import Base
 
@@ -7,12 +9,18 @@ from app.database.database import Base
 class Algoritme(Base):
     __tablename__ = "algoritme"
 
-    id = Column(Integer, primary_key=True, index=True)
-    lars = Column(VARCHAR(8), nullable=True, index=True)
-    owner = Column(VARCHAR(1024), nullable=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    lars: Mapped[str] = mapped_column(VARCHAR(8), nullable=True, index=True)
+    organisation_id: Mapped[str] = mapped_column(
+        Integer, ForeignKey("organisation.id", ondelete="cascade"), nullable=True
+    )
 
-    create_dt = Column(
+    create_dt: Mapped[datetime.datetime] = mapped_column(
         DateTime(timezone=True), nullable=False, server_default=func.now()
     )
 
     versions = relationship("AlgoritmeVersion", back_populates="algoritme")
+
+    organisation = relationship("Organisation", back_populates="algoritmes")
+
+    owner = association_proxy("organisation", "code")

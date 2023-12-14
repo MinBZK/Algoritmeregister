@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 EMAIL_DOMAIN = "@i8s.nl"
 
 
-def send_release_notification_mail(
+def send_notification_mail(
     receivers: list[str],
     sender: str,
     subject: str,

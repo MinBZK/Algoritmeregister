@@ -5,6 +5,7 @@ import { registerPlugins } from '@/plugins'
 import { useAuthStore } from '@/store/auth'
 import Keycloak from 'keycloak-js'
 import axios from 'axios'
+import Editor from 'primevue/editor'
 
 // ----------------------------------------------- Setup -----------------------------------------------
 let APIurl = 'http://localhost:8000/aanleverapi'
@@ -12,9 +13,9 @@ if (process.env.NODE_ENV === 'production') {
   APIurl = `${window.location.origin}/aanleverapi`
 }
 
-let keycloakConfigUrl = 'http://localhost:8000/conceptapi/config'
+let keycloakConfigUrl = 'http://localhost:8000/api/config'
 if (process.env.NODE_ENV === 'production') {
-  keycloakConfigUrl = `${window.location.origin}/conceptapi/config`
+  keycloakConfigUrl = `${window.location.origin}/api/config`
 }
 
 export function getConfigs(): Promise<any> {
@@ -39,24 +40,15 @@ getConfigs().then((response: any) => {
     realm: `${response.keycloak_realm}`,
     clientId: `${response.keycloak_client}`,
     onLoad: 'login-required',
-    //   onLoad: 'check-sso'
   }
-  // console.log('initializing keycloak at')
-  // console.log(initOptions)
   const keycloak = new Keycloak(initOptions)
 
   keycloak
     .init({ onLoad: initOptions.onLoad })
-    .then((auth) => {
-      // if (!auth) {
-      //   console.log('not yet Authenticated.')
-      // } else {
-      //   console.log('Authenticated')
-      // }
-
+    .then(() => {
       // always add the authentication header to axios requests
       axios.interceptors.request.use(function (config: any) {
-        const token = keycloak!.idToken as string
+        const token = keycloak.idToken
         config.baseURL = APIurl
         config.headers!.Authorization = `Bearer ${token}`
         return config
@@ -68,31 +60,13 @@ getConfigs().then((response: any) => {
       const authStore = useAuthStore()
       authStore.keycloak = keycloak
       authStore.APIurl = APIurl
-      authStore.fetchOrganizations()
 
+      app.component('PEditor', Editor)
       app.mount('#app')
 
       //check token every 6 seconds
       setInterval(() => {
         keycloak.updateToken(70)
-        // .then((refreshed) => {
-        //   if (refreshed) {
-        //     console.log('Token refreshed' + refreshed)
-        //   } else {
-        //     console.log(
-        //       'Token not refreshed, valid for ' +
-        //         Math.round(
-        //           keycloak.tokenParsed!.exp! +
-        //             keycloak.timeSkew! -
-        //             new Date().getTime() / 1000
-        //         ) +
-        //         ' seconds'
-        //     )
-        //   }
-        // })
-        // .catch(() => {
-        //   console.error('Failed to refresh token')
-        // })
       }, 6000)
     })
     .catch((error) => {

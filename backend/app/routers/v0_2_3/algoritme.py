@@ -4,8 +4,7 @@ from slowapi.util import get_remote_address
 from slowapi.middleware import SlowAPIMiddleware
 from slowapi.errors import RateLimitExceeded
 from sqlalchemy.orm import Session
-from app import schemas, models, middleware, controllers
-from app.controllers import generate_excel_download
+from app import schemas, middleware, controllers
 from app.middleware.decorators import authorized_user_only, publisher_only, admin_only
 from app.middleware.keycloak_authenticator import get_current_user
 from app.config.api import api_text, responses
@@ -34,19 +33,6 @@ action_router = APIRouter()
 
 
 @router.get(
-    "/organizations/{organization_name}/algorithms/download-excel",
-    include_in_schema=False,
-)
-@authorized_user_only
-async def download_excel(
-    db: Session = Depends(middleware.get_db),
-    as_org: str = Path(alias="organization_name"),
-    user: schemas.User = Depends(middleware.get_current_user),
-):
-    return generate_excel_download(db, as_org)
-
-
-@router.get(
     "/organizations/{organization_name}/algorithms",
     response_model=list[schemas.AlgorithmSummary],
     responses=responses["get_all"],
@@ -59,10 +45,9 @@ async def get_all_algorithms(
     db: Session = Depends(middleware.get_db),
     user: schemas.User = Depends(middleware.get_current_user),
 ) -> list[schemas.AlgorithmSummary]:
-    result = controllers.algoritme_version.get_all_newest(
+    result = controllers.algoritme_version.get_algorithm_summary(
         as_org=as_org,
         db=db,
-        user=user,
     )
     return result
 
@@ -80,8 +65,8 @@ async def get_one_algorithm(
     lars: str = Path(alias="algorithm_id"),
     db: Session = Depends(middleware.get_db),
     user: schemas.User = Depends(get_current_user),
-) -> models.AlgoritmeVersion:
-    return controllers.algoritme_version.get_one_newest(lars=lars, db=db, user=user)
+) -> schemas.AlgoritmeVersionDB:
+    return controllers.algoritme_version.get_one_newest(lars=lars, db=db)
 
 
 @router.post(
@@ -102,8 +87,9 @@ async def create_one_algorithm(
     if body.standard_version is None:  # type: ignore
         body.standard_version = version_str
 
+    algoritme_version = schemas.AlgoritmeVersionContent(**body.dict())
     return controllers.algoritme_version.post_one(
-        as_org=as_org, body=body, db=db, user=user
+        as_org=as_org, body=algoritme_version, db=db, user=user
     )
 
 
@@ -121,12 +107,9 @@ async def update_one_algorithm(
     db: Session = Depends(middleware.get_db),
     user: schemas.User = Depends(get_current_user),
 ) -> schemas.AlgorithmActionResponse | None:
-    # The standard_version can not be required, because it isn't according to BZK.
-    if body.standard_version is None:  # type: ignore
-        body.standard_version = version_str
-
+    algoritme_version = schemas.AlgoritmeVersionContent(**body.dict())
     return controllers.algoritme_version.update_new_version(
-        body=body, lars=lars, db=db, user=user
+        body=algoritme_version, lars=lars, db=db, user=user
     )
 
 
@@ -164,8 +147,8 @@ async def get_one_published_algorithm(
     lars: str = Path(alias="algorithm_id"),
     db: Session = Depends(middleware.get_db),
     user: schemas.User = Depends(get_current_user),
-) -> models.AlgoritmeVersion:
-    return controllers.algoritme_version.get_one_published(lars=lars, db=db, user=user)
+) -> schemas.AlgoritmeVersionDB:
+    return controllers.algoritme_version.get_one_published(lars=lars, db=db)
 
 
 @action_router.delete(
@@ -176,12 +159,15 @@ async def get_one_published_algorithm(
 )
 @authorized_user_only
 async def retract_one_published_algorithm(
+    background_tasks: BackgroundTasks,
     as_org: str = Path(alias="organization_name"),
     lars: str = Path(alias="algorithm_id"),
     db: Session = Depends(middleware.get_db),
     user: schemas.User = Depends(get_current_user),
 ) -> None:
-    return controllers.algoritme_version.retract_one(lars=lars, db=db, user=user)
+    response = controllers.algoritme_version.retract_one(lars=lars, db=db, user=user)
+    background_tasks.add_task(controllers.handle_retract_mail, lars, db)
+    return response
 
 
 @action_router.put(
@@ -208,16 +194,20 @@ async def release_one_algorithm(
     responses=responses["publish"],
     summary=api_text["publish"]["summary"],
     description=api_text["publish"]["description"],
+    include_in_schema=False,
 )
 @publisher_only
 @authorized_user_only
 async def publish_one_algorithm(
+    background_tasks: BackgroundTasks,
     as_org: str = Path(alias="organization_name"),
     lars: str = Path(alias="algorithm_id"),
     db: Session = Depends(middleware.get_db),
     user: schemas.User = Depends(get_current_user),
 ) -> schemas.AlgorithmActionResponse | None:
-    return controllers.algoritme_version.publish_one(lars=lars, db=db, user=user)
+    return controllers.algoritme_version.publish_one(
+        background_tasks=background_tasks, lars=lars, db=db, user=user
+    )
 
 
 @action_router.delete(
@@ -235,7 +225,7 @@ async def remove_one_algorithm(
     db: Session = Depends(middleware.get_db),
     user: schemas.User = Depends(get_current_user),
 ) -> schemas.AlgorithmActionResponse | None:
-    return controllers.algoritme_version.remove_one(lars=lars, db=db, user=user)
+    return controllers.algoritme_version.remove_one(lars=lars, db=db)
 
 
 api.include_router(router, tags=["Algoritmes in ontwikkeling"])

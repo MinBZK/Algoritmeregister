@@ -1,6 +1,7 @@
 FROM harbor.cicd.s15m.nl/ocw-lsp-pub/nginxinc/nginx-unprivileged:1.21.6-alpine_lsp
 
 USER root
+
 RUN apk update
 RUN apk upgrade
 RUN rm /etc/nginx/conf.d/default.conf

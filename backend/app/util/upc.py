@@ -27,7 +27,7 @@ def generate_upc() -> str:
     This can be used to generate ID's for distinct objects. It then reduces the chance of accidentally accessing another
     entry due to typing errors.
     """
-    rl: list[int] = [random.randint(1, 9) for each in range(0, 7)]
+    rl: list[int] = [random.randint(1, 9) for _ in range(0, 7)]
 
     e: int = rl[0] + rl[2] + rl[4] + rl[6]
     o: int = rl[1] + rl[3] + rl[5]

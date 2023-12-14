@@ -1,16 +1,17 @@
 // Utilities
 import { defineStore } from 'pinia'
 import Keycloak from 'keycloak-js'
-import { Organization } from '@/types'
-import { OrganizationNames, organizationNames } from '@/config/organization'
+import { Organisation } from '@/types/organisation'
 import { useLocalStorage } from '@vueuse/core'
+import { getOrganisationList } from '@/services/organisation'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     keycloak: {} as Keycloak,
     APIurl: 'http://localhost:8000/api',
-    organizations: [] as Organization[],
-    selectedOrg: null as Organization | null,
+    organisations: [] as Organisation[],
+    selectedOrg: null as Organisation | null,
+    loading: false as boolean,
   }),
   getters: {
     canPublish(): boolean {
@@ -21,36 +22,35 @@ export const useAuthStore = defineStore('auth', {
       const role = this.keycloak.tokenParsed?.role
       return role === 'admin'
     },
+    canAddOrg(): boolean {
+      const role = this.keycloak.tokenParsed?.role
+      return role === 'admin'
+    },
+    canEditOrg(): boolean {
+      const role = this.keycloak.tokenParsed?.role
+      return role === 'publisher' || role === 'admin'
+    },
   },
   actions: {
-    fetchOrganizations() {
-      const keycloakOrgStrings = this.keycloak.tokenParsed?.group
-      if (!keycloakOrgStrings || keycloakOrgStrings.length === 0) {
-        return
+    async fetchOrganisations() {
+      this.loading = true
+      try {
+        this.organisations = (await getOrganisationList()).data
+      } catch (error) {
+        console.error('Unable to fetch organisation list', error)
+      } finally {
+        this.loading = false
       }
-      this.organizations = keycloakOrgStrings.map((orgString: string) => {
-        const orgId = orgString.split('/')?.pop()
-        if (!orgId) {
-          throw new Error('Could not parse Keycloak organization string.')
-        }
-        let defaultOrgName = orgId.replaceAll('-', ' ')
-        // Regex detects first letter of each word.
-        defaultOrgName = defaultOrgName.replace(/\b\w/g, (l: string) =>
-          l.toUpperCase()
-        )
-        const orgName = organizationNames[orgId as keyof OrganizationNames]
-        return { id: orgId, name: orgName || defaultOrgName }
-      })
     },
-    selectOrganization(orgId: string) {
-      const organization = this.organizations.find((org) => org.id === orgId)
-      if (!organization) {
+    selectOrganisation(orgId: string) {
+      const organisation = this.organisations.find((org) => org.code === orgId)
+      if (!organisation) {
         throw new Error(
-          'Selected organization is not found in organizations array.'
+          'Selected organisation is not found in organisations array.'
         )
       }
-      useLocalStorage('webform-selected-org', {}).value = organization!
-      this.selectedOrg = organization!
+      useLocalStorage('webform-selected-org', {}).value = organisation
+      this.selectedOrg = organisation
     },
   },
 })

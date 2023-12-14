@@ -13,29 +13,32 @@ import AppHeader from '@/components/layout/AppHeader.vue'
 import AppFooter from '@/components/layout/AppFooter.vue'
 
 import { useLocalStorage } from '@vueuse/core'
-import { Organization } from './types'
+import { Organisation } from './types/organisation'
 import { useAuthStore } from './store/auth'
+import { onMounted } from 'vue'
 
 const authStore = useAuthStore()
 
-// Handle pre-selected organization from cookie.
-const localStorage = useLocalStorage<Organization | null>(
+// Handle pre-selected organisation from cookie.
+const localStorage = useLocalStorage<Organisation | null>(
   'webform-selected-org',
-  {} as Organization | null
+  {} as Organisation | null
 ).value
-if (authStore.organizations.length != 0) {
+
+onMounted(async () => {
+  await authStore.fetchOrganisations()
   if (localStorage) {
     try {
-      authStore.selectOrganization(localStorage.id)
+      authStore.selectOrganisation(localStorage.code)
     } catch {
       // localStorage does not match authorization, default to first authorised org.
-      authStore.selectedOrg = authStore.organizations[0]!
+      authStore.selectedOrg = authStore.organisations[0]!
     }
   } else {
     // First time user, no localStorage.
-    authStore.selectedOrg = authStore.organizations[0]!
+    authStore.selectedOrg = authStore.organisations[0]!
   }
-}
+})
 </script>
 
 <style lang="scss">

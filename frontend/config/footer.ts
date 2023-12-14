@@ -7,8 +7,12 @@ const footer: FooterColumn = {
       path: '/over',
     },
     {
-      key: 'contact',
-      path: '/contact',
+      key: 'over_algoritmes',
+      path: '/over-algoritmes',
+    },
+    {
+      key: 'meedoen',
+      path: '/meedoen',
     },
     {
       key: 'vragen',
@@ -21,6 +25,18 @@ const footer: FooterColumn = {
     {
       key: 'toegankelijkheid',
       path: '/toegankelijkheid',
+    },
+    {
+      key: 'webarchief',
+      path: '/webarchief',
+    },
+    {
+      key: 'contact',
+      path: '/contact',
+    },
+    {
+      key: 'versie-informatie',
+      path: '/versie-informatie',
     },
   ],
   external: [

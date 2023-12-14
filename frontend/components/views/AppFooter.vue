@@ -2,10 +2,10 @@
   <div class="footer row--footer" role="contentinfo">
     <div class="container columns">
       <div class="bottom-margin">
-        {{ t('footer.text') }}&nbsp;<NuxtLink
-          :to="localePath('/footer/over')"
-          >{{ t('footer.textAskApply') }}</NuxtLink
-        >.
+        {{ p('footer.text') }}
+        <NuxtLink :to="localePath('/footer/meedoen')">
+          {{ p('footer.textForLink') }}
+        </NuxtLink>
       </div>
       <div></div>
       <div v-for="footerKey in footerKeys" :key="footerKey">
@@ -30,26 +30,28 @@
         </div>
       </div>
     </div>
-    <div class="after-footer">
-      <slot name="after-footer" />
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import footer from '@/config/footer'
 const { t } = useI18n()
+
+const { p } = useTextLoader()
+
 const localePath = useLocalePath()
 
 const footerKeys = Object.keys(footer)
 </script>
 
 <style scoped lang="scss">
-.bottom-margin {
-  padding-bottom: 1.75em;
+.row--footer {
+  padding: 0.75em;
+  padding-bottom: 0;
 }
 
-.after-footer {
-  padding: 1em 0;
+.footer {
+  margin-top: 3em;
+  height: auto;
 }
 </style>

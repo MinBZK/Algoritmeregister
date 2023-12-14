@@ -6,16 +6,12 @@
     <AppHeader />
     <AppContentBar v-if="false" />
     <AppBreadcrumb />
-    <div class="container columns columns--sidebar-left row">
+    <div class="container columns columns--sidebar-left row bottom-margin">
       <div id="content">
         <slot />
       </div>
     </div>
-    <AppFooter>
-      <template #after-footer>
-        <div class="container"><LanguagePicker /></div>
-      </template>
-    </AppFooter>
+    <AppFooter />
     <div class="visually-hidden" disabled aria-live="polite">
       {{ readAfterLanguageChange }}
     </div>
@@ -27,7 +23,6 @@ import AppContentBar from '@/components/views/AppContentBar.vue'
 import AppHeader from '@/components/views/AppHeader.vue'
 import AppBreadcrumb from '@/components/views/AppBreadcrumb.vue'
 import AppFooter from '@/components/views/AppFooter.vue'
-import LanguagePicker from '~~/components/LanguagePicker.vue'
 import { pageTitleInfo } from '~~/utils'
 
 const { t, locale } = useI18n()
@@ -53,6 +48,10 @@ watch(locale, () => {
 <style scoped>
 #layout {
   margin: 0 auto 10px auto;
+}
+
+.bottom-margin {
+  padding-bottom: 1.5em;
 }
 
 .row {

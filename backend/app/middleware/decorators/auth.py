@@ -22,18 +22,30 @@ def authorized_user_only(func):
         *args,
         db: Session,
         lars: str | None = None,
-        as_org: str,
+        as_org: str = "",
         user: schemas.User,
         **kwargs,
     ):
         # Tests if the user can act on behalf of this organisation
-        if as_org not in user.organizations:
+        if (
+            as_org not in user.organizations
+            and user.role != "admin"
+            and user.role != "publisher"
+        ):
             logger.error(
                 f"Authorization error, requested org: {as_org}.\nOrganisations under this user: \n{user.organizations}"
             )
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Er zijn geen accountsrechten gevonden voor een organisatie '{as_org}'.",
+                detail=f"Er zijn geen accountsrechten gevonden voor '{as_org}'.",
+            )
+
+        orgs = db.query(models.Organisation.code).all()
+        org_list = [org[0] for org in orgs]
+        if as_org not in org_list:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"Er is geen organisatie '{as_org}' gevonden.",
             )
 
         # if no code is given, only authorisation for organisation is needed

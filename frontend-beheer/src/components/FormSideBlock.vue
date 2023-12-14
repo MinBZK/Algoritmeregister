@@ -5,15 +5,19 @@
       border
       class="pl-3 pa-4"
     >
+      <!-- <templates-dialog v-if="dataStore.data.standard_version == '0.4.0'" /> -->
+      <download-dropdown :lars="lars" class="download-dropdown" />
       <v-select
         v-model="dataStore.data.standard_version"
         :items="selectableVersions"
         label="Publicatiestandaard"
+        hide-details
+        rounded="0"
         outlined
         dense
         variant="outlined"
         class="v-col-12 px-0"
-        @update:model-value="(e) => handleSchemaSwap(e)"
+        @update:model-value="(e: any) => handleSchemaSwap(e)"
       />
       <v-btn
         class="text-lowercase elevation-0 text-body-1 mb-2"
@@ -117,50 +121,20 @@
         </warning-dialog>
       </div>
     </v-card>
-    <v-card elevation="0">
-      <v-row>
-        <v-col class="explainer-text mt-6">
-          <span>
-            Via de knop Opslaan en voorbeeld opent eenmalig het
-            Algoritmeregister met deze invoer. Zo kan je het algoritme even in
-            de context bekijken en controleren. Let op: deze link verloopt
-            direct.
-          </span>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="explainer-text mt-4">
-          <span>
-            * Onder ieder invoerveld staat een <b> instructie </b>, wanneer je
-            het veld bewerkt. achter ieder invulveld staat een vraagtekenicoon,
-            hier kan je de <b> helptekst </b> bekijken die bezoekers bij het
-            Algoritmeregister kunnen lezen. De kolom <b> Zichtbaar </b> geeft
-            aan of het betreffende veld in het Algoritmeregister getoond wordt:
-            als zo'n veld niet door de organisatie ingevuld word, tonen we dan
-            'Veld niet ingevuld' in het Algoritmeregister. Zie de
-            <a
-              href="https://algoritmes.pleio.nl/groups/view/fc9e6489-91e6-4177-b564-2cbea8e56132/kennisbank/files/6254c700-85ae-48dc-8f3b-31bcf6814cfc"
-            >
-              handleiding
-            </a>
-            voor alle informatie.
-          </span>
-        </v-col>
-      </v-row>
-    </v-card>
   </div>
 </template>
 
 <script setup lang="ts">
+// import TemplatesDialog from './TemplatesDialog.vue'
+import DownloadDropdown from './DownloadDropdown.vue'
 import { useSchemaStore } from '@/store/schema'
 import { useFormDataStore } from '@/store/form-data'
 import { computed, reactive, ref, onMounted } from 'vue'
-import config from '@/app-config'
+import publicationStandard from '@/config/publication-standard'
 import WarningDialog from '@/components/WarningDialog.vue'
 import content from '@/content.json'
 import { useAuthStore } from '@/store/auth'
 import router from '@/router'
-import appConfig from '@/app-config'
 
 const schemaStore = useSchemaStore()
 const dataStore = useFormDataStore()
@@ -170,7 +144,7 @@ const props = defineProps<{
   lars?: string
 }>()
 
-const selectableVersions = ref(config.metaDataStandard.availableVersions)
+const selectableVersions = ref(publicationStandard.availableVersions)
 
 const dialogs = reactive({
   publish: false,
@@ -181,17 +155,22 @@ const dialogs = reactive({
 
 onMounted(() => {
   if (!props.lars) {
-    dataStore.data.standard_version =
-      appConfig.metaDataStandard.preferredVersion
+    dataStore.data.standard_version = publicationStandard.preferredVersion
   }
 })
 
 const showBlock = computed(() => schemaStore.loaded && dataStore.loaded)
 
 const handleSchemaSwap = async (version: string) => {
+  const oldVersion = schemaStore.loadedSchema
+
   dataStore.resetFeedback()
+  dataStore.loaded = false
+  dataStore.unsavedChanges = true
   await schemaStore.fetchSchema(version)
+  dataStore.handleSchemaSwap(oldVersion, version)
   dataStore.pruneData()
+  dataStore.loaded = true
 }
 
 const enableSubmit = computed(() => dataStore.unsavedChanges)
@@ -292,6 +271,13 @@ const isReleased = computed(() =>
   padding-right: 1.5em;
   a {
     color: $primary;
+  }
+}
+
+.download-dropdown {
+  .download-button {
+    border: 1px solid rgb(171, 171, 171) !important;
+    border-left-width: 0px !important;
   }
 }
 </style>
