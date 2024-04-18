@@ -296,8 +296,8 @@
             "type": "string",
             "format": "uri",
             "display": "optional",
-            "description": "Een URL naar de codepagina van de ontwikkelaar. Op deze pagina is de code van het algoritme te vinden. Indien er geen codebase publiekelijk beschikbaar is, dient dit veld leeg te blijven.",
-            "instructions": "Een URL naar de codepagina van de ontwikkelaar. Op deze pagina is de code van het algoritme te vinden. Indien er geen codebase publiekelijk beschikbaar is, dient dit veld leeg te blijven. Begin een URL met https://",
+            "description": "Een URL die verwijst naar de codepagina waarop de broncode van het algoritme openbaar beschikbaar is.",
+            "instructions": "Een URL die verwijst naar de codepagina waarop de broncode van het algoritme openbaar beschikbaar is. Indien er geen codebase publiekelijk beschikbaar is, dient dit veld leeg te blijven. Ook verwijzingen naar de leverancier van een algoritme die de broncode niet openbaar beschikbaar stelt horen niet in dit veld thuis. Begin een URL met https://",
             "example": "https://github.com/haakssoftwarebedrijf/vrisoftware"
         },
         "language": {
