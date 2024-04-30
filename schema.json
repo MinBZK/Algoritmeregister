@@ -171,7 +171,7 @@
             "display": "mandatory",
             "description": "Een afweging van de noodzaak van de inzet van het algoritme.",
             "instructions": "Een afweging van de noodzaak van de inzet van het algoritme. Kan het doel ook behaald worden zonder het algoritme? Voor deze afweging kan gebruikt worden van informatie uit de DPIA of de IAMA. Vul dit veld in op B1-taalniveau.",
-            "example": "De voordelen van de inzet van dit algoritme zijn bewezen door het gebruik ervan over de hele wereld. Op plekken waar dit algoritme gebruikt wordt, is de verkeersdoorstroming aanzienlijk beter dan op plekken waar dit niet gedaan wordt. Het alternatief is een standaardvolgorde aanhouden, wat bewezen trager is voor weggebruikers."
+            "example": "Het algoritme gebruikt de tekst van geschreven klachten om daaraan suggesties voor oplossingen en een template voor terugkoppeling aan de klager toe te voegen. Overige beschikbare informatie, zoals contactgegevens van de klager zijn niet beschikbaar voor het algoritme omdat die niet noodzakelijk zijn voor het doen van het voorstel voor afhandeling dat door een medewerker verder opgepakt wordt. Het algortime zelf is noodzakelijk omdat er anders teveel klachten onbehandeld blijven liggen."
         },
         "human_intervention": {
             "name": "Menselijke tussenkomst",
