@@ -7,8 +7,12 @@ const footer: FooterColumn = {
       path: '/over',
     },
     {
-      key: 'contact',
-      path: '/contact',
+      key: 'over_algoritmes',
+      path: '/over-algoritmes',
+    },
+    {
+      key: 'meedoen',
+      path: '/meedoen',
     },
     {
       key: 'vragen',
@@ -22,6 +26,18 @@ const footer: FooterColumn = {
       key: 'toegankelijkheid',
       path: '/toegankelijkheid',
     },
+    {
+      key: 'webarchief',
+      path: '/webarchief',
+    },
+    {
+      key: 'contact',
+      path: '/contact',
+    },
+    {
+      key: 'versie-informatie',
+      path: '/versie-informatie',
+    },
   ],
   external: [
     {
@@ -34,11 +50,15 @@ const footer: FooterColumn = {
     },
     {
       key: 'ext_digitaleoverheid_nl',
-      path: 'https://digitaleoverheid.nl',
+      path: 'https://digitaleoverheid.nl/overzicht-van-alle-onderwerpen/algoritmes/',
     },
     {
       key: 'ext_data_overheid_nl',
       path: 'https://data.overheid.nl',
+    },
+    {
+      key: 'ext_pleio',
+      path: 'https://algoritmes.pleio.nl/',
     },
   ],
 }

@@ -1,38 +1,45 @@
 <template>
   <div class="tabs" data-decorator="init-tabs">
     <AlgoritmeAppTabs
+      v-if="activeKey"
+      v-model:active-tab="activeKey"
       :tab-properties="tabProperties"
-      @focus-changed="(v) => (activeKey = v)"
     />
     <AlgoritmeAppTable :table-properties="activeProperties" />
   </div>
 </template>
 
 <script setup lang="ts">
+import { watch } from 'vue'
+import { AlgorithmDisplay } from '~~/types/algoritme'
+
 const props = defineProps<{
-  tabsTableProperties: {
-    groupKey: string
-    groupKeyLabel: string
-    properties: {
-      key: string
-      value: string
-      keyDescription: string
-      keyLabel: string
-    }[]
-  }[]
+  tabsTableProperties: AlgorithmDisplay[]
 }>()
 
-const tabProperties = props.tabsTableProperties.map((s) => {
-  return {
-    label: s.groupKeyLabel,
-    key: s.groupKey,
-  }
-})
+const tabProperties = computed(() =>
+  props.tabsTableProperties.map((group) => {
+    return {
+      key: group.key,
+      keyLabel: group.keyLabel,
+    }
+  })
+)
 
-const activeKey = ref(props.tabsTableProperties[0].groupKey)
-const activeProperties = computed(() => {
-  return props.tabsTableProperties.filter((groupedProperty) => {
-    return groupedProperty.groupKey === activeKey.value
-  })[0]?.properties
+const activeKey = ref<string>(
+  useRoute().hash.slice(1) || props.tabsTableProperties[0]?.key
+)
+
+const activeProperties = computed(
+  () =>
+    props.tabsTableProperties.filter(
+      (groupedProperty) => groupedProperty.key === activeKey.value
+    )[0]?.properties || []
+)
+
+watch(props, () => {
+  if (!activeKey.value) {
+    activeKey.value = props.tabsTableProperties[0]?.key
+  }
 })
 </script>

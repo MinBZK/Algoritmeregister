@@ -1,37 +1,53 @@
 import type {
   Algoritme,
-  AlgNameIdOrg,
-  AlgoritmeFilter,
-  AggregatedAlgoritme,
+  Language,
+  HighlightedAlgoritme,
+  Suggestion,
 } from '@/types/algoritme'
+import type { FilterData, SelectedFilter } from '@/types/filter'
 
-type AlgoritmeQuery = {
-  filters: AlgoritmeFilter[]
-  page: number
-  limit: number
-  search?: string
+export type AlgoritmeQuery = {
+  organisation?: string
+  page?: string
+  limit?: string
+  searchtext?: string
 }
 
-type AlgoritmeQueryResult = {
+export type AlgoritmeQueryResult = {
   results: Algoritme[]
   total_count: number
-  aggregations: AggregatedAlgoritme[]
+  filter_data: FilterData
+  selected_filters: SelectedFilter[]
 }
 
-const getAll = (query: AlgoritmeQuery) =>
-  useFetch<AlgoritmeQueryResult>('/algoritme/', {
+export type SearchSuggestionResult = {
+  algorithms: Suggestion[]
+}
+
+const getAll = (query: AlgoritmeQuery, language: Language) => {
+  if (!query.searchtext) {
+    delete query.searchtext
+  }
+  return useFetch<AlgoritmeQueryResult>(`/algoritme/${language}`, {
     baseURL: useRuntimeConfig().public.apiBaseUrl,
     method: 'POST',
     body: query,
   })
+}
 
-const getOne = (slug: string) =>
-  useFetch<Algoritme>(`/algoritme/${slug}/`, {
-    baseURL: useRuntimeConfig().public.apiBaseUrl,
-  })
+// 'Get' version of the getAll service, but does not seem to load properly.
+// const getAll = (query: AlgoritmeQuery) => {
+//   if (!query.searchtext) {
+//     delete query.searchtext
+//   }
+//   return useFetch<AlgoritmeQueryResult>('/algoritme/', {
+//     baseURL: useRuntimeConfig().public.apiBaseUrl,
+//     query,
+//   })
+// }
 
-const getNameIdOrg = () =>
-  useFetch<AlgNameIdOrg[]>('/algoritme-simple-list/', {
+const getOne = (id: string, language: Language) =>
+  useFetch<Algoritme>(`/algoritme/${language}/${id}`, {
     baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
 
@@ -45,9 +61,14 @@ const getTotalCount = () =>
     baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
 
+const getHighlighted = (language: Language) =>
+  useFetch<HighlightedAlgoritme[]>(`/highlighted/${language}`, {
+    baseURL: useRuntimeConfig().public.apiBaseUrl,
+  })
+
 const getColumns = () =>
   // useFetch<[{ table_name: string; column_name: string; is_nullable: string }]>(
-  useFetch<any>(`/columns/`, {
+  useFetch<{ column_name: string; is_nullable: string }[]>(`/columns/`, {
     baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
 
@@ -57,16 +78,36 @@ const getCountWithFilledColumns = (columns: string[] | string) =>
     query: { columns },
   })
 
-const downloadUrl = () =>
-  `${useRuntimeConfig().public.apiBaseUrl}/file/algoritme`
+const getApiStandard = (version: string) =>
+  useFetch<any>('/v' + version.replace(/\./g, '_') + '/openapi.json', {
+    baseURL: useRuntimeConfig().public.aanleverBaseUrl,
+  })
+
+const downloadAllUrl = (language: Language) => {
+  return `${useRuntimeConfig().public.apiBaseUrl}/downloads/${language}`
+}
+
+const downloadOneUrl = (lars: string, language: Language) => {
+  return `${
+    useRuntimeConfig().public.apiBaseUrl
+  }/downloads/algorithms/${lars}/${language}`
+}
+
+const getSearchSuggestion = (search: string, language: Language) =>
+  useFetch<SearchSuggestionResult>(`/suggestion/${language}/${search}`, {
+    baseURL: useRuntimeConfig().public.apiBaseUrl,
+  })
 
 export default {
   getAll,
   getOne,
-  getNameIdOrg,
   getCount,
+  getHighlighted,
   getTotalCount,
   getColumns,
   getCountWithFilledColumns,
-  downloadUrl,
+  getApiStandard,
+  downloadAllUrl,
+  downloadOneUrl,
+  getSearchSuggestion,
 }

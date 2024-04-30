@@ -1,0 +1,17 @@
+[run]
+branch=True
+source = app
+omit =
+    */__init__.py
+    **/models/**
+    **/schemas/config/**
+    **/schemas/algoritme_version.py
+    **/schemas/misc.py
+    **/schemas/text_loader.py
+[report]
+exclude_lines =
+    import
+    from
+    logger
+    logging
+    if __name__ == .__main__.:

@@ -7,11 +7,21 @@
         </h3>
 
         <div class="row button--block">
-          <select v-model="listValue" aria-describedby="select-helptext-1">
-            <option v-for="column in columns" :key="column" :value="column.key">
-              {{ column.label }}
-            </option>
-          </select>
+          <div>
+            <select
+              v-model="listValue"
+              style="width: 100%"
+              aria-describedby="select-helptext-1"
+            >
+              <option
+                v-for="column in columns"
+                :key="column.key"
+                :value="column.key"
+              >
+                {{ column.label }}
+              </option>
+            </select>
+          </div>
         </div>
 
         <div class="row">
@@ -28,17 +38,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="org in parsedCountData" :key="org.descriptor">
+              <tr v-for="(row, index) in parsedCountData" :key="index">
                 <td class="word-break">
-                  {{ org.descriptor }}
+                  {{ row.descriptor }}
                 </td>
                 <td>
                   <b>
-                    {{ org.count }}
+                    {{ row.count }}
                   </b>
                 </td>
                 <td class="borderless-left">
-                  <span> {{ org.fraction }}% </span>
+                  <span> {{ row.fraction }}% </span>
                 </td>
               </tr>
             </tbody>
@@ -50,7 +60,6 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import algoritmeService from '@/services/algoritme'
 const props = defineProps<{
   nAlgorithms: number
@@ -62,32 +71,36 @@ const value = computed(() => t('dashboard.value'))
 const numberOfMatches = computed(() => t('dashboard.numberOfMatches'))
 
 const interestingColumns: string[] = [
-  'algoritme.organization',
-  'algoritme.department',
-  'algoritme.type',
-  'algoritme.category',
-  'algoritme.status',
-  'juridisch.competent_authority',
-  'juridisch.dpia',
-  'juridisch.iama',
-  'metadata.area',
-  'metadata.lang',
-  'toepassing.mprd',
+  'organization',
+  'department',
+  'type',
+  'category',
+  'status',
+  'competent_authority',
+  'dpia',
+  'iama',
+  'area',
+  'lang',
+  'mprd',
+  'standard_version',
 ]
 
 const columnApi = await algoritmeService.getColumns()
-const columns = computed(() =>
-  columnApi.data.value
-    .map((column: any) => {
-      return {
-        key: `${column.table_name}.${column.column_name}`,
-        label: t(`algorithmProperties.${column.column_name}.label`),
-      }
-    })
-    .filter((column: { key: string; label: string }) => {
-      return interestingColumns.includes(column.key)
-    })
-)
+const columns = computed(() => {
+  if (columnApi.data.value) {
+    return columnApi.data.value
+      .filter((column: any) => {
+        return interestingColumns.includes(column.column_name)
+      })
+      .map((column: any) => {
+        return {
+          key: column.column_name,
+          label: t(`algorithmProperties.default.${column.column_name}.label`),
+        }
+      })
+  }
+  return []
+})
 
 const countData =
   ref<[{ descriptor: string; count: string; fraction: number }]>()
@@ -132,6 +145,9 @@ watch(listValue, () => {
 </script>
 
 <style lang="scss">
+.block-info {
+  max-width: 100%;
+}
 .word-break {
   word-break: break-word;
 }

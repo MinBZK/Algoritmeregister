@@ -1,34 +1,26 @@
 <template>
   <div class="accordion">
-    <AlgoritmeAccordionRow
-      v-for="(p, index) in accordionProperties"
-      :key="p.groupKey"
-      :group-props="p"
-      :toggled="toggledRows[index]"
-      @toggle-this-row="toggleRows(index)"
-    />
+    <ClientOnly>
+      <AlgoritmeAccordionRow
+        v-for="p in accordionProperties"
+        :key="p.key"
+        :group-props="p"
+      />
+    </ClientOnly>
   </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-  accordionProperties: {
-    groupKey: string
-    groupKeyLabel: string
-    properties: {
-      key: string
-      value: string
-      keyDescription: string
-      keyLabel: string
-    }[]
-  }[]
+import { AlgorithmDisplay } from '~~/types/algoritme'
+
+defineProps<{
+  accordionProperties: AlgorithmDisplay[]
 }>()
 
-const toggledRows = ref<boolean[]>(Array(props.accordionProperties.length))
-const toggleRows = (index: number) => {
-  const currentRowToggled = toggledRows.value[index]
-  toggledRows.value = Array(props.accordionProperties.length).fill(false)
-  toggledRows.value[index] = !currentRowToggled
-  return 0
+const expandedTab = useState<string | undefined>('expandedTab', () => undefined)
+const selectTabOnMount = () => {
+  const hash = useRoute().hash.slice(1)
+  expandedTab.value = hash
 }
+selectTabOnMount()
 </script>

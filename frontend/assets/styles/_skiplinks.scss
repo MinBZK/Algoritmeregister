@@ -1,4 +1,4 @@
-@import "_colors.scss";
+@import '_colors.scss';
 
 .skiplinks {
   position: absolute;
@@ -44,7 +44,7 @@ header .skiplinks {
 }
 
 .skiplinks > a:focus::before {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 99;
   inset: -6px;
@@ -64,10 +64,6 @@ header .skiplinks {
 .skiplinks > a:focus {
   top: 15px;
   left: 15px;
-}
-
-.skiplinks > a:visited {
-  color: #fff;
 }
 
 @media print {

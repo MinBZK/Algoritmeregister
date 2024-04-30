@@ -9,6 +9,12 @@
               class="question-mark"
               role="button"
               tabindex="0"
+              :aria-expanded="isKeyToggled(property.key) ? 'true' : 'false'"
+              :title="
+                t('getAlgorithmPropertyExplanation', {
+                  field: property.keyLabel.toLowerCase(),
+                })
+              "
               @click="toggleKey(property.key)"
               @keydown.enter="toggleKey(property.key)"
             ></span>
@@ -22,9 +28,12 @@
           </div>
         </th>
 
-        <td>
+        <td :lang="backendContentLanguage">
           <ParseUrl :key="property.value || t('ontbreekt')">
-            {{ property.value || t('ontbreekt') }}
+            <ListifyString
+              list-style="padding-left: 1em;"
+              :text="property.value || t('ontbreekt')"
+            />
           </ParseUrl>
         </td>
       </tr>
@@ -33,7 +42,8 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
+import { backendContentLanguage } from '@/config/config'
+
 defineProps<{
   tableProperties: {
     key: string

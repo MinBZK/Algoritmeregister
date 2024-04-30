@@ -1,35 +1,40 @@
+export enum Language {
+  NLD = 'NLD',
+  ENG = 'ENG',
+}
+
 export interface Algoritme {
-  id: string
-  slug: string
+  algoritme_id: string
   name: string
+  lars: string
+  standard_version: string
+  language: Language
   organization: string
-  department: string
-  description_short: string
-  type: string
-  category: string
-  website: string
-  status: string
+
+  [key: string]: null | string | string[]
 }
 
-type AggregationValue = {
-  aggregation_value: string
-  count: number
-}
-
-export type AggregatedAlgoritme = {
-  aggregation_attribute: string
-  // aggregationType: string
-  values: AggregationValue[]
-}
-
-export type AlgoritmeFilter = {
-  attribute: string
-  value: string | string[]
-}
-
-export interface AlgNameIdOrg {
-  id: string
+export interface HighlightedAlgoritme {
   name: string
+  lars: string
   organization: string
-  slug: string
+}
+
+interface AlgorithmFieldDisplay {
+  key: string
+  value: string
+  keyDescription: string
+  keyLabel: string
+}
+
+export interface AlgorithmDisplay {
+  key: string
+  keyLabel: string
+  properties: AlgorithmFieldDisplay[]
+}
+
+export type Suggestion = {
+  lars: string
+  organization: string
+  name: string
 }

@@ -1,0 +1,123 @@
+@import 'colors';
+@import 'variables';
+
+body {
+  color: $primary-dark;
+  font-size: 127% !important;
+}
+
+.sticky {
+  height: 100%;
+  position: sticky !important;
+  top: 0;
+}
+
+.v-messages__message {
+  padding-left: 0.5rem !important;
+  font-size: 1rem;
+  line-height: 1.2rem !important;
+}
+
+.v-input__details {
+  padding-inline-start: 0 !important;
+}
+
+.v-label {
+  font-size: 18px !important;
+}
+
+.logo {
+  position: relative;
+}
+.logo > a {
+  display: inline-block;
+}
+.logo img {
+  width: 150px;
+  max-width: 150px;
+  margin: 0.5em 0;
+}
+@media (min-width: 51em) {
+  .logo img {
+    width: 180px;
+    max-width: 180px;
+    margin: 0;
+  }
+}
+
+a {
+  color: $primary;
+}
+
+.no-focus-border {
+  box-shadow: 0 0 0 0 #000 !important;
+  outline: 0;
+}
+
+a:focus {
+  box-shadow: 0 0 0 0 #000 !important;
+  border: 2px dashed $primary-darker;
+  outline: 0;
+}
+
+a {
+  border: 2px solid transparent;
+}
+
+a.focus-border:focus {
+  border-left: 2px dashed $primary-darker;
+  border-right: 2px dashed $primary-darker;
+  border-bottom: 2px dashed $primary-darker;
+}
+
+.row--footer {
+  background-color: #e5f1f9;
+  border-top: 0.75em solid #b2d7ee;
+  padding: 1.5em;
+  padding-bottom: 1.5em;
+}
+
+.list--linked {
+  list-style: none;
+  padding-left: 0;
+}
+.list--linked li {
+  background-position: 0 0.5em;
+  background-repeat: no-repeat;
+  background-image: url(@/assets/images/icons/icon-dart-right-blue.svg);
+  background-size: 6px 9px;
+  padding-left: 1em;
+  clear: both;
+}
+.list--linked li a {
+  background-position: right 50%;
+}
+.list--linked li a:hover {
+  text-decoration: underline;
+}
+
+.list {
+  margin-bottom: 0.5em;
+}
+
+.is-external-link-icon {
+  text-decoration: underline !important;
+  padding-right: 1.25em;
+  margin-right: 0.25em;
+  background-repeat: no-repeat;
+  background-position: right 3px;
+  background-size: 13px 12px;
+  background-image: url(@/assets/images/icons/icon-link-external.svg);
+}
+
+a {
+  color: #154273;
+  text-decoration: underline;
+  -webkit-transition: color 150ms ease-in-out, outline-offset 150ms ease-in-out;
+  transition: color 150ms ease-in-out, outline-offset 150ms ease-in-out;
+  word-break: break-word;
+}
+
+html {
+  padding-bottom: 0em !important;
+}

@@ -1,29 +1,60 @@
 {
+  "algoritmeIndex": {
+    "pageTitle": "Zoek naar algoritmes",
+    "noResults": {
+      "p1": "Probeer het opnieuw. Je kan zoeken op de volgende woorden:",
+      "l1": "Woorden in de naam (titel) van het algoritme",
+      "l2": "Woorden in de omschrijving van het algoritme",
+      "l3": "De naam van de organisatie die verantwoordelijk is voor het algoritme."
+    }
+  },
+  "language-picker": {
+    "language": "Taal"
+  },
+  "filter": {
+    "organisation": "Organisatie",
+    "searchtext": "Zoekterm",
+    "selectedFilters": "Je gekozen filters",
+    "pickOrgType": "Kies een organisatietype",
+    "pickOrg": "Kies een organisatie",
+    "aria/remove": "{what} verwijderen als filter"
+  },
   "english?": "false",
   "home-highlight-algorithm-text": "Of bekijk direct een van de volgende algoritmes",
   "you-are-here": "U bent hier",
   "ontbreekt": "Veld niet ingevuld.",
-  "locale-en": "Engels",
-  "locale-nl": "Nederlands",
-  "selectLanguage": "Kies taal",
-  "foundResults": "Geen resultaten gevonden | 1 resultaat gevonden | {n} resultaten gevonden",
+  "locales": {
+    "en": "Engels",
+    "nl": "Nederlands"
+  },
+  "currentLanguage": "Nederlands",
+  "selectLanguage": "Deze website in andere talen",
+  "foundResults": "Er zijn geen algoritmes gevonden | 1 resultaat gevonden | {n} resultaten gevonden",
+  "forSearch": " voor {searchQuery}",
   "noResults": "Geen algoritmes gevonden voor de huidige zoekopdracht.",
+  "externalLink": "Link naar externe pagina",
+  "mailLink": "Link naar een e-mailadres",
   "footer": {
     "text": "Let op: deze website is in ontwikkeling. De informatie verandert vaak. Wil je meehelpen?",
     "textAskApply": "Meld je dan aan",
     "paths": {
       "algoritme": "Algoritmeoverzicht",
-      "over": "Over deze website",
       "contact": "Contact",
       "privacyverklaring": "Privacy",
       "kwetsbaarheid": "Kwetsbaarheid melden",
       "toegankelijkheid": "Toegankelijkheid",
+      "webarchief": "Webarchief",
       "cookies": "Cookies",
       "vragen": "Veelgestelde vragen",
+      "over": "Over het Algoritmeregister",
+      "meedoen": "Meedoen",
+      "over_algoritmes": "Over algoritmes",
+      "versie-informatie": "Versie-informatie",
       "ext_overheid_nl": "Overheid.nl",
       "ext_rijksoverheid_nl": "Rijksoverheid.nl",
       "ext_digitaleoverheid_nl": "Digitale Overheid",
-      "ext_data_overheid_nl": "Data.overheid.nl"
+      "ext_data_overheid_nl": "Data.overheid.nl",
+      "ext_pleio": "Algoritmes.pleio.nl"
     }
   },
   "algoritmeRegister": "Algoritmeregister",
@@ -35,32 +66,39 @@
   "hello": "Hallo, {name}!",
   "language": "Taal",
   "homepageTitle": "Het Algoritmeregister van de Nederlandse overheid",
-  "searchExplanation": "Zoek algoritmes op organisatie, titel of omschrijving",
+  "searchExplanation": "Vind een van de {n} algoritmes",
+  "algorithms": "algoritmes",
   "logoCaption": "Het Algoritmeregister",
   "searchHint": "Waar ben je naar op zoek?",
   "search": "Zoeken",
-  "selectedAlgorithms": "Geselecteerde algoritmes",
-  "switchToLanguage": {
-    "en": "Switch to English"
-  },
+  "downloadAllAlgorithms": "Download alle algoritmes (.xlsx)",
+  "switchToLanguage": "Toon in het {language}",
   "showFilters": "Toon filters",
   "hideFilters": "Verberg filters",
   "searchResultCard": {
-    "readMore": "lees meer"
+    "readMore": "Lees meer",
+    "lastChange": "Laatst gewijzigd op"
   },
   "navigation": {
     "home": "Home",
     "algorithmRegister": "Algoritmes",
     "footer": "Home",
-    "over": "Over deze website",
     "contact": "Contact",
     "vragen": "Veelgestelde vragen",
+    "over": "Over het algoritmeregister",
+    "over-algoritmes": "Over algoritmes",
+    "meedoen": "Meedoen",
     "privacyverklaring": "Privacy",
     "toegankelijkheid": "Toegankelijkheid",
-    "db": "Dashboard"
+    "webarchief": "Webarchief",
+    "db": "Dashboard",
+    "versie-informatie": "Versie-informatie"
   },
   "pagination": {
-    "goTo": "Ga naar pagina {n}"
+    "page": "Pagina",
+    "goTo": "Ga naar pagina {n}",
+    "goToNextPage": "Ga naar volgende pagina",
+    "goToPreviousPage": "Ga naar vorige pagina"
   },
   "homePageText": {
     "paragraph1": "Op deze website publiceren overheidsorganisaties de algoritmes die zij gebruiken in hun werk.",
@@ -85,188 +123,436 @@
     "numberOfMatches": "Aantal",
     "loadingText": "Aan het laden"
   },
+  "getAlgorithmPropertyExplanation": "Uitleg over het algoritme-eigenschap '{field}'",
   "algorithmProperties": {
-    "toegevoegd_op": {
-      "label": "Toegevoegd op"
+    "default": {
+      "headers": {
+        "algemeneInformatie": "Algemene informatie",
+        "inzet": "Inzet",
+        "toepassing": "Toepassing",
+        "toezicht": "Toezicht",
+        "juridisch": "Juridisch",
+        "metadata_algorithm": "Metadata"
+      },
+      "name": {
+        "label": "Naam",
+        "description": "De naam die gebruikt wordt om het algoritme aan te duiden."
+      },
+      "organization": {
+        "label": "Organisatie",
+        "description": "De volledige naam van de organisatie verantwoordelijk voor de inzet van het algoritme."
+      },
+      "department": {
+        "label": "Afdeling",
+        "description": "De volledige naam van de afdeling of divisie verantwoordelijk voor de inzet van het algoritme."
+      },
+      "description_short": {
+        "label": "Korte omschrijving",
+        "description": "Een korte, abstracte beschrijving van het algoritme (max. 150 tekens)."
+      },
+      "type": {
+        "label": "Type algoritme",
+        "description": "Is het algoritme op regels gebaseerd of zelflerend? Regelgebaseerde algoritmes zijn handmatig door mensen gebouwd, meestal op basis van wetten of verordeningen. Zelflerende algoritmes kunnen zelf verbanden ontdekken in gegevens."
+      },
+      "category": {
+        "label": "Beleidsterrein",
+        "description": "Trefwoorden over het beleidsterrein waarin het algoritme wordt ingezet."
+      },
+      "website": {
+        "label": "Link naar publiekspagina",
+        "description": "Een URL naar een publiekspagina van de organisatie zelf. Op deze pagina kunt u meer vinden over de inzet van het algoritme binnen de organisatie."
+      },
+      "status": {
+        "label": "Status",
+        "description": "De status van het algoritme: in ontwikkeling, in gebruik, of buiten gebruik."
+      },
+      "goal": {
+        "label": "Doel",
+        "description": "Het doel waarvoor het algoritme ontwikkeld is en/of hoe de inzet ervan bijdraagt aan het behalen van die doelen."
+      },
+      "impact": {
+        "label": "Impact",
+        "description": "De impact van het algoritme op burgers en bedrijven. Bijvoorbeeld: hoe werkt het algoritme en wat zijn de verwachte consequenties daarvan voor het individu of bedrijf?"
+      },
+      "proportionality": {
+        "label": "Proportionaliteit",
+        "description": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is."
+      },
+      "decision_making_process": {
+        "label": "Proces",
+        "description": "De naam van het bedrijfs- of besluitvormingsproces in de organisatie waarbinnen het algoritme wordt ingezet."
+      },
+      "documentation": {
+        "label": "Link naar projectpagina",
+        "description": "URL van de projectpagina van de organisatie zelf over dit specifieke gebruik van het algoritme."
+      },
+      "description": {
+        "label": "Omschrijving",
+        "description": "Een uitgebreide beschrijving van het algoritme (500-10000 tekens)."
+      },
+      "application_url": {
+        "label": "Link naar ontwikkelaar",
+        "description": "Een URL naar een applicatiepagina van de ontwikkelaar. Op deze pagina kunt u meer algemene technische informatie vinden over het algoritme en de ontwikkelaar zelf."
+      },
+      "publiccode": {
+        "label": "Link naar broncode",
+        "description": "Een URL naar de codepagina van de ontwikkelaar. Op deze pagina kunt u meer vinden over de code van het algoritme zelf."
+      },
+      "mprd": {
+        "label": "Koppelingen met basisregistraties",
+        "description": "Maakt het algoritme direct gebruik van data uit het Stelsel van Basisregistraties? Meer informatie is te vinden op https://www.digitaleoverheid.nl/"
+      },
+      "source_data": {
+        "label": "Databronnen",
+        "description": "Een overzicht van de databronnen die op dit moment gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme."
+      },
+      "methods_and_models": {
+        "label": "Methoden en modellen",
+        "description": "Standaard methoden of modellen die het algoritme gebruikt."
+      },
+      "monitoring": {
+        "label": "Monitoring",
+        "description": "Een overzicht van hoe de inzet van het algoritme wordt gemonitord."
+      },
+      "human_intervention": {
+        "label": "Menselijke tussenkomst",
+        "description": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gecontroleerd en bijgesteld (kunnen) worden."
+      },
+      "risks": {
+        "label": "Risico's",
+        "description": "Een overzicht van de voorziene risico's bij de inzet van het algoritme."
+      },
+      "performance_standard": {
+        "label": "Prestatienormen",
+        "description": "Een omschrijving van de verwachte prestaties van het algoritme en hoe die worden gemeten."
+      },
+      "competent_authority": {
+        "label": "Bevoegde autoriteit",
+        "description": "Volledige naam van de bevoegde autoriteit verantwoordelijk voor de inzet van het algoritme."
+      },
+      "lawful_basis": {
+        "label": "Wettelijke grondslag",
+        "description": "Een omschrijving of een link naar de wettelijke grondslag voor de inzet van het algoritme. Bijvoorbeeld: een wet, een verordening of een formeel besluit."
+      },
+      "iama": {
+        "label": "Impact Assessment Mensenrechten en Algoritmes (IAMA)",
+        "description": "Is het algoritme getoetst op het nakomen van mensenrechten met een Impact Assessmment Mensenrechten en Algoritmes (IAMA)?"
+      },
+      "iama_description": {
+        "label": "Omschrijving van de IAMA",
+        "description": "Een overzicht van de belangrijkste zaken die uit de  impact assessment mensenrechten en algoritmes (IAMA) naar voren kwamen."
+      },
+      "dpia": {
+        "label": "Data Protection Impact Assessment (DPIA)",
+        "description": "Is het algoritme getoetst op veilig gebruik van gegevens met een Data Protection Impact Assessment (DPIA)?"
+      },
+      "dpia_description": {
+        "label": "Omschrijving van de DPIA",
+        "description": "Een overzicht van de belangrijkste zaken die uit de data protection impact assessment (DPIA) naar voren kwamen."
+      },
+      "objection_procedure": {
+        "label": "Bezwaarprocedure",
+        "description": "Een omschrijving van hoe burgers en bedrijven bezwaar kunnen maken tegen de uitkomsten van het algoritme."
+      },
+      "standard_version": {
+        "label": "Schema",
+        "description": "Het schema gebruikt voor deze registratie in machine leesbaar format."
+      },
+      "uuid": {
+        "label": "UUID",
+        "description": "De unieke identificatie (UUID) voor deze registratie."
+      },
+      "url": {
+        "label": "Link naar de bronregistratie",
+        "description": "De URL van de locatie waar dit algoritme eerder al is vastgelegd; in machine leesbaar formaat."
+      },
+      "contact_email": {
+        "label": "E-mailadres van de contactpersoon",
+        "description": "De e-mail voor contact over deze registratie."
+      },
+      "area": {
+        "label": "Geografisch gebied",
+        "description": "Het geografische gebied waarin het algoritme wordt ingezet."
+      },
+      "lang": {
+        "label": "Taal",
+        "description": "De taal waarin deze registratie is ingevoerd."
+      },
+      "revision_date": {
+        "label": "Herzieningsdatum",
+        "description": "De datum waarvoor deze registratie moet worden herzien."
+      },
+      "source_id": {
+        "label": "Bron-ID",
+        "description": "De unieke code van dit algoritme in het register van de eigenaar"
+      },
+      "provider": {
+        "label": "Leverancier",
+        "description": "Indien van toepassing, de externe leverancier van het algoritme."
+      },
+      "process_index_url": {
+        "label": "Link naar verwerkingsregister",
+        "description": "De link naar de AVG-verwerking in een publiek register van het algoritme."
+      },
+      "tags": {
+        "label": "Tags",
+        "description": "Trefwoorden over het algoritme, om de vindbaarheid van een algoritmeregistratie te vergroten."
+      }
     },
-    "slug": {
-      "label": ""
+    "0_4_0": {
+      "headers": {
+        "algemeneInformatie": "Algemene informatie",
+        "verantwoordGebruik": "Verantwoord gebruik",
+        "technischeWerking": "Technische werking"
+      },
+      "name": {
+        "label": "Naam",
+        "description": "De naam die gebruikt wordt om het algoritme aan te duiden."
+      },
+      "organization": {
+        "label": "Organisatie",
+        "description": "De volledige naam van de organisatie waar het algoritme ingezet wordt."
+      },
+      "description_short": {
+        "label": "Korte omschrijving",
+        "description": "Een korte beschrijving van het algoritme."
+      },
+      "type": {
+        "label": "(Zelf)lerend",
+        "description": "Is het algoritme zelflerend? In een niet-zelflerend algoritme specificeert de mens de regels die de computer moet volgen. Als het een zelflerend algoritme is, leert de machine over de patronen in de data."
+      },
+      "category": {
+        "label": "Beleidsterrein",
+        "description": "Het beleidsterrein waarin het algoritme wordt ingezet."
+      },
+      "website": {
+        "label": "Link naar publiekspagina",
+        "description": "Een URL naar een publiekspagina van de organisatie zelf. Op deze pagina kunt u meer vinden over de inzet van het algoritme binnen de organisatie."
+      },
+      "status": {
+        "label": "Status",
+        "description": "De status van het algoritme: in ontwikkeling, in gebruik, of buiten gebruik."
+      },
+      "begin_date": {
+        "label": "Begindatum",
+        "description": "Maand waarin het algoritme in gebruik is genomen."
+      },
+      "end_date": {
+        "label": "Einddatum",
+        "description": "Maand waarin het algoritme buiten gebruik is genomen."
+      },
+      "goal": {
+        "label": "Doel en impact",
+        "description": "Het doel waarvoor het algoritme ontwikkeld is en wat voor impact de inzet heeft op burgers en bedrijven."
+      },
+      "proportionality": {
+        "label": "Afwegingen",
+        "description": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is."
+      },
+      "provider": {
+        "label": "Leverancier",
+        "description": "Indien van toepassing, de externe leverancier van het algoritme."
+      },
+      "lawful_basis": {
+        "label": "Wettelijke basis",
+        "description": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt."
+      },
+      "lawful_basis_link": {
+        "label": "Link naar wettelijke basis",
+        "description": "Een link naar de wettelijke grondslag(en) voor het proces waarin het algoritme ingezet wordt."
+      },
+      "impacttoetsen": {
+        "label": "Impacttoetsen",
+        "description": "Welke impacttoetsen zijn gebruikt, zoals Data Protection Impact Asssesment (DPIA) of Impact Assessment Mensenrechten en Algoritmes (IAMA)?"
+      },
+      "iama_description": {
+        "label": "Link naar Mensenrechtentoets",
+        "description": "Link naar de resultaten van een uitgevoerde impacttoets, zoals een DPIA IAMA."
+      },
+      "url": {
+        "label": "Link naar bronregistratie",
+        "description": "De URL van de locatie waar dit algoritme eerder al is vastgelegd; in machine leesbaar formaat."
+      },
+      "contact_email": {
+        "label": "Contactgegevens",
+        "description": "De contactgegevens voor deze registratie."
+      },
+      "lang": {
+        "label": "Taal",
+        "description": "De taal waarin deze registratie is ingevoerd."
+      },
+      "standard_version": {
+        "label": "Publicatiestandaard",
+        "description": "De versie van de publicatiestandaard waar dit algoritme in is geregistreed."
+      },
+      "uuid": {
+        "label": "Landelijk-ID",
+        "description": "De unieke code van dit algoritme in het landelijke register."
+      },
+      "source_id": {
+        "label": "Bron-ID",
+        "description": "De unieke code van dit algoritme in het register van de eigenaar."
+      },
+      "tags": {
+        "label": "Tags",
+        "description": "Trefwoorden over het algoritme, om de vindbaarheid van een algoritmeregistratie te vergroten."
+      },
+      "source_data": {
+        "label": "Gegevens",
+        "description": "Een overzicht van de gegevens die gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme."
+      },
+      "source_data_link": {
+        "label": "Link naar gegevensbronnen",
+        "description": "Links naar aanvullende informatie over de gebruikte gegevensbronnen."
+      },
+      "methods_and_models": {
+        "label": "Technische werking",
+        "description": "Uitleg van hoe het algoritme werkt."
+      },
+      "publiccode": {
+        "label": "Link naar broncode",
+        "description": "Een URL naar de codepagina van de ontwikkelaar. Op deze pagina kunt u meer vinden over de code van het algoritme zelf."
+      },
+      "human_intervention": {
+        "label": "Menselijke tussenkomst",
+        "description": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gebruikt worden, en op welke wijze deze gebruikt, gecontroleerd en bijgesteld (kunnen) worden."
+      },
+      "risks": {
+        "label": "Risicobeheer",
+        "description": "Een overzicht van de voorziene risico's bij de inzet van het algoritme."
+      }
     },
-    "algemeneInformatie": {
-      "label": "Algemene informatie",
-      "description": "Geen beschrijving"
-    },
-    "name": {
-      "label": "Naam",
-      "description": "De naam die gebruikt wordt om het algoritme aan te duiden."
-    },
-    "organization": {
-      "label": "Organisatie",
-      "description": "De volledige naam van de organisatie verantwoordelijk voor de inzet van het algoritme."
-    },
-    "department": {
-      "label": "Afdeling",
-      "description": "De volledige naam van de afdeling of divisie verantwoordelijk voor de inzet van het algoritme."
-    },
-    "description_short": {
-      "label": "Korte omschrijving",
-      "description": "Een korte, abstracte beschrijving van het algoritme (max. 150 tekens)."
-    },
-    "type": {
-      "label": "Type algoritme",
-      "description": "Is het algoritme op regels gebaseerd of zelflerend? Regelgebaseerde algoritmes zijn handmatig door mensen gebouwd, meestal op basis van wetten of verordeningen. Zelflerende algoritmes kunnen zelf verbanden ontdekken in gegevens."
-    },
-    "category": {
-      "label": "Beleidsterrein",
-      "description": "Trefwoorden over het beleidsterrein waarin het algoritme wordt ingezet."
-    },
-    "website": {
-      "label": "Link naar publiekspagina",
-      "description": "Een URL naar een publiekspagina van de organisatie zelf. Op deze pagina kunt u meer vinden over de inzet van het algoritme binnen de organisatie."
-    },
-    "status": {
-      "label": "Status",
-      "description": "De status van het algoritme: in ontwikkeling, in gebruik, of buiten gebruik."
-    },
-    "inzet": {
-      "label": "Inzet",
-      "description": "Geen beschrijving"
-    },
-    "goal": {
-      "label": "Doel",
-      "description": "Het doel waarvoor het algoritme ontwikkeld is en/of hoe de inzet ervan bijdraagt aan het behalen van die doelen."
-    },
-    "impact": {
-      "label": "Impact",
-      "description": "De impact van het algoritme op burgers en bedrijven. Bijvoorbeeld: hoe werkt het algoritme en wat zijn de verwachte consequenties daarvan voor het individu of bedrijf?"
-    },
-    "proportionality": {
-      "label": "Proportionaliteit",
-      "description": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is."
-    },
-    "decision_making_process": {
-      "label": "Proces",
-      "description": "De naam van het bedrijfs- of besluitvormingsproces in de organisatie waarbinnen het algoritme wordt ingezet."
-    },
-    "documentation": {
-      "label": "Link naar projectpagina",
-      "description": "URL van de projectpagina van de organisatie zelf over dit specifieke gebruik van het algoritme."
-    },
-    "toepassing": {
-      "label": "Toepassing",
-      "description": "Geen beschrijving"
-    },
-    "description": {
-      "label": "Omschrijving",
-      "description": "Een uitgebreide beschrijving van het algoritme (500-10000 tekens)."
-    },
-    "application_url": {
-      "label": "Link naar ontwikkelaar",
-      "description": "Een URL naar een applicatiepagina van de ontwikkelaar. Op deze pagina kunt u meer algemene technische informatie vinden over het algoritme en de ontwikkelaar zelf."
-    },
-    "publiccode": {
-      "label": "Link naar broncode",
-      "description": "Een URL naar de codepagina van de ontwikkelaar. Op deze pagina kunt u meer vinden over de code van het algoritme zelf."
-    },
-    "mprd": {
-      "label": "Koppelingen met basisregistraties",
-      "description": "Maakt het algoritme direct gebruik van data uit het Stelsel van Basisregistraties? Meer informatie is te vinden op https://www.digitaleoverheid.nl/"
-    },
-    "source_data": {
-      "label": "Databronnen",
-      "description": "Een overzicht van de databronnen die op dit moment gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme."
-    },
-    "methods_and_models": {
-      "label": "Methoden en modellen",
-      "description": "Standaard methoden of modellen die het algoritme gebruikt."
-    },
-    "toezicht": {
-      "label": "Toezicht",
-      "description": "Geen beschrijving"
-    },
-    "monitoring": {
-      "label": "Monitoring",
-      "description": "Een overzicht van hoe de inzet van het algoritme wordt gemonitord."
-    },
-    "human_intervention": {
-      "label": "Menselijke tussenkomst",
-      "description": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gecontroleerd en bijgesteld (kunnen) worden."
-    },
-    "risks": {
-      "label": "Risico's",
-      "description": "Een overzicht van de voorziene risico's bij de inzet van het algoritme."
-    },
-    "performance_standard": {
-      "label": "Prestatienormen",
-      "description": "Een omschrijving van de verwachte prestaties van het algoritme en hoe die worden gemeten."
-    },
-    "juridisch": {
-      "label": "Juridisch",
-      "description": "Geen beschrijving"
-    },
-    "competent_authority": {
-      "label": "Bevoegde autoriteit",
-      "description": "Volledige naam van de bevoegde autoriteit verantwoordelijk voor de inzet van het algoritme."
-    },
-    "lawful_basis": {
-      "label": "Wettelijke grondslag",
-      "description": "Een omschrijving of een link naar de wettelijke grondslag voor de inzet van het algoritme. Bijvoorbeeld: een wet, een verordening of een formeel besluit."
-    },
-    "iama": {
-      "label": "Impact Assessment Mensenrechten en Algoritmes (IAMA)",
-      "description": "Is het algoritme getoetst op het nakomen van mensenrechten met een Impact Assessmment Mensenrechten en Algoritmes (IAMA)?"
-    },
-    "iama_description": {
-      "label": "Omschrijving van de IAMA",
-      "description": "Een overzicht van de belangrijkste zaken die uit de  impact assessment mensenrechten en algoritmes (IAMA) naar voren kwamen."
-    },
-    "dpia": {
-      "label": "Data Protection Impact Assessment (DPIA)",
-      "description": "Is het algoritme getoetst op veilig gebruik van gegevens met een Data Protection Impact Assessment (DPIA)?"
-    },
-    "dpia_description": {
-      "label": "Omschrijving van de DPIA",
-      "description": "Een overzicht van de belangrijkste zaken die uit de data protection impact assessment (DPIA) naar voren kwamen."
-    },
-    "objection_procedure": {
-      "label": "Bezwaarprocedure",
-      "description": "Een omschrijving van hoe burgers en bedrijven bezwaar kunnen maken tegen de uitkomsten van het algoritme."
-    },
-    "metadata_algorithm": {
-      "label": "Metadata",
-      "description": "Geen beschrijving"
-    },
-    "schema_metadata": {
-      "label": "Schema",
-      "description": "Het schema gebruikt voor deze registratie in machine leesbaar format."
-    },
-    "schema": {
-      "label": "Schema",
-      "description": "Het schema gebruikt voor deze registratie in machine leesbaar format."
-    },
-    "uuid": {
-      "label": "UUID",
-      "description": "De unieke identificatie (UUID) voor deze registratie."
-    },
-    "url": {
-      "label": "Link naar de bronregistratie",
-      "description": "De URL van de locatie waar dit algoritme eerder al is vastgelegd; in machine leesbaar formaat."
-    },
-    "contact_email": {
-      "label": "E-mailadres van de contactpersoon",
-      "description": "De e-mail voor contact over deze registratie."
-    },
-    "area": {
-      "label": "Geografisch gebied",
-      "description": "Het geografische gebied waarin het algoritme wordt ingezet."
-    },
-    "lang": {
-      "label": "Taal",
-      "description": "De taal waarin deze registratie is ingevoerd."
-    },
-    "revision_date": {
-      "label": "Herzieningsdatum",
-      "description": "De datum waarvoor deze registratie moet worden herzien."
+    "1_0_0": {
+      "headers": {
+        "algemeneInformatie": "Algemene informatie",
+        "verantwoordGebruik": "Verantwoord gebruik",
+        "werking": "Werking",
+        "metadata": "Metadata"
+      },
+      "name": {
+        "label": "Naam",
+        "description": "De naam die gebruikt wordt om het algoritme aan te duiden."
+      },
+      "organization": {
+        "label": "Organisatie",
+        "description": "De volledige naam van de organisatie waar het algoritme ingezet wordt."
+      },
+      "description_short": {
+        "label": "Korte omschrijving",
+        "description": "Een korte beschrijving van het algoritme."
+      },
+      "type": {
+        "label": "(Zelf)lerend",
+        "description": "Is het algoritme zelflerend? In een niet-zelflerend algoritme specificeert de mens de regels die de computer moet volgen. Als het een zelflerend algoritme is, leert de machine over de patronen in de data."
+      },
+      "category": {
+        "label": "Thema",
+        "description": "Het beleidsterrein waarin het algoritme wordt ingezet."
+      },
+      "publication_category": {
+        "label": "Publicatiecategorie",
+        "description": "Om te bepalen welke algoritmes gepubliceerd moeten worden, is onderscheid gemaakt tussen impactvolle en overige algoritmes. Ook definieert de AI-verordening ‘Hoog-risico AI-systemen'. "
+      },
+      "lawful_basis_grouping": {
+        "label": "Links naar wettelijke basis",
+        "description": "Links naar de wettelijke grondslag(en) voor het proces waarin het algoritme ingezet wordt. "
+      },
+      "source_data_grouping": {
+        "label": "Links naar gegevensbronnen",
+        "description": "Link naar aanvullende informatie over de gebruikte gegevensbron. "
+      },
+      "impacttoetsen_grouping": {
+        "label": "Links naar impacttoetsen",
+        "description": "Link naar de resultaten van een uitgevoerde impacttoets, zoals een DPIA of IAMA"
+      },
+      "impacttoetsen": {
+        "label": "Toelichting op impacttoetsen",
+        "description": "Toelichting waarom bepaald impacttoetsen niet gedaan zijn."
+      },
+      "process_index_url": {
+        "label": "Link naar verwerkingsregister",
+        "description": "Link naar een openbaar deel van een verwerkingsregister die betrekking heeft op een algoritme. Daar kan meer gelezen worden over verwerkingen. "
+      },
+      "website": {
+        "label": "Link naar publiekspagina",
+        "description": "Een URL naar een publiekspagina van de organisatie zelf. Op deze pagina kunt u meer vinden over de inzet van het algoritme binnen de organisatie."
+      },
+      "status": {
+        "label": "Status",
+        "description": "De status van het algoritme: in ontwikkeling, in gebruik, of buiten gebruik."
+      },
+      "begin_date": {
+        "label": "Begindatum",
+        "description": "Maand waarin het algoritme in gebruik is genomen."
+      },
+      "end_date": {
+        "label": "Einddatum",
+        "description": "Maand waarin het algoritme buiten gebruik is genomen."
+      },
+      "goal": {
+        "label": "Doel en impact",
+        "description": "Het doel waarvoor het algoritme ontwikkeld is en wat voor impact de inzet heeft op burgers en bedrijven."
+      },
+      "proportionality": {
+        "label": "Afwegingen",
+        "description": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is."
+      },
+      "provider": {
+        "label": "Leverancier",
+        "description": "Indien van toepassing, de externe leverancier van het algoritme."
+      },
+      "lawful_basis": {
+        "label": "Wettelijke basis",
+        "description": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt."
+      },
+      "url": {
+        "label": "Link naar bronregistratie",
+        "description": "De URL van de locatie waar dit algoritme eerder al is vastgelegd; in machine leesbaar formaat."
+      },
+      "contact_email": {
+        "label": "Contactgegevens",
+        "description": "De contactgegevens voor deze registratie."
+      },
+      "lang": {
+        "label": "Taal",
+        "description": "De taal waarin deze registratie is ingevoerd."
+      },
+      "standard_version": {
+        "label": "Publicatiestandaard",
+        "description": "De versie van de publicatiestandaard waar dit algoritme in is geregistreed."
+      },
+      "uuid": {
+        "label": "Landelijk-ID",
+        "description": "De unieke code van dit algoritme in het landelijke register."
+      },
+      "source_id": {
+        "label": "Bron-ID",
+        "description": "De unieke code van dit algoritme in het register van de eigenaar."
+      },
+      "tags": {
+        "label": "Tags",
+        "description": "Trefwoorden over het algoritme, om de vindbaarheid van een algoritmeregistratie te vergroten."
+      },
+      "source_data": {
+        "label": "Gegevens",
+        "description": "Een overzicht van de gegevens die gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme."
+      },
+      "methods_and_models": {
+        "label": "Technische werking",
+        "description": "Uitleg van hoe het algoritme werkt."
+      },
+      "publiccode": {
+        "label": "Link naar broncode",
+        "description": "Een URL naar de codepagina van de ontwikkelaar. Op deze pagina kunt u meer vinden over de code van het algoritme zelf."
+      },
+      "human_intervention": {
+        "label": "Menselijke tussenkomst",
+        "description": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gebruikt worden, en op welke wijze deze gebruikt, gecontroleerd en bijgesteld (kunnen) worden."
+      },
+      "risks": {
+        "label": "Risicobeheer",
+        "description": "Een overzicht van de voorziene risico's bij de inzet van het algoritme."
+      }
     }
   },
   "error": {

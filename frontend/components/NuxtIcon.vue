@@ -1,5 +1,5 @@
 <template>
-  <Icon :name="props.name" class="nuxt-icon" size="24" />
+  <Icon :name="props.name" class="nuxt-icon" size="1em" />
 </template>
 
 <script setup lang="ts">

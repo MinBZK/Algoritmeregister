@@ -1,42 +1,59 @@
-# FROM harbor.cicd.s15m.nl/ictu-devops-pub/rid_base:3.11_alpine_3.16
-FROM harbor.cicd.s15m.nl/ictu-devops-pub/rid_base:3.11-slim2-0.1
+# Replace this base image with the correct python image. 
+# See ./base_image for more info.
+FROM harbor-gn2.cicd.s15m.nl/ictu-devops-pub/algreg_base AS buildstep
 
-ENV YOUR_ENV=${YOUR_ENV} \
-  PYTHONFAULTHANDLER=1 \
-  PYTHONUNBUFFERED=1 \
-  PYTHONHASHSEED=random \
-  PIP_NO_CACHE_DIR=off \
-  PIP_DISABLE_PIP_VERSION_CHECK=on \
-  PIP_DEFAULT_TIMEOUT=100 \
-  POETRY_VERSION=1.2.2
+# Make sure these are set, either here or in the base image.
+ENV YOUR_ENV=${YOUR_ENV} 
+# ENV PYTHONFAULTHANDLER=1 \
+#   PYTHONUNBUFFERED=1 \
+#   PYTHONHASHSEED=random \
+#   PIP_NO_CACHE_DIR=off \
+#   PIP_DISABLE_PIP_VERSION_CHECK=on \
+#   PIP_DEFAULT_TIMEOUT=100 \
+#   POETRY_VERSION=1.2.2
 
-RUN apt-get update && \
-  apt-get -y install sudo
+RUN mkdir -p /mnt/credentials
+WORKDIR /backend
 
-ADD ./backend/app /backend/app
-ADD ./backend/alembic /backend/alembic
-ADD ./backend/common /backend/common
-COPY ./backend/alembic.ini /backend/alembic.ini
-COPY ./backend/poetry.lock /backend/poetry.lock
-COPY ./backend/pyproject.toml /backend/pyproject.toml
-COPY ./backend/start.sh /backend/start.sh
+ADD /backend/app /backend/app
+ADD /backend/alembic /backend/alembic
+ADD /backend/common /backend/common
+ADD /backend/scripts /backend/scripts
+COPY /backend/alembic.ini /backend/alembic.ini
+COPY /backend/poetry.lock /backend/poetry.lock
+COPY /backend/pyproject.toml /backend/pyproject.toml
+COPY /backend/start.sh /backend/start.sh
+
+RUN poetry config virtualenvs.create false
+RUN poetry install --without dev --no-interaction --no-ansi
+
+# Replace this base image with the correct python image. 
+# See ./base_image for more info.
+FROM harbor-gn2.cicd.s15m.nl/ictu-devops-pub/python:3.11.1-lunar-devops_base_0.2
 
 WORKDIR /backend
 
-RUN sudo apt-get -y install gcc g++ && \
-  pip install "poetry==$POETRY_VERSION" && \
-  poetry config virtualenvs.create false && \
-  poetry install --without dev --no-interaction --no-ansi && \
-  apt-get remove --purge -y gcc g++ && \
-  pip uninstall -y "poetry==$POETRY_VERSION" && \
-  sudo apt-get clean
+COPY --from=buildstep /backend /backend
 
-# Expose ports
+# Copy python binaries ensuring a clean install without overhead
+COPY --from=buildstep /usr/local/lib /usr/local/lib
+RUN ln -f -s /usr/bin/python3.11 /usr/bin/python3
+ENV PYTHONPATH="${PYTHONPATH}:/usr/local/lib/python3.11/site-packages"
+
+# remove unused dist-packages to prevent false positives for trivy
+RUN rm -rf /usr/local/lib/python3.11/dist-packages
+
+# add testing tools
+RUN pip install pytest==7.3.1 coverage==7.2.7
+
+# # add non root user for security with home directory for test files
+RUN groupadd -r nonroot &&\
+  useradd -r -g nonroot nonroot
+RUN chown -R nonroot:nonroot /backend
+
+# make start.sh executable
+RUN chmod 777 /backend/start.sh
+
+USER nonroot
 EXPOSE 8000:8000
-
-ENV PYTHONPATH="$PYTHONPATH:/:/backend"
-
-# Run the application
-RUN sudo chmod 777 /backend/start.sh
-
 CMD ["./start.sh"]

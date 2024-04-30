@@ -1,20 +1,13 @@
-FROM harbor.cicd.s15m.nl/ictu-devops-pub/nginxinc/nginx-unprivileged:1.21.6-alpine_rid
+FROM harbor.cicd.s15m.nl/ictu-devops-pub/node:21.4.0-alpine3.18
 
-USER root
-RUN apk update
-RUN apk upgrade
+RUN addgroup -S nonroot && \
+  adduser -S nonroot -G nonroot
+USER nonroot
 
-RUN apk add --update npm
+ENV APP_ROOT /app
 
 COPY ./frontend/.output /app
-
-RUN rm /etc/nginx/conf.d/default.conf
-
-COPY ./frontend/nginx /etc/nginx
-
-RUN node /app/server/index.mjs
-
-CMD nginx -g "daemon off;"
+CMD node /app/server/index.mjs
 
 # Expose ports
-EXPOSE 8080:8080
+EXPOSE 3000:3000

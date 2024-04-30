@@ -17,7 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import algoritmeService from '@/services/algoritme'
 
 const { t } = useI18n()
@@ -65,20 +64,37 @@ const currentDate = computed(() => {
 
 const { data } = await algoritmeService.getTotalCount()
 const algoCount = data
+
+definePageMeta({
+  title: 'Dashboard',
+})
+useHead({ title: 'Dashboard' })
 </script>
 
-<style lang="scss">
-.block-cards__card {
-  margin-right: 20px;
+<style scoped lang="scss">
+@media (min-width: 85em) {
+  .block-cards__card:first-child {
+    padding-right: 2em !important;
+  }
+  .block-cards__card {
+    width: 50% !important;
+    height: 100%;
+  }
 }
+.block-cards__card {
+  width: 100%;
+  margin-bottom: 0em;
+  padding-bottom: 1em;
+}
+.block-cards {
+  padding-top: 2em;
+}
+
 h2 {
   font-size: 1.4rem !important;
   margin-bottom: 0.2em;
 }
 h1 {
   margin-bottom: 0.4em;
-}
-.block-cards {
-  padding-top: 2em;
 }
 </style>

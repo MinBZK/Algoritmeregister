@@ -1,10 +1,11 @@
-const summaryTiles: Array<string> = [
-  'organization',
-  'department',
-  'category',
-  'type',
-  'status',
-]
+// To accomodate varying titles and helptext for different versions
+const textVersionMapping: { [key: string]: string } = {
+  '0.1.0': 'default',
+  '0.2.3': 'default',
+  '0.3.1': 'default',
+  '0.4.0': '0_4_0',
+  '1.0.0': '1_0_0',
+}
 
 const keys = {
   id: 'id',
@@ -51,9 +52,27 @@ const navigationItems = [
     routeName: 'toegankelijkheid',
   },
   {
+    localeName: 'navigation.webarchief',
+    routeName: 'webarchief',
+  },
+  {
+    localeName: 'navigation.meedoen',
+    routeName: 'meedoen',
+  },
+  {
+    localeName: 'navigation.over-algoritmes',
+    routeName: 'over-algoritmes',
+  },
+  {
     localeName: 'navigation.db',
     routeName: 'dashboard',
   },
+  {
+    localeName: 'navigation.versie-informatie',
+    routeName: 'versie-informatie',
+  },
 ]
 
-export { summaryTiles, keys, navigationItems }
+const backendContentLanguage = 'nl'
+
+export { textVersionMapping, keys, navigationItems, backendContentLanguage }

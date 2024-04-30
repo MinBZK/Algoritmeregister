@@ -1,268 +1,337 @@
 {
-    "$id": "https://standaard.algoritmeregister.org/schemas/registration-v0.2.nl.schema.json",
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "NL Standaard voor Registratie van Algoritmes en AI",
-    "description": "Standaard voor de registratie van de inzet van modellen, algoritmes en AI in beleid en besluitvormingsprocessen in Nederlandse overheidsorganisaties.",
+    "$id": "https://www.algoritmeregister.org/schemas/algoritmeregister-publicatiestandaard-v1.0.0.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Algoritmeregister Publicatiestandaard v1.0.0",
+    "description": "Deze standaard beschrijft de minimale set van gegevens die gepubliceerd moet worden over algoritmes die door de overheid worden ingezet.",
+    "community": "https://github.com/Algoritmeregister/schemas/",
     "type": "object",
+    "required": [
+        "name",
+        "description_short",
+        "organization",
+        "theme",
+        "status",
+        "start_date",
+        "contact",
+        "publication_category",
+        "purpose_and_impact",
+        "considerations",
+        "human_intervention",
+        "risk_management",
+        "impact_assessments",
+        "data",
+        "technical_operation",
+        "supplier",
+        "language",
+        "schema"
+    ],
     "properties": {
-      "name": {
-        "name": "Naam",
-        "category": "ALGEMENE INFORMATIE",
-        "type": "string",
-        "description": "De naam die gebruikt wordt om dit algoritme aan te duiden.",
-        "required": true
-      },
-      "organization": {
-        "name": "Organisatie",
-        "category": "ALGEMENE INFORMATIE",
-        "type": "string",
-        "description": "De volledige naam van de organisatie verantwoordelijk voor de inzet van het algoritme.",
-        "required": true
-      },
-      "department": {
-        "name": "Afdeling",
-        "category": "ALGEMENE INFORMATIE",
-        "type": "string",
-        "description": "De volledige naam van de afdeling of divisie verantwoordelijk voor de inzet van het algoritme.",
-        "required": true
-      },
-      "description_short": {
-        "name": "Korte omschrijving",
-        "category": "ALGEMENE INFORMATIE",
-        "type": "string",
-        "description": "Een korte omschrijving van maximaal 150 karakters waarin hoog over omschreven wordt wat de rol is van het algoritme.",
-        "required": true
-      },
-      "type": {
-        "name": "Type algoritme",
-        "category": "ALGEMENE INFORMATIE",
-        "type": "string",
-        "description": "Is het algoritme regelgebaseerd of zelflerend?",
-        "required": true
-      },
-      "category": {
-        "name": "Thema",
-        "category": "ALGEMENE INFORMATIE",
-        "type": "string",
-        "description": "Het domein waarin het algoritme wordt ingezet.",
-        "required": true
-      },
-      "website": {
-        "name": "Publiekspagina",
-        "category": "ALGEMENE INFORMATIE",
-        "type": "string",
-        "description": "URL van de publieke algoritmeregister pagina over de inzet van het algoritme van de organisatie zelf",
-        "required": false
-      },
-      "status": {
-        "name": "Status",
-        "category": "ALGEMENE INFORMATIE",
-        "type": "string",
-        "description": "Is het algoritme in ontwikkeling, in gebruik, of buiten gebruik?",
-        "required": true
-      },
-      "goal": {
-        "name": "Doel",
-        "category": "INZET",
-        "type": "string",
-        "description": "Het doel waarvoor het algoritme ontwikkeld is en/of hoe de inzet ervan bijdraagt aan het behalen van die doelen.",
-        "required": true
-      },
-      "impact": {
-        "name": "Impact",
-        "category": "INZET",
-        "type": "string",
-        "description": "(1) De impact op burgers van de effecten van het algoritme, (2) onder welke omstandigheden dit gebeurt, en (3) wat de verwachte consequenties daarvan zijn voor het individu en/of de samenleving.",
-        "required": true
-      },
-      "proportionality": {
-        "name": "Proportionaliteit",
-        "category": "INZET",
-        "type": "string",
-        "description": "Een afweging van de mogelijke impact van de inzet van het algoritme en waarom dit in verhouding staat tot het beoogde doel.",
-        "required": true
-      },
-       "subsidiarity": {
-        "name": "Subsidiariteit",
-        "category": "INZET",
-        "type": "string",
-        "description": "Een onderbouwing van het ontbreken van minder vergaande alternatieven.",
-        "required": true
-      },
-      "necessity": {
-        "name": "Noodzakelijkheid",
-        "category": "INZET",
-        "type": "string",
-        "description": "Een afweging van de noodzaak van de inzet van het algoritme.",
-        "required": true
-      },
-      "decision_making_process": {
-        "name": "Proces",
-        "category": "INZET",
-        "type": "string",
-        "description": "De naam van het bedrijfs- of besluitvormingsproces in de organisatie waarbinnen het algoritme wordt ingezet.",
-        "required": true
-      },
-      "documentation": {
-        "name": "Projectpagina",
-        "category": "INZET",
-        "type": "string",
-        "description": "URL van de projectpagina van de organisatie zelf over dit specifieke gebruik van het algoritme.",
-        "required": false
-      },
-      "description": {
-        "name": "Omschrijving",
-        "category": "TOEPASSING",
-        "type": "string",
-        "description": "Een uitgebreide uitleg tussen de 500 en 10000 karakters van hoe het  algoritme werkt.",
-        "required": false
-      },
-      "application_url": {
-        "name": "URL van de applicatie",
-        "category": "TOEPASSING",
-        "type": "string",
-        "description": "URL van de applicatiepagina van de ontwikkelaar/aanbieder van het algoritme.",
-        "required": false
-      },
-      "publiccode": {
-        "name": "URL van code base",
-        "category": "TOEPASSING",
-        "type": "string",
-        "description": "URL van de code base van het algoritme.",
-        "required": false
-      },
-      "MPRD": {
-        "name": "Koppelingen met basisregistraties",
-        "category": "TOEPASSING",
-        "type": "boolean",
-        "description": "Is het algoritme direct gekoppeld aan een basisregistratie?",
-        "required": false
-      },
-      "source_data": {
-        "name": "Brondata",
-        "category": "TOEPASSING",
-        "type": "string",
-        "description": "Een overzicht van de databronnen die gebruikt worden door of bij het maken of trainen van het algoritme.",
-        "required": false
-      },
-      "methods_and_models": {
-        "name": "Methoden en modellen",
-        "category": "TOEPASSING",
-        "type": "string",
-        "description": "Standaard methoden of modellen die het algoritme gebruikt.",
-        "required": false
-      },
-      "monitoring": {
-        "name": "Monitoring",
-        "category": "TOEZICHT",
-        "type": "string",
-        "description": "Een overzicht van hoe de inzet van het algoritme wordt gemonitord.",
-        "required": false
-      },
-      "human_intervention": {
-        "name": "Menselijke tussenkomst",
-        "category": "TOEZICHT",
-        "type": "string",
-        "description": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gecontroleerd en bijgesteld (kunnen) worden.",
-        "required": true
-      },
-      "risks": {
-        "name": "Risico's",
-        "category": "TOEZICHT",
-        "type": "string",
-        "description": "Een overzicht van de voorziene risico's.",
-        "required": false
-      },
-      "performance_standard": {
-        "name": "Prestatienormen",
-        "category": "TOEZICHT",
-        "type": "string",
-        "description": "Een omschrijving van de verwachte prestaties van het algoritme en hoe die worden gemeten.",
-        "required": false
-      },
-      "competent_authority": {
-        "name": "Bevoegde autoriteit",
-        "category": "JURIDISCH",
-        "type": "string",
-        "description": "Volledige naam van de bevoegde autoriteit verantwoordelijk voor de inzet van het algoritme.",
-        "required": false
-      },
-      "lawful_basis": {
-        "name": "Wettelijke grondslag",
-        "category": "JURIDISCH",
-        "type": "string",
-        "description": "Een omschrijving van de wettelijke grondslag voor de inzet van het algoritme, of URL van het formele besluit.",
-        "required": true
-      },
-      "DPIA": {
-        "name": "Data protection impact assessment",
-        "category": "JURIDISCH",
-        "type": "boolean",
-        "description": "Is er een data protection impact assessment (DPIA) uitgevoerd?",
-        "required": false
-      },
-      "DPIA_description": {
-        "name": "Omschrijving van de DPIA",
-        "category": "JURIDISCH",
-        "type": "string",
-        "description": "Een overzicht van de belangrijkste zaken die uit de data protection impact assessment (DPIA) naar voren kwamen.",
-        "required": false
-      },
-      "objection_procedure": {
-        "name": "Bezwaarprocedure",
-        "category": "JURIDISCH",
-        "type": "string",
-        "description": "Een omschrijving van hoe burgers en bedrijven bezwaar kunnen maken tegen de uitkomsten van het algoritme.",
-        "required": true
-      },
-      "schema": {
-        "name": "Schema",
-        "category": "METADATA",
-        "type": "string",
-        "description": "Het schema gebruikt voor deze registratie in machine leesbaar format.",
-        "required": false
-      },
-      "id": {
-        "name": "UUID",
-        "category": "METADATA",
-        "type": "string",
-        "description": "De unieke identificatie (UUID) voor deze registratie.",
-        "required": false
-      },
-      "url": {
-        "name": "URL van de bronregistratie",
-        "category": "METADATA",
-        "type": "string",
-        "description": "URL van deze registratie of van het algoritmeregister waarin deze registratie is vastgelegd in machine leesbaar format.",
-        "required": false
-      },
-      "contact_email": {
-        "name": "E-mailadres van de contactpersoon",
-        "category": "METADATA",
-        "type": "string",
-        "description": "e-mailadres van de organisatie of de contactpersoon voor deze registratie.",
-        "required": true
-      },
-      "area": {
-        "name": "Geografisch gebied",
-        "category": "METADATA",
-        "type": "string",
-        "description": "Het geografische gebied waarin het algoritme wordt ingezet.",
-        "required": false
-      },
-      "lang": {
-        "name": "Taal",
-        "category": "METADATA",
-        "type": "string",
-        "description": "De taal waarin deze registratie is ingevoerd.",
-        "required": false
-      },
-      "revision_date": {
-        "name": "Herzieningsdatum",
-        "category": "METADATA",
-        "type": "string",
-        "description": "De datum waarvoor deze registratie moet worden herzien.",
-        "required": false
-      }
+        "name": {
+            "name": "Naam",
+            "category": "Algemene informatie",
+            "type": "string",
+            "maxLength": 99,
+            "display": "mandatory",
+            "description": "De naam die gebruikt wordt om het algoritme aan te duiden",
+            "instructions": "Gebruik een naam, bij voorkeur met een werkwoord, die aangeeft wat het algoritme doet. Dit kan de algemeen gehanteerde naam zijn van het algoritme binnen de organisatie, mits begrijpelijk voor externen die niet bekend zijn met het algoritme.",
+            "example": "Automatische Verkeersregeling Ringweg"
+        },
+        "description_short": {
+            "name": "Korte omschrijving",
+            "category": "Algemene informatie",
+            "type": "string",
+            "maxLength": 349,
+            "display": "mandatory",
+            "description": "Een korte beschrijving van het algoritme.",
+            "instructions": "Een korte, duidelijke beschrijving van het algoritme en het proces waarin deze gebruikt wordt. Bij voorkeur in twee of drie zinnen. Doel van dit veld is om snel begrip te krijgen van wat het algoritme doet. Het veld wordt weergegeven in het zoekoverzicht. Vul dit veld in op B1-taalniveau.",
+            "example": "Dit algoritme zorgt met sensoren in het wegdek ervoor dat het verkeer zo makkelijk mogelijk doorstroomt."
+        },
+        "organization": {
+            "name": "Organisatie",
+            "category": "Algemene informatie",
+            "type": "string",
+            "maxLength": 99,
+            "display": "mandatory",
+            "description": "De volledige naam van de organisatie waar het algoritme ingezet wordt.",
+            "instructions": "De volledige naam van de organisatie waar het algoritme ingezet wordt. Deze wordt gebaseerd op de TOOI-waardelijst: standaarden.overheid.nl Eén registratie kan maar over één organisatie gaan. Er kunnen dus niet meerdere waarden ingevuld worden. Indien een algoritme bij meerdere organisaties wordt ingezet, zijn aparte registraties vereist.",
+            "example": "Gemeente Noorderhaaks"
+        },
+        "theme": {
+            "name": "Thema",
+            "category": "Algemene informatie",
+            "type": "array",
+            "items": { "type": "string" },
+            "display": "mandatory",
+            "description": "Het beleidsterrein waarin het algoritme wordt ingezet.",
+            "instructions": "Beleidsterrein(en) waarin het algoritme wordt ingezet. Zie voor mogelijke waarden: https://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/themaindeling-voor-officiele-publicaties",
+            "example": "[\"Verkeer\"]"
+        },
+        "status": {
+            "name": "Status",
+            "category": "Algemene informatie",
+            "enum": ["In ontwikkeling", "In gebruik", "Buiten gebruik"],
+            "display": "mandatory",
+            "description": "De status van het algoritme: in ontwikkeling, in gebruik, of buiten gebruik.",
+            "instructions": "De huidige status van het algoritme: - In ontwikkeling - In gebruik - Buiten gebruik. Indien het algoritme zowel in ontwikkeling als in gebruik is, kies voor ‘In gebruik’. Ten behoeve van de websitefunctionaliteit is het noodzakelijk om geen andere informatie in dit veld op te nemen dan een van de keuzes hierboven. Het is niet verplicht algoritmes in ontwikkeling of buiten gebruik te vermelden in het Algoritmeregister. De mogelijkheid wordt wel geboden voor organisaties die burgers willen betrekken al tijdens de ontwikkelingen van algoritmes.",
+            "example": "In gebruik"
+        },
+        "start_date": {
+            "name": "Begindatum",
+            "category": "Algemene informatie",
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}$",
+            "display": "mandatory",
+            "description": "Maand waarin het algoritme in gebruik is genomen.",
+            "instructions": "Maand en jaar waarin het algoritme in gebruik is genomen. Schrijf de datum zoals in dit voorbeeld: 2023-01.",
+            "example": "2023-01"
+        },
+        "end_date": {
+            "name": "Einddatum",
+            "category": "Algemene informatie",
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}$",
+            "display": "optional",
+            "description": "Maand waarin het algoritme buiten gebruik is genomen.",
+            "instructions": "Maand en jaar waarin het algoritme buiten gebruik is genomen. Als het al goritme nog in gebruik is, moet dit veld leeg blijven. Schrijf de datum zoals in dit voorbeeld: 2023-01.",
+            "example": "2023-05"
+        },
+        "contact": {
+            "name": "Contactgegevens",
+            "category": "Algemene informatie",
+            "type": "string",
+            "display": "mandatory",
+            "description": "De contactgegevens voor deze registratie.",
+            "instructions": "Het e-mailadres of de website voor contact over deze registratie. Dit moet een geldig mailadres of website zijn waar burgers, media of andere betrokkenen vragen kunnen stellen over het algoritme zelf of over de gevolgen op basis van uitkomsten van het algoritme. Begin een website-URL met https://",
+            "example": "Algoritmes@gemeentenoorderhaaks.nl"
+        },
+        "link": {
+            "name": "Link naar publiekspagina",
+            "category": "Algemene informatie",
+            "type": "string",
+            "format": "uri",
+            "display": "optional",
+            "description": "Een URL naar een publiekspagina van de organisatie zelf. Op deze pagina kunt u meer vinden over de inzet van het algoritme binnen de organisatie.",
+            "instructions": "Een URL naar een publiekspagina over het algoritme van uw organisatie. Op deze pagina kan iemand meer vinden over het proces waarin het algoritme ingezet wordt. Dit kan bijvoorbeeld een pagina zijn waar de voorwaarden voor het toekennen van subsidies wordt toegelicht. Dit is een andere pagina dan de link naar het decentrale register. Begin een URL met https://",
+            "example": "https://gemeentenoorderhaaks/hoe-werkt-een-VRI"
+        },
+        "publication_category": {
+            "name": "Publicatiecategorie",
+            "category": "Algemene informatie",
+            "enum": ["Hoog-risico AI-systeem (Categorie A)", "Impactvolle algoritmes (Categorie B)", "Overige algoritmes (Categorie C)"],
+            "display": "mandatory",
+            "description": "Om te bepalen welke algoritmes gepubliceerd moeten worden, is onderscheid gemaakt tussen impactvolle en overige algoritmes. Ook definieert de AI-verordening ‘Hoog-risico AI-systemen'.",
+            "instructions": "Tot welke categorie een algoritme behoort volgens de handreiking: - Hoog-risico AI-systeem (Categorie A) - Impactvolle algoritmes (Categorie B) - Overige algoritmes (Categorie C)",
+            "example": "Impactvolle algoritmes"
+        },
+        "source_link": {
+            "name": "Link naar bronregistratie",
+            "category": "Algemene informatie",
+            "type": "string",
+            "format": "uri",
+            "display": "optional",
+            "description": "De URL van de locatie waar dit algoritme eerder al is vastgelegd; in machine leesbaar formaat.",
+            "instructions": "Als de organisatie zelf ook een Algoritmeregister gepubliceerd heeft , dan kan vanaf hiernaar verwezen worden. Decentrale registers kunnen gewenst zijn, bijvoorbeeld om de eigen doelgroep aan te spreken. Begin een URL met https://",
+            "example": "https://algoritmes.gemeentenoorderhaaks.nl"
+        },
+        "purpose_and_impact": {
+            "name": "Doel en impact",
+            "category": "Verantwoord gebruik",
+            "type": "string",
+            "maxLength": 2499,
+            "display": "mandatory",
+            "description": "Het doel waarvoor het algoritme ontwikkeld is en hoe burgers en bedrijven ermee in aanraking komen.",
+            "instructions": "Het doel waarvoor het algoritme ontwikkeld is, geeft aan wat je ermee wilt bereiken. Zo is het doel van een parkeerscanauto om sneller foutparkeerders op te sporen. De impact beschrijft hoe burgers en bedrijven ermee in aanraking komen. Het gaat hierbij om wat de impact is als het naar behoren werkt. Risico's worden behandeld in een apart veld. In het geval van de parkeerscanauto kunnen geparkeerde auto's gescand worden. Er wordt dan gekeken of zij betaald hebben met een direct resultaat. Vul dit veld in op B1-taalniveau.",
+            "example": "Het doel van dit algoritme is om de doorstroom van het verkeer binnen de gemeente te verbeteren. De impact is dat weggebruikers sneller van A naar B kunnen komen door kortere wachttijden."
+        },
+        "considerations": {
+            "name": "Afwegingen",
+            "category": "Verantwoord gebruik",
+            "type": "string",
+            "maxLength": 2499,
+            "display": "mandatory",
+            "description": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is.",
+            "instructions": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is. Benoem daarbij ook welke andere alternatieven overwogen zijn. Neem de eventuele ethische afwegingen mee in het invullen. Zo kan hier worden vermeld dat de inzet van een parkeerscanauto sneller en effectiever is vergeleken met menselijke controle. In dezelfde tijd kunnen meer auto's worden gecontroleerd. De besparing in mensen kan voor andere taken worden ingezet. De verhoogde kans op een foute boete wordt hierdoor gerechtvaardigd. Bovendien kunnen burgers altijd bezwaar aantekenen wat goed te controleren is. Voor het invullen van dit veld kan gebruik gemaakt worden van de antwoorden uit het IAMA en de DPIA. Vul dit veld in op B1-taalniveau.",
+            "example": "De voordelen van de inzet van dit algoritme zijn bewezen door het gebruik ervan over de hele wereld. Op plekken waar dit algoritme gebruikt wordt, is de verkeersdoorstroming aanzienlijk beter dan op plekken waar dit niet gedaan wordt. Het alternatief is een standaardvolgorde aanhouden, wat bewezen trager is voor weggebruikers."
+        },
+        "human_intervention": {
+            "name": "Menselijke tussenkomst",
+            "category": "Verantwoord gebruik",
+            "type": "string",
+            "maxLength": 2499,
+            "display": "mandatory",
+            "description": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gebruikt worden, en op welke wijze deze gebruikt, gecontroleerd en bijgesteld (kunnen) worden.",
+            "instructions": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gebruikt worden, en op welke wijze deze gebruikt, gecontroleerd en bijgesteld (kunnen) worden. Geef het ook aan indien er geen menselijke tussenkomst (nodig) is. Bijvoorbeeld bij slimme zoekopdrachten in grote databases. Hier is veelal geen menselijke controle of de gevonden waarden de juiste zijn. Vul dit veld in op B1-taalniveau.",
+            "example": "Bij het maken van fouten door het algoritme zou een medewerker van de afdeling handmatig de verkeersregeling aan kunnen passen en stoplichten op groen kunnen zetten. Buiten normale werktijden is er 24/7 toezicht."
+        },
+        "risk_management": {
+            "name": "Risicobeheer",
+            "category": "Verantwoord gebruik",
+            "type": "string",
+            "maxLength": 2499,
+            "display": "mandatory",
+            "description": "Een overzicht van hoe omgegaan wordt met geïdentificeerde risico's.",
+            "instructions": "Een overzicht van hoe omgegaan wordt met risico's. Risico’s kunnen onder andere zijn technische, juridische, financiële en ethische risico’s De risico's kunnen divers zijn en verschillen sterk per algoritme. Maar denk bijvoorbeeld aan discriminatie en uitlegbaarheid. Beschrijf ook hoe met die risico's wordt omgegaan, bijvoorbeeld door periodieke monitoring. ",
+            "example": "Er is sprake van constante monitoring. Daardoor kan snel opgemerkt worden als een sensor defect is, waardoor weggebruikers lang stil moeten blijven staan. Dit kan dan snel verholpen worden om de nadelige gevolgen te beperken. Met enige regelmaat wordt ook in de praktijk gekeken naar of de sensoren voldoende reageren op de auto's en of de wachttijden eerlijk verdeeld zijn. "
+        },
+        "legal_basis": {
+            "name": "Wettelijke basis",
+            "category": "Verantwoord gebruik",
+            "type": "string",
+            "maxLength": 2499,
+            "display": "optional",
+            "description": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt",
+            "instructions": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt. Geef waar mogelijk in het kort aan wat het doel is van deze wet, zodat dit ook voor niet-juristen begrijpelijk is.",
+            "example": "Het algoritme wordt ingezet voor taken uit de Wegenverkeerswet. Een van de taken is het waarborgen van verkeersveiligheid. "
+        },
+        "legal_basis_link": {
+            "name": "Link naar wettelijke basis",
+            "category": "Verantwoord gebruik",
+            "type": "string",
+            "format": "uri",
+            "display": "optional",
+            "description": "Een link naar de wettelijke grondslag(en) voor het proces waarin het algoritme ingezet wordt",
+            "instructions": "Een link naar de wettelijke grondslag(en) voor het proces waarin het algoritme ingezet wordt. Bijvoorbeeld: een wet, een verordening of een formeel besluit.",
+            "example": "https://wetten.overheid.nl/BWBR0006622"
+        },
+        "legal_basis_title": {
+            "name": "Titel van wettelijke basis",
+            "category": "Verantwoord gebruik",
+            "type": "string",
+            "maxLength": 99,
+            "display": "optional",
+            "description": "Titel van de gelinkte wettelijke grondslag.",
+            "instructions": "Titel van de gelinkte wettelijke grondslag.",
+            "example": "Wegenverkeerswet 1994"
+        },
+        "processing_register_link": {
+            "name": "Link naar verwerkingsregister",
+            "category": "Verantwoord gebruik",
+            "type": "string",
+            "format": "uri",
+            "display": "optional",
+            "description": "Link naar een openbaar deel van een verwerkingsregister die betrekking heeft op een algoritme. Daar kan meer gelezen worden over verwerkingen.",
+            "instructions": "Link naar een openbaar deel van een verwerkingsregister die betrekking heeft op een algoritme. Daar kan meer gelezen worden over verwerkingen. Daar kan meer gelezen worden over verwerkingen. Bijvoorbeeld een verwerking op https://www.avgregisterrijksoverheid.nl/",
+            "example": "https://www.avgregisterrijksoverheid.nl/"
+        },
+        "impact_assessments": {
+            "name": "Impacttoetsen",
+            "category": "Verantwoord gebruik",
+            "type": "string",
+            "display": "mandatory",
+            "description": "Welke impacttoetsen zijn gebruikt, zoals Data Protection Impact Assessment (DPIA) of Impact Assessment Mensenrechten en Algoritmes (IAMA)?",
+            "instructions": "Naam/namen van uitgevoerde impacttoetsen. Indien er andere toetsen zijn uitgevoerd dan de DPIA of IAMA, geef hiervan de naam aan.",
+            "example": "Data Protection Impact Assessment (DPIA)"
+        },
+        "impact_assessment_link": {
+            "name": "Link naar impacttoets",
+            "category": "Verantwoord gebruik",
+            "type": "string",
+            "format": "uri",
+            "display": "optional",
+            "description": "Link naar de resultaten van een uitgevoerde impacttoets, zoals een DPIA of IAMA.",
+            "instructions": "Link naar de resultaten van een impacttoets, indien deze is uitgevoerd en publiek beschikbaar is. Een voorbeeld hiervan is het impact assessment mensenrechten en algoritmes (IAMA) of het data protection impact assessment (DPIA). Begin een URL met https:// ",
+            "example": "https://gemeentenoorderhaaks.nl/Archief/toetsen/AVR-IAMA"
+        },
+        "impact_assessment_explanation": {
+            "name": "Toelichting op impacttoetsen",
+            "category": "Verantwoord gebruik",
+            "type": "string",
+            "maxLength": 2499,
+            "display": "optional",
+            "description": "Toelichting waarom bepaalde impacttoetsen niet gedaan zijn",
+            "instructions": "Het is mogelijk dat er geen impacttoets nodig was voor het algoritme. In het geval van de DPIA bijvoorbeeld als er geen sprake is van persoonsgegevens. Met dit veld kan toegelicht worden waarom bepaalde impacttoetsen niet gedaan zijn."
+        },
+        "data": {
+            "name": "Gegevens",
+            "category": "Werking",
+            "type": "string",
+            "maxLength": 2499,
+            "display": "mandatory",
+            "description": "Een overzicht van de gegevens die gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme.",
+            "instructions": "Een overzicht van de gegevens die gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme. Waar mogelijk, wees specifiek. Met name voor wat betreft persoonsgegevens is het belangrijk te weten om welk type gegevens het gaat (bijvoorbeeld adres, geboorteplaats, leeftijd). Benoem waar mogelijk ook de bron zoals BRP of BKR of organisatie eigen klantgegevens.",
+            "example": "Sensordata van de verkeersregelinstallaties bij kruispunten op de ringweg van gemeente Noorderhaaks."
+        },
+        "data_source_link": {
+            "name": "Link naar gegevensbronnen",
+            "category": "Werking",
+            "type": "string",
+            "format": "uri",
+            "display": "optional",
+            "description": "Link naar aanvullende informatie over de gebruikte gegevensbron.",
+            "instructions": "Een link naar een beschrijving van gegevens die gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme. Hierbij kan bijvoorbeeld gelinkt worden naar metadata in publieke datacatalogi of naar sensorenregistraties.",
+            "example": "https://datacatalogus.gemeentenoorderhaaks.nl"
+        },
+        "data_source_title": {
+            "name": "Titel van gegevensbron",
+            "category": "Werking",
+            "type": "string",
+            "maxLength": 499,
+            "display": "optional",
+            "description": "Titel van de gelinkte gegevensbron",
+            "instructions": "Titel van de gelinkte gegevensbron"
+        },
+        "technical_operation": {
+            "name": "Technische werking",
+            "category": "Werking",
+            "type": "string",
+            "maxLength": 4999,
+            "display": "mandatory",
+            "description": "Uitleg van hoe het algoritme werkt.",
+            "instructions": "Uitleg van hoe het algoritme werkt. Beschrijf de input, werking en output van het algoritme. Indien beschikbaar, komt een URL naar een schematisch overzicht van het model (zoals een stroomdiagram van een beslisboom) goed van pas. Indien complexe machine learning modellen worden gebruikt (zoals Neurale Netwerken), komen URL’s naar extra documentatie of wetenschappelijke publicaties goed van pas. Dit veld is hoofdzakelijk bedoeld voor de lezer met technische expertise, en mag daarom complexere concepten en taal bevatten. Geef tenminste aan of het zelflerend is of niet. ",
+            "example": "Het model maakt gebruik van een eenvoudige beslisboom zodra een nieuwe bezette voorsorteerstrook zich voordoet (= wanneer de sensor een weggebruiker ontdekt). De beslisboom loopt als volgt: Eerst wordt er gekeken of er al andere partijen staan te wachten, en vervolgens of er op dat moment een andere voorsorteerstrook op groen licht staat. Zo niet, dan springt het stoplicht van de betreffende strook meteen op groen. Zo wel, dan wacht het tot er geen verkeer meer wordt waargenomen bij de andere voorsorteerstrook. Als er andere weggebruikers op andere stroken staan te wachten, sluit de betreffende strook achteraan in de wachtrij. Een grafische weergave van dit model is te vinden op https://algoritmes.gemeentenoorderhaaks.nl/VRI"
+        },
+        "supplier": {
+            "name": "Leverancier",
+            "category": "Werking",
+            "type": "string",
+            "maxLength": 199,
+            "display": "mandatory",
+            "description": "Indien van toepassing, de externe leverancier van het algoritme.",
+            "instructions": "Naam van de externe leverancier van het algoritme. Als het intern ontwikkeld is, noteer dan ‘Intern ontwikkeld’. Het gaat hierbij bijvoorbeeld niet om het gebruik van open source packages die gebruikt worden in een groter algoritme. ",
+            "example": "Haaks Softwarebedrijf "
+        },
+        "source_code_link": {
+            "name": "Link naar broncode",
+            "category": "Werking",
+            "type": "string",
+            "format": "uri",
+            "display": "optional",
+            "description": "Een URL naar de codepagina van de ontwikkelaar. Op deze pagina is de code van het algoritme te vinden. Indien er geen codebase publiekelijk beschikbaar is, dient dit veld leeg te blijven.",
+            "instructions": "Een URL naar de codepagina van de ontwikkelaar. Op deze pagina is de code van het algoritme te vinden. Indien er geen codebase publiekelijk beschikbaar is, dient dit veld leeg te blijven. Begin een URL met https://",
+            "example": "https://github.com/haakssoftwarebedrijf/vrisoftware"
+        },
+        "language": {
+            "name": "Taal",
+            "category": "Metadata",
+            "const": "nld",
+            "display": "hidden",
+            "description": "De taal waarin deze registratie is ingevoerd.",
+            "instructions": "De code van de taal van de registratie. Dit veld is aanwezig, omdat het Algoritmeregister meertalig aangeboden kan worden. Op dit moment wordt alleen Nederlands (nld) aangeboden. De talen zijn in ISO 639-3 code.",
+            "example": "nld"
+        },
+        "schema": {
+            "name": "Schema",
+            "category": "Metadata",
+            "const": "1.0.0",
+            "display": "hidden",
+            "instructions": "De versie van de Publicatiestandaard die gehanteerd is voor deze registratie. Op dit moment is dat ‘1.0.0’. Ten behoeve van de websitefunctionaliteit is het noodzakelijk om geen andere informatie in dit veld op te nemen dan een van de keuzes hierboven.",
+            "example": "1.0.0"
+        },
+        "source_id": {
+            "name": "Bron-ID",
+            "category": "Metadata",
+            "type": "string",
+            "display": "hidden",
+            "instructions": "Indien van toepassing, de unieke identificatie voor deze registratie zoals door de eigenaar wordt gehanteerd. Dit is dus de verwijzing naar het algoritme in de interne database of het interne register van uw organisatie."
+        },
+        "search_terms": {
+            "name": "Zoektermen",
+            "category": "Metadata",
+            "type": "string",
+            "display": "hidden",
+            "description": "Trefwoorden over het algoritme, om de vindbaarheid van een algoritmeregistratie te vergroten.",
+            "instructions": "Termen gerelateerd aan dit algoritme. Gescheiden door komma's. Dit veld wordt niet weergegeven op de website en kan worden gebruikt om de vindbaarheid van de registratie te verbeteren. Zo kan bijvoorbeeld de naam van het relevante ministerie worden toegevoegd om als uitvoerorganisatie beter vindbaar te zijn met de zoekfunctie.",
+            "example": "Verkeer, Mobiliteit, Infrastructuur, Waddengebied"
+        }
     }
-  }
+}

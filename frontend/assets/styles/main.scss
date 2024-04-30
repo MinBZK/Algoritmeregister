@@ -48,8 +48,92 @@
   -o-user-select: none;
 }
 
+.no-padding {
+  padding: 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.is-external-link-icon {
+  text-decoration: underline !important;
+  padding-right: 1.25em !important;
+  margin-right: 0.25em !important;
+  background-repeat: no-repeat;
+  background-position: right 3px;
+  background-size: 13px 12px;
+  background-image: url(@/assets/images/icons/icon-link-external.svg) !important;
+}
+
+.is-external-mail-icon {
+  @extend .is-external-link-icon;
+  background-image: url(@/assets/images/icons/icon-mail.svg) !important;
+}
+
+a.is-mail {
+  position: relative;
+}
+
+a.is-mail:after {
+  content: '';
+  display: inline-block;
+  margin: 0 0.25em;
+  background-repeat: no-repeat;
+  background-image: url(@/assets/images/icons/icon-mail.svg);
+  background-position: right center;
+  background-size: 0.75em;
+  width: 1em;
+  height: 0.8em;
+  top: 1px;
+  position: relative;
+}
+
 @media (min-width: 65em) {
   html {
     padding-bottom: 14em !important;
+  }
+}
+
+a:hover {
+  color: $link-hover;
+}
+
+.no-focus-border {
+  box-shadow: 0 0 0 0 #000 !important;
+  outline: 0;
+}
+
+a:focus {
+  box-shadow: 0 0 0 0 #000 !important;
+  border: 2px dashed $primary-darker;
+  outline: 0;
+}
+
+a {
+  border: 2px solid transparent;
+}
+
+a.focus-border:focus {
+  border-left: 2px dashed $primary-darker;
+  border-right: 2px dashed $primary-darker;
+  border-bottom: 2px dashed $primary-darker;
+}
+
+.word-break {
+  -ms-word-break: break-all;
+  -ms-word-wrap: break-all;
+  -webkit-word-break: break-word;
+  -webkit-word-wrap: break-word;
+  word-break: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+@media(min-width: 65em) { 
+  .row--footer {
+    height: 15em;
   }
 }

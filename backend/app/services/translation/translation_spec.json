@@ -1,0 +1,116 @@
+{
+  "auto_translate_fields": [
+    "name",
+    "description_short",
+    "goal",
+    "impact",
+    "proportionality",
+    "decision_making_process",
+    "lawful_basis",
+    "iama_description",
+    "dpia_description",
+    "objection_procedure",
+    "area",
+    "description",
+    "source_data",
+    "methods_and_models",
+    "monitoring",
+    "human_intervention",
+    "risks",
+    "performance_standard",
+    "tags",
+    "competent_authority",
+    "lang",
+    "provider"
+  ],
+  "default_translations": {
+    "organization": {
+      "Autoriteit Persoonsgegevens": "Dutch Data Protection Authority",
+      "Belastingdienst": "Dutch Tax and Customs Administration",
+      "Centraal Bureau Rijvaardigheidsbewijzen": "Central Office for Motor Vehicle Driver Testing",
+      "Centraal Justitieel Incassobureau": "Central Judicial Collection Agency",
+      "DCMR Milieudienst Rijnmond": "Environmental Protection Agency Rijnmond",
+      "Inspectie van het Onderwijs (OCW)": "Inspectorate of Education",
+      "Justitiële Informatiedienst": "Judicial Information Service",
+      "Kadaster": "Land Registry",
+      "Ministerie van Binnenlandse Zaken en Koninkrijksrelaties": "Ministry of the Interior and Kingdom Relations",
+      "Ministerie van Justitie en Veiligheid": "Ministry of Justice and Security",
+      "Nederlands Forensisch Instituut": "Netherlands Forensic Institute",
+      "Omgevingsdienst Midden-Holland": "Regional Environment Agency Middle Holland",
+      "Omgevingsdienst Noordzeekanaalgebied": "Regional Environment Agency North Sea Canal Area",
+      "Rijksdienst Voor Identiteitsgegevens": "National Office for Identity Data",
+      "Rijksdienst voor Ondernemend Nederland": "Netherlands Enterprise Agency",
+      "SED Organisatie (Gemeente Stede Broec, Enkhuizen, Drechterland)": "SED Organization (Municipalities Stede Broec, Enkhuizen, Drechterland)",
+      "Sociale Verzekeringsbank (SVB)": "Social Insurance Bank",
+      "Toeslagen": "Allowances",
+      "Uitvoeringsinstituut Werknemersverzekeringen": "Employee Insurance Agency",
+      "Waterschap Drents Overijsselse Delta": "Water Board Drents Overijsselse Delta",
+      "Waterschap Hollandse Delta": "Water Board Hollandse Delta",
+      "Gemeente Amersfoort": "Municipality of Amersfoort",
+      "Gemeente Amsterdam": "Municipality of Amsterdam",
+      "Gemeente Assen": "Municipality of Assen",
+      "Gemeente Bergen Op Zoom": "Municipality of Bergen Op Zoom",
+      "Gemeente Den Haag": "Municipality of The Hague",
+      "Gemeente Eindhoven": "Municipality of Eindhoven",
+      "Gemeente Emmen": "Municipality of Emmen",
+      "Gemeente Goeree-Overflakkee": "Municipality of Goeree-Overflakkee",
+      "Gemeente Lochem": "Municipality of Lochem",
+      "Gemeente Oirschot": "Municipality of Oirschot",
+      "Gemeente Rotterdam": "Municipality of Rotterdam",
+      "Gemeente Stichtse Vecht": "Municipality of Stichtse Vecht",
+      "Gemeente Súdwest-Fryslân": "Municipality of Súdwest-Fryslân",
+      "Gemeente Utrecht": "Municipality of Utrecht",
+      "Provincie Noord-Brabant": "Province of North Brabant",
+      "Provincie Zuid-Holland": "Province of South Holland"
+    },
+    "category": {
+      "Organisatie en bedrijfsvoering" : "Organization and business operations",
+      "Dienstverlening" : "Service delivery",
+      "Bestuur": "Board",
+      "Cultuur en recreatie": "Culture and Recreation",
+      "Economie": "Economy",
+      "Financiën": "Finance",
+      "Huisvesting": "Housing",
+      "Internationaal": "International",
+      "Landbouw": "Agriculture",
+      "Migratie en integratie": "Migration and Integration",
+      "Natuur en milieu": "Nature and Environment",
+      "Onderwijs en wetenschap": "Education and Science",
+      "Openbare orde en veiligheid": "Public Order and Safety",
+      "Recht": "Law",
+      "Ruimte en infrastructuur": "Space and Infrastructure",
+      "Sociale zekerheid": "Social Security",
+      "Verkeer": "Traffic",
+      "Werk": "Work",
+      "Zorg en gezondheid": "Health and Healthcare",
+      "Zorg en Welzijn": "Care and Health"
+    },
+    "type": {
+      "Ja": "Yes",
+      "Nee": "No",
+      "Regelgebaseerd": "Rule-based",
+      "Zelflerend": "Self-learning"
+    },
+    "iama": {
+      "Ja": "Yes",
+      "Nee": "No"
+    },
+    "dpia": {
+      "Ja": "Yes",
+      "Nee": "No"
+    },
+    "mprd": {
+      "Ja": "Yes",
+      "Nee": "No"
+    },
+    "impacttoetsen": {
+      "Data Protection Impact Assessment (DPIA)": "Data Protection Impact Assessment (DPIA)",
+      "Impact Assessment Mensenrechten en Algoritmes (IAMA)": "Human Rights and Algorithms Impact Assessment (IAMA)"
+    },
+    "status": {
+      "In gebruik": "In use",
+      "In ontwikkeling": "In development",
+      "Buiten gebruik": "Out of use"
+    }
+  }
+}

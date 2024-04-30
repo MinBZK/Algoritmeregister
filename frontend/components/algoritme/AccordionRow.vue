@@ -1,32 +1,50 @@
 <template>
-  <div :id="`header-${groupProps.groupKey}`" class="accordion__item">
+  <div class="accordion__item">
     <div class="accordion__item__header">
-      <h3 class="accordion__item__heading">
+      <h2 class="accordion__item__heading">
         <span
           class="accordion__item__header-trigger"
-          aria-expanded="false"
-          @click=";[toggleAccordion(), clearToggledKeys()]"
+          :aria-expanded="expanded ? 'true' : 'false'"
+          tabindex="0"
+          role="button"
+          @keydown.enter="toggleTab()"
+          @keydown.space.prevent="toggleTab()"
+          @click="toggleTab()"
         >
           <span
-            :class="toggled ? 'accordion-arrow-up' : 'accordion-arrow-right'"
+            :class="expanded ? 'accordion-arrow-up' : 'accordion-arrow-right'"
           ></span>
-          {{ groupProps.groupKeyLabel }}
+          {{ groupProps.keyLabel }}
         </span>
-      </h3>
+      </h2>
     </div>
-    <div v-if="toggled">
+    <div v-if="expanded">
       <div
         v-for="property in groupProps.properties"
         :key="property.key"
         class="accordion__item__content"
-        role="region"
         aria-labelledby="header1"
       >
         <div>
-          <b>
+          <h2>
             {{ property.keyLabel }}
-          </b>
-          <span class="question-mark" @click="toggleKey(property.key)"></span>
+            <span
+              class="question-mark"
+              role="button"
+              :title="
+                t('getAlgorithmPropertyExplanation', {
+                  field: property.keyLabel.toLowerCase(),
+                })
+              "
+              tabindex="0"
+              :aria-expanded="isKeyToggled(property.key) ? 'true' : 'false'"
+              @click="toggleKey(property.key)"
+              @keydown.enter="toggleKey(property.key)"
+              @keydown.space="
+                (e) => [e.preventDefault(), toggleKey(property.key)]
+              "
+            ></span>
+          </h2>
         </div>
         <div v-if="isKeyToggled(property.key)" class="word-break">
           <i>
@@ -37,7 +55,7 @@
         </div>
         <div class="word-break">
           <ParseUrl :key="property.value || t('ontbreekt')">
-            {{ property.value || t('ontbreekt') }}
+            <ListifyString :text="property.value || t('ontbreekt')" />
           </ParseUrl>
         </div>
       </div>
@@ -46,42 +64,36 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-export interface Props {
-  groupProps: {
-    groupKey: string
-    groupKeyLabel: string
-    properties: {
-      key: string
-      value: string
-      keyDescription: string
-      keyLabel: string
-    }[]
-  }
-  toggled?: boolean
-}
+import type { AlgorithmDisplay } from '~~/types/algoritme'
+import { changeHash } from '~~/utils'
+
 const { t } = useI18n()
 
-const props = withDefaults(defineProps<Props>(), {
-  toggled: false,
-})
-const emit = defineEmits<{
-  (e: 'toggleThisRow'): void
+const props = defineProps<{
+  groupProps: AlgorithmDisplay
 }>()
 
+const expandedTab = useState<string | undefined>('expandedTab', () => undefined)
+
 // Handle accordion
-const toggleAccordion = async () => {
-  const header = document.getElementById(`header-${props.groupProps.groupKey}`)
+const resetScroll = async () => {
+  const header = document.getElementById(`header-${props.groupProps.key}`)
   const storePosition = header?.getBoundingClientRect().y || 0
-
-  emit('toggleThisRow')
-
-  await new Promise((resolve) => setTimeout(resolve, 1)).then(() => {
-    if (header) {
-      window.scrollTo(0, header.offsetTop - storePosition)
-    }
-  })
+  await nextTick()
+  if (header) window.scrollTo(0, header.offsetTop - storePosition)
 }
+
+const toggleTab = () => {
+  if (expandedTab.value === props.groupProps.key) {
+    expandedTab.value = undefined
+  } else {
+    expandedTab.value = props.groupProps.key
+  }
+  changeHash(expandedTab.value)
+  resetScroll()
+}
+
+const expanded = computed(() => expandedTab.value === props.groupProps.key)
 
 const keyToggles = ref<string[]>([])
 const toggleKey = (key: string) => {
@@ -92,11 +104,9 @@ const toggleKey = (key: string) => {
   }
 }
 const isKeyToggled = (key: string) => keyToggles.value.includes(key)
-
-const clearToggledKeys = () => (keyToggles.value = [])
 </script>
 
-<style langs="scss">
+<style scoped langs="scss">
 .accordion__item__header {
   cursor: pointer;
 }
@@ -105,5 +115,11 @@ const clearToggledKeys = () => (keyToggles.value = [])
 }
 .question-mark {
   padding-left: 0;
+}
+h2 {
+  font-size: 1.125em !important;
+}
+.accordion__item__heading {
+  font-size: 1em !important;
 }
 </style>

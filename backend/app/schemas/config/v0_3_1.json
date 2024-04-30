@@ -1,0 +1,379 @@
+{
+    "properties": {
+        "name": {
+            "type": "string",
+            "title": "Naam",
+            "max_length": 100,
+            "show_always": true,
+            "help_text": "De naam die gebruikt wordt om het algoritme aan te duiden",
+            "instructions": "De algemeen gehanteerde naam van het algoritme.",
+            "example": "Automatische Verkeersregeling Ringweg",
+            "required": true
+        },
+        "organization": {
+            "type": "string",
+            "title": "Organisatie",
+            "max_length": 100,
+            "show_always": true,
+            "help_text": "De volledige naam van de organisatie verantwoordelijk voor de inzet van het algoritme.",
+            "instructions": "De naam van de organisatie verantwoordelijk voor de inzetvan het algoritme. In het geval van een uitvoeringsorganisatie vallend onder een ministerie: gebruik de naam van de uitvoeringsorganisatie zelf. Bij het veld 'tags' kunnen afkortingen worden toegevoegd of ministeries voor betere vindbaarheid.",
+            "example": "Gemeente Noorderhaaks",
+            "required": true
+        },
+        "department": {
+            "type": "string",
+            "title": "Afdeling",
+            "max_length": 500,
+            "show_always": true,
+            "help_text": "De volledige naam van de afdeling of divisie verantwoordelijk voor de inzet van het algoritme.",
+            "instructions": "De volledige naam van de afdeling van de organisatie verantwoordelijk voor het gebruik van het algoritme.",
+            "example": "Afdeling Verkeer & Bereikbaarheid",
+            "required": false
+        },
+        "description_short": {
+            "type": "string",
+            "title": "Korte omschrijving",
+            "max_length": 250,
+            "show_always": true,
+            "help_text": "Een korte, abstracte beschrijving van het algoritme.",
+            "instructions": "Een korte, abstracte beschrijving van het algoritme (<250 tekens). Bij voorkeur in één of twee zinnen. Vul dit veld in op B1-taalniveau.",
+            "example": "Dit algoritme optimaliseert de doorstroom van verkeer bij kruispunten op basis van sensoren in het wegdek.",
+            "required": false
+        },
+        "type": {
+            "type": "enum",
+            "title": "Type algoritme",
+            "show_always": true,
+            "help_text": "Is het algoritme op regels gebaseerd of zelflerend? Regelgebaseerde algoritmes zijn handmatig door mensen gebouwd, meestal op basis van wetten of verordeningen. Zelflerende algoritmes kunnen zelf verbanden ontdekken in gegevens.",
+            "instructions": "Is het algoritme op regels gebaseerd of zelflerend? Op regels gebaseerde algoritmes zijn handmatig door mensen gebouwd, meestal op basis van wetten of verordeningen. Zelflerende algoritmes hebben zichzelf getraind op basis van data. In het geval dat een algoritme deels beiden doet, kies voor 'Zelflerend'. Ten behoeve van de websitefunctionaliteit is het noodzakelijk om geen andere informatie in dit veld op te nemen dan 'regelgebaseerd' of 'zelflerend'.",
+            "example": "Regelgebaseerd",
+            "required": false,
+            "permitted_values": [
+                "Regelgebaseerd",
+                "Zelflerend"
+            ]
+        },
+        "category": {
+            "type": "string",
+            "title": "Beleidsterrein",
+            "max_length": 500,
+            "show_always": true,
+            "help_text": "Het beleidsterrein waarin het algoritme wordt ingezet.",
+            "instructions": "Het beleidsterrein waarin het algoritme wordt ingezet.",
+            "example": "Mobiliteit",
+            "required": false
+        },
+        "website": {
+            "type": "string",
+            "title": "Link naar publiekspagina",
+            "max_length": 500,
+            "show_always": false,
+            "help_text": "Een URL naar een publiekspagina van de organisatie zelf. Op deze pagina kunt u meer vinden over de inzet van het algoritme binnen de organisatie.",
+            "instructions": "Een URL naar een publiekspagina over het algoritme van uw organisatie. Op deze pagina kan iemand meer vinden over de inzet van het algoritme binnen de organisatie. Begin een URL met https://",
+            "example": "https://gemeentenoorderhaaks/hoe-werkt-een-VRI",
+            "required": false
+        },
+        "status": {
+            "type": "enum",
+            "title": "Status",
+            "show_always": true,
+            "help_text": "De status van het algoritme: in ontwikkeling, in gebruik, of buiten gebruik.",
+            "instructions": "De huidige status van het algoritme: - In ontwikkeling - In gebruik - Buiten gebruik. Indien het algoritme zowel in ontwikkeling als in gebruik is, kies voor 'In gebruik'.",
+            "example": "In gebruik",
+            "required": false,
+            "permitted_values": [
+                "In ontwikkeling",
+                "In gebruik",
+                "Buiten gebruik"
+            ]
+        },
+        "goal": {
+            "type": "string",
+            "title": "Doel",
+            "max_length": 2500,
+            "show_always": true,
+            "help_text": "Het doel waarvoor het algoritme ontwikkeld is en/of hoe de inzet ervan bijdraagt aan het behalen van die doelen.",
+            "instructions": "Het doel waarvoor het algoritme ontwikkeld is en/of hoe de inzet ervan bijdraagt aan het behalen van die doelen. Vul dit veld in op B1-taalniveau.",
+            "example": "Het doel van dit algoritme is om de doorstroom van het verkeer binnen de gemeente te verbeteren. Door kortere wachttijden bij het stoplicht kunnen weggebruikers sneller van A naar B komen.",
+            "required": false
+        },
+        "impact": {
+            "type": "string",
+            "title": "Impact",
+            "max_length": 2500,
+            "show_always": true,
+            "help_text": "De impact van het algoritme op burgers en bedrijven. Bijvoorbeeld: hoe werkt het algoritme en wat zijn de verwachte consequenties daarvan voor het individu of bedrijf?",
+            "instructions": "De impact van het algoritme op burgers en bedrijven. Bijvoorbeeld: hoe werkt het algoritme en wat zijn de verwachte consequenties daarvan voor het individu of bedrijf? Vul dit veld in op B1-taalniveau.",
+            "example": "De impact op een individu is dat het algoritme bepaalt wanneer diegene aan de beurt is om over het kruispunt te steken. De consequenties van deze impact zijn in alle waarschijnlijkheid erg klein. Het betreft een oponthoud van maximaal enkele minuten.",
+            "required": false
+        },
+        "proportionality": {
+            "type": "string",
+            "title": "Proportionaliteit",
+            "max_length": 2500,
+            "show_always": true,
+            "help_text": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is.",
+            "instructions": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is. Benoem daarbij ook welke andere alternatieven overwogen zijn.Voor het invullen van dit veld kan gebruik gemaakt worden van de antwoorden uit het IAMA en de DPIA. Vul dit veld in op B1-taalniveau.",
+            "example": "De voordelen van de inzet van dit algoritme zijn bewezen door het gebruik ervan over de hele wereld. Op plekken waar dit algoritme gebruikt wordt, is de verkeersdoorstroming aanzienlijk beter dan op plekken waar dit niet gedaan wordt. Het alternatief is een standaardvolgorde aanhouden, wat bewezen trager is voor weggebruikers.",
+            "required": false
+        },
+        "provider": {
+            "type": "string",
+            "title": "Leverancier",
+            "max_length": 100,
+            "show_always": false,
+            "help_text": "Indien van toepassing, de externe leverancier van het algoritme.",
+            "instructions": "Naam van de externe leverancier van het algoritme. Indien uw organisatie zelf het algoritme heeft ontwikkeld, dient dit veld leeg te blijven.",
+            "example": "Haaks softwarebedrijf",
+            "required": false
+        },
+        "application_url": {
+            "type": "string",
+            "title": "Link naar leverancier",
+            "max_length": 500,
+            "show_always": false,
+            "help_text": "Indien van toepassing, de link naar de externe leverancier.",
+            "instructions": "Een URL naar de derde partij die het algoritme heeft ontwikkeld. Indien uw organisatie zelf het algoritme heeft ontwikkeld, dient dit veld leeg te blijven. Begin een URL met https://",
+            "example": "https://haakssoftwarebedrijf.nl/vrisoftware",
+            "required": false
+        },
+        "process_index_url": {
+            "type": "string",
+            "title": "Link naar verwerkingsregister",
+            "max_length": 500,
+            "show_always": false,
+            "help_text": "De link naar de AVG-verwerking in een publiek register van het algoritme.",
+            "instructions": "Indien van toepassing en beschikbaar, de link naar de AVG-verwerking in een publiek register van het algoritme. Begin een URL met https://",
+            "example": "https://gemeentenoorderhaaks.nl/verwerkingen/Automatische-Verkeersregeling-Ringweg",
+            "required": false
+        },
+        "lawful_basis": {
+            "type": "string",
+            "title": "Wettelijke grondslag",
+            "max_length": 2500,
+            "show_always": true,
+            "help_text": "Een omschrijving of een link naar de wettelijke grondslag voor de inzet van het algoritme. Bijvoorbeeld: een wet, een verordening of een formeel besluit.",
+            "instructions": "Een link naar de wettelijke grondslag voor de inzet van het algoritme. Bijvoorbeeld: een wet, een verordening of een formeel besluit.Indien er geen publiek beschikbare grondslag beschikbaar is, volstaat een beschrijving ook.",
+            "example": "https://wetten.overheid.nl/BWBR0006622/2023-01-01",
+            "required": false
+        },
+        "iama": {
+            "type": "enum",
+            "title": "Mensenrechtentoets",
+            "show_always": true,
+            "help_text": "Is het algoritme getoetst op het nakomen van mensenrechten zoals middels een Impact Assessment Mensenrechten en Algoritmes (IAMA)?",
+            "instructions": "Is het algoritme getoetst op het nakomen van mensenrechten, bijvoorbeeld met een Impact Assessment Mensenrechten en Algoritmes (IAMA)? De resultaten van de mensenrechtentoets kunnen verwerkt worden in diverse andere velden. Ook kan er in het veld 'Link naar mensenrechtentoets' gelinkt worden naar een eventueel gepubliceerde mensenrechtentoets. Ten behoeve van de websitefunctionaliteit is het noodzakelijk om geen andere informatie in dit veld op te nemen dan 'Ja' of 'Nee' (let op hoofdletters).'",
+            "example": "Ja",
+            "required": false,
+            "permitted_values": [
+                "Ja",
+                "Nee"
+            ]
+        },
+        "iama_description": {
+            "type": "string",
+            "title": "Link naar Mensenrechtentoets",
+            "max_length": 500,
+            "show_always": true,
+            "help_text": "Link naar de resultaten van een uitgevoerde mensenrechtentoets, zoals een IAMA.",
+            "instructions": "Link naar de resultaten van een mensenrechtentoets, indien deze is uitgevoerd en publiek beschikbaar is. Een voorbeeld hiervan is het impact assessment mensenrechten en algoritmes (IAMA). Begin een URL met https://",
+            "example": "https://gemeentenoorderhaaks.nl/Archief/toetsen/AVR-IAMA",
+            "required": false
+        },
+        "dpia": {
+            "type": "enum",
+            "title": "Data Protection Impact Assessment (DPIA)",
+            "show_always": false,
+            "help_text": "Is het algoritme getoetst op veilig gebruik van gegevens met een Data Protection Impact Assessment (DPIA).",
+            "instructions": "Is het algoritme getoetst op veilig gebruik van gegevens met een Data Protection Impact Assessment (DPIA)? Ten behoeve van de websitefunctionaliteit is het noodzakelijk om geen andere informatie in dit veld op te nemen dan 'Ja' of 'Nee' (let op hoofdletters).",
+            "example": "Ja",
+            "required": false,
+            "permitted_values": [
+                "Ja",
+                "Nee"
+            ]
+        },
+        "objection_procedure": {
+            "type": "string",
+            "title": "Bezwaarprocedure",
+            "max_length": 2500,
+            "show_always": true,
+            "help_text": "Een omschrijving van hoe burgers en bedrijven bezwaar kunnen maken tegen de uitkomsten van het algoritme.",
+            "instructions": "Een omschrijving van hoe burgers en bedrijven bezwaar kunnen maken tegen de uitkomsten van het algoritme.",
+            "example": "Indien de uitkomst van het algoritme een nadelig effect heeft gehad op bijvoorbeeld een weggebruiker of omwonende, neem dan contact op met het gemeenteloket op https://gemeentenoorderhaaks.nl/contact. Wij behandelen uw aanvraag binnen tien werkdagen.",
+            "required": false
+        },
+        "url": {
+            "type": "string",
+            "title": "Link naar bronregistratie",
+            "max_length": 500,
+            "show_always": false,
+            "help_text": "De URL van de locatie waar dit algoritme eerder al is vastgelegd; in machine leesbaar formaat.",
+            "instructions": "Als de organisatie zelf ook een algoritmeregister gepubliceerd heeft waarvandaan uiteindelijk de informatie opgehaald wordt, dan kan vanaf hiernaar verwezen worden.",
+            "example": "https://algoritmes.gemeentenoorderhaaks.nl/",
+            "required": false
+        },
+        "contact_email": {
+            "type": "string",
+            "title": "E-mailadres van de contactpersoon",
+            "max_length": 500,
+            "show_always": true,
+            "help_text": "De e-mail voor contact over deze registratie.",
+            "instructions": "Het e-mailadres voor contact over deze registratie. Dit moet een geldig mailadres zijn waar burgers, media of andere betrokkenen vragen kunnen stellen over het algoritme zelf of over de gevolgen op basis van uitkomsten van het algoritme.",
+            "example": "algoritmes@gemeentenoorderhaaks.nl",
+            "required": false
+        },
+        "area": {
+            "type": "string",
+            "title": "Geografisch gebied",
+            "max_length": 100,
+            "show_always": false,
+            "help_text": "Het geografische gebied waarin het algoritme wordt ingezet.",
+            "instructions": "Het geografische gebied waarin het algoritme ingezet wordt, zoals een gemeente, (veiligheids)regio, natuurgebied, of provincie.",
+            "example": "Gemeente Noorderhaaks",
+            "required": false
+        },
+        "lang": {
+            "type": "string",
+            "title": "Taal",
+            "max_length": 3,
+            "show_always": false,
+            "help_text": "De taal waarin deze registratie is ingevoerd.",
+            "instructions": "De ISO 639-3 code van de taal van de registratie. Op dit moment wordt alleen Nederlands (nld) aangeboden.",
+            "example": "nld",
+            "required": false
+        },
+        "standard_version": {
+            "type": "enum",
+            "title": "Schema",
+            "show_always": false,
+            "help_text": "De versie van de publicatiestandaard waar dit algoritme in is geregistreed.",
+            "instructions": "De versie van de publicatiestandaard die gehanteerd is voor deze registratie.Op dit moment is dat '0.3.1'.",
+            "example": "0.3.1",
+            "required": false,
+            "permitted_values": [
+                "0.3.1"
+            ]
+        },
+        "uuid": {
+            "type": "string",
+            "title": "UUID",
+            "max_length": 100,
+            "show_always": false,
+            "help_text": "De unieke code van dit algoritme in het landelijke register.",
+            "instructions": "De unieke identificatie voor deze registratie in landelijke register. Bij het aanleveren van deze registraties wordt er automatisch een identificatie gegenereerd door de website van het landelijk algoritmeregister. Hier dient bij de eerste aanlevering dus niks handmatig ingevuld te worden. Bij het wijzigen van registraties kan naar deze identificatie verwezen worden om de juiste registratie te vinden. In het geval van een update van een al bestaand en gepubliceerde registratie, moet de identificatie in de toekomst wel worden ingevuld.",
+            "example": "n.v.t.",
+            "required": false
+        },
+        "source_id": {
+            "type": "string",
+            "title": "Bron-ID",
+            "max_length": 100,
+            "show_always": false,
+            "help_text": "De unieke code van dit algoritme in het register van de eigenaar",
+            "instructions": "Indien van toepassing, de unieke identificatie voor deze registratie zoals door de eigenaar wordt gehanteerd. Dit is dus de verwijzing naar het algoritme in de interne database of het interne register van uw organisatie.",
+            "example": "n.v.t.",
+            "required": false
+        },
+        "revision_date": {
+            "type": "string",
+            "title": "Herzieningsdatum",
+            "max_length": 10,
+            "show_always": false,
+            "help_text": "De datum waarvoor deze registratie moet worden herzien.",
+            "instructions": "De datum waarvoor deze registratie moet worden herzien, in DD-MM-YYYY formaat. Het is handig periodiek te controleren of de registratie nog actueel is. Het kan daarbij slim zijn om een datum te kiezen waarop een wijziging verwacht wordt. De wettelijke grondslag van sommige regelingen wijzigt bijvoorbeeld jaarlijks per 1 januari, waardoor dat een logisch moment van herziening is. ",
+            "example": "01-12-2023",
+            "required": false
+        },
+        "tags": {
+            "type": "string",
+            "title": "Tags",
+            "max_length": 2500,
+            "show_always": false,
+            "help_text": "Trefwoorden over het algoritme, om de vindbaarheid van een algoritmeregistratie te vergroten.",
+            "instructions": "Termen gerelateerd aan dit algoritme. Gescheiden door komma's. Dit veld wordt niet weergegeven op de website en kan worden gebruikt om de vindbaarheid van de registratie te verbeteren. Zo kan bijvoorbeeld de naam van het relevante ministerie worden toegevoegd om als uitvoerorganisatie beter vindbaar te zijn met de zoekfunctie.",
+            "example": "Verkeer, Mobiliteit, VRI, Infrastructuur, Waddengebied",
+            "required": false
+        },
+        "description": {
+            "type": "string",
+            "title": "Omschrijving",
+            "max_length": 2500,
+            "show_always": false,
+            "help_text": "Een uitgebreide beschrijving van het algoritme (500-5000 tekens).",
+            "instructions": "Een uitgebreide beschrijving van het algoritme. Vul dit veld in op B1-taalniveau.",
+            "example": "Er is veel verkeer op de kruispunten van de ringweg om de gemeente Noorderhaaks. De verkeersregeling van de stoplichten loopt niet altijd hetzelfde. Met behulp van sensoren in het wegdek kan een computersysteem een idee krijgen van waar er iemand voor een stoplicht staat. Het systeem gebruikt een algoritme om te kijken of het stoplicht sneller op groen kan dan het normaal zou gaan. Het checkt of er op dat moment nog weggebruikers op andere plekken rijden. Zo niet, dan kunnen andere stoplichten sneller op rood, en het stoplicht in kwestie op groen. Zo verbetert de doorstroom van verkeer, vooral als het rustig is op de weg.",
+            "required": false
+        },
+        "source_data": {
+            "type": "string",
+            "title": "Databronnen",
+            "max_length": 5000,
+            "show_always": false,
+            "help_text": "Een overzicht van de databronnen die op dit moment gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme",
+            "instructions": "Een overzicht van de databronnen die op dit moment gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme. Idealiter bevat het overzicht URL's naar relevante publiekspagina's over de bron, of, indien mogelijk, een URL naar de bron zelf.",
+            "example": "Sensordata van de verkeersregelinstallaties bij kruispunten op de ringweg van gemeente Noorderhaaks.",
+            "required": false
+        },
+        "methods_and_models": {
+            "type": "string",
+            "title": "Methoden en modellen",
+            "max_length": 5000,
+            "show_always": false,
+            "help_text": "Standaardmethoden of modellen die het algoritme gebruikt.",
+            "instructions": "Een technische uitleg van hoe het algoritme werkt en uitkomsten genereert. Indien beschikbaar, komt een URL naar een schematisch overzicht van het model (zoals een stroomdiagram van een beslisboom) goed van pas. Indien complexe machine learning modellen worden gebruikt (zoals Neurale Netwerken), komen URL's naar extra documentatie of wetenschappelijke publicaties goed van pas. Dit veld is hoofdzakelijk bedoeld voor de lezer met technische expertise, en mag daarom complexere concepten en taal bevatten.",
+            "example": "Het model maakt gebruik van een eenvoudige beslisboom zodra een nieuwe bezette voorsorteerstrook zich voordoet (= wanneer de sensor een weggebruiker ontdekt). De beslisboom loopt als volgt: Eerst wordt er gekeken of er al andere partijen staan te wachten, en vervolgens of er op dat moment een andere voorsorteerstrook op groen licht staat. Zo niet, dan springt het stoplicht van de betreffende strook meteen op groen. Zo wel, dan wacht het tot er geen verkeer meer wordt waargenomen bij de andere voorsorteerstrook. Als er andere weggebruikers op andere stroken staan te wachten, sluit de betreffende strook achteraan in de wachtrij. Een grafische weergave van dit model is te vinden op https://algoritmes.gemeentenoorderhaaks.nl/VRI",
+            "required": false
+        },
+        "publiccode": {
+            "type": "string",
+            "title": "Link naar broncode",
+            "max_length": 500,
+            "show_always": false,
+            "help_text": "Een URL naar de codepagina van de ontwikkelaar. Op deze pagina kunt u meer vinden over de code van het algoritme zelf.",
+            "instructions": "Een URL naar de codepagina van de ontwikkelaar. Op deze pagina is de code van het algoritme te vinden. Indien er geen codebase publiekelijk beschikbaar is, dient dit veld leeg te blijven. Begin een URL met https://",
+            "example": "https://github.com/haakssoftwarebedrijf.nl/vrisoftware",
+            "required": false
+        },
+        "monitoring": {
+            "type": "string",
+            "title": "Monitoring",
+            "max_length": 2500,
+            "show_always": false,
+            "help_text": "Een overzicht van hoe de inzet van het algoritme wordt gemonitord.",
+            "instructions": "Een overzicht van hoe de inzet van het algoritme wordt gemonitord, zowel in real time als evaluatie achteraf.",
+            "example": "Bij monitoring van het algoritme wordt de gemaakte verkeersstroom vergeleken met het live-verkeer op plaatselijke camera's. Dagelijks wordt er met steekproeven gecontroleerd op de camerabeelden of de automatische verkeersregeling zorgt voor een goede doorstroom.",
+            "required": false
+        },
+        "human_intervention": {
+            "type": "string",
+            "title": "Menselijke tussenkomst",
+            "max_length": 2500,
+            "show_always": true,
+            "help_text": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gecontroleerd en bijgesteld (kunnen) worden.",
+            "instructions": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gecontroleerd en bijgesteld (kunnen) worden. Vul dit veld in op B1-taalniveau.",
+            "example": "Bij het maken van fouten door het algoritme zou een medewerker van de afdeling handmatig de verkeersregeling aan kunnen passen en stoplichten op groen kunnen zetten. Buiten normale werktijden is er 24/7 toezicht.",
+            "required": false
+        },
+        "risks": {
+            "type": "string",
+            "title": "Risico's",
+            "max_length": 2500,
+            "show_always": false,
+            "help_text": "Een overzicht van de voorziene risico's bij de inzet van het algoritme",
+            "instructions": "Een overzicht van de voorziene risico's bij de inzet van het algoritme. Denk aan risico's die kunnen ontstaan in de hele keten, van observatiedata tot uitkomst voor een gebruiker.",
+            "example": "De uitkomsten van het algoritme zijn alleen gebaseerd op sensoren in het wegdek die meten of er een vehikel is gepasseerd. Er is bij binnenkomst van data in het algoritme één voorzien risico: bij een defecte sensor kan het gebeuren dat weggebruikers lang blijven staan omdat ze niet worden als aanwezig worden herkend door het algoritme. Wij gaan dit tegen door de constante monitoring. Zo is de kans bijzonder klein dat dit langdurige nadelen heeft op een individu, en hoeft niemand uren stil te blijven staan. Voor de rest zijn er geen voorziene risico's, omdat bij gebrekkig functioneren van dit algoritme het traditionele systeem ook prima functioneert als plan B.",
+            "required": false
+        },
+        "performance_standard": {
+            "type": "string",
+            "title": "Prestatienormen",
+            "max_length": 2500,
+            "show_always": false,
+            "help_text": "Een omschrijving van de verwachte prestaties van het algoritme en hoe die worden gemeten.",
+            "instructions": "Een omschrijving van de verwachte prestaties van het algoritme en hoe die worden gemeten.",
+            "example": "Het algoritme moet in ieder geval even goed presteren als een standaardinstelling van een verkeersinstallatie zonder sensoren. In eerdere pilots zagen we een verbetering van gemiddeld 36% minder wachttijd voor weggebruikers buiten de spits. Wij hanteren een minimum van 15% buiten spitstijden. Tijdens de spits is dit de baseline (0%).",
+            "required": false
+        }
+    }
+}

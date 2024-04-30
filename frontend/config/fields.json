@@ -204,7 +204,7 @@
       "description": "Een omschrijving van hoe burgers en bedrijven bezwaar kunnen maken tegen de uitkomsten van het algoritme.",
       "required": true
     },
-    "schema_metadata": {
+    "standard_version": {
       "name": "Schema",
       "category": "METADATA",
       "type": "string",
