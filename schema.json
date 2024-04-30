@@ -143,14 +143,34 @@
             "instructions": "Het doel waarvoor het algoritme ontwikkeld is, geeft aan wat je ermee wilt bereiken. Zo is het doel van een parkeerscanauto om sneller foutparkeerders op te sporen. De impact beschrijft hoe burgers en bedrijven ermee in aanraking komen. Het gaat hierbij om wat de impact is als het naar behoren werkt. Risico's worden behandeld in een apart veld. In het geval van de parkeerscanauto kunnen geparkeerde auto's gescand worden. Er wordt dan gekeken of zij betaald hebben met een direct resultaat. Vul dit veld in op B1-taalniveau.",
             "example": "Het doel van dit algoritme is om de doorstroom van het verkeer binnen de gemeente te verbeteren. De impact is dat weggebruikers sneller van A naar B kunnen komen door kortere wachttijden."
         },
-        "considerations": {
-            "name": "Afwegingen",
+        "proportionality": {
+            "name": "Proportionaliteit",
             "category": "Verantwoord gebruik",
             "type": "string",
             "maxLength": 2499,
             "display": "mandatory",
-            "description": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is.",
-            "instructions": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is. Benoem daarbij ook welke andere alternatieven overwogen zijn. Neem de eventuele ethische afwegingen mee in het invullen. Zo kan hier worden vermeld dat de inzet van een parkeerscanauto sneller en effectiever is vergeleken met menselijke controle. In dezelfde tijd kunnen meer auto's worden gecontroleerd. De besparing in mensen kan voor andere taken worden ingezet. De verhoogde kans op een foute boete wordt hierdoor gerechtvaardigd. Bovendien kunnen burgers altijd bezwaar aantekenen wat goed te controleren is. Voor het invullen van dit veld kan gebruik gemaakt worden van de antwoorden uit het IAMA en de DPIA. Vul dit veld in op B1-taalniveau.",
+            "description": "Een afweging van de mogelijke impact van de inzet van het algoritme en waarom dit in verhouding staat tot het beoogde doel.",
+            "instructions": "Een afweging van de mogelijke impact van de inzet van het algoritme en waarom dit in verhouding staat tot het beoogde doel. Benoem daarbij de positieve en negatieve impact die het algoritme kan hebben en weeg deze tegen elkaar af. Denk daarbij aan verschillende doelgroepen die op verschillende manieren de impact kunnen ervaren. Voor deze afweging kan gebruikt worden van informatie uit de DPIA of de IAMA. Vul dit veld in op B1-taalniveau.",
+            "example": "Door dit algoritme kunnen klachten sneller worden behandeld. Hoewel de kans op fouten licht toeneemt zorgt de toegenoemen efficiency voor meer tijd om fouten op te lossen. De netto impact voor burgers is daarmee zeer beperkt en proportioneel ten opzichte van de winst in efficiency."
+        },
+        "subsidiarity": {
+            "name": "Subsidiariteit",
+            "category": "Verantwoord gebruik",
+            "type": "string",
+            "maxLength": 2499,
+            "display": "mandatory",
+            "description": "Een onderbouwing van het ontbreken van minder vergaande alternatieven.",
+            "instructions": "Een onderbouwing van het ontbreken van minder vergaande alternatieven. Benoem daarbij welke andere alternatieven overwogen zijn en waarom die niet haalbaar zijn of waarom die alternatieven een meer negatieve impact hebben. Voor deze afweging kan gebruikt worden van informatie uit de DPIA of de IAMA. Vul dit veld in op B1-taalniveau.",
+            "example": "Door het niet inzetten van dit algoritme blijven klachten van burgers langer liggen met het risico dat de negatieve gevolgen erger worden. Inzetten op meer menselijke capaciteit is duurder en vanwege beperkingen in het budget niet haalbaar."
+        },
+        "necessity": {
+            "name": "Noodzaak",
+            "category": "Verantwoord gebruik",
+            "type": "string",
+            "maxLength": 2499,
+            "display": "mandatory",
+            "description": "Een afweging van de noodzaak van de inzet van het algoritme.",
+            "instructions": "Een afweging van de noodzaak van de inzet van het algoritme. Kan het doel ook behaald worden zonder het algoritme? Voor deze afweging kan gebruikt worden van informatie uit de DPIA of de IAMA. Vul dit veld in op B1-taalniveau.",
             "example": "De voordelen van de inzet van dit algoritme zijn bewezen door het gebruik ervan over de hele wereld. Op plekken waar dit algoritme gebruikt wordt, is de verkeersdoorstroming aanzienlijk beter dan op plekken waar dit niet gedaan wordt. Het alternatief is een standaardvolgorde aanhouden, wat bewezen trager is voor weggebruikers."
         },
         "human_intervention": {
