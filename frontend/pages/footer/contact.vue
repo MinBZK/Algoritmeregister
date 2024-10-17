@@ -1,16 +1,12 @@
 <template>
-  <div style="margin-bottom: 6em" v-html="p('Footer: Contact.content')" />
+  <div class="margin-bottom-6" v-html="p('Footer: Contact.content')" />
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 const { p } = useTextLoader()
-
-definePageMeta({
-  title: 'Contact',
+useHead({ title: p('Footer: Contact.pageTitle') })
+providePageTitle({
+  title: 'Footer: Contact.pageTitle',
+  labelType: 'preditor-index',
 })
-
-const pageTitle = computed(() => p('Footer: Contact.pageTitle'))
-useHead({ title: pageTitle })
-providePageTitle({ title: 'footer.paths.contact', labelType: 'locale-index' })
 </script>

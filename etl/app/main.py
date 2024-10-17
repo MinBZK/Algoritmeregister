@@ -26,9 +26,12 @@ async def load() -> dict[str, str]:
 
     transformer = Transformer(json)
     df_organisation = transformer.json_to_df(table_name="organisation")
+    df_organisation_details = transformer.json_to_df(table_name="organisation_details")
     df_algoritme = transformer.json_to_df(table_name="algoritme")
     df_algoritme_version = transformer.json_to_df(table_name="algoritme_version")
 
-    Loader().update_database(df_organisation, df_algoritme, df_algoritme_version)
+    Loader().update_database(
+        df_organisation, df_organisation_details, df_algoritme, df_algoritme_version
+    )
 
     return {"message": "Update gelukt!"}

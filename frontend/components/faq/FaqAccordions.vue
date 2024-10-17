@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { FooterFaqQuestionGroup } from '~~/types/footer'
+import type { FooterFaqQuestionGroup } from '@/types/footer'
 
 defineProps<{
   accordions: FooterFaqQuestionGroup[]

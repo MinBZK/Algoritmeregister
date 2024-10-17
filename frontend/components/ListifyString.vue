@@ -1,6 +1,10 @@
 <template>
-  <div v-if="arrayType === 'simple'" class="width-sizing" :style="listStyle">
-    <ul style="margin-bottom: 0">
+  <div
+    v-if="arrayType === 'simple'"
+    class="width-sizing"
+    :class="{ 'padding-left-1': props.listStyle }"
+  >
+    <ul class="margin-bottom-0">
       <li v-for="cell in text" :key="cell as string" class="word-break">
         {{ cell }}
       </li>
@@ -9,18 +13,28 @@
   <div
     v-else-if="arrayType === 'list-with-links'"
     class="width-sizing"
-    :style="listStyle"
+    :class="{ 'padding-left-1': props.listStyle }"
   >
-    <ul style="margin-bottom: 0">
+    <ul class="margin-bottom-0">
       <li v-for="(cell, n) in text" :key="n" class="word-break">
-        {{ (cell as ListWithLinks).title }}:
-        {{ (cell as ListWithLinks).link }}
+        <template v-if="(cell as ListWithLinks).link">
+          {{ (cell as ListWithLinks).title }}:
+          {{ (cell as ListWithLinks).link }}
+        </template>
+        <template v-else>
+          {{ (cell as ListWithLinks).title }}
+        </template>
       </li>
     </ul>
   </div>
   <div v-else-if="arrayType === 'list-with-links-single'" class="width-sizing">
-    {{ (text[0] as ListWithLinks).title }}:
-    {{ (text[0] as ListWithLinks).link }}
+    <template v-if="(text[0] as ListWithLinks).link">
+      {{ (text[0] as ListWithLinks).title }}:
+      {{ (text[0] as ListWithLinks).link }}
+    </template>
+    <template v-else>
+      {{ (text[0] as ListWithLinks).title }}
+    </template>
   </div>
   <div v-else class="width-sizing custom-html" v-html="text" />
 </template>
@@ -33,7 +47,7 @@ interface ListWithLinks {
 
 const props = defineProps<{
   text: string | string[] | ListWithLinks[]
-  listStyle?: string
+  listStyle?: boolean
 }>()
 
 const arrayType = computed(() => {
@@ -76,5 +90,9 @@ const arrayType = computed(() => {
 
 .width-sizing {
   width: 100% !important;
+}
+
+.padding-left-1 {
+  padding-left: 1em;
 }
 </style>

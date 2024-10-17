@@ -1,4 +1,4 @@
-import { SupportingText } from '@/types/textLoader'
+import type { SupportingText } from '@/types/textLoader'
 
 const getAllContent = async () =>
   await useFetch<SupportingText>(`/supporting-text`, {

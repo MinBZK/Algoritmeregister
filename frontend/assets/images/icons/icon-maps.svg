@@ -1,0 +1,17 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="maps" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line">
+
+<g id="SVGRepo_bgCarrier" stroke-width="0"/>
+
+<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+
+<g id="SVGRepo_iconCarrier">
+
+<path id="secondary" d="M9,4V18L3,20V6Zm6,2V20l6-2V4Z" style="fill: #154273; stroke-width: 2;"/>
+
+<path id="primary" d="M21,4V18l-6,2L9,18,3,20V6L9,4l6,2ZM15,6,9,4V18l6,2Z" style="fill: none; stroke: #154273; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"/>
+
+</g>
+
+</svg>

@@ -1,28 +1,27 @@
 <template>
   <div>
     <LanguageDisclaimer
-      v-if="locale == 'en'"
+      v-if="locale !== 'nl'"
       class="language-disclaimer"
       :density="isMobile ? 'compact' : 'default'"
     />
-    <SearchBar type="no-link" @do-search="doSearch" />
+    <SearchBar type="default" @do-search="doSearch" />
 
     <div class="row container columns no-padding">
-      <div v-if="!loading" class="column-d-3">
-        <FilterGroup
-          :filter-data="data?.filter_data"
-          :selected-filters="data?.selected_filters"
-        />
+      <div class="column-d-3">
+        <div>
+          <AlgoritmeFilters
+            :filter-data="data?.filter_data"
+            :selected-filters="data?.selected_filters"
+          />
+        </div>
       </div>
       <div class="column-d-9">
         <h1 role="status">
           {{ t(`foundResults`, { n: totalCount }) }}
           {{ readTitle ? '&nbsp;' : null }}
         </h1>
-        <div
-          v-if="algoritmes.length != 0"
-          class="row container columns no-padding"
-        >
+        <div class="row container columns no-padding">
           <div class="column-d-6">
             <TablePagination
               v-if="nPages > 1"
@@ -32,39 +31,38 @@
             />
           </div>
           <div
-            v-if="algoritmes.length != 0"
             class="column-d-6 center-with-pagination"
             :class="!isMobile && 'align-right'"
           >
-            <FormOverheidButton
+            <DownloadDropdown
               :label="t('downloadAllAlgorithms')"
               :action="
                 algoritmeService.downloadAllUrl(
                   mapLocaleName(locale as 'en' | 'nl')
                 )
               "
-              :hidden-query="[{ name: 'filetype', value: 'excel' }]"
-              :style="'secondary'"
-              icon="mdi:download"
             />
           </div>
         </div>
-        <div
-          v-if="algoritmes.length != 0"
-          class="result--list result--list__data"
-        >
+        <div v-if="!loading" class="result--list result--list__data">
           <ul>
             <li
               v-for="(algoritme, index) in algoritmes"
               :key="algoritme.algoritme_id"
             >
-              <SearchResultCard
+              <GenericResultCard
                 :set-focus="index == 0 && newFocusIsRequested"
                 :algoritme="algoritme"
+                :query="query"
                 @focus-has-been-set="newFocusIsRequested = false"
               >
-              </SearchResultCard>
+              </GenericResultCard>
             </li>
+          </ul>
+        </div>
+        <div v-if="loading" class="result--list result--list__data">
+          <ul>
+            <li v-for="index in 10" :key="index" class="skeleton-card"></li>
           </ul>
         </div>
         <TablePagination
@@ -93,10 +91,11 @@
 </template>
 
 <script setup lang="ts">
-import type { AlgoritmeQuery } from '@/services/algoritme'
+import type { AlgoritmeQuery } from '@/types/filter/algoritme'
 import { mapLocaleName } from '@/utils'
 import algoritmeService from '@/services/algoritme'
-import FilterGroup from '@/components/filter/FilterGroup.vue'
+import organisationService from '@/services/organisation'
+import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
 
 const { t, locale } = useI18n()
 const router = useRouter()
@@ -145,11 +144,24 @@ const setPage = (newPage: number) => {
 // default value is true, so that when we search from the homepage the focus is always placed correctly.
 const readTitle = ref<boolean>(false)
 const newFocusIsRequested = ref<boolean>(false)
-const doSearch = (searchtext: string) => {
+const doSearch = async (searchtext: string) => {
+  const response = await organisationService.getFullNameOrganisation(
+    searchtext,
+    mapLocaleName(locale.value as 'nl' | 'en')
+  )
   const newQuery = {
-    ...query.value,
-    searchtext: searchtext || undefined,
-    page: '1',
+    ...(response.data.value
+      ? {
+          ...query.value,
+          organisation: response.data.value?.organisations[0].name,
+          searchtext: undefined,
+          page: '1',
+        }
+      : {
+          ...query.value,
+          searchtext: searchtext || undefined,
+          page: '1',
+        }),
   }
   router.push(localePath({ query: newQuery }))
 
@@ -158,22 +170,34 @@ const doSearch = (searchtext: string) => {
   readTitle.value = !readTitle.value
 }
 
-const searchPageTitle = computed(() =>
-  query.value.searchtext
-    ? t(`foundResults`, { n: totalCount.value }).concat(
-        t(`forSearch`, { searchQuery: query.value.searchtext })
-      )
-    : t(`algoritmeIndex.pageTitle`)
-)
+const { p } = useTextLoader()
+const titleTag = computed(() => {
+  const search = query.value.searchtext
+  if (search) {
+    return search + `${p('Algoritmes-overzicht.title-tag-on-append')}`
+  } else {
+    return p('Algoritmes-overzicht.title-tag')
+  }
+})
 
-useHead({ title: searchPageTitle })
+useSeoMeta({
+  description: p('Algoritmes-overzicht.meta-description'),
+  ogDescription: p('Algoritmes-overzicht.meta-description'),
+})
+
+useHead({ title: titleTag })
 providePageTitle({
-  title: 'algoritmeIndex.pageTitle',
-  labelType: 'locale-index',
+  title: 'Algoritmes-overzicht.title-tag',
+  labelType: 'preditor-index',
 })
 </script>
 
 <style scoped lang="scss">
+.skeleton-card {
+  padding: 1.5em;
+  height: 215.938px;
+}
+
 .item-header {
   margin-bottom: 15px;
 }

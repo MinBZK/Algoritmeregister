@@ -195,8 +195,14 @@
   border-bottom: 1px solid #ccc !important;
 }
 @media (min-width: 50em) {
+  .kpm .u-columnwidth-5p {
+    width: 5%;
+  }
   .kpm .u-columnwidth-10p {
     width: 10%;
+  }
+  .kpm .u-columnwidth-15p {
+    width: 15%;
   }
   .kpm .u-columnwidth-20p {
     width: 20%;

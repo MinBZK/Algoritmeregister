@@ -1,8 +1,8 @@
 version: '3.7'
-
+# FIX IMAGE URI TO THE RELEVANT OPENSOURCE URI
 services:
   db:
-    image: harbor-gn2.cicd.s15m.nl/ictu-devops-pub/cloudnative-pg/postgresql:15.2.3
+    image: <..>.cloudnative-pg/postgresql:15.2.7
     container_name: ${POSTGRES_DB_NAME}
     restart: always
     volumes:

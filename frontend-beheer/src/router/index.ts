@@ -18,6 +18,16 @@ const routes = [
     component: () => import('@/views/FormGenerator.vue'),
     props: true,
   },
+  {
+    path: '/organisatie',
+    name: 'organisation.index',
+    component: () => import('@/views/Organisation.vue'),
+  },
+  {
+    path: '/dashboard',
+    name: 'dashboard.index',
+    component: () => import('@/views/Dashboard.vue'),
+  },
 ]
 
 const router = createRouter({

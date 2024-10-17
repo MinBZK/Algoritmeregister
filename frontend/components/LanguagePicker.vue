@@ -27,10 +27,17 @@ const { setLocale, currentLocale } = useLocale()
 const { t, locale } = useI18n()
 
 const locales = [
-  { code: 'nl', name: 'Nederlands' },
+  {
+    code: 'nl',
+    name: 'Nederlands',
+  },
   {
     code: 'en',
     name: 'English',
+  },
+  {
+    code: 'fy',
+    name: 'Frysk (bèta)',
   },
 ]
 
@@ -71,19 +78,19 @@ const buttonText = computed(
   top: 0.2em;
   transform: scale(0.9);
   display: inline-block;
-  content: url('./assets/images/icons/icon-globe.svg');
+  content: url('@/assets/images/icons/icon-globe.svg');
 }
 .language-button[data-selected='true']:before {
-  content: url('./assets/images/icons/icon-globe-dark.svg');
+  content: url('@/assets/images/icons/icon-globe-dark.svg');
 }
 
 .language-button:after {
   display: inline-block;
   transform: scale(0.5, 0.7);
-  content: url('./assets/images/icons/icon-language-picker-chevron.svg');
+  content: url('@/assets/images/icons/icon-language-picker-chevron.svg');
 }
 .language-button[data-selected='true']:after {
-  content: url('./assets/images/icons/icon-language-picker-chevron-dark.svg');
+  content: url('@/assets/images/icons/icon-language-picker-chevron-dark.svg');
   transform: scale(0.5, 0.7) rotate(180deg);
 }
 

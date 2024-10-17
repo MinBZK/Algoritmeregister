@@ -1,23 +1,29 @@
 <template>
   <table class="table__data-overview">
     <tbody>
-      <tr v-for="property in tableProperties" :key="property.key">
+      <tr
+        v-for="property in tableProperties"
+        :key="property.key"
+        class="row-styling"
+      >
         <th scope="row">
-          <div class="space-for-question-mark">
+          <div>
             {{ property.keyLabel }}
-            <span
-              class="question-mark"
-              role="button"
-              tabindex="0"
-              :aria-expanded="isKeyToggled(property.key) ? 'true' : 'false'"
-              :title="
-                t('getAlgorithmPropertyExplanation', {
-                  field: property.keyLabel.toLowerCase(),
-                })
-              "
-              @click="toggleKey(property.key)"
-              @keydown.enter="toggleKey(property.key)"
-            ></span>
+            <div class="float-right">
+              <span
+                class="question-mark"
+                role="button"
+                tabindex="0"
+                :aria-expanded="isKeyToggled(property.key) ? 'true' : 'false'"
+                :title="
+                  t('getAlgorithmPropertyExplanation', {
+                    field: property.keyLabel.toLowerCase(),
+                  })
+                "
+                @click="toggleKey(property.key)"
+                @keydown.enter="toggleKey(property.key)"
+              ></span>
+            </div>
             <p v-if="isKeyToggled(property.key)">
               <i>
                 <ParseUrl :key="property.keyDescription">
@@ -27,11 +33,10 @@
             </p>
           </div>
         </th>
-
         <td :lang="backendContentLanguage">
           <ParseUrl :key="property.value || t('ontbreekt')">
             <ListifyString
-              list-style="padding-left: 1em;"
+              :list-style="true"
               :text="property.value || t('ontbreekt')"
             />
           </ParseUrl>
@@ -67,11 +72,16 @@ const toggleKey = (key: string) => {
 const isKeyToggled = (key: string) => keyToggles.value.includes(key)
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .question-mark {
   padding-left: 0;
 }
-.space-for-question-mark {
-  padding-right: 1em !important;
+.row-styling {
+  th {
+    width: 35%;
+  }
+}
+.float-right {
+  float: right;
 }
 </style>

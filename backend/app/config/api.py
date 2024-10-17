@@ -46,6 +46,8 @@ responses = {
     },
     "preview": {**default_responses},
     "remove": {**default_responses},
+    "archive_version": {**default_responses},
+    "unarchive_version": {**default_responses},
 }
 
 
@@ -95,5 +97,13 @@ api_text: dict[str, EndpointText] = {
     "remove": {
         "summary": "Verwijder een algoritme. Alleen beschikbaar voor beheerders.",
         "description": "",
+    },
+    "archive_version": {
+        "summary": "Archiveer een niet-gepubliceerde versie van een algoritme.",
+        "description": "Archiveer een gepubliceerde versie van een algoritme.",
+    },
+    "unarchive_version": {
+        "summary": "Maak de archivering van een algoritmeversie ongedaan.",
+        "description": "Maak de archivering van een algoritmeversie ongedaan.",
     },
 }

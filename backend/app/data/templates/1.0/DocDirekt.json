@@ -1,0 +1,59 @@
+[
+  {
+    "id": "docdirekt-anonimiseren",
+    "name": "Octobox Anonimiseren",
+    "organization": null,
+    "description_short": "Het algoritme in de software is voornamelijk ingesteld op herkennen en anonimiseren van privacygevoelige informatie in documenten. Grondslag hiervan is de AVG. De tool wordt ook gebruikt om informatie die om andere reden niet gedeeld kan worden (op basis van een andere grondslag, bijvoorbeeld de Woo) te markeren en maskeren in een document. ",
+    "type": "Nee",
+    "category": ["Organisatie en bedrijfsvoering"],
+    "publication_category": "Overige algoritmes",
+    "website": null,
+    "status": "In gebruik",
+    "begin_date": null,
+    "end_date": null,
+    "goal": "<div><p>De anonimiseringstool wordt ingezet om invulling te geven aan enerzijds transparantie en anderzijds aan de noodzakelijke bescherming van de personen, bedrijven en instellingen op wie documenten betrekking hebben.</p><p><br></p><p>Transparantie omdat het de organisatie in staat stelt om informatie volgens regelgeving zoals de Woo te delen, actief danwel passief. Voor de burger over wie er gegevens in te publiceren documenten zijn opgenomen, betekent het gebruik dat er geen privacy schending plaatsvindt en de organisatie daarmee voldoet aan de AVG. Dat geldt ook voor de bescherming van privacygegevens van de medewerkers van de organisatie.</p><p><br></p><p>De aanvrager van een Woo verzoek krijgt de informatie waarom zij vroeg, hetzij in geanonimiseerde versie of deels gemaskeerd op basis van een andere grondslag. Voor de afdelingen binnen de organisatie die voor het afhandelen van een Woo verzoek en/of publicatie van informatie verantwoordelijk zijn, betekent het dat ze voldoen aan wet- en regelgeving. Gebruik van de software verkort de doorlooptijd en draagt derhalve bij aan het binnen de wettelijke termijnen kunnen aanbieden van gevraagde informatie.</p><p><br></p><p>De risico impact van het algoritme is laag. Dat geldt voor personen (burgers, medewerkers van afnemende organisaties) en bedrijven en instellingen. Het algoritme zoekt specifiek naar (persoons)gegevens en maskeert deze of duidt ze aan ongeacht de verdere inhoud van documenten. Er wordt een voorstel gedaan voor het anonimiseren van een tekstfragment aan een vakinhoudelijk persoon, er is geen sprake van automatische beslissingen. Daarnaast heeft de tool als optie om handmatig informatie te maskeren die om andere redenen niet publiek gemaakt kan worden. Daarmee kan bijvoorbeeld een tekstfragment met strategische informatie gemarkeerd worden, ter bescherming van de eigen organisatie of een partnerorganisatie (overheid, bedrijf of instelling). De grondslag van het anonimiseren of maskeren wordt vermeld in het vak.</p></div>",
+    "proportionality": "<p>Het komt voor dat tekstfragmenten in documenten die openbaar gemaakt worden, niet gedeeld kunnen worden met het publiek. De Woo heeft voorzien in Grondslagen op basis waarvan dat mogelijk is. En ook de AVG is zo'n grondslag voor niet Woo-gebonden publicaties. Zonder het gebruik van de software zou het anonimiseren van tekstfragmenten in documenten significant meer tijd in beslag nemen. Het gebruik van de anonimiseringstool zorgt voor een versnelling en vereenvoudiging van het proces voor actieve en passieve openbaarmaking. Het geautomatiseerd anonimiseren is ook minder foutgevoelig dan menselijk handelen. Daardoor is de kans op een datalek kleiner en zijn de gegevens van personen beter beschermd.</p>",
+    "provider": "Octobox Nederland B.V.",
+    "lawful_basis": "<div><p>Algemene verordening gegevensbescherming (AVG)</p><p>Omgevingswet</p><p>Algemene Wet Bestuursrecht (AWB)</p><p>Bekendmakingswet</p><p>Wet Open Overheid (WOO)</p><p>Wet Elektronische Publicaties (WEP)</p></div>",
+    "lawful_basis_grouping": [
+      {
+        "title": "Algemene verordening gegevensbescherming (AVG)",
+        "link": "https://wetten.overheid.nl/BWBR0040940"
+      },
+      {
+        "title": "Omgevingswet",
+        "link": "https://wetten.overheid.nl/BWBR0037885"
+      },
+      {
+        "title": "Algemene Wet Bestuursrecht (AWB)",
+        "link": "https://wetten.overheid.nl/BWBR0005537"
+      },
+      {
+        "title": "Bekendmakingswet",
+        "link": "https://wetten.overheid.nl/BWBR0004287"
+      },
+      {
+        "title": "Wet Open Overheid (WOO)",
+        "link": "https://wetten.overheid.nl/BWBR0045754"
+      },
+      {
+        "title": "Wet Elektronische Publicaties (WEP)",
+        "link": "https://wetten.overheid.nl/BWBR0043961"
+      }
+    ],
+    "impacttoetsen": null,
+    "iama_description": null,
+    "url": null,
+    "lang": "NLD",
+    "standard_version": "1.0",
+    "uuid": null,
+    "source_id": null,
+    "tags": null,
+    "source_data": "<div><p>In het begin van het gebruik werd een inrichtingsdocument samengesteld door organisatie en leverancier. Hierin staan voorkeuren van de organisatie met betrekking tot het anonimiseren. Deze set wordt samengevoegd met het Basismodel van Octobox, dat standaard op zoek gaat naar personen te herleiden gegevens, zoals Burgerservicenummers, Bankrekeningnummers, telefoonnummers, e-mailadressen, datums, woonadressen en postcodes.</p><p>De organisatie kan een voorkeur hebben om bepaalde namen niet te lakken (bewindspersoon, directeur) en andere juist wel. De namen van medewerkers kunnen ontbreken in het Basismodel en alvast op voorhand worden toegevoegd. Een andere voorkeur die de organisatie kan aangeven is bijvoorbeeld het formaat waarin een e-mailadres onherkenbaar gemaakt wordt.</p></div>",
+    "source_data_link": null,
+    "methods_and_models": "<div><p>Op basis van slimme regels doorzoekt de software de teksten van elk document in het aangeboden dossier. Bepaalde teksten, woorden of karaktercombinaties worden herkend als naar personen te herleiden gegevens, zoals Burgerservicenummers, Bankrekeningnummers, telefoonnummers, e-mailadressen, datums, woonadressen en postcodes.</p><p>De software kan ingesteld worden op de mate van zekerheid waarin aan een voorwaarde voldaan wordt. Voor de medewerker wordt op het scherm aangegeven welke tekstfragmenten met zekerheid gelakt moeten worden, en welke in mindere mate aan de opgestelde slimme regel voldoet. Via het scherm kan de medewerker de voorstellen goed- of afkeuren, en ook wijzigen voor goedkeuring. Ook kan de medewerker zelf tekst markeren en voor aflakken in aanmerking laten komen, inclusief het toevoegen van een grondslag. </p><p>Het is mogelijk om een tweede medewerker het werk van de eerste te controleren. Als alle (pagina's van alle) documenten in het dossier zijn beoordeeld wordt de definitieve versie gecreëerd, in een geschikt formaat voor publicatie.</p></div>",
+    "publiccode": null,
+    "human_intervention": "<div><p>Menselijke tussenkomst en controle is in het gebruik altijd de norm. De software werkt op basis van een inrichtingsdocument. De organisatie kan via dit inrichtingsdocument en verschillende mechanismen het algoritmegebruik afstemmen/parametriseren op de eigen unieke situatie. Er wordt een voorstel gedaan voor het anonimiseren van een tekstfragment aan een vakinhoudelijk persoon. Er is geen sprake van geautomatische beslissingen. </p><p>Het algoritme zoekt specifiek naar (persoons)gegevens en markeert deze of duidt ze aan ongeacht de verdere inhoud van documenten. De vakinhoudelijk persoon behandelt de voorstellen en geeft aan waar ze correct zijn, verbetert waar het moet. Eventueel kan dit werk ook binnen de software door een tweede persoon getoetst worden. Voor de burger betekent dit dat de organisatie aantoonbaar en proportioneel werkt aan het wegnemen van (de kans op) privacyschending en voldoen daarmee aan de AVG.</p></div>",
+    "risks": "<div><p>Om het risico dat documenten onvoldoende worden geanonimiseerd te mitigeren vindt er altijd controle door een mens plaats. Dit betreft een volledige controle waar de software op intuïtieve wijze gebruikt kan worden om te controleren of wijzigen/verrijken. Als er geen menselijke controle zou plaatsvinden bij het anonimiseren van documenten, kunnen er verschillende risico's ontstaan, met name als gevolg van het openbaar maken of publiceren van privacygevoelige gegevens. Deze tool in samenwerking met de mens, helpt dit te voorkomen:</p><p><br></p><p>Schending van Privacywetgeving:</p><p>Het onbedoeld openbaar maken van persoonlijke gegevens kan een schending van de privacywetgeving inhouden, zoals de AVG in de EU. Dit kan leiden tot aanzienlijke boetes en juridische sancties.</p><p><br></p><p>Identiteitsdiefstal:</p><p>Als persoonlijke identificeerbare informatie (PII) zoals namen, adressen en sofinummers openbaar wordt gemaakt, kan dit leiden tot identiteitsdiefstal en financiële fraude.</p><p><br></p><p>Schade aan reputatie:</p><p>Zowel de reputatie van de individuen wiens informatie is gelekt als die van de organisatie die verantwoordelijk is voor het lek kunnen ernstige schade oplopen.</p><p><br></p><p>Verlies van Vertrouwen:</p><p>Het vertrouwen van het publiek en de betrokken stakeholders in de organisatie kan afnemen, wat kan leiden tot een afname van de betrokkenheid en steun.</p><p><br></p><p>Persoonlijke Schade:</p><p>Individuen kunnen emotionele en psychologische schade ondervinden als hun persoonlijke gegevens, zoals medische of financiële informatie, openbaar worden gemaakt.</p><p><br></p><p>Exploitatie en Misbruik:</p><p>Openbaar gemaakte gegevens kunnen worden gebruikt voor kwaadwillende doeleinden, zoals staking, intimidatie of discriminatie.</p><p><br></p><p>Menselijke controle helpt om deze risico's te beperken door een extra laag van beoordeling en bevestiging te bieden dat de anonimiseringsprocessen adequaat zijn uitgevoerd voordat informatie openbaar wordt gemaakt.</p></div>"
+  }
+]

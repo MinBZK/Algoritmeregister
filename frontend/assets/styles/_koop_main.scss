@@ -233,8 +233,14 @@
   border-bottom: 1px solid #ccc !important;
 }
 @media (min-width: 50em) {
+  .u-columnwidth-5p {
+    width: 5%;
+  }
   .u-columnwidth-10p {
     width: 10%;
+  }
+  .u-columnwidth-15p {
+    width: 15%;
   }
   .u-columnwidth-20p {
     width: 20%;
@@ -4179,7 +4185,7 @@ table.table--headerhighlight.table--condensed thead tr th {
   padding: 0;
 }
 .tabs {
-  padding: 0.25em 0;
+  padding: 1em 0;
 }
 .tabs__list {
   padding: 0 9em 0 0;

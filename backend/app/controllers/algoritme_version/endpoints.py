@@ -1,7 +1,10 @@
-from fastapi import HTTPException, status, BackgroundTasks
+import re
+from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
 from app import models, schemas
+from app.middleware.authorisation.schemas import State
+from app.services.keycloak import KeycloakUser
 from app.services import translation
 from app.util import upc
 from app.config.settings import Settings
@@ -17,6 +20,7 @@ from app.repositories import (
     ActionHistoryRepository,
 )
 from app.util.logger import get_logger
+from app.services.translation import LanguageCode
 
 logger = get_logger(__name__)
 # Version agnostic database handling
@@ -78,9 +82,9 @@ def get_algorithm_summary(
     # }
     last_edited = {}
     for history_point in algos_history:
-        id = history_point.algoritme_version_id
-        if id not in last_edited:
-            last_edited[id] = history_point.user_id
+        algoritme_version_id = history_point.algoritme_version_id
+        if algoritme_version_id not in last_edited:
+            last_edited[algoritme_version_id] = history_point.user_id
 
     summary_list = []
     for latest_algo in latest_versions:
@@ -94,11 +98,12 @@ def get_algorithm_summary(
                 lars=latest_algo.lars,
                 source_id=latest_algo.source_id,
                 published=lars_code in published_ids,
-                current_version_released=latest_algo.released,
-                current_version_published=latest_algo.published,
+                current_version_released=latest_algo.state == State.STATE_2,
+                current_version_published=latest_algo.state == State.PUBLISHED,
                 last_update_by=last_edited.get(latest_algo.id) or "Onbekend",
             )
         )
+    summary_list.sort(key=lambda x: x.last_update_dt, reverse=True)
     return summary_list
 
 
@@ -138,7 +143,7 @@ def post_one(
     as_org: str,
     body: schemas.AlgoritmeVersionContent,
     db: Session,
-    user: schemas.User,
+    user: KeycloakUser,
 ) -> schemas.NewAlgorithmResponse:
     organisation_repo = OrganisationRepository(session=db)
     algoritme_version_repo = AlgoritmeVersionRepository(session=db)
@@ -158,7 +163,10 @@ def post_one(
 
     # Creates new entry in algoritme_version table.
     algoritme_version = schemas.AlgoritmeVersionIn(
-        **body.dict(), algoritme_id=algoritme_db.id, language=Language.NLD
+        **body.dict(),
+        algoritme_id=algoritme_db.id,
+        language=Language.NLD,
+        state=State.STATE_1,
     )
     algoritme_version_db = algoritme_version_repo.add(algoritme_version)
 
@@ -166,136 +174,17 @@ def post_one(
     action = schemas.ActionHistoryIn(
         algoritme_version_id=algoritme_version_db.id,
         operation=OperationEnum.created,
-        user_id=user.name,
+        user_id=user.username,
     )
     action_history_repo.add(action)
     return schemas.NewAlgorithmResponse(lars_code=new_lars)
 
 
-def retract_one(
-    lars: str,
-    db: Session,
-    user: schemas.User,
-) -> None:
-    algoritme_version_repo = AlgoritmeVersionRepository(db)
-    action_history_repo = ActionHistoryRepository(db)
-    retracted_algoritme_versions = algoritme_version_repo.retract_by_lars(lars)
-    if (retracted_algoritme_versions) and (len(retracted_algoritme_versions) > 0):
-        for algo in retracted_algoritme_versions:
-            action_history_repo.add(
-                schemas.ActionHistoryIn(
-                    algoritme_version_id=algo.id,
-                    operation=OperationEnum.retracted,
-                    user_id=user.name,
-                )
-            )
-    else:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Er is geen gepubliceerd algoritme gevonden met LARS-code: ({lars})",
-        )
-
-
-def release_one(
-    lars: str,
-    db: Session,
-    user: schemas.User,
-) -> schemas.AlgorithmActionResponse | None:
-    algoritme_version_repository = AlgoritmeVersionRepository(db)
-    action_history_repository = ActionHistoryRepository(db)
-    latest_version = algoritme_version_repository.get_latest_by_lars_by_lang(
-        lars, Language.NLD
-    )
-    if not latest_version:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Er kan geen algoritme met LARS-code: ({lars}) worden vrijgegeven.",
-        )
-    elif latest_version.released:
-        raise HTTPException(
-            status_code=status.HTTP_409_CONFLICT,
-            detail=f"Algoritme met LARS-code: ({lars}) is al vrijgegeven.",
-        )
-    elif latest_version.published:
-        raise HTTPException(
-            status_code=status.HTTP_409_CONFLICT,
-            detail="De laatste versie is al gepubliceerd. Deze kan niet worden vrijgegeven.",
-        )
-
-    algoritme_version_repository.unrelease_by_lars(lars)
-    released_id = algoritme_version_repository.release_latest_by_lars(lars)
-    if released_id:
-        action = schemas.ActionHistoryIn(
-            algoritme_version_id=released_id,
-            operation=OperationEnum.released,
-            user_id=user.name,
-        )
-        action_history_repository.add(action)
-
-
-def publish_one(
-    background_tasks: BackgroundTasks,
-    lars: str,
-    db: Session,
-    user: schemas.User,
-) -> schemas.AlgorithmActionResponse | None:
-    algoritme_version_repository = AlgoritmeVersionRepository(db)
-    action_history_repo = ActionHistoryRepository(db)
-    latest_nld = algoritme_version_repository.get_latest_by_lars_by_lang(
-        lars, Language.NLD
-    )
-    if not latest_nld:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Er kan geen algoritme met LARS-code: ({lars}) worden gepubliceerd.",
-        )
-    elif latest_nld.published:
-        raise HTTPException(
-            status_code=status.HTTP_409_CONFLICT,
-            detail=f"Algoritme met LARS-code: ({lars}) is al gepubliceerd.",
-        )
-    elif not latest_nld.released:
-        raise HTTPException(
-            status_code=status.HTTP_409_CONFLICT,
-            detail=f"Algoritme met LARS-code: ({lars}) is nog niet vrijgegeven.",
-        )
-
-    # Retract publication, all languages
-    published_algs = algoritme_version_repository.get_published_by_lars(lars)
-    for alg in published_algs:
-        alg.published = False
-        alg_to_retract = schemas.AlgoritmeVersionIn(**alg.dict())
-        algoritme_version_repository.update_by_id(alg.id, alg_to_retract)
-        action_history_repo.add(
-            schemas.ActionHistoryIn(
-                algoritme_version_id=alg.id,
-                user_id=user.name,
-                operation=OperationEnum.retracted,
-            )
-        )
-
-    # Publishes ENG: Copies data, translates and adds.
-    if env_settings.enable_translation:
-        latest_eng = schemas.AlgoritmeVersionIn(**dict(latest_nld))
-        latest_eng_model = models.AlgoritmeVersion(**dict(latest_eng))
-        background_tasks.add_task(apply_translation, latest_eng_model, db, user.name)
-
-    # Publish NLD
-    latest_nld.published = True
-    latest_nld.released = False
-    latest_nld_update = schemas.AlgoritmeVersionIn(**dict(latest_nld))
-    algoritme_version_repository.update_by_id(latest_nld.id, latest_nld_update)
-    action_history_repo.add(
-        schemas.ActionHistoryIn(
-            algoritme_version_id=latest_nld.id,
-            user_id=user.name,
-            operation=OperationEnum.published,
-        )
-    )
-
-
 def apply_translation(
-    algo: models.AlgoritmeVersion, db: Session, user: str
+    algo: models.AlgoritmeVersion,
+    db: Session,
+    username: str,
+    language: LanguageCode = LanguageCode.ENGLISH,
 ) -> schemas.AlgoritmeVersionIn:
     algo = db_list_to_python_list(algo)
     preprocessor = translation.Preprocessor(
@@ -309,14 +198,20 @@ def apply_translation(
             "published",
             "released",
             "preview_active",
+            "state",
         ],
+        target_lang=language.value,
     )
     # 1. Add the non-translatable fields as-is
     translated_dict = preprocessor.get_non_translatable_fields()
 
     # 2. Add translations for fields that have a list as value
     list_fields = preprocessor.get_list_fields()
-    list_translator = translation.ListValuesTranslator(field_dict=list_fields)
+    list_translator = translation.ListValuesTranslator(
+        field_dict=list_fields,
+        organisation_name=algo.organization,
+        algorithm_name=algo.name,
+    )
     translation_response = list_translator.translate(
         preprocessor.translation_spec["default_translations"]
     )
@@ -324,13 +219,21 @@ def apply_translation(
 
     # 3. Add translations for fields that need automatic translation
     auto_translate_fields = preprocessor.get_auto_translate_fields()
-    auto_translator = translation.AutoTranslator(field_dict=auto_translate_fields)
+    auto_translator = translation.AutoTranslator(
+        field_dict=auto_translate_fields,
+        target_lang=language,
+        organisation_name=algo.organization,
+        algorithm_name=algo.name,
+    )
     translation_response = auto_translator.translate()
     translated_dict.update(translation_response.fields)
 
     # 4. Translate the fields that have a default translation
     default_translator = translation.DefaultValuesTranslator(
-        field_dict=preprocessor.get_default_translate_fields()
+        field_dict=preprocessor.get_default_translate_fields(),
+        target_lang=language,
+        organisation_name=algo.organization,
+        algorithm_name=algo.name,
     )
     translation_response = default_translator.translate(
         preprocessor.translation_spec["default_translations"]
@@ -341,20 +244,29 @@ def apply_translation(
     preprocessor.truncate_fields(translated_dict)
 
     # 6. Save the translations
-    algoritme_version = save_translation(algo, db, translated_dict, user)
+    algoritme_version = save_translation(algo, db, translated_dict, username, language)
     return algoritme_version
 
 
-def save_translation(algo, db, translated_dict, user):
+def save_translation(
+    algo: models.AlgoritmeVersion,
+    db: Session,
+    translated_dict,
+    username: str,
+    language=LanguageCode.ENGLISH,
+):
     """
     Saves the translation to the database.
     """
-    algoritme_version = schemas.AlgoritmeVersionIn(**translated_dict)
-    algoritme_version.language = Language.ENG
+    lang_code_map = {
+        LanguageCode.ENGLISH: Language.ENG,
+        LanguageCode.FRISIAN: Language.FRY,
+    }
+    algoritme_version = schemas.AlgoritmeVersionIn(
+        **translated_dict, state=State.PUBLISHED
+    )
+    algoritme_version.language = lang_code_map[language]
     algoritme_version.create_dt = algo.create_dt  # Date should be the same
-    algoritme_version.published = True
-    algoritme_version.released = False
-    algoritme_version.preview_active = False
 
     algoritme_version_repository = AlgoritmeVersionRepository(db)
     algoritme_version_db = algoritme_version_repository.add(algoritme_version)
@@ -363,13 +275,13 @@ def save_translation(algo, db, translated_dict, user):
     action = schemas.ActionHistoryIn(
         algoritme_version_id=algoritme_version_db.id,
         operation=OperationEnum.created,
-        user_id=user,
+        user_id=username,
     )
     action_history_repository.add(action)
     action = schemas.ActionHistoryIn(
         algoritme_version_id=algoritme_version_db.id,
         operation=OperationEnum.published,
-        user_id=user,
+        user_id=username,
     )
     action_history_repository.add(action)
 
@@ -380,7 +292,7 @@ def update_new_version(
     body: schemas.AlgoritmeVersionContent,
     lars: str,
     db: Session,
-    user: schemas.User,
+    user: KeycloakUser,
 ) -> schemas.AlgorithmActionResponse | None:
     algoritme_repo = AlgoritmeRepository(db)
     algoritme_version_repo = AlgoritmeVersionRepository(db)
@@ -401,30 +313,59 @@ def update_new_version(
     if not change_found:
         return schemas.AlgorithmActionResponse(message="NO_CHANGES")
 
+    # Expire the previous version
+    if latest_version.state != State.PUBLISHED:
+        logger.warning("The state change to expired is not logged")
+        algoritme_version_repo.update_state_by_id(latest_version.id, State.EXPIRED)
+        # TODO: Add expired as option to operations.
+        # action_history_repo.add(
+        #     ActionHistoryIn(
+        #         algoritme_version_id=latest_version.id,
+        #         operation=OperationEnum.expired,
+        #         user_id=user.username,
+        #     )
+        # )
+
     # Build new version
     new_version = schemas.AlgoritmeVersionIn(
-        **body.dict(), algoritme_id=algoritme.id, language=Language.NLD
+        **body.dict(),
+        algoritme_id=algoritme.id,
+        language=Language.NLD,
+        state=State.STATE_1,
     )
     new_version = algoritme_version_repo.add(new_version)
     action_history_repo.add(
         schemas.ActionHistoryIn(
             algoritme_version_id=new_version.id,
             operation=OperationEnum.new_version,
-            user_id=user.name,
+            user_id=user.username,
         )
     )
 
 
-def get_preview_link(lars: str, db: Session, user: schemas.User) -> schemas.PreviewUrl:
+def get_preview_link(lars: str, db: Session, user: KeycloakUser) -> schemas.PreviewUrl:
     algoritme_version_repo = AlgoritmeVersionRepository(db)
     action_history_repo = ActionHistoryRepository(db)
     previewed_algo = algoritme_version_repo.preview_latest_by_lars(lars)
+    latest_by_lang = algoritme_version_repo.get_latest_by_lars_by_lang(
+        lars, lang=Language.NLD
+    )
+    if latest_by_lang:
+        name = latest_by_lang.name
+        org = latest_by_lang.organization
+        name = name if name is not None else ""
+        org = org if org is not None else ""
+        slug = name.lower() + " " + org.lower()
+        slug = re.sub(r"[^a-zA-Z0-9 ]", "", slug)
+        slug = re.sub(r" {2,}", "-", slug)
+        slug = slug.replace(" ", "-")
+
     if previewed_algo:
         action_history_repo.add(
             schemas.ActionHistoryIn(
                 algoritme_version_id=previewed_algo.id,
                 operation=OperationEnum.preview_activated,
-                user_id=user.name,
+                user_id=user.username,
             )
         )
     else:
@@ -432,8 +373,7 @@ def get_preview_link(lars: str, db: Session, user: schemas.User) -> schemas.Prev
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Er is geen algoritme gevonden met LARS-code: ({lars})",
         )
-
-    url = f"{env_settings.preview_url}/nl/algoritme/C{lars}"
+    url = f"{env_settings.preview_url}/nl/algoritme/{slug}/C{lars}"
     return schemas.PreviewUrl(url=url)
 
 
@@ -446,3 +386,29 @@ def remove_one(lars: str, db: Session) -> None:
             detail=f"Er is geen algoritme gevonden met LARS-code: ({lars})",
         )
     db.commit()
+
+
+def set_archive_status(
+    version_id: int,
+    db: Session,
+    archived: bool,
+    user_id: str,
+) -> None:
+    algo_version_repo = AlgoritmeVersionRepository(db)
+    algo_version = algo_version_repo.get_by_id(version_id)
+    if not algo_version:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Er is geen algoritmeversie gevonden met ID: ({version_id})",
+        )
+    new_state = State.ARCHIVED if archived else State.STATE_1
+    algo_version_repo.update_state_by_id(version_id, new_state)
+
+    action_history_repo = ActionHistoryRepository(db)
+    action_history_repo.add(
+        schemas.ActionHistoryIn(
+            algoritme_version_id=algo_version.id,
+            operation=OperationEnum.archived if archived else OperationEnum.unarchived,
+            user_id=user_id,
+        )
+    )

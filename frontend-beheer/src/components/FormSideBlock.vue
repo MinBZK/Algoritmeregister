@@ -5,7 +5,6 @@
       border
       class="pl-3 pa-4"
     >
-      <!-- <templates-dialog v-if="dataStore.data.standard_version == '0.4.0'" /> -->
       <download-dropdown :lars="lars" class="download-dropdown" />
       <v-select
         v-model="dataStore.data.standard_version"
@@ -18,6 +17,9 @@
         variant="outlined"
         class="v-col-12 px-0"
         @update:model-value="(e: any) => handleSchemaSwap(e)"
+      />
+      <templates-dialog
+        v-if="selectableVersions.includes(dataStore.data.standard_version)"
       />
       <v-btn
         class="text-lowercase elevation-0 text-body-1 mb-2"
@@ -125,7 +127,7 @@
 </template>
 
 <script setup lang="ts">
-// import TemplatesDialog from './TemplatesDialog.vue'
+import TemplatesDialog from './TemplatesDialog.vue'
 import DownloadDropdown from './DownloadDropdown.vue'
 import { useSchemaStore } from '@/store/schema'
 import { useFormDataStore } from '@/store/form-data'
@@ -175,6 +177,7 @@ const handleSchemaSwap = async (version: string) => {
 
 const enableSubmit = computed(() => dataStore.unsavedChanges)
 const handleSubmit = async (lars?: string) => {
+  dataStore.data.name = dataStore.data?.name?.replace(/\r?\n|\r/g, '')
   dataStore.resetFeedback()
   if (lars) {
     const response = await dataStore.handleUpdate(lars)
@@ -247,11 +250,11 @@ const handleRemove = async (lars: string) => {
 }
 
 const isPublished = computed(() =>
-  props.lars ? dataStore.data.published : false
+  props.lars ? dataStore.data.state === 'PUBLISHED' : false
 )
 
 const isReleased = computed(() =>
-  props.lars ? dataStore.data.released : false
+  props.lars ? dataStore.data.state === 'STATE_2' : false
 )
 </script>
 

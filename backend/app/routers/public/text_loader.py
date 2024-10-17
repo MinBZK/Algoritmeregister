@@ -8,7 +8,7 @@ env_settings = Settings()
 
 GET_URL = "/api/supporting-text"
 JSON_PATH = "app/data/text_loader/supporting_text.json"
-JSON_DEFAULT_PATH = "app/data/default/supporting_text.json"
+JSON_DEFAULT_PATH = "app/data/static_content_default.json"
 
 include_in_schema = False
 

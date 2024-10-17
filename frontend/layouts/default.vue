@@ -6,7 +6,7 @@
     <AppHeader />
     <AppContentBar v-if="false" />
     <AppBreadcrumb />
-    <div class="container columns columns--sidebar-left row bottom-margin">
+    <div class="container columns columns--sidebar-left bottom-margin">
       <div id="content">
         <slot />
       </div>
@@ -26,22 +26,28 @@ import AppFooter from '@/components/views/AppFooter.vue'
 import { pageTitleInfo } from '~~/utils'
 
 const { t, locale } = useI18n()
-const siteTitle = computed(() => t('homepageTitle'))
+const { p } = useTextLoader()
+
 useHead({
   htmlAttrs: { lang: locale },
-  titleTemplate: (pageTitle) => {
-    return pageTitle ? `${pageTitle} - ${siteTitle.value}` : siteTitle.value
-  },
 })
 
+// On every update of this variable, it is read by the screenreader.
 const readAfterLanguageChange = ref<string>()
 watch(locale, () => {
-  readAfterLanguageChange.value =
-    t('currentLanguage') +
-    '; ' +
-    (pageTitleInfo.value.labelType === 'locale-index'
-      ? t(pageTitleInfo.value.title)
-      : pageTitleInfo.value.title)
+  let head
+  switch (pageTitleInfo.value.labelType) {
+    case 'locale-index':
+      head = t(pageTitleInfo.value.title)
+      break
+    case 'preditor-index':
+      head = p(pageTitleInfo.value.title)
+      break
+    case 'plain-text':
+      head = pageTitleInfo.value.title
+      break
+  }
+  readAfterLanguageChange.value = t('currentLanguage') + '; ' + head
 })
 </script>
 

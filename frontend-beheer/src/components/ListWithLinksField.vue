@@ -1,16 +1,23 @@
 <template>
   <div class="pb-6">
-    <v-card rounded="0" flat border class="wrapper">
+    <v-card
+      rounded="0"
+      flat
+      border
+      class="wrapper"
+    >
       <v-row v-for="(row, n) in content" :key="n">
         <v-col cols="4">
-          <v-text-field
+          <v-combobox
             :value="row.title"
-            hide-details
             density="compact"
+            hide-details
+            rounded="0"
+            clearable
             variant="outlined"
-            @update:model-value="(e: string) => handleUpdate(n, 'title', e)"
+            :items="items"
             @focus="showFeedback = true"
-            @blur="showFeedback = false"
+            @update:model-value="(e) => handleUpdate(n, 'title', e as string)"
           />
         </v-col>
         <v-col>
@@ -69,6 +76,7 @@ const props = defineProps<{
   content?: ListWithLinks[]
   helpText?: string
   rules?: ((v: any) => boolean | string)[]
+  items?: string[]
 }>()
 
 const emit = defineEmits<{

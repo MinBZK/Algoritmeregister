@@ -33,7 +33,7 @@
       />
       <div
         v-if="schemaStore.loaded && dataStore.loaded"
-        style="margin-bottom: 1em"
+        class="margin-bottom-1"
       >
         <quality-inspector />
       </div>
@@ -144,5 +144,9 @@ watch(changeWatcher, () => {
 
 .form-field {
   padding: 0 0 0 0;
+}
+
+.margin-bottom-1 {
+  margin-bottom: 1em;
 }
 </style>

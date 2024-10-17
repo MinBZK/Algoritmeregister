@@ -1,0 +1,39 @@
+[
+  {
+    "id": "procura-vrijbrp-risicoanalyse",
+    "name": "vrijBRP - Risicoanalyse",
+    "organization": null,
+    "description_short": "Een controle die op verhuiszaken (per type aan te geven of dit van toepassing is) wordt uitgevoerd om te kunnen bepalen of handmatige controleactie door een medewerker nodig is, of dat de verhuiszaak zonder tussenkomst van een medewerker kan worden verwerkt in de BRP.",
+    "type": "Nee",
+    "category": ["Organisatie en bedrijfsvoering"],
+    "publication_category": "Impactvolle algoritmes",
+    "website": null,
+    "status": "In gebruik",
+    "begin_date": null,
+    "end_date": null,
+    "goal": "<div>Het doel was het in staat stellen van gemeenten om doelmatiger om te kunnen gaan met controles van verhuismutaties. Impact op burgers is in de regel positief of klein. Veel aangiften kunnen nu automatisch worden verwerkt (sneller). Aangiften die \"uitvallen\" en dus handmatige controle vergen kunnen een iets langere verwerkingstijd hebben.</div>",
+    "proportionality": "<div>Doordat veel eenvoudige aangiften automatisch verwerkt worden houdt de ambtenaar meer tijd over voor de bijzondere en/of ingewikkelde aangiften die de gemeente ontvangt. Hierdoor kunnen deze beter en nauwkeuriger beoordeeld worden. Hierdoor wordt de aangever beter geholpen en worden er minder fouten gemaakt. Dit zorgt voor een betere kwaliteit van de BRP.</div>",
+    "provider": "Procura",
+    "lawful_basis": "<div>Wet BRP, artikelen 1.4, 2.45 en 2.37a t/m g</div>",
+    "lawful_basis_grouping": [
+      {
+        "title": "Wet basisregistratie personen",
+        "link": "https://wetten.overheid.nl/BWBR0033715/"
+      }
+    ],
+    "impacttoetsen": null,
+    "iama_description": null,
+    "url": null,
+    "lang": "NLD",
+    "standard_version": "1.0",
+    "uuid": null,
+    "source_id": null,
+    "tags": null,
+    "source_data": "<div>\n<ul>\n<li>BSN verhuizende personen</li>\n<li>Aanwezige markering van de verhuizende personen</li>\n<li>Aanwezige markering van het nieuwe adres van de verhuizende personen</li>\n<li>Functie van het oude/nieuwe adres (woonadres/briefadres)</li>\n<li>Onderzoeksgegevens categorie 08</li>\n<li>verblijfplaats verhuizende personen</li>\n<li>Tijd van de e-aangifte</li>\n<li>Reisdocumentgegevens verhuizende personen</li>\n<li>Rijbewijsgegevens verhuizende personen</li>\n<li>BAG-gegevens nieuwe adres verhuizende personen</li>\n<li>Gegevens over curatele in BRP verhuizende personen</li>\n<li>Adreshistorie verhuizende personen</li>\n</ul>\n</div>",
+    "source_data_link": null,
+    "methods_and_models": "<div>Zodra er een online verhuizing binnenkomt, wordt aan de verhuiszaak een zaak risicoanalyse gekoppeld. Die risicoanalysezaak wordt automatisch uitgevoerd en checkt of de aangifte afwijkende eigenschappen bevat. Zijn er geen bijzonderheden? Dan wordt de verhuizing automatisch verwerkt. Leveren de controles van de risicoanalyse een score op die boven een drempelwaarde komt? Dan krijgt de verhuiszaak een andere status (in behandeling) waardoor deze niet wordt verwerkt zonder dat een ambtenaar de zaak behandelt. Deze beoordeelt of aanvullende vragen of onderzoek nodig zijn. Is de conclusie dat de aangifte in orde is, dan verwerkt de ambtenaar deze alsnog. De controles in de risicoanalyse zijn grotendeels gebaseerd op de controles van de Landelijke Aanpak Adreskwaliteit (LAA) én controles die de ambtenaar zal herkennen uit de dagelijkse praktijk. Denk bijvoorbeeld aan controle op veelverhuizers, het gebruiksdoel van een woning, overbewoning van een adres of een adres waar veel verhuisbewegingen op plaatsvinden.</div>",
+    "publiccode": null,
+    "human_intervention": "<div>Zie de omschrijving bij de technische werking. De controles binnen de risicoanalyse kunnen door de gemeente zelf worden bepaald (welke wel/niet). Ook is men zelf in controle over de scores (de zwaarte) die aan elke controle kan worden toegekend en de drempelwaarde die bepaald of een aangifte automatisch wordt verwerkt of niet.</div>",
+    "risks": null
+  }
+]

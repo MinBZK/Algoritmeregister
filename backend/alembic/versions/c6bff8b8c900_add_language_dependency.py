@@ -30,5 +30,5 @@ def upgrade() -> None:
 def downgrade() -> None:
     op.drop_column("algoritme_version", "language")
 
-    type = postgresql.ENUM(Language, name="language", create_type=False)
-    type.drop(op.get_bind())
+    language_enum = postgresql.ENUM(Language, name="language", create_type=False)
+    language_enum.drop(op.get_bind())

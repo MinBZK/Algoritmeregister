@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { watch } from 'vue'
-import { AlgorithmDisplay } from '~~/types/algoritme'
+import type { AlgorithmDisplay } from '~~/types/algoritme'
 
 const props = defineProps<{
   tabsTableProperties: AlgorithmDisplay[]

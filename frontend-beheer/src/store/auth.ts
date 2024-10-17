@@ -14,28 +14,28 @@ export const useAuthStore = defineStore('auth', {
     loading: false as boolean,
   }),
   getters: {
+    roles(): string[] {
+      return (this.keycloak.tokenParsed?.roles as string[] | undefined) || []
+    },
     canPublish(): boolean {
-      const role = this.keycloak.tokenParsed?.role
-      return role === 'publisher' || role === 'admin'
+      // Temp: Only published role in ICTU_LAST is relevant here.
+      return this.roles.includes('ictu')
     },
     canRemove(): boolean {
-      const role = this.keycloak.tokenParsed?.role
-      return role === 'admin'
+      return this.roles.includes('admin')
     },
-    canAddOrg(): boolean {
-      const role = this.keycloak.tokenParsed?.role
-      return role === 'admin'
+    canAccesOrgPage(): boolean {
+      return this.roles.includes('orgdetail')
     },
-    canEditOrg(): boolean {
-      const role = this.keycloak.tokenParsed?.role
-      return role === 'publisher' || role === 'admin'
+    canAccesDashboard(): boolean {
+      return this.roles.includes('ictu')
     },
   },
   actions: {
     async fetchOrganisations() {
       this.loading = true
       try {
-        this.organisations = (await getOrganisationList()).data
+        this.organisations = (await getOrganisationList()).data.organisations
       } catch (error) {
         console.error('Unable to fetch organisation list', error)
       } finally {

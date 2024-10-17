@@ -1,0 +1,121 @@
+{
+  "auto_translate_fields": [
+    "name",
+    "description_short",
+    "goal",
+    "impact",
+    "proportionality",
+    "decision_making_process",
+    "lawful_basis",
+    "iama_description",
+    "dpia_description",
+    "objection_procedure",
+    "area",
+    "lang",
+    "description",
+    "source_data",
+    "methods_and_models",
+    "monitoring",
+    "human_intervention",
+    "risks",
+    "performance_standard",
+    "tags",
+    "competent_authority",
+    "provider"
+  ],
+  "default_translations": {
+    "organization": {
+      "Autoriteit Persoonsgegevens": "Autoriteit Persoansgegevens",
+      "Belastingdienst": "Belestingtsjinst",
+      "Centraal Bureau Rijvaardigheidsbewijzen": "Sintraal Buro Rydfeardigensbewizen",
+      "Centraal Justitieel Incassobureau": "Sintraal Justysjeel Ynkassoburo",
+      "DCMR Milieudienst Rijnmond": "DCMR Miljeutsjinst Rijnmond",
+      "Inspectie van het Onderwijs (OCW)": "Ynspeksje fan it Ûnderwiis",
+      "Justitiële Informatiedienst": "Justysjele Ynformaasjetsjinst",
+      "Kadaster": "Kadaster",
+      "Ministerie van Binnenlandse Zaken en Koninkrijksrelaties": "Ministearje fan Ynlânske Saken en Keninkryksrelaasjes",
+      "Ministerie van Justitie en Veiligheid": "Ministearje fan Justysje en Feiligens",
+      "Nederlands Forensisch Instituut": "Nederlânsk Forensysk Ynstitút",
+      "Omgevingsdienst Midden-Holland": "Omjouwingstsjinst Midden-Hollân",
+      "Omgevingsdienst Noordzeekanaalgebied": "Omjouwingstsjinst Noardseekanaalgebiet",
+      "Rijksdienst Voor Identiteitsgegevens": "Rykstsjinst Foar Identiteitsgegevens",
+      "Rijksdienst voor Ondernemend Nederland": "Rykstsjinst foar Ûndernimmend Nederlân",
+      "SED Organisatie (Gemeente Stede Broec, Enkhuizen, Drechterland)": "SED Organisaasje (Gemeentes Stede Broec, Enkhuizen, Drechterland)",
+      "Sociale Verzekeringsbank (SVB)": "Sosjale Fersekeringsbank",
+      "Toeslagen": "Taslaggen",
+      "Uitvoeringsinstituut Werknemersverzekeringen": "Útfieringsynstitút Wurknimmersfersekeringen",
+      "Waterschap Drents Overijsselse Delta": "Wetterskip Drintsk Oeriselske Delta",
+      "Waterschap Hollandse Delta": "Wetterskip Hollânske Delta",
+      "Gemeente Amersfoort": "Gemeente Amersfoort",
+      "Gemeente Amsterdam": "Gemeente Amsterdam",
+      "Gemeente Assen": "Gemeente Assen",
+      "Gemeente Bergen Op Zoom": "Gemeente Bergen Op Zoom",
+      "Gemeente Den Haag": "Gemeente Den Haach",
+      "Gemeente Eindhoven": "Gemeente Eindhoven",
+      "Gemeente Emmen": "Gemeente Emmen",
+      "Gemeente Goeree-Overflakkee": "Gemeente Goeree-Overflakkee",
+      "Gemeente Lochem": "Gemeente Lochem",
+      "Gemeente Oirschot": "Gemeente Oirskot",
+      "Gemeente Rotterdam": "Gemeente Rotterdam",
+      "Gemeente Stichtse Vecht": "Gemeente Stichtske Fecht",
+      "Gemeente Súdwest-Fryslân": "Gemeente Súdwest-Fryslân",
+      "Gemeente Utrecht": "Gemeente Utrecht",
+      "Provincie Noord-Brabant": "Provinsje Noard-Brabân",
+      "Provincie Zuid-Holland": "Provinsje Súd-Hollân"
+    },
+    "category": {
+      "Organisatie en bedrijfsvoering": "Organisaasje en bedriuwsfiering",
+      "Dienstverlening": "Tsjinstferliening",
+      "Bestuur": "Bestjoer",
+      "Cultuur en recreatie": "Kultuer en rekreaasje",
+      "Economie": "Ekonomy",
+      "Financiën": "Finânsjes",
+      "Huisvesting": "Húsfesting",
+      "Internationaal": "Ynternasjonaal",
+      "Landbouw": "Lânbou",
+      "Migratie en integratie": "Migraasje en yntegraasje",
+      "Natuur en milieu": "Natuer en miljeu",
+      "Onderwijs en wetenschap": "Ûnderwiis en wittenskip",
+      "Openbare orde en veiligheid": "Iepenbiere oarder en feilichheid",
+      "Recht": "Rjocht",
+      "Ruimte en infrastructuur": "Romte en ynfrastruktuer",
+      "Sociale zekerheid": "Sosjale wissichheid",
+      "Verkeer": "Ferkear",
+      "Werk": "Wurk",
+      "Zorg en gezondheid": "Soarch en sûnens",
+      "Zorg en Welzijn": "Soarch en wolwêzen"
+    },
+    "type": {
+      "Ja": "Ja",
+      "Nee": "Nee",
+      "Regelgebaseerd": "Regelbasearre",
+      "Zelflerend": "Selslearend"
+    },
+    "iama": {
+      "Ja": "Ja",
+      "Nee": "Nee"
+    },
+    "dpia": {
+      "Ja": "Ja",
+      "Nee": "Nee"
+    },
+    "mprd": {
+      "Ja": "Ja",
+      "Nee": "Nee"
+    },
+    "impacttoetsen": {
+      "Data Protection Impact Assessment (DPIA)": "Data Protection Impact Assessment (DPIA)",
+      "Impact Assessment Mensenrechten en Algoritmes (IAMA)": "Ympact Assessment Minskerjochten en Algoritmes (IAMA)"
+    },
+    "status": {
+      "In gebruik": "Yn gebrûk",
+      "In ontwikkeling": "Yn ûntwikkeling",
+      "Buiten gebruik": "Bûten gebrûk"
+    },
+    "publication_category": {
+      "Hoog-risico AI-systeem": "Heechrisiko AI-systeem",
+      "Impactvolle algoritmes": "Ympaktfolle algoritmes",
+      "Overige algoritmes": "Oare algoritmes"
+    }
+  }
+}

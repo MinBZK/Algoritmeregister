@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 6em">
+  <div class="margin-bottom-6">
     <h1>{{ p('Footer: Vragen.pageTitle') }}</h1>
     <FaqAccordions :accordions="questionGroups" />
   </div>
@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { FooterFaqQuestionGroup, FooterFaqQuestion } from '~~/types/footer'
+import type { FooterFaqQuestionGroup, FooterFaqQuestion } from '~~/types/footer'
 const { p } = useTextLoader()
 
 const expandedTab = useState<string | undefined>(
@@ -23,10 +23,6 @@ router.afterEach((to, _) => {
     const hash = to.hash.slice(1)
     expandedTab.value = hash
   }
-})
-
-definePageMeta({
-  title: 'Vragen',
 })
 
 const questionGrouping = [
@@ -66,7 +62,9 @@ const questionGroups = computed<FooterFaqQuestionGroup[]>(() => {
   return result
 })
 
-const pageTitle = computed(() => p('Footer: Vragen.pageTitle'))
-useHead({ title: pageTitle })
-providePageTitle({ title: 'footer.paths.vragen', labelType: 'locale-index' })
+useHead({ title: p('Footer: Vragen.pageTitle') })
+providePageTitle({
+  title: 'Footer: Vragen.pageTitle',
+  labelType: 'preditor-index',
+})
 </script>

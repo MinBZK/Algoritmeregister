@@ -8,16 +8,41 @@
       "l3": "The name of the responsible organisation of the algorithm."
     }
   },
+  "organisations": "Organisations",
+  "organisation": "Organisation",
   "language-picker": {
     "language": "Language"
   },
   "filter": {
-    "organisation": "Organisation",
-    "searchtext": "Search term",
-    "selectedFilters": "Your selected filters",
-    "pickOrgType": "Choose an organisation type",
-    "pickOrg": "Choose an organisation",
-    "aria/remove": "Remove {what} as filter"
+    "choose": "Choose a {what}",
+    "moreOptions": "Show more",
+    "lessOptions": "Show less",
+    "organisation": "organisation",
+    "impact_assessment": "impact assessment",
+    "publicationcategory": "publicationcategory",
+    "organisationtype": "organisation type",
+    "selectedFilters": "Filters",
+    "aria/remove": "Remove {what} as filter",
+    "removeAll": "Remove selection",
+    "selectedFilter": {
+      "organisation": "Organisation",
+      "impact_assessment": "Impact assessment",
+      "publicationcategory": "Publicationcategory",
+      "organisationtype": "Organisation type",
+      "searchtext": "Search term"
+    },
+    "sorting": "Sort {filter} on {what}",
+    "alfabetical": "alfabetical order",
+    "numerical": "numerical order"
+  },
+  "searchSuggestion": {
+    "title": "Go straight to an algorithm description"
+  },
+  "orgSuggestionSearch": {
+    "title": "Choose out of the following options:",
+    "OrgSpecificSearch": "Algorithm descriptions of {organisation}",
+    "OrgGenericSearch": "Algorithm descriptions that contain the term '{searchQuery}'",
+    "RedirectToOrgPage": "Organisation page of {organisation}"
   },
   "english?": "true",
   "home-highlight-algorithm-text": "Or go directly to one of these algorithms",
@@ -25,11 +50,13 @@
   "ontbreekt": "Field not filled in.",
   "locales": {
     "en": "English",
-    "nl": "Dutch"
+    "nl": "Dutch",
+    "fy": "Frisian"
   },
   "currentLanguage": "English",
   "selectLanguage": "This website in other languages",
   "foundResults": "No algorithms were found | 1 result found | {n} results found",
+  "foundResultsOrganisations": "No organisations were found | 1 result found | {n} results found",
   "forSearch": " for {searchQuery}",
   "noResults": "No algorithm was found for this search request.",
   "externalLink": "Link to external page",
@@ -41,24 +68,35 @@
       "algoritme": "Overview",
       "contact": "Contact us",
       "privacyverklaring": "Privacy",
-      "kwetsbaarheid": "Report vulnerability",
+      "kwetsbaarheid-melden": "Report vulnerability",
       "toegankelijkheid": "Accessibility",
-      "webarchief": "Webarchive",
+      "archief": "Archive",
       "cookies": "Cookies",
       "vragen": "FAQ",
       "over": "About the Algorithm register",
       "meedoen": "Join",
       "over_algoritmes": "About algorithms",
-      "versie-informatie": "Version information",
+      "release-notes": "Release notes",
       "ext_overheid_nl": "Overheid.nl",
       "ext_rijksoverheid_nl": "Rijksoverheid.nl",
       "ext_digitaleoverheid_nl": "Digitale Overheid",
       "ext_data_overheid_nl": "Data.overheid.nl",
-      "ext_pleio": "Algoritmes.pleio.nl"
+      "ext_pleio": "Algoritmes.pleio.nl",
+      "zelf-aan-de-slag": "Get started yourself"
     }
   },
   "algoritmeRegister": "Algorithm register",
   "goBack": "Back to all algorithms",
+  "orgPage": {
+    "head": "Organisation overview",
+    "title": "Organisation overview",
+    "contactInfo": "More information: ",
+    "noAbout": "This organisation has not yet supplied us with a description",
+    "aboutHeader": "About this organisation",
+    "goBackToOrg": "Back to all organisations",
+    "algorithmDescriptions": "Algorithm descriptions",
+    "alternativeAlgorithmDescriptions": "This organisation has published the following algorithm descriptions"
+  },
   "short-description": "Short description",
   "short-description-missing": "A short description is missing",
   "yes": "Yes",
@@ -66,18 +104,23 @@
   "hello": "Hello, {name}!",
   "language": "Language",
   "homepageTitle": "The Algorithm Register of the Dutch government",
-  "searchExplanation": "Find one of the {n} algorithms.",
+  "searchExplanation": "Find one of the {n} algorithms",
+  "searchExplanationOrganisations": "Find one of the {n} organisations",
   "algorithms": "algorithms",
   "logoCaption": "The Algorithm Register",
   "searchHint": "What are you looking for?",
   "search": "Search",
-  "downloadAllAlgorithms": "Download all algorithms (.xlsx)",
+  "downloadAllAlgorithms": "Download all algorithms",
+  "downloadThisAlgorithm": "Download this algorithm",
   "switchToLanguage": "Switch to {language}",
   "showFilters": "Show filters",
   "hideFilters": "Hide filters",
-  "searchResultCard": {
+  "removeSelection": "Remove selection",
+  "reportVulnerability": "Report vulnerability",
+  "genericResultCard": {
     "readMore": "Read more",
-    "lastChange": "Last change on"
+    "lastChange": "Last change on",
+    "publicationStandard": "Publication Standard"
   },
   "navigation": {
     "home": "Home",
@@ -90,9 +133,13 @@
     "vragen": "FAQ",
     "privacyverklaring": "Privacy",
     "toegankelijkheid": "Accessibility",
-    "webarchief": "Webarchive",
+    "archief": "Archive",
+    "kwetsbaarheid-melden": "Report vulnerability",
     "db": "Dashboard",
-    "versie-informatie": "Version information"
+    "release-notes": "Release notes",
+    "organisatie": "Organisations",
+    "zelf-aan-de-slag": "Get started yourself",
+    "dashboard" : "Dashboard"
   },
   "pagination": {
     "page": "Page",
@@ -121,7 +168,53 @@
     "partiallyComplete": "Partially filled",
     "value": "Value",
     "numberOfMatches": "Matches",
-    "loadingText": "Loading"
+    "loadingText": "Loading",
+    "totalPublishedAlgorithmDescriptions": "Total number of published algorithm descriptions",
+    "totalJoinedOrganisations": "Total number of affiliated organisations",
+    "publishedAlgorithmDescriptions": "Number of published algorithm descriptions",
+    "joinedOrganisations": "Number of affiliated organisations",
+    "brokenLinks": "Number of broken links",
+    "statusErrorCode": "Code",
+    "publicationCategories": "Publication categories",
+    "top20Organisations": "Top-20 Organisations",
+    "moreInfo": "Click on a line for more information.",
+    "onTheMap": "On the map",
+    "title": "Dashboard",
+    "expandOverview": "Expand everything",
+    "collapseOverview": "Collapse everything",
+    "municipalities": "Municipalities",
+    "provinces": "Provinces",
+    "waterAuthorities": "Water authorities",
+    "environmentalServices": "Environmental services",
+    "clickOnMunicipality": "Click on a municipality",
+    "clickOnProvince": "Click on a province",
+    "clickOnWaterAuthority": "Click on a water authority",
+    "clickOnEnvironmentalService": "Click on an environmental service",
+    "legendGreen": "Is affiliated and has published on the registry.",
+    "legendYellow": "Is affiliated but has not published anything yet.",
+    "legendWhite": "Is not yet affiliated with the registry.",
+    "municipalityMapDescription": "Here it is shown which municipalities in the Netherlands are affiliated and have published them on the Algorithm Register.",
+    "provinceMapDescription": "Here it is shown which provinces in the Netherlands are affiliated and have published them on the Algorithm Register.",
+    "waterAuthoritiesMapDescription": "Here it is shown which water authorities in the Netherlands are affiliated and have published them on the Algorithm Register.",
+    "environmentalServicesMapDescription": "Here it is shown which environmental services in the Netherlands are affiliated and have published them on the Algorithm Register.",
+    "publishedAlgorithmDescription": "This shows how many algorithm descriptions have been published in the Algorithm Register in the last 12 months.",
+    "joinedOrganisationsDescription": "This shows how many organizations are affiliated with Algorithm Register per month.",
+    "brokenLinksDescription": "Here it is shown per day how many references appear in published algorithm descriptions that no longer work or whose response time is too slow (more than 5 seconds). This check is under development. It is possible that working references be wrongly reported.",
+    "publicationCategoriesDescription": "This shows how many algorithm descriptions in the publication categories 'High-risk AI system', 'Impactful algorithms' and 'Other algorithms' have been published in the Algorithm Register.",
+    "top20OrganisationsDescription": "Here are shown the twenty organizations that have published the most algorithm descriptions in the Algorithm Register.",
+    "algorithm": "Algorithm",
+    "organisation": "Organisation",
+    "brokenLink": "Broken link",
+    "date": "Date",
+    "month": "Month",
+    "andFurther": "And further",
+    "showDatatable": "Show datatable",
+    "hideDatatable": "Hide datatable",
+    "showGraph": "Show graph",
+    "showMap": "Show map",
+    "brokenLinksTableTitle": "Non-working and slow links",
+    "name": "Name",
+    "indication": "Indication"
   },
   "error": {
     "pageNotFound": "Page not found",
@@ -326,7 +419,7 @@
         "description": "Keywords describing the algorithm to improve search engine results in this register."
       }
     },
-    "0_4_0": {
+    "0_4": {
       "headers": {
         "algemeneInformatie": "General information",
         "verantwoordGebruik": "Responsible use",
@@ -390,7 +483,7 @@
       },
       "impacttoetsen": {
         "label": "Impact assessments",
-        "description": "The impact assessments that were used, such as the Data Protection Impact Asssesment (DPIA) or Impact Assessment Mensenrechten en Algoritmes (IAMA)?"
+        "description": "The impact assessments that were used, such as the Data Protection Impact Assesment (DPIA) or Impact Assessment Mensenrechten en Algoritmes (IAMA)?"
       },
       "iama_description": {
         "label": "Link to impact assessment",
@@ -449,7 +542,7 @@
         "description": "An overview of how risks are dealt with."
       }
     },
-    "1_0_0": {
+    "1_0": {
       "headers": {
         "algemeneInformatie": "General information",
         "verantwoordGebruik": "Responsible use",
@@ -489,8 +582,8 @@
         "description": "Links to additional information about the used data sources."
       },
       "impacttoetsen_grouping": {
-        "label": "Links to impact assessment",
-        "description": "Link to the results of a conducted impact assessment such as a DPIA or IAMA."
+        "label": "Impact assessment",
+        "description": "Name of the conducted impact assessment, such as a DPIA or IAMA, and the possibility to include a link of the impact assesment."
       },
       "impacttoetsen": {
         "label": "Elaboration on impact assessments",

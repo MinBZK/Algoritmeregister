@@ -1,7 +1,7 @@
 import type { FooterColumn } from '~~/types/footer'
 
 const footer: FooterColumn = {
-  internal: [
+  internal_col1: [
     {
       key: 'over',
       path: '/over',
@@ -15,6 +15,10 @@ const footer: FooterColumn = {
       path: '/meedoen',
     },
     {
+      key: 'zelf-aan-de-slag',
+      path: '/zelf-aan-de-slag',
+    },
+    {
       key: 'vragen',
       path: '/vragen',
     },
@@ -22,21 +26,27 @@ const footer: FooterColumn = {
       key: 'privacyverklaring',
       path: '/privacyverklaring',
     },
+  ],
+  internal_col2: [
     {
       key: 'toegankelijkheid',
       path: '/toegankelijkheid',
     },
     {
-      key: 'webarchief',
-      path: '/webarchief',
+      key: 'archief',
+      path: '/archief',
+    },
+    {
+      key: 'kwetsbaarheid-melden',
+      path: '/kwetsbaarheid-melden',
     },
     {
       key: 'contact',
       path: '/contact',
     },
     {
-      key: 'versie-informatie',
-      path: '/versie-informatie',
+      key: 'release-notes',
+      path: '/release-notes',
     },
   ],
   external: [

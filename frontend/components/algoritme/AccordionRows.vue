@@ -1,17 +1,15 @@
 <template>
   <div class="accordion">
-    <ClientOnly>
-      <AlgoritmeAccordionRow
-        v-for="p in accordionProperties"
-        :key="p.key"
-        :group-props="p"
-      />
-    </ClientOnly>
+    <AlgoritmeAccordionRow
+      v-for="p in accordionProperties"
+      :key="p.key"
+      :group-props="p"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-import { AlgorithmDisplay } from '~~/types/algoritme'
+import type { AlgorithmDisplay } from '~~/types/algoritme'
 
 defineProps<{
   accordionProperties: AlgorithmDisplay[]

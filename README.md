@@ -81,7 +81,7 @@ This register allows use of multiple versions of the metadatastandard. To add a 
 
 1. in `/backend/app/schemas/config`, you see the metadatastandard in JSON format. Create a new file with your file version name, e.g. `v0_x_x.json`. Change the standard as you see fit.
 2. in `/backend/app/routers`, duplicate one of the version folders. Rename it the same as your version in step 1, e.g. `v0_x_x`. Do not change the content.
-3. add the name of this file in the \_\_init\_\_.py file in the same folder, e.g. `from . import v0_1_0, v0_x_x  # noqa`.
+3. add the name of this file in the \_\_init\_\_.py file in the same folder, e.g. `from . import v0_1, v0_x_x  # noqa`.
 4. If your new schema involves changes to the database (notably for new columns) you'll have to do a SQLAlchemy model change (in `/backend/app/models/algoritme_version.py`) as well as a database migration.
 5. The frontend needs a configuration file in `backend/app/config/layouts` named similar to the other files, e.g. `v0_x_x.json`. The configuration file defines how the data should be displayed in the tabs.
 

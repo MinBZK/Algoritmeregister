@@ -1,0 +1,44 @@
+[
+    {
+        "id": "centric-burgerzaken-ediensten",
+        "name": "Burgerzaken: eDiensten",
+        "description_short": "Dit sjabloon is binnenkort beschikbaar, zodra de sjablonen in versie 0.4 beschikbaar zijn",
+        "organization": null
+    },
+    {
+        "id": "centric-module-inzicht",
+        "name": "Burgerzaken: Module Inzicht",
+        "description_short": "Dit sjabloon is binnenkort beschikbaar, zodra de sjablonen in versie 0.4 beschikbaar zijn",
+        "organization": null
+    },
+    {
+        "id": "centric-ediensten-voor-aanvragen",
+        "name": "Sociaal Domein: eDiensten voor aanvragen",
+        "description_short": "Dit sjabloon is binnenkort beschikbaar, zodra de sjablonen in versie 0.4 beschikbaar zijn",
+        "organization": null
+    },
+    {
+        "id": "centric-pko-kennissystemen",
+        "name": "Sociaal Domein: PKO Kennissystemen",
+        "description_short": "Dit sjabloon is binnenkort beschikbaar, zodra de sjablonen in versie 0.4 beschikbaar zijn",
+        "organization": null
+    },
+    {
+        "id": "centric-legesberekening",
+        "name": "Leefomgeving: Legesberekening",
+        "description_short": "Dit sjabloon is binnenkort beschikbaar, zodra de sjablonen in versie 0.4 beschikbaar zijn",
+        "organization": null
+    },
+    {
+        "id": "centric-belastingen-lokale-heffingen",
+        "name": "Belastingen: Berekening belastingbedrag lokale heffingen",
+        "description_short": "Dit sjabloon is binnenkort beschikbaar, zodra de sjablonen in versie 0.4 beschikbaar zijn",
+        "organization": null
+    },
+    {
+        "id": "centric-belastingen-woz",
+        "name": "Belastingen: WOZ taxatiemodellen",
+        "description_short": "Dit sjabloon is binnenkort beschikbaar, zodra de sjablonen in versie 0.4 beschikbaar zijn",
+        "organization": null
+    }
+]

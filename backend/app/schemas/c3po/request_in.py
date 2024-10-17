@@ -1,6 +1,5 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
 class C3poRequest(BaseModel):
     text: str
-    ruleSet: str = Field(default=..., example="ar_v0_4_0_short_description")

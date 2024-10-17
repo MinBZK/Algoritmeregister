@@ -1,6 +1,8 @@
-from typing import TypedDict
+from typing import TypedDict, Literal
 
 
 class ProcessingRequestOut(TypedDict):
     payload: str
-    rule_codes: list[str]
+    org_code: str
+    project_code: str
+    rule_codes: list[str] | Literal["all"]

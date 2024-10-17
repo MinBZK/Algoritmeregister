@@ -2,11 +2,11 @@
 name = "areg-packages"
 version = "0.1.0"
 description = ""
-authors = ["Terry Crapts <terry.crapts@ictu.nl>", "Lars Musters <lars.musters@ictu.nl>"]
+authors = [""]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-fastapi = {version = "0.92.0", extras = ["all"]}
+fastapi = {version = "0.95.0", extras = ["all"]}
 SQLAlchemy = "^2.0.21"
 python-dotenv = "^0.21.0"
 alembic = "^1.8.1"
@@ -20,7 +20,6 @@ passlib = "^1.7.4"
 wheel = "^0.38.1"
 pytest = "^7.1.2"
 coverage = "^6.0"
-python-keycloak = "3.3.0"
 pyjwt = {version = "2.6.0", extras = ["crypto"]}
 certifi = "^2023.5.7"
 slowapi = "^0.1.8"
@@ -33,6 +32,17 @@ pymupdf = "^1.23.2"
 reportlab = "^4.0.4"
 delayed_assert = "^0.3.6"
 deepl = "^1.16.1"
+pyotp = "^2.9.0"
+python-keycloak = "^4.0.0"
+fastapi-cache2 = "^0.2.1"
+fastapi-utils = "^0.7.0"
+beautifulsoup4 = "^4.12.3"
+plotly = "^5.22.0"
+kaleido = [
+    # Newest version hangs on Windows, see https://github.com/plotly/Kaleido/issues/110
+    {version = "0.1.0post1", markers = "platform_system == 'Windows'" }, 
+    {version = "0.2.1", markers = "platform_system != 'Windows'"}
+]
 
 [tool.poetry.dev-dependencies]
 ipykernel = "^6.16.2"

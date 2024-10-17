@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { FooterFaqQuestion } from '~~/types/footer'
+import type { FooterFaqQuestion } from '@/types/footer'
 
 const props = defineProps<{
   question: FooterFaqQuestion

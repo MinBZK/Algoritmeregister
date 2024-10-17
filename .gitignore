@@ -19,3 +19,5 @@ backend/.DS_Store
 .DS_Store
 **/*secrets.txt
 **/*secret*.json
+**/static_content_draft.json
+**/static_content_pub.json

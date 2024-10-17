@@ -14,7 +14,7 @@
         </v-btn>
       </template>
     </v-snackbar>
-    <div v-if="variant == 'v-select'" style="display: flex">
+    <div v-if="variant == 'v-select'" class="flex-container">
       <v-select
         v-model="selectedFormat"
         return-object
@@ -196,12 +196,12 @@ const isDisabled = computed(() => {
 </script>
 
 <style scoped lang="scss">
-.btn-title:first-letter {
-  text-transform: capitalize;
-}
-
 :deep(.v-input__control) {
   --v-input-control-height: 40px !important;
+}
+
+.flex-container {
+  display: flex;
 }
 
 .download-button {

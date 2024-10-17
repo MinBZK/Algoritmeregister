@@ -1,78 +1,100 @@
 <!DOCTYPE html>
 <html lang="nl">
-<head>
+  <head>
     <title>Algoritme synchronisatie</title>
-</head>
-<body style="font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center">
+  </head>
+  <body
+    style="
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    "
+  >
     <div class="main-div">
-
-    <h1> Algoritmeregister synchronisatie</h1>
-    <div style="margin-bottom: 1em; text-align: center;"> Met de knop hieronder kan je de data van het webformulier ophalen en in de publieke database van de relevante namespace laden.</div>
-    <div style="padding: 1em 0 0.2em 0;"> Omgeving: </div>
-    <div style="padding: 0.5em 0 1em 0; font-weight: bold; font-size: 1.2em;" id="environment">  </div>
-    <button class="button" style="width: 200px; height: 50px; font-size: 1em; font-weight: bold" onclick="getData()" id="button">Synchroniseer</button>
-    <div style="min-height: 2em; color: green; margin-top: 1em;" id="response"></div>
+      <h1>Algoritmeregister synchronisatie</h1>
+      <div style="margin-bottom: 1em; text-align: center">
+        Met de knop hieronder kan je de data van de productie-omgeving ophalen
+        en in de namespace waar deze ETL draait laden.
+      </div>
+      <div style="padding: 1em 0 0.2em 0">Omgeving:</div>
+      <div
+        style="padding: 0.5em 0 1em 0; font-weight: bold; font-size: 1.2em"
+        id="environment"
+      ></div>
+      <button
+        class="button"
+        style="width: 200px; height: 50px; font-size: 1em; font-weight: bold"
+        onclick="getData()"
+        id="button"
+      >
+        Synchroniseer
+      </button>
+      <div
+        style="min-height: 2em; color: green; margin-top: 1em"
+        id="response"
+      ></div>
     </div>
 
     <script>
-        function getData() {
-            document.getElementById("response").style.visibility = "visible";
-            document.getElementById("response").innerText = "Aan het laden..."
-            response = fetch('/load').then(response => response.json())
-                .then(data => {
-                document.getElementById('response').innerText = data.message
-            })
-                .catch(error => {
-                document.getElementById('response').innerText = 'Error, zie console'
-                console.log(error)
-            });
-        }
+      function getData() {
+        document.getElementById('response').style.visibility = 'visible'
+        document.getElementById('response').innerText = 'Aan het laden...'
+        response = fetch('/load')
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById('response').innerText = data.message
+          })
+          .catch((error) => {
+            document.getElementById('response').innerText = 'Error, zie console'
+            console.log(error)
+          })
+      }
 
-        const url = window.location.href
-        const environmentText = document.getElementById("environment")
-        switch (url) {
-            case 'http://localhost:8001/':
-                environmentText.innerText = 'Lokaal (ontwikkeling)'
-                environmentText.style.color = 'green'
+      const url = window.location.href
+      const environmentText = document.getElementById('environment')
+      switch (url) {
+        case 'http://localhost:8001/':
+          environmentText.innerText = 'Lokaal (ontwikkeling)'
+          environmentText.style.color = 'green'
 
-                break
-            case 'https://algreg-etl.ictu-devops-tst.test3.s15m.nl/':
-                environmentText.innerText = 'Test'
-                environmentText.style.color = 'orange'
-                break
-            case 'https://algreg-etl.ictu-devops-acc.test3.s15m.nl/':
-                environmentText.innerText = 'Acceptatie'
-                environmentText.style.color = 'orange'
-                const button = document.getElementById("button")
-                button.style.visibility = 'hidden'
-                break
-            case 'https://algreg-etl.ictu-devops-prd.prod4.s15m.nl/':
-                environmentText.innerText = 'Productie'
-                environmentText.style.color = 'red'
-                break
-            default:
-                environmentText.innerText = 'Error: Kon omgeving niet detecteren.'
-        }
-
+          break
+        case 'https://algreg-etl.ictu-devops-tst.test3.s15m.nl/':
+          environmentText.innerText = 'Test'
+          environmentText.style.color = 'orange'
+          break
+        case 'https://algreg-etl.ictu-devops-acc.test3.s15m.nl/':
+          environmentText.innerText = 'Acceptatie'
+          environmentText.style.color = 'orange'
+          const button = document.getElementById('button')
+          button.style.visibility = 'hidden'
+          break
+        case 'https://algreg-etl.ictu-devops-prd.prod4.s15m.nl/':
+          environmentText.innerText = 'Productie'
+          environmentText.style.color = 'red'
+          break
+        default:
+          environmentText.innerText = 'Error: Kon omgeving niet detecteren.'
+      }
     </script>
-</body>
+  </body>
 </html>
 
 <style>
-    .main-div {
-        border-radius: 1em;
-        border: 2px solid #5e8e1a;
-        padding: 1.5em;
+  .main-div {
+    border-radius: 1em;
+    border: 2px solid #5e8e1a;
+    padding: 1.5em;
 
-        display: flex;
-        flex-direction: column;
-        align-items:center;
-        max-width: 600px;
-    }
-    .button {
-        border-radius: 1em;
-        border: 2px solid #73AD21;
-        background-color: #f0fff0;
-        cursor: pointer;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+  }
+  .button {
+    border-radius: 1em;
+    border: 2px solid #73ad21;
+    background-color: #f0fff0;
+    cursor: pointer;
+  }
 </style>

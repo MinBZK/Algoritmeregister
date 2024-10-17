@@ -90,8 +90,7 @@ export const useFormDataStore = defineStore('form-data', {
       return await updateAlgorithm(this.orgFromData, lars, this.cleanedData)
         .then((response) => {
           if (response.data?.message != 'NO_CHANGES') {
-            this.data.released = false
-            this.data.published = false
+            this.data.state = 'STATE_1'
             this.unsavedChanges = false
           }
           this.feedback.success = content.formDataStore.update.success
@@ -134,8 +133,7 @@ export const useFormDataStore = defineStore('form-data', {
       if (!this.orgFromData) return noOrgSelectedResponse()
       await retractAlgorithm(this.orgFromData, lars)
         .then(() => {
-          this.data.published = false
-          this.data.released = false
+          this.data.state = 'STATE_1'
           this.feedback.success = content.formDataStore.retract.success
         })
         .catch(() => {
@@ -146,7 +144,7 @@ export const useFormDataStore = defineStore('form-data', {
       if (!this.orgFromData) return noOrgSelectedResponse()
       await publishAlgorithm(this.orgFromData, lars)
         .then(() => {
-          this.data.published = true
+          this.data.state = 'PUBLISHED'
           this.feedback.success = content.formDataStore.publish.success
         })
         .catch(() => {
@@ -157,7 +155,7 @@ export const useFormDataStore = defineStore('form-data', {
       if (!this.orgFromData) return noOrgSelectedResponse()
       await releaseAlgorithm(this.orgFromData, lars)
         .then(() => {
-          this.data.released = true
+          this.data.state = 'STATE_2'
           this.feedback.success = content.formDataStore.release.success
         })
         .catch((response) => {
@@ -211,7 +209,7 @@ export const useFormDataStore = defineStore('form-data', {
     handleSchemaSwap(oldVersion: string, newVersion: string): void {
       // Certain migrations need additional attention to detail
       const dataStore = useFormDataStore()
-      if (oldVersion == '0.4.0' && newVersion == '1.0.0') {
+      if (oldVersion == '0.4' && newVersion == '1.0') {
         dataStore.data.impacttoetsen = null
       }
     },

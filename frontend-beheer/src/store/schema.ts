@@ -1,15 +1,14 @@
 // Store for managing the algorithms that the user has access to.
 import { getMetaDataStandard } from '@/services'
-import { getC3poRules } from '@/services/c3po'
 import type {
   OpenApiSchema,
   EnumSchema,
   ArraySchema,
   ArrayOptionalSchema,
   AlgorithmInSchema,
+  ObjectSchema,
 } from '@/types/openapi'
 import { FormFieldProperties, FormProperties } from '@/types/form'
-import { RuleSet } from '@/types/c3po'
 import { defineStore } from 'pinia'
 import content from '@/content.json'
 import { buildRulesFromProperties } from '@/utils/form'
@@ -24,7 +23,6 @@ export const useSchemaStore = defineStore('schema', {
     loadedSchema: '' as string,
     loaded: true as boolean,
     feedback: { success: '', error: '' },
-    ruleSets: [] as RuleSet[],
   }),
   getters: {
     formProperties(self): FormProperties {
@@ -60,13 +58,20 @@ export const useSchemaStore = defineStore('schema', {
           } else if (v.type == 'array' && '$ref' in v.items) {
             // ArraySchema or ObjectSchema
             const schema = v.items.$ref.split('/').slice(-1)[0]!
-            if (v.items.$ref.includes('Enum', 29)) {
+            if (v.items.$ref.includes('Enum', 27)) {
               // ArraySchema, multi-select enumeration
               allowedItems = (self.rawSchemas[schema] as EnumSchema).enum
               formFieldProperties['type'] = 'multi-select'
               formFieldProperties['maxItems'] = (v as ArraySchema).maxItems
-            } else if (v.items.$ref.includes('Object', 29)) {
-              // ObjectSchema. Only works for 1.0.0
+            } else if (v.items.$ref.includes('Object', 27)) {
+              // ObjectSchema. Only works for 1.0
+              const schemaData = self.rawSchemas[schema] as ObjectSchema
+              const titleProperty = schemaData.properties?.title
+              const recommendedItems =
+                titleProperty && 'recommended_items' in titleProperty
+                  ? titleProperty.recommended_items
+                  : undefined
+              formFieldProperties['recommendedItems'] = recommendedItems
               formFieldProperties['type'] = 'list-with-links'
             }
           } else if (v.type == 'array' && 'type' in v.items) {
@@ -76,7 +81,9 @@ export const useSchemaStore = defineStore('schema', {
             formFieldProperties['recommendedItems'] = recommendedItems
             formFieldProperties['type'] = 'optional-select'
           }
-
+          if (key == 'lars') {
+            formFieldProperties['type'] = 'fixed'
+          }
           if (key == 'organization') {
             const organisations = authStore.organisations
             // Matching the organisation with selectedOrg fixes the value.
@@ -125,15 +132,6 @@ export const useSchemaStore = defineStore('schema', {
         this.feedback.error = content.formGenerator.fetchMetadata.error
       } finally {
         this.loaded = true
-      }
-
-      if (authStore.canPublish) {
-        try {
-          const ruleData = (await getC3poRules()).data
-          this.ruleSets = ruleData
-        } catch (error) {
-          console.error(error)
-        }
       }
     },
   },

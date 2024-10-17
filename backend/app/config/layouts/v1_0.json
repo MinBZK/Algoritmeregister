@@ -1,0 +1,56 @@
+{
+  "genericCardGrouping": {
+    "mainElement": "description_short",
+    "subElements": ["organization", "category", "status"]
+  },
+  "tabsGrouping": [
+    {
+      "key": "algemeneInformatie",
+      "label": "Algemene informatie",
+      "rows": [
+        "name",
+        "description_short",
+        "organization",
+        "category",
+        "status",
+        "begin_date",
+        "end_date",
+        "contact_email",
+        "website",
+        "publication_category",
+        "url"
+      ]
+    },
+    {
+      "key": "verantwoordGebruik",
+      "label": "Verantwoord gebruik",
+      "rows": [
+        "goal",
+        "proportionality",
+        "human_intervention",
+        "risks",
+        "lawful_basis",
+        "lawful_basis_grouping",
+        "process_index_url",
+        "impacttoetsen",
+        "impacttoetsen_grouping"
+      ]
+    },
+    {
+      "key": "werking",
+      "label": "Werking",
+      "rows": [
+        "source_data",
+        "source_data_grouping",
+        "methods_and_models",
+        "provider",
+        "publiccode"
+      ]
+    },
+    {
+      "key": "metadata",
+      "label": "Metadata",
+      "rows": ["lang", "standard_version", "source_id", "tags"]
+    }
+  ]
+}

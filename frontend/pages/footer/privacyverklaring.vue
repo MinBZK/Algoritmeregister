@@ -1,22 +1,15 @@
 <template>
   <div
-    style="margin-bottom: 6em"
+    class="margin-bottom-6"
     v-html="p('Footer: Privacyverklaring.content')"
   />
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 const { p } = useTextLoader()
-
-definePageMeta({
-  title: 'Privacyverklaring',
-})
-
-const pageTitle = computed(() => p('Footer: Privacyverklaring.pageTitle'))
-useHead({ title: pageTitle })
+useHead({ title: p('Footer: Privacyverklaring.pageTitle') })
 providePageTitle({
-  title: 'footer.paths.privacyverklaring',
-  labelType: 'locale-index',
+  title: 'Footer: Privacyverklaring.pageTitle',
+  labelType: 'preditor-index',
 })
 </script>

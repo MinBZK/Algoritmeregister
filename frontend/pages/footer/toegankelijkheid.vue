@@ -1,22 +1,12 @@
 <template>
-  <div
-    style="margin-bottom: 6em"
-    v-html="p('Footer: Toegankelijkheid.content')"
-  />
+  <div class="margin-bottom-6" v-html="p('Footer: Toegankelijkheid.content')" />
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 const { p } = useTextLoader()
-
-definePageMeta({
-  title: 'Toegankelijkheid',
-})
-
-const pageTitle = computed(() => p('Footer: Toegankelijkheid.pageTitle'))
-useHead({ title: pageTitle })
+useHead({ title: p('Footer: Toegankelijkheid.pageTitle') })
 providePageTitle({
-  title: 'footer.paths.toegankelijkheid',
-  labelType: 'locale-index',
+  title: 'Footer: Toegankelijkheid.pageTitle',
+  labelType: 'preditor-index',
 })
 </script>

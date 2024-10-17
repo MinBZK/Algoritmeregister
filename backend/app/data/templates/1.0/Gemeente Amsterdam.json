@@ -1,0 +1,33 @@
+[
+  {
+    "id": "gemeente-amsterdam-meldingen-openbare-ruimte",
+    "name": "Meldingen openbare ruimte",
+    "organization": null,
+    "description_short": "Als er op straat of in een park iets gemaakt of opgeruimd moet worden, dan kan dat bij de gemeente worden gemeld via Signalen, het open source meldingensysteem van voor en door gemeenten. ",
+    "type": "Nee",
+    "category": ["Openbare orde en veiligheid"],
+    "publication_category": "Impactvolle algoritmes",
+    "website": null,
+    "status": "In gebruik",
+    "begin_date": null,
+    "end_date": null,
+    "goal": "<div><p>Als er op straat of in een park iets gemaakt of opgeruimd moet worden, dan kan dat bij de gemeente worden gemeld via Signalen, het open source meldingensysteem van voor en door gemeenten. Ook een gevaarlijke verkeerssituatie, woonoverlast of overlast van personen en horeca kan gemeld worden. Voorheen moesten mensen zelf kiezen bij welke categorie hun melding het beste paste (bijvoorbeeld ‘overlast’ of ‘straatmeubilair’), zodat de melding bij de juiste afdeling van de gemeente terecht kwam. </p><p>Maar de gemeente is een complexe organisatie en de lijst met categorieën is lang. Daardoor koos men niet altijd de juiste categorie. Dat zorgde soms voor vertraging in de afhandeling van meldingen. Daarom gebruiken we nu een algoritme dat woorden herkent, bijvoorbeeld ‘afval’ en ‘stoep’. Op basis daarvan wordt bepaald bij welke categorie de melding het best past en welke afdeling de melding moet afhandelen. De melder hoeft dus geen categorie meer te kiezen, en de melding wordt sneller afgehandeld omdat hij bij de juiste afdeling terecht komt.</p></div>",
+    "proportionality": "",
+    "provider": "",
+    "lawful_basis": "",
+    "lawful_basis_grouping": null,
+    "iama_description": null,
+    "url": null,
+    "lang": "NLD",
+    "standard_version": "1.0",
+    "uuid": null,
+    "source_id": null,
+    "tags": "<p>Meldingen Klachten Natural language processing</p>",
+    "source_data": "<div><p>Meldingen</p><p><br></p><p>De dataset bestaat uit meldingen die eerder gedaan zijn (vrij tekstveld). In eerste instantie hebben we 300.000 meldingen uit de afgelopen jaren gebruikt om het algoritme te trainen. Regelmatig wordt het bijgetraind met nieuwe meldingen en uitgevoerde correcties op bestaande meldingen. Als het Actie Service Centrum of afdelingen een verkeerde categorisering zien, (zie Menselijk toezicht) corrigeren zij dit handmatig in het meldingensysteem. Deze correcties worden gebruikt bij het bijtrainen. We onderzoeken of het bijtrainen van het algoritme in de toekomst geautomatiseerd kan.</p><p><br></p><p>Deze dataset kunnen we in dit register niet openbaar maken. Omdat de data uit een vrij tekstveld komen, kunnen daar persoonsgegevens in staan, hoewel daar expliciet niet om wordt gevraagd.</p><p><br></p><p>E-mailadres en telefoonnummer voor vervolgvragen</p><p><br></p><p>Iemand die een melding doet, kan zijn of haar telefoonnummer en/of e-mailadres achterlaten als hij of zij dat wil. We houden de melder dan op de hoogte van de voortgang en we hebben de mogelijkheid om hem of haar terug te bellen. Deze informatie wordt niet langer bewaard dan voor dit doel nodig is en wordt dus niet door het algoritme gebruikt.</p><p><br></p><p>Voor overige informatie over verwerking van persoonsgegevens, zie: https://www.amsterdam.nl/privacy/specifieke/privacyverklaringen-wonen/meldingen-overlast-privacy</p></div>",
+    "source_data_grouping": null,
+    "methods_and_models": "<div><p>Architectuur van het model</p><p><br></p><p>De tekst van de melding wordt opgedeeld in losse woorden. Van elk woord uit een melding wordt geanalyseerd hoe uniek het is voor die melding, afgezet tegen de totale collectie woorden (‘TF-IDF’ of ‘term frequency-inverse document frequency’). Een woord als ‘de’ of ‘bedankt’ krijgt daardoor een laag gewicht en een woord als ‘vuilnis’ krijgt een hoger gewicht.</p><p><br></p><p>Van die combinatie van woorden wordt vervolgens met logistische regressie (een machine-learning-techniek) bepaald bij welke categorie de melding hoort en daarmee bij welke afdeling binnen de gemeente de melding het meest waarschijnlijk past.</p></div>",
+    "publiccode": null,
+    "human_intervention": "<p>Alle meldingen die met minder dan 40% zekerheid bij een bepaalde categorie ingedeeld worden, worden doorgestuurd naar het Actie Service Centrum. Vervolgens vindt een menselijke beoordeling plaats en wordt de melding alsnog gecategoriseerd. Ook de meldingen die onterecht doorgestuurd worden naar een verkeerde categorie, worden door de verantwoordelijke afdeling (soms via het Actie Service Centrum) handmatig in de juiste categorie geplaatst.</p>",
+    "risks": "<p>Er zitten weinig risico’s aan dit algoritme. Het plaatst een melding in de juiste categorie en zorgt dat het sneller bij de juiste afdeling onder de aandacht is. Als het algoritme een melding niet met voldoende zekerheid in een categorie kan plaatsen, komt hij in de categorie ‘Overig’ terecht. Medewerkers van het Actie Service Centrum bekijken die meldingen en zetten ze handmatig in de juiste categorie. Als het algoritme niet naar behoren werkt, duurt het dus iets langer voordat de melding bij de juiste afdeling is. De melder kan persoonsgegevens toevoegen als hij of zij op de hoogte gehouden wil worden. Deze gegevens worden beveiligd opgeslagen en niet door het algoritme gebruikt.</p>"
+  }
+]

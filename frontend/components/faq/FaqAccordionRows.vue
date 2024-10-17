@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { FooterFaqQuestion } from '~~/types/footer'
+import type { FooterFaqQuestion } from '@/types/footer'
 
 defineProps<{
   questions: FooterFaqQuestion[]

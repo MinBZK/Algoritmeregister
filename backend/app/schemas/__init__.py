@@ -2,11 +2,12 @@ from .misc import *  # noqa
 from .versions import *  # noqa
 from .algoritme_version import *  # noqa
 from .util import *  # noqa
-from .c3po.reponse_in import *  # noqa
-from .c3po.response_out import *  # noqa
-from .c3po.request_in import *  # noqa
-from .c3po.request_out import *  # noqa
 from .organization import *  # noqa
 from .algoritme import *  # noqa
 from .action_history import *  # noqa
 from .templates import *  # noqa
+from .organisation_details import *  # noqa
+from .site_data import *  # noqa
+from .user import *  # noqa
+from .html_figures import *  # noqa
+from .broken_links import *  # noqa

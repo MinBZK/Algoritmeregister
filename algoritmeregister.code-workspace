@@ -10,23 +10,20 @@
       "path": "backend"
     },
     {
-      "path": "frontend-beheer"
+      "path": "frontend-beheer-2024"
     },
     {
       "path": "etl"
     }
   ],
   "settings": {
-    "python.linting.flake8Enabled": true,
-    "python.linting.enabled": true,
-    // "editor.defaultFormatter": "rvest.vs-code-prettier-eslint", // frontend-beheer
-    "editor.defaultFormatter": "esbenp.prettier-vscode", // frontend
     "editor.formatOnPaste": false, // required
     "editor.formatOnType": false, // required
     "editor.formatOnSave": true, // optional
     "editor.formatOnSaveMode": "file", // required to format on save
     "files.autoSave": "onFocusChange", // optional but recommended
     "vs-code-prettier-eslint.prettierLast": false, // set as "true" to run 'prettier' last not first
+    // "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
 
     "search.exclude": {
       "*.yaml": true,
@@ -36,13 +33,17 @@
       "**/.output": true,
       "**/dist/_nuxt": true,
       "**/dist/": true,
-      "**/alembic/scripts": true
-    },
-    "[yaml]": {
-      "editor.defaultFormatter": "redhat.vscode-yaml"
+      "**/alembic/scripts": true,
+      "frontend-beheer/**": true
     },
     "[typescript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[vue]": {
+      "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    },
+    "[python]": {
+      "editor.defaultFormatter": "ms-python.black-formatter"
     }
   }
 }

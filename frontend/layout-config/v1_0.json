@@ -1,0 +1,46 @@
+{
+  "cardGrouping": {
+    "mainElement": "description_short",
+    "subElements": ["publication_category", "impacttoetsen_grouping", "status"]
+  },
+  "tabsGrouping": [
+    {
+      "key": "algemeneInformatie",
+      "label": "Algemene informatie",
+      "rows": [
+        "category",
+        "begin_date",
+        "end_date",
+        "contact_email",
+        "website",
+        "url"
+      ]
+    },
+    {
+      "key": "verantwoordGebruik",
+      "label": "Verantwoord gebruik",
+      "rows": [
+        "goal",
+        "proportionality",
+        "human_intervention",
+        "risks",
+        "lawful_basis",
+        "lawful_basis_grouping",
+        "process_index_url",
+        "impacttoetsen",
+        "impacttoetsen_grouping"
+      ]
+    },
+    {
+      "key": "werking",
+      "label": "Werking",
+      "rows": [
+        "source_data",
+        "source_data_grouping",
+        "methods_and_models",
+        "provider",
+        "publiccode"
+      ]
+    }
+  ]
+}

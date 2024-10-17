@@ -16,6 +16,7 @@ python-dotenv = "^1.0.0"
 pandas = "^2.0.3"
 psycopg2-binary = "^2.9.5"
 pydantic-settings = "^2.0.2"
+requests = "^2.31.0"
 
 
 [build-system]

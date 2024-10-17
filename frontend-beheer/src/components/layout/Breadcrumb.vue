@@ -14,13 +14,18 @@
 import { Breadcrumb } from '@/types'
 import { computed } from 'vue'
 
+import { useAuthStore } from '@/store/auth'
+
+const authStore = useAuthStore()
+
 const props = defineProps<{
   items: Breadcrumb[]
 }>()
 
 const breadCrumbItems = computed(() => {
   const homeItem = [{ title: 'Algoritmeregister webformulier', to: '/' }]
-  return homeItem?.concat(props.items)
+  const currentOrganisation = [{ title: authStore.selectedOrg?.name, to: '#' }]
+  return [...homeItem, ...currentOrganisation, ...props.items]
 })
 </script>
 

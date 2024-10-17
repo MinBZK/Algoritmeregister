@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class HeaderCardGrouping(BaseModel):
+class GenericCardGrouping(BaseModel):
     mainElement: str
     subElements: list[str]
 
@@ -13,5 +13,5 @@ class TabGrouping(BaseModel):
 
 
 class LayoutJson(BaseModel):
-    headerCardGrouping: HeaderCardGrouping
+    genericCardGrouping: GenericCardGrouping
     tabsGrouping: list[TabGrouping]

@@ -78,13 +78,29 @@ const navigationItems = computed(() => [
       'algoritme-lars___en',
     ],
   },
-  // {
-  //   label: 'DEV_dashboard',
-  //   routeName: 'dashboard',
-  // },
+  {
+    label: t('navigation.organisatie'),
+    routeName: 'organisatie',
+    highlightOnRoutes: [
+      'organisatie',
+      'organisatie___en',
+      'organisatie___nl',
+      'organisatie-orgCode___nl',
+      'organisatie-orgCode___en',
+    ],
+  },
+  {
+    label: t('navigation.dashboard'),
+    routeName: 'dashboard',
+    highlightOnRoutes: ['dashboard', 'dashboard___nl', 'dashboard___en'],
+  },
 ])
 const currentRoute = useRoute()
-const menuExpanded = ref(false)
+const menuExpanded = ref(true)
+
+onMounted(() => {
+  menuExpanded.value = false
+})
 
 // set expanded to false after route change
 watch(currentRoute, () => (menuExpanded.value = false))
@@ -101,7 +117,7 @@ a:focus {
 }
 
 .header-content {
-  max-width: 1175px;
+  max-width: 1375px;
   padding: 0 1em;
   display: flex;
   justify-content: space-between;

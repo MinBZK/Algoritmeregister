@@ -1,6 +1,5 @@
-# Replace this base image with the correct python image. 
-# See ./base_image for more info.
-FROM harbor-gn2.cicd.s15m.nl/ictu-devops-pub/algreg_base AS buildstep
+# FIX IMAGE URI TO THE RELEVANT OPENSOURCE URI
+FROM <..>./algreg_base AS buildstep
 
 # Make sure these are set, either here or in the base image.
 ENV YOUR_ENV=${YOUR_ENV} 
@@ -19,6 +18,7 @@ ADD /backend/app /backend/app
 ADD /backend/alembic /backend/alembic
 ADD /backend/common /backend/common
 ADD /backend/scripts /backend/scripts
+ADD /backend/etl /backend/etl
 COPY /backend/alembic.ini /backend/alembic.ini
 COPY /backend/poetry.lock /backend/poetry.lock
 COPY /backend/pyproject.toml /backend/pyproject.toml
@@ -27,9 +27,7 @@ COPY /backend/start.sh /backend/start.sh
 RUN poetry config virtualenvs.create false
 RUN poetry install --without dev --no-interaction --no-ansi
 
-# Replace this base image with the correct python image. 
-# See ./base_image for more info.
-FROM harbor-gn2.cicd.s15m.nl/ictu-devops-pub/python:3.11.1-lunar-devops_base_0.2
+FROM <..>./python:3.11.1-lunar-devops_base_0.2
 
 WORKDIR /backend
 

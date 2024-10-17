@@ -11,6 +11,7 @@
   ],
   "rules": {
     "dot-notation": "off",
-    "vue/no-v-html": "off"
+    "vue/no-v-html": "off",
+    "camelcase": "off"
   }
 }
