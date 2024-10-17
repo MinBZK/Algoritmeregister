@@ -1,23 +1,51 @@
 import pytz
-from fastapi import Depends
+from fastapi import Depends, HTTPException
 from sqlalchemy import text
 from datetime import datetime
 from app.config.settings import Settings
-from app import middleware, mailing, models, schemas
+from app import mailing, models
+from app.middleware.middleware import get_db
+from app.schemas.action import EmailType
+from app.schemas.misc import Language
+from sqlalchemy.orm import Session
+from app.util.logger import get_logger
 
+logger = get_logger(__name__)
 env_settings = Settings()
 
 DEFAULT_SENDER = env_settings.application_mail_address
 WEBFORM_URL = env_settings.webform_url
 
 
-def handle_release_mail(lars: str, db=Depends(middleware.get_db)):
+def send_email(
+    db: Session,
+    email_type: EmailType,
+    lars: str | None = None,
+) -> None:
+    match email_type:
+        case EmailType.RELEASE_SELF_PUBLISH_TWO:
+            raise NotImplementedError("Not yet implemented")
+        case EmailType.RELEASE_ICTU_LAST:
+            if lars is None:
+                raise HTTPException(500)
+            handle_release_mail(lars, db)
+        case EmailType.RETRACT:
+            if lars is None:
+                raise HTTPException(500)
+            handle_retract_mail(lars, db)
+
+
+def handle_release_mail(lars: str, db: Session = Depends(get_db)):
     algoritme_version: models.Algoritme = (
         db.query(models.AlgoritmeVersion)
-        .filter(models.AlgoritmeVersion.lars == lars)
+        .join(models.Algoritme)
+        .filter(models.Algoritme.lars == lars)
         .order_by(models.AlgoritmeVersion.create_dt.desc())
         .first()
     )
+    if not algoritme_version:
+        logger.error(f"No algorithm found with lars {lars}. Mail not sent")
+        return
 
     editor_name_query: models.ActionHistory = (
         db.query(models.ActionHistory)
@@ -25,6 +53,12 @@ def handle_release_mail(lars: str, db=Depends(middleware.get_db)):
         .order_by(models.ActionHistory.create_dt.desc())
         .first()
     )
+    if not editor_name_query:
+        logger.error(
+            f"Last edit of algoritme_version {algoritme_version.id} not found. Mail not sent"
+        )
+        return
+
     editor_name = editor_name_query.user_id
 
     previous_publication_count = db.execute(
@@ -49,7 +83,6 @@ def handle_release_mail(lars: str, db=Depends(middleware.get_db)):
         subject = f"Vrijgave voor publicatie: {algoritme_version.name}"
         first_publication_addendum = ""
 
-    print(subject)
     webform_link = f"{WEBFORM_URL}/algoritme/{algoritme_version.lars}/bewerken"
 
     time = datetime.time(
@@ -91,16 +124,20 @@ def handle_release_mail(lars: str, db=Depends(middleware.get_db)):
     )
 
 
-def handle_retract_mail(lars: str, db=Depends(middleware.get_db)):
+def handle_retract_mail(lars: str, db: Session = Depends(get_db)):
     algoritme_version: models.AlgoritmeVersion = (
         db.query(models.AlgoritmeVersion)
+        .join(models.Algoritme)
         .filter(
-            models.AlgoritmeVersion.lars == lars,
-            models.AlgoritmeVersion.language == schemas.Language.NLD,
+            models.Algoritme.lars == lars,
+            models.AlgoritmeVersion.language == Language.NLD,
         )
         .order_by(models.AlgoritmeVersion.create_dt.desc())
         .first()
     )
+    if not algoritme_version:
+        logger.error("Algoritme_version not found. Retract mail not sent.")
+        return
 
     editor_name_query: models.ActionHistory = (
         db.query(models.ActionHistory)
@@ -108,6 +145,10 @@ def handle_retract_mail(lars: str, db=Depends(middleware.get_db)):
         .order_by(models.ActionHistory.create_dt.desc())
         .first()
     )
+    if not editor_name_query:
+        logger.error("Last edit of algoritme_version not found. Mail not sent.")
+        return
+
     editor_name = editor_name_query.user_id
 
     time = datetime.time(

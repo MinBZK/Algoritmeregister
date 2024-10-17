@@ -1,13 +1,12 @@
 from email.message import EmailMessage
 import smtplib
-import logging
 from app.config.settings import Settings
+from app.util.logger import get_logger
 
 env_settings = Settings()
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
-
-EMAIL_DOMAIN = "@i8s.nl"
+EMAIL_DOMAIN = "<EMAIL_DOMAIN>"
 
 
 def send_notification_mail(
@@ -20,9 +19,14 @@ def send_notification_mail(
     """
     Sends a notification mail individually to all receivers.
     """
-    if not sender or not sender.endswith(EMAIL_DOMAIN):
+    if not env_settings.send_emails:
         logger.info(
-            "Cannot send email since no or incorrect sender mail address is configured."
+            "Sending emails is disabled for this environment, email sending aborted."
+        )
+        return
+    if not sender.endswith(EMAIL_DOMAIN):
+        logger.error(
+            "Cannot send email since incorrect sender mail address is configured."
         )
         return
 
@@ -36,8 +40,11 @@ def send_notification_mail(
             html_message,
             subtype="html",
         )
-        logger.info(f"Sending mail to {receiver}")
-        session = smtplib.SMTP("mail-relay-algoritmeregister")
-        session.send_message(msg, sender, receiver)
-        session.quit()
-        logger.info(f"Succesfully sent notification mail to: {', '.join(receiver)}")
+        try:
+            logger.info(f"Sending mail to {receiver}: {subject}")
+            session = smtplib.SMTP("mail-relay-algoritmeregister")
+            session.send_message(msg, sender, receiver)
+            session.quit()
+            logger.info(f"Succesfully sent notification mail to: {receiver}")
+        except Exception:
+            logger.error(f"Failed to send notification mail to: {receiver}")

@@ -1,11 +1,15 @@
+from typing import Optional, Union, Any
+
 from pydantic import BaseModel
 
 
 class RuleResults(BaseModel):
     rule_code: str
-    description: str
+    title: str
     feedback_message: str
-    result: bool | None
+    passed: bool | None
+    result: Optional[Union[str, list[Any], dict[str, Any]]]
+    severity_level: str
 
 
 class C3poResults(BaseModel):

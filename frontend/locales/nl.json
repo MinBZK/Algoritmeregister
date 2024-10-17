@@ -8,16 +8,41 @@
       "l3": "De naam van de organisatie die verantwoordelijk is voor het algoritme."
     }
   },
+  "organisations": "Organisaties",
+  "organisation": "Organisatie",
   "language-picker": {
     "language": "Taal"
   },
   "filter": {
-    "organisation": "Organisatie",
-    "searchtext": "Zoekterm",
-    "selectedFilters": "Je gekozen filters",
-    "pickOrgType": "Kies een organisatietype",
-    "pickOrg": "Kies een organisatie",
-    "aria/remove": "{what} verwijderen als filter"
+    "choose": "Kies een {what}",
+    "moreOptions": "Toon meer",
+    "lessOptions": "Toon minder",
+    "selectedFilters": "Filters",
+    "aria/remove": "{what} verwijderen als filter",
+    "organisation": "organisatie",
+    "publicationcategory": "publicatiecategorie",
+    "organisationtype": "organisatie-type",
+    "impact_assessment": "impacttoets",
+    "removeAll": "Verwijder selectie",
+    "selectedFilter": {
+      "organisation": "Organisatie",
+      "publicationcategory": "Publicatiecategorie",
+      "organisationtype": "Organisatie-type",
+      "impact_assessment": "Impacttoets",
+      "searchtext": "Zoekterm"
+    },
+    "sorting": "Sorteer {filter} op {what}",
+    "alfabetical": "alfabetische volgorde",
+    "numerical": "aantal"
+  },
+  "searchSuggestion": {
+    "title": "Ga direct naar een algoritmebeschrijving"
+  },
+  "orgSuggestionSearch": {
+    "title": "Kies uit de volgende opties:",
+    "OrgSpecificSearch": "Algoritmebeschrijvingen van {organisation}",
+    "OrgGenericSearch": "Algoritmebeschrijvingen waar de term '{searchQuery}' in voorkomt",
+    "RedirectToOrgPage": "Organisatiepagina van {organisation}"
   },
   "english?": "false",
   "home-highlight-algorithm-text": "Of bekijk direct een van de volgende algoritmes",
@@ -25,11 +50,13 @@
   "ontbreekt": "Veld niet ingevuld.",
   "locales": {
     "en": "Engels",
-    "nl": "Nederlands"
+    "nl": "Nederlands",
+    "fy": "Fries (bèta)"
   },
   "currentLanguage": "Nederlands",
   "selectLanguage": "Deze website in andere talen",
   "foundResults": "Er zijn geen algoritmes gevonden | 1 resultaat gevonden | {n} resultaten gevonden",
+  "foundResultsOrganisations": "Er zijn geen organisaties gevonden | 1 resultaat gevonden | {n} resultaten gevonden",
   "forSearch": " voor {searchQuery}",
   "noResults": "Geen algoritmes gevonden voor de huidige zoekopdracht.",
   "externalLink": "Link naar externe pagina",
@@ -41,24 +68,35 @@
       "algoritme": "Algoritmeoverzicht",
       "contact": "Contact",
       "privacyverklaring": "Privacy",
-      "kwetsbaarheid": "Kwetsbaarheid melden",
+      "kwetsbaarheid-melden": "Kwetsbaarheid melden",
       "toegankelijkheid": "Toegankelijkheid",
-      "webarchief": "Webarchief",
+      "archief": "Archief",
       "cookies": "Cookies",
       "vragen": "Veelgestelde vragen",
       "over": "Over het Algoritmeregister",
       "meedoen": "Meedoen",
       "over_algoritmes": "Over algoritmes",
-      "versie-informatie": "Versie-informatie",
+      "release-notes": "Releasenotes",
       "ext_overheid_nl": "Overheid.nl",
       "ext_rijksoverheid_nl": "Rijksoverheid.nl",
       "ext_digitaleoverheid_nl": "Digitale Overheid",
       "ext_data_overheid_nl": "Data.overheid.nl",
-      "ext_pleio": "Algoritmes.pleio.nl"
+      "ext_pleio": "Algoritmes.pleio.nl",
+      "zelf-aan-de-slag": "Zelf aan de slag"
     }
   },
   "algoritmeRegister": "Algoritmeregister",
   "goBack": "Terug naar alle algoritmes",
+  "orgPage": {
+    "head": "Organisatie-overzicht",
+    "title": "Organisatie-overzicht",
+    "contactInfo": "Meer informatie: ",
+    "noAbout": "Deze organisatie heeft nog geen algemene beschrijving aangeleverd.",
+    "aboutHeader": "Over deze organisatie",
+    "goBackToOrg": "Terug naar alle organisaties",
+    "algorithmDescriptions": "Algoritmebeschrijvingen",
+    "alternativeAlgorithmDescriptions": "Deze organisatie heeft de volgende algoritmebeschrijving(en) gepubliceerd"
+  },
   "short-description": "Korte beschrijving",
   "short-description-missing": "Een korte beschrijving ontbreekt",
   "yes": "Ja",
@@ -67,17 +105,22 @@
   "language": "Taal",
   "homepageTitle": "Het Algoritmeregister van de Nederlandse overheid",
   "searchExplanation": "Vind een van de {n} algoritmes",
+  "searchExplanationOrganisations": "Vind een van de {n} organisaties",
   "algorithms": "algoritmes",
   "logoCaption": "Het Algoritmeregister",
   "searchHint": "Waar ben je naar op zoek?",
   "search": "Zoeken",
-  "downloadAllAlgorithms": "Download alle algoritmes (.xlsx)",
+  "downloadAllAlgorithms": "Download alle algoritmes",
+  "downloadThisAlgorithm": "Download dit algoritme",
   "switchToLanguage": "Toon in het {language}",
   "showFilters": "Toon filters",
   "hideFilters": "Verberg filters",
-  "searchResultCard": {
+  "removeSelection": "Verwijder selectie",
+  "reportVulnerability": "Kwetsbaarheid melden",
+  "genericResultCard": {
     "readMore": "Lees meer",
-    "lastChange": "Laatst gewijzigd op"
+    "lastChange": "Laatst gewijzigd op",
+    "publicationStandard": "Publicatiestandaard"
   },
   "navigation": {
     "home": "Home",
@@ -90,9 +133,13 @@
     "meedoen": "Meedoen",
     "privacyverklaring": "Privacy",
     "toegankelijkheid": "Toegankelijkheid",
-    "webarchief": "Webarchief",
+    "archief": "Archief",
+    "kwetsbaarheid-melden": "Kwetsbaarheid melden",
     "db": "Dashboard",
-    "versie-informatie": "Versie-informatie"
+    "release-notes": "Releasenotes",
+    "organisatie": "Organisaties",
+    "zelf-aan-de-slag": "Zelf aan de slag",
+    "dashboard": "Dashboard"
   },
   "pagination": {
     "page": "Pagina",
@@ -121,7 +168,53 @@
     "partiallyComplete": "Gedeeltelijk ingevuld",
     "value": "Waarde",
     "numberOfMatches": "Aantal",
-    "loadingText": "Aan het laden"
+    "loadingText": "Aan het laden",
+    "totalPublishedAlgorithmDescriptions": "Totaal aantal gepubliceerde algoritmebeschrijvingen",
+    "totalJoinedOrganisations": "Totaal aantal aangesloten organisaties",
+    "publishedAlgorithmDescriptions": "Aantal gepubliceerde algoritmebeschrijvingen",
+    "joinedOrganisations": "Aantal aangesloten organisaties",
+    "brokenLinks": "Aantal gebroken links",
+    "statusErrorCode": "Code",
+    "publicationCategories": "Publicatiecategorieën",
+    "top20Organisations": "Top-20 organisaties",
+    "moreInfo": "Klik op een regel voor meer informatie.",
+    "onTheMap": "Op de landkaart",
+    "municipalities": "Gemeenten",
+    "provinces": "Provincies",
+    "waterAuthorities": "Waterschappen",
+    "environmentalServices": "Omgevingsdiensten",
+    "clickOnMunicipality": "Klik op een gemeente",
+    "clickOnProvince": "Klik op een provincie",
+    "clickOnWaterAuthority": "Klik op een waterschap",
+    "clickOnEnvironmentalService": "Klik op een omgevingsdienst",
+    "title": "Dashboard",
+    "expandOverview": "Alles uitklappen",
+    "collapseOverview": "Alles inklappen",
+    "legendGreen": "Is aangesloten en heeft op het register gepubliceerd.",
+    "legendYellow": "Is aangesloten maar heeft nog niet gepubliceerd.",
+    "legendWhite": "Is nog niet aangesloten op het register.",
+    "municipalityMapDescription": "Hier wordt getoond welke gemeenten in Nederland zijn aangesloten en op het Algoritmeregister gepubliceerd hebben.",
+    "provinceMapDescription": "Hier wordt getoond welke provincies in Nederland zijn aangesloten en op het Algoritmeregister gepubliceerd hebben.",
+    "waterAuthoritiesMapDescription": "Hier wordt getoond welke waterschappen in Nederland zijn aangesloten en op het Algoritmeregister gepubliceerd hebben.",
+    "environmentalServicesMapDescription": "Hier wordt getoond welke omgevingsdiensten in Nederland zijn aangesloten en op het Algoritmeregister gepubliceerd hebben.",
+    "publishedAlgorithmDescription": "Hier wordt weergegeven hoeveel algoritmebeschrijvingen zijn gepubliceerd het Algoritmeregister in de afgelopen 12 maanden.",
+    "joinedOrganisationsDescription": "Hier wordt per maand weergegeven hoeveel organisaties zijn aangesloten op het Algoritmeregister.",
+    "brokenLinksDescription": "Hier wordt per dag getoond hoeveel verwijzingen in gepubliceerde algoritmebeschrijvingen voorkomen welke niet (meer) werken of waarvan de reactietijd te langzaam is (meer dan 5 seconden). Deze controle is in ontwikkeling. Het is mogelijk dat wel-werkende verwijzingen onterecht gerapporteerd worden.",
+    "publicationCategoriesDescription": "Hier wordt getoond hoeveel algoritmebeschrijvingen in de publicatiecategorieën ‘Hoog-risico AI-systeem’, ‘Impactvolle algoritmes’ en ‘Overige algoritmes’ zijn gepubliceerd in het Algoritmeregister.",
+    "top20OrganisationsDescription": "Hier worden de twintig organisaties getoond die het meeste algoritmebeschrijvingen in het Algoritmeregister hebben gepubliceerd.",
+    "algorithm": "Algoritme",
+    "organisation": "Organisatie",
+    "brokenLink": "Gebroken link",
+    "date": "Datum",
+    "month": "Maand",
+    "andFurther": "En verder",
+    "showDatatable": "Toon datatabel",
+    "hideDatatable": "Verberg datatabel",
+    "showGraph": "Toon grafiek",
+    "showMap": "Toon kaart",
+    "brokenLinksTableTitle": "Niet-werkende en te trage verwijzingen",
+    "name": "Naam",
+    "indication": "Indicatie"
   },
   "getAlgorithmPropertyExplanation": "Uitleg over het algoritme-eigenschap '{field}'",
   "algorithmProperties": {
@@ -299,7 +392,7 @@
         "description": "Trefwoorden over het algoritme, om de vindbaarheid van een algoritmeregistratie te vergroten."
       }
     },
-    "0_4_0": {
+    "0_4": {
       "headers": {
         "algemeneInformatie": "Algemene informatie",
         "verantwoordGebruik": "Verantwoord gebruik",
@@ -363,7 +456,7 @@
       },
       "impacttoetsen": {
         "label": "Impacttoetsen",
-        "description": "Welke impacttoetsen zijn gebruikt, zoals Data Protection Impact Asssesment (DPIA) of Impact Assessment Mensenrechten en Algoritmes (IAMA)?"
+        "description": "Welke impacttoetsen zijn gebruikt, zoals Data Protection Impact Assesment (DPIA) of Impact Assessment Mensenrechten en Algoritmes (IAMA)?"
       },
       "iama_description": {
         "label": "Link naar Mensenrechtentoets",
@@ -422,7 +515,7 @@
         "description": "Een overzicht van de voorziene risico's bij de inzet van het algoritme."
       }
     },
-    "1_0_0": {
+    "1_0": {
       "headers": {
         "algemeneInformatie": "Algemene informatie",
         "verantwoordGebruik": "Verantwoord gebruik",
@@ -462,8 +555,8 @@
         "description": "Link naar aanvullende informatie over de gebruikte gegevensbron. "
       },
       "impacttoetsen_grouping": {
-        "label": "Links naar impacttoetsen",
-        "description": "Link naar de resultaten van een uitgevoerde impacttoets, zoals een DPIA of IAMA"
+        "label": "Impacttoetsen",
+        "description": "Naam uitgevoerde impacttoets zoals een DPIA of IAMA en mogelijkheid om een link naar de resultaten van een uitgevoerde impacttoets op te nemen."
       },
       "impacttoetsen": {
         "label": "Toelichting op impacttoetsen",

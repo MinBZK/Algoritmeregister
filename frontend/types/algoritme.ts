@@ -1,6 +1,8 @@
 export enum Language {
   NLD = 'NLD',
   ENG = 'ENG',
+  FRY = 'FRY',
+  PAP = 'PAP',
 }
 
 export interface Algoritme {
@@ -10,6 +12,7 @@ export interface Algoritme {
   standard_version: string
   language: Language
   organization: string
+  description_short: string
 
   [key: string]: null | string | string[]
 }

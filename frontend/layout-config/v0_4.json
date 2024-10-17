@@ -1,0 +1,43 @@
+{
+  "cardGrouping": {
+    "mainElement": "description_short",
+    "subElements": ["type", "status"]
+  },
+  "tabsGrouping": [
+    {
+      "key": "algemeneInformatie",
+      "rows": [
+        "organization",
+        "category",
+        "begin_date",
+        "end_date",
+        "contact_email",
+        "website",
+        "url"
+      ]
+    },
+    {
+      "key": "verantwoordGebruik",
+      "rows": [
+        "goal",
+        "proportionality",
+        "human_intervention",
+        "risks",
+        "lawful_basis",
+        "lawful_basis_link",
+        "impacttoetsen",
+        "iama_description"
+      ]
+    },
+    {
+      "key": "technischeWerking",
+      "rows": [
+        "source_data",
+        "source_data_link",
+        "methods_and_models",
+        "provider",
+        "publiccode"
+      ]
+    }
+  ]
+}

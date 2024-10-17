@@ -1,20 +1,20 @@
 <template v-show="supportingTextLoad">
-  <ClientOnly>
-    <NuxtLayout>
-      <div>
-        <h1>{{ t('error.pageNotFound') }}</h1>
-        <FormOverheidButton
-          :label="t('error.goToHome')"
-          @click="$router.push(localePath({ path: '/' }))"
-        />
-      </div>
-    </NuxtLayout>
-  </ClientOnly>
+  <NuxtLayout>
+    <div>
+      <h1>{{ t('error.pageNotFound') }}</h1>
+      <FormOverheidButton
+        :label="t('error.goToHome')"
+        @click="router.push(localePath({ path: '/' }))"
+      />
+    </div>
+  </NuxtLayout>
 </template>
 
 <script setup lang="ts">
-import { SupportingText } from './types/textLoader'
 import { getAllContent } from './services/textLoader'
+import type { SupportingText } from '@/types/textLoader'
+
+const router = useRouter()
 
 const supportingTextLoaded = ref<boolean>(true)
 

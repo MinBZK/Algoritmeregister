@@ -3,6 +3,7 @@ import {
   OrganisationListResponse,
   CreateOrganisationResponse,
   UpdateOrganisationResponse,
+  UpdateOptInResponse,
 } from '@/types/organisation'
 import { AxiosRequestConfig } from 'axios'
 import { backendRequest } from '.'
@@ -10,7 +11,7 @@ import { backendRequest } from '.'
 export async function getOrganisationList(): Promise<OrganisationListResponse> {
   const request: AxiosRequestConfig = {
     method: 'GET',
-    url: '/organization',
+    url: '/organisation',
   }
   return backendRequest(request)
 }
@@ -20,7 +21,7 @@ export async function createOrganisation(
 ): Promise<CreateOrganisationResponse> {
   const request: AxiosRequestConfig = {
     method: 'POST',
-    url: '/organization',
+    url: '/organisation',
     data: organisation,
   }
   return backendRequest(request)
@@ -32,8 +33,19 @@ export async function updateOrganisation(
 ): Promise<UpdateOrganisationResponse> {
   const request: AxiosRequestConfig = {
     method: 'PUT',
-    url: `/organization/${org_code}`,
+    url: `/organisation/${org_code}`,
     data: organisation,
+  }
+  return backendRequest(request)
+}
+
+export async function updateOrganisationOptIn(
+  org_code: string,
+  change_to: boolean
+): Promise<UpdateOptInResponse> {
+  const request: AxiosRequestConfig = {
+    method: 'PUT',
+    url: `/organisation/${org_code}/show_page/${change_to}`,
   }
   return backendRequest(request)
 }

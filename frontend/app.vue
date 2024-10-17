@@ -1,11 +1,15 @@
 <template v-show="supportingTextLoaded">
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
+  <div>
+    <NuxtLoadingIndicator color="#007bc7" />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+    <ClientOnly><UsePiwik /></ClientOnly>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { SupportingText } from './types/textLoader'
+import type { SupportingText } from './types/textLoader'
 import { getAllContent } from './services/textLoader'
 
 const supportingTextLoaded = ref<boolean>(false)

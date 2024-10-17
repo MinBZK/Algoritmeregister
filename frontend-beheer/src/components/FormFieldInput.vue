@@ -75,6 +75,7 @@
       :content="(content as ListWithLinks[])"
       :rules="fieldProperties.rules"
       :help-text="fieldProperties.help_text"
+      :items="fieldProperties.recommendedItems"
       @update:content="(newValue) => emit('update:content', newValue)"
     />
   </div>
@@ -82,11 +83,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { FormFieldProperties } from '@/types/form'
+import { FormFieldProperties, ListWithLinks } from '@/types/form'
 import { VCombobox, VSelect, VTextarea } from 'vuetify/lib/components/index'
 import EditorField from '@/components/editor/EditorField.vue'
 import ListWithLinksField from './ListWithLinksField.vue'
-import { ListWithLinks } from '@/types/form'
 
 defineProps<{
   content?: string | string[] | null | ListWithLinks[]

@@ -1,14 +1,20 @@
+import httpx
 from pydantic import BaseModel, Field, create_model, validator
 from functools import lru_cache
 import re
 import enum
 from datetime import datetime
+from app.middleware.authorisation.schemas import State
 from app.util.logger import get_logger
 from app.schemas.config.types import SchemaJson, SchemaProperty
 from . import Language
-from app.util.html import strip_html, validate_html
+from app.util.html import strip_html, sanitize_string_fields
+from .c3po.reponse_in import SeverityLevel
+from app.config.settings import Settings
+from app.services.c3po import handle_c3po_exception
 
 logger = get_logger(__name__)
+env_settings = Settings()
 
 
 class AlgorithmBase(BaseModel):
@@ -34,13 +40,48 @@ def validate_max_length(cls, value, **kwargs):
     return value
 
 
+def apply_c3po_rules(cls, value, **kwargs):
+    if not isinstance(value, str) or not value:
+        return value
+
+    field_name = kwargs["field"].name
+    if field_name not in cls.__fields__:
+        return value
+
+    rule_code = "BROKEN_LINKS"
+    notify_critical_finding = False
+    try:
+        validation_results = httpx.Client().post(
+            f"{env_settings.c3po_url}/processing-request/",
+            json={
+                "payload": value,
+                "rule_code": rule_code,
+            },
+        )
+        validation_results.raise_for_status()
+        rule_result = validation_results.json()["tasks"][0]
+        notify_critical_finding = (
+            rule_result["rule"]["severity_level"] == SeverityLevel.ERROR
+            and rule_result["passed"] is False
+        )
+    except (httpx.ConnectError, httpx.HTTPStatusError) as e:
+        handle_c3po_exception(e, rule_code)
+
+    if notify_critical_finding:
+        raise ValueError(
+            f"One or more writing assistance checks failed with severity level "
+            f"'{SeverityLevel.ERROR}'."
+        )
+    return value
+
+
 def _get_versioned_name(name: str, version: str):
     model_name = version + "__" + name
     return model_name
 
 
 def _get_schema_json(version: str):
-    version_pattern = re.compile(r"v\d_\d_\d[a-z]?")
+    version_pattern = re.compile(r"v\d_\d[a-z]?")
     if not version_pattern.match(version):
         raise ValueError(
             f"_get_schema_json: version {version} does not match version_pattern. It checks for v\\d_\\d_\\d[a-z]?"
@@ -122,16 +163,13 @@ def _build_schema_fields(data: SchemaJson, version: str):
     return fields
 
 
-def _get_algorithm_in_validators(
-    schema: type[AlgorithmBase],
-):
+def _get_algorithm_in_validators(schema: type[AlgorithmBase]):
     validators = {}
     max_length_fields = []
-    html_fields = []
+    string_fields = []
     for value in schema.__fields__.values():
-        add_html_validator = value.type_ == str
-        if add_html_validator:
-            html_fields.append(value.name)
+        if value.type_ == str:
+            string_fields.append(value.name)
 
         add_max_length_validator = value.field_info.extra.get("max_length_without_html")
         if add_max_length_validator:
@@ -142,17 +180,21 @@ def _get_algorithm_in_validators(
             *max_length_fields, allow_reuse=True
         )(validate_max_length)
 
-    if len(html_fields) > 0:
+    if len(string_fields) > 0:
         validators["html_validator"] = validator(
-            *html_fields, pre=True, allow_reuse=True
-        )(validate_html)
+            *string_fields, pre=True, allow_reuse=True
+        )(sanitize_string_fields)
+        if env_settings.use_c3po:
+            validators["c3po_validator"] = validator(
+                *string_fields, pre=True, allow_reuse=True
+            )(apply_c3po_rules)
 
     return validators
 
 
 @lru_cache(maxsize=8)
 def create_algorithm_base_schema(version: str):
-    """Expected version format: v0_1_0"""
+    """Expected version format: v0_1"""
     data = _get_schema_json(version)
     fields = _build_schema_fields(data, version)
 
@@ -166,7 +208,7 @@ def create_algorithm_base_schema(version: str):
 
 @lru_cache(maxsize=8)
 def create_algorithm_in_schema(version: str):
-    """Expected version format: v0_1_0"""
+    """Expected version format: v0_1"""
     base = create_algorithm_base_schema(version)
     validators = _get_algorithm_in_validators(base)
 
@@ -180,15 +222,14 @@ def create_algorithm_in_schema(version: str):
 
 @lru_cache(maxsize=8)
 def create_algorithm_schema(version: str):
-    """Expected version format: v0_1_0"""
+    """Expected version format: v0_1"""
     base = create_algorithm_base_schema(version)
 
     fields = {
         "lars": (str, ...),
         "create_dt": (datetime, ...),
-        "released": (bool, ...),
-        "published": (bool, ...),
         "language": (Language, ...),
+        "state": (State, ...),
     }
 
     model_name = _get_versioned_name("Algorithm", version)

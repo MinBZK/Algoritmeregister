@@ -1,0 +1,49 @@
+[
+  {
+    "id": "edata-especialisten-anonimiseren",
+    "name": "Anonimiseren",
+    "organization": null,
+    "description_short": "Het identificeren en anonimiseren van privacygevoelige informatie in informatieobjecten (in veel gevallen documenten).",
+    "type": "",
+    "category": ["Organisatie en bedrijfsvoering"],
+    "publication_category": "Overige algoritmes",
+    "website": null,
+    "status": "In gebruik",
+    "begin_date": null,
+    "end_date": null,
+    "goal": "Het doel van het algoritme is het anonimiseren van privacygevoelige informatie in informatieobjecten. Hierdoor wordt de persoonlijke informatie beschermd en blijft de privacy van individuen gewaarborgd.",
+    "proportionality": "Het algoritme is getraind op het herkennen van privacy gevoelige informatie, maar beperkt zich tot classificatie en zal daardoor nooit inhoudelijke informatie onthullen. Bovendien draagt de technologie bij aan verbetering van de kwaliteit van anonimisatie.",
+    "provider": "eData B.V.",
+    "lawful_basis": "<div><div>Wet open overheid</div>\n<div>Wet elektronische publicaties</div></div>",
+    "lawful_basis_grouping": [
+      {
+        "title": "Wet open overheid (WOO)",
+        "link": "https://wetten.overheid.nl/BWBR0045754/"
+      },
+      {
+        "title": "Wet elektronische publicaties (WEP)",
+        "link": "https://wetten.overheid.nl/BWBR0043961/"
+      }
+    ],
+    "impacttoetsen": null,
+    "iama_description": null,
+    "url": null,
+    "lang": "NLD",
+    "standard_version": "1.0",
+    "uuid": null,
+    "source_id": null,
+    "tags": null,
+    "source_data": "Ruimtelijke plannen en interne documenten.",
+    "source_data_link": "https://www.ruimtelijkeplannen.nl/home",
+    "source_data_grouping": [
+      {
+        "title": "Ruimtelijke plannen en interne documenten",
+        "link": "https://www.ruimtelijkeplannen.nl/home"
+      }
+    ],
+    "methods_and_models": "Deep learning-modellen die op zowel visuele als tekstuele wijze bepalen welke informatie als privacygevoelig wordt beschouwd.",
+    "publiccode": null,
+    "human_intervention": "De uitkomsten van het algoritme fungeren slechts als hulpmiddel, waarbij menselijke tussenkomst altijd nodig is voor de definitieve anonimisatie.",
+    "risks": "Om de privacyrisico's van het algoritme te waarborgen, ondergaat het constante evaluatie en updates om nieuwe bedreigingen en privacy-uitdagingen aan te pakken. Menselijk toezicht en interventie zijn ingebed om fouten te corrigeren. Bovendien wordt er voortdurend in dialoog gegaan met belanghebbenden."
+  }
+]

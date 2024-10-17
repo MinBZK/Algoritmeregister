@@ -1,4 +1,24 @@
-import { SupportingText } from '@/types/textLoader'
+import type { SupportingText } from '@/types/textLoader'
+
+const replaceWithMapping = (
+  text: string,
+  map: Record<string, string>
+): string => {
+  // If there are {...} entries in the text, this function
+  // will replace it with the value in the mapping if the key matches.
+
+  // try to find mapping {...} in the string
+  const matches = [...text.matchAll(/(?:{[^{}]+})/g)]
+
+  let replacedText = text
+  // replace if the match {...} has a key from the mapping
+  matches.forEach((match) => {
+    const key = match[0].slice(1, -1)
+    if (!map[key]) return
+    replacedText = replacedText.replaceAll(match[0], map[key])
+  })
+  return replacedText
+}
 
 export const useTextLoader = () => {
   /**
@@ -13,6 +33,7 @@ export const useTextLoader = () => {
    * t('someKeyHere') -> p('someKeyHere')
    */
   const { currentLocale } = useLocale()
+  const locale = computed(() => currentLocale.value)
 
   const supportingText = useState<SupportingText | null>(
     'supportingText',
@@ -21,7 +42,7 @@ export const useTextLoader = () => {
 
   const localPrefix = `/${currentLocale.value}`
   // Looks up key in the supporting text. language is based on currentLocale
-  const p = (key: string) => {
+  const p = (key: string, map?: Record<string, string>) => {
     if (!supportingText.value) return key
 
     try {
@@ -33,7 +54,9 @@ export const useTextLoader = () => {
           localisedSupportText
         ) as string
 
-      return value.replace('{localised_url}', localPrefix)
+      const localisedText = value.replace('{localised_url}', localPrefix)
+      if (!map) return localisedText
+      return replaceWithMapping(localisedText, map)
     } catch (error) {
       return key
     }
@@ -41,5 +64,6 @@ export const useTextLoader = () => {
 
   return {
     p,
+    locale,
   }
 }

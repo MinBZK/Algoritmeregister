@@ -63,7 +63,6 @@ def upgrade() -> None:
         return
     # Construct the rows for organisation table. Done in dict so it is easy to see unique orgs
     unique_orgs = {}
-    n = 0
     for r in results:
         if r[1] in name_mapping.keys():
             name = name_mapping[r[1]]
@@ -77,7 +76,6 @@ def upgrade() -> None:
         key = r[1]
         if key not in unique_orgs.keys():
             unique_orgs[key] = entry
-            n += 1
 
     # insertion is done with list
     orgs = [unique_orgs[key] for key in unique_orgs.keys()]
@@ -143,4 +141,3 @@ def downgrade() -> None:
     conn.execute(reset_organisation_id_statement)
 
     conn.execute(sa.text("DELETE FROM organisation"))
-    pass

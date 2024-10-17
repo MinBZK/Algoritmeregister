@@ -19,6 +19,7 @@ export interface AlgorithmForm {
   organization?: string
   published?: boolean
   standard_version?: any
+  state?: string
 
   [key: string]: any
 }
@@ -57,4 +58,26 @@ export interface NoOrgResponse extends FastApiResponse {
 
 export interface AlgorithmOwnerResponse extends FastApiResponse {
   data: Organisation
+}
+
+export interface AlgorithmTotalCountResponse extends FastApiResponse {
+  data: number
+}
+
+export interface ColumnResponse extends FastApiResponse {
+  data: {
+    column_name: string
+    is_nullable: string
+  }[]
+}
+
+export interface ColumnCountResponse extends FastApiResponse {
+  data: {
+    count: number
+    descriptor: string
+  }[]
+}
+
+export interface CompletenessResponse extends FastApiResponse {
+  data: string
 }

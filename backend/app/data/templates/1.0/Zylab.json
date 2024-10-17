@@ -1,0 +1,45 @@
+[
+  {
+    "id": "zylab-tekstanalyse",
+    "name": "Tekstanalyse",
+    "organization": null,
+    "description_short": "Op basis van taaltechnologie worden persoons- en bedrijfsnamen gelezen en uitgefilterd uit tekstbestanden als emails en losse documenten.",
+    "type": null,
+    "category": [],
+    "publication_category": "Overige algoritmes",
+    "website": null,
+    "status": "In gebruik",
+    "begin_date": null,
+    "end_date": null,
+    "goal": "<p>Ondersteuning in het beoordelingsproces waar wettelijke bescherming geldt op informatie die openbaar wordt gemaakt. Bescherming vanuit de AVG- (personen) en Woo-wetgeving (vooral bedrijfsvertrouwelijk), waar uitzonderingsgronden in benoemd worden.</p>",
+    "proportionality": "<p>De handmatige beoordeling is intensief en foutgevoelig. Een suggestielijst vanuit het algoritme van entiteitsextractie brengt alle denkbare gevallen van personen in de tekst in beeld.</p>",
+    "provider": "ZyLAB eDiscovery & Compliance Services B.V.",
+    "lawful_basis": "<p>Wetgeving rond openbaarheid van overheidsdata (Woo)</p>",
+    "lawful_basis_grouping": [
+      {
+        "title": "Wet open overheid",
+        "link": "https://wetten.overheid.nl/BWBR0045754/2023-04-01#Hoofdstuk5"
+      }
+    ],
+    "impacttoetsen": null,
+    "iama_description": null,
+    "url": null,
+    "lang": "NLD",
+    "standard_version": "1.0",
+    "uuid": null,
+    "source_id": null,
+    "tags": "<p>NER, Lakken, Redaction, Text Mining, Taaltechnologie, Linguistiek, LLM</p>",
+    "source_data": "<p>Dit betreft documenten en berichteninformatie binnen Rijksoverheden. Waaronder email, bestanden, Whatsapp-berichten en andere media waar bestuurlijke besluitvorming in gevonden kan worden. </p>",
+    "source_data_link": null,
+    "source_data_grouping": [
+      {
+        "title": "Algemene Office applicaties",
+        "link": "Dit betreft standaard Office formaten inclusief email en social media formaten."
+      }
+    ],
+    "methods_and_models": "<p>Teksten worden op basis van Named Entity Recognition (NER) herkend en een proces binnen Insights extraheert de namen voor verdere afhandeling richting de beheerinterface en de automatische lakregels. </p>",
+    "publiccode": null,
+    "human_intervention": "<p>Binnen de software wordt een lijst opgebouwd en aangeboden aan de gebruiker om te selecteren in het automatische lakproces. De keuze om een geadviseerde term als persoonsnaam over te nemen en niet openbaar te maken, is aan de gebruiker.</p>",
+    "risks": "<p>Er bestaat geen risico op geautomatiseerde besluitvorming en het algoritme heeft geen impact op grondrechten, omdat het algoritme geen besluiten neemt met rechtsgevolgen. Het doet alleen een voorstel voor het anonimiseren van persoonsgegevens. De medewerker van het bestuursorgaan doet altijd de laatste toets of een document juist is geanonimiseerd. </p>"
+  }
+]

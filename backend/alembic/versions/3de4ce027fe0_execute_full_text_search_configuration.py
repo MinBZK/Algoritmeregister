@@ -22,4 +22,5 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
+    # No downgrade available.
     pass

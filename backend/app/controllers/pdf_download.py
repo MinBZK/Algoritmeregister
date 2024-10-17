@@ -3,6 +3,8 @@ import io
 from fastapi.responses import StreamingResponse
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
+
+from app.schemas.misc import Language
 from .pdf_wrapper import TextStyle, PDF
 from app import schemas
 from app.schemas.config.types import SchemaProperty
@@ -15,7 +17,7 @@ from app.util.stringify import stringify
 def get_org_data(db: Session, org_name: str) -> list[schemas.AlgoritmeVersionDownload]:
     algoritme_version_repository = AlgoritmeVersionRepository(db)
     algorithms = algoritme_version_repository.get_latest_by_org_by_lang(
-        org_name, schemas.Language.NLD
+        org_name, Language.NLD
     )
     return [schemas.AlgoritmeVersionDownload(**row.dict()) for row in algorithms]
 
@@ -23,7 +25,7 @@ def get_org_data(db: Session, org_name: str) -> list[schemas.AlgoritmeVersionDow
 def get_algo_data(db: Session, lars: str) -> schemas.AlgoritmeVersionDownload | None:
     algoritme_version_repository = AlgoritmeVersionRepository(db)
     algorithm = algoritme_version_repository.get_latest_by_lars_by_lang(
-        lars, schemas.Language.NLD
+        lars, Language.NLD
     )
     if algorithm:
         return schemas.AlgoritmeVersionDownload(**algorithm.dict())
@@ -137,7 +139,7 @@ Neem via mail contact op met: algoritmeregister@minbzk.nl."""
     stream = pdf.stream
     stream.seek(0)
 
-    filename = f"{algorithm.name} {timestamp}.pdf"
+    filename = f"{algorithm.name.encode('utf-8')} {timestamp}.pdf"
     return stream, filename
 
 

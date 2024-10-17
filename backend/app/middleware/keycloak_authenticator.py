@@ -1,15 +1,18 @@
+from typing import Annotated
 from fastapi.security import OAuth2AuthorizationCodeBearer
 from fastapi import Depends
 from keycloak import KeycloakOpenID
 from fastapi import HTTPException, status
 import jwt
 from jwt.exceptions import ExpiredSignatureError
-import logging
 import time
 from app.config.settings import Keycloak
-from app import schemas
+from app.middleware.authorisation.schemas import Role
+from app.services.keycloak import KeycloakUser
+from app.services.keycloak.data_validator import KeycloakValidator
+from app.util.logger import get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 settings = Keycloak()
 URI = settings.KEYCLOAK_URI
@@ -19,11 +22,12 @@ REALM = settings.KEYCLOAK_REALM
 oauth2_scheme = OAuth2AuthorizationCodeBearer(
     authorizationUrl=f"{URI}/realms/{REALM}/protocol/openid-connect/auth",
     tokenUrl=f"{URI}/realms/{REALM}/protocol/openid-connect/token",
+    auto_error=False,
 )
 
 cache = dict()
 
-logger.info(f"{URI}/realms/{REALM}/protocol/openid-connect/auth")
+logger.debug(f"{URI}/realms/{REALM}/protocol/openid-connect/auth")
 
 
 class UserUnauthorizedException(HTTPException):
@@ -49,7 +53,7 @@ def _update_public_key(keycloak_openid: KeycloakOpenID, update_interval=30):
 
 def _get_public_key(keycloak_openid: KeycloakOpenID):
     if "keycloak_public_key" not in cache:
-        logger.info("fetching public key")
+        logger.debug("fetching public key")
         cache["keycloak_public_key"] = keycloak_openid.public_key()
         cache["keycloak_public_key_updated"] = time.time()
     return cache["keycloak_public_key"]
@@ -60,7 +64,7 @@ def _decode_token(token: str):
     Fetch the public key from Keycloak and decode the token from the frontend.
     Note: Data in the token is NOT encrypted. the public key is only to validate.
     """
-    logger.info("authorizing")
+    logger.debug("authorizing")
     # public access type
     keycloak_openid = KeycloakOpenID(
         server_url=URI,
@@ -79,34 +83,42 @@ def _decode_token(token: str):
             options={"verify_signature": True, "verify_aud": False, "exp": True},
             algorithms=["RS256"],
         )
-        logger.info(f'session for {decoded["preferred_username"]} still active')
+        logger.debug(f'session for {decoded["preferred_username"]} still active')
         return decoded
 
     except ExpiredSignatureError:
-        logger.info("session expired")
+        logger.debug("session expired")
         raise UserUnauthorizedException()
 
     except jwt.exceptions.DecodeError:
         if _update_public_key(keycloak_openid):
-            logger.info("Could not decode token. Updating public key and retry once")
+            logger.debug("Could not decode token. Updating public key and retry once")
             return _decode_token(token)
-        logger.info("Could not decode token")
+        logger.debug("Could not decode token")
         raise UserUnauthorizedException()
 
     except jwt.exceptions.ImmatureSignatureError:
-        logger.info("token not yet valid, retrying")
+        logger.debug("token not yet valid, retrying")
         time.sleep(0.5)
         return _decode_token(token)
 
 
-def get_current_user(token=Depends(oauth2_scheme)) -> schemas.User:
+def get_current_user(
+    token: Annotated[str | None, Depends(oauth2_scheme)]
+) -> KeycloakUser:
+    if not settings.ENABLE_AUTH:
+        return KeycloakUser(
+            username="local admin",
+            roles=[Role.Administrator, Role.AllGroups],
+            groups=[],
+            id="<UPDATE_WITH_KEYCLOAK_ADMIN_ID>",
+            first_name="",
+            last_name="",
+        )
+    elif token is None:
+        raise HTTPException(401, "TOKEN_NOT_FOUND")
+
     user = _decode_token(token)
-    logger.debug(f"received token for {user['preferred_username']}")
-    # Keycloak gives organisations with a '/' before the organisation, slice it.
-    organizations = [org[1:] for org in user.get("group", [])]
-    user_schema = schemas.User(
-        organizations=organizations,
-        name=user.get("preferred_username"),
-        role=user.get("role"),
-    )
+    user_schema = KeycloakValidator().user_from_token(user)
+    logger.debug(f"received token for {user_schema.username}")
     return user_schema

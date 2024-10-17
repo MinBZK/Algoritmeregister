@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 6em">
+  <div class="margin-bottom-6">
     <div v-html="p('Footer: Over algoritmes.content')" />
     <img
       src="../../assets/images/over-algoritmes.jpeg"
@@ -10,17 +10,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 const { p } = useTextLoader()
-
-definePageMeta({
-  title: 'Over algoritmes',
-})
-
-const pageTitle = computed(() => p('Footer: Over algoritmes.pageTitle'))
-useHead({ title: pageTitle })
+useHead({ title: p('Footer: Over algoritmes.pageTitle') })
 providePageTitle({
-  title: 'footer.paths.over-algoritmes',
-  labelType: 'locale-index',
+  title: 'Footer: Over algoritmes.pageTitle',
+  labelType: 'preditor-index',
 })
 </script>

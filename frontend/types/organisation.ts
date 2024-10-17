@@ -1,23 +1,37 @@
-export enum OrgType {
-  adviescollege = 'Adviescollege',
-  agentschap = 'Agentschap',
-  brandweer = 'Brandweer',
-  caribisch_openbaar_lichaam = 'Caribisch openbaar lichaam',
-  gemeente = 'Gemeente',
-  grensoverschrijdend_regionaal_samenwerkingsorgaan = 'Grensoverschrijdend regionaal samenwerkingsorgaan',
-  hoog_college_van_staat = 'Hoog College van Staat',
-  interdepartementale_commissie = 'Interdepartementale commissie',
-  kabinet_van_de_koning = 'Kabinet van de Koning',
-  koepelorganisatie = 'Koepelorganisatie',
-  ministerie = 'Ministerie',
-  openbaar_lichaam_voor_beroep_en_bedrijf = 'Openbaar lichaam voor beroep en bedrijf',
-  organisatie_met_overheidsbemoeienis = 'Organisatie met overheidsbemoeienis',
-  organisatieonderdeel = 'Organisatieonderdeel',
-  politie = 'Politie',
-  provincie = 'Provincie',
-  rechtspraak = 'Rechtspraak',
-  regionaal_samenwerkingsorgaan = 'Regionaal samenwerkingsorgaan',
-  waterschap = 'Waterschap',
-  zelfstandig_bestuursorgaan = 'Zelfstandig bestuursorgaan',
-  overig = 'Overig',
+import type { Algoritme } from './algoritme'
+import type {
+  OrganisationFilterData,
+  OrganisationSelectedFilter,
+} from './filter/organisation'
+
+export interface OrganisationPage {
+  contact_info: string
+  about: string
+  name: string
+  show_page: boolean
+  algoritme_versions: Algoritme[]
+}
+
+export interface Organisation {
+  code: string
+  count: string
+  name: string
+  show_page: boolean
+  type: string
+}
+
+export interface OrganisationMappingResult {
+  name: string
+  code: string
+}
+
+export interface OrganisationSearchSuggestionResponse {
+  organisations: OrganisationMappingResult[]
+}
+
+export interface OrganisationQueryResult {
+  results: Organisation[]
+  total_count: number
+  filter_data: OrganisationFilterData
+  selected_filters: OrganisationSelectedFilter[]
 }

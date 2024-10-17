@@ -20,7 +20,7 @@ def collect_structure_data(
 ) -> Tuple[dict[str, dict[str, SchemaProperty]], dict[str, LayoutJson]]:
     del ttl_hash
 
-    version_pattern = re.compile(r"v\d_\d_\d[a-z]?")
+    version_pattern = re.compile(r"v\d_\d[a-z]?")
     filenames = [
         item for item in os.listdir("app/schemas/config") if version_pattern.match(item)
     ]

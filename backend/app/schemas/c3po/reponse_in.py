@@ -1,3 +1,5 @@
+from typing import Any, Optional, Union
+
 from pydantic import BaseModel
 from enum import Enum
 import datetime
@@ -12,32 +14,33 @@ class TaskStatus(str, Enum):
 
 class SeverityLevel(str, Enum):
     INFO = "info"
-    WARNING = "warning"
-    ERROR = "error"
+    WARNING = "waarschuwing"
+    ERROR = "fout"
 
 
 class Rule(BaseModel):
-    rule_id: int
+    id: int
     rule_code: str
-    rule_variant: str
+    title: str
+    rule_type: str
     description: str
-    python_reference: str
     severity_level: SeverityLevel
     created_at: datetime.datetime
 
 
 class Task(BaseModel):
-    task_id: int
+    id: int
     processing_request_id: int
     feedback_message: str | None
-    result: bool | None
-    status: TaskStatus | None
+    result: Optional[Union[str, list[Any], dict[str, Any]]]
+    status: TaskStatus
+    passed: bool | None
     created_at: datetime.datetime
     rule: Rule
 
 
 class ProcessingRequest(BaseModel):
-    processing_request_id: int
+    id: int
     payload: str
     tasks: list[Task]
     created_at: datetime.datetime

@@ -25,38 +25,42 @@
         class="accordion__item__content"
         aria-labelledby="header1"
       >
-        <div>
+        <div class="headpiece">
           <h2>
             {{ property.keyLabel }}
-            <span
-              class="question-mark"
-              role="button"
-              :title="
-                t('getAlgorithmPropertyExplanation', {
-                  field: property.keyLabel.toLowerCase(),
-                })
-              "
-              tabindex="0"
-              :aria-expanded="isKeyToggled(property.key) ? 'true' : 'false'"
-              @click="toggleKey(property.key)"
-              @keydown.enter="toggleKey(property.key)"
-              @keydown.space="
-                (e) => [e.preventDefault(), toggleKey(property.key)]
-              "
-            ></span>
+            <div class="float-right">
+              <span
+                class="question-mark"
+                role="button"
+                :title="
+                  t('getAlgorithmPropertyExplanation', {
+                    field: property.keyLabel.toLowerCase(),
+                  })
+                "
+                tabindex="0"
+                :aria-expanded="isKeyToggled(property.key) ? 'true' : 'false'"
+                @click="toggleKey(property.key)"
+                @keydown.enter="toggleKey(property.key)"
+                @keydown.space="
+                  (e) => [e.preventDefault(), toggleKey(property.key)]
+                "
+              ></span>
+            </div>
           </h2>
         </div>
-        <div v-if="isKeyToggled(property.key)" class="word-break">
-          <i>
-            <ParseUrl :key="property.keyDescription">
-              {{ property.keyDescription }}
+        <div>
+          <div v-if="isKeyToggled(property.key)" class="word-break">
+            <i>
+              <ParseUrl :key="property.keyDescription">
+                {{ property.keyDescription }}
+              </ParseUrl>
+            </i>
+          </div>
+          <div class="word-break">
+            <ParseUrl :key="property.value || t('ontbreekt')">
+              <ListifyString :text="property.value || t('ontbreekt')" />
             </ParseUrl>
-          </i>
-        </div>
-        <div class="word-break">
-          <ParseUrl :key="property.value || t('ontbreekt')">
-            <ListifyString :text="property.value || t('ontbreekt')" />
-          </ParseUrl>
+          </div>
         </div>
       </div>
     </div>
@@ -93,7 +97,18 @@ const toggleTab = () => {
   resetScroll()
 }
 
-const expanded = computed(() => expandedTab.value === props.groupProps.key)
+const expanded = ref(true)
+watch(
+  () => expandedTab.value,
+  () => {
+    expanded.value = expandedTab.value === props.groupProps.key
+  }
+)
+onMounted(() => {
+  expanded.value = expandedTab.value === props.groupProps.key
+})
+
+// expanded = computed(() => expandedTab.value === props.groupProps.key)
 
 const keyToggles = ref<string[]>([])
 const toggleKey = (key: string) => {
@@ -121,5 +136,11 @@ h2 {
 }
 .accordion__item__heading {
   font-size: 1em !important;
+}
+.headpiece {
+  width: 15em;
+}
+.float-right {
+  float: right;
 }
 </style>

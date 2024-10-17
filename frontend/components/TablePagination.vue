@@ -24,7 +24,13 @@
         >
           ...
         </div>
-        <div
+        <NuxtLink
+          :to="
+            localePath({
+              path: '/' + route.path?.split('/')[2],
+              query: { page: pageNumber.toString() },
+            })
+          "
           :class="pageNumber == currentPage && 'current-page'"
           :aria-label="t('pagination.goTo', { n: pageNumber })"
           tabindex="0"
@@ -40,7 +46,7 @@
           "
         >
           {{ pageNumber }}
-        </div>
+        </NuxtLink>
         <div
           v-if="index == range.length - 2 && pageNumber != pageLength - 1"
           class="pagenumber-elipsis noselect"
@@ -80,6 +86,8 @@ const props = defineProps<{
 }>()
 
 const isMobile = useMobileBreakpoint().medium
+const localePath = useLocalePath()
+const route = useRoute()
 
 const emit = defineEmits(['setPage'])
 
@@ -135,6 +143,7 @@ nav {
   background-color: $tertiary;
   cursor: pointer;
   display: inline-block;
+  text-decoration: none;
 }
 
 .pagenumber:hover:not(.disabled) {

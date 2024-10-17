@@ -1,4 +1,5 @@
 import { Language } from '@/types/algoritme'
+import type { LanguageCode } from '@/types/textLoader'
 
 const changeHash = (hash: string | undefined) => {
   const router = useRouter()
@@ -15,14 +16,14 @@ const changeHash = (hash: string | undefined) => {
 
 interface pageTitleInfo {
   title: string
-  labelType: 'locale-index' | 'page-title'
+  labelType: 'locale-index' | 'preditor-index' | 'plain-text'
 }
 const pageTitleInfo = ref<pageTitleInfo>({
   title: '',
-  labelType: 'page-title',
+  labelType: 'plain-text',
 })
 const providePageTitle = (
-  input: pageTitleInfo = { title: '', labelType: 'page-title' }
+  input: pageTitleInfo = { title: '', labelType: 'plain-text' }
 ) => {
   pageTitleInfo.value = input
 }
@@ -30,9 +31,11 @@ const providePageTitle = (
 const objectMap = (obj: Object, fn: Function) =>
   Object.fromEntries(Object.entries(obj).map(([k, v], i) => [k, fn(v, k, i)]))
 
-const mapLocaleName = (language: 'nl' | 'en'): Language => {
+const mapLocaleName = (language: LanguageCode): Language => {
   if (language === 'nl') return Language.NLD
   if (language === 'en') return Language.ENG
+  if (language === 'fy') return Language.FRY
+  if (language === 'pap') return Language.PAP
   else return Language.NLD
 }
 

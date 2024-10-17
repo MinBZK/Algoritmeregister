@@ -7,6 +7,7 @@ class ActionHistoryIn(BaseModel):
     algoritme_version_id: int
     operation: OperationEnum
     user_id: str
+    create_dt: datetime.datetime | None = None
 
 
 class ActionHistoryDB(ActionHistoryIn):

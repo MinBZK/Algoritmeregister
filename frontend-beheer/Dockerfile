@@ -1,4 +1,4 @@
-FROM harbor.cicd.s15m.nl/ocw-lsp-pub/nginxinc/nginx-unprivileged:1.21.6-alpine_lsp
+FROM nginxinc/nginx-unprivileged:1.21.6-alpine_devops
 
 USER root
 

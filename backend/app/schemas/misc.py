@@ -3,12 +3,6 @@ from pydantic import BaseModel
 import enum
 
 
-class User(BaseModel):
-    name: str
-    organizations: list[str]
-    role: str | None
-
-
 class Message(BaseModel):
     detail: str
 
@@ -20,48 +14,53 @@ class PreviewUrl(BaseModel):
 class Language(enum.Enum):
     NLD = "NLD"
     ENG = "ENG"
+    FRY = "FRY"
 
 
 class OperationEnum(str, enum.Enum):
     created = "created"
-    new_version = "new version"
+    new_version = "new_version"
     released = "released"
     published = "published"
     retracted = "retracted"
-    preview_activated = "preview activated"
-    preview_used = "preview used"
-    preview_timeout = "preview timeout"
+    preview_activated = "preview_activated"
+    preview_used = "preview_used"
+    preview_timeout = "preview_timeout"
+    archived = "archived"
+    unarchived = "unarchived"
 
 
 class OrgType(str, enum.Enum):
-    adviescollege = "Adviescollege"
-    agentschap = "Agentschap"
-    brandweer = "Brandweer"
-    caribisch_openbaar_lichaam = "Caribisch openbaar lichaam"
-    gemeente = "Gemeente"
+    adviescollege = "adviescollege"
+    agentschap = "agentschap"
+    brandweer = "brandweer"
+    caribisch_openbaar_lichaam = "caribisch_openbaar_lichaam"
+    gemeente = "gemeente"
     grensoverschrijdend_regionaal_samenwerkingsorgaan = (
-        "Grensoverschrijdend regionaal samenwerkingsorgaan"
+        "grensoverschrijdend_regionaal_samenwerkingsorgaan"
     )
-    hoog_college_van_staat = "Hoog College van Staat"
-    interdepartementale_commissie = "Interdepartementale commissie"
-    kabinet_van_de_koning = "Kabinet van de Koning"
-    koepelorganisatie = "Koepelorganisatie"
-    ministerie = "Ministerie"
-    openbaar_lichaam_voor_beroep_en_bedrijf = "Openbaar lichaam voor beroep en bedrijf"
-    organisatie_met_overheidsbemoeienis = "Organisatie met overheidsbemoeienis"
-    organisatieonderdeel = "Organisatieonderdeel"
-    politie = "Politie"
-    provincie = "Provincie"
-    rechtspraak = "Rechtspraak"
-    regionaal_samenwerkingsorgaan = "Regionaal samenwerkingsorgaan"
-    waterschap = "Waterschap"
-    zelfstandig_bestuursorgaan = "Zelfstandig bestuursorgaan"
-    overig = "Overig"
+    hoog_college_van_staat = "hoog_college_van_staat"
+    interdepartementale_commissie = "interdepartementale_commissie"
+    kabinet_van_de_koning = "kabinet_van_de_koning"
+    koepelorganisatie = "koepelorganisatie"
+    ministerie = "ministerie"
+    omgevingsdienst = "omgevingsdienst"
+    openbaar_lichaam_voor_beroep_en_bedrijf = "openbaar_lichaam_voor_beroep_en_bedrijf"
+    organisatie_met_overheidsbemoeienis = "organisatie_met_overheidsbemoeienis"
+    organisatieonderdeel = "organisatieonderdeel"
+    politie = "politie"
+    provincie = "provincie"
+    regionaal_samenwerkingsverband = "regionaal_samenwerkingsverband"
+    rechtspraak = "rechtspraak"
+    regionaal_samenwerkingsorgaan = "regionaal_samenwerkingsorgaan"
+    waterschap = "waterschap"
+    zelfstandig_bestuursorgaan = "zelfstandig_bestuursorgaan"
+    overig = "overig"
 
 
 class ImpacttoetsenGrouping(TypedDict):
     title: str
-    link: str
+    link: str | None
 
 
 class SourceDataGrouping(TypedDict):
@@ -72,3 +71,23 @@ class SourceDataGrouping(TypedDict):
 class LawfulBasisGrouping(TypedDict):
     title: str
     link: str
+
+
+class ImpactAssessments(enum.StrEnum):
+    DPIA = "Data Protection Impact Assessment (DPIA)"
+    IAMA = "Impact Assessment Mensenrechten en Algoritmes (IAMA)"
+    FRIA = "Fundamental Rights Impact Assessment (FRIA)"
+    OTHER = "Overig"
+    NONE = "Geen"
+
+
+standard_impact_assessment_titles = [
+    ImpactAssessments.IAMA,
+    ImpactAssessments.DPIA,
+    ImpactAssessments.FRIA,
+]
+
+
+class SortOption(enum.StrEnum):
+    sort_name = "sort_name"
+    sort_number = "sort_number"

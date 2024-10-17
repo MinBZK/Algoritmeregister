@@ -12,9 +12,7 @@
             >
             <span v-if="crumb.routeName == null">{{ crumb.label }}</span>
           </li>
-          <ClientOnly>
-            <li>{{ pathTail.label }}</li>
-          </ClientOnly>
+          <li>{{ pathTail.label }}</li>
         </ol>
       </div>
     </div>
@@ -28,17 +26,16 @@ const error = useError()
 const localePath = useLocalePath()
 
 const { algoritme } = useAlgoritme()
+const { organisation } = useOrganisation()
 
 const { t } = useI18n()
 const currentRoute = useRoute()
 
 const navigationItemsTranslated = computed(() =>
   navigationItems.map((item) => {
-    return { label: t(item.localeName), routeName: item.routeName }
+    return { ...item, label: t(item.localeName) }
   })
 )
-
-const ignoredNavigationItems = ['footer', 'en', 'nl']
 
 type Crumb = {
   label: string
@@ -46,38 +43,38 @@ type Crumb = {
 }
 
 const breadcrumbs = computed<Crumb[]>(() => {
-  const path = currentRoute.path
-  // the added '/ ' is interpreted in the mapping as the link to Home
-  const crumbStrings: string[] =
-    path !== '/' ? ('/' + path).split('/').slice(1) : []
+  const routeName = currentRoute.name?.toString()
 
-  const crumbs: Crumb[] = crumbStrings
-    .filter((crumb) => {
-      // crumb must be truthy, otherwise trailing slashes will be parsed as a route
-      return crumb && !ignoredNavigationItems.includes(crumb)
-    })
-    .map((crumb: any) => {
-      return {
-        label:
-          // translate path parts with a name matching a navigation item
-          navigationItemsTranslated.value.find(
-            (item) => item.routeName === crumb
-          )?.label || // translate path parts with a name matching an algorithm id
-          algoritme.value?.name ||
-          crumb,
-        routeName: crumb,
-      }
-    })
+  const crumbStrings: string[] = currentRoute.path.split('/')
+  const crumbs: Crumb[] = crumbStrings.reduce(
+    (acc: Crumb[], crumb: string): Crumb[] => {
+      if (!crumb) return acc
+      if (['nl', 'en', 'fy', 'footer'].includes(crumb)) return acc
 
-  return crumbs.length > 0
-    ? [
-        {
-          label: 'Home',
-          routeName: '',
-        },
-        ...crumbs,
-      ]
-    : []
+      let crumbLabel = ''
+
+      const defaultName = navigationItemsTranslated.value.find(
+        (item) => item.routeName === crumb
+      )?.label
+      if (defaultName) crumbLabel = defaultName
+      else if (routeName?.includes('algoritme-slug-lars')) {
+        // Algoritme detail page. Ignore the slug for the breadcrumb.
+        // Checks if path part is a code (minus first character as it can be a C for previews)
+        if (isNaN(parseInt(crumb.slice(1)))) return acc
+        crumbLabel = algoritme.value?.name || ''
+      } else if (routeName?.includes('organisatie-orgCode')) {
+        // Organisation detail page
+        crumbLabel = organisation.value?.name || ''
+      } else return acc
+      acc.push({ label: crumbLabel, routeName: crumb })
+      return acc
+    },
+    []
+  )
+
+  // Add Home to the start if there is any routing at all.
+  if (crumbs.length > 0) crumbs.unshift({ label: 'Home', routeName: '' })
+  return crumbs
 })
 
 const breadcrumbsWithLinks = computed(() => breadcrumbs.value.slice(0, -1))

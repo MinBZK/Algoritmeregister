@@ -1,0 +1,34 @@
+[
+  {
+    "name": "",
+    "organization": "",
+    "description_short": "Amsterdam",
+    "algoritme_id": "1",
+    "standard_version": "0.4",
+    "state": "PUBLISHED"
+  },
+  {
+    "name": "",
+    "organization": "",
+    "description_short": "parkeren",
+    "algoritme_id": "2",
+    "standard_version": "0.4",
+    "state": "PUBLISHED"
+  },
+  {
+    "name": "",
+    "organization": "",
+    "description_short": "amsterdam rotterdam",
+    "algoritme_id": "3",
+    "standard_version": "0.4",
+    "state": "PUBLISHED"
+  },
+  {
+    "name": "",
+    "organization": "",
+    "description_short": "amsterdam parkeren",
+    "algoritme_id": "4",
+    "standard_version": "0.4",
+    "state": "PUBLISHED"
+  }
+]

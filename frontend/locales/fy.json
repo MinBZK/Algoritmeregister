@@ -1,0 +1,679 @@
+{
+  "algoritmeIndex": {
+    "pageTitle": "Sykje nei algoritmen",
+    "noResults": {
+      "p1": "Probearje it opnij. Jo kinne sykje op de folgjende wurden:",
+      "l1": "Wurden yn de namme (titel) fan it algoritme",
+      "l2": "Wurden yn de omskriuwing fan it algoritme",
+      "l3": "De namme fan de organisaasje dy't ferantwurdlik is foar it algoritme."
+    }
+  },
+  "language-picker": {
+    "language": "Taal"
+  },
+  "organisations": "Organisaasjes",
+  "organisation": "Organisaasje",
+  "filter": {
+    "choose": "Kies in {what}",
+    "organisation": "organisaasje",
+    "publicationcategory": "publikaasjekategory",
+    "organisationtype": "organisaasjetype",
+    "impact_assessment": "impacttoets",
+    "moreOptions": "Toan mear",
+    "lessOptions": "Toan minder",
+    "selectedFilters": "Filters",
+    "aria/remove": "{what} fuortsmite as filter",
+    "removeAll": "Ferwider seleksje",
+    "selectedFilter": {
+      "organisation": "Organisaasje",
+      "publicationcategory": "Publikaasjekategory",
+      "organisationtype": "Organisaasjetype",
+      "impact_assessment": "Impacttoets",
+      "searchtext": "Sykterm"
+    },
+    "sorting": "Sortearje {filter} op {what}",
+    "alfabetical": "alfabetyske folchoarder",
+    "numerical": "nûmer"
+  },
+  "searchSuggestion": {
+    "title": "Gean direkt nei in algoritmebeskriuwing"
+  },
+  "orgSuggestionSearch": {
+    "title": "Kies út de folgjende opsjes:",
+    "OrgSpecificSearch": "Algoritmebeskriuwingen fan {organisation}",
+    "OrgGenericSearch": "Algoritmebeskriuwingen wêryn de term '{searchQuery}' foarkomt",
+    "RedirectToOrgPage": "Organisaasjeside fan {organisation}"
+  },
+  "english?": "falsk",
+  "home-highlight-algorithm-text": "Of besjoch fuortendaliks ien fan de folgjende algoritmen",
+  "you-are-here": "Jo binne hjir",
+  "ontbreekt": "Fjild net ynfierd.",
+  "locales": {
+    "en": "Ingelsk",
+    "nl": "Nederlânsk",
+    "fy": "Frysk (bèta)"
+  },
+  "currentLanguage": "Nederlânsk",
+  "selectLanguage": "Dizze webside yn oare talen",
+  "foundResults": "Gjin algoritmen fûn | 1 resultaat fûn | {n} resultaten fûn",
+  "foundResultsOrganisations": "Gjin organisaasjes  | 1 resultaat fûn | {n} resultaten fûn",
+  "forSearch": " foar {searchQuery}",
+  "noResults": "Gjin algoritmen fûn foar de hjoeddeiske sykopdracht.",
+  "externalLink": "Link nei eksterne side",
+  "mailLink": "Link nei in e-mailadres",
+  "footer": {
+    "text": "Tink derom: dizze webside is yn ûntwikkeling. De ynformaasje feroaret faak. Wolle jo meihelpe?",
+    "textAskApply": "Meld jo dan oan",
+    "paths": {
+      "algoritme": "Algoritme-oersjoch",
+      "contact": "Kontakt",
+      "privacyverklaring": "Privacy",
+      "kwetsbaarheid-melden": "Kwetsberens melde",
+      "toegankelijkheid": "Tagonklikheid",
+      "archief": "Argyf",
+      "cookies": "Koekjes",
+      "vragen": "Faakstelde fragen",
+      "over": "Oer it Algoritmeregister",
+      "meedoen": "Meidwaan",
+      "over_algoritmes": "Oer algoritmen",
+      "release-notes": "Release-notysjes",
+      "ext_overheid_nl": "Oerheid.nl",
+      "ext_rijksoverheid_nl": "Ryksoerheid.nl",
+      "ext_digitaleoverheid_nl": "Digitale Oerheid",
+      "ext_data_overheid_nl": "Data.overheid.nl",
+      "ext_pleio": "Algoritmen.pleio.nl",
+      "zelf-aan-de-slag": "Begjin sels"
+    }
+  },
+  "algoritmeRegister": "Algoritme-register",
+  "goBack": "Werom nei alle algoritmen",
+  "orgPage": {
+    "head": "Organisaasje-oersjoch",
+    "title": "Organisaasje-oersjoch",
+    "contactInfo": "Mear ynformaasje: ",
+    "noAbout": "Dizze organisaasje hat noch gjin algemiene beskriuwing oanlevere.",
+    "aboutHeader": "Oer dizze organisaasje",
+    "goBackToOrg": "Werom nei alle organisaasjes",
+    "algorithmDescriptions": "Algoritmebeskriuwingen",
+    "alternativeAlgorithmDescriptions": "Dizze organisaasje hat de folgjende algoritmebeskriuwing(en) publisearre"
+  },
+  "short-description": "Koarte beskriuwing",
+  "short-description-missing": "In koarte beskriuwing ûntbrekt",
+  "yes": "Ja",
+  "no": "Nee",
+  "hello": "Hallo, {name}!",
+  "language": "Taal",
+  "homepageTitle": "it Algoritmeregister fan de Nederlânske oerheid",
+  "searchExplanation": "Fyn ien fan de {n} algoritmen",
+  "searchExplanationOrganisations": "Fyn ien fan de {n} organisaasjes",
+  "algorithms": "algoritmen",
+  "logoCaption": "it Algoritmeregister",
+  "searchHint": "Wêr binne jo nei op syk?",
+  "search": "Sykje",
+  "downloadAllAlgorithms": "Download alle algoritmen",
+  "downloadThisAlgorithm": "Download dit algoritme",
+  "switchToLanguage": "Tone yn it {language}",
+  "showFilters": "Toan filters",
+  "hideFilters": "Ferbergje filters",
+  "removeSelection": "Ferwider seleksje",
+  "reportVulnerability": "Kwetsberens melde",
+  "genericResultCard": {
+    "readMore": "Lês mear",
+    "lastChange": "Lêst feroare op",
+    "publicationStandard": "Publikaasjestandaard"
+  },
+  "navigation": {
+    "home": "Home",
+    "algorithmRegister": "Algoritmen",
+    "footer": "Home",
+    "contact": "Kontakt",
+    "vragen": "Faakstelde fragen",
+    "over": "Oer it Algoritmeregister",
+    "over-algoritmes": "Oer algoritmen",
+    "meedoen": "Meidwaan",
+    "privacyverklaring": "Privacy",
+    "toegankelijkheid": "Tagonklikheid",
+    "archief": "Argyf",
+    "kwetsbaarheid-melden": "Kwetsberens melde",
+    "db": "Dashboard",
+    "release-notes": "Release-notysjes",
+    "organisatie": "Organisaasjes",
+    "zelf-aan-de-slag": "Begjin sels",
+    "dashboard" : "Dashboard"
+  },
+  "pagination": {
+    "page": "Side",
+    "goTo": "Gean nei side {n}",
+    "goToNextPage": "Gean nei folgjende side",
+    "goToPreviousPage": "Gean nei foarige side"
+  },
+  "homePageText": {
+    "paragraph1": "Op dizze webside publisearje oerheidsorganisaasjes de algoritmen dy't sy brûke yn har wurk.",
+    "paragraph2": "Der wurdt oan wurke om ynfloedrike algoritmen iepenbier te meitsjen. Sadat helder is hoe dizze algoritmen wurkje en hoe't dizze ynset wurde.",
+    "paragraph3Header": "Foarútgong",
+    "paragraph3part1": "Op dit stuit kinne jo hjir ",
+    "paragraph3part2": " algoritmen fine."
+  },
+  "dashboard": {
+    "informationType": "Type ynformaasje",
+    "select": "Selektearje",
+    "searchFor": "Sykje op",
+    "dashboardHeading": "Ynsjoch yn de registergegevens",
+    "countPerTypeTitle": "Algoritmen yn it register per ynformaasjetype",
+    "dateToday": "Datum",
+    "completenessTitle": "Mate fan folsleinens",
+    "totalCountText": "Oantal algoritmen",
+    "tableHeader": "Oantal registrearre algoritmen mei",
+    "fullyComplete": "Alle fjilden ynfierd",
+    "partiallyComplete": "Diels ynfierd",
+    "value": "Wearde",
+    "numberOfMatches": "Oantal",
+    "loadingText": "Oan it laden",
+    "totalPublishedAlgorithmDescriptions": "Totaal oantal algoritme beskriuwingen publisearre",
+    "totalJoinedOrganisations": "Totaal oantal oansletten organisaasjes",
+    "publishedAlgorithmDescriptions": "Oantal algoritme beskriuwingen publisearre",
+    "joinedOrganisations": "Oantal oansletten organisaasjes",
+    "brokenLinks": "Oantal brutsen keppelings",
+    "statusErrorCode": "Code",
+    "publicationCategories": "Publikaasje kategoryen",
+    "top20Organisations": "Top-20 organisaasjes",
+    "moreInfo": "Klik op in rigel foar mear ynformaasje.",
+    "title": "Dashboard",
+    "expandOverview": "Alles útwreidzje",
+    "collapseOverview": "Alles ynstoarte",
+    "onTheMap": "Op de kaart",
+    "municipalities": "Gemeenten",
+    "provinces": "Provinsjes",
+    "waterAuthorities": "Wetterskippen",
+    "environmentalServices": "Miljeu tsjinsten",
+    "clickOnMunicipality": "Klik op in gemeente",
+    "clickOnProvince": "Klik op in provinsje",
+    "clickOnWaterAuthority": "Klik op in wetterskip",
+    "clickOnEnvironmentalService": "Klik op in miljeutsjinst",
+    "legendGreen": "Is oansletten en hat publisearre yn it register.",
+    "legendYellow": "Is oansletten mar is noch net publisearre.",
+    "legendWhite": "Is noch net ferbûn mei it register.",
+    "municipalityMapDescription": "Hjir is te sjen hokker gemeenten yn Nederlân oansletten binne en publisearre hawwe yn it Algoritmeregister.",
+    "provinceMapDescription": "Hjir is te sjen hokker provinsjes yn Nederlân oansletten binne en publisearre hawwe yn it Algoritmeregister.",
+    "waterAuthoritiesMapDescription": "Hjir is te sjen hokker wetterskippen yn Nederlân oansletten binne en publisearre hawwe yn it Algoritmeregister.",
+    "environmentalServicesMapDescription": "Hjir is te sjen hokker miljeu tsjinsten yn Nederlân oansletten binne en publisearre hawwe yn it Algoritmeregister.",
+    "publishedAlgorithmDescription": "Dit lit sjen hoefolle algoritmebeskriuwings yn de lêste 12 moannen yn it Algoritmeregister publisearre binne.",
+    "joinedOrganisationsDescription": "Dit lit sjen hoefolle organisaasjes per moanne ferbûn binne mei it Algoritmeregister.",
+    "brokenLinksDescription": "Hjir wurdt per dei sjen litten hoefolle referinsjes yn publisearre algoritme-beskriuwings ferskine dy't net mear wurkje of wêrfan de reaksjetiid te stadich is (mear as 5 sekonden). Dizze kontrôle is yn ûntwikkeling. It is mooglik dat wurkferwizings wurde ferkeard rapportearre.",
+    "publicationCategoriesDescription": "Dit lit sjen hoefolle algoritmebeskriuwings yn 'e publikaasjekategoryen 'High-risk AI-systeem', 'Impactful algoritmen' en 'Oare algoritmen' binne publisearre yn it Algoritmeregister.",
+    "top20OrganisationsDescription": "Hjir binne de tweintich organisaasjes te sjen dy't de measte algoritmebeskriuwings publisearre hawwe yn it Algoritmeregister.",
+    "algorithm": "Algoritme",
+    "organisation": "Organisaasje",
+    "brokenLink": "Brutsen keppeling",
+    "date": "Datum",
+    "month": "Moanne",
+    "andFurther": "En fierder",
+    "showDatatable": "Gegevenstabel sjen litte",
+    "hideDatatable": "Ferbergje datatabel",
+    "showGraph": "Grafyk sjen litte",
+    "showMap": "Kaart sjen litte",
+    "brokenLinksTableTitle": "Net-wurkjende en te trage ferwizings",
+    "disclaimer": "Dit oersjoch lit sjen hokker algoritmebeskriuwingen ien of mear ferwizings befetsje dy't net mear wurkje of wêrfan de reaksjetiid te traach is (mear as 5 sekonden). Dizze kontrôle is yn ûntwikkeling. It is mooglik dat wol-wurkjende ferwizings ûnrjochtlik rapportearre wurde.",
+    "name": "Namme",
+    "indication": "Oanwizing"
+  },
+  "getAlgorithmPropertyExplanation": "Utlis oer it algoritme-eigenskip '{field}'",
+  "algorithmProperties": {
+    "default": {
+      "headers": {
+        "algemeneInformatie": "Algemene ynformaasje",
+        "inzet": "Ynset",
+        "toepassing": "Tapassing",
+        "toezicht": "Tafersjoch",
+        "juridisch": "Juridysk",
+        "metadata_algorithm": "Metadata"
+      },
+      "name": {
+        "label": "Namme",
+        "description": "De namme dy't brûkt wurdt om it algoritme oan te tsjutten."
+      },
+      "organization": {
+        "label": "Organisaasje",
+        "description": "De folsleine namme fan de organisaasje ferantwurdlik foar de ynset fan it algoritme."
+      },
+      "department": {
+        "label": "Ôfdieling",
+        "description": "De folsleine namme fan de ôfdieling of divyzje ferantwurdlik foar de ynset fan it algoritme."
+      },
+      "description_short": {
+        "label": "Koarte omskriuwing",
+        "description": "In koarte, abstrakte beskriuwing fan it algoritme (max. 150 tekens)."
+      },
+      "type": {
+        "label": "Type algoritme",
+        "description": "Is it algoritme op regels basearre of selslearjend? Regelbasearre algoritmen binne mei de hân troch minsken boud, meast op basis fan wetten of feroarderingen. Selslearjende algoritmen kinne sels ferbannen ûntdekke yn gegevens."
+      },
+      "category": {
+        "label": "Beliedsterrein",
+        "description": "Trefwurden oer it beliedsterrein wêryn't it algoritme wurdt ynset."
+      },
+      "website": {
+        "label": "Link nei publykspagina",
+        "description": "In URL nei in publykspagina fan de organisaasje sels. Op dizze side kinne jo mear fine oer de ynset fan it algoritme binnen de organisaasje."
+      },
+      "status": {
+        "label": "Status",
+        "description": "De status fan it algoritme: yn ûntwikkeling, yn gebrûk, of bûten gebrûk."
+      },
+      "goal": {
+        "label": "Doel",
+        "description": "It doel wêrfoar't it algoritme ûntwikkele is en/of hoe't de ynset dêrfan bydraacht oan it berikken fan dy doelen."
+      },
+      "impact": {
+        "label": "Impact",
+        "description": "De impact fan it algoritme op boargers en bedriuwen. Bygelyks: hoe wurket it algoritme en wat binne de ferwachte konsekwinsjes dêrfan foar it yndividu of bedriuw?"
+      },
+      "proportionality": {
+        "label": "Proportionaliteit",
+        "description": "In ôfwaging fan de foar- en neidielen fan de ynset fan it algoritme en wêrom dit ridlik rjochtfeardige is."
+      },
+      "decision_making_process": {
+        "label": "Proses",
+        "description": "De namme fan it bedriuws- of beslútfoarmingsproses yn de organisaasje wêrbinnen it algoritme wurdt ynset."
+      },
+      "documentation": {
+        "label": "Link nei projekt-side",
+        "description": "URL fan de projekt-side fan de organisaasje sels oer dit spesifike gebrûk fan it algoritme."
+      },
+      "description": {
+        "label": "Omskriuwing",
+        "description": "In útwreide beskriuwing fan it algoritme (500-10000 tekens)."
+      },
+      "application_url": {
+        "label": "Link nei ûntwikkelder",
+        "description": "In URL nei in applikaasjeside fan de ûntwikkelder. Op dizze side kinne jo mear algemiene technyske ynformaasje fine oer it algoritme en de ûntwikkelder sels."
+      },
+      "publiccode": {
+        "label": "Link nei boarnekoade",
+        "description": "In URL nei de koadeside fan de ûntwikkelder. Op dizze side kinne jo mear fine oer de koade fan it algoritme sels."
+      },
+      "mprd": {
+        "label": "Keppelings mei basisregistraasjes",
+        "description": "Makket it algoritme direkt gebrûk fan gegevens út it Stelsel fan Basisregistraasjes? Mear ynformaasje is te finen op https://www.digitaleoverheid.nl/"
+      },
+      "source_data": {
+        "label": "Databoarnen",
+        "description": "In oersjoch fan de databoarnen dy't op dit stuit brûkt wurde troch it algoritme en/of yn it begjin brûkt binne by it meitsjen fan it algoritme."
+      },
+      "methods_and_models": {
+        "label": "Metoaden en modellen",
+        "description": "Standert metoaden of modellen dy't it algoritme brûkt."
+      },
+      "monitoring": {
+        "label": "Monitoring",
+        "description": "In oersjoch fan hoe't de ynset fan it algoritme wurdt monitorearre."
+      },
+      "human_intervention": {
+        "label": "Minskele tuskenkomst",
+        "description": "In omskriuwing fan hoe't útkomsten fan it algoritme troch in minske kontrolearre en bysteld (kinne) wurde."
+      },
+      "risks": {
+        "label": "Risiko's",
+        "description": "In oersjoch fan de foarsjoene risiko's by de ynset fan it algoritme."
+      },
+      "performance_standard": {
+        "label": "Prestaasjenoarmen",
+        "description": "In omskriuwing fan de ferwachte prestaasjes fan it algoritme en hoe't dy wurde metten."
+      },
+      "competent_authority": {
+        "label": "Befoege autoriteit",
+        "description": "Folsleine namme fan de befoege autoriteit ferantwurdlik foar de ynset fan it algoritme."
+      },
+      "lawful_basis": {
+        "label": "Wettlike grûnslach",
+        "description": "In omskriuwing of in link nei de wettlike grûnslach foar de ynset fan it algoritme. Bygelyks: in wet, in feroardering of in formeel beslút."
+      },
+      "iama": {
+        "label": "Impact Assessment Minskerjochten en Algoritmen (IAMA)",
+        "description": "Is it algoritme toetst op it neikommen fan minskerjochten mei in Impact Assessment Minskerjochten en Algoritmen (IAMA)?"
+      },
+      "iama_description": {
+        "label": "Omskriuwing fan de IAMA",
+        "description": "In oersjoch fan de wichtichste saken dy't út de impact assessment minskejochten en algoritmen (IAMA) nei foaren kamen."
+      },
+      "dpia": {
+        "label": "Data Protection Impact Assessment (DPIA)",
+        "description": "Is it algoritme toetst op feilich gebrûk fan gegevens mei in Data Protection Impact Assessment (DPIA)?"
+      },
+      "dpia_description": {
+        "label": "Omskriuwing fan de DPIA",
+        "description": "In oersjoch fan de wichtichste saken dy't út de data protection impact assessment (DPIA) nei foaren kamen."
+      },
+      "objection_procedure": {
+        "label": "Beswierproseduere",
+        "description": "In omskriuwing fan hoe't boargers en bedriuwen beswier meitsje kinne tsjin de útkomsten fan it algoritme."
+      },
+      "standard_version": {
+        "label": "Skema",
+        "description": "It skema brûkt foar dizze registraasje yn masjine lêsber formaat."
+      },
+      "uuid": {
+        "label": "UUID",
+        "description": "De unike identifikaasje (UUID) foar dizze registraasje."
+      },
+      "url": {
+        "label": "Link nei de boarneregistraasje",
+        "description": "De URL fan de lokaasje wêr't dit algoritme earder al is fêstlein; yn masjine lêsber formaat."
+      },
+      "contact_email": {
+        "label": "E-mailadres fan de kontaktperoan",
+        "description": "It e-mailadres foar kontakt oer dizze registraasje."
+      },
+      "area": {
+        "label": "Geografysk gebiet",
+        "description": "It geografyske gebiet wêryn't it algoritme wurdt ynset."
+      },
+      "lang": {
+        "label": "Taal",
+        "description": "De taal wêryn dizze registraasje is ynfierd."
+      },
+      "revision_date": {
+        "label": "Herzieningsdatum",
+        "description": "De datum wêrop dizze registraasje moat wurde herzien."
+      },
+      "source_id": {
+        "label": "Boarne-ID",
+        "description": "De unike koade fan dit algoritme yn it register fan de eigner"
+      },
+      "provider": {
+        "label": "Leveransier",
+        "description": "Yn gefal fan tapassing, de eksterne leveransier fan it algoritme."
+      },
+      "process_index_url": {
+        "label": "Link nei ferwurkingsregister",
+        "description": "De link nei de AVG-ferwurking yn in iepenbier register fan it algoritme."
+      },
+      "tags": {
+        "label": "Tags",
+        "description": "Trefwurden oer it algoritme, om de fynberens fan in algoritmeregistraasje te fergrutsjen."
+      }
+    },
+    "0_4": {
+      "headers": {
+        "algemeneInformatie": "Algemene ynformaasje",
+        "verantwoordGebruik": "Ferantwurde gebrûk",
+        "technischeWerking": "Technyske wurking"
+      },
+      "name": {
+        "label": "Namme",
+        "description": "De namme dy't brûkt wurdt om it algoritme oan te tsjutten."
+      },
+      "organization": {
+        "label": "Organisaasje",
+        "description": "De folsleine namme fan de organisaasje wêr't it algoritme ynset wurdt."
+      },
+      "description_short": {
+        "label": "Koarte omskriuwing",
+        "description": "In koarte beskriuwing fan it algoritme."
+      },
+      "type": {
+        "label": "(Sels)learend",
+        "description": "Is it algoritme selslearend? Yn in net-selslearend algoritme spesifisearret de minske de regels dy't de kompjûter folgje moat. As it in selslearend algoritme is, leart de masine oer de patroanen yn de gegevens."
+      },
+      "category": {
+        "label": "Beliedsterrein",
+        "description": "It beliedsterrein wêryn't it algoritme wurdt ynset."
+      },
+      "website": {
+        "label": "Link nei publykspagina",
+        "description": "In URL nei in publykspagina fan de organisaasje sels. Op dizze side kinne jo mear fine oer de ynset fan it algoritme binnen de organisaasje."
+      },
+      "status": {
+        "label": "Status",
+        "description": "De status fan it algoritme: yn ûntwikkeling, yn gebrûk, of bûten gebrûk."
+      },
+      "begin_date": {
+        "label": "Begjindatum",
+        "description": "Moanne wêryn't it algoritme yn gebrûk nommen is."
+      },
+      "end_date": {
+        "label": "Einddatum",
+        "description": "Moanne wêryn't it algoritme bûten gebrûk nommen is."
+      },
+      "goal": {
+        "label": "Doel en impact",
+        "description": "It doel wêrfoar't it algoritme ûntwikkele is en wat foar impact de ynset hat op boargers en bedriuwen."
+      },
+      "proportionality": {
+        "label": "Afwagings",
+        "description": "In ôfwaging fan de foar- en neidielen fan de ynset fan it algoritme en wêrom dit ridlik rjochtfeardige is."
+      },
+      "provider": {
+        "label": "Leveransier",
+        "description": "Yn gefal fan tapassing, de eksterne leveransier fan it algoritme."
+      },
+      "lawful_basis": {
+        "label": "Wettlike basis",
+        "description": "In omskriuwing fan de wettlike basis foar it proses wêryn't it algoritme ynset wurdt."
+      },
+      "lawful_basis_link": {
+        "label": "Link nei wettlike basis",
+        "description": "In link nei de wettlike grûnslach(en) foar it proses wêryn't it algoritme ynset wurdt."
+      },
+      "impacttoetsen": {
+        "label": "Impacttoetsen",
+        "description": "Hokker impacttoetsen binne brûkt, lykas Data Protection Impact Assesment (DPIA) of Impact Assessment Minskerjochten en Algoritmen (IAMA)?"
+      },
+      "iama_description": {
+        "label": "Link nei Minskerjochtentoets",
+        "description": "Link nei de resultaten fan in útfierde impacttoets, lykas in DPIA IAMA."
+      },
+      "url": {
+        "label": "Link nei boarneregistraasje",
+        "description": "De URL fan de lokaasje wêr't dit algoritme earder al is fêstlein; yn masjine lêsber formaat."
+      },
+      "contact_email": {
+        "label": "Kontaktgegevens",
+        "description": "De kontaktgegevens foar dizze registraasje."
+      },
+      "lang": {
+        "label": "Taal",
+        "description": "De taal wêryn dizze registraasje is ynfierd."
+      },
+      "standard_version": {
+        "label": "Publikaasjestandaard",
+        "description": "De ferzje fan de publikaasjestandaard wêryn dit algoritme yn registrearre is."
+      },
+      "uuid": {
+        "label": "Lânslik-ID",
+        "description": "De unike koade fan dit algoritme yn it lânslike register."
+      },
+      "source_id": {
+        "label": "Boarne-ID",
+        "description": "De unike koade fan dit algoritme yn it register fan de eigner."
+      },
+      "tags": {
+        "label": "Tags",
+        "description": "Trefwurden oer it algoritme, om de fynberens fan in algoritmeregistraasje te fergrutsjen."
+      },
+      "source_data": {
+        "label": "Gegevens",
+        "description": "In oersjoch fan de gegevens dy't brûkt wurde troch it algoritme en/of yn it begjin brûkt binne by it meitsjen fan it algoritme."
+      },
+      "source_data_link": {
+        "label": "Link nei gegevensboarnen",
+        "description": "Links nei oanfoljende ynformaasje oer de brûkte gegevensboarnen."
+      },
+      "methods_and_models": {
+        "label": "Technyske wurking",
+        "description": "Utlis fan hoe't it algoritme wurket."
+      },
+      "publiccode": {
+        "label": "Link nei boarnekoade",
+        "description": "In URL nei de koadeside fan de ûntwikkelder. Op dizze side kinne jo mear fine oer de koade fan it algoritme sels."
+      },
+      "human_intervention": {
+        "label": "Minskele tuskenkomst",
+        "description": "In omskriuwing fan hoe't útkomsten fan it algoritme troch in minske brûkt wurde, en op hokker wize dizze brûkt, kontrolearre en bysteld (kinne) wurde."
+      },
+      "risks": {
+        "label": "Risikobehear",
+        "description": "In oersjoch fan de foarsjoene risiko's by de ynset fan it algoritme."
+      }
+    },
+    "1_0": {
+      "headers": {
+        "algemeneInformatie": "Algemene ynformaasje",
+        "verantwoordGebruik": "Ferantwurde gebrûk",
+        "werking": "Wurking",
+        "metadata": "Metadata"
+      },
+      "name": {
+        "label": "Namme",
+        "description": "De namme dy't brûkt wurdt om it algoritme oan te tsjutten."
+      },
+      "organization": {
+        "label": "Organisaasje",
+        "description": "De folsleine namme fan de organisaasje wêr't it algoritme ynset wurdt."
+      },
+      "description_short": {
+        "label": "Koarte omskriuwing",
+        "description": "In koarte beskriuwing fan it algoritme."
+      },
+      "type": {
+        "label": "(Sels)learend",
+        "description": "Is it algoritme selslearend? In net-selslearend algoritme lit de minske de regels spesifisearje dy't de kompjûter folgje moat. As it in selslearend algoritme is, leart de masine oer de patroanen yn de gegevens."
+      },
+      "category": {
+        "label": "Tema",
+        "description": "It beliedsterrein wêryn't it algoritme wurdt ynset."
+      },
+      "publication_category": {
+        "label": "Publicatiecategorie",
+        "description": "Om te bepalen hokker algoritmen publisearre wurde moatte, is ûnderskied makke tusken ynfloedrike en oare algoritmen. Ek definiearret de AI-feroardening ‘Heech-risiko AI-systemen'."
+      },
+      "lawful_basis_grouping": {
+        "label": "Links nei wettlike basis",
+        "description": "Links nei de wettlike grûnslach(en) foar it proses wêryn't it algoritme ynset wurdt."
+      },
+      "source_data_grouping": {
+        "label": "Links nei gegevensboarnen",
+        "description": "Link nei oanfoljende ynformaasje oer de brûkte gegevensboarne."
+      },
+      "impacttoetsen_grouping": {
+        "label": "Impacttoetsen",
+        "description": "Namme fan impacttoets útfierd lykas in DPIA of IAMA en mooglikheid om in link op te nimmen nei de resultaten fan in útfierde ynfloedtest"
+      },
+      "impacttoetsen": {
+        "label": "Taljochting op impacttoetsen",
+        "description": "Taljochting wêrom't bepaalde impacttoetsen net dien binne."
+      },
+      "process_index_url": {
+        "label": "Link nei ferwurkingsregister",
+        "description": "Link nei in iepenbier diel fan in ferwurkingsregister dat betrekking hat op in algoritme. Dêr kin mear lêzen wurde oer ferwurkingen."
+      },
+      "website": {
+        "label": "Link nei publykspagina",
+        "description": "In URL nei in publykspagina fan de organisaasje sels. Op dizze side kinne jo mear fine oer de ynset fan it algoritme binnen de organisaasje."
+      },
+      "status": {
+        "label": "Status",
+        "description": "De status fan it algoritme: yn ûntwikkeling, yn gebrûk, of bûten gebrûk."
+      },
+      "begin_date": {
+        "label": "Begjindatum",
+        "description": "Moanne wêryn't it algoritme yn gebrûk nommen is."
+      },
+      "end_date": {
+        "label": "Einddatum",
+        "description": "Moanne wêryn't it algoritme bûten gebrûk nommen is."
+      },
+      "goal": {
+        "label": "Doel en impact",
+        "description": "It doel wêrfoar't it algoritme ûntwikkele is en wat foar impact de ynset hat op boargers en bedriuwen."
+      },
+      "proportionality": {
+        "label": "Afwagings",
+        "description": "In ôfwaging fan de foar- en neidielen fan de ynset fan it algoritme en wêrom dit ridlik rjochtfeardige is."
+      },
+      "provider": {
+        "label": "Leveransier",
+        "description": "Yn gefal fan tapassing, de eksterne leveransier fan it algoritme."
+      },
+      "lawful_basis": {
+        "label": "Wettlike basis",
+        "description": "In omskriuwing fan de wettlike basis foar it proses wêryn't it algoritme ynset wurdt."
+      },
+      "url": {
+        "label": "Link nei boarneregistraasje",
+        "description": "De URL fan de lokaasje wêr't dit algoritme earder al is fêstlein; yn masjine lêsber formaat."
+      },
+      "contact_email": {
+        "label": "Kontaktgegevens",
+        "description": "De kontaktgegevens foar dizze registraasje."
+      },
+      "lang": {
+        "label": "Taal",
+        "description": "De taal wêryn dizze registraasje is ynfierd."
+      },
+      "standard_version": {
+        "label": "Publicatiestandaard",
+        "description": "De ferzje fan de publikaasjestandaard wêryn dit algoritme yn registrearre is."
+      },
+      "uuid": {
+        "label": "Lânslik-ID",
+        "description": "De unike koade fan dit algoritme yn it lânslike register."
+      },
+      "source_id": {
+        "label": "Boarne-ID",
+        "description": "De unike koade fan dit algoritme yn it register fan de eigner."
+      },
+      "tags": {
+        "label": "Tags",
+        "description": "Trefwurden oer it algoritme, om de fynberens fan in algoritmeregistraasje te fergrutsjen."
+      },
+      "source_data": {
+        "label": "Gegevens",
+        "description": "In oersjoch fan de gegevens dy't brûkt wurde troch it algoritme en/of yn it begjin brûkt binne by it meitsjen fan it algoritme."
+      },
+      "methods_and_models": {
+        "label": "Technyske wurking",
+        "description": "Utlis fan hoe't it algoritme wurket."
+      },
+      "publiccode": {
+        "label": "Link nei boarnekoade",
+        "description": "In URL nei de koadeside fan de ûntwikkelder. Op dizze side kinne jo mear fine oer de koade fan it algoritme sels."
+      },
+      "human_intervention": {
+        "label": "Minskele tuskenkomst",
+        "description": "In omskriuwing fan hoe't útkomsten fan it algoritme troch in minske brûkt wurde, en op hokker wize dizze brûkt, kontrolearre en bysteld (kinne) wurde."
+      },
+      "risks": {
+        "label": "Risikobehear",
+        "description": "In oersjoch fan de foarsjoene risiko's by de ynset fan it algoritme."
+      }
+    }
+  },
+  "error": {
+    "pageNotFound": "Side net fûn",
+    "goToHome": "Gean nei de thússide"
+  },
+  "weekDays": {
+    "1": "snein",
+    "2": "moandei",
+    "3": "tiisdei",
+    "4": "woansdei",
+    "5": "tongersdei",
+    "6": "freed",
+    "7": "sneon"
+  },
+  "months": {
+    "1": "jannewaris",
+    "2": "febrewaris",
+    "3": "maart",
+    "4": "april",
+    "5": "maaie",
+    "6": "juny",
+    "7": "july",
+    "8": "augustus",
+    "9": "septimber",
+    "10": "oktober",
+    "11": "novimber",
+    "12": "desimber"
+  }
+}

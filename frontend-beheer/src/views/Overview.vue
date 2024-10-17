@@ -1,24 +1,18 @@
 <template>
+  <v-row v-if="selectedOrg?.flow === 'self_publish_two'">
+    <v-alert title="Let op!" type="warning">
+      Deze organisatie mag zelf algoritmebeschrijvingen publiceren. In verband
+      met ontwikkeling is gekozen om dit alleen beschikbaar te maken op de nieuwste versie van het 
+      webformulier: <a href="https://algoritmes.overheid.nl/webformulier2024"> Deze kan je hier vinden. </a>
+      Als je dit bericht ziet kan je niet meer werken op deze pagina, en moet je het nieuwe webformulier
+      gebruiken om onvoorziene problemen te voorkomen.
+    </v-alert>
+  </v-row>
   <v-row>
     <v-col class="d-flex align-center mt-10">
       <h1 :class="{ 'text-h4 px-0': true }">
         Overzicht {{ authStore.selectedOrg?.name }}
       </h1>
-      <v-btn
-        v-if="authStore.canEditOrg"
-        icon
-        class="ml-2"
-        flat
-      >
-        <v-icon size="25">
-          mdi-pencil
-        </v-icon>
-        <organisation-dialog
-          mode="edit"
-          :initial="authStore.selectedOrg!"
-          @confirm="(org) => updateOrg(authStore.selectedOrg!, org)"
-        />
-      </v-btn>
     </v-col>
     <v-col
       v-if="authStore.organisations.length != 0"
@@ -43,27 +37,7 @@
             variant="outlined"
             hide-details
             @update:model-value="authStore.selectOrganisation($event)"
-          >
-            <template v-if="authStore.canAddOrg" #append>
-              <v-btn
-                flat
-                style="height: 100%; max-width: 52px; min-width: 52px"
-                color="rgba(173,192,212, 1)"
-                variant="outlined"
-                rounded="0"
-              >
-                <v-icon
-                  size="28"
-                  icon="mdi-plus"
-                  color="blue-darken-3"
-                />
-                <organisation-dialog
-                  mode="create"
-                  @confirm="(org) => addOrg(org)"
-                />
-              </v-btn>
-            </template>
-          </v-autocomplete>
+          />
         </v-row>
       </template>
       <v-row>
@@ -127,7 +101,7 @@
       >
         <template #item.actions="{ item }">
           <v-hover>
-            <div style="display: flex; align-items: flex-end">
+            <div class="flex-container-align-items">
               <v-btn
                 size="small"
                 class="me-2"
@@ -157,18 +131,20 @@
 
 <script lang="ts" setup>
 import DownloadDropdown from '@/components/DownloadDropdown.vue'
-import OrganisationDialog from '@/components/OrganisationDialog.vue'
 import { useAuthStore } from '@/store/auth'
 import { useAlgorithmStore } from '@/store/overview'
 import { computed, watch, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { Algorithm } from '@/types/algorithm'
 import { Organisation } from '@/types/organisation'
-import { createOrganisation, updateOrganisation } from '@/services/organisation'
+import { useFormDataStore } from '@/store/form-data'
 
 const router = useRouter()
 const authStore = useAuthStore()
 const algorithmStore = useAlgorithmStore()
+const dataStore = useFormDataStore()
+
+dataStore.unsavedChanges = false
 
 const selectedOrg = ref<Organisation>()
 if (authStore.selectedOrg) {
@@ -200,49 +176,6 @@ const navigateToForm = (event: Event, data: any) => {
 
 const singleOrgOverview = computed(() => authStore.organisations.length == 1)
 
-const addOrg = async (org: Organisation) => {
-  try {
-    await createOrganisation(org)
-  } catch (error: any) {
-    if (error.data == 'NAME_TAKEN') {
-      algorithmStore.error = `Nieuwe organisatie aanmaken mislukt; De naam ${org.name} is al in gebruik.`
-    } else if (error.data == 'CODE_TAKEN') {
-      algorithmStore.error = `Nieuwe organisatie aanmaken mislukt; De code ${org.code} is al in gebruik.`
-    }
-    return
-  }
-  authStore.organisations.push(org)
-  authStore.selectOrganisation(org.code)
-  algorithmStore.error = ''
-  algorithmStore.success = 'Organisatie toegevoegd!'
-}
-
-const updateOrg = async (
-  selectedOrg: Organisation,
-  orgChanges: Organisation
-) => {
-  try {
-    await updateOrganisation(selectedOrg.code, orgChanges)
-  } catch (error: any) {
-    if (error.data == 'NAME_TAKEN') {
-      algorithmStore.error = `Organisatie aanpassen mislukt; De naam ${orgChanges.name} is al in gebruik.`
-    } else if (error.data == 'CODE_TAKEN') {
-      algorithmStore.error = `Organisatie aanpassen mislukt; De code ${orgChanges.code} is al in gebruik.`
-    }
-    return
-  }
-  authStore.organisations = authStore.organisations.map((org) => {
-    if (org.code == selectedOrg.code) {
-      return orgChanges
-    } else {
-      return org
-    }
-  })
-  authStore.selectOrganisation(orgChanges.code)
-  algorithmStore.error = ''
-  algorithmStore.success = 'Organisatie aangepast!'
-}
-
 watch(
   () => authStore.selectedOrg,
   () => algorithmStore.fetchAlgorithms(authStore.selectedOrg!)
@@ -265,12 +198,19 @@ watch(
   }
 }
 
-.btn-title:first-letter {
-  text-transform: capitalize;
-}
-
 .new-algorithm-button {
   min-height: 41px;
+}
+
+.can-add-org-style {
+  height: 100%;
+  max-width: 52px;
+  min-width: 52px;
+}
+
+.flex-container-align-items {
+  display: flex;
+  align-items: flex-end;
 }
 
 :deep(.org-selector) {

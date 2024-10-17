@@ -10,6 +10,7 @@ class AlgoritmeIn(BaseModel):
 class AlgoritmeDB(AlgoritmeIn):
     id: int
     create_dt: datetime.datetime
+    owner: str
 
     class Config:
         orm_mode = True

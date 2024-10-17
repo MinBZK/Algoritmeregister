@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session
 from app import schemas
 from app.schemas.config.types import SchemaProperty
 from app.config.layouts.types import LayoutJson
+from app.schemas.misc import Language
 from app.util.config_load import get_ttl_hash, collect_structure_data
 from app.repositories import AlgoritmeVersionRepository
 
@@ -15,7 +16,7 @@ from app.repositories import AlgoritmeVersionRepository
 def get_org_data(db: Session, org_name: str) -> list[schemas.AlgoritmeVersionDownload]:
     algoritme_version_repository = AlgoritmeVersionRepository(db)
     algorithms = algoritme_version_repository.get_latest_by_org_by_lang(
-        org_name, schemas.Language.NLD
+        org_name, Language.NLD
     )
     return [schemas.AlgoritmeVersionDownload(**row.dict()) for row in algorithms]
 
@@ -23,32 +24,38 @@ def get_org_data(db: Session, org_name: str) -> list[schemas.AlgoritmeVersionDow
 def get_algo_data(db: Session, lars: str) -> schemas.AlgoritmeVersionDownload | None:
     algoritme_version_repository = AlgoritmeVersionRepository(db)
     algorithm = algoritme_version_repository.get_latest_by_lars_by_lang(
-        lars, schemas.Language.NLD
+        lars, Language.NLD
     )
     if algorithm:
         return schemas.AlgoritmeVersionDownload(**algorithm.dict())
 
 
-def insert_rich_text_field(doc: document.Document, field: str):
-    lines = field.replace("<p>", "<div>").replace("</p>", "</div>")
-    lines = lines.split("\n")
+def insert_rich_text_field(doc, field: str):
+    from bs4 import BeautifulSoup, Tag
 
+    soup = BeautifulSoup(field, "html.parser")
     current_key_type = None
-    for line in lines:
-        line = line.replace("<br>", "\n")
-        if line.startswith("<div>"):
-            text = line.replace("<div>", "").replace("</div>", "").strip()
-            if text != "":
-                doc.add_paragraph(text)
-        elif line.startswith("<ul>"):
-            current_key_type = "List Bullet"
-        elif line.startswith("<ol>"):
-            current_key_type = "List Number"
-        elif line.startswith("<li>"):
-            text = line.replace("<li>", "").replace("</li>", "").strip()
-            doc.add_paragraph(text, style=current_key_type)
-        elif line.startswith("</ul>") or line.startswith("</ol>"):
-            current_key_type = None
+
+    for tag in soup.descendants:
+        if isinstance(tag, Tag):
+            if tag.name in ["div", "p"]:
+                if tag.find("p"):
+                    continue
+                else:
+                    text = tag.get_text(strip=True)
+                    if text:
+                        doc.add_paragraph(text)
+            elif tag.name == "ul":
+                current_key_type = "List Bullet"
+            elif tag.name == "ol":
+                current_key_type = "List Number"
+            elif tag.name == "li":
+                text = tag.get_text(strip=True)
+                if current_key_type:
+                    doc.add_paragraph(text, style=current_key_type)
+            elif tag.name == "br":
+                doc.add_paragraph("")
+
     return doc
 
 
@@ -62,10 +69,10 @@ def insert_list_field(doc: document.Document, field: list[str] | list[dict]):
     elif type(field[0]) == dict:
         if len(field) > 1:
             for bullet in field:
-                stringified_dict = ", ".join(dict(bullet).values())  # type: ignore
+                stringified_dict = ", ".join(filter(None, dict(bullet).values()))  # type: ignore
                 doc.add_paragraph(stringified_dict, style="List Bullet")
         else:
-            stringified_dict = ", ".join(field[0].values())
+            stringified_dict = ", ".join(filter(None, field[0].values()))
             doc.add_paragraph(stringified_dict)
     return doc
 
@@ -186,7 +193,7 @@ contact op met: algoritmeregister@minbzk.nl."""
     doc.save(stream)
     stream.seek(0)
 
-    filename = f"{name} {timestamp}.docx"
+    filename = f"{name.encode('utf-8')} {timestamp}.docx"
     return stream, filename
 
 

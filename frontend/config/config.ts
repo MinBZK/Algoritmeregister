@@ -1,10 +1,8 @@
 // To accomodate varying titles and helptext for different versions
 const textVersionMapping: { [key: string]: string } = {
-  '0.1.0': 'default',
-  '0.2.3': 'default',
-  '0.3.1': 'default',
-  '0.4.0': '0_4_0',
-  '1.0.0': '1_0_0',
+  '0.1': 'default',
+  '0.4': '0_4',
+  '1.0': '1_0',
 }
 
 const keys = {
@@ -52,8 +50,12 @@ const navigationItems = [
     routeName: 'toegankelijkheid',
   },
   {
-    localeName: 'navigation.webarchief',
-    routeName: 'webarchief',
+    localeName: 'navigation.archief',
+    routeName: 'archief',
+  },
+  {
+    localeName: 'navigation.kwetsbaarheid-melden',
+    routeName: 'kwetsbaarheid-melden',
   },
   {
     localeName: 'navigation.meedoen',
@@ -68,8 +70,16 @@ const navigationItems = [
     routeName: 'dashboard',
   },
   {
-    localeName: 'navigation.versie-informatie',
-    routeName: 'versie-informatie',
+    localeName: 'navigation.release-notes',
+    routeName: 'release-notes',
+  },
+  {
+    localeName: 'navigation.organisatie',
+    routeName: 'organisatie',
+  },
+  {
+    localeName: 'navigation.zelf-aan-de-slag',
+    routeName: 'zelf-aan-de-slag',
   },
 ]
 

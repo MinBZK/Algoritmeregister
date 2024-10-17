@@ -1,4 +1,5 @@
-FROM harbor.cicd.s15m.nl/ictu-devops-pub/algreg_etl_base AS buildstep
+# FIX IMAGE URI TO THE RELEVANT OPENSOURCE URI
+FROM <..>./algreg_etl_base AS buildstep
 
 # Make sure these are set, either here or in the base image.
 ENV YOUR_ENV=${YOUR_ENV}
@@ -23,7 +24,7 @@ COPY /etl/start.sh /etl/start.sh
 RUN poetry config virtualenvs.create false
 RUN poetry install --without dev --no-interaction --no-ansi
 
-FROM harbor.cicd.s15m.nl/ictu-devops-pub/python:3.11.1-lunar-devops_base_0.2
+FROM <..>./python:3.11.1-lunar-devops_base_0.2
 WORKDIR /etl
 COPY --from=buildstep /etl /etl
 

@@ -4,6 +4,19 @@ from typing import Any
 from sqlalchemy import inspect, VARCHAR
 from app.database.database import Base as SQLAlchemyModel
 
+_FILE_TEMPLATE = "app/services/translation/translation_spec_{}.json"
+
+
+def load_translation_spec(target_lang: str) -> dict:
+    """
+    Load the translation specifications from a file.
+
+    Defines the way fields should be translated (automatically or with default values)
+    """
+    translation_spec_file = _FILE_TEMPLATE.format(target_lang)
+    with open(translation_spec_file, "r") as file:
+        return json.load(file)
+
 
 class Preprocessor:
     """
@@ -16,28 +29,19 @@ class Preprocessor:
         3. Auto translate fields
     """
 
-    TRANSLATION_SPEC_FILE = "app/services/translation/translation_spec.json"
-
     def __init__(
-        self, model_instance: SQLAlchemyModel, attrs_to_delete: list[str] = None
+        self,
+        model_instance: SQLAlchemyModel,
+        attrs_to_delete: list[str] = None,
+        target_lang: str = "en",
     ):
         self.model_instance = model_instance
         self.attrs_to_delete = set(attrs_to_delete) if attrs_to_delete else set()
         self.model_attrs = (
             set(inspect(self.model_instance).attrs.keys()) - self.attrs_to_delete
         )
-        self.translation_spec = self._load_translation_spec()
+        self.translation_spec = load_translation_spec(target_lang)
         self.passed = set()
-
-    @classmethod
-    def _load_translation_spec(cls) -> dict:
-        """
-        Load the translation specifications from a file.
-
-        Defines the way fields should be translated (automatically or with default values)
-        """
-        with open(cls.TRANSLATION_SPEC_FILE, "r") as file:
-            return json.load(file)
 
     def _get_none_fields(self) -> set[str]:
         """

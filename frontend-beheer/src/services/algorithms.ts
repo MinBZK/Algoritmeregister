@@ -7,6 +7,9 @@ import {
   CreateAlgorithmResponse,
   RemoveAlgorithmResponse,
   AlgorithmListResponse,
+  AlgorithmTotalCountResponse,
+  ColumnResponse,
+  ColumnCountResponse,
 } from '@/types/algorithm'
 import { Organisation } from '@/types/organisation'
 import { AxiosRequestConfig } from 'axios'
@@ -139,6 +142,41 @@ export async function getAlgorithmOwner(
   const request: AxiosRequestConfig = {
     method: 'GET',
     url: `/algoritme/find/${lars}`,
+  }
+  return backendRequest(request)
+}
+
+export async function getTotalCount(): Promise<AlgorithmTotalCountResponse> {
+  const request: AxiosRequestConfig = {
+    method: 'GET',
+    url: '/algoritme/total-count',
+  }
+  return backendRequest(request)
+}
+
+export async function getColumns(): Promise<ColumnResponse> {
+  const request: AxiosRequestConfig = {
+    method: 'GET',
+    url: '/columns/',
+  }
+  return backendRequest(request)
+}
+
+export async function getCount(column: string): Promise<ColumnCountResponse> {
+  const request: AxiosRequestConfig = {
+    method: 'GET',
+    url: `/db-count/${column}`,
+  }
+  return backendRequest(request)
+}
+
+export async function getCountWithFilledColumns(
+  columns: string[] | string
+): Promise<any> {
+  const request: AxiosRequestConfig = {
+    method: 'GET',
+    url: '/completeness/',
+    params: { columns },
   }
   return backendRequest(request)
 }

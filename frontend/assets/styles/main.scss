@@ -132,8 +132,27 @@ a.focus-border:focus {
   hyphens: auto;
 }
 
-@media(min-width: 65em) { 
+@media (min-width: 65em) {
   .row--footer {
     height: 15em;
   }
+}
+.margin-bottom-0 {
+  margin-bottom: 0em;
+}
+
+.margin-bottom-1 {
+  margin-bottom: 1em;
+}
+
+.margin-bottom-6 {
+  margin-bottom: 6em;
+}
+
+.margin-top-05 {
+  margin-top: 0.5em;
+}
+
+.filter-block-margin {
+  margin: 0.5em 0;
 }

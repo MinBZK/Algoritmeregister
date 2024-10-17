@@ -1,43 +1,53 @@
 import { FastApiResponse } from '.'
 
 export enum OrgType {
-  adviescollege = 'Adviescollege',
-  agentschap = 'Agentschap',
-  brandweer = 'Brandweer',
-  caribisch_openbaar_lichaam = 'Caribisch openbaar lichaam',
-  gemeente = 'Gemeente',
-  grensoverschrijdend_regionaal_samenwerkingsorgaan = 'Grensoverschrijdend regionaal samenwerkingsorgaan',
-  hoog_college_van_staat = 'Hoog College van Staat',
-  interdepartementale_commissie = 'Interdepartementale commissie',
-  kabinet_van_de_koning = 'Kabinet van de Koning',
-  koepelorganisatie = 'Koepelorganisatie',
-  ministerie = 'Ministerie',
-  openbaar_lichaam_voor_beroep_en_bedrijf = 'Openbaar lichaam voor beroep en bedrijf',
-  organisatie_met_overheidsbemoeienis = 'Organisatie met overheidsbemoeienis',
-  organisatieonderdeel = 'Organisatieonderdeel',
-  politie = 'Politie',
-  provincie = 'Provincie',
-  rechtspraak = 'Rechtspraak',
-  regionaal_samenwerkingsorgaan = 'Regionaal samenwerkingsorgaan',
-  waterschap = 'Waterschap',
-  zelfstandig_bestuursorgaan = 'Zelfstandig bestuursorgaan',
-  overig = 'Overig',
+  adviescollege = 'adviescollege',
+  agentschap = 'agentschap',
+  brandweer = 'brandweer',
+  caribisch_openbaar_lichaam = 'caribisch_openbaar_lichaam',
+  gemeente = 'gemeente',
+  grensoverschrijdend_regionaal_samenwerkingsorgaan = 'grensoverschrijdend_regionaal_samenwerkingsorgaan',
+  hoog_college_van_staat = 'hoog_college_van_staat',
+  interdepartementale_commissie = 'interdepartementale_commissie',
+  kabinet_van_de_koning = 'kabinet_van_de_koning',
+  koepelorganisatie = 'koepelorganisatie',
+  ministerie = 'ministerie',
+  openbaar_lichaam_voor_beroep_en_bedrijf = 'openbaar_lichaam_voor_beroep_en_bedrijf',
+  organisatie_met_overheidsbemoeienis = 'organisatie_met_overheidsbemoeienis',
+  organisatieonderdeel = 'organisatieonderdeel',
+  politie = 'politie',
+  provincie = 'provincie',
+  rechtspraak = 'rechtspraak',
+  regionaal_samenwerkingsorgaan = 'regionaal_samenwerkingsorgaan',
+  waterschap = 'waterschap',
+  zelfstandig_bestuursorgaan = 'zelfstandig_bestuursorgaan',
+  overig = 'overig',
 }
 
 export interface Organisation {
+  id: number
   name: string
   code: string
-  type: OrgType | null
+  type: OrgType
+  show_page: boolean
+  flow: string
 }
 
 export interface OrganisationListResponse extends FastApiResponse {
-  data: Organisation[]
+  data: {
+    organisations: Organisation[]
+    count: number
+  }
 }
 
 export interface CreateOrganisationResponse extends FastApiResponse {
-  data: null
+  data: Organisation
 }
 
 export interface UpdateOrganisationResponse extends FastApiResponse {
-  data: null
+  data: Organisation
+}
+
+export interface UpdateOptInResponse extends FastApiResponse {
+  data: Organisation
 }

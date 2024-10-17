@@ -4,20 +4,17 @@ import type {
   HighlightedAlgoritme,
   Suggestion,
 } from '@/types/algoritme'
-import type { FilterData, SelectedFilter } from '@/types/filter'
-
-export type AlgoritmeQuery = {
-  organisation?: string
-  page?: string
-  limit?: string
-  searchtext?: string
-}
+import type {
+  AlgoritmeFilterData,
+  AlgoritmeSelectedFilter,
+  AlgoritmeQuery,
+} from '@/types/filter/algoritme'
 
 export type AlgoritmeQueryResult = {
   results: Algoritme[]
   total_count: number
-  filter_data: FilterData
-  selected_filters: SelectedFilter[]
+  filter_data: AlgoritmeFilterData
+  selected_filters: AlgoritmeSelectedFilter[]
 }
 
 export type SearchSuggestionResult = {
@@ -57,7 +54,7 @@ const getCount = (column: string) =>
   })
 
 const getTotalCount = () =>
-  useFetch<number>(`/db-count/`, {
+  useFetch<number>(`/algoritme/total-count`, {
     baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
 

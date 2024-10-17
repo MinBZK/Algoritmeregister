@@ -1,5 +1,7 @@
 # columns will be renamed, but these are needed from the json
-df_organisation_columns = ["owner", "organization"]
+df_organisation_columns = ["code", "type", "show_page"]
+
+df_organisation_details_columns = ["name", "language", "contact_info", "about"]
 
 df_algoritme_columns = ["lars", "create_dt"]
 
@@ -42,7 +44,7 @@ df_algoritme_version_columns = [
     "risks",
     "performance_standard",
     "create_dt",
-    "published",
+    "state",
     "provider",
     "process_index_url",
     "tags",
@@ -52,4 +54,9 @@ df_algoritme_version_columns = [
     "lawful_basis_link",
     "impacttoetsen",
     "source_data_link",
+    "language",
+    "publication_category",
+    "lawful_basis_grouping",
+    "impacttoetsen_grouping",
+    "source_data_grouping",
 ]

@@ -1,9 +1,16 @@
 import re
 from typing import TypeVar
-from app.util.config_load import get_ttl_hash, collect_structure_data
-from app import models, schemas
 
-T = TypeVar("T", schemas.AlgoritmeVersionQuery, schemas.AlgoritmeVersionDB)
+from app.schemas.algoritme_version import (
+    AlgoritmeVersionLastEdit,
+    AlgoritmeVersionQuery,
+    AlgoritmeVersionDB,
+)
+from app.util.config_load import get_ttl_hash, collect_structure_data
+from app import models
+
+
+T = TypeVar("T", AlgoritmeVersionQuery, AlgoritmeVersionDB, AlgoritmeVersionLastEdit)
 
 
 def convert_potential_list(field: str) -> list[str] | str:
@@ -19,7 +26,7 @@ def convert_potential_list(field: str) -> list[str] | str:
     # # DPIA: https://google.com
     # # The space seems to create these additional quotes. This is handled by taking them away
     # # here. Because comma's can appear in the substrings, can't do a split, but regex works.
-    list_entries: str = re.findall(r"(\"[^\"]+\"|[^\"{},]+)", field)
+    list_entries: list[str] = re.findall(r"(\"[^\"]+\"|[^\"{},]+)", field)
     new_value: list[str] = []
     for list_entry in list_entries:
         new_value.append(list_entry.replace('"', ""))
@@ -46,7 +53,7 @@ def db_list_to_python_list(model: models.AlgoritmeVersion) -> models.AlgoritmeVe
     for c in model.__table__.columns:  # type: ignore
         # Check if the field is eligible for conversion. Don't want to convert lists where it is not allowed
         # (by Pydantic).'
-        if not (c.key in schema):
+        if c.key not in schema:
             continue
         if schema[c.key].type != "array":
             continue
@@ -84,7 +91,7 @@ def db_list_to_python_list_schema(
     for c in dict(schema).keys():  # type: ignore
         # Check if the field is eligible for conversion. Don't want to convert lists where it is not allowed
         # (by Pydantic).'
-        if not (c in standard):
+        if c not in standard:
             continue
         if standard[c].type != "array":
             continue

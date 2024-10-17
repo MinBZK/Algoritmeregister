@@ -1,11 +1,15 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from datetime import datetime
+
+from app.middleware.authorisation.schemas import State
 from .misc import (
     Language,
-    OrgType,
     ImpacttoetsenGrouping,
+    OrgType,
+    SortOption,
     SourceDataGrouping,
     LawfulBasisGrouping,
+    ImpactAssessments,
 )
 
 
@@ -98,30 +102,40 @@ class AlgoritmeVersionContent(BaseModel):
         orm_mode = True
 
 
+class AlgorithmVersionHistory(AlgoritmeVersionContent):
+    id: int
+    lars: str
+    published: bool | None
+    state: State
+
+
 class AlgoritmeVersionIn(AlgoritmeVersionContent):
     algoritme_id: int
     language: Language
 
-    published: bool | None
-    released: bool | None
-    preview_active: bool | None
+    preview_active: bool = False
     create_dt: datetime | None
+    state: State
 
 
 class AlgoritmeVersionDB(AlgoritmeVersionContent):
     algoritme_id: int
     language: Language
     id: int
-    published: bool
-    released: bool
-    preview_active: bool
+    preview_active: bool = False
     create_dt: datetime
+    state: State
 
     lars: str
     owner: str
 
-    class Config:
-        orm_mode = True
+
+class AlgoritmeVersionExport(AlgoritmeVersionContent):
+    language: Language
+    owner: str
+    lars: str
+    create_dt: datetime
+    state: State
 
 
 class AlgoritmeVersionTemplate(AlgoritmeVersionContent):
@@ -129,13 +143,18 @@ class AlgoritmeVersionTemplate(AlgoritmeVersionContent):
     name: str
 
 
+class AlgoritmeVersionLastEdit(AlgorithmVersionHistory):
+    create_dt: datetime
+    user_id: str
+    archive_dt: datetime
+
+
 class AlgoritmeVersionDownload(AlgoritmeVersionContent):
     lars: str
 
 
 class AlgoritmeVersionDownloadJson(AlgoritmeVersionContent):
-    published: bool
-    released: bool
+    state: State
     create_dt: datetime
     owner: str
 
@@ -149,41 +168,59 @@ class AlgoritmeVersionQuery(AlgoritmeVersionContent):
 class AlgoritmeVersionGetOne(AlgoritmeVersionContent):
     lars: str
     create_dt: datetime
-    released: bool
-    published: bool
     language: Language
 
 
 class AlgoritmeQuery(BaseModel):
-    page: int = 1
-    limit: int = 10
+    page: int = Field(ge=1, default=1)
+    limit: int = Field(ge=1, default=10, le=100)
     searchtext: str = ""
     organisation: str | None = None
-
-
-class OrganisationPresenceCount(BaseModel):
-    name: str
-    count: int
-
-
-class OrganisationFilterGroup(BaseModel):
-    type: OrgType
-    organisations: list[OrganisationPresenceCount]
+    publicationcategory: str | None = None
+    organisationtype: OrgType | None = None
+    impact_assessment: ImpactAssessments | None = None
+    sort_option: SortOption = Field(default=SortOption.sort_name)
 
 
 class FilterData(BaseModel):
-    organisation: list[OrganisationFilterGroup]
+    label: str
+    key: str
+    count: int
+
+
+class PublicationCategoryFilter(BaseModel):
+    publication_category_label: str
+
+
+class PublicationCategoryCount(BaseModel):
+    category: str
+    count: int
+
+
+class ImpactAssessmentFilter(BaseModel):
+    impact_assessment_label: str
+
+
+class OrganisationTypeFilter(BaseModel):
+    organisation_type: str
+
+
+class AlgoritmeFilterData(BaseModel):
+    organisationtype: list[FilterData] | None = None
+    publicationcategory: list[FilterData] | None = None
+    impact_assessment: list[FilterData] | None = None
+    organisation: list[FilterData] | None = None
 
 
 class SelectedFilters(BaseModel):
-    name: str
+    key: str
     value: str | None
 
 
 class AlgoritmeQueryResponse(BaseModel):
     results: list[AlgoritmeVersionQuery]
     total_count: int
-    filter_data: FilterData
+    filter_data: AlgoritmeFilterData
     selected_filters: list[SelectedFilters]
 
 
@@ -198,3 +235,22 @@ class SearchSuggestionAlgorithms(BaseModel):
 
 class SearchSuggestionResponse(BaseModel):
     algorithms: list[SearchSuggestionAlgorithms]
+
+
+class ArchiveVersionRequest(BaseModel):
+    algorithm_version_id: int
+
+
+class AlgoritmeVersionEarliestPublish(BaseModel):
+    algoritme_id: int
+    organization: str
+    create_dt: datetime
+    code: str
+
+    class Config:
+        orm_mode = True
+
+
+class AlgoritmeVersionEarliestPublishCount(BaseModel):
+    date: str
+    count: int

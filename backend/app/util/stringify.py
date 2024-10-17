@@ -16,7 +16,7 @@ def stringify(value: Any) -> str | None:
         elif isinstance(value[0], dict):
             listified_dicts = []
             for n, cell in enumerate(list[dict](value)):
-                stringified_dict = ", ".join(cell.values())
+                stringified_dict = ", ".join(filter(None, cell.values()))
                 listified_dicts.append(f"{n+1}: {stringified_dict}")
             return ". ".join(listified_dicts)
     if isinstance(value, Enum):

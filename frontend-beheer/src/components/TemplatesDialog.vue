@@ -20,26 +20,18 @@
             Sommige leveranciers hebben al een beschrijving van hun algoritmes
             aangeleverd. Deze kan je hier selecteren als startpunt voor jouw
             eigen algoritmebeschrijving.
-            <span style="color: red; text-decoration: underline">
+            <span class="color-red-text-decoration-underline">
               Let op! Deze actie overschrijft de huidige data in het formulier.
             </span>
           </v-card-text>
           <v-list>
-            <!-- <v-list-item>
-              <v-text-field
-                v-model="searchtext"
-                style="margin-top: 1em"
-                variant="outlined"
-                label="Algoritmebeschrijving zoeken"
-                density="comfortable"
-                hide-details
-              />
-            </v-list-item> -->
             <v-list-item>
               Leveranciers
               <v-select
                 v-model="selectedSupplier"
+                class="mt-1"
                 return-object
+                label="Kies een sjabloon"
                 variant="outlined"
                 item-title="name"
                 :items="suppliers"
@@ -142,5 +134,14 @@ const selectedDescription = computed(() => {
 :deep(.algo-list > .v-list-item__content) {
   height: inherit;
   overflow-y: scroll;
+}
+
+.color-red-text-decoration-underline {
+  color: red;
+  text-decoration: underline;
+}
+
+.mt-1 {
+  margin-top: 1em;
 }
 </style>

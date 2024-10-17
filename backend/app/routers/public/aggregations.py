@@ -1,16 +1,17 @@
 from fastapi import APIRouter, Query
 from fastapi import Depends
 from pydantic import BaseModel
+from app.middleware.authorisation.schemas import State
 from app.middleware.middleware import get_db
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 from app.config.resource import Columns
-import logging
 from app import models
 from app.config.settings import Settings
+from app.util.logger import get_logger
 
 router = APIRouter()
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 env_settings = Settings()
 
 
@@ -48,21 +49,13 @@ async def get_columns(db: Session = Depends(get_db)):
     return output
 
 
-@router.get("/db-count/")
-async def get_total_count(db: Session = Depends(get_db)) -> int:
-    stmt = text(
-        "SELECT count(id) FROM algoritme_version WHERE published IS TRUE AND language='NLD'"
-    )
-    return int(db.execute(stmt).all()[0][0])
-
-
 @router.get("/db-count/{column}")
-async def get_count_per_type(column: Columns, db: Session = Depends(get_db)):
+def get_count_per_type(column: Columns, db: Session = Depends(get_db)):
     stmt = text(
         f"""
             SELECT count(1), {column.value} as descriptor
             FROM algoritme_version
-            WHERE published IS TRUE
+            WHERE state = 'PUBLISHED'
             AND language='NLD'
             GROUP BY {column.value}
             ORDER BY count(1) desc
@@ -80,7 +73,7 @@ async def get_count_per_type(column: Columns, db: Session = Depends(get_db)):
 async def get_count_with_filled_columns(
     columns: list[Columns] = Query(default=None), db: Session = Depends(get_db)
 ):
-    ignore_columns = ["end_dt", "published", "released", "language"]
+    ignore_columns = ["end_dt", "published", "released", "language", "state"]
     columns_model_list = [
         col
         for col in models.AlgoritmeVersion.__table__.columns
@@ -91,7 +84,9 @@ async def get_count_with_filled_columns(
         columns_model_list = [col for col in columns_model_list if col.key in columns]
 
     table = (
-        db.query(*columns_model_list).filter(models.AlgoritmeVersion.published).all()
+        db.query(*columns_model_list)
+        .filter(models.AlgoritmeVersion.state == State.PUBLISHED)
+        .all()
     )
 
     def is_filled(cell) -> bool:

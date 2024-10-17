@@ -1,13 +1,13 @@
 <template>
   <div>
     <LanguageDisclaimer
-      v-if="locale == 'en'"
+      v-if="locale !== 'nl'"
       class="language-disclaimer"
       :density="isMobile ? 'compact' : 'default'"
     />
     <div>
       <h1 class="homepage-title">
-        {{ homepageTitle }}
+        {{ t('homepageTitle') }}
       </h1>
     </div>
     <div :class="[isMobile ? 'card-margins-xs' : 'card-margins']">
@@ -46,16 +46,28 @@
 
 <script setup lang="ts">
 import { useMobileBreakpoint } from '~~/composables/mobile'
+import organisationService from '@/services/organisation'
 const isMobile = useMobileBreakpoint().medium
 const { t, locale } = useI18n()
 const { p } = useTextLoader()
 const localePath = useLocalePath()
 
-const doSearch = (searchtext: string) => {
+const doSearch = async (searchtext: string) => {
   const router = useRouter()
   let query
   if (searchtext) {
-    query = { searchtext }
+    const response = await organisationService.getFullNameOrganisation(
+      searchtext,
+      mapLocaleName(locale.value as 'nl' | 'en')
+    )
+    query = {
+      ...(response.data.value
+        ? {
+            organisation: response.data.value?.organisations[0].name,
+            page: '1',
+          }
+        : { searchtext, page: '1' }),
+    }
   }
   router.push(
     localePath({
@@ -65,14 +77,15 @@ const doSearch = (searchtext: string) => {
   )
 }
 
-definePageMeta({
-  title: 'Home',
+useSeoMeta({
+  description: p('Home.meta-description'),
+  ogDescription: p('Home.meta-description'),
 })
 
-const homepageTitle = computed(() => t('homepageTitle'))
+useHead({ title: p('Home.title-tag') })
 providePageTitle({
-  title: 'homepageTitle',
-  labelType: 'locale-index',
+  title: 'Home.title-tag',
+  labelType: 'preditor-index',
 })
 </script>
 
