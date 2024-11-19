@@ -1,5 +1,5 @@
 version: '3.7'
-# FIX IMAGE URI TO THE RELEVANT OPENSOURCE URI
+
 services:
   db:
     image: <..>.cloudnative-pg/postgresql:15.2.7
@@ -14,7 +14,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       PGPORT: ${POSTGRES_PORT}
-    command: -p ${POSTGRES_PORT}
+    command: [ "postgres", "-c", "log_statement=all", "-p", "${POSTGRES_PORT}" ]
 
   backend:
     build:
@@ -74,6 +74,7 @@ services:
       POSTGRES_PORT: ${POSTGRES_PORT}
       POSTGRES_DB: ${POSTGRES_DB}
     command: /bin/bash -c "uvicorn app.main:app --reload --host 0.0.0.0 --port ${ETL_PORT}"
+
 
 volumes:
   dbgate:

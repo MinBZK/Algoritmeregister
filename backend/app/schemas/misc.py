@@ -91,3 +91,7 @@ standard_impact_assessment_titles = [
 class SortOption(enum.StrEnum):
     sort_name = "sort_name"
     sort_number = "sort_number"
+
+
+class PreComputedValues(enum.StrEnum):
+    highlighted_algorithms = "highlighted_algorithms"

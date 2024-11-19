@@ -46,7 +46,7 @@ import { useMobileBreakpoint } from '~~/composables/mobile'
 import { objectMap, mapLocaleName } from '@/utils'
 import type { tabsGrouping } from '@/types/layout'
 import { textVersionMapping } from '~~/config/config'
-import type { LanguageCode } from '@/types/textLoader'
+import type { LanguageCode } from '@/types/preditor'
 
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
@@ -197,5 +197,9 @@ providePageTitle({
 .header-card {
   border: 9px solid #e5f1f9;
   padding: 1em;
+}
+
+h1 {
+  hyphens: auto;
 }
 </style>

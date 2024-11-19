@@ -7,3 +7,4 @@ const getAllContent = async () =>
   })
 
 export { getAllContent }
+

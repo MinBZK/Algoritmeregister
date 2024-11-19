@@ -7,3 +7,4 @@ from .organisation import *  # noqa
 from .templates import get_template_summary, get_template_by_id  # noqa
 from .organisation_details import *  # noqa
 from .html_figures import *  # noqa
+from .precomputed_values import *  # noqa

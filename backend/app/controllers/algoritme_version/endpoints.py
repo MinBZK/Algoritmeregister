@@ -8,7 +8,7 @@ from app.services.keycloak import KeycloakUser
 from app.services import translation
 from app.util import upc
 from app.config.settings import Settings
-from app.schemas import Language, OperationEnum
+from app.schemas import Language, OperationEnum, PreComputedValues
 from .util import (
     find_version_changes,
 )
@@ -18,9 +18,11 @@ from app.repositories import (
     OrganisationRepository,
     AlgoritmeRepository,
     ActionHistoryRepository,
+    PreComputedValuesRepository,
 )
 from app.util.logger import get_logger
 from app.services.translation import LanguageCode
+from app.controllers.precomputed_values import calc_highlighted_algorithms
 
 logger = get_logger(__name__)
 # Version agnostic database handling
@@ -412,3 +414,14 @@ def set_archive_status(
             user_id=user_id,
         )
     )
+
+
+def set_highlighted_algorithms(
+    db: Session, key=PreComputedValues.highlighted_algorithms
+) -> None:
+    pre_comp_value_repo = PreComputedValuesRepository(db)
+    for lang in Language:
+        highlighted_algs = calc_highlighted_algorithms(db, lang)
+        data_to_store = {"language": lang, "key": key, "value": highlighted_algs}
+        precomputed_value = schemas.PrecomputedValueIn(**data_to_store)
+        pre_comp_value_repo.add(precomputed_value)

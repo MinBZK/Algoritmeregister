@@ -1,7 +1,10 @@
 from fastapi import BackgroundTasks, HTTPException
 from app import models, schemas
 from app.config.settings import Settings
-from app.controllers.algoritme_version.endpoints import apply_translation
+from app.controllers.algoritme_version.endpoints import (
+    apply_translation,
+    set_highlighted_algorithms,
+)
 from app.controllers.mailing import send_email
 from app.controllers.user import get_from_keycloak_user
 from app.middleware.authorisation.schemas import State
@@ -144,5 +147,8 @@ def update_state_by_lars(
         background_tasks.add_task(
             send_email, db=db, email_type=action.send_email_type, lars=lars
         )
+    if origin_state == State.PUBLISHED or target_state == State.PUBLISHED:
+        # Retracting or publishing -> set highlighted algorithms
+        background_tasks.add_task(set_highlighted_algorithms, db)
 
     db.commit()

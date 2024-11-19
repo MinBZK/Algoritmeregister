@@ -7,7 +7,7 @@
       {{ dateStamp }}
     </p>
     <p>{{ t('dashboard.moreInfo') }}</p>
-    <button class="button-overview" @click="toggleOverview()">
+    <button class="button" @click="toggleOverview()">
       {{
         isExpanded
           ? t('dashboard.collapseOverview')
@@ -33,7 +33,7 @@
         {{ displaybuttonName(data.showTable || false) }}
       </button>
       <br />
-      <DashboardTable
+      <dashboard-table
         v-show="data.showTable"
         :index="index"
         @count="data.count = $event"
@@ -54,7 +54,7 @@
       :icon="data.icon"
       @update:model-value="checkIfExpanded()"
     >
-      <base-map-svg
+      <dashboard-base-map-svg
         :organisation-type="data.organisationType"
         :geojson-file="data.geojsonFile"
         @number-of-organisations="data.count = $event"
@@ -81,7 +81,7 @@
         {{ displaybuttonName(data.showTable || false) }}
       </button>
       <br />
-      <DashboardTable v-show="data.showTable" :index="index + 2" />
+      <dashboard-table v-show="data.showTable" :index="index + 2" />
       <div v-show="!data.showTable" v-html="data.graph" />
     </dashboard-tab>
   </div>
@@ -92,7 +92,6 @@ import iconChart from '@/assets/images/icons/timeline_24dp.svg'
 import iconMap from '@/assets/images/icons/icon-maps.svg'
 import iconBarChart from '@/assets/images/icons/icon-bar-chart.svg'
 import algoritmeService from '@/services/dashboard'
-import BaseMapSvg from '@/components/dashboard/BaseMapSvg.vue'
 import type { DashboardItem, DashboardMap } from '@/types/dashboard'
 
 const { t, locale } = useI18n()
@@ -346,6 +345,13 @@ onMounted(() => {
   background-color: #154273;
 }
 
+@media (min-width: 1100px) {
+  :deep(.base-map-button) {
+    width: 33.5%;
+    float: left;
+  }
+}
+
 .button-overview {
   border: 1px solid #154273;
   font-weight: bold;
@@ -354,7 +360,7 @@ onMounted(() => {
 }
 
 @media (max-width: 768px) {
-  .button-overview {
+  .button {
     width: 100%;
     box-sizing: inherit;
   }

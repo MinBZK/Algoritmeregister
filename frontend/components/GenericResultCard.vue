@@ -12,7 +12,11 @@
         >
           <h2 v-if="!detailedAlgoPage">{{ algoritme.name }}</h2>
         </NuxtLink>
-        <h2>{{ algoritme.organization }}</h2>
+        <h2>
+          <NuxtLink :to="localePath(`/organisatie/${algoritme.code}`)">
+            {{ algoritme.organization }}
+          </NuxtLink>
+        </h2>
       </div>
       <p :lang="backendContentLanguage">
         <ParseUrl :key="algoritme.lars">

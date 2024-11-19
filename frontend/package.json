@@ -9,7 +9,8 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint '**/*' --max-warnings 0",
     "lint:fix": "eslint . --fix",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "format": "prettier --write components/ pages/"
   },
   "dependencies": {
     "@intlify/core-base": "^9.3.0-beta.22",

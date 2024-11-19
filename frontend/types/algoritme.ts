@@ -13,6 +13,7 @@ export interface Algoritme {
   language: Language
   organization: string
   description_short: string
+  code: string
 
   [key: string]: null | string | string[]
 }

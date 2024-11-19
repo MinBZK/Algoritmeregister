@@ -55,8 +55,8 @@
             "owner": "gemeente-amsterdam",
             "lars": "16268148",
             "create_dt": "2023-03-31T08:34:12.029161+00:00",
-            "published": true,
-            "state": "PUBLISHED"
+            "state": "PUBLISHED",
+            "published": true
         },
         {
             "name": "Print image (NL)",
@@ -113,8 +113,8 @@
             "owner": "gemeente-amsterdam",
             "lars": "16268148",
             "create_dt": "2023-03-31T08:34:12.029161+00:00",
-            "published": true,
-            "state": "PUBLISHED"
+            "state": "PUBLISHED",
+            "published": true
         },
         {
             "name": "Wmo forecasting model",
@@ -171,8 +171,8 @@
             "owner": "gemeente-den-haag",
             "lars": "97246956",
             "create_dt": "2023-10-05T08:31:21.855889+00:00",
-            "published": true,
-            "state": "PUBLISHED"
+            "state": "PUBLISHED",
+            "published": true
         },
         {
             "name": "Wmo-voorspelmodel",
@@ -229,8 +229,8 @@
             "owner": "gemeente-den-haag",
             "lars": "97246956",
             "create_dt": "2023-10-05T08:31:21.855889+00:00",
-            "published": true,
-            "state": "PUBLISHED"
+            "state": "PUBLISHED",
+            "published": true
         }
     ],
     "organisation_details": [

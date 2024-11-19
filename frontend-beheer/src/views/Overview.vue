@@ -2,10 +2,13 @@
   <v-row v-if="selectedOrg?.flow === 'self_publish_two'">
     <v-alert title="Let op!" type="warning">
       Deze organisatie mag zelf algoritmebeschrijvingen publiceren. In verband
-      met ontwikkeling is gekozen om dit alleen beschikbaar te maken op de nieuwste versie van het 
-      webformulier: <a href="https://algoritmes.overheid.nl/webformulier2024"> Deze kan je hier vinden. </a>
-      Als je dit bericht ziet kan je niet meer werken op deze pagina, en moet je het nieuwe webformulier
-      gebruiken om onvoorziene problemen te voorkomen.
+      met ontwikkeling is gekozen om dit alleen beschikbaar te maken op de
+      nieuwste versie van het webformulier:
+      <a href="https://algoritmes.overheid.nl/webformulier2024">
+        Deze kan je hier vinden.
+      </a>
+      Als je dit bericht ziet kan je niet meer werken op deze pagina, en moet je
+      het nieuwe webformulier gebruiken om onvoorziene problemen te voorkomen.
     </v-alert>
   </v-row>
   <v-row>
@@ -14,12 +17,7 @@
         Overzicht {{ authStore.selectedOrg?.name }}
       </h1>
     </v-col>
-    <v-col
-      v-if="authStore.organisations.length != 0"
-      lg="4"
-      md="5"
-      cols="12"
-    >
+    <v-col v-if="authStore.organisations.length != 0" lg="4" md="5" cols="12">
       <template v-if="!singleOrgOverview">
         <v-row>
           <v-label> Organisatie </v-label>
@@ -52,9 +50,7 @@
             block
             @click="navigateToForm"
           >
-            <v-icon class="mr-2" size="21">
-              mdi-playlist-plus
-            </v-icon>
+            <v-icon class="mr-2" size="21"> mdi-playlist-plus </v-icon>
             <span class="btn-title"> Nieuw algoritme </span>
           </v-btn>
         </v-col>
@@ -63,11 +59,7 @@
   </v-row>
   <v-row v-if="!algorithmStore.loaded || authStore.loading">
     <v-col cols="12" align="center">
-      <v-progress-circular
-        indeterminate
-        :size="64"
-        :width="6"
-      />
+      <v-progress-circular indeterminate :size="64" :width="6" />
     </v-col>
   </v-row>
   <v-row v-else class="elevation-0 mt-6">
@@ -160,7 +152,7 @@ const headers = [
   { title: 'Status', key: 'overviewStatus', value: 'overviewStatus' },
   { title: 'Laatst bewerkt', key: 'last_update_dt', value: 'last_update_dt' },
   { title: 'Door', key: 'last_update_by', value: 'last_update_by' },
-  { title: 'Std.', key: 'schema_version', value: 'schema_version' },
+  { title: 'Standaard', key: 'schema_version', value: 'schema_version' },
   { title: 'ID', key: 'lars', value: 'lars' },
   { title: 'Actie', key: 'actions', sortable: false },
 ]

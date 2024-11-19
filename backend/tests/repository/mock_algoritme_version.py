@@ -19,6 +19,7 @@ class MockAlgoritmeVersionRepository(IRepository):
             "create_dt": datetime.datetime(2000, 1, 1),
             "lars": "00000000",
             "owner": "",
+            "code": "",
         }
         schema = schemas.AlgoritmeVersionDB(**item.dict(), **fields_to_add)
         return schema

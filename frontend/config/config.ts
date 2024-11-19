@@ -58,10 +58,6 @@ const navigationItems = [
     routeName: 'kwetsbaarheid-melden',
   },
   {
-    localeName: 'navigation.meedoen',
-    routeName: 'meedoen',
-  },
-  {
     localeName: 'navigation.over-algoritmes',
     routeName: 'over-algoritmes',
   },
@@ -78,8 +74,8 @@ const navigationItems = [
     routeName: 'organisatie',
   },
   {
-    localeName: 'navigation.zelf-aan-de-slag',
-    routeName: 'zelf-aan-de-slag',
+    localeName: 'navigation.registreer-je-algoritme',
+    routeName: 'registreer-je-algoritme',
   },
 ]
 

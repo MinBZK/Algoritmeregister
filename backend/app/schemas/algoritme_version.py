@@ -128,6 +128,7 @@ class AlgoritmeVersionDB(AlgoritmeVersionContent):
 
     lars: str
     owner: str
+    code: str
 
 
 class AlgoritmeVersionExport(AlgoritmeVersionContent):
@@ -163,12 +164,14 @@ class AlgoritmeVersionQuery(AlgoritmeVersionContent):
     lars: str
     language: Language
     create_dt: datetime
+    code: str
 
 
 class AlgoritmeVersionGetOne(AlgoritmeVersionContent):
     lars: str
     create_dt: datetime
     language: Language
+    code: str
 
 
 class AlgoritmeQuery(BaseModel):

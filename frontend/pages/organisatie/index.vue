@@ -15,7 +15,7 @@
 
     <div class="row container columns no-padding">
       <div class="column-d-3">
-        <div v-if="!loading">
+        <div>
           <OrganisationFilters
             :filter-data="data?.filter_data"
             :selected-filters="data?.selected_filters"
@@ -27,10 +27,7 @@
         <h1 role="status">
           {{ t(`foundResultsOrganisations`, { n: totalCount }) }}
         </h1>
-        <div
-          v-if="organisations.length != 0"
-          class="row container columns no-padding"
-        >
+        <div class="row container columns no-padding">
           <div class="column-d-6">
             <TablePagination
               v-if="nPages > 1"
@@ -61,7 +58,7 @@
           <div
             v-for="index in 10"
             :key="index"
-            class="org-result-list-skeleton"
+            class="skeleton-organisations"
           ></div>
         </div>
         <TablePagination
@@ -178,14 +175,13 @@ providePageTitle({
 
 .org-result {
   margin-left: 0.5em;
-  display: inline-flex;
-  width: 60%;
+  display: flex;
   justify-content: space-between;
 }
-
-.org-name {
-  margin: 0;
-  padding: 0.15em;
+@media (min-width: 700px) {
+  .org-result {
+    width: 60%;
+  }
 }
 
 .org-name:not(:focus) {
