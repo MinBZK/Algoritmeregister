@@ -26,7 +26,7 @@ router.afterEach((to, _) => {
 })
 
 const questionGrouping = [
-  { groupKey: 1, questionKeys: [1, 2, 3, 4, 5, 6] },
+  { groupKey: 1, questionKeys: [1, 2, 3, 4, 5, 6, 18, 19] },
   { groupKey: 2, questionKeys: [7, 8, 9, 10] },
   { groupKey: 3, questionKeys: [11, 12] },
   { groupKey: 4, questionKeys: [13, 14] },

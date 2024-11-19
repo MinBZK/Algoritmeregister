@@ -92,7 +92,7 @@ class AlgoritmeVersion(Base):
     begin_date: Mapped[str | None] = mapped_column(VARCHAR(7))
     end_date: Mapped[str | None] = mapped_column(VARCHAR(7))
     lawful_basis_link: Mapped[str | None] = mapped_column(VARCHAR(5000))
-    impacttoetsen: Mapped[str | None] = mapped_column(VARCHAR(1024))
+    impacttoetsen: Mapped[str | None] = mapped_column(VARCHAR(5000))
     source_data_link: Mapped[str | None] = mapped_column(VARCHAR(500))
 
     # Additions by 1.0
@@ -123,6 +123,7 @@ class AlgoritmeVersion(Base):
 
     lars = association_proxy("algoritme", "lars")
     owner = association_proxy("algoritme", "owner")
+    code = association_proxy("algoritme", "code")
 
 
 vector_index = Index("gin_idx", AlgoritmeVersion.vector, postgresql_using="gin")

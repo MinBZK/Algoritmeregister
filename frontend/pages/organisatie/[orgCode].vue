@@ -1,9 +1,9 @@
 <template>
   <div class="page">
     <div class="navigation-top">
-      <NuxtLink class="link cta__backwards" :to="localePath(`/organisatie/`)">
+      <!-- <NuxtLink class="link cta__backwards" :to="localePath(`/organisatie/`)">
         {{ t('orgPage.goBackToOrg') }}
-      </NuxtLink>
+      </NuxtLink> -->
     </div>
     <div class="container row container--centered">
       <h1>{{ organisation.name }}</h1>

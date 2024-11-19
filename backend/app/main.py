@@ -14,10 +14,11 @@ from app.routers.public import (
     algorithm,
     default,
     organisation_details,
+    text_loader,
     downloads,
     organisation,
     dashboard,
-    text_loader
+    precomputed_values,
 )
 from app.spell_checker import spell_check_api
 from app.util.logger import get_logger
@@ -57,6 +58,9 @@ app.include_router(
 app.include_router(downloads.router, prefix="/api", tags=["Downloads"])
 app.include_router(default.router, prefix="/api", tags=["Miscellaneous"])
 app.include_router(text_loader.router, tags=["text_loader"])
+app.include_router(
+    precomputed_values.router, prefix="/api", tags=["Algoritmebeschrijvingen"]
+)
 
 app.mount("/aanleverapi", api)
 app.mount("/spellcheck", spell_check_api)

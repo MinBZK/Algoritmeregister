@@ -74,8 +74,8 @@ const navigationItems = computed(() => [
       'algoritme',
       'algoritme___nl',
       'algoritme___en',
-      'algoritme-lars___nl',
-      'algoritme-lars___en',
+      'algoritme-slug-lars___nl',
+      'algoritme-slug-lars___en',
     ],
   },
   {

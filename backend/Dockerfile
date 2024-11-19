@@ -1,4 +1,3 @@
-# FIX IMAGE URI TO THE RELEVANT OPENSOURCE URI
 FROM <..>./algreg_base AS buildstep
 
 # Make sure these are set, either here or in the base image.

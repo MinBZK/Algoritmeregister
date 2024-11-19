@@ -145,7 +145,7 @@ const headers = [
   { title: 'Status', key: 'overviewStatus' },
   { title: 'Laatst bewerkt', key: 'last_update_dt_formatted' },
   { title: 'Door', key: 'last_update_by' },
-  { title: 'Std.', key: 'schema_version' },
+  { title: 'Standaard', key: 'schema_version' },
   { title: 'ID', key: 'lars' },
   { title: 'Actie', key: 'actions', sortable: false },
 ]

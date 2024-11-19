@@ -59,7 +59,7 @@ const getTotalCount = () =>
   })
 
 const getHighlighted = (language: Language) =>
-  useFetch<HighlightedAlgoritme[]>(`/highlighted/${language}`, {
+  useFetch<HighlightedAlgoritme[]>(`/precomputed/${language}`, {
     baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
 

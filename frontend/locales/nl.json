@@ -82,7 +82,8 @@
       "ext_digitaleoverheid_nl": "Digitale Overheid",
       "ext_data_overheid_nl": "Data.overheid.nl",
       "ext_pleio": "Algoritmes.pleio.nl",
-      "zelf-aan-de-slag": "Zelf aan de slag"
+      "zelf-aan-de-slag": "Zelf aan de slag",
+      "registreer-je-algoritme": "Registreer je algoritme"
     }
   },
   "algoritmeRegister": "Algoritmeregister",
@@ -139,7 +140,8 @@
     "release-notes": "Releasenotes",
     "organisatie": "Organisaties",
     "zelf-aan-de-slag": "Zelf aan de slag",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "registreer-je-algoritme": "Registreer je algoritme"
   },
   "pagination": {
     "page": "Pagina",
@@ -171,7 +173,8 @@
     "loadingText": "Aan het laden",
     "totalPublishedAlgorithmDescriptions": "Totaal aantal gepubliceerde algoritmebeschrijvingen",
     "totalJoinedOrganisations": "Totaal aantal aangesloten organisaties",
-    "publishedAlgorithmDescriptions": "Aantal gepubliceerde algoritmebeschrijvingen",
+    "publishedAlgorithmDescriptions": "{n} algoritmebeschrijvingen gepubliceerd.",
+    "singlePublishedAlgorithmDescription": "{n} algoritmebeschrijving gepubliceerd.",
     "joinedOrganisations": "Aantal aangesloten organisaties",
     "brokenLinks": "Aantal gebroken links",
     "statusErrorCode": "Code",
@@ -183,10 +186,10 @@
     "provinces": "Provincies",
     "waterAuthorities": "Waterschappen",
     "environmentalServices": "Omgevingsdiensten",
-    "clickOnMunicipality": "Klik op een gemeente",
-    "clickOnProvince": "Klik op een provincie",
-    "clickOnWaterAuthority": "Klik op een waterschap",
-    "clickOnEnvironmentalService": "Klik op een omgevingsdienst",
+    "clickOnMunicipality": "Klik op een gemeente.",
+    "clickOnProvince": "Klik op een provincie.",
+    "clickOnWaterAuthority": "Klik op een waterschap.",
+    "clickOnEnvironmentalService": "Klik op een omgevingsdienst.",
     "title": "Dashboard",
     "expandOverview": "Alles uitklappen",
     "collapseOverview": "Alles inklappen",
@@ -214,7 +217,11 @@
     "showMap": "Toon kaart",
     "brokenLinksTableTitle": "Niet-werkende en te trage verwijzingen",
     "name": "Naam",
-    "indication": "Indicatie"
+    "indication": "Indicatie",
+    "seeOrgPage": "Bekijk de organisatiepagina",
+    "moreInfoOrgPage": "Meer informatie",
+    "algorithmDescriptions": "algoritmebeschrijvingen",
+    "noPublications": "Geen publicaties."
   },
   "getAlgorithmPropertyExplanation": "Uitleg over het algoritme-eigenschap '{field}'",
   "algorithmProperties": {

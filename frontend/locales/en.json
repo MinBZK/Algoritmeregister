@@ -82,7 +82,8 @@
       "ext_digitaleoverheid_nl": "Digitale Overheid",
       "ext_data_overheid_nl": "Data.overheid.nl",
       "ext_pleio": "Algoritmes.pleio.nl",
-      "zelf-aan-de-slag": "Get started yourself"
+      "zelf-aan-de-slag": "Get started yourself",
+      "registreer-je-algoritme": "Register your algorithm"
     }
   },
   "algoritmeRegister": "Algorithm register",
@@ -139,7 +140,8 @@
     "release-notes": "Release notes",
     "organisatie": "Organisations",
     "zelf-aan-de-slag": "Get started yourself",
-    "dashboard" : "Dashboard"
+    "dashboard": "Dashboard",
+    "registreer-je-algoritme": "Register your algorithm"
   },
   "pagination": {
     "page": "Page",
@@ -171,7 +173,8 @@
     "loadingText": "Loading",
     "totalPublishedAlgorithmDescriptions": "Total number of published algorithm descriptions",
     "totalJoinedOrganisations": "Total number of affiliated organisations",
-    "publishedAlgorithmDescriptions": "Number of published algorithm descriptions",
+    "publishedAlgorithmDescriptions": "{n} algorithm descriptions published.",
+    "singlePublishedAlgorithmDescription": "{n} algorithm description published.",
     "joinedOrganisations": "Number of affiliated organisations",
     "brokenLinks": "Number of broken links",
     "statusErrorCode": "Code",
@@ -186,10 +189,10 @@
     "provinces": "Provinces",
     "waterAuthorities": "Water authorities",
     "environmentalServices": "Environmental services",
-    "clickOnMunicipality": "Click on a municipality",
-    "clickOnProvince": "Click on a province",
-    "clickOnWaterAuthority": "Click on a water authority",
-    "clickOnEnvironmentalService": "Click on an environmental service",
+    "clickOnMunicipality": "Click on a municipality.",
+    "clickOnProvince": "Click on a province.",
+    "clickOnWaterAuthority": "Click on a water authority.",
+    "clickOnEnvironmentalService": "Click on an environmental service.",
     "legendGreen": "Is affiliated and has published on the registry.",
     "legendYellow": "Is affiliated but has not published anything yet.",
     "legendWhite": "Is not yet affiliated with the registry.",
@@ -214,7 +217,11 @@
     "showMap": "Show map",
     "brokenLinksTableTitle": "Non-working and slow links",
     "name": "Name",
-    "indication": "Indication"
+    "indication": "Indication",
+    "seeOrgPage": "View the organizationpage",
+    "moreInfoOrgPage": "More information",
+    "algorithmDescriptions": "algorithm descriptions",
+    "noPublications": "No publications."
   },
   "error": {
     "pageNotFound": "Page not found",

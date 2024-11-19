@@ -1,12 +1,7 @@
 <template>
   <div class="footer row--footer" role="contentinfo">
     <div class="container columns">
-      <div class="bottom-margin">
-        {{ p('footer.text') }}
-        <NuxtLink :to="localePath('/footer/meedoen')">
-          {{ p('footer.textForLink') }}
-        </NuxtLink>
-      </div>
+      <div></div>
       <div></div>
       <div v-for="footerKey in footerKeys" :key="footerKey">
         <div class="">
@@ -36,11 +31,7 @@
 <script setup lang="ts">
 import footer from '@/config/footer'
 const { t } = useI18n()
-
-const { p } = useTextLoader()
-
 const localePath = useLocalePath()
-
 const footerKeys = Object.keys(footer)
 </script>
 

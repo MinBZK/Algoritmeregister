@@ -17,6 +17,7 @@ def add(self, item: schemas.AlgoritmeVersionIn) -> schemas.AlgoritmeVersionDB:
         "id": 0,
         "lars": "00000000",
         "owner": "",
+        "code": ""
     }
     schema = schemas.AlgoritmeVersionDB(**item.dict(), **fields_to_add)
     return schema

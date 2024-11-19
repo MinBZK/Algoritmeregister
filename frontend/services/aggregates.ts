@@ -4,6 +4,7 @@ export interface DocumentCount {
   number_of_algorithmdescriptions: number
   show_page: boolean
   joined: boolean
+  code: string
 }
 
 export interface DataObject {
@@ -11,6 +12,7 @@ export interface DataObject {
   count: number
   showPage: boolean
   joined: boolean
+  code: string
 }
 
 export interface GeoJson {
@@ -70,3 +72,22 @@ export interface GeoJson {
   timeStamp?: string
   totalFeatures?: number
 }
+
+export interface ToolTipData {
+  orgName: string
+  algoCount: number
+  orgPage: string
+  orgPageUrl: string
+  classificationColour: string | undefined
+  orgCode: string
+  joined: boolean
+  algoKey: string
+  algoPublished: string
+}
+
+export const OrganisationTypes = {
+  Province: 'province',
+  Municipality: 'municipality',
+  WaterAuthority: 'waterAuthority',
+  EnvironmentalService: 'environmentalService',
+} as const

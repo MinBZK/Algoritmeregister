@@ -11,3 +11,4 @@ from .site_data import *  # noqa
 from .user import *  # noqa
 from .html_figures import *  # noqa
 from .broken_links import *  # noqa
+from .precomputed_values import *  # noqa

@@ -62,7 +62,9 @@
         </div>
         <div v-if="loading" class="result--list result--list__data">
           <ul>
-            <li v-for="index in 10" :key="index" class="skeleton-card"></li>
+            <li v-for="index in 10" :key="index" class="skeleton-card">
+              <SkeletonAlgoritmes />
+            </li>
           </ul>
         </div>
         <TablePagination
@@ -96,6 +98,7 @@ import { mapLocaleName } from '@/utils'
 import algoritmeService from '@/services/algoritme'
 import organisationService from '@/services/organisation'
 import AlgoritmeFilters from '@/components/algoritme/AlgoritmeFilters.vue'
+import SkeletonAlgoritmes from '@/components/skeleton/SkeletonAlgoritmes.vue'
 
 const { t, locale } = useI18n()
 const router = useRouter()
@@ -193,11 +196,6 @@ providePageTitle({
 </script>
 
 <style scoped lang="scss">
-.skeleton-card {
-  padding: 1.5em;
-  height: 215.938px;
-}
-
 .item-header {
   margin-bottom: 15px;
 }

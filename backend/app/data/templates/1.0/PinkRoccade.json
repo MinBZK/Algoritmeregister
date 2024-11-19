@@ -51,5 +51,65 @@
     "publiccode": null,
     "human_intervention": "<p>Het algoritme gaat uit van een positief scenario. Daardoor worden alleen eenvoudige aangiften en aanvragen automatisch verwerkt. Wanneer een of meerdere bijzonderheden optreden, dan wordt de aanvraag/aangifte altijd door een burgerzakenmedewerker beoordeeld. De burgerzakenmedewerker controleert deze dan zelf; verwerken of afwijzen. Bij afwijzing is het altijd de burgerzakenmedewerker die dit doet en nooit het algoritme.</p>",
     "risks": "<p>Het is aan gemeenten om vorm te geven aan het risicobeheer en aan de hand daarvan de e-diensten te configureren.</p>"
+  },
+  {
+    "id": "pinkroccade-civision-samenlevingszaken",
+    "name": "CiVision Samenlevingszaken",
+    "description_short": "CiVision Samenlevingszaken is een backoffice applicatie voor het sociaal domein. Binnen deze applicatie worden voorzieningen voor een inwoner berekend en verstrekt. Dit zijn verstrekkingen in het kader van inkomensregelingen, re-integratievoorzieningen en voorzieningen ter maatschappelijke ondersteuning en voor de hulp aan jeugdigen.",
+    "organization": null,
+    "category": ["Organisatie en bedrijfsvoering"],
+    "type": null,
+    "publication_category": "Impactvolle algoritmes",
+    "website": null,
+    "status": "In gebruik",
+    "begin_date": "",
+    "end_date": null,
+    "goal": "<p>Het principe van algoritme heeft als doel om inkomensvoorzieningen en subsidies geautomatiseerd te kunnen berekenen. Zodat rechthebbenden de juiste verstrekking ontvangen. Deze berekeningen gebeuren op basis van businesslogica. Deze bestaat uit variabelen die zijn gebaseerd op geldende wet- en regelgeving.</p>",
+    "proportionality": "<p>Met het toepassen van businesslogica is de gebruiker in staat om een betrouwbare en correcte berekening te maken. Hierdoor ontvangt de rechthebbende van een inkomensregeling of subsidie het juiste bedrag en worden gelijke gevallen op een gelijke manier behandeld.</p>",
+    "provider": "PinkRoccade Local Government",
+    "lawful_basis": "<p>Algoritmen bevinden zich uitsluitend in onze ondersteuning van de Participatiewet, Ioaw, Ioaz en Bbz2004. De wetgeving hieromtrent is leidend voor onze businesslogica. Zowel voor inkomensregelingen als subsidies die worden verstrekt in het werkdomein.</p>",
+    "lawful_basis_grouping": [
+      {
+        "title": "Participatiewet",
+        "link": "https://wetten.overheid.nl/BWBR0015703/2024-07-01/0"
+      },
+      {
+        "title": "Ioaw",
+        "link": "https://wetten.overheid.nl/BWBR0004044/2024-07-01/0"
+      },
+      {
+        "title": "Ioaz",
+        "link": "https://wetten.overheid.nl/BWBR0004163/2024-07-01/0"
+      },
+      {
+        "title": "Bbz2004",
+        "link": "https://wetten.overheid.nl/BWBR0015711/2024-01-01/0"
+      },
+      {
+        "title": "Regeling Participatiewet, Ioaw, Ioaz",
+        "link": "https://wetten.overheid.nl/BWBR0015738/2024-06-01/0"
+      },
+      {
+        "title": "Wet minimumloon en minimumvakantiebijslag",
+        "link": "https://wetten.overheid.nl/BWBR0002638/2024-07-01"
+      }
+    ],
+    "impacttoetsen": "<p>DPIA is toegepast.</p>",
+    "impacttoetsen_grouping": [
+      { "title": "Data Protection Impact Assessment (DPIA)", "link": null }
+    ],
+    "iama_description": null,
+    "url": null,
+    "lang": "NLD",
+    "standard_version": "1.0",
+    "uuid": null,
+    "source_id": null,
+    "tags": null,
+    "source_data": "",
+    "source_data_link": "",
+    "methods_and_models": "<div><p>Op basis van de ingegeven variabelen komt op basis van vaste logica het te verstrekken recht tot stand. </p><p><br></p><p>Voor het bepalen van de hoogte van de inkomensvoorzieningen kent de applicatie normen en grondslagen. Deze bedragen worden periodiek bijgesteld door de wetgever. De van toepassing zijnde norm of grondslag leiden we af uit de situatie van de inwoner. Zo wordt op basis van de leeftijd van de inwoner, burgerlijke staat, aanwezige kinderen en medebewoners de norm of de hoogte van de grondslag bepaald. Overige variabelen die van invloed zijn op de daadwerkelijke hoogte van de verstrekking, bijvoorbeeld inkomsten of een verlaging, worden ingesloten in de berekening. Zodat het te verstrekken bedrag in de applicatie wordt berekend. De rekenlogica strekt zich eveneens uit over de verantwoording die een gebruiker moet afleggen over verstrekte inkomensregelingen. Denk hierbij aan het opstellen van de loonaangifte en het bruteren van vordering.</p><p><br></p><p>Voor het berekenen van subsidies kennen we ook de relevante normen. Deze zijn gebaseerd op landelijk vastgestelde minimumlonen. Welk minimumloon van toepassing is in een berekening leiden we af van de leeftijd van de inwoner en de aard van het dienstverband van een inwoner. In de berekening van de subsidies wordt rekening gehouden met de omvang van de arbeidsovereenkomst en de vastgestelde loonwaarde van de inwoner. Het te verstrekken bedrag aan subsidie komt uiteindelijk tot stand na toepassing van alle relevante variabelen die op het van toepassing zijnde minimumloon worden toegepast.</p></div>",
+    "publiccode": null,
+    "human_intervention": "<p>Bij elke verstrekking die gedaan wordt, worden controlemechanismen gehanteerd. Op verschillende momenten tussen de invoer van gegevens en de daadwerkelijke uitvoer van de verstrekking kunnen menselijke controle worden toegepast.</p>",
+    "risks": "<p>Een aanpassing van de businesslogica wordt uitvoerig getest voor deze wordt vrijgegeven voor gebruikers. Daarnaast dwingt de applicatie controles af voordat een verwerking definitief wordt gemaakt. Tot het moment dat de verwerking definitief is gemaakt kan de verwerking teruggedraaid worden. Daarnaast is de businesslogica bij PinkRoccade in beheer en afgeschermd voor gebruikers. </p>"
   }
 ]

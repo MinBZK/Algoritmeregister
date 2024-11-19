@@ -1,0 +1,37 @@
+[
+  {
+    "id": "bm-dataprotector",
+    "name": "Dataprotector",
+    "organization": null,
+    "description_short": "Dataprotector biedt de mogelijkheid om geautomatiseerd documenten en teksten te anonimiseren en neemt daardoor vele uren handmatig en repetitief werk uit handen van uw medewerkers.",
+    "type": null,
+    "category": [],
+    "publication_category": "Overige algoritmes",
+    "website": null,
+    "status": "In gebruik",
+    "begin_date": null,
+    "end_date": null,
+    "goal": "<p>Anonimiseren voor Woo en AVG.</p>",
+    "proportionality": "<p>Verbetering van de dienstverlening door sneller geanonimiseerde documenten te kunnen presenteren.</p>",
+    "provider": "BMconsultants BV",
+    "lawful_basis": "<p>AVG, Woo</p>",
+    "lawful_basis_grouping": [
+      { "title": "AVG", "link": "https://wetten.overheid.nl/BWBR0040940" },
+      { "title": "Woo", "link": "https://wetten.overheid.nl/BWBR0024779" }
+    ],
+    "impacttoetsen": null,
+    "iama_description": null,
+    "url": "https://www.tm7.eu",
+    "lang": "NLD",
+    "standard_version": "1.0",
+    "uuid": null,
+    "source_id": "Dataprotector",
+    "tags": "<p>Anonimiseren, Lakken, Pseudonimiseren, Redigeren, Anonimize</p>",
+    "source_data": "<p>Pakket is gemaakt om Nederlandse persoonsgegevens te vinden. Het optimaliseren van het proces is in de afgelopen 29 jaar geëvolueerd waardoor de oorspronkelijke trainingsdocumenten niet meer van toepassing zijn.</p>",
+    "source_data_link": null,
+    "methods_and_models": "<p>Verzameling van reguliere expressie ontwikkeld in Nederland. Er wordt geen gebruik gemaakt van LLM's.</p>",
+    "publiccode": null,
+    "human_intervention": "<p>Standaard is er een menselijke controle aanwezig.</p>",
+    "risks": "<p>Toegang tot de documenten wordt beperkt door autorisatie, individuele documenten wordt versleuteld.</p>"
+  }
+]

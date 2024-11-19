@@ -11,12 +11,8 @@ const footer: FooterColumn = {
       path: '/over-algoritmes',
     },
     {
-      key: 'meedoen',
-      path: '/meedoen',
-    },
-    {
-      key: 'zelf-aan-de-slag',
-      path: '/zelf-aan-de-slag',
+      key: 'registreer-je-algoritme',
+      path: '/registreer-je-algoritme',
     },
     {
       key: 'vragen',

@@ -1,6 +1,13 @@
 <template>
-  <div class="tab">
-    <div id="toggle" :class="{ clicked: modelValue }" @click="handleClick()">
+  <div ref="tabContainer" class="tab">
+    <div
+      id="toggle"
+      :class="{ clicked: modelValue }"
+      tabindex="0"
+      @click="handleClick()"
+      @keydown.enter="handleClick()"
+      @keydown.space.prevent="handleClick()"
+    >
       <div class="width-78">
         <img :src="icon" alt="Lijngrafiek icoon" class="prepend-icon" />
         <h2 class="font-20px margin-bottom-none">{{ title }}</h2>
@@ -16,7 +23,7 @@
       <div class="content">
         {{ description }}
         <br />
-        <b v-if="clickOn">{{ clickOn }}</b>
+        <b v-if="clickOn && isMobile">{{ clickOn }}</b>
         <slot name="default" />
       </div>
     </template>
@@ -40,6 +47,8 @@ const props = withDefaults(
     description: '',
   }
 )
+const isMobile = useMobileBreakpoint().medium
+const tabContainer = ref<HTMLElement | null>(null)
 
 const emit = defineEmits<{
   (e: 'update:modelValue', modelValue: boolean): void
@@ -47,6 +56,12 @@ const emit = defineEmits<{
 
 const handleClick = () => {
   emit('update:modelValue', !props.modelValue)
+  // Use nextTick to ensure DOM updates before accessing tabContainer
+  nextTick(() => {
+    if (tabContainer.value) {
+      tabContainer.value.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  })
 }
 </script>
 

@@ -82,7 +82,8 @@
       "ext_digitaleoverheid_nl": "Digitale Oerheid",
       "ext_data_overheid_nl": "Data.overheid.nl",
       "ext_pleio": "Algoritmen.pleio.nl",
-      "zelf-aan-de-slag": "Begjin sels"
+      "zelf-aan-de-slag": "Begjin sels",
+      "registreer-je-algoritme": "Registrearje jo algoritme"
     }
   },
   "algoritmeRegister": "Algoritme-register",
@@ -139,7 +140,8 @@
     "release-notes": "Release-notysjes",
     "organisatie": "Organisaasjes",
     "zelf-aan-de-slag": "Begjin sels",
-    "dashboard" : "Dashboard"
+    "dashboard": "Dashboard",
+    "registreer-je-algoritme": "Registrearje jo algoritme"
   },
   "pagination": {
     "page": "Side",
@@ -171,7 +173,8 @@
     "loadingText": "Oan it laden",
     "totalPublishedAlgorithmDescriptions": "Totaal oantal algoritme beskriuwingen publisearre",
     "totalJoinedOrganisations": "Totaal oantal oansletten organisaasjes",
-    "publishedAlgorithmDescriptions": "Oantal algoritme beskriuwingen publisearre",
+    "publishedAlgorithmDescriptions": "{n} algoritme beskriuwingen publisearre.",
+    "singlePublishedAlgorithmDescription": "{n} algoritme beskriuwing publisearre",
     "joinedOrganisations": "Oantal oansletten organisaasjes",
     "brokenLinks": "Oantal brutsen keppelings",
     "statusErrorCode": "Code",
@@ -186,10 +189,10 @@
     "provinces": "Provinsjes",
     "waterAuthorities": "Wetterskippen",
     "environmentalServices": "Miljeu tsjinsten",
-    "clickOnMunicipality": "Klik op in gemeente",
-    "clickOnProvince": "Klik op in provinsje",
-    "clickOnWaterAuthority": "Klik op in wetterskip",
-    "clickOnEnvironmentalService": "Klik op in miljeutsjinst",
+    "clickOnMunicipality": "Klik op in gemeente.",
+    "clickOnProvince": "Klik op in provinsje.",
+    "clickOnWaterAuthority": "Klik op in wetterskip.",
+    "clickOnEnvironmentalService": "Klik op in miljeutsjinst.",
     "legendGreen": "Is oansletten en hat publisearre yn it register.",
     "legendYellow": "Is oansletten mar is noch net publisearre.",
     "legendWhite": "Is noch net ferbûn mei it register.",
@@ -215,7 +218,11 @@
     "brokenLinksTableTitle": "Net-wurkjende en te trage ferwizings",
     "disclaimer": "Dit oersjoch lit sjen hokker algoritmebeskriuwingen ien of mear ferwizings befetsje dy't net mear wurkje of wêrfan de reaksjetiid te traach is (mear as 5 sekonden). Dizze kontrôle is yn ûntwikkeling. It is mooglik dat wol-wurkjende ferwizings ûnrjochtlik rapportearre wurde.",
     "name": "Namme",
-    "indication": "Oanwizing"
+    "indication": "Oanwizing",
+    "seeOrgPage": "Besjoch de organisaasjeside",
+    "moreInfoOrgPage": "Mear ynformaasje",
+    "algorithmDescriptions": "algoritmebeskriuwingen",
+    "noPublications": "Gjin publikaasjes."
   },
   "getAlgorithmPropertyExplanation": "Utlis oer it algoritme-eigenskip '{field}'",
   "algorithmProperties": {

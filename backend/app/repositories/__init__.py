@@ -5,3 +5,4 @@ from .action_history import ActionHistoryRepository  # noqa
 from .organisation_details import OrganisationDetailsRepository  # noqa
 from .html_figures import HtmlFiguresRepository  # noqa
 from .broken_links import BrokenLinksRepository  # noqa
+from .precomputed_values import PreComputedValuesRepository  # noqa

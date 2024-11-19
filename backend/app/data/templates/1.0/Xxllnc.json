@@ -1,0 +1,63 @@
+[
+  {
+    "id": "xxllnc-Anonimiseren",
+    "name": "Anonimiseren",
+    "description_short": "Het algoritme onderstreept de persoonsgegevens in documenten. Een medewerker moet alle pagina's bekijken en controleren of het document goed geanonimiseerd is. Daarna verwijdert de software alle gemarkeerde informatie en wordt het zwartgelakt. Daarna kunnen de documenten gepubliceerd worden, bijvoorbeeld op basis van de Wet Open Overheid (WOO).",
+    "organization": null,
+    "type": "Zelflerend",
+    "publication_category": "Overige algoritmes",
+    "website": null,
+    "status": "In gebruik",
+    "begin_date": "",
+    "end_date": "",
+    "goal": "De anonimiseringssoftware wordt ingezet om documenten die de gemeente publiceert sneller en beter te anonimiseren. Zo voorkomen we datalekken en dragen we bij aan een betere bescherming van de AVG-rechten van betrokkenen.",
+    "proportionality": "De gemeente moet steeds vaker informatie openbaar maken. Daarom moet privacy- of bedrijfsgevoelige informatie worden weggelakt. Voordat het algoritme werd ingezet, ging dit lakken niet altijd goed. Er kwamen datalekken voor waarbij niet alle persoonsgegevens weggelakt waren of waarbij weggelakte informatie toch te lezen was. Het voordeel van de anonimiseringssoftware is dat er sneller en beter geanonimiseerd wordt. Het nadeel is dat de tekstlaag van het document door een Microsoft Azure server wordt geanalyseerd. De inhoud wordt niet op deze server opgeslagen, waardoor het privacyrisico van het gebruik van het algoritme niet opweegt tegen het privacyvoordeel van de afname van het aantal datalekken door onjuist anonimiseren. ",
+    "provider": "Xxllnc",
+    "lawful_basis": "1. WOO\n2. WDO\n3. UAVG\n4. WEP\n5. WDO",
+    "lawful_basis_grouping": [
+      {
+        "title": "Woo",
+        "link": "https://wetten.overheid.nl/BWBR0045754/"
+      },
+      {
+        "title": "WDO",
+        "link": "https://eur-lex.europa.eu/legal-content/NL/TXT/HTML/?uri=CELEX:31995L0046"
+      },
+      {
+        "title": "UAVG",
+        "link": "https://wetten.overheid.nl/BWBR0040940"
+      },
+      {
+        "title": "Wep",
+        "link": "https://wetten.overheid.nl/BWBR0043961"
+      },
+      {
+        "title": "Wdo",
+        "link": "https://wetten.overheid.nl/BWBR0048156"
+      }
+    ],
+    "iama_description": null,
+    "impacttoetsen_grouping": [
+      {
+        "title": "DEDA anonimiseringssoftware",
+        "link": ""
+      },
+      {
+        "title": "DPIA anonimiseringssoftware",
+        "link": ""
+      }
+    ],
+    "url": null,
+    "lang": "NLD",
+    "standard_version": "1.0",
+    "uuid": null,
+    "source_id": null,
+    "tags": null,
+    "source_data": "Alle informatie die te vinden is in de geüploade documenten (behalve de metadata), wordt verwerkt door het algoritme. Het kan daarbij gaan om gewone persoonsgegevens, bijzondere persoonsgegevens en strafrechtelijke gegevens. Het kan ook gaan om bedrijfsgevoelige informatie.",
+    "source_data_link": "",
+    "methods_and_models": "Documenten worden door een medewerker geüpload naar de applicatie. Op dat moment wordt een kopie gemaakt van het origineel in de vorm van een PDF met tekstlaag en wordt de metadata van het oorspronkelijke document uit de kopie verwijderd. Deze kopie komt op een Nederlandse server terecht en blijft daar maximaal 30 dagen staan. De tekstlaag van de PDF wordt door een API aangeboden aan het machine learning algoritme. Het gaat om een Natural Language Processing algoritme (named entity recognition) van Microsoft Azure. De API levert terug op welke locatie in de geanalyseerde teksten waarschijnlijk een persoonsgegeven voorkomt, samen met de waarschijnlijkheidsscore (een percentage). Op dat moment wordt de tekstlaag bij Azure direct verwijderd. De waarschijnlijkheidsscore wordt samen met door de leverancier ontwikkelde eigen ai-modellen gebruikt om de herkenning van persoonsgegevens zo accuraat mogelijk te kunnen doen. De modellen worden getraind met gebruik van o.a. de volgende getrainde datasets als CoNLL-2003, UD Dutch LassySmall v2.8, Dutch NER Annotations for UD LassySmall en UD Dutch Alpino v2.8. Minimale kengetallen voor de nauwkeurigheid van het vaststellen van de persoonsgegevens zijn als volgt: Named entities (precision): 0.78, Named entities (recall): 0.76, Named entities (F-score): 0.77. Tot slot controleert een medewerker het document en wanneer deze het document afrondt, worden de te anonimiseren gegevens definitief uit de tekstlaag verwijderd en wordt een zwart balkje geplaatst.",
+    "publiccode": null,
+    "human_intervention": "De uitkomst van het algoritme wordt gecontroleerd door een medewerker. De medewerker wordt door de software verplicht om alle pagina's te controleren. De medewerker bepaalt of het document correct is geanonimiseerd.",
+    "risks": "Er bestaat geen risico op geautomatiseerde besluitvorming en het algoritme heeft geen impact op grondrechten, omdat het algoritme geen besluiten neemt met rechtsgevolgen. Het doet alleen een voorstel voor het anonimiseren van persoonsgegevens. Het algoritme wordt ook gebruikt door de ontwikkelaar zelf, waardoor fouten snel gevonden worden. Daarnaast wordt het algoritme periodiek getraind. Op verzoek van onze organisatie worden onze documenten niet gebruikt om het algoritme te trainen. Wanneer het algoritme niet goed genoeg werkt, kunnen we met black- en whitelists bijsturen. De medewerker van de gemeente doet altijd de laatste toets of een document juist is geanonimiseerd. Het risico bestaat dat medewerkers niet goed controleren, dit mitigeren we door aandacht te geven aan het belang van een zorgvuldige controle van de door het algoritme gevonden persoonsgegevens. Het laatste risico dat overblijft, is het privacyrisico van het gebruik van Azure. Omdat Microsoft verplicht kan worden gegevens die het verwerkt over te dragen aan de Amerikaanse autoriteiten vanwege de Patriot Act. Om deze risico's te beperken heeft de leverancier privacy by default toegepast. Tekst die door de API in synchrone of asynchrone aanroepen wordt verzonden aan de Azure dienst kunnen tijdelijk worden opgeslagen door Azure voor debugging. Maar deze optie heeft de leverancier uitgeschakeld. Dat beperkt het risico. Onmiddellijk na de verwerking door Azure wordt de data en de dataverwerking verwijderd. Verder is de leverancier ISO 27001 gecertificeerd. De risico's wegen niet op tegen de privacyvoordelen en het risico van gebrekkig anonimiseren door deze software niet te gebruiken."
+  }
+]
