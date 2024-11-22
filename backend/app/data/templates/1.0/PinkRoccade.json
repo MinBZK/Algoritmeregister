@@ -94,9 +94,8 @@
         "link": "https://wetten.overheid.nl/BWBR0002638/2024-07-01"
       }
     ],
-    "impacttoetsen": "<p>DPIA is toegepast.</p>",
+    "impacttoetsen": "",
     "impacttoetsen_grouping": [
-      { "title": "Data Protection Impact Assessment (DPIA)", "link": null }
     ],
     "iama_description": null,
     "url": null,
