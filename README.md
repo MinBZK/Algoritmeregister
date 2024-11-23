@@ -10,9 +10,8 @@ See the Frequently Asked Questions on the Algorithm Register for more informatio
 
 ### Open source software
 
-Will you join us and add your thoughts? To contribute, create an account on GitHub (https://github.com/signup ) and read this readme and the code of conduct to get started.
-Once signed-up, you can provide feedback on the code of this website, on the algorithm 'standard', on the published description or on the user-friendliness of the website, etc.
-Get started: join us and add your thoughts!
+While the software for the Algorithm Register is open source, outside contributions through GitHub (pull requests, issues and discussions) will not be responded to. 
+
 
 # Technical information
 
