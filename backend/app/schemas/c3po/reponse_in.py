@@ -31,10 +31,10 @@ class Rule(BaseModel):
 class Task(BaseModel):
     id: int
     processing_request_id: int
-    feedback_message: str | None
+    feedback_message: str | None = None
     result: Optional[Union[str, list[Any], dict[str, Any]]]
     status: TaskStatus
-    passed: bool | None
+    passed: bool | None = None
     created_at: datetime.datetime
     rule: Rule
 

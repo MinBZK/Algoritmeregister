@@ -16,6 +16,7 @@ from app.services.keycloak.repository import KeycloakRepository
 from app.services.keycloak.schemas import KeycloakUserUpdate
 from app.services.translation import LanguageCode
 from app.middleware import kc_settings
+from app.models.organisation import Organisation
 
 
 def get_orgs(
@@ -30,7 +31,7 @@ def get_orgs(
     if Role.AllGroups in user.roles or Role.Administrator in user.roles:
         orgs = org_details_repo.get_org_configs_by_lang(Language.NLD, skip=skip, q=q)
     else:
-        orgs = org_details_repo.get_org_configs_by_org_list_by_lang(
+        orgs = org_details_repo.get_org_configs_by_org_id_list_by_lang(
             user.groups, Language.NLD, skip=skip, q=q
         )
     return GetOrganisationsResponse(
@@ -44,6 +45,15 @@ def is_unique_code(db: Session, organisation: OrganisationConfigIn) -> bool:
     duplicate_code = organisation_repo.get_by_code(organisation.code)
     if duplicate_code is not None:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="CODE_TAKEN")
+    return True
+
+
+def is_unique_org_id(db: Session, organisation: OrganisationConfigIn) -> bool:
+    """Test for presence of the organisation code in the DB. If found, throws an HTTPException"""
+    organisation_repo = OrganisationRepository(db)
+    duplicate_org_id = organisation_repo.get_by_org_id(organisation.org_id)
+    if duplicate_org_id is not None:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="ORG_ID_TAKEN")
     return True
 
 
@@ -61,9 +71,13 @@ def create_org(
 ) -> OrganisationConfig:
     is_unique_name(db, config)
     is_unique_code(db, config)
+    is_unique_org_id(db, config)
 
     org_model = models.Organisation(
-        type=config.type, code=config.code, flow=config.flow
+        type=config.type,
+        code=config.code,
+        flow=config.flow,
+        org_id=config.org_id,
     )
     db.add(org_model)
     db.flush()
@@ -75,8 +89,8 @@ def create_org(
     db.commit()
 
     org_detail_repo = OrganisationDetailsRepository(db)
-    org_config = org_detail_repo.get_org_configs_by_code_by_lang(
-        config.code, Language.NLD
+    org_config = org_detail_repo.get_org_configs_by_org_id_by_lang(
+        config.org_id, Language.NLD
     )
     if not org_config:
         raise HTTPException(status.HTTP_409_CONFLICT, "RECORD_NOT_FOUND")
@@ -93,13 +107,14 @@ def create_org(
 def update_org(
     background_tasks: BackgroundTasks,
     db: Session,
-    org_code: str,
+    org_id: str,
     config: OrganisationConfigIn,
 ) -> OrganisationConfig:
     current_org_query = (
         db.query(
             models.Organisation.id,
             models.Organisation.code,
+            models.Organisation.org_id,
             models.Organisation.type,
             models.OrganisationDetails.name,
         )
@@ -109,7 +124,7 @@ def update_org(
         )
         .filter(
             models.OrganisationDetails.language == Language.NLD,
-            models.Organisation.code == org_code,
+            models.Organisation.org_id == org_id,
         )
     )
     current_org = current_org_query.first()
@@ -118,17 +133,17 @@ def update_org(
             status_code=status.HTTP_404_NOT_FOUND, detail="ORG_NOT_FOUND"
         )
 
-    if org_code != config.code:
-        # On code change, test for uniqueness.
-        is_unique_code(db, config)
-
     if current_org.name != config.name:
         # On name change, test for uniqueness.
         is_unique_name(db, config)
 
-    db.query(models.Organisation).filter(models.Organisation.code == org_code).update(
+    if org_id != config.org_id:
+        # On name change, test for uniqueness.
+        is_unique_org_id(db, config)
+
+    db.query(models.Organisation).filter(models.Organisation.org_id == org_id).update(
         {
-            models.Organisation.code: config.code,
+            models.Organisation.org_id: config.org_id,
             models.Organisation.type: config.type,
             models.Organisation.flow: config.flow,
         },
@@ -139,12 +154,12 @@ def update_org(
         models.OrganisationDetails.language == Language.NLD,
     ).update({models.OrganisationDetails.name: config.name}, synchronize_session=False)
     # If update is succesful, and code changed, also update the rights of the users.
-    if org_code != config.code:
+    if org_id != config.org_id:
         kc_repo = KeycloakRepository(kc_settings)
-        users = kc_repo.get_all(group=org_code)
+        users = kc_repo.get_all(group=org_id)
         for user in users:
-            new_groups = [config.code] + [g for g in user.groups if g != org_code]
-            updated_user = {**user.dict(), "groups": new_groups}
+            new_groups = [config.org_id] + [g for g in user.groups if g != org_id]
+            updated_user = {**user.model_dump(), "groups": new_groups}
             kc_repo.update_user(user.id, KeycloakUserUpdate(**updated_user))
 
     db.commit()
@@ -157,8 +172,8 @@ def update_org(
     )
 
     org_details_repo = OrganisationDetailsRepository(db)
-    org_config = org_details_repo.get_org_configs_by_code_by_lang(
-        config.code, Language.NLD
+    org_config = org_details_repo.get_org_configs_by_org_id_by_lang(
+        config.org_id, Language.NLD
     )
     if not org_config:
         raise HTTPException(status.HTTP_409_CONFLICT, "RECORD_NOT_FOUND")
@@ -167,29 +182,29 @@ def update_org(
 
 def remove_org(
     db: Session,
-    org_code: str,
+    org_id: str,
 ) -> None:
     org_repo = OrganisationRepository(db)
-    org = org_repo.get_by_code(org_code)
+    org = org_repo.get_by_org_id(org_id)
     if not org:
         raise HTTPException(404)
-    org_repo.delete_by_code(org_code)
+    org_repo.delete_by_org_id(org_id)
 
 
 def update_org_show_page(
-    db: Session, org_code: str, show_page: bool
+    db: Session, org_id: str, show_page: bool
 ) -> OrganisationConfig:
     org_repo = OrganisationRepository(db)
-    org = org_repo.get_by_code(org_code)
+    org = org_repo.get_by_org_id(org_id)
     if not org:
         raise HTTPException(status.HTTP_404_NOT_FOUND)
 
     org.show_page = show_page
-    item = schemas.OrganisationIn.from_orm(org)
-    org_repo.update_by_code(org.code, item)
+    item = schemas.OrganisationIn.model_validate(org)
+    org_repo.update_by_org_id(org.org_id, item)
 
     org_detail_repo = OrganisationDetailsRepository(db)
-    org_config = org_detail_repo.get_org_configs_by_code_by_lang(org_code, Language.NLD)
+    org_config = org_detail_repo.get_org_configs_by_org_id_by_lang(org_id, Language.NLD)
     if not org_config:
         raise HTTPException(status.HTTP_409_CONFLICT, "RECORD_NOT_FOUND")
     return org_config
@@ -240,3 +255,47 @@ def translate_org_name(
         org_details_in = schemas.OrganisationDetailsIn(**dict(org_detail))
         org_details_in.name = str(translation_response.fields["organization"])
         org_details_repo.update_by_id(org_detail.id, org_details_in)
+
+
+def get_alternative_values_from_columns(db: Session, org_code: str) -> list[str]:
+    """
+    Fetch unique non-null values from specified Organisation name-related columns.
+    Only fetches values from the organization with the specified code.
+
+    Args:
+        db: Database session
+        org_code: Organization code to identify the org
+
+    Returns:
+        List of unique values from the specified columns
+    """
+    all_values = []
+
+    # Define name-related attributes directly from the model
+    name_related_attrs = [
+        Organisation.official_name,
+        Organisation.alternative_name,
+        Organisation.abbreviation,
+        Organisation.label,
+        Organisation.official_name_with_type,
+        Organisation.official_name_without_type,
+        Organisation.official_name_for_sorting,
+        Organisation.preferred_name_without_type,
+        Organisation.preferred_name_including_type,
+        Organisation.preferred_name_for_sorting,
+        Organisation.tooi_alternative_name,
+    ]
+
+    # Get column names from attributes
+    columns = [attr.key for attr in name_related_attrs]
+
+    org_repo = OrganisationRepository(db)
+    org = org_repo.get_by_code(org_code)
+
+    # Get the values from the org object for the selected columns
+    for column_name in columns:
+        value = getattr(org, column_name)
+        if value and value not in all_values:
+            all_values.append(value)
+
+    return all_values

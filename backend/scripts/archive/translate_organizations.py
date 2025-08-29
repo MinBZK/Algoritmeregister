@@ -25,7 +25,7 @@ def get_all_published_versions(db: Session) -> list[schemas.OrganisationDetailsD
         .filter(OrganisationDetails.language == Language.NLD)
         .all()
     )
-    return [schemas.OrganisationDetailsDB.from_orm(entry) for entry in entries]
+    return [schemas.OrganisationDetailsDB.model_validate(entry) for entry in entries]
 
 
 def apply(
@@ -61,6 +61,9 @@ def apply(
         logger.info(
             f"Translated {org_detail.name} to {lang_code_map[lang]} successfully."
         )
+        if (org_count) % 100 == 0:
+            db.commit()
+            logger.info(f"Committed batch up to row {org_count}")
 
 
 def main():

@@ -16,7 +16,7 @@ class OrganisationDetailsRepository(IRepository):
     def get_all(self) -> list[schemas.OrganisationDetailsDB]:
         organisation_details = self.session.query(models.OrganisationDetails).all()
         return [
-            schemas.OrganisationDetailsDB.from_orm(org_detail)
+            schemas.OrganisationDetailsDB.model_validate(org_detail)
             for org_detail in organisation_details
         ]
 
@@ -25,7 +25,7 @@ class OrganisationDetailsRepository(IRepository):
         self.session.add(organization_detail)
         self.session.flush()
 
-        return schemas.OrganisationDetailsDB.from_orm(organization_detail)
+        return schemas.OrganisationDetailsDB.model_validate(organization_detail)
 
     def update_by_id(
         self, id: int, item: schemas.OrganisationDetailsIn
@@ -44,10 +44,10 @@ class OrganisationDetailsRepository(IRepository):
             .first()
         )
         if updated_object:
-            return schemas.OrganisationDetailsDB.from_orm(updated_object)
+            return schemas.OrganisationDetailsDB.model_validate(updated_object)
 
-    def get_shown_by_code_by_lang(
-        self, code: str, lang: Language
+    def get_shown_by_org_id_by_lang(
+        self, org_id: str, lang: Language
     ) -> schemas.OrganisationDetailsDB | None:
         organisation_detail = (
             self.session.query(models.OrganisationDetails)
@@ -56,14 +56,14 @@ class OrganisationDetailsRepository(IRepository):
                 models.Organisation.id == models.OrganisationDetails.organisation_id,
             )
             .filter(
-                models.Organisation.code == code,
+                models.Organisation.org_id == org_id,
                 models.OrganisationDetails.language == lang,
                 models.Organisation.show_page,
             )
             .first()
         )
         if organisation_detail:
-            return schemas.OrganisationDetailsDB.from_orm(organisation_detail)
+            return schemas.OrganisationDetailsDB.model_validate(organisation_detail)
 
     def get_by_org_id_by_lang(
         self, org_id: int, lang: Language
@@ -78,7 +78,7 @@ class OrganisationDetailsRepository(IRepository):
         )
 
         if organisation_detail:
-            return schemas.OrganisationDetailsDB.from_orm(organisation_detail)
+            return schemas.OrganisationDetailsDB.model_validate(organisation_detail)
 
     def get_by_name(self, name: str) -> schemas.OrganisationDetailsDB | None:
         organisation_detail = (
@@ -87,7 +87,7 @@ class OrganisationDetailsRepository(IRepository):
             .first()
         )
         if organisation_detail:
-            return schemas.OrganisationDetailsDB.from_orm(organisation_detail)
+            return schemas.OrganisationDetailsDB.model_validate(organisation_detail)
 
     def __build_org_config_query(
         self,
@@ -99,6 +99,7 @@ class OrganisationDetailsRepository(IRepository):
             self.session.query(
                 models.Organisation.id,
                 models.Organisation.code,
+                models.Organisation.org_id,
                 models.Organisation.type,
                 models.Organisation.flow,
                 models.Organisation.show_page,
@@ -122,7 +123,7 @@ class OrganisationDetailsRepository(IRepository):
     ) -> list[OrganisationConfig]:
         query = self.__build_org_config_query(lang, q)
         org_configs = query.limit(limit).offset(skip).all()
-        return [OrganisationConfig.from_orm(org) for org in org_configs]
+        return [OrganisationConfig.model_validate(org) for org in org_configs]
 
     def get_org_configs_by_org_list_by_lang(
         self,
@@ -141,14 +142,33 @@ class OrganisationDetailsRepository(IRepository):
             .offset(skip)
             .all()
         )
-        return [OrganisationConfig.from_orm(org) for org in org_configs]
+        return [OrganisationConfig.model_validate(org) for org in org_configs]
 
-    def get_org_configs_by_code_by_lang(
-        self, code: str, lang: Language
+    def get_org_configs_by_org_id_list_by_lang(
+        self,
+        org_list: list[str],
+        lang: Language,
+        limit: int | None = None,
+        skip: int | None = None,
+        q: str | None = None,
+    ) -> list[OrganisationConfig]:
+        query = self.__build_org_config_query(lang, q)
+        org_configs = (
+            query.filter(
+                models.Organisation.org_id.in_(org_list),
+            )
+            .limit(limit)
+            .offset(skip)
+            .all()
+        )
+        return [OrganisationConfig.model_validate(org) for org in org_configs]
+
+    def get_org_configs_by_org_id_by_lang(
+        self, org_id: str, lang: Language
     ) -> OrganisationConfig | None:
         query = self.__build_org_config_query(lang)
         org_config = query.filter(
-            models.Organisation.code == code,
+            models.Organisation.org_id == org_id,
         ).first()
         if org_config:
-            return OrganisationConfig.from_orm(org_config)
+            return OrganisationConfig.model_validate(org_config)

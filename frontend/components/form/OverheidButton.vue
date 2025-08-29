@@ -84,6 +84,8 @@ const clickButton = (e: Event) => {
 </script>
 
 <style scoped lang="scss">
+@use '/assets/styles/colors' as colors;
+
 .button {
   margin-bottom: 0em !important;
 }
@@ -97,7 +99,7 @@ const clickButton = (e: Event) => {
 }
 
 .button--primary[aria-disabled='true'] {
-  background-color: $primary-darker !important;
+  background-color: colors.$primary-darker !important;
   color: white !important;
 }
 </style>

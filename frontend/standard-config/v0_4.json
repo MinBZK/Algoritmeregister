@@ -8,7 +8,7 @@
                 "maxLength": 100,
                 "type": "string",
                 "example": "Automatische Verkeersregeling Ringweg",
-                "help_text": "De naam die gebruikt wordt om het algoritme aan te duiden",
+                "help_text": "De naam die gebruikt wordt om het algoritme aan te duiden.",
                 "instructions": "De algemeen gehanteerde naam van het algoritme.",
                 "show_always": true
             },
@@ -129,8 +129,8 @@
                 "maxLength": 2500,
                 "type": "string",
                 "example": "",
-                "help_text": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt ",
-                "instructions": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt ",
+                "help_text": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt.",
+                "instructions": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt.",
                 "show_always": false
             },
             "lawful_basis_link": {
@@ -182,7 +182,7 @@
                 "maxLength": 500,
                 "type": "string",
                 "example": "algoritmes@gemeentenoorderhaaks.nl",
-                "help_text": "De contactgegevens voor deze registratie ",
+                "help_text": "Dit is de plek waar inwoners of bedrijven vragen kunnen stellen over deze registratie. Gebruik algemene contactgegevens, zoals een contactformulier of afdelingsmail – geen persoonlijk e-mailadres.",
                 "instructions": "Het e-mailadres voor contact over deze registratie. Dit kan een geldig mailadres zijn waar burgers, media of andere betrokkenen vragen kunnen stellen over het algoritme zelf of over de gevolgen op basis van uitkomsten van het algoritme. Het alternatief is een extern webformulier die op dezelfde manier gebruikt kan worden. Begin een URL met https://.",
                 "show_always": true
             },
@@ -222,7 +222,7 @@
                 "maxLength": 100,
                 "type": "string",
                 "example": "n.v.t.",
-                "help_text": "De unieke code van dit algoritme in het register van de eigenaar",
+                "help_text": "De unieke code van dit algoritme in het register van de eigenaar.",
                 "instructions": "Indien van toepassing, de unieke identificatie voor deze registratie zoals door de eigenaar wordt gehanteerd. Dit is dus de verwijzing naar het algoritme in de interne database of het interne register van uw organisatie.",
                 "show_always": false
             },

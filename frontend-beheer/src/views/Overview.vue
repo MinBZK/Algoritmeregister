@@ -17,7 +17,12 @@
         Overzicht {{ authStore.selectedOrg?.name }}
       </h1>
     </v-col>
-    <v-col v-if="authStore.organisations.length != 0" lg="4" md="5" cols="12">
+    <v-col
+      v-if="authStore.organisations.length != 0"
+      lg="4"
+      md="5"
+      cols="12"
+    >
       <template v-if="!singleOrgOverview">
         <v-row>
           <v-label> Organisatie </v-label>
@@ -31,7 +36,7 @@
             placeholder="Organisatie"
             item-title="name"
             rounded="0"
-            item-value="code"
+            item-value="org_id"
             variant="outlined"
             hide-details
             @update:model-value="authStore.selectOrganisation($event)"
@@ -50,7 +55,9 @@
             block
             @click="navigateToForm"
           >
-            <v-icon class="mr-2" size="21"> mdi-playlist-plus </v-icon>
+            <v-icon class="mr-2" size="21">
+              mdi-playlist-plus
+            </v-icon>
             <span class="btn-title"> Nieuw algoritme </span>
           </v-btn>
         </v-col>
@@ -59,7 +66,11 @@
   </v-row>
   <v-row v-if="!algorithmStore.loaded || authStore.loading">
     <v-col cols="12" align="center">
-      <v-progress-circular indeterminate :size="64" :width="6" />
+      <v-progress-circular
+        indeterminate
+        :size="64"
+        :width="6"
+      />
     </v-col>
   </v-row>
   <v-row v-else class="elevation-0 mt-6">

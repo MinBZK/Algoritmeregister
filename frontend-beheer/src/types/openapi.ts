@@ -48,22 +48,27 @@ export interface StringSchema extends BaseOpenApiSchema {
 export interface ArraySchema extends BaseOpenApiSchema {
   type: 'array'
   maxItems?: number
-  items: {
-    $ref: string
-  }
+  anyOf: Array<{
+    items: {
+      $ref: string
+    }
+  }>
 }
 
 export interface ArrayOptionalSchema extends BaseOpenApiSchema {
   type: 'array'
-  items: {
-    type: string
-  }
+  anyOf: Array<{
+    items: {
+      $ref: string
+    }
+  }>
   recommended_items: string[]
 }
 
 export interface EnumReferenceSchema extends BaseOpenApiSchema {
   type: 'enum'
-  allOf: {
+  $ref: string,
+  anyOf: {
     $ref: string
   }[]
 }

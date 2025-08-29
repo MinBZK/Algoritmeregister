@@ -13,15 +13,18 @@ class RequireOwnership:
         db: Annotated[Session, Depends(get_db)],
     ):
         """
-        Checks if the algorithm_id in the request is owned by organisation_name.
+        Checks if the algorithm_id in the request is owned by organisation_id.
         """
-        organisation_name = request.path_params.get("organisation_name", None)
+        organisation_id = request.path_params.get("organisation_id", None)
         algorithm_id = request.path_params.get("algorithm_id", None)
+
+        if algorithm_id is None:
+            raise HTTPException(status_code=400, detail="Algorithm ID is required")
 
         algo_repo = AlgoritmeRepository(db)
         algo = algo_repo.get_by_lars(algorithm_id)
         if not algo:
             raise HTTPException(404)
 
-        if algo.owner != organisation_name:
+        if algo.owner != organisation_id:
             raise HTTPException(403)

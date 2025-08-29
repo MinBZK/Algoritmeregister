@@ -35,13 +35,13 @@ async def forward_spellcheck_request(request: Request):
         webspellchecker_settings = WebSpellChecker()
         request_body = request_body.replace(
             b"customerid=" + token.encode(),
-            b"customerid=" + webspellchecker_settings.api_key.encode(),
+            b"customerid=" + webspellchecker_settings.WEBSPELLCHECKER_API_KEY.encode(),
         )
         mutable_headers = MutableHeaders(request.headers)
         mutable_headers["Content-Length"] = str(len(request_body))
         response = await client.request(
             method="POST",
-            url=webspellchecker_settings.api_url,
+            url=webspellchecker_settings.WEBSPELLCHECKER_URL,
             headers=mutable_headers,
             content=request_body,
         )

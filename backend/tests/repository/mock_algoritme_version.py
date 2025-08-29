@@ -20,6 +20,7 @@ class MockAlgoritmeVersionRepository(IRepository):
             "lars": "00000000",
             "owner": "",
             "code": "",
+            "org_id": "",
         }
-        schema = schemas.AlgoritmeVersionDB(**item.dict(), **fields_to_add)
+        schema = schemas.AlgoritmeVersionDB(**item.model_dump(), **fields_to_add)
         return schema

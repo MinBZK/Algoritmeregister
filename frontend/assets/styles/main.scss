@@ -1,13 +1,13 @@
-@import '_colors.scss';
-// @import '_rijksoverheid.scss';
-// @import '_koop_index.scss';
-@import '_koop_main.scss';
-@import '_koop_print.scss';
+@use 'colors.scss';
+//  '_rijksoverheid.scss';
+//  '_koop_index.scss';
+@use '_koop_main.scss';
+@use '_koop_print.scss';
 
-@import '_skiplinks.scss';
-// @import '_rijksoverheid-header.scss';
-@import '_fonts.scss';
-@import '_skeleton.scss';
+@use '_skiplinks.scss';
+//  '_rijksoverheid-header.scss';
+@use '_fonts.scss';
+@use '_skeleton.scss';
 
 .question-mark {
   background-image: url(../images/icons/icon-explanation.svg);
@@ -97,7 +97,7 @@ a.is-mail:after {
 }
 
 a:hover {
-  color: $link-hover;
+  color: colors.$link-hover;
 }
 
 .no-focus-border {
@@ -107,7 +107,7 @@ a:hover {
 
 a:focus {
   box-shadow: 0 0 0 0 #000 !important;
-  border: 2px dashed $primary-darker;
+  border: 2px dashed colors.$primary-darker;
   outline: 0;
 }
 
@@ -116,9 +116,9 @@ a {
 }
 
 a.focus-border:focus {
-  border-left: 2px dashed $primary-darker;
-  border-right: 2px dashed $primary-darker;
-  border-bottom: 2px dashed $primary-darker;
+  border-left: 2px dashed colors.$primary-darker;
+  border-right: 2px dashed colors.$primary-darker;
+  border-bottom: 2px dashed colors.$primary-darker;
 }
 
 .word-break {

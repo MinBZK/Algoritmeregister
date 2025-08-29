@@ -10,7 +10,7 @@ from etl.figures.utils.data_calls import (
 from etl.figures.utils.utils import plotly_fig_to_png
 
 
-log = get_logger()
+log = get_logger(__name__)
 
 
 # Generates a linechart gif image

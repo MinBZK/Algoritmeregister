@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from datetime import datetime
 from .misc import Language
 from .algoritme_version import AlgoritmeVersionQuery
@@ -8,8 +8,7 @@ class OrganisationDetailsUpdatable(BaseModel):
     about: str | None = None
     contact_info: str | None = None
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True, extra="ignore")
 
 
 class OrganisationDetailsContent(OrganisationDetailsUpdatable):
@@ -27,12 +26,14 @@ class OrganisationDetailsDB(OrganisationDetailsIn):
 
     show_page: bool
     code: str
+    org_id: str
     type: str
 
 
 class OrganisationDetailsExport(OrganisationDetailsContent):
     language: Language
     code: str
+    org_id: str
     type: str
     show_page: bool
 

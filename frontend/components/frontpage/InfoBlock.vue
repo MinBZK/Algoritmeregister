@@ -13,8 +13,10 @@ defineProps<{
 </script>
 
 <style scoped lang="scss">
+@use '/assets/styles/colors' as colors;
+
 .block-color {
-  background-color: $tertiary;
+  background-color: colors.$tertiary;
   margin-bottom: 0px !important;
 }
 

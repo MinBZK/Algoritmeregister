@@ -1,4 +1,5 @@
 {
+    "description": "Configuratie v0.3.1 werd gebruikt voor het opstellen van invulvelden in de beheermodule van het Algoritmeregister en wordt gebruikt voor het valideren van downloadbestanden.",
     "properties": {
         "name": {
             "type": "string",
@@ -374,6 +375,18 @@
             "instructions": "Een omschrijving van de verwachte prestaties van het algoritme en hoe die worden gemeten.",
             "example": "Het algoritme moet in ieder geval even goed presteren als een standaardinstelling van een verkeersinstallatie zonder sensoren. In eerdere pilots zagen we een verbetering van gemiddeld 36% minder wachttijd voor weggebruikers buiten de spits. Wij hanteren een minimum van 15% buiten spitstijden. Tijdens de spits is dit de baseline (0%).",
             "required": false
+        },
+        "lars": {
+            "title": "Algoritme-ID",
+            "type": "string",
+            "required": false,
+            "instructions": ""
+        },
+        "publication_dt": {
+            "title": "Publicatie datum",
+            "type": "string",
+            "required": false,
+            "instructions": "De datum waarop de algoritmebeschrijving gepubliceerd is in het Algoritmeregister. Dit wordt automatisch aangemaakt en ingevuld."
         }
     }
 }

@@ -11,5 +11,7 @@ def get_database_url() -> str:
     HOST = os.getenv("POSTGRES_SERVER", "localhost")
     SCHEMA = os.getenv("POSTGRES_DB", "algreg_db")
     PORT = os.getenv("POSTGRES_PORT", "5432")
-    connection_string = f"postgresql://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{SCHEMA}"
+    connection_string = (
+        f"postgresql://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{SCHEMA}"  # noqa: E231
+    )
     return connection_string

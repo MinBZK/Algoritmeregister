@@ -5,12 +5,19 @@ from app.schemas.algoritme_version import (
     AlgoritmeVersionLastEdit,
     AlgoritmeVersionQuery,
     AlgoritmeVersionDB,
+    AlgoritmeVersionPublishHistory,
 )
 from app.util.config_load import get_ttl_hash, collect_structure_data
 from app import models
 
 
-T = TypeVar("T", AlgoritmeVersionQuery, AlgoritmeVersionDB, AlgoritmeVersionLastEdit)
+T = TypeVar(
+    "T",
+    AlgoritmeVersionQuery,
+    AlgoritmeVersionDB,
+    AlgoritmeVersionLastEdit,
+    AlgoritmeVersionPublishHistory,
+)
 
 
 def convert_potential_list(field: str) -> list[str] | str:

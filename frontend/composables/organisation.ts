@@ -12,7 +12,7 @@ export const useOrganisation = () => {
   watch(
     () => route.name,
     () => {
-      if (!route.name?.toString().includes('organisatie-orgCode'))
+      if (!route.name?.toString().includes('organisatie-orgCode-orgId'))
         setOrganisation(null)
     }
   )

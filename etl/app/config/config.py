@@ -1,5 +1,5 @@
 # columns will be renamed, but these are needed from the json
-df_organisation_columns = ["code", "type", "show_page"]
+df_organisation_columns = ["code","org_id", "type", "show_page"]
 
 df_organisation_details_columns = ["name", "language", "contact_info", "about"]
 

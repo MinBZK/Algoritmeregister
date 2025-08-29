@@ -133,6 +133,7 @@ const { t } = useI18n()
 </script>
 
 <style scoped lang="scss">
+@use '/assets/styles/colors' as colors;
 nav {
   display: inline-block;
 }
@@ -140,23 +141,23 @@ nav {
 .pagenumber {
   padding: 0.5em;
   margin: 0.5em;
-  background-color: $tertiary;
+  background-color: colors.$tertiary;
   cursor: pointer;
   display: inline-block;
   text-decoration: none;
 }
 
 .pagenumber:hover:not(.disabled) {
-  background-color: $secondary;
+  background-color: colors.$secondary;
 }
 
 .current-page {
-  background-color: $primary;
+  background-color: colors.$primary;
   color: white;
 }
 
 .disabled {
-  color: $secondary;
+  color: colors.$secondary;
   cursor: not-allowed;
 }
 

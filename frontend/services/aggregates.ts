@@ -5,6 +5,7 @@ export interface DocumentCount {
   show_page: boolean
   joined: boolean
   code: string
+  org_id: string
 }
 
 export interface DataObject {
@@ -13,6 +14,7 @@ export interface DataObject {
   showPage: boolean
   joined: boolean
   code: string
+  orgId: string
 }
 
 export interface GeoJson {
@@ -28,28 +30,8 @@ export interface GeoJson {
       statcode?: string
       statnaam?: string
       geometry_g?: string
-      gag_id?: string | null
-      hierarchie?: string | null
-      hierarch_1?: string | null
-      inspire_id?: string | null
-      sde_id?: string | null
-      land_code?: string | null
-      inspire__1?: string | null
-      inspire__2?: string | null
-      wbh_code_o?: string | null
-      einde_leve?: string | null
-      laatste_wi?: string | null
-      admin_code?: string | null
       waterschap?: string
-      publiceren?: string
-      Aangemeld?: number
-      Actief?: number
       KVK?: number
-      tnostatus?: number | null
-      CPT?: number
-      GMW?: number
-      BHR?: number
-      ASV?: number | null
       od_code?: string
       od_naam?: string
       naam_alt?: string
@@ -83,6 +65,7 @@ export interface ToolTipData {
   joined: boolean
   algoKey: string
   algoPublished: string
+  orgId: string
 }
 
 export const OrganisationTypes = {
@@ -90,4 +73,5 @@ export const OrganisationTypes = {
   Municipality: 'municipality',
   WaterAuthority: 'waterAuthority',
   EnvironmentalService: 'environmentalService',
+  SafetyRegion: 'safetyRegion',
 } as const

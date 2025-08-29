@@ -58,4 +58,4 @@ class HtmlFiguresRepository(IRepository):
         self.session.add(archived_record)
         self.session.flush()
 
-        return schemas.HtmlFigures.from_orm(new_record)
+        return schemas.HtmlFigures.model_validate(new_record)

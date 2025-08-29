@@ -79,20 +79,20 @@ const loading = ref<boolean>(false)
 
 const props = defineProps<{
   lars: string
-  orgCode: string
+  orgId: string
 }>()
 
 const archiveStore = useArchiveStore()
 const { selectedVersion  } = toRefs(archiveStore)
 const versions = ref<AlgorithmWithUser[]>([])
 const getVersions = async () => {
-  if (!props.orgCode || !props.lars) {
+  if (!props.orgId || !props.lars) {
     console.error('no org or no lars selected')
     return
   }
   loading.value = true
   try {
-    versions.value = (await getAlgorithmVersions(props.orgCode, props.lars, false)).data
+    versions.value = (await getAlgorithmVersions(props.orgId, props.lars, false)).data
   } catch (e) {
     snackbarStore.add({
       ...notifications.unarchiveVersionError!,

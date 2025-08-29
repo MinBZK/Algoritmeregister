@@ -34,4 +34,5 @@ class OrganisationDetails(Base):
 
     show_page = association_proxy("organisation", "show_page")
     code = association_proxy("organisation", "code")
+    org_id = association_proxy("organisation", "org_id")
     type = association_proxy("organisation", "type")

@@ -7,8 +7,8 @@ from fastapi_cache import FastAPICache
 from starlette.middleware.cors import CORSMiddleware
 from app.api import api
 from fastapi_cache.backends.inmemory import InMemoryBackend
-
-from fastapi_utils.tasks import repeat_every
+from contextlib import asynccontextmanager
+import asyncio
 from app.routers.public import (
     aggregations,
     algorithm,
@@ -27,19 +27,85 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.middleware import SlowAPIMiddleware
 from slowapi.errors import RateLimitExceeded
-from starlette.types import Message
 from starlette.background import BackgroundTask
 
 logger = get_logger(__name__)
-
 # Only do automatic data loading on the public website
 env_settings = Settings()
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    asyncio.create_task(startup())
+    asyncio.create_task(cache_clearing())
+    yield
+
+
+async def startup():
+    def key_builder(
+        func: Callable,
+        namespace: str | None = None,
+        request: Request | None = None,
+        response: Response | None = None,
+        args: tuple | None = None,
+        kwargs: dict | None = None,
+    ):
+        """
+        Builds a key for the caching based off of the function parameters.
+        Same as default_key_builder, but it removes a kwarg with type == Session,
+        to avoid detecting a false difference between calls. Session is a unique
+        object every call.
+        """
+        if not kwargs:
+            filtered_kwargs = None
+        else:
+            filtered_kwargs = {
+                k: v for k, v in kwargs.items() if not isinstance(v, Session)
+            }
+        namespace = namespace or ""
+        prefix = f"{FastAPICache.get_prefix()}: {namespace}: "
+        cache_key = (
+            prefix
+            + hashlib.md5(  # nosec:B303
+                f"{func.__module__}: {func.__name__}: {args}: {filtered_kwargs}".encode()
+            ).hexdigest()
+        )
+        return cache_key
+
+    FastAPICache.init(InMemoryBackend(), key_builder=key_builder)
+
+
+async def cache_clearing(interval: int = 60):
+    """
+    Clears the cache if it is just past midnight
+    """
+    while True:
+        await asyncio.sleep(interval)
+        current_time = datetime.now().time()
+        start_time = time(0, 0)
+        end_time = time(0, 1)
+        if start_time <= current_time <= end_time:
+            logger.info("Clearing cache")
+            await FastAPICache.clear(namespace="dashboard")
+
+
+def log_info(req_body, req_meth, req_url, res_status):
+    if req_body:
+        logger.info(
+            f"Req Method: {req_meth}, Req URL: {req_url}, Res Status: {res_status}, Req Body: {req_body}"
+        )
+    else:
+        logger.info(
+            f"Req Method: {req_meth}, Req URL: {req_url}, Res Status: {res_status}"
+        )
+
 
 app = FastAPI(
     docs_url="/api-docs",
     openapi_url="/api/openapi.json",
     title="Application API",
     swagger_ui_parameters={"displayRequestDuration": True},
+    lifespan=lifespan,
 )
 limiter = Limiter(key_func=get_remote_address, default_limits=["25/minute"])
 api.state.limiter = limiter
@@ -69,80 +135,12 @@ app.add_middleware(
     CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"]
 )
 
-
-@app.on_event("startup")
-async def startup():
-    def key_builder(
-        func: Callable,
-        namespace: str | None = "",
-        request: Request | None = None,
-        response: Response | None = None,
-        args: tuple | None = None,
-        kwargs: dict | None = None,
-    ):
-        """
-        Builds a key for the caching based off of the function parameters.
-        Same as default_key_builder, but it removes a kwarg with type == Session,
-        to avoid detecting a false difference between calls. Session is a unique
-        object every call.
-        """
-        if not kwargs:
-            filtered_kwargs = None
-        else:
-            filtered_kwargs = {
-                k: v for k, v in kwargs.items() if not isinstance(v, Session)
-            }
-        prefix = f"{FastAPICache.get_prefix()}:{namespace}:"
-        cache_key = (
-            prefix
-            + hashlib.md5(  # nosec:B303
-                f"{func.__module__}:{func.__name__}:{args}:{filtered_kwargs}".encode()
-            ).hexdigest()
-        )
-        return cache_key
-
-    FastAPICache.init(InMemoryBackend(), key_builder=key_builder)
-
-
-@app.on_event("startup")
-@repeat_every(seconds=60)  # 1 minute
-async def cache_clearing():
-    """
-    Clears the cache if it is just past midnight
-    """
-    current_time = datetime.now().time()
-    start_time = time(0, 0)
-    end_time = time(0, 1)
-    if start_time <= current_time <= end_time:
-        logger.info("Clearing cache")
-        await FastAPICache.clear(namespace="dashboard")
-
-
-def log_info(req_body, req_meth, req_url, res_status):
-    if req_body:
-        logger.info(
-            f"Req Method: {req_meth}, Req URL: {req_url}, Res Status: {res_status}, Req Body: {req_body}"
-        )
-    else:
-        logger.info(
-            f"Req Method: {req_meth}, Req URL: {req_url}, Res Status: {res_status}"
-        )
-
-
-async def set_body(request: Request, body: bytes):
-    async def receive() -> Message:
-        return {"type": "http.request", "body": body}
-
-    request._receive = receive
-
-
 if env_settings.debugger_logging:
 
     @app.middleware("http")
     async def request_response_logging_middleware(request: Request, call_next):
 
         req_body = await request.body()
-        await set_body(request, req_body)
         response = await call_next(request)
 
         res_body = b""

@@ -26,7 +26,7 @@
 const { setLocale, currentLocale } = useLocale()
 const { t, locale } = useI18n()
 
-const locales = [
+const locales: { code: 'nl' | 'en' | 'fy'; name: string }[] = [
   {
     code: 'nl',
     name: 'Nederlands',
@@ -43,7 +43,7 @@ const locales = [
 
 const dropdown = ref(false)
 
-const changeLocale = (locale: string) => {
+const changeLocale = (locale: 'nl' | 'en' | 'fy') => {
   document.getElementById(currentLocale.value)?.focus()
   setLocale(locale)
   dropdown.value = false
@@ -55,6 +55,8 @@ const buttonText = computed(
 </script>
 
 <style scoped lang="scss">
+@use '/assets/styles/colors' as colors;
+
 .language-picker {
   z-index: 1;
   width: 12em;
@@ -62,7 +64,7 @@ const buttonText = computed(
 
 .language-button {
   width: inherit;
-  background-color: $primary;
+  background-color: colors.$primary;
   color: white;
   font-size: 0.85em;
   cursor: pointer;
@@ -95,14 +97,14 @@ const buttonText = computed(
 }
 
 .language-button[data-selected='true'] {
-  background-color: $secondary;
-  color: $primary-darker;
+  background-color: colors.$secondary;
+  color: colors.$primary-darker;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: $secondary;
+  background-color: colors.$secondary;
   width: inherit;
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
   z-index: 1;
@@ -110,7 +112,7 @@ const buttonText = computed(
 
 .lang-select-button {
   text-align: center;
-  color: $primary-darker;
+  color: colors.$primary-darker;
   padding: 0.75em 1em;
   font-size: 0.85em;
   margin: 0.75em;
@@ -120,15 +122,15 @@ const buttonText = computed(
   width: -webkit-fill-available;
   width: -moz-available;
   border: 0;
-  background-color: $secondary;
+  background-color: colors.$secondary;
 }
 
 .lang-select-button:hover {
-  background-color: $primary;
+  background-color: colors.$primary;
   color: white !important;
 }
 .lang-select-button:focus {
-  background-color: $primary;
+  background-color: colors.$primary;
   color: white !important;
 }
 
@@ -137,7 +139,7 @@ const buttonText = computed(
 }
 
 .lang-active {
-  background-color: $primary !important;
+  background-color: colors.$primary !important;
   color: white !important;
 }
 </style>

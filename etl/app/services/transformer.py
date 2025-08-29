@@ -42,7 +42,7 @@ class Transformer:
         ].copy()
 
         # only want unique organisations
-        df.drop_duplicates(subset="code", keep="first", inplace=True)
+        df.drop_duplicates(subset="org_id", keep="first", inplace=True)
         df = df.reset_index(drop=True).reset_index()
         df.rename(
             columns={"index": "id"},
@@ -54,14 +54,14 @@ class Transformer:
 
     def get_organisation_details_df(self) -> pd.DataFrame:
         df = pd.DataFrame(self.organisation_details)[
-            [*self.df_organisation_details_columns, "code"]
+            [*self.df_organisation_details_columns, "org_id"]
         ].copy()
 
         # The column rename allows merging.
-        merged_df = pd.merge(self.df_organisation, df, on="code", how="inner")
+        merged_df = pd.merge(self.df_organisation, df, on="org_id", how="inner")
 
         # Clean-up merge
-        merged_df.drop(["code", "type", "show_page"], axis=1, inplace=True)
+        merged_df.drop(["code","org_id", "type", "show_page"], axis=1, inplace=True)
         merged_df.rename(columns={"id": "organisation_id"}, inplace=True)
 
         # Have an explicit id column, because it is a foreign key. So you need to be able to merge with it.
@@ -80,12 +80,12 @@ class Transformer:
         df.drop_duplicates(subset="lars", keep="first", inplace=True)
 
         # The column rename allows merging.
-        df.rename(columns={"owner": "code"}, inplace=True)
-        merged_df = pd.merge(self.df_organisation, df, on="code", how="inner")
+        df.rename(columns={"owner": "org_id"}, inplace=True)
+        merged_df = pd.merge(self.df_organisation, df, on="org_id", how="inner")
 
         # Clean-up merge
         merged_df.rename(columns={"id": "organisation_id"}, inplace=True)
-        merged_df.drop(["code", "type", "show_page"], axis=1, inplace=True)
+        merged_df.drop(["code","org_id", "type", "show_page"], axis=1, inplace=True)
 
         # Have an explicit id column, because it is a foreign key. So you need to be able to merge with it.
         merged_df.reset_index(inplace=True)

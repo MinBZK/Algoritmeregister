@@ -101,8 +101,13 @@ async def get_count_with_filled_columns(
     )
 
     def is_filled(cell) -> bool:
-        checks = [cell != "", cell is not None]
-        return all(checks)
+        # Handle scalar values directly
+        if isinstance(cell, (str, int, float, type(None))):
+            return cell != "" and cell is not None
+        # Handle array-like objects
+        elif hasattr(cell, "all") or hasattr(cell, "__iter__"):
+            return all(c != "" and c is not None for c in cell)
+        return False
 
     compliant_rows = []
     for row in table:

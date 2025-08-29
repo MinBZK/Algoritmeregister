@@ -9,6 +9,7 @@
   </div>
   <BrokenLinksTable />
   <div class="block-cards">
+    <NationalOrganisationTable />
     <CountPerType class="block-cards__card" :n-algorithms="algoCount!" />
     <br>
     <DataCompleteness class="block-cards__card" :n-algorithms="algoCount!" />
@@ -19,6 +20,7 @@
 import BrokenLinksTable from '@/components/dashboard/BrokenLinksTable.vue'
 import CountPerType from '@/components/dashboard/CountPerType.vue'
 import DataCompleteness from '@/components/dashboard/DataCompleteness.vue'
+import NationalOrganisationTable from '@/components/dashboard/NationalOrganisationTable.vue'
 import { formatDate } from '@/utils/datetime'
 import { getTotalCount } from '@/services/algorithms'
 import { ref } from 'vue'

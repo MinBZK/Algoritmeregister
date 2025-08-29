@@ -1,0 +1,57 @@
+[
+  {
+    "id": "nelen-schuurmans-3di-watermanagement",
+    "name": "Water berekeningen maken",
+    "organization": null,
+    "description_short": "Wat gebeurt er bij te veel neerslag? Wat bij te weinig? Wat is de kwaliteit van mijn sloot? Hoeveel water stroomt er door de riolering? Deze type vragen kan je allemaal beantwoorden door het maken van water berekeningen. Binnen zo een berekening bepaald het algrotime hoe het water beweegt. Resultaten worden ingezet om de juiste keuzes te maken bij de inrichting en het beheer van de buitenruimte.",
+    "type": null,
+    "category": ["Wonen", "Natuur en milieu", "Ruimte en infrastructuur"],
+    "publication_category": "Impactvolle algoritmes",
+    "website": "https://www.digitaleoverheid.nl/innovatieproject/standaard-voor-transparantie-besluitvorming/",
+    "status": "In ontwikkeling",
+    "begin_date": "2025-05",
+    "end_date": null,
+    "goal": "<div><p>Wat is hydrodynamische simulatiesoftware en waarom is het belangrijk?</p><p>Hydrodynamische simulatiesoftware helpt ons om waterstromen – zoals rivieren, regenwaterafvoer of overstromingen – nauwkeurig te begrijpen en te voorspellen. De software doet dit door op basis van natuurkundige wetten (zoals de wetten van stromingsleer en zwaartekracht) te berekenen hoe water zich gedraagt in een bepaald gebied.</p><p>Deze berekeningen zijn integraal: ze nemen meerdere factoren tegelijk mee – zoals regenval, bodemtype, hoogteverschillen, wind en zelfs de werking van gemalen en sluizen. Zo ontstaat een compleet beeld van het watersysteem.</p><p>Het grote voordeel? We kunnen scenario’s verkennen vóórdat ze zich in het echt voordoen. Denk aan het simuleren van een hevige storm om te zien waar water zich ophoopt, of hoe ingrepen in het landschap het water beter kunnen sturen.</p><p><br></p><p>De impact is groot:</p><p>Voorspellend vermogen: We kunnen risico’s van overstromingen of droogte beter inschatten.</p><p>Betere beslissingen: Overheden en ingenieurs kunnen onderbouwde keuzes maken over waterbeheer, infrastructuur of ruimtelijke inrichting.</p><p>Veiligheid en efficiëntie: We voorkomen schade en besparen kosten, door vooraf te weten wat werkt.</p><p>Kortom: hydrodynamische simulatiesoftware vertaalt complexe natuurkundige processen naar heldere inzichten waarmee we beter kunnen plannen, beschermen en bouwen aan een waterveilige toekomst.</p></div>",
+    "proportionality": "<p>Deze aanpak is gebaseerd op natuurkunde en wiskunde, niet op kunstmatige intelligentie. Dat betekent dat het maken van een simulatie soms meer werk kost dan bij een getraind AI-model. Het grote voordeel is dat je geen grote hoeveelheden data nodig hebt om toch tot een nauwkeurig resultaat te komen. Bovendien zijn de uitkomsten beter te begrijpen en te controleren. Dit algoritme is speciaal geschikt voor het doorrekenen van watersystemen op het land en in de stad. Voor oceanen, diep grondwater of drinkwaterleidingen is het minder goed toepasbaar.</p>",
+    "provider": "Nelen & Schuurmans",
+    "lawful_basis": "",
+    "lawful_basis_grouping": [
+      {
+        "title": "",
+        "link": ""
+      }
+    ],
+    "impacttoetsen": null,
+    "iama_description": null,
+    "url": null,
+    "lang": "NLD",
+    "standard_version": "1.0",
+    "uuid": null,
+    "source_id": null,
+    "tags": "<p>water, riolering, wateroverlast</p>",
+    "source_data": "<p>Het model kent twee typen gegevens als input. Ten eerste een model van de fysieke omgeving waar het water door stroomt, dus riolering systemen maar ook hoogte van de oppervlakte, bijvoorbeeld de landgebruikkaart, of het algemeen hoogtebestand. Aangevuld met expert kennis. Ten tweede Dynamische gegevens over water, denk aan neerslaggegevens van het KNMI of waterstanden van rivieren en of zeeen van RWS.</p>",
+    "source_data_link": null,
+    "source_data_grouping": [
+      {
+        "title": "KNMI neerslag gegevens",
+        "link": "https://dataplatform.knmi.nl/group/precipitation"
+      },
+      {
+        "title": "Riolerings gegevens Rioned",
+        "link": "https://apps.gwsw.nl/"
+      },
+      {
+        "title": "Algemeen Hoogtebestand Nederland",
+        "link": "https://www.pdok.nl/introductie/-/article/actueel-hoogtebestand-nederland-ahn"
+      },
+      {
+        "title": "Landgebruikkaart STOWA",
+        "link": "https://stowa.lizard.net/viewer/map"
+      }
+    ],
+    "methods_and_models": "",
+    "publiccode": null,
+    "human_intervention": "<p>Er wordt met mensen uit de buurt geverifieerd of de voorspellingen van het watermodel overeenkomen met de werkelijkheid.</p>",
+    "risks": "<p>De kwaliteit van de voorspelling van het model is sterk afhankelijk van hoe goed de fysieke werkelijkheid gemodelleerd is als input voor de berekening.</p>"
+  }
+]

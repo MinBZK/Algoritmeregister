@@ -35,7 +35,7 @@ watch(optedIn, async () => {
   loading.value = true
   try {
     const response = await updateOrganisationOptIn(
-      authStore.selectedOrg!.code,
+      authStore.selectedOrg!.org_id,
       optedIn.value
     )
     authStore.selectedOrg = response.data
@@ -53,7 +53,7 @@ const orgLink = computed(() => {
       ? `https://${window.location.host}`
       : import.meta.env.VITE_PREVIEW_URL
 
-  return baseURL + '/nl/organisatie/' + authStore.selectedOrg?.code
+  return baseURL + '/nl/organisatie/' + authStore.selectedOrg?.org_id
 })
 </script>
 <style scoped lang="scss">

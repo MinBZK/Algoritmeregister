@@ -89,6 +89,7 @@ const selectOrganisation = (_: PointerEvent, v: { item: Organisation }) => {
 const headers = [
   { title: 'Naam', key: 'name', sortable: false, width: '30%' },
   { title: 'Code', key: 'code', sortable: false },
+  { title: 'Org ID', key: 'org_id', sortable: false },
   { title: 'Type', key: 'type', sortable: false },
   { title: 'Gekozen Flow', key: 'flow', sortable: false, width: '10%' },
   {

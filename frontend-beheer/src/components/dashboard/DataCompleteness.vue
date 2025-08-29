@@ -4,7 +4,9 @@
       <div class="rows">
         <h3>Mate van compleetheid</h3>
         <div class="row">
-          <div v-if="loading" class="loading-text">Aan het laden...</div>
+          <div v-if="loading" class="loading-text">
+            Aan het laden...
+          </div>
           <table
             class="table table--condensed"
             aria-label="Mate van compleetheid"
@@ -14,7 +16,9 @@
                 <th class="u-columnwidth-50p">
                   <span>Waarde</span>
                 </th>
-                <th class="u-columnwidth-10p">Aantal</th>
+                <th class="u-columnwidth-10p">
+                  Aantal
+                </th>
                 <th class="u-columnwidth-10p borderless-left">
                   <span>Percentage</span>
                 </th>

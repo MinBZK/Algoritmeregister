@@ -7,22 +7,22 @@ import { AxiosRequestConfig } from 'axios'
 import { backendRequest } from '.'
 
 export async function getOrganisationDetails(
-  orgCode: string
+  orgId: string
 ): Promise<OrganisationDetailsResponse> {
   const request: AxiosRequestConfig = {
     method: 'GET',
-    url: `/organisation-details/${orgCode}`,
+    url: `/organisation-details/${orgId}`,
   }
   return backendRequest(request)
 }
 
 export async function updateOrganisationDetails(
-  org_code: string,
+  org_id: string,
   organisationDetails: OrganisationDetails
 ): Promise<UpdateOrganisationDetailsResponse> {
   const request: AxiosRequestConfig = {
     method: 'PUT',
-    url: `/organisation-details/${org_code}`,
+    url: `/organisation-details/${org_id}`,
     data: organisationDetails,
   }
   return backendRequest(request)

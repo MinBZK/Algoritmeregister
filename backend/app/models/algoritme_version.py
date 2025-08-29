@@ -9,12 +9,13 @@ from sqlalchemy import (
     Boolean,
     Enum,
 )
+
 from sqlalchemy.ext.associationproxy import association_proxy
 from app.database.database import Base
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 from sqlalchemy.sql import func
 from sqlalchemy.dialects.postgresql import TSVECTOR
-
+from pgvector.sqlalchemy import Vector
 from app.middleware.authorisation.schemas import State
 from . import Algoritme
 from app.schemas import (
@@ -124,6 +125,11 @@ class AlgoritmeVersion(Base):
     lars = association_proxy("algoritme", "lars")
     owner = association_proxy("algoritme", "owner")
     code = association_proxy("algoritme", "code")
+    org_id = association_proxy("algoritme", "org_id")
+    preferred_name = association_proxy("algoritme", "preferred_name")
+
+    # Added embedding column
+    embedding_nfi: Mapped[Vector | None] = mapped_column(Vector)
 
 
 vector_index = Index("gin_idx", AlgoritmeVersion.vector, postgresql_using="gin")

@@ -47,6 +47,7 @@
 <script setup lang="ts">
 import { useMobileBreakpoint } from '~~/composables/mobile'
 import organisationService from '@/services/organisation'
+import { SortOption } from '@/types/filter/algoritme'
 const isMobile = useMobileBreakpoint().medium
 const { t, locale } = useI18n()
 const { p } = useTextLoader()
@@ -65,14 +66,15 @@ const doSearch = async (searchtext: string) => {
         ? {
             organisation: response.data.value?.organisations[0].name,
             page: '1',
+            sort_option: SortOption.sortByName,
           }
-        : { searchtext, page: '1' }),
+        : { searchtext, page: '1', sort_option: SortOption.sortByName }),
     }
   }
   router.push(
     localePath({
       name: 'algoritme',
-      query,
+      query: { ...query, sort_option: SortOption.sortByName },
     })
   )
 }
@@ -90,9 +92,11 @@ providePageTitle({
 </script>
 
 <style scoped lang="scss">
-@import '/assets/styles/main.scss';
+@use '/assets/styles/main.scss';
+@use '/assets/styles/colors' as colors;
+
 .btn-dark {
-  background-color: $primary;
+  background-color: colors.$primary;
   color: white;
 }
 
@@ -105,7 +109,7 @@ providePageTitle({
 }
 
 .homepage-title {
-  color: $primary-darker;
+  color: colors.$primary-darker;
   text-align: center;
   margin-bottom: 0px;
 }

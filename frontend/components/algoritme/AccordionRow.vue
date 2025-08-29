@@ -42,7 +42,10 @@
                 @click="toggleKey(property.key)"
                 @keydown.enter="toggleKey(property.key)"
                 @keydown.space="
-                  (e) => [e.preventDefault(), toggleKey(property.key)]
+                  (e: KeyboardEvent) => [
+                    e.preventDefault(),
+                    toggleKey(property.key),
+                  ]
                 "
               ></span>
             </div>

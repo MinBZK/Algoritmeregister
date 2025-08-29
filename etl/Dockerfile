@@ -1,51 +1,59 @@
-FROM <..>./algreg_etl_base AS buildstep
+FROM python:3.11.3-slim
 
-# Make sure these are set, either here or in the base image.
-ENV YOUR_ENV=${YOUR_ENV}
-# ENV YOUR_ENV=${YOUR_ENV} \
-#   PYTHONFAULTHANDLER=1 \
-#   PYTHONUNBUFFERED=1 \
-#   PYTHONHASHSEED=random \
-#   PIP_NO_CACHE_DIR=off \
-#   PIP_DISABLE_PIP_VERSION_CHECK=on \
-#   PIP_DEFAULT_TIMEOUT=100 \
-#   POETRY_VERSION=1.2.2
-  
+# ====== base setup ======
+ENV YOUR_ENV=production \
+  PYTHONFAULTHANDLER=1 \
+  PYTHONUNBUFFERED=1 \
+  PYTHONHASHSEED=random \
+  PIP_NO_CACHE_DIR=off \
+  PIP_DISABLE_PIP_VERSION_CHECK=on \
+  PIP_DEFAULT_TIMEOUT=100 \
+  POETRY_VERSION=1.2.2
+
 WORKDIR /etl
 
-ADD /etl/app /etl/app
-ADD /etl/common /etl/common
-COPY /etl/poetry.lock /etl/poetry.lock
-COPY /etl/pyproject.toml /etl/pyproject.toml
-COPY /etl/start.sh /etl/start.sh
+# install system deps needed for building Python packages
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+    build-essential \
+    gcc \
+    g++ \
+    python3-dev \
+    libffi-dev \
+    libssl-dev \
+    curl \
+    ca-certificates \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
+# copy and install requirements
+COPY etl/base_image/requirements.txt /backend/requirements.txt
+RUN pip install --upgrade pip \
+ && pip install -r /backend/requirements.txt \
+ && pip install "poetry==$POETRY_VERSION"
 
-RUN poetry config virtualenvs.create false
-RUN poetry install --without dev --no-interaction --no-ansi
+# ====== etl setup ======
+ADD etl/app /etl/app
+ADD etl/common /etl/common
+COPY etl/poetry.lock /etl/poetry.lock
+COPY etl/pyproject.toml /etl/pyproject.toml
+COPY etl/start.sh /etl/start.sh
 
-FROM <..>./python:3.11.1-lunar-devops_base_0.2
-WORKDIR /etl
-COPY --from=buildstep /etl /etl
+# clear poetry cache and install dependencies
+RUN poetry cache clear pypi --all \
+ && poetry config virtualenvs.create false \
+ && poetry install --without dev --no-interaction --no-ansi
 
-# Copy python binaries ensuring a clean install without overhead
-COPY --from=buildstep /usr/local/lib /usr/local/lib
-RUN ln -f -s /usr/bin/python3.11 /usr/bin/python3
-ENV PYTHONPATH="${PYTHONPATH}:/usr/local/lib/python3.11/site-packages"
-
-# remove unused dist-packages to prevent false positives for trivy
+# remove unused dist-packages to reduce image size and trivy noise
 RUN rm -rf /usr/local/lib/python3.11/dist-packages
 
-# add testing tools
-# RUN pip install pytest==7.3.1 coverage==7.2.7
-
-# # add non root user for security with home directory for test files
-RUN groupadd -r nonroot &&\
-  useradd -r -g nonroot nonroot
-RUN chown -R nonroot:nonroot /etl
+# add non-root user
+RUN groupadd -r nonroot && useradd -r -g nonroot nonroot \
+ && chown -R nonroot:nonroot /etl
 
 # make start.sh executable
-RUN chmod 777 /etl/start.sh
+RUN chmod 755 /etl/start.sh
 
 USER nonroot
-EXPOSE 8000:8000
+EXPOSE 8000
 CMD ["./start.sh"]

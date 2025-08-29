@@ -124,7 +124,8 @@ def published_algorithmdescriptions_permonth() -> tuple[pd.DataFrame, int]:
 
 
 def organisations_permonth() -> tuple[pd.DataFrame, int]:
-    orgs = get_all_organisations_joined_date()
+    db = SessionLocal()
+    orgs = get_all_organisations_joined_date(db)
     return create_dataframe(orgs, "organisaties")
 
 

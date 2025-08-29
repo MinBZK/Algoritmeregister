@@ -74,7 +74,7 @@ interface SelectTabPayload {
   source: 'click' | 'key'
 }
 
-const focusFromClick = ref<Boolean>(false)
+const focusFromClick = ref<boolean>(false)
 
 const selectTab = (payload: SelectTabPayload) => {
   const { target, source } = payload

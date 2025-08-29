@@ -32,7 +32,7 @@
       "type": "string",
       "maxLength": 99,
       "display": "mandatory",
-      "description": "De naam die gebruikt wordt om het algoritme aan te duiden",
+      "description": "De naam die gebruikt wordt om het algoritme aan te duiden.",
       "instructions": "Gebruik een naam, bij voorkeur met een werkwoord, die aangeeft wat het algoritme doet. Dit kan de algemeen gehanteerde naam zijn van het algoritme binnen de organisatie, mits begrijpelijk voor externen die niet bekend zijn met het algoritme.",
       "example": "Automatische Verkeersregeling Ringweg"
     },
@@ -40,7 +40,7 @@
       "name": "Korte omschrijving",
       "category": "Algemene informatie",
       "type": "string",
-      "maxLength": 349,
+      "maxLength": 399,
       "display": "mandatory",
       "description": "Een korte beschrijving van het algoritme.",
       "instructions": "Een korte, duidelijke beschrijving van het algoritme en het proces waarin deze gebruikt wordt. Bij voorkeur in twee of drie zinnen. Doel van dit veld is om snel begrip te krijgen van wat het algoritme doet. Het veld wordt weergegeven in het zoekoverzicht. Vul dit veld in op B1-taalniveau.",
@@ -102,7 +102,7 @@
       "category": "Algemene informatie",
       "type": "string",
       "display": "mandatory",
-      "description": "De contactgegevens voor deze registratie.",
+      "description": "Gebruik algemene contactgegevens, zoals een contactformulier of afdelingsmail – geen persoonlijke e-mailadres.",
       "instructions": "Het e-mailadres of de website voor contact over deze registratie. Dit moet een geldig mailadres of website zijn waar burgers, media of andere betrokkenen vragen kunnen stellen over het algoritme zelf of over de gevolgen op basis van uitkomsten van het algoritme. Begin een website-URL met https://",
       "example": "Algoritmes@gemeentenoorderhaaks.nl"
     },
@@ -185,7 +185,7 @@
       "type": "string",
       "maxLength": 2499,
       "display": "optional",
-      "description": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt",
+      "description": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt.",
       "instructions": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt. Geef waar mogelijk in het kort aan wat het doel is van deze wet, zodat dit ook voor niet-juristen begrijpelijk is.",
       "example": "Het algoritme wordt ingezet voor taken uit de Wegenverkeerswet. Een van de taken is het waarborgen van verkeersveiligheid. "
     },
@@ -195,7 +195,7 @@
       "type": "string",
       "format": "uri",
       "display": "optional",
-      "description": "Een link naar de wettelijke grondslag(en) voor het proces waarin het algoritme ingezet wordt",
+      "description": "Een link naar de wettelijke grondslag(en) voor het proces waarin het algoritme ingezet wordt.",
       "instructions": "Een link naar de wettelijke grondslag(en) voor het proces waarin het algoritme ingezet wordt. Bijvoorbeeld: een wet, een verordening of een formeel besluit.",
       "example": "https://wetten.overheid.nl/BWBR0006622"
     },

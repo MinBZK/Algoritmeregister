@@ -14,6 +14,7 @@ export interface Algoritme {
   organization: string
   description_short: string
   code: string
+  org_id: string
 
   [key: string]: null | string | string[]
 }

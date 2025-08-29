@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import (
     desc,
     exists,
@@ -27,12 +27,15 @@ from .index import IRepository
 from app.services.algoritme_version import (
     db_list_to_python_list_schema,
 )
-from app.schemas.misc import standard_impact_assessment_titles
+from app.schemas.misc import (
+    standard_impact_assessment_titles_mapping,
+    reverse_impact_assessment_titles_mapping,
+)
 from app.config.publication_standard import publication_standard
 
 
 def process_impact_assessment_filters(
-    impact_assessments_by_algo: list[list[ImpacttoetsenGrouping] | None],
+    impact_assessments_by_algo: list[list[ImpacttoetsenGrouping] | None], lang: Language
 ) -> list[FilterData]:
     """Processes the impact assessment filters to remove duplicates and return a list of strings."""
     ia_filter_data: list[FilterData] = []
@@ -43,43 +46,56 @@ def process_impact_assessment_filters(
     if count_with_none > 0:
         ia_filter_data.append(
             FilterData(
-                label=ImpactAssessments.NONE,
+                label=standard_impact_assessment_titles_mapping[lang][
+                    ImpactAssessments.NONE
+                ],
                 key=ImpactAssessments.NONE,
                 count=count_with_none,
             )
         )
 
     # Counts the standard Impact Assessments.
-    standard_ia_counts = {sia: 0 for sia in standard_impact_assessment_titles}
+    standard_ia_counts = {
+        sia: 0 for sia in standard_impact_assessment_titles_mapping[lang].keys()
+    }
     total_other_ias = 0
+
+    reverse_map = reverse_impact_assessment_titles_mapping[lang]
+
     for ia_data in algo_ia_data_not_none:
         # 'OTHER' can occur twice in one algorithm, but we only count it max once.
         other_ias_found = False
         for ia in ia_data:
-            if ia["title"] in standard_impact_assessment_titles:
-                standard_ia_counts[ImpactAssessments(ia["title"])] += 1
-                continue
+            enum_key = reverse_map.get(ia["title"])
+            if enum_key:
+                standard_ia_counts[enum_key] += 1
             elif not other_ias_found:
                 total_other_ias += 1
                 other_ias_found = True
 
-    for standard_ia, count in standard_ia_counts.items():
+    for enum_key, count in standard_ia_counts.items():
         if count > 0:
             ia_filter_data.append(
-                FilterData(label=standard_ia, key=standard_ia, count=count)
+                FilterData(
+                    label=standard_impact_assessment_titles_mapping[lang][enum_key],
+                    key=enum_key,
+                    count=count,
+                )
             )
 
     # 'Other' are the leftovers, the ones not caught by standard Impact Assessments.
     if total_other_ias > 0:
         ia_filter_data.append(
             FilterData(
-                label=schemas.ImpactAssessments.OTHER,
+                label=standard_impact_assessment_titles_mapping[lang][
+                    ImpactAssessments.OTHER
+                ],
                 key=schemas.ImpactAssessments.OTHER,
                 count=total_other_ias,
             )
         )
 
-    ia_filter_data.sort(key=lambda x: x.count, reverse=True)
+    ia_filter_data.sort(key=lambda x: (-x.count, x.label))
     return ia_filter_data
 
 
@@ -90,11 +106,13 @@ class AlgoritmeVersionRepository(IRepository):
     def get_by_id(self, id: int) -> schemas.AlgoritmeVersionDB | None:
         algoritme_version = self.session.query(models.AlgoritmeVersion).get(id)
         if algoritme_version:
-            return schemas.AlgoritmeVersionDB.from_orm(algoritme_version)
+            return schemas.AlgoritmeVersionDB.model_validate(algoritme_version)
 
     def get_all(self) -> list[schemas.AlgoritmeVersionDB]:
         algoritme_versions = self.session.query(models.AlgoritmeVersion).all()
-        return [schemas.AlgoritmeVersionDB.from_orm(a) for a in algoritme_versions]
+        return [
+            schemas.AlgoritmeVersionDB.model_validate(a) for a in algoritme_versions
+        ]
 
     def get_all_published(self) -> list[schemas.AlgoritmeVersionDB]:
         algoritme_versions = (
@@ -103,7 +121,7 @@ class AlgoritmeVersionRepository(IRepository):
             .all()
         )
         return [
-            db_list_to_python_list_schema(schemas.AlgoritmeVersionDB.from_orm(a))
+            db_list_to_python_list_schema(schemas.AlgoritmeVersionDB.model_validate(a))
             for a in algoritme_versions
         ]
 
@@ -152,6 +170,7 @@ class AlgoritmeVersionRepository(IRepository):
                 subquery.c.algoritme_id,
                 models.AlgoritmeVersion.organization,
                 models.Organisation.code,
+                models.Organisation.org_id,
             )
             .select_from(models.AlgoritmeVersion)
             .join(
@@ -175,7 +194,7 @@ class AlgoritmeVersionRepository(IRepository):
             )
         )
         results = self.session.execute(stmt)
-        return [AlgoritmeVersionEarliestPublish.from_orm(a) for a in results]
+        return [AlgoritmeVersionEarliestPublish.model_validate(a) for a in results]
 
     def get_published_by_filter(
         self,
@@ -195,7 +214,9 @@ class AlgoritmeVersionRepository(IRepository):
             .all()
         )
         return [
-            db_list_to_python_list_schema(schemas.AlgoritmeVersionQuery.from_orm(a))
+            db_list_to_python_list_schema(
+                schemas.AlgoritmeVersionQuery.model_validate(a)
+            )
             for a in algoritme_versions
         ]
 
@@ -264,7 +285,7 @@ class AlgoritmeVersionRepository(IRepository):
             [ImpacttoetsenGrouping(**i) for i in ia[0]] if ia[0] else None
             for ia in impact_assessments
         ]
-        return process_impact_assessment_filters(validated)
+        return process_impact_assessment_filters(validated, lang)
 
     def get_latest_by_lars_by_lang(
         self, lars: str, lang: Language
@@ -279,22 +300,68 @@ class AlgoritmeVersionRepository(IRepository):
             .order_by(desc(models.AlgoritmeVersion.create_dt))
         ).first()
         if latest_algo:
-            latest_algo = schemas.AlgoritmeVersionDB.from_orm(latest_algo)
+            latest_algo = schemas.AlgoritmeVersionDB.model_validate(latest_algo)
             return db_list_to_python_list_schema(latest_algo)
 
     def get_published_by_lang(self, lang: Language) -> list[schemas.AlgoritmeVersionDB]:
+        join_clause = and_(
+            models.ActionHistory.algoritme_version_id == models.AlgoritmeVersion.id,
+            models.ActionHistory.operation == schemas.OperationEnum.published,
+        )
         published_algoritmes = (
-            self.session.query(models.AlgoritmeVersion)
+            self.session.query(models.AlgoritmeVersion, models.ActionHistory.create_dt)
+            .join(models.ActionHistory, onclause=join_clause)
             .filter(
                 models.AlgoritmeVersion.language == lang,
                 models.AlgoritmeVersion.state == State.PUBLISHED,
             )
-            .order_by(desc(models.AlgoritmeVersion.create_dt))
+            .order_by(
+                desc(models.AlgoritmeVersion.algoritme_id),
+                desc(models.AlgoritmeVersion.create_dt),
+            )
             .all()
         )
+        results = []
+        for alg_ver, publication_dt in published_algoritmes:
+            validated = schemas.AlgoritmeVersionDB.model_validate(
+                alg_ver, from_attributes=True
+            ).model_copy(update={"publication_dt": publication_dt})
+            results.append(db_list_to_python_list_schema(validated))
+        return results
+
+    def get_all_published_versions_by_lang(
+        self, lang: Language
+    ) -> list[schemas.AlgoritmeVersionPublishHistory]:
+        """Return all published algoritme versions by language."""
+        join_clause = and_(
+            models.ActionHistory.algoritme_version_id == models.AlgoritmeVersion.id,
+        )
+        stmt = (
+            select(
+                models.ActionHistory.create_dt,
+                models.ActionHistory.operation,
+                models.Algoritme.lars,
+                models.AlgoritmeVersion,
+            )
+            .join(models.ActionHistory, onclause=join_clause)
+            .join(models.Algoritme)
+            .where(
+                models.AlgoritmeVersion.language == lang,
+                models.ActionHistory.operation == schemas.OperationEnum.published,
+            )
+            .order_by(
+                desc(models.AlgoritmeVersion.algoritme_id),
+                desc(models.ActionHistory.create_dt),
+            )
+        )
+        result = list(self.session.execute(stmt))
         return [
-            db_list_to_python_list_schema(schemas.AlgoritmeVersionDB.from_orm(alg))
-            for alg in published_algoritmes
+            db_list_to_python_list_schema(
+                schemas.AlgoritmeVersionPublishHistory(
+                    **r[3].__dict__, publication_dt=r[0], operation=r[1], lars=r[2]
+                )
+            )
+            for r in result
         ]
 
     def get_latest_by_lang(self, lang: Language) -> list[schemas.AlgoritmeVersionDB]:
@@ -323,7 +390,9 @@ class AlgoritmeVersionRepository(IRepository):
             .all()
         )
         return [
-            db_list_to_python_list_schema(schemas.AlgoritmeVersionDB.from_orm(alg))
+            db_list_to_python_list_schema(
+                schemas.AlgoritmeVersionDB.model_validate(alg)
+            )
             for alg in latest_all_algoritmes
         ]
 
@@ -353,13 +422,15 @@ class AlgoritmeVersionRepository(IRepository):
                 ),
             )
             .filter(
-                models.Organisation.code == as_org,
+                models.Organisation.org_id == as_org,
                 models.AlgoritmeVersion.language == lang,
             )
             .all()
         )
         return [
-            db_list_to_python_list_schema(schemas.AlgoritmeVersionDB.from_orm(alg))
+            db_list_to_python_list_schema(
+                schemas.AlgoritmeVersionDB.model_validate(alg)
+            )
             for alg in latest_org_algoritmes
         ]
 
@@ -375,17 +446,25 @@ class AlgoritmeVersionRepository(IRepository):
             .all()
         )
         return [
-            db_list_to_python_list_schema(schemas.AlgoritmeVersionDB.from_orm(alg))
+            db_list_to_python_list_schema(
+                schemas.AlgoritmeVersionDB.model_validate(alg)
+            )
             for alg in published_alg
         ]
 
     def get_published_by_lars_by_lang(
         self, lars: str, lang: Language
     ) -> schemas.AlgoritmeVersionDB | None:
-        """For a lars-code, return published by language"""
+        """For a lars-code, return published by language and its publication date."""
+        join_clause = and_(
+            models.ActionHistory.algoritme_version_id == models.AlgoritmeVersion.id,
+            models.ActionHistory.operation == schemas.OperationEnum.published,
+        )
         published_alg = (
-            self.session.query(models.AlgoritmeVersion)
+            self.session.query(models.AlgoritmeVersion, models.ActionHistory.create_dt)
             .join(models.Algoritme)
+            .options(joinedload(models.AlgoritmeVersion.algoritme))
+            .join(models.ActionHistory, onclause=join_clause)
             .filter(
                 models.AlgoritmeVersion.state == State.PUBLISHED,
                 models.Algoritme.lars == lars,
@@ -394,9 +473,11 @@ class AlgoritmeVersionRepository(IRepository):
             .first()
         )
         if published_alg:
-            return db_list_to_python_list_schema(
-                schemas.AlgoritmeVersionDB.from_orm(published_alg)
-            )
+            alg_ver, publication_dt = published_alg
+            validated = schemas.AlgoritmeVersionDB.model_validate(
+                alg_ver, from_attributes=True
+            ).model_copy(update={"publication_dt": publication_dt.isoformat()})
+            return db_list_to_python_list_schema(validated)
 
     def get_published_by_org_by_lang(
         self, as_org, lang: Language
@@ -413,7 +494,9 @@ class AlgoritmeVersionRepository(IRepository):
             .all()
         )
         return [
-            db_list_to_python_list_schema(schemas.AlgoritmeVersionDB.from_orm(alg))
+            db_list_to_python_list_schema(
+                schemas.AlgoritmeVersionDB.model_validate(alg)
+            )
             for alg in published_algos
         ]
 
@@ -454,6 +537,39 @@ class AlgoritmeVersionRepository(IRepository):
             db_list_to_python_list_schema(
                 schemas.AlgoritmeVersionLastEdit(
                     **r[3].__dict__, user_id=r[0], archive_dt=r[1], lars=r[2]
+                )
+            )
+            for r in result
+        ]
+
+    def get_all_published_versions_by_lars_by_lang(
+        self, lars: str, lang: Language
+    ) -> list[schemas.AlgoritmeVersionPublishHistory]:
+        join_clause = and_(
+            models.ActionHistory.algoritme_version_id == models.AlgoritmeVersion.id,
+            models.ActionHistory.operation == schemas.OperationEnum.published,
+        )
+        stmt = (
+            select(
+                models.ActionHistory.create_dt,
+                models.ActionHistory.operation,
+                models.Algoritme.lars,
+                models.AlgoritmeVersion,
+            )
+            .select_from(models.AlgoritmeVersion)
+            .join(models.ActionHistory, onclause=join_clause)
+            .join(models.Algoritme)
+            .where(
+                models.Algoritme.lars == lars,
+                models.AlgoritmeVersion.language == lang,
+            )
+            .order_by(desc(models.AlgoritmeVersion.create_dt))
+        )
+        result = list(self.session.execute(stmt))
+        return [
+            db_list_to_python_list_schema(
+                schemas.AlgoritmeVersionPublishHistory(
+                    **r[3].__dict__, publication_dt=r[0], operation=r[1], lars=r[2]
                 )
             )
             for r in result
@@ -503,7 +619,7 @@ class AlgoritmeVersionRepository(IRepository):
             .join(models.Algoritme)
             .join(models.Organisation)
             .where(
-                models.Organisation.code == org,
+                models.Organisation.org_id == org,
                 models.AlgoritmeVersion.language == lang,
             )
             .order_by(desc(models.ActionHistory.create_dt))
@@ -520,11 +636,11 @@ class AlgoritmeVersionRepository(IRepository):
         ]
 
     def add(self, item: schemas.AlgoritmeVersionIn) -> schemas.AlgoritmeVersionDB:
-        algoritme_version = models.AlgoritmeVersion(**item.dict())
+        algoritme_version = models.AlgoritmeVersion(**item.model_dump())
         self.session.add(algoritme_version)
         self.session.commit()
 
-        return schemas.AlgoritmeVersionDB.from_orm(algoritme_version)
+        return schemas.AlgoritmeVersionDB.model_validate(algoritme_version)
 
     def update_state_by_id(self, alg_id: int, target_state: State) -> None:
         stmt = (
@@ -539,7 +655,7 @@ class AlgoritmeVersionRepository(IRepository):
         stmt = (
             update(models.AlgoritmeVersion)
             .where(models.AlgoritmeVersion.id == id)
-            .values(**item.dict(exclude={"create_dt"}))
+            .values(**item.model_dump(exclude={"create_dt"}))
         )
         self.session.execute(stmt)
         self.session.commit()

@@ -54,6 +54,7 @@ const emit = defineEmits<{
 }>()
 
 const authStore = useAuthStore()
+const token = ref(authStore.keycloak.idToken)
 
 // Set up editor with allowed formats
 const editor = ref<Quill>(null)
@@ -62,7 +63,7 @@ onMounted(() => {
     initSpellchecker(
       editor.value.$el,
       authStore.APIurl,
-      authStore.keycloak.idToken || ''
+      token.value || ''
     )
   }
 })
@@ -103,7 +104,15 @@ onClickOutside(editor, () => {
 })
 watch(
   () => editorFocused.value,
-  (newValue) => (newValue ? emit('update:focused') : emit('blur'))
+  (newValue) => {
+    newValue ? emit('update:focused') : emit('blur')
+
+    if (token.value !== authStore.keycloak.idToken) {
+      token.value = authStore.keycloak.idToken
+      window.WEBSPELLCHECKER.destroyAll()
+      initSpellchecker(editor.value.$el, authStore.APIurl, token.value || '')
+    }
+  }
 )
 
 // Dynamically add classes to editor based on current state

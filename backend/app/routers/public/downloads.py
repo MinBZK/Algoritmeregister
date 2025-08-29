@@ -38,6 +38,25 @@ async def get_file_all(
 
 
 @router.get(
+    "/downloads/history/{language}",
+    response_class=FileResponse,
+)
+async def get_file_all_published_history(
+    db: Session = Depends(get_db),
+    lang: Language = Path(alias="language"),
+    filetype: Literal["excel", "csv"] = Query(alias="filetype"),
+):
+    if filetype not in ["excel", "csv"]:
+        raise HTTPException(
+            status_code=400,
+            detail="Filetype must be excel or csv",
+        )
+    return generate_download_file(
+        db, lang, which_version="published_history", file_type=filetype
+    )
+
+
+@router.get(
     "/downloads/algorithms/{algorithm_id}/{language}",
     response_class=FileResponse,
 )
@@ -54,6 +73,26 @@ async def get_file_one(
         )
     return generate_download_file(
         db, lang, lars=lars, which_version="published", file_type=filetype
+    )
+
+
+@router.get(
+    "/downloads/history/algorithms/{algorithm_id}/{language}",
+    response_class=FileResponse,
+)
+async def get_file_one_published_history(
+    db: Session = Depends(get_db),
+    lars: str = Path(alias="algorithm_id"),
+    lang: Language = Path(alias="language"),
+    filetype: Literal["excel", "csv"] = Query(alias="filetype"),
+):
+    if filetype not in ["excel", "csv"]:
+        raise HTTPException(
+            status_code=400,
+            detail="Filetype must be excel or csv",
+        )
+    return generate_download_file(
+        db, lang, lars=lars, which_version="published_history", file_type=filetype
     )
 
 
@@ -80,7 +119,7 @@ async def export_site_data_json(db: Session = Depends(get_db)):
     for org_detail in org_details:
         if org_detail.code == "sandbox":
             continue
-        if org_detail.code not in published_owners:
+        if org_detail.org_id not in published_owners:
             continue
         if not org_detail.show_page:
             org_detail.about = None

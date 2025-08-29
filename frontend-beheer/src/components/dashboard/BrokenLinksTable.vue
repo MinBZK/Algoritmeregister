@@ -1,5 +1,7 @@
 <template>
-  <h1 class="text-h5 px-0">Gebroken Links</h1>
+  <h1 class="text-h5 px-0">
+    Gebroken Links
+  </h1>
   <p class="text-body-1 py-3">
     Hier wordt per dag getoond hoeveel verwijzingen in gepubliceerde
     algoritmebeschrijvingen voorkomen welke niet (meer) werken of waarvan de
@@ -13,11 +15,21 @@
         <table aria-label="Gebrokenlinks in gepubliceerde algoritmebeschrijvingen">
           <thead>
             <tr>
-              <th class="u-columnwidth-10p">Algoritme</th>
-              <th class="u-columnwidth-15p">Organisatie</th>
-              <th class="u-columnwidth-60p">Gebroken link</th>
-              <th class="u-columnwidth-5p">Code</th>
-              <th class="u-columnwidth-10p">Datum</th>
+              <th class="u-columnwidth-10p">
+                Algoritme
+              </th>
+              <th class="u-columnwidth-15p">
+                Organisatie
+              </th>
+              <th class="u-columnwidth-60p">
+                Gebroken link
+              </th>
+              <th class="u-columnwidth-5p">
+                Code
+              </th>
+              <th class="u-columnwidth-10p">
+                Datum
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -42,8 +54,7 @@
                       :href="formatLink(brokenLink[0])"
                       target="_blank"
                       rel="noopener noreferrer"
-                      >{{ brokenLink[0] }}</a
-                    >
+                    >{{ brokenLink[0] }}</a>
                   </li>
                 </ul>
               </td>

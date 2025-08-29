@@ -17,13 +17,13 @@ class BrokenLinksRepository(IRepository):
 
     def get_all(self) -> list[schemas.BrokenLink]:
         actions = self.session.query(BrokenLinks).all()
-        return [schemas.BrokenLink.from_orm(a) for a in actions]
+        return [schemas.BrokenLink.model_validate(a) for a in actions]
 
     def add(self, action: schemas.BrokenLink) -> schemas.BrokenLink:
-        action_model = BrokenLink(**action.dict())
+        action_model = BrokenLink(**action.model_dump())
         self.session.add(action_model)
         self.session.flush()
-        return schemas.BrokenLink.from_orm(action_model)
+        return schemas.BrokenLink.model_validate(action_model)
 
     def get_newest_batch_by_lang(self, lang: Language) -> list[schemas.BrokenLink]:
         max_batch = (
@@ -39,7 +39,7 @@ class BrokenLinksRepository(IRepository):
             .order_by(BrokenLinks.create_dt.desc())
         ).all()
 
-        return [BrokenLink.from_orm(link) for link in broken_links]
+        return [BrokenLink.model_validate(link) for link in broken_links]
 
     def get_newest_batch_two_weeks_by_lang(
         self, lang: Language

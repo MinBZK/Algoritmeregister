@@ -25,8 +25,10 @@
     <div v-if="displayDropdown" class="dropdown-content">
       <form
         ref="formElement"
-        :action="action"
-        @submit.prevent="handleDownload(action!, 'csv')"
+        :action="action.currentPublished"
+        @submit.prevent="
+          handleDownload(action.currentPublished!, 'csv', 'recent')
+        "
       >
         <button
           ref="csvButton"
@@ -34,13 +36,32 @@
           :aria-disabled="isLoading ? 'true' : 'false'"
           :disabled="!!isLoading"
         >
-          <span class="button__label"> CSV </span>
+          <span class="button__label"> {{ t('RecentAlgorithms') }} CSV </span>
+        </button>
+      </form>
+      <form
+        v-if="action.allPublished"
+        ref="formElement"
+        :action="action.allPublished"
+        @submit.prevent="handleDownload(action.allPublished!, 'csv', 'history')"
+      >
+        <button
+          ref="csvButton"
+          class="download-button"
+          :aria-disabled="isLoading ? 'true' : 'false'"
+          :disabled="!!isLoading"
+        >
+          <span class="button__label">
+            {{ t('AlgorithmsWithHistory') }} CSV</span
+          >
         </button>
       </form>
       <form
         ref="formElement"
-        :action="action"
-        @submit.prevent="handleDownload(action!, 'excel')"
+        :action="action.currentPublished"
+        @submit.prevent="
+          handleDownload(action.currentPublished!, 'excel', 'recent')
+        "
       >
         <button
           ref="xlsxButton"
@@ -48,7 +69,26 @@
           :aria-disabled="isLoading ? 'true' : 'false'"
           :disabled="!!isLoading"
         >
-          <span class="button__label"> XLSX </span>
+          <span class="button__label"> {{ t('RecentAlgorithms') }} XLSX</span>
+        </button>
+      </form>
+      <form
+        v-if="action.allPublished"
+        ref="formElement"
+        :action="action.allPublished"
+        @submit.prevent="
+          handleDownload(action.allPublished!, 'excel', 'history')
+        "
+      >
+        <button
+          ref="xlsxButton"
+          class="download-button"
+          :aria-disabled="isLoading ? 'true' : 'false'"
+          :disabled="!!isLoading"
+        >
+          <span class="button__label">
+            {{ t('AlgorithmsWithHistory') }} XLSX</span
+          >
         </button>
       </form>
     </div>
@@ -61,7 +101,10 @@ withDefaults(
     label: string
     fullWidth?: boolean
     buttonId?: string | undefined
-    action: string | undefined
+    action: {
+      currentPublished: string | undefined
+      allPublished?: string | undefined
+    }
   }>(),
   {
     fullWidth: false,
@@ -69,11 +112,12 @@ withDefaults(
   }
 )
 
+const { t } = useI18n()
 const dropdownButton = ref<HTMLButtonElement>()
 const csvButton = ref<HTMLButtonElement>()
 const xlsxButton = ref<HTMLButtonElement>()
-const displayDropdown = ref<Boolean>(false)
-const isLoading = ref<Boolean>(false)
+const displayDropdown = ref<boolean>(false)
+const isLoading = ref<boolean>(false)
 
 const downloadSpecifiedFile = async (url: string, filetype: string) => {
   try {
@@ -83,15 +127,18 @@ const downloadSpecifiedFile = async (url: string, filetype: string) => {
       responseType: 'blob',
     })
     return result
-  } catch (error) {
+  } catch {
     isLoading.value = false
   }
 }
 
-const handleDownload = async (action: string, filetype: string) => {
+const handleDownload = async (
+  action: string,
+  filetype: string,
+  label: 'recent' | 'history'
+) => {
   isLoading.value = true
   const result = await downloadSpecifiedFile(action, filetype)
-
   if (result && result.data) {
     const blobData = result.data.value
     const url = URL.createObjectURL(blobData!)
@@ -100,9 +147,12 @@ const handleDownload = async (action: string, filetype: string) => {
     const fileExtension = computed(() =>
       filetype === 'excel' ? 'xlsx' : filetype
     )
+    const fileName =
+      label === 'recent' ? t('RecentAlgorithms') : t('AlgorithmsWithHistory')
+    const date = getCurrentDate()
     fileLink.setAttribute(
       'download',
-      'Algoritmebeschrijvingen.' + fileExtension.value
+      `${fileName} ${date}.` + fileExtension.value
     )
     document.body.appendChild(fileLink)
     fileLink.click()
@@ -111,9 +161,19 @@ const handleDownload = async (action: string, filetype: string) => {
     isLoading.value = false
   }
 }
+
+const getCurrentDate = (): string => {
+  const dateObj = new Date()
+  const year = dateObj.getFullYear()
+  const month = dateObj.getMonth() + 1
+  const day = dateObj.getDate()
+  return `${year}-${month}-${day}`
+}
 </script>
 
 <style scoped lang="scss">
+@use '/assets/styles/colors' as colors;
+
 .button {
   margin-bottom: 0em !important;
 }
@@ -127,7 +187,7 @@ const handleDownload = async (action: string, filetype: string) => {
 }
 
 .button--primary[aria-disabled='true'] {
-  background-color: $primary-darker !important;
+  background-color: colors.$primary-darker !important;
   color: white !important;
 }
 
@@ -151,7 +211,7 @@ const handleDownload = async (action: string, filetype: string) => {
   padding: 0.3em 1em;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
-  border: 1px solid $primary;
+  border: 1px solid colors.$primary;
   border-top: none;
   padding-bottom: 0.5em;
 }
@@ -165,7 +225,7 @@ const handleDownload = async (action: string, filetype: string) => {
 }
 
 .download-button:hover {
-  background-color: $secondary;
+  background-color: colors.$secondary;
 }
 
 .spinner-container {

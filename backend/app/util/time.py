@@ -15,7 +15,7 @@ def init_time(id: int = 0):
 def log_time_since(id: int = 0, pre: str | None = None):
     "Prints time since zero time based on reference ID. Resets start time"
     logger.info(
-        f"{round((time.time() - globals()['time_list'][id]) * 1000, 3):>7} ms | {pre}"
+        f"{round((time.time() - globals()['time_list'][id]) * 1000, 3): >7} ms | {pre}"
     )
     init_time(id)
 

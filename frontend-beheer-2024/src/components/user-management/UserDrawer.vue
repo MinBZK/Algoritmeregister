@@ -168,14 +168,14 @@ const save = () => {
     const user: UserUpdate = {
       ...attributes.value,
       roles,
-      groups: attributes.value.groups.map((group) => group.code),
+      groups: attributes.value.groups.map((group) => group.org_id),
     }
     emit('save', user, props.user.id)
   } else {
     const user: UserNew = {
       ...attributes.value,
       roles,
-      groups: attributes.value.groups.map((group) => group.code),
+      groups: attributes.value.groups.map((group) => group.org_id),
     }
     emit('add', user)
   }

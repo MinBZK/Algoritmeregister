@@ -1,22 +1,22 @@
-name;identifier
-Hoogheemraadschap De Stichtse Rijnlanden;WS14
-Hoogheemraadschap Hollands Noorderkwartier;WS12
-Hoogheemraadschap van Delfland;WS15
-Hoogheemraadschap van Rijnland;WS13
-Hoogheemraadschap van Schieland en de Krimpenerwaard;WS39
-Waterschap Aa en Maas;WS38
-Waterschap Amstel, Gooi en Vecht;WS31
-Waterschap Brabantse Delta;WS25
-Waterschap De Dommel;WS27
-Waterschap Drents Overijsselse Delta;WS59
-Waterschap Hollandse Delta;WS40
-Waterschap Hunze en Aa's;WS33
-Waterschap Limburg;WS60
-Waterschap Noorderzijlvest;WS34
-Waterschap Rijn en IJssel;WS07
-Waterschap Rivierenland;WS09
-Waterschap Scheldestromen;WS42
-Waterschap Vallei en Veluwe;WS08
-Waterschap Vechtstromen;WS44
-Waterschap Zuiderzeeland;WS37
-Wetterskip Fryslân;WS02
+name;identifier;org_id
+Hoogheemraadschap De Stichtse Rijnlanden;WS14;ws0636
+Hoogheemraadschap Hollands Noorderkwartier;WS12;ws0651
+Hoogheemraadschap van Delfland;WS15;ws0372
+Hoogheemraadschap van Rijnland;WS13;ws0616
+Hoogheemraadschap van Schieland en de Krimpenerwaard;WS39;ws0656
+Waterschap Aa en Maas;WS38;ws0654
+Waterschap Amstel, Gooi en Vecht;WS31;ws0155
+Waterschap Brabantse Delta;WS25;ws0652
+Waterschap De Dommel;WS27;ws0539
+Waterschap Drents Overijsselse Delta;WS59;ws0664
+Waterschap Hollandse Delta;WS40;ws0655
+Waterschap Hunze en Aa's;WS33;ws0646
+Waterschap Limburg;WS60;ws0665
+Waterschap Noorderzijlvest;WS34;ws0647
+Waterschap Rijn en IJssel;WS07;ws0152
+Waterschap Rivierenland;WS09;ws0621
+Waterschap Scheldestromen;WS42;ws0661
+Waterschap Vallei en Veluwe;WS08;ws0662
+Waterschap Vechtstromen;WS44;ws0663
+Waterschap Zuiderzeeland;WS37;ws0650
+Wetterskip Fryslân;WS02;ws0653

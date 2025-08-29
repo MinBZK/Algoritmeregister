@@ -1,0 +1,41 @@
+[
+  {
+    "id": "contec-veilig-mailen",
+    "name": "Veilig mailen aan de hand van business rules, DLP algoritme",
+    "organization": null,
+    "description_short": "Dit algoritme ondersteunt gebruikers bij het veilig en versleuteld versturen van e-mails op basis van automatisch gedetecteerde, vooraf gedefinieerde informatie. Het algoritme draagt bij aan het voorkomen van datalekken.",
+    "type": null,
+    "category": ["Organisatie en bedrijfsvoering"],
+    "publication_category": "Overige algoritmes",
+    "website": "https://www.filecap.com/administrator/business-rules",
+    "status": "In gebruik",
+    "begin_date": "2023-08",
+    "end_date": null,
+    "goal": "<p>Dit algoritme is ontworpen om gebruikers te ondersteunen bij het veilig en efficiënt versturen van gevoelige informatie. Dit gebeurt versleuteld met hoogwaardige moderne encryptie in combinatie met aanvullende beveiligingsopties zoals multifactor authenticatie of een wachtwoord. Het algoritme beïnvloedt uitsluitend het proces van het versturen van de desbetreffende e-mail en bijlage(n) waarin het algoritme verscheidene typen gevoelige informatie zoals geconfigureerd in het beheerportaal detecteert. </p>",
+    "proportionality": "<p>Door het toepassen van het algoritme biedt het een extra beschermingslaag tijdens het verzendproces. Hierdoor wordt niet alleen het risico op datalekken aanzienlijk beperkt, maar draagt het ook bij aan het behoud van vertrouwelijkheid en integriteit van de verzonden gegevens. De menselijke foutfactor wordt door het gebruik van het algoritme verkleind. </p>",
+    "provider": "Contec B.V.",
+    "lawful_basis": "",
+    "lawful_basis_grouping": null,
+    "impacttoetsen": "<p>IAMA is niet van toepassing, omdat het algoritme geen invloed uitoefent op de juridische grondslag die van toepassing is bij de IAMA en op de gebruikers.</p>",
+    "impacttoetsen_grouping": [
+      {
+        "title": "Data Protection Impact Assessment (DPIA)",
+        "link": ""
+      }
+    ],
+    "iama_description": null,
+    "url": "",
+    "lang": "NLD",
+    "standard_version": "1.0",
+    "uuid": null,
+    "source_id": "",
+    "tags": "<p>FileCap, grote bestanden versturen, beveiligd e-mailen, veilig mailen, versleuteld mailen, e-mail encryptie, business rules</p>",
+    "source_data": "<p>De gegevens die door het algoritme worden gebruikt, zijn gebaseerd op regular expressions (Regex) om de categorieën van PII te identificeren. Tijdens de ontwikkeling van het algoritme is gekeken naar de patronen in desbetreffende PII. Op basis van deze patronen met de bijkomende verschillende kenmerken per categorie zijn de regular expressions gedefinieerd.</p>",
+    "source_data_link": null,
+    "methods_and_models": "<p>Wanneer een e-mail is opgesteld en het algoritme is actief, kan het algoritme zien of het bericht of de bijlagen gevoelige informatie bevat zoals gedefinieerd door de beheerder. Het algoritme zal de gebruiker ervoor behoeden om de e-mail en bijlagen niet versleuteld en onbeveiligd te versturen. Hierbij richt het algoritme zich op de volgende invoervelden: afzender, ontvanger(s), onderwerp, e-mailbericht en bijlagen. Deze gegevens vormen de input voor de werking van het algoritme.</p>",
+    "publiccode": null,
+    "human_intervention": "<p>De desbetreffende beheerder van de organisatie met de juiste toegang in het FileCap beheerportaal kan aangeven op welke PII moet worden ingegrepen door het algoritme. Dit zijn PII zoals BSN, IBAN, Creditcard informatie, confidentiality settings in Outlook, meerdere ontvangers of sleutelwoorden en domeinen waarbij berichten te allen tijde versleuteld en beveiligd verstuurd moet worden. De eindgebruiker kan beschikken over de mogelijkheid om de gehele invoegtoepassing uit te schakelen, afhankelijk van het ingestelde beleid van de belanghebbende organisatie.</p>",
+    "risks": "<p>Het risico is het maken van typfouten, bij een typfout herkent het algoritme het niet als een vorm van PII. Dit is een geaccepteerd risico. Een BSN of IBAN is bij een typfout incompleet en van weinig waarde in geval van onderschepping. Bij bestanden wordt voor het gebruiksgemak de eerste 1024 KB door het algoritme uitgelezen, bij grote bestanden zal PII dus mogelijk niet door het algoritme opgepikt worden. Hierbij is het van belang om gebruikers te allen tijde bewust te maken van de risico's, het algoritme blijft immers een hulpmiddel in de strijd tegen datalekken.</p>",
+    "contact_email": "privacy@contec.nl"
+  }
+]

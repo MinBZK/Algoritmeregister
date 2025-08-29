@@ -35,7 +35,7 @@ class TestEndpoints:
         self.db = next(get_db())
         self.token = "Bearer " + login(username="sandbox", password="sandbox")
 
-        org = models.Organisation(**{"name": "sandbox", "code": "sandbox"})
+        org = models.Organisation(**{"name": "sandbox", "code": "sandbox", "org_id": "sandbox"})
         self.db.add(org)
         self.db.commit()
         body = {

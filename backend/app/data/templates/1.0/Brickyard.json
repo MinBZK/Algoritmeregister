@@ -1,0 +1,194 @@
+[
+  {
+    "id": "brickyard-zero-emissie-zone",
+    "name": "Kentekencamerahandhaving Zero Emissie Zone",
+    "organization": null,
+    "description_short": "De gemeente gebruikt ANPR-camera’s (automatic number plate recognition) om te controleren of voertuigen een bepaald gebied (Zero Emissie Zone) in mogen. De camera leest het kenteken; een algoritme controleert of toegang is toegestaan. Wanneer dit niet het geval is wordt een foto naar het handhaafsysteem aangeboden, waar een BOA beoordeelt of een boete of waarschuwing zal worden uitgeschreven.",
+    "type": null,
+    "category": ["Verkeer"],
+    "publication_category": "Impactvolle algoritmes",
+    "website": null,
+    "status": "In gebruik",
+    "begin_date": null,
+    "end_date": null,
+    "goal": "<div><p>Doel: Digitaal handhaven geldende zero emissie. Controle hierop gebeurt met camera's die kentekens kunnen lezen. Het doel van het algoritme is om efficiënt te kunnen handhaven.</p><p><br></p><p>Het algoritme heeft alleen impact op voertuigen die niet in de gebieden mogen zijn. Alleen het overtredende voertuig wordt in beeld gebracht. Niet-overtreders worden buiten beschouwing gelaten. De camera's, en daarmee het algoritme, worden ingezet ten behoeve van het handhaven van de zero emissiezone voor voertuigen. De impact van het algoritme op de burger is laag. Enkel het lezen van de kentekenplaat wordt door het algoritme uitgevoerd. Vermeende overtreders worden door een BOA handmatig gecontroleerd om te bepalen of er sprake is van een strafbare gedraging, waarbij de BOA ook de kentekenplaat zelf nog controleert op camerabeelden.</p></div>",
+    "proportionality": "<p>Het algoritme biedt aanzienlijke voordelen doordat het efficiënter, sneller en goedkoper is. In plaats van dat medewerkers continu beelden moeten uitlezen, wordt nu alleen een foto gemaakt van voertuigen die niet in het gebied mogen zijn. Het plaatsen van verkeersborden alleen is niet voldoende, en de inzet van handhavers om handmatig voertuigen te controleren is tijdrovend en inefficiënt. Cameratoezicht is daarom efficiënter en effectiever dan de alternatieven.</p>",
+    "provider": "Brickyard B.V.",
+    "lawful_basis": "<p>Wegenverkeerswet 1994 </p>",
+    "lawful_basis_grouping": [
+      {
+        "title": "Wegenverkeerswet 1994 ",
+        "link": " https://wetten.overheid.nl/BWBR0006622 "
+      }
+    ],
+    "impacttoetsen": "<p>De gemeente voert een DPIA uit om de impact van de oplossing te toetsen.</p>",
+    "iama_description": null,
+    "url": null,
+    "lang": "NLD",
+    "standard_version": "1.0",
+    "uuid": null,
+    "source_id": null,
+    "tags": "<p>Camerahandhaving, Stadsafsluiting, Zero-Emissie, ANPR-Systeem, Autoluw, Autoluwe binnenstad, milieuzone, geslotenverklaring, verkeersknip</p>",
+    "source_data": "<p>Kentekens (kenteken, datum, tijd en locatie, geen specifieke NAW-gegevens) van voertuigen die niet in het toegewezen gebied mogen zijn, database met ontheffinghouders en de eventuele venstertijden. De venstertijden zijn de tijden waarin de speciale voertuigen wel / niet de binnenstad in mogen.</p>",
+    "source_data_link": null,
+    "source_data_grouping": [
+      {
+        "title": "RDW",
+        "link": "https://www.rdw.nl/"
+      },
+      {
+        "title": "NPR",
+        "link": "https://www.nationaalparkeerregister.nl/"
+      }
+    ],
+    "methods_and_models": "<div><p>Het camerahandhavingssysteem scant (m.u.v. eventuele venstertijden) alle kentekens van passerende voertuigen. De camera maakt vervolgens gebruik van een algoritme voor objectherkenning, dat wordt ingezet voor de herkenning en classificatie van verschillende soorten voertuigen in het verkeer (type voertuig en andere objecten). De classificatie van het voertuig wordt bepaald door een koppeling met het RDW. Het kenteken wordt via een koppeling met het NPR vergeleken met een database met geregistreerde kentekens van ontheffinghouders. Voertuigen zonder ontheffing komen op een lijst die bij een buitengewoon opsporingsambtenaar (BOA) terechtkomt.</p><p><br></p><p>Daarnaast zorgt een ander algoritme ervoor dat gezichten en kentekens (m.u.v. het kenteken van de overtreder) op de foto van de overtreding wazig worden gemaakt (geblurred). </p></div>",
+    "publiccode": null,
+    "human_intervention": "<p>Het systeem genereert een lijst van geregistreerde voertuigen zonder ontheffing. Een buitengewoon opsporingsambtenaar (BOA) controleert en beoordeelt deze lijst binnen 72 uur. Bij een vastgestelde overtreding stuurt de BOA deze door naar het Centraal Justitieel Incassobureau.</p>",
+    "risks": "<div><p>Het kentekenregistratiesysteem voldoet aan alle geldende privacywet- en regelgeving.</p><p>Er is geen sprake van live videobeelden; het gaat alleen om digitale afbeeldingen (foto's) met kentekeninformatie. Alleen overtreders komen tijdelijk op een lijst (maximaal 72 uur). Informatie over niet-overtreders wordt niet opgeslagen.</p><p>De gemeente moet als opsporingsinstantie de digitale opnames vijf jaar bewaren en ervoor zorgen dat de overtreder de overtredingsfoto bij de gemeente kan opvragen.</p></div>"
+  },
+  {
+    "id": "brickyard-autoluwe-binnenstad",
+    "name": "Kentekencamerahandhaving Autoluwe Binnenstad",
+    "organization": null,
+    "description_short": "De gemeente controleert met behulp van ANPR-camera’s (automatic number plate recognition) of voertuigen een bepaald gebied (Autoluwe Binnenstad) in mogen.  De camera leest het kenteken; een algoritme controleert of toegang is toegestaan. Wanneer dit niet het geval is wordt een foto naar het handhaafsysteem aangeboden, waar een BOA beoordeelt of een boete of waarschuwing zal worden uitgeschreven.",
+    "type": null,
+    "category": ["Verkeer"],
+    "publication_category": "Impactvolle algoritmes",
+    "website": null,
+    "status": "In gebruik",
+    "begin_date": null,
+    "end_date": null,
+    "goal": "<div><p>Doel: het digitaal handhaven van de autoluwe binnenstad. Controle hierop gebeurt met camera's die kentekens kunnen lezen. Het doel van het algoritme is om efficiënt te kunnen handhaven.</p><p><br></p><p>Het algoritme heeft alleen impact op voertuigen die niet in de gebieden mogen zijn. Alleen het overtredende voertuig wordt in beeld gebracht. Niet-overtreders worden buiten beschouwing gelaten. De camera's, en daarmee het algoritme, worden ingezet ten behoeve van het handhaven van de Autoluwe Binnenstad voor voertuigen. De impact van het algoritme op de burger is laag. Enkel het lezen van de kentekenplaat wordt door het algoritme uitgevoerd. Vermeende overtreders worden door een BOA handmatig gecontroleerd om te bepalen of er sprake is van een strafbare gedraging, waarbij de BOA ook de kentekenplaat zelf nog controleert op camerabeelden.</p></div>",
+    "proportionality": "<p>Het algoritme biedt aanzienlijke voordelen doordat het efficiënter, sneller en goedkoper is. In plaats van dat medewerkers continu beelden moeten uitlezen, wordt nu alleen een foto gemaakt van voertuigen die niet in het gebied mogen zijn. Het plaatsen van verkeersborden alleen is niet voldoende, en de inzet van handhavers om handmatig voertuigen te controleren is tijdrovend en inefficient. Fysieke afsluiting met verkeerspalen (pollers) kent eveneens nadelen, zoals hoge aanschaf- en exploitatiekosten en de schades die kunnen ontstaan. Bovendien moet het gebied altijd toegankelijk blijven voor hulpdiensten. Cameratoezicht is daarom efficiënter en effectiever dan de alternatieven.</p>",
+    "provider": "Brickyard B.V.",
+    "lawful_basis": "<p>Wegenverkeerswet 1994</p>",
+    "lawful_basis_grouping": [
+      {
+        "title": "Wegenverkeerswet 1994",
+        "link": "https://wetten.overheid.nl/BWBR0006622"
+      }
+    ],
+    "impacttoetsen": "<p>De gemeente voert een DPIA uit om de impact van de oplossing te toetsen.</p>",
+    "iama_description": null,
+    "url": null,
+    "lang": "NLD",
+    "standard_version": "1.0",
+    "uuid": null,
+    "source_id": null,
+    "tags": "<p>Camerahandhaving, Stadsafsluiting, Zero-Emissie, ANPR-Systeem, Autoluw, Autoluwe binnenstad, milieuzone, voetgangersgebied, geslotenverklaring, verkeersknip</p>",
+    "source_data": "<p>Kentekens (kenteken, datum, tijd en locatie, geen specifieke NAW-gegevens) van voertuigen die niet in het toegewezen gebied mogen zijn, database met ontheffinghouders en de eventuele venstertijden. De venstertijden zijn de tijden waarin de speciale voertuigen wel / niet de binnenstad in mogen.</p>",
+    "source_data_link": null,
+    "source_data_grouping": [
+      {
+        "title": "RDW",
+        "link": "https://www.rdw.nl/"
+      },
+      {
+        "title": "NPR",
+        "link": "https://www.nationaalparkeerregister.nl/"
+      }
+    ],
+    "methods_and_models": "<div><p>Het camerahandhavingssysteem scant (m.u.v. eventuele venstertijden) alle kentekens van passerende voertuigen. De camera maakt vervolgens gebruik van een algoritme voor objectherkenning, dat wordt ingezet voor de herkenning en classificatie van verschillende soorten voertuigen in het verkeer (type voertuig en andere objecten). De classificatie van het voertuig wordt bepaald door een koppeling met het RDW. Het kenteken wordt via een koppeling met het NPR vergeleken met een database met geregistreerde kentekens van ontheffinghouders. Voertuigen zonder ontheffing komen op een lijst die bij een buitengewoon opsporingsambtenaar (BOA) terechtkomt.</p><p><br></p><p>Daarnaast zorgt een ander algoritme ervoor dat de foto van de overtreding wazig wordt gemaakt (geblurred), met uitzondering van het voertuig met kenteken.</p></div>",
+    "publiccode": null,
+    "human_intervention": "<p>Het systeem genereert een lijst van geregistreerde voertuigen zonder ontheffing. Een buitengewoon opsporingsambtenaar (BOA) controleert en beoordeelt deze lijst binnen 72 uur. Bij een vastgestelde overtreding stuurt de BOA deze door naar het Centraal Justitieel Incassobureau.</p>",
+    "risks": "<div><p>Het kentekenregistratiesysteem voldoet aan alle geldende privacywet- en regelgeving.</p><p>Er is geen sprake van live videobeelden; het gaat alleen om digitale afbeeldingen (foto's) met kentekeninformatie. Alleen overtreders komen tijdelijk op een lijst (maximaal 72 uur). Informatie over niet-overtreders wordt niet opgeslagen.</p><p>De gemeente moet als opsporingsinstantie de digitale opnames vijf jaar bewaren en ervoor zorgen dat de overtreder de overtredingsfoto bij de gemeente kan opvragen.</p></div>"
+  },
+  {
+    "id": "brickyard-milieuzone",
+    "name": "Kentekencamerahandhaving Milieuzone",
+    "organization": null,
+    "description_short": "De gemeente controleert met behulp van ANPR-camera’s (automatic number plate recognition) of voertuigen een bepaald gebied (Milieuzone) in mogen. De camera leest het kenteken; een algoritme controleert of toegang is toegestaan. Wanneer dit niet het geval is wordt een foto naar het handhaafsysteem aangeboden, waar een BOA beoordeelt of een boete of waarschuwing zal worden uitgeschreven.",
+    "type": null,
+    "category": ["Verkeer"],
+    "publication_category": "Impactvolle algoritmes",
+    "website": null,
+    "status": "In gebruik",
+    "begin_date": null,
+    "end_date": null,
+    "goal": "<div><p>Doel: Digitaal handhaven van geldende Milieuzone. Controle hierop gebeurt met camera's die kentekens kunnen lezen. Het doel van het algoritme is om efficiënt te kunnen handhaven.</p><p><br></p><p>Het algoritme heeft alleen impact op voertuigen die niet in de gebieden mogen zijn. Alleen het overtredende voertuig wordt in beeld gebracht. Niet-overtreders worden buiten beschouwing gelaten. De camera's, en daarmee het algoritme, worden ingezet ten behoeve van het handhaven van de milieuzone voor voertuigen. De impact van het algoritme op de burger is laag. Enkel het lezen van de kentekenplaat wordt door het algoritme uitgevoerd. Vermeende overtreders worden door een BOA handmatig gecontroleerd om te bepalen of er sprake is van een strafbare gedraging, waarbij de BOA ook de kentekenplaat zelf nog controleert op camerabeelden.</p></div>",
+    "proportionality": "<p>Het algoritme biedt aanzienlijke voordelen doordat het efficiënter, sneller en goedkoper is. In plaats van dat medewerkers continu beelden moeten uitlezen, wordt nu alleen een foto gemaakt van voertuigen die niet in het gebied mogen zijn. Het plaatsen van verkeersborden alleen is niet voldoende, en de inzet van handhavers om handmatig voertuigen te controleren is tijdrovend en inefficient. Fysieke afsluiting met verkeerspalen (pollers) kent eveneens nadelen, zoals hoge aanschaf- en exploitatiekosten en de schades die kunnen ontstaan. Bovendien moet het gebied altijd toegankelijk blijven voor hulpdiensten. Cameratoezicht is daarom efficiënter en effectiever dan de alternatieven.</p>",
+    "provider": "Brickyard B.V.",
+    "lawful_basis": "<p>Wegenverkeerswet 1994</p>",
+    "lawful_basis_grouping": [
+      {
+        "title": "Wegenverkeerswet 1994",
+        "link": "https://wetten.overheid.nl/BWBR0006622"
+      }
+    ],
+    "impacttoetsen": "<p>De gemeente voert een DPIA uit om de impact van de oplossing te toetsen.</p>",
+    "iama_description": null,
+    "url": null,
+    "lang": "NLD",
+    "standard_version": "1.0",
+    "uuid": null,
+    "source_id": null,
+    "tags": "<p>Camerahandhaving, Stadsafsluiting, Zero-Emissie, ANPR-Systeem, Autoluw, Autoluwe binnenstad, milieuzone, voetgangersgebied, geslotenverklaring, verkeersknip</p>",
+    "source_data": "<p>Kentekens (kenteken, datum, tijd en locatie, geen specifieke NAW-gegevens) van voertuigen die niet in het toegewezen gebied mogen zijn, database met ontheffinghouders en de eventuele venstertijden. De venstertijden zijn de tijden waarin de speciale voertuigen wel / niet de binnenstad in mogen.</p>",
+    "source_data_link": null,
+    "source_data_grouping": [
+      {
+        "title": "RDW",
+        "link": "https://www.rdw.nl/"
+      },
+      {
+        "title": "RVO",
+        "link": "https://www.rvo.nl/"
+      },
+      {
+        "title": "NPR",
+        "link": "https://www.nationaalparkeerregister.nl/"
+      }
+    ],
+    "methods_and_models": "<div><p>Het camerahandhavingssysteem scant (m.u.v. eventuele venstertijden) alle kentekens van passerende voertuigen. De camera maakt vervolgens gebruik van een algoritme voor objectherkenning, dat wordt ingezet voor de herkenning en classificatie van verschillende soorten voertuigen in het verkeer (type voertuig en andere objecten). De classificatie van het voertuig wordt bepaald door een koppeling met het RDW. Het kenteken wordt via een koppeling met het NPR vergeleken met een database met geregistreerde kentekens van ontheffinghouders. Voertuigen zonder ontheffing komen op een lijst die bij een buitengewoon opsporingsambtenaar (BOA) terechtkomt.</p><p><br></p><p>Daarnaast zorgt een ander algoritme ervoor dat de foto van de overtreding wazig wordt gemaakt (geblurred), met uitzondering van het voertuig met kenteken.</p></div>",
+    "publiccode": null,
+    "human_intervention": "<p>Het systeem genereert een lijst van geregistreerde voertuigen zonder ontheffing. Een buitengewoon opsporingsambtenaar (BOA) controleert en beoordeelt deze lijst binnen 72 uur. Bij een vastgestelde overtreding stuurt de BOA deze door naar het Centraal Justitieel Incassobureau.</p>",
+    "risks": "<div><p>Het kentekenregistratiesysteem voldoet aan alle geldende privacywet- en regelgeving.</p><p>Er is geen sprake van live videobeelden; het gaat alleen om digitale afbeeldingen (foto's) met kentekeninformatie. Alleen overtreders komen tijdelijk op een lijst (maximaal 72 uur). Informatie over niet-overtreders wordt niet opgeslagen.</p><p>De gemeente moet als opsporingsinstantie de digitale opnames vijf jaar bewaren en ervoor zorgen dat de overtreder de overtredingsfoto bij de gemeente kan opvragen.</p></div>"
+  },
+  {
+    "id": "brickyard-voetgangersgebied",
+    "name": "Kentekencamerahandhaving Voetgangersgebieden",
+    "organization": null,
+    "description_short": "De gemeente controleert met behulp van ANPR-camera’s (automatic number plate recognition) of voertuigen een bepaald gebied (voetgangersgebied) in mogen. De camera leest het kenteken; een algoritme controleert of toegang is toegestaan. Wanneer dit niet het geval is wordt een foto naar het handhaafsysteem aangeboden, waar een BOA beoordeelt of een boete of waarschuwing zal worden uitgeschreven.",
+    "type": null,
+    "category": ["Verkeer"],
+    "publication_category": "Impactvolle algoritmes",
+    "website": null,
+    "status": "In gebruik",
+    "begin_date": null,
+    "end_date": null,
+    "goal": "<div><p>Doel: Het digitaal handhaven van voetgangersgebieden. Controle hierop gebeurt met camera's die kentekens kunnen lezen. Het doel van het algoritme is om efficiënt te kunnen handhaven.</p><p><br></p><p>Het algoritme heeft alleen impact op voertuigen die niet in de gebieden mogen zijn. Alleen het overtredende voertuig wordt in beeld gebracht. Niet-overtreders worden buiten beschouwing gelaten. De camera's, en daarmee het algoritme, worden ingezet ten behoeve van het handhaven van het voetgangersgebied voor voertuigen. De impact van het algoritme op de burger is laag. Enkel het lezen van de kentekenplaat wordt door het algoritme uitgevoerd. Vermeende overtreders worden door een BOA handmatig gecontroleerd om te bepalen of er sprake is van een strafbare gedraging, waarbij de BOA ook de kentekenplaat zelf nog controleert op camerabeelden.</p></div>",
+    "proportionality": "<p>Het algoritme biedt aanzienlijke voordelen doordat het efficiënter, sneller en goedkoper is. In plaats van dat medewerkers continu beelden moeten uitlezen, wordt nu alleen een foto gemaakt van voertuigen die niet in het gebied mogen zijn. Het plaatsen van verkeersborden alleen is niet voldoende, en de inzet van handhavers om handmatig voertuigen te controleren is tijdrovend en inefficient. Fysieke afsluiting met verkeerspalen (pollers) kent eveneens nadelen, zoals hoge aanschaf- en exploitatiekosten en de schades die kunnen ontstaan. Bovendien moet het gebied altijd toegankelijk blijven voor hulpdiensten. Cameratoezicht is daarom efficiënter en effectiever dan de alternatieven.</p>",
+    "provider": "Brickyard B.V.",
+    "lawful_basis": "<p>Wegenverkeerswet 1994</p>",
+    "lawful_basis_grouping": [
+      {
+        "title": "Wegenverkeerswet 1994",
+        "link": "https://wetten.overheid.nl/BWBR0006622"
+      }
+    ],
+    "impacttoetsen": "<p>De gemeente voert een DPIA uit om de impact van de oplossing te toetsen.</p>",
+    "iama_description": null,
+    "url": null,
+    "lang": "NLD",
+    "standard_version": "1.0",
+    "uuid": null,
+    "source_id": null,
+    "tags": "<p>Camerahandhaving, Stadsafsluiting, Zero-Emissie, ANPR-Systeem, Autoluw, Autoluwe binnenstad, milieuzone, voetgangersgebied, geslotenverklaring, verkeersknip</p>",
+    "source_data": "<p>Kentekens (kenteken, datum, tijd en locatie, geen specifieke NAW-gegevens) van voertuigen die niet in het toegewezen gebied mogen zijn, database met ontheffinghouders en de eventuele venstertijden. De venstertijden zijn de tijden waarin de speciale voertuigen wel / niet de binnenstad in mogen.</p>",
+    "source_data_link": null,
+    "source_data_grouping": [
+      {
+        "title": "RDW",
+        "link": "https://www.rdw.nl/"
+      },
+      {
+        "title": "NPR",
+        "link": "https://www.nationaalparkeerregister.nl/"
+      }
+    ],
+    "methods_and_models": "<div><p>Het camerahandhavingssysteem scant (m.u.v. eventuele venstertijden) alle kentekens van passerende voertuigen. De camera maakt vervolgens gebruik van een algoritme voor objectherkenning, dat wordt ingezet voor de herkenning en classificatie van verschillende soorten voertuigen in het verkeer (type voertuig en andere objecten). De classificatie van het voertuig wordt bepaald door een koppeling met het RDW. Het kenteken wordt via een koppeling met het NPR vergeleken met een database met geregistreerde kentekens van ontheffinghouders. Voertuigen zonder ontheffing komen op een lijst die bij een buitengewoon opsporingsambtenaar (BOA) terechtkomt.</p><p><br></p><p>Daarnaast zorgt een ander algoritme ervoor dat de foto van de overtreding wazig wordt gemaakt (geblurred), met uitzondering van het voertuig met kenteken.</p></div>",
+    "publiccode": null,
+    "human_intervention": "<p>Het systeem genereert een lijst van geregistreerde voertuigen zonder ontheffing. Een buitengewoon opsporingsambtenaar (BOA) controleert en beoordeelt deze lijst binnen 72 uur. Bij een vastgestelde overtreding stuurt de BOA deze door naar het Centraal Justitieel Incassobureau.</p>",
+    "risks": "<div><p>Het kentekenregistratiesysteem voldoet aan alle geldende privacywet- en regelgeving.</p><p>Er is geen sprake van live videobeelden; het gaat alleen om digitale afbeeldingen (foto's) met kentekeninformatie. Alleen overtreders komen tijdelijk op een lijst (maximaal 72 uur). Informatie over niet-overtreders wordt niet opgeslagen.</p><p>De gemeente moet als opsporingsinstantie de digitale opnames vijf jaar bewaren en ervoor zorgen dat de overtreder de overtredingsfoto bij de gemeente kan opvragen.</p></div>"
+  }
+]

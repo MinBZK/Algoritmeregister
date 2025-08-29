@@ -25,6 +25,7 @@
         <br />
         <b v-if="clickOn && isMobile">{{ clickOn }}</b>
         <slot name="default" />
+        <div v-html="legendaDescription"></div>
       </div>
     </template>
   </div>
@@ -37,6 +38,7 @@ const props = withDefaults(
     title?: string
     count?: number | string
     description: string
+    legendaDescription?: string
     clickOn?: string
     icon: string
   }>(),
@@ -45,6 +47,7 @@ const props = withDefaults(
     count: '',
     clickOn: '',
     description: '',
+    legendaDescription: '',
   }
 )
 const isMobile = useMobileBreakpoint().medium

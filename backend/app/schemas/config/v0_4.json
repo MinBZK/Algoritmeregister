@@ -1,11 +1,12 @@
 {
+  "description": "Configuratie v0.4 werd gebruikt voor het opstellen van invulvelden in de beheermodule van het Algoritmeregister en wordt gebruikt voor het valideren van downloadbestanden.",
   "properties": {
     "name": {
       "type": "string",
       "title": "Naam",
       "max_length": 100,
       "show_always": true,
-      "help_text": "De naam die gebruikt wordt om het algoritme aan te duiden",
+      "help_text": "De naam die gebruikt wordt om het algoritme aan te duiden.",
       "instructions": "De algemeen gehanteerde naam van het algoritme.",
       "example": "Automatische Verkeersregeling Ringweg",
       "required": true
@@ -147,8 +148,8 @@
       "title": "Wettelijke basis",
       "max_length": 2500,
       "show_always": false,
-      "help_text": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt ",
-      "instructions": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt ",
+      "help_text": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt.",
+      "instructions": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt.",
       "example": "",
       "required": false,
       "allowed_html_tags": ["div", "br", "p", "ul", "ol", "li"]
@@ -202,7 +203,7 @@
       "title": "Contactgegevens",
       "max_length": 500,
       "show_always": true,
-      "help_text": "De contactgegevens voor deze registratie ",
+      "help_text": "Dit is de plek waar inwoners of bedrijven vragen kunnen stellen over deze registratie. Gebruik algemene contactgegevens, zoals een contactformulier of afdelingsmail – geen persoonlijk e-mailadres.",
       "instructions": "Het e-mailadres voor contact over deze registratie. Dit kan een geldig mailadres zijn waar burgers, media of andere betrokkenen vragen kunnen stellen over het algoritme zelf of over de gevolgen op basis van uitkomsten van het algoritme. Het alternatief is een extern webformulier die op dezelfde manier gebruikt kan worden. Begin een URL met https://.",
       "example": "algoritmes@gemeentenoorderhaaks.nl",
       "required": false
@@ -242,7 +243,7 @@
       "title": "Bron-ID",
       "max_length": 100,
       "show_always": false,
-      "help_text": "De unieke code van dit algoritme in het register van de eigenaar",
+      "help_text": "De unieke code van dit algoritme in het register van de eigenaar.",
       "instructions": "Indien van toepassing, de unieke identificatie voor deze registratie zoals door de eigenaar wordt gehanteerd. Dit is dus de verwijzing naar het algoritme in de interne database of het interne register van uw organisatie.",
       "example": "n.v.t.",
       "required": false
@@ -327,6 +328,12 @@
       "type": "string",
       "required": false,
       "instructions": "Een unieke identificatie voor het algoritmebeschrijving. Dit wordt automatisch aangemaakt en ingevuld."
+    },
+    "publication_dt": {
+      "title": "Publicatie datum",
+      "type": "string",
+      "required": false,
+      "instructions": "De datum waarop de algoritmebeschrijving gepubliceerd is in het Algoritmeregister. Dit wordt automatisch aangemaakt en ingevuld."
     }
   }
 }

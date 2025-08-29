@@ -24,7 +24,7 @@ export async function getAlgorithmList(
 ): Promise<AlgorithmListResponse> {
   const request: AxiosRequestConfig = {
     method: 'GET',
-    url: `${MDS_VERSION}/organizations/${organisation.code}/algorithms`,
+    url: `${MDS_VERSION}/organizations/${organisation.org_id}/algorithms`,
   }
   return backendRequest(request)
 }
@@ -35,7 +35,7 @@ export async function getAlgorithm(
 ): Promise<AlgorithmResponse> {
   const request: AxiosRequestConfig = {
     method: 'GET',
-    url: `${MDS_VERSION}/organizations/${organisation.code}/algorithms/${lars}`,
+    url: `${MDS_VERSION}/organizations/${organisation.org_id}/algorithms/${lars}`,
   }
   return backendRequest(request)
 }
@@ -53,7 +53,7 @@ export async function createAlgorithm(
   const request: AxiosRequestConfig = {
     method: 'POST',
     url: `v${data.standard_version.replace(/\./g, '_')}/organizations/${
-      organisation.code
+      organisation.org_id
     }/algorithms`,
     data,
   }
@@ -74,7 +74,7 @@ export async function updateAlgorithm(
   const request: AxiosRequestConfig = {
     method: 'PUT',
     url: `v${sendData.standard_version.replace(/\./g, '_')}/organizations/${
-      organisation.code
+      organisation.org_id
     }/algorithms/${lars}`,
     data: sendData,
   }
@@ -87,7 +87,7 @@ export async function publishAlgorithm(
 ): Promise<AlgorithmResponse> {
   const request: AxiosRequestConfig = {
     method: 'PUT',
-    url: `${MDS_VERSION}/organizations/${organisation.code}/algorithms/${lars}/publish`,
+    url: `${MDS_VERSION}/organizations/${organisation.org_id}/algorithms/${lars}/publish`,
   }
   return backendRequest(request)
 }
@@ -98,7 +98,7 @@ export async function releaseAlgorithm(
 ): Promise<AlgorithmResponse> {
   const request: AxiosRequestConfig = {
     method: 'PUT',
-    url: `${MDS_VERSION}/organizations/${organisation.code}/algorithms/${lars}/release`,
+    url: `${MDS_VERSION}/organizations/${organisation.org_id}/algorithms/${lars}/release`,
   }
   return backendRequest(request)
 }
@@ -109,7 +109,7 @@ export async function retractAlgorithm(
 ): Promise<AlgorithmResponse> {
   const request: AxiosRequestConfig = {
     method: 'DELETE',
-    url: `${MDS_VERSION}/organizations/${organisation.code}/published-algorithms/${lars}/retract`,
+    url: `${MDS_VERSION}/organizations/${organisation.org_id}/published-algorithms/${lars}/retract`,
   }
   return backendRequest(request)
 }
@@ -120,7 +120,7 @@ export async function generatePreview(
 ): Promise<AlgorithmPreviewResponse> {
   const request: AxiosRequestConfig = {
     method: 'GET',
-    url: `${MDS_VERSION}/organizations/${organisation.code}/algorithms/${lars}/preview`,
+    url: `${MDS_VERSION}/organizations/${organisation.org_id}/algorithms/${lars}/preview`,
   }
   return backendRequest(request)
 }
@@ -131,7 +131,7 @@ export async function removeAlgorithm(
 ): Promise<RemoveAlgorithmResponse> {
   const request: AxiosRequestConfig = {
     method: 'DELETE',
-    url: `${MDS_VERSION}/organizations/${organisation.code}/algorithms/${lars}/remove`,
+    url: `${MDS_VERSION}/organizations/${organisation.org_id}/algorithms/${lars}/remove`,
   }
   return backendRequest(request)
 }

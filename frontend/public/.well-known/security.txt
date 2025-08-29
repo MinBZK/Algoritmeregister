@@ -1,3 +1,0 @@
-Contact: mailto:devops@ictu.nl
-Expires: 2023-12-29T08:00:00.000Z
-Preferred-Languages: nl

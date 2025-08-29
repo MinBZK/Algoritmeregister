@@ -19,10 +19,10 @@ def get_user_from_keycloak_data(db: Session, keycloak_user: KeycloakUser) -> Use
     if Role.AllGroups in keycloak_user.roles:
         orgs = org_details_repo.get_org_configs_by_lang(Language.NLD)
     else:
-        orgs = org_details_repo.get_org_configs_by_org_list_by_lang(
+        orgs = org_details_repo.get_org_configs_by_org_id_list_by_lang(
             keycloak_user.groups, Language.NLD
         )
-    return User(**keycloak_user.dict(), organisations=orgs)
+    return User(**keycloak_user.model_dump(), organisations=orgs)
 
 
 def get_all_users(
@@ -55,14 +55,16 @@ def get_from_keycloak_users(
     if includes_all_groups_user:
         all_groups = org_repo.get_org_configs_by_lang(Language.NLD)
     else:
-        all_groups = org_repo.get_org_configs_by_org_list_by_lang(
+        all_groups = org_repo.get_org_configs_by_org_id_list_by_lang(
             all_group_codes, Language.NLD
         )
 
     users: list[User] = []
     for user in keycloak_users:
-        groups_for_this_user = [g for g in all_groups if g.code in user.groups]
-        users.append(User(**user.dict(), organisations=groups_for_this_user))
+        groups_for_this_user = [
+            g for g in all_groups if g.code in user.groups or g.org_id in user.groups
+        ]
+        users.append(User(**user.model_dump(), organisations=groups_for_this_user))
     return users
 
 
@@ -70,10 +72,10 @@ def get_from_keycloak_user(db: Session, keycloak_user: KeycloakUser) -> User:
     if Role.AllGroups in keycloak_user.roles:
         groups = OrganisationDetailsRepository(db).get_org_configs_by_lang(Language.NLD)
     else:
-        groups = OrganisationDetailsRepository(db).get_org_configs_by_org_list_by_lang(
-            keycloak_user.groups, Language.NLD
-        )
-    return User(**keycloak_user.dict(), organisations=groups)
+        groups = OrganisationDetailsRepository(
+            db
+        ).get_org_configs_by_org_id_list_by_lang(keycloak_user.groups, Language.NLD)
+    return User(**keycloak_user.model_dump(), organisations=groups)
 
 
 def create_user(db: Session, body: KeycloakUserNew) -> User:

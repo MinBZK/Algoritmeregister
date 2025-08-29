@@ -3,11 +3,11 @@ import { AxiosRequestConfig } from 'axios'
 import { backendRequest } from '.'
 
 export async function getFlowInstructions(
-  org_code: string
+  org_id: string
 ): Promise<FlowResponse> {
   const request: AxiosRequestConfig = {
     method: 'GET',
-    url: `/organisation/${org_code}/flow`,
+    url: `/organisation/${org_id}/flow`,
   }
   return backendRequest(request)
 }

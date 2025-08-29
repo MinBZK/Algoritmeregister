@@ -66,7 +66,7 @@
             </div>
             <div
               v-for="org in suggestionOrgSearch!.organisations"
-              :key="org.code"
+              :key="org.org_id"
             >
               <NuxtLink
                 tabindex="0"
@@ -104,7 +104,7 @@
                 :to="localePath('/')"
                 @click.prevent="
                   suggestionOrgSearch &&
-                    handleRedirectOrgPage(suggestionOrgSearch)
+                  handleRedirectOrgPage(suggestionOrgSearch)
                 "
               >
                 {{
@@ -226,11 +226,15 @@ const setValueSearchBar = (organisation: OrganisationMappingResult) => {
 const handleRedirectOrgPage = (
   suggestionOrgSearch: OrganisationSearchSuggestionResponse
 ) => {
-  router.push(
-    localePath({
-      path: `/organisatie/${suggestionOrgSearch.organisations[0].code}`,
-    })
-  )
+  const organisation = suggestionOrgSearch.organisations[0]
+
+  let targetPath = '/map/organisatie-niet-gepubliceerd'
+  if (organisation.count === 0 && !organisation.show_page) {
+    targetPath = '/map/organisatie-niet-aangesloten'
+  } else if (organisation.count > 0 || organisation.show_page) {
+    targetPath = `/organisatie/${organisation.org_id}`
+  }
+  router.push(localePath(targetPath))
 }
 
 const handleSearch = async (isOrgSpecificSearch: boolean) => {
@@ -238,17 +242,23 @@ const handleSearch = async (isOrgSpecificSearch: boolean) => {
     searchValue.value as string,
     mapLocaleName(locale.value as 'en' | 'nl')
   )
+  const organisation = response.data.value?.organisations[0]
   const query = isOrgSpecificSearch
     ? {
-        organisation: response.data.value?.organisations[0].name,
+        organisation: organisation?.name,
       }
     : { searchtext: searchValue.value }
-  router.push(
-    localePath({
-      name: 'algoritme',
-      query,
-    })
-  )
+
+  if (organisation?.count === 0 && !organisation?.show_page) {
+    router.push(localePath('/map/organisatie-niet-aangesloten'))
+  } else {
+    router.push(
+      localePath({
+        name: 'algoritme',
+        query,
+      })
+    )
+  }
   suggestionOrgSearch.value = null
 }
 

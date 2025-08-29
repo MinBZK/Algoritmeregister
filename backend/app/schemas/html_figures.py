@@ -1,5 +1,5 @@
 import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class HtmlFigures(BaseModel):
@@ -8,8 +8,7 @@ class HtmlFigures(BaseModel):
     static_data: dict
     most_recent: bool
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class HtmlFiguresOut(BaseModel):

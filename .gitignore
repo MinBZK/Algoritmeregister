@@ -21,3 +21,4 @@ backend/.DS_Store
 **/*secret*.json
 **/static_content_draft.json
 **/static_content_pub.json
+venv

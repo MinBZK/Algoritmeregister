@@ -9,9 +9,9 @@ from app.services.keycloak.repository import KeycloakRepository
 from app.middleware import kc_settings
 
 
-def get_one(db: Session, org_code: str) -> FlowStructure:
+def get_one(db: Session, org_id: str) -> FlowStructure:
     org_repo = OrganisationRepository(db)
-    org = org_repo.get_by_code(org_code)
+    org = org_repo.get_by_org_id(org_id)
     if not org:
         raise HTTPException(404)
 
@@ -19,7 +19,7 @@ def get_one(db: Session, org_code: str) -> FlowStructure:
 
     # Gets all users and groups them by roles.
     kc_repo = KeycloakRepository(kc_settings)
-    keycloak_users = kc_repo.get_all(group=org_code)
+    keycloak_users = kc_repo.get_all(group=org_id)
     # Users that have access to all groups are added.
     keycloak_users_all_groups = kc_repo.get_all(role=Role.AllGroups)
     users = get_from_keycloak_users(db, [*keycloak_users, *keycloak_users_all_groups])

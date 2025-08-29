@@ -1,4 +1,4 @@
-@import '_colors.scss';
+ @use '_colors.scss';
 
 .skiplinks {
   position: absolute;
@@ -28,7 +28,7 @@ header .skiplinks {
   border-radius: 0;
   position: relative;
   color: #fff;
-  background-color: $primary;
+  background-color: colors.$primary;
   position: absolute;
   top: -100vh;
   left: -100vw;
@@ -54,7 +54,7 @@ header .skiplinks {
 .skiplinks > a:hover {
   color: #fff;
   outline: none;
-  background-color: $primary;
+  background-color: colors.$primary;
 }
 
 .skiplinks > a:hover::before {

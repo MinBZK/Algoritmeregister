@@ -24,6 +24,7 @@
         </button>
       </slot>
     </div>
+    <slot name="prefix-content" />
     <div v-if="open" class="content">
       <slot />
     </div>
@@ -159,8 +160,10 @@ watch(
 </script>
 
 <style scoped lang="scss">
+@use '/assets/styles/colors' as colors;
+
 .filter-block {
-  background-color: $tertiary;
+  background-color: colors.$tertiary;
   padding: 0.75em;
   margin-bottom: 0.4em;
 }
@@ -199,7 +202,7 @@ watch(
     padding: 0.5em;
     font-size: 14pt;
     font-family: inherit;
-    color: $primary-darker;
+    color: colors.$primary-darker;
     column-gap: 1em;
     display: flex;
     align-items: center;

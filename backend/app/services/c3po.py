@@ -1,3 +1,4 @@
+# flake8: noqa: E221
 import httpx
 from fastapi import HTTPException
 from starlette import status

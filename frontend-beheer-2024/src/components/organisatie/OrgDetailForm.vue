@@ -75,7 +75,7 @@ const data = ref<OrganisationDetails>({
 
 const getDetails = async () => {
   try {
-    const result = await getOrganisationDetails(authStore.selectedOrg!.code)
+    const result = await getOrganisationDetails(authStore.selectedOrg!.org_id)
     data.value = result.data
   } catch (e) {
     console.error(e)
@@ -98,7 +98,7 @@ const handleSubmit = async () => {
   if (!compliant.value) return
   saveLoading.value = true
   try {
-    await updateOrganisationDetails(authStore.selectedOrg!.code, data.value)
+    await updateOrganisationDetails(authStore.selectedOrg!.org_id, data.value)
     dataStore.unsavedChanges = false
     saveSuccess.value = true
     saveLoading.value = false

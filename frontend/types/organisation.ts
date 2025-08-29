@@ -18,11 +18,15 @@ export interface Organisation {
   name: string
   show_page: boolean
   type: string
+  org_id: string
 }
 
 export interface OrganisationMappingResult {
   name: string
   code: string
+  org_id: string
+  show_page: boolean
+  count: number
 }
 
 export interface OrganisationSearchSuggestionResponse {
@@ -34,4 +38,20 @@ export interface OrganisationQueryResult {
   total_count: number
   filter_data: OrganisationFilterData
   selected_filters: OrganisationSelectedFilter[]
+}
+
+export interface OrganisationCodeResponse {
+  code: string
+  org_id: string
+}
+
+export interface OrganisationRelationHierarchy {
+  org_id: string
+  name: string | null
+}
+
+export interface OrganisationRelationResponse {
+  org_id: string
+  hierarchy_path: string
+  hierarchy: OrganisationRelationHierarchy[]
 }

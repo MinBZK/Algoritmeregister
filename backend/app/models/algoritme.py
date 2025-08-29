@@ -23,6 +23,7 @@ class Algoritme(Base):
 
     organisation = relationship("Organisation", back_populates="algoritmes")
 
-    owner = association_proxy("organisation", "code")
-
+    owner = association_proxy("organisation", "org_id")
     code = association_proxy("organisation", "code")
+    org_id = association_proxy("organisation", "org_id")
+    preferred_name = association_proxy("organisation", "preferred_name")

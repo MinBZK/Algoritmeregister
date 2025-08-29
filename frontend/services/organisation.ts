@@ -1,13 +1,15 @@
 import type { Language } from '@/types/algoritme'
 import type { OrganisationQuery } from '@/types/filter/organisation'
 import type {
+  OrganisationCodeResponse,
   OrganisationPage,
   OrganisationQueryResult,
+  OrganisationRelationResponse,
   OrganisationSearchSuggestionResponse,
 } from '@/types/organisation'
 
-const getOne = (orgCode: string, language: Language) =>
-  useFetch<OrganisationPage>(`/organisation-details/${orgCode}/${language}`, {
+const getOne = (orgId: string, language: Language) =>
+  useFetch<OrganisationPage>(`/organisation-details/${orgId}/${language}`, {
     baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
 
@@ -35,9 +37,26 @@ const getCountOrganisation = (language: Language) =>
     baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
 
+const getOrgIdByCode = async (orgCode: string) => {
+  return await $fetch<OrganisationCodeResponse>(`/organisation/${orgCode}`, {
+    baseURL: useRuntimeConfig().public.apiBaseUrl,
+  })
+}
+
+const getOrgRelationById = (orgId: string) => {
+  return useFetch<OrganisationRelationResponse>(
+    `/organisation-relation/${orgId}`,
+    {
+      baseURL: useRuntimeConfig().public.apiBaseUrl,
+    }
+  )
+}
+
 export default {
   getOne,
   getMany,
   getFullNameOrganisation,
   getCountOrganisation,
+  getOrgIdByCode,
+  getOrgRelationById,
 }

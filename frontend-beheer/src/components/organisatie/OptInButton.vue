@@ -35,7 +35,7 @@ watch(optedIn, async () => {
   loading.value = true
   try {
     const response = await updateOrganisationOptIn(
-      authStore.selectedOrg!.code,
+      authStore.selectedOrg!.org_id,
       optedIn.value
     )
     authStore.selectedOrg = response.data

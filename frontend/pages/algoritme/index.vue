@@ -32,15 +32,18 @@
           </div>
           <div
             class="column-d-6 center-with-pagination"
-            :class="!isMobile && 'align-right'"
+            :class="{ 'mobile-center': isMobile, 'align-right': !isMobile }"
           >
             <DownloadDropdown
               :label="t('downloadAllAlgorithms')"
-              :action="
-                algoritmeService.downloadAllUrl(
+              :action="{
+                currentPublished: algoritmeService.downloadAllUrl(
                   mapLocaleName(locale as 'en' | 'nl')
-                )
-              "
+                ),
+                allPublished: algoritmeService.downloadAllPublishedVersionsUrl(
+                  mapLocaleName(locale as 'en' | 'nl')
+                ),
+              }"
             />
           </div>
         </div>
@@ -221,6 +224,11 @@ li {
 .center-with-pagination {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+}
+
+.mobile-center {
+  justify-content: center;
 }
 
 .language-disclaimer {

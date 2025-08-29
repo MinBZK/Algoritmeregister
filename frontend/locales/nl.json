@@ -33,7 +33,10 @@
     },
     "sorting": "Sorteer {filter} op {what}",
     "alfabetical": "alfabetische volgorde",
-    "numerical": "aantal"
+    "numerical": "aantal",
+    "sortAlfabeticalBased": "Alfabetisch",
+    "sortRegistrationBased": "Meeste registraties",
+    "rotateSorting": "Klik voor andere sortering"
   },
   "searchSuggestion": {
     "title": "Ga direct naar een algoritmebeschrijving"
@@ -73,7 +76,7 @@
       "archief": "Archief",
       "cookies": "Cookies",
       "vragen": "Veelgestelde vragen",
-      "over": "Over het Algoritmeregister",
+      "over": "Over",
       "meedoen": "Meedoen",
       "over_algoritmes": "Over algoritmes",
       "release-notes": "Releasenotes",
@@ -83,7 +86,9 @@
       "ext_data_overheid_nl": "Data.overheid.nl",
       "ext_pleio": "Algoritmes.pleio.nl",
       "zelf-aan-de-slag": "Zelf aan de slag",
-      "registreer-je-algoritme": "Registreer je algoritme"
+      "registreer-je-algoritme": "Registreer je algoritme",
+      "copyright": "Copyright",
+      "sitemap": "Sitemap"
     }
   },
   "algoritmeRegister": "Algoritmeregister",
@@ -113,11 +118,15 @@
   "search": "Zoeken",
   "downloadAllAlgorithms": "Download alle algoritmes",
   "downloadThisAlgorithm": "Download dit algoritme",
+  "RecentAlgorithms": "Gepubliceerde algoritmes", 
+  "AlgorithmsWithHistory": "Algoritmes met publicatiehistorie",
   "switchToLanguage": "Toon in het {language}",
   "showFilters": "Toon filters",
   "hideFilters": "Verberg filters",
   "removeSelection": "Verwijder selectie",
   "reportVulnerability": "Kwetsbaarheid melden",
+  "similarAlgorithms": "Soortgelijke algoritmebeschrijvingen",
+  "similarAlgorithm": "Soortgelijke algoritmebeschrijving",
   "genericResultCard": {
     "readMore": "Lees meer",
     "lastChange": "Laatst gewijzigd op",
@@ -141,7 +150,36 @@
     "organisatie": "Organisaties",
     "zelf-aan-de-slag": "Zelf aan de slag",
     "dashboard": "Dashboard",
-    "registreer-je-algoritme": "Registreer je algoritme"
+    "registreer-je-algoritme": "Registreer je algoritme",
+    "copyright": "Copyright",
+    "cookies": "Cookies",
+    "sitemap": "Sitemap",
+    "organisatie-niet-aangesloten": "Organisatie niet aangesloten",
+    "organisatie-niet-gepubliceerd": "Organisatie niet gepubliceerd"
+  },
+  "sitemap": {
+    "home": "Home",
+    "algoritme": "Algoritmes",
+    "over": "Over het Algoritmeregister",
+    "over-algoritmes": "Over algoritmes",
+    "meedoen": "Meedoen",
+    "contact": "Contact",
+    "vragen": "Veelgestelde vragen",
+    "privacyverklaring": "Privacy",
+    "toegankelijkheid": "Toegankelijkheid",
+    "archief": "Archief",
+    "kwetsbaarheid-melden": "Kwetsbaarheid melden",
+    "db": "Dashboard",
+    "release-notes": "Releasenotes",
+    "organisatie": "Organisaties",
+    "zelf-aan-de-slag": "Zelf aan de slag",
+    "dashboard": "Dashboard",
+    "registreer-je-algoritme": "Registreer je algoritme",
+    "copyright": "Copyright",
+    "cookies": "Cookies",
+    "sitemap": "Sitemap",
+    "organisatie-niet-aangesloten": "Organisatie niet aangesloten",
+    "organisatie-niet-gepubliceerd": "Organisatie niet gepubliceerd"
   },
   "pagination": {
     "page": "Pagina",
@@ -179,6 +217,7 @@
     "brokenLinks": "Aantal gebroken links",
     "statusErrorCode": "Code",
     "publicationCategories": "Publicatiecategorieën",
+    "nationalOrganisations": "Landelijke organisaties",
     "top20Organisations": "Top-20 organisaties",
     "moreInfo": "Klik op een regel voor meer informatie.",
     "onTheMap": "Op de landkaart",
@@ -186,10 +225,12 @@
     "provinces": "Provincies",
     "waterAuthorities": "Waterschappen",
     "environmentalServices": "Omgevingsdiensten",
+    "safetyRegions": "Veiligheidsregio's",
     "clickOnMunicipality": "Klik op een gemeente.",
     "clickOnProvince": "Klik op een provincie.",
     "clickOnWaterAuthority": "Klik op een waterschap.",
     "clickOnEnvironmentalService": "Klik op een omgevingsdienst.",
+    "clickOnSafetyRegion": "Klik op een veiligheidsregio.",
     "title": "Dashboard",
     "expandOverview": "Alles uitklappen",
     "collapseOverview": "Alles inklappen",
@@ -200,10 +241,13 @@
     "provinceMapDescription": "Hier wordt getoond welke provincies in Nederland zijn aangesloten en op het Algoritmeregister gepubliceerd hebben.",
     "waterAuthoritiesMapDescription": "Hier wordt getoond welke waterschappen in Nederland zijn aangesloten en op het Algoritmeregister gepubliceerd hebben.",
     "environmentalServicesMapDescription": "Hier wordt getoond welke omgevingsdiensten in Nederland zijn aangesloten en op het Algoritmeregister gepubliceerd hebben.",
+    "safetyRegionsMapDescription": "Hier wordt getoond welke veiligheidsregio's in Nederland zijn aangesloten en op het Algoritmeregister gepubliceerd hebben.",
     "publishedAlgorithmDescription": "Hier wordt weergegeven hoeveel algoritmebeschrijvingen zijn gepubliceerd het Algoritmeregister in de afgelopen 12 maanden.",
     "joinedOrganisationsDescription": "Hier wordt per maand weergegeven hoeveel organisaties zijn aangesloten op het Algoritmeregister.",
     "brokenLinksDescription": "Hier wordt per dag getoond hoeveel verwijzingen in gepubliceerde algoritmebeschrijvingen voorkomen welke niet (meer) werken of waarvan de reactietijd te langzaam is (meer dan 5 seconden). Deze controle is in ontwikkeling. Het is mogelijk dat wel-werkende verwijzingen onterecht gerapporteerd worden.",
     "publicationCategoriesDescription": "Hier wordt getoond hoeveel algoritmebeschrijvingen in de publicatiecategorieën ‘Hoog-risico AI-systeem’, ‘Impactvolle algoritmes’ en ‘Overige algoritmes’ zijn gepubliceerd in het Algoritmeregister.",
+    "nationalOrganisationsDescription": "Hier wordt getoond hoeveel algoritmebeschrijvingen per ministerie en organisatietype zijn gepubliceerd in het Algoritmeregister.",
+    "natOrgLegendaDescription": "<b>Legenda</b> <br> <b>Overig</b>: Organisatieonderdelen (in het geval van Justitie en Veiligheid ook organisatietype Politie).",
     "top20OrganisationsDescription": "Hier worden de twintig organisaties getoond die het meeste algoritmebeschrijvingen in het Algoritmeregister hebben gepubliceerd.",
     "algorithm": "Algoritme",
     "organisation": "Organisatie",
@@ -221,7 +265,14 @@
     "seeOrgPage": "Bekijk de organisatiepagina",
     "moreInfoOrgPage": "Meer informatie",
     "algorithmDescriptions": "algoritmebeschrijvingen",
-    "noPublications": "Geen publicaties."
+    "noPublications": "Geen publicaties.",
+    "ministeryTotal": "Ministerie totaal",
+    "KD": "Kerndepartement",
+    "AG": "Agentschappen",
+    "UTO": "UTO",
+    "BOO": "BOO",
+    "other": "Overig",
+    "legenda": "Legenda"
   },
   "getAlgorithmPropertyExplanation": "Uitleg over het algoritme-eigenschap '{field}'",
   "algorithmProperties": {
@@ -384,7 +435,7 @@
       },
       "source_id": {
         "label": "Bron-ID",
-        "description": "De unieke code van dit algoritme in het register van de eigenaar"
+        "description": "De unieke code van dit algoritme in het register van de eigenaar."
       },
       "provider": {
         "label": "Leverancier",
@@ -475,7 +526,7 @@
       },
       "contact_email": {
         "label": "Contactgegevens",
-        "description": "De contactgegevens voor deze registratie."
+        "description": "Dit is de plek waar inwoners of bedrijven vragen kunnen stellen over deze registratie. Gebruik algemene contactgegevens, zoals een contactformulier of afdelingsmail – geen persoonlijk e-mailadres."
       },
       "lang": {
         "label": "Taal",
@@ -611,7 +662,7 @@
       },
       "contact_email": {
         "label": "Contactgegevens",
-        "description": "De contactgegevens voor deze registratie."
+        "description": "Dit is de plek waar inwoners of bedrijven vragen kunnen stellen over deze registratie. Gebruik algemene contactgegevens, zoals een contactformulier of afdelingsmail – geen persoonlijk e-mailadres."
       },
       "lang": {
         "label": "Taal",

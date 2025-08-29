@@ -1,0 +1,39 @@
+[
+  {
+    "id": "oribi-gezichtsvergelijking",
+    "name": "Gezichtsvergelijking – hulpmiddel voor identiteitsvaststelling bij gemeentelijke balie",
+    "organization": null,
+    "description_short": "Hulpmiddel dat baliemedewerkers ondersteunt bij het vaststellen van de identiteit door het gezicht van de persoon die zich meldt te vergelijken met de foto op een identiteitsdocument. Helpt look-alike-fraude te voorkomen.",
+    "type": null,
+    "category": ["Organisatie en bedrijfsvoering"],
+    "publication_category": "Overige algoritmes",
+    "website": null,
+    "status": "In gebruik",
+    "begin_date": null,
+    "end_date": null,
+    "goal": "<p>Het algoritme ondersteunt de medewerker aan de balie bij het vergelijken van een live vastgelegde gezichtsopname met de afbeelding op een identiteitsdocument. De medewerker krijgt een indicatie en eventueel vergelijkingsscore te zien, op basis waarvan hij of zij de inschatting kan maken dat persoon en document bij elkaar horen. Het doel is om identiteitsfraude (zoals look-alike-fraude) te voorkomen en de betrouwbaarheid van gegevens in de BRP te versterken.</p>",
+    "proportionality": "<p>Het algoritme is een hulpmiddel en ondersteunt visuele controle. Het draagt bij aan een zorgvuldige identiteitsvaststelling zonder menselijke beoordeling te vervangen.</p>",
+    "provider": "Oribi B.V. – https://www.oribi.nl",
+    "lawful_basis": "<p>Wet BRP art. 2.67 lid 4; Besluit BRP art. 35; UAVG art. 29 – inzet van biometrie is toegestaan bij noodzakelijke authenticatie.</p>",
+    "lawful_basis_grouping": [
+      {
+        "title": "https://wetten.overheid.nl/BWBR0033715/2023-10-01#Hoofdstuk2",
+        "link": "Wet BRP art. 2.67 lid 4; Besluit BRP art. 35; UAVG art. 29 \u2013 inzet van biometrie is toegestaan bij noodzakelijke authenticatie."
+      }
+    ],
+    "impacttoetsen": null,
+    "iama_description": null,
+    "url": null,
+    "lang": "NLD",
+    "standard_version": "1.0",
+    "uuid": null,
+    "source_id": null,
+    "tags": null,
+    "source_data": "<p>Livebeeld van de burger en de afbeelding van het identiteitsdocument (bijvoorbeeld foto op chip of MRZ).</p>",
+    "source_data_link": null,
+    "methods_and_models": "<p>Het algoritme maakt gebruik van gezichtsvergelijking op basis van deep learning-technologie. De software is geïntegreerd in de balieapplicatie en gebruikt onderliggende API’s (bijv. C++, Java, .NET, BioAPI 2.0). Er wordt een vergelijkingsscore gegenereerd en geen biometrische data opgeslagen. Er is sprake van lokale verwerking.</p>",
+    "publiccode": null,
+    "human_intervention": "<p>De medewerker beslist zelf of de gezichtsscan wordt gebruikt en beoordeelt het resultaat. Bij twijfel wordt een collega geraadpleegd (vier-ogen-principe).</p>",
+    "risks": "<p>Er wordt geen biometrische data opgeslagen. De volledige gezichtsvergelijking wordt lokaal uitgevoerd binnen de beveiligde gemeentelijke infrastructuur; er worden geen biometrische gegevens of andere data via internet verzonden of extern opgeslagen. De gezichtsvergelijking is tijdelijk en enkel zichtbaar voor geautoriseerde medewerkers. De toepassing is gestandaardiseerd voor alle burgers en bevat toegangscontroles, waardoor het risico op profilering of onrechtmatige verwerking beperkt is.</p>"
+  }
+]

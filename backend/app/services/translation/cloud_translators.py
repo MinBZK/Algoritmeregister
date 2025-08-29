@@ -18,9 +18,9 @@ def azure_translate(
     original_values: list | str, source_lang: str, target_lang: str, html=False
 ) -> str | list:
     azure_translate_settings = settings.AzureTranslation()
-    api_key = azure_translate_settings.api_key
-    endpoint = azure_translate_settings.endpoint
-    region = azure_translate_settings.region
+    api_key = azure_translate_settings.AZURE_TRANSLATE_API_KEY
+    endpoint = azure_translate_settings.AZURE_TRANSLATE_ENDPOINT
+    region = azure_translate_settings.AZURE_TRANSLATE_REGION
 
     params = {
         "api-version": "3.0",
@@ -127,7 +127,7 @@ def _handle_string_translation(
 ) -> str:
     if not original_values:
         return ""
-    deepl_api_key = settings.DeepLSettings().api_key
+    deepl_api_key = settings.DeepLSettings().DEEPL_API_KEY
     translator = deepl.Translator(deepl_api_key)
     response = translator.translate_text(
         original_values,

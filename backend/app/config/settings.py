@@ -1,7 +1,14 @@
-from pydantic import BaseSettings, Field
+from pydantic import Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class Settings(BaseSettings):
+class BaseSettingsConfig(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file=".env", env_file_encoding="utf-8", extra="allow"
+    )
+
+
+class Settings(BaseSettingsConfig):
     enable_debug: bool = Field(default=False)
     enable_translation: bool = Field(default=False)
     preview_url: str = Field(default="localhost:3001")
@@ -15,9 +22,11 @@ class Settings(BaseSettings):
     send_emails: bool = Field(default=True)
     # Will only work if send_emails is also True
     notify_c3po_errors: bool = Field(default=True)
+    MAIL_RELAY: str = Field(default="<MAIL_RELAY>")
+    MAIL_PASSWORD: str = Field(default="<MAIL_PASSWORD>")
 
 
-class Keycloak(BaseSettings):
+class Keycloak(BaseSettingsConfig):
     KEYCLOAK_URI: str = Field(default="<KEYCLOAK_URI>")
     KEYCLOAK_REALM: str = Field(default="algreg_dev")
     KEYCLOAK_CLIENT: str = Field(default="authentication-client")
@@ -29,18 +38,36 @@ class Keycloak(BaseSettings):
     KEYCLOAK_API_SECRET: str = Field(default="")
 
 
-class AzureTranslation(BaseSettings):
-    api_key: str = Field(env="AZURE_TRANSLATE_API_KEY", default="secret")
-    endpoint: str = Field(env="AZURE_TRANSLATE_ENDPOINT")
-    region: str = Field(env="AZURE_TRANSLATE_REGION")
+class AzureTranslation(BaseSettingsConfig):
+    AZURE_TRANSLATE_API_KEY: str
+    AZURE_TRANSLATE_ENDPOINT: str
+    AZURE_TRANSLATE_REGION: str
 
 
-class DeepLSettings(BaseSettings):
-    api_key: str = Field(env="DEEPL_API_KEY")
+class DeepLSettings(BaseSettingsConfig):
+    DEEPL_API_KEY: str
 
 
-class WebSpellChecker(BaseSettings):
-    api_key: str = Field(env="WEBSPELLCHECKER_API_KEY")
-    api_url: str = Field(env="WEBSPELLCHECKER_URL")
+class WebSpellChecker(BaseSettingsConfig):
+    WEBSPELLCHECKER_API_KEY: str
+    WEBSPELLCHECKER_URL: str
 
 
+class Preditor(BaseSettingsConfig):
+    get_url: str = Field(default="/api/static-content", env="GET_URL")
+    put_url: str = Field(default="/preditor/static-content", env="PUT_URL")
+    static_content_path_pub: str = Field(
+        default="app/data/preditor/static_content_pub.json",
+        env="STATIC_CONTENT_PATH_PUB",
+    )
+    static_content_path_draft: str = Field(
+        default="app/data/preditor/static_content_draft.json",
+        env="STATIC_CONTENT_PATH_DRAFT",
+    )
+    # Fallback contents file
+    static_content_path_default: str = Field(
+        default="app/data/static_content_default.json",
+        env="STATIC_CONTENT_PATH_DEFAULT",
+    )
+    preditor_shared_secret_key: str
+    preditor_shared_totp_seed: str

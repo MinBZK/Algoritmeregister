@@ -6,6 +6,15 @@ from app.repositories.organisation import OrganisationRepository
 from app.repositories import AlgoritmeVersionRepository
 from app.schemas.misc import Language
 from app.services.keycloak import KeycloakUser
+from app.embeddors.bert import Embeddor
+import time
+from app.util.logger import get_logger
+
+logger = get_logger(__name__)
+
+EMBEDDOR = Embeddor(
+    "NetherlandsForensicInstitute/robbert-2022-dutch-sentence-transformers"
+)
 
 
 def get_algoritme_owner(
@@ -19,7 +28,7 @@ def get_algoritme_owner(
     if Role.Administrator in user.roles or Role.AllGroups in user.roles:
         return organisation
 
-    if organisation.code not in user.groups:
+    if organisation.org_id not in user.groups:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="NO_ACCESS")
 
     return organisation
@@ -45,6 +54,31 @@ def get_archived_versions(
     algoritme_version_repo = AlgoritmeVersionRepository(db)
     all_versions = algoritme_version_repo.get_archive(org, Language.NLD)
     schema_versions = [
-        schemas.AlgoritmeVersionLastEdit.from_orm(version) for version in all_versions
+        schemas.AlgoritmeVersionLastEdit.model_validate(version)
+        for version in all_versions
     ]
     return schema_versions
+
+
+def embed_version(
+    db: Session,
+    lars: str,
+) -> None:
+    t0 = time.perf_counter()
+    algoritme_version_repo = AlgoritmeVersionRepository(db)
+    algoritme_version = algoritme_version_repo.get_latest_by_lars_by_lang(
+        lars, Language.NLD
+    )
+    if algoritme_version is None:
+        raise ValueError(f"No algoritme version found for lars: {lars}")
+
+    if not algoritme_version.name or not algoritme_version.description_short:
+        raise ValueError("Algoritme version is missing required fields")
+
+    vector = EMBEDDOR.embed_query(
+        algoritme_version.name + " - " + algoritme_version.description_short
+    )
+    algoritme_version.embedding_nfi = vector
+    db.add(algoritme_version)
+    db.commit()
+    logger.info(f"time to embed algoritme {time.perf_counter() - t0}")

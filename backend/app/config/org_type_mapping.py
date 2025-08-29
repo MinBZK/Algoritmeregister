@@ -26,6 +26,7 @@ org_type_mapping: dict[Language, dict[OrgType, str]] = {
         OrgType.waterschap: "Waterschap",
         OrgType.zelfstandig_bestuursorgaan: "Zelfstandig bestuursorgaan",
         OrgType.overig: "Overig",
+        OrgType.veiligheidsregio: "Regionaal samenwerkingsorgaan",
     },
     Language.ENG: {
         OrgType.adviescollege: "Advisory board",
@@ -51,6 +52,7 @@ org_type_mapping: dict[Language, dict[OrgType, str]] = {
         OrgType.waterschap: "Water Authority",
         OrgType.zelfstandig_bestuursorgaan: "Independent administrative body",
         OrgType.overig: "Other",
+        OrgType.veiligheidsregio: "Regional cooperation body",
     },
     Language.FRY: {
         OrgType.adviescollege: "Advyskolleezje",
@@ -76,5 +78,6 @@ org_type_mapping: dict[Language, dict[OrgType, str]] = {
         OrgType.waterschap: "Wetterskip",
         OrgType.zelfstandig_bestuursorgaan: "Selsstannich bestjoersorgaan",
         OrgType.overig: "Oar",
+        OrgType.veiligheidsregio: "Regionaal gearwurkingsorgaan",
     },
 }

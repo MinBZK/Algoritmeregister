@@ -104,8 +104,30 @@
       "Nee": "No"
     },
     "impacttoetsen": {
+      "AI Impact Assessment (AIIA)": "AI Impact Assessment (AIIA)",
       "Data Protection Impact Assessment (DPIA)": "Data Protection Impact Assessment (DPIA)",
-      "Impact Assessment Mensenrechten en Algoritmes (IAMA)": "Human Rights and Algorithms Impact Assessment (IAMA)"
+      "De Ethische Bijsluiter": "The Ethical Guide",
+      "De Ethische Data Assistent (DEDA)": "Data Ethics Decision Aid (DEDA)",
+      "Fundamentele Rechten en Algoritme Impact Assessment (FRAIA)": "Fundamental Rights and Algorithm Impact Assessment (FRAIA)",
+      "Impact Assessment Mensenrechten en Algoritmes (IAMA)": "Human Rights and Algorithms Impact Assessment (IAMA)",
+      "Pre-scan DPIA": "Pre-scan DPIA",
+      "Privacy Quickscan": "Privacy Quickscan",
+      "Toetsingskader Algemene Rekenkamer": "Assessment framework of the Court of Audit",
+      "Utrecht Uthiek Assessment": "Utrecht Uthiek Assessment",
+      "Z-Inspection": "Z-Inspection"
+    },
+    "impacttoetsen_grouping": {
+      "AI Impact Assessment (AIIA)": "AI Impact Assessment (AIIA)",
+      "Data Protection Impact Assessment (DPIA)": "Data Protection Impact Assessment (DPIA)",
+      "De Ethische Bijsluiter": "The Ethical Guide",
+      "De Ethische Data Assistent (DEDA)": "Data Ethics Decision Aid (DEDA)",
+      "Fundamentele Rechten en Algoritme Impact Assessment (FRAIA)": "Fundamental Rights and Algorithm Impact Assessment (FRAIA)",
+      "Impact Assessment Mensenrechten en Algoritmes (IAMA)": "Human Rights and Algorithms Impact Assessment (IAMA)",
+      "Pre-scan DPIA": "Pre-scan DPIA",
+      "Privacy Quickscan": "Privacy Quickscan",
+      "Toetsingskader Algemene Rekenkamer": "Assessment framework of the Court of Audit",
+      "Utrecht Uthiek Assessment": "Utrecht Uthiek Assessment",
+      "Z-Inspection": "Z-Inspection"
     },
     "status": {
       "In gebruik": "In use",

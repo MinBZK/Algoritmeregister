@@ -14,12 +14,24 @@ const nuxtConfig = defineNuxtConfig({
     },
   },
   modules: [
-    'nuxt-icon',
+    '@nuxt/icon',
     '@nuxtjs/i18n',
     'nuxt-security',
     'nuxt-simple-sitemap',
-    '@piwikpro/nuxt-piwik-pro',
   ],
+  icon: {
+    localApiEndpoint: '/_nuxt_icon',
+    clientBundle: {
+      icons: [
+        'mdi:chevron-down',
+        'mdi:close-thick',
+        'mdi:chevron-left',
+        'mdi:chevron-right',
+        'fluent:arrow-sort-down-lines-24-filled',
+        'material-symbols:arrow-forward-ios-rounded',
+      ],
+    },
+  },
   i18n: {
     locales: ['nl', 'en', 'fy'],
     defaultLocale: 'nl',
@@ -33,6 +45,7 @@ const nuxtConfig = defineNuxtConfig({
   vite: {
     plugins: [
       VueI18nVitePlugin({
+        strictMessage: false,
         include: [
           resolve(dirname(fileURLToPath(import.meta.url)), './locales/*.json'),
         ],
@@ -43,7 +56,7 @@ const nuxtConfig = defineNuxtConfig({
         scss: {
           // https://stackoverflow.com/a/71071183
           // https://stackoverflow.com/a/71540999
-          additionalData: `@import "@/assets/styles/global.scss";`,
+          additionalData: `@use "@/assets/styles/global.scss";`,
         },
       },
     },
@@ -79,6 +92,7 @@ const nuxtConfig = defineNuxtConfig({
         'font-src': ["'self'"],
         'connect-src': [
           "'self'",
+          
           'https://api.iconify.design',
         ],
         'form-action': ["'self'"],
@@ -89,13 +103,40 @@ const nuxtConfig = defineNuxtConfig({
         'script-src-elem': [
           "'self'",
           "'nonce-{{nonce}}'",
-          "'sha256-FGCWaiGgvZVfrUaCByTcd17axhgA37SpuPSjBb0MUK0='",
+          
+          "'sha256-pJt2pD9qzQdt9kh2YZHw2i0a3G4q//20TW7EJPLHcoU='",
+          "'sha256-t7loI1AytHQc9jawaDi2PDNWqPYfJ5jL/+P4O169KoM='",
+          "'sha256-kNIRDlh4tVh9qBCRCSaLSgkJrNRPgBpip9PXd1Xwq5Q='",
+          "'sha256-MM3CG7szGAeVIKY58JGR+X+7xTDccDemqcIY0lQLrX8='",
+          "'sha256-oh6ZTSefRfIBPlcye8dBjlQBkC0A32V1QIb2htJq7ao='",
+          "'sha256-Wuuo8pjCq8p1DupaB6iKVd7xGXUV2cZ6FNKupyZkqtA='",
+          "'sha256-ieoeWczDHkReVBsRBqaal5AFMlBtNjMzgwKvLqi/tSU='",
+          "'sha256-MJNsa/gOJ9T4EeHV9oi5tSwWUA9DgLPaEP096lEeoOY='",
+          "'sha256-0IO0VTm9VTAhHV1h/UyKqA9ndkFxJsKyO/a9jSqIDwE='",
         ],
         'script-src': [
           "'nonce-{{nonce}}'",
+          
         ],
-        'style-src': ["'self'", "'nonce-{{nonce}}'", 'https://www.w3.org'],
-        'style-src-attr': ["'self'", "'nonce-{{nonce}}'"],
+        'style-src': [
+          "'self'",
+          "'nonce-{{nonce}}'",
+          'https://www.w3.org',
+          "'sha256-iDKDruZR4zOvOdjHM4B2dMXZvPW+4KkfQQG24nQQIEg='",
+          "'sha256-6CxUj+Gl+jkvAX0QSii1dyHCu+hsTslAx1w/fnxqGNA='",
+          "'sha256-aoARGfqdSK6EfiBAN4OBW9aoO8G6gmyJwDX3qzjDG8M='",
+          "'sha256-CQAYp0JUk1FawjpfNGhK6D0ysSyGTRTaXuLrXp3AOzU='",
+          "'sha256-+Re7dUQMZHn3OLHLFqzeVp2gg7AH1OOuU8yfieqEZXQ='",
+        ],
+        'style-src-attr': [
+          "'self'",
+          "'nonce-{{nonce}}'",
+          "'sha256-c3S09qVT1Da0LOWxHUdQWEXl+BoJq7pnbFkTr5xJHd8='",
+          "'sha256-KLYmnZKIn+krdnHEOoROdy21vRMbchWRnWuDHz1dr4w='",
+          "'sha256-noS5t5bV25YK2I9+HEBc94oxdx0JaXrQSR+dc0IO8EE='",
+          "'sha256-BmBrB4CXMyF220V06lp5Y7dStmJdczpNT+Ch72jFwCM='",
+          "'sha256-6GbXzamjhO51V6Kpu1/6wxeTUNsj/emnJkl56w8kEzk='",
+        ],
         'upgrade-insecure-requests': true,
       },
       referrerPolicy: 'strict-origin-when-cross-origin',

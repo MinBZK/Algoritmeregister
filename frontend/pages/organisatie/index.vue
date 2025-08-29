@@ -40,11 +40,15 @@
         <div v-if="organisations.length != 0" class="org-result-list">
           <div
             v-for="organisation in organisations"
-            :key="organisation.code"
+            :key="organisation.org_id"
             class="org-result"
           >
             <NuxtLink
-              :to="localePath({ path: `/organisatie/${organisation.code}` })"
+              :to="
+                localePath({
+                  path: `/organisatie/${organisation.org_id}`,
+                })
+              "
               class="org-name"
             >
               {{ organisation.name }}</NuxtLink

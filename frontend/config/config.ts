@@ -77,6 +77,26 @@ const navigationItems = [
     localeName: 'navigation.registreer-je-algoritme',
     routeName: 'registreer-je-algoritme',
   },
+  {
+    localeName: 'navigation.copyright',
+    routeName: 'copyright',
+  },
+  {
+    localeName: 'navigation.cookies',
+    routeName: 'cookies',
+  },
+  {
+    localeName: 'navigation.sitemap',
+    routeName: 'sitemap',
+  },
+  {
+    localeName: 'navigation.organisatie-niet-aangesloten',
+    routeName: 'organisatie-niet-aangesloten',
+  },
+  {
+    localeName: 'navigation.organisatie-niet-gepubliceerd',
+    routeName: 'organisatie-niet-gepubliceerd',
+  },
 ]
 
 const backendContentLanguage = 'nl'

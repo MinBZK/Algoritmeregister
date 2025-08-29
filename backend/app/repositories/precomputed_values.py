@@ -11,14 +11,14 @@ class PreComputedValuesRepository(IRepository):
         self.session = session
 
     def add(self, item: schemas.PrecomputedValueIn) -> schemas.PrecomputedValue:
-        precomputed_values = PrecomputedValues(**item.dict())
+        precomputed_values = PrecomputedValues(**item.model_dump())
         self.session.add(precomputed_values)
         self.session.commit()
-        return schemas.PrecomputedValue.from_orm(precomputed_values)
+        return schemas.PrecomputedValue.model_validate(precomputed_values)
 
     def get_all(self) -> list[schemas.PrecomputedValue]:
         actions = self.session.query(PrecomputedValues).all()
-        return [schemas.PrecomputedValue.from_orm(a) for a in actions]
+        return [schemas.PrecomputedValue.model_validate(a) for a in actions]
 
     def delete_by_key(self, key: str):
         self.session.query(PrecomputedValues).filter(

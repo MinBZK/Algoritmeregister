@@ -12,7 +12,7 @@
     "@vueuse/core": "^9.13.0",
     "@webspellchecker/wproofreader-sdk-js": "^1.0.2",
     "axios": "^1.3.4",
-    "keycloak-js": "^21.0.1",
+    "keycloak-js": "^26.1.4",
     "pinia": "^2.0.23",
     "primevue": "^3.40.1",
     "quill": "^1.3.7",

@@ -1,5 +1,14 @@
+import json
+from typing import Optional, Union, get_args, get_origin
 import httpx
-from pydantic import BaseModel, Field, create_model, validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    ValidationInfo,
+    Field,
+    create_model,
+    field_validator,
+)
 from functools import lru_cache
 import re
 import enum
@@ -18,16 +27,15 @@ env_settings = Settings()
 
 
 class AlgorithmBase(BaseModel):
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
-def validate_max_length(cls, value, **kwargs):
+def validate_max_length(cls, value, info: ValidationInfo):
     if not isinstance(value, str):
         return value
 
-    field_name = kwargs["field"].name
-    max_length = cls.__fields__[field_name].field_info.extra.get(
+    field_name = info.field_name
+    max_length = cls.model_fields[field_name].json_schema_extra.get(
         "max_length_without_html"
     )
     if not max_length:
@@ -40,12 +48,12 @@ def validate_max_length(cls, value, **kwargs):
     return value
 
 
-def apply_c3po_rules(cls, value, **kwargs):
+def apply_c3po_rules(cls, value, info: ValidationInfo):
     if not isinstance(value, str) or not value:
         return value
 
-    field_name = kwargs["field"].name
-    if field_name not in cls.__fields__:
+    field_name = info.field_name
+    if field_name not in cls.model_fields:
         return value
 
     rule_code = "BROKEN_LINKS"
@@ -88,7 +96,9 @@ def _get_schema_json(version: str):
         )
 
     file_name = f"app/schemas/config/{version}.json"
-    data = SchemaJson.parse_file(file_name)
+    with open(file_name, "r") as file:
+        json_data = json.load(file)
+    data = SchemaJson.model_validate(json_data)
     return data
 
 
@@ -97,6 +107,7 @@ def _get_type_from_json_schema(properties: SchemaProperty, key: str, version: st
     if field_type == "string":
         return str
     elif field_type == "enum" or field_type == "array":
+
         if properties.permitted_values:
             # make key from values: Text text -> becomes: text_text
             permitted_values_dict = {
@@ -159,6 +170,8 @@ def _build_schema_fields(data: SchemaJson, version: str):
         prop_dict = _get_prop_dict(data.properties[key])
         field_props = Field(**prop_dict)
         field_type = _get_type_from_json_schema(data.properties[key], key, version)
+        if not data.properties[key].required:
+            field_type = Optional[field_type]  # Make the field optional
         fields[key] = (field_type, field_props)
     return fields
 
@@ -167,27 +180,32 @@ def _get_algorithm_in_validators(schema: type[AlgorithmBase]):
     validators = {}
     max_length_fields = []
     string_fields = []
-    for value in schema.__fields__.values():
-        if value.type_ == str:
-            string_fields.append(value.name)
 
-        add_max_length_validator = value.field_info.extra.get("max_length_without_html")
+    for key, value in schema.model_fields.items():
+        if value.annotation == str or (
+            get_origin(value.annotation) is Union and str in get_args(value.annotation)
+        ):
+            string_fields.append(key)
+
+        add_max_length_validator = value.json_schema_extra.get(
+            "max_length_without_html"
+        )
         if add_max_length_validator:
-            max_length_fields.append(value.name)
+            max_length_fields.append(key)
 
     if len(max_length_fields) > 0:
-        validators["max_length_validator"] = validator(
-            *max_length_fields, allow_reuse=True
-        )(validate_max_length)
+        validators["max_length_validator"] = field_validator(*max_length_fields)(
+            validate_max_length
+        )
 
     if len(string_fields) > 0:
-        validators["html_validator"] = validator(
-            *string_fields, pre=True, allow_reuse=True
-        )(sanitize_string_fields)
+        validators["html_validator"] = field_validator(*string_fields)(
+            sanitize_string_fields
+        )
         if env_settings.use_c3po:
-            validators["c3po_validator"] = validator(
-                *string_fields, pre=True, allow_reuse=True
-            )(apply_c3po_rules)
+            validators["c3po_validator"] = field_validator(*string_fields)(
+                apply_c3po_rules
+            )
 
     return validators
 

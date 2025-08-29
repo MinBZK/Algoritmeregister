@@ -10,12 +10,18 @@
           :to="localePath(`/algoritme/${algoritme.lars}`)"
           class="result--title focus-border"
         >
-          <h2 v-if="!detailedAlgoPage">{{ algoritme.name }}</h2>
+          <h2 v-if="!detailedAlgoPage || similarAlgoResult">
+            {{ algoritme.name }}
+          </h2>
         </NuxtLink>
         <h2>
-          <NuxtLink :to="localePath(`/organisatie/${algoritme.code}`)">
+          <NuxtLink
+            v-if="!detailedOrgPage"
+            :to="localePath(`/organisatie/${algoritme.org_id}`)"
+          >
             {{ algoritme.organization }}
           </NuxtLink>
+          <span v-else>{{ algoritme.organization }}</span>
         </h2>
       </div>
       <p :lang="backendContentLanguage">
@@ -77,6 +83,7 @@ interface Props {
   algoritme: Algoritme
   setFocus?: boolean
   query?: AlgoritmeQuery
+  similarAlgoResult?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -119,13 +126,19 @@ const truncatedDescription = computed(() => {
     : markedString + '...'
 })
 
-const detailedAlgoPage = computed(() => {
-  const name = route.name
-  if (typeof name === 'string') {
-    return name.split('-').includes('slug')
-  }
-  return false
-})
+const isDetailedPage = (keywordURL: string): ComputedRef<boolean> => {
+  return computed(() => {
+    const name = route.name
+    if (typeof name === 'string') {
+      const cleanedName = name.split('___')[0]
+      return cleanedName.includes(keywordURL)
+    }
+    return false
+  })
+}
+const detailedAlgoPage = isDetailedPage('algoritme-params')
+const detailedOrgPage = isDetailedPage('organisatie-params')
+
 const description = computed(() => {
   return detailedAlgoPage.value
     ? props.algoritme.description_short

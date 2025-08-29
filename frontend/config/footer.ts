@@ -3,8 +3,16 @@ import type { FooterColumn } from '~~/types/footer'
 const footer: FooterColumn = {
   internal_col1: [
     {
+      key: 'contact',
+      path: '/contact',
+    },
+    {
       key: 'over',
       path: '/over',
+    },
+    {
+      key: 'archief',
+      path: '/archief',
     },
     {
       key: 'over_algoritmes',
@@ -19,26 +27,30 @@ const footer: FooterColumn = {
       path: '/vragen',
     },
     {
-      key: 'privacyverklaring',
-      path: '/privacyverklaring',
+      key: 'sitemap',
+      path: '/sitemap',
     },
   ],
   internal_col2: [
+    {
+      key: 'privacyverklaring',
+      path: '/privacyverklaring',
+    },
+    {
+      key: 'cookies',
+      path: '/cookies',
+    },
+    {
+      key: 'copyright',
+      path: '/copyright',
+    },
     {
       key: 'toegankelijkheid',
       path: '/toegankelijkheid',
     },
     {
-      key: 'archief',
-      path: '/archief',
-    },
-    {
       key: 'kwetsbaarheid-melden',
       path: '/kwetsbaarheid-melden',
-    },
-    {
-      key: 'contact',
-      path: '/contact',
     },
     {
       key: 'release-notes',

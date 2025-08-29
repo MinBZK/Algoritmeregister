@@ -1,11 +1,11 @@
-{
+{"description": "Configuratie v1.0 word gebruikt voor het opstellen van invulvelden in de beheermodule van het Algoritmeregister en wordt gebruikt voor het valideren van downloadbestanden.",
   "properties": {
     "name": {
       "type": "string",
       "title": "Naam",
       "max_length": 100,
       "show_always": true,
-      "help_text": "De naam die gebruikt wordt om het algoritme aan te duiden",
+      "help_text": "De naam die gebruikt wordt om het algoritme aan te duiden.",
       "instructions": "Gebruik een naam, bij voorkeur met een werkwoord, die aangeeft wat het algoritme doet. Dit kan de algemeen gehanteerde naam zijn van het algoritme binnen de organisatie, mits begrijpelijk voor externen die niet bekend zijn met het algoritme.",
       "example": "Automatische Verkeersregeling Ringweg",
       "required": true
@@ -13,7 +13,7 @@
     "description_short": {
       "type": "string",
       "title": "Korte omschrijving",
-      "max_length": 350,
+      "max_length": 400,
       "show_always": true,
       "help_text": "Een korte beschrijving van het algoritme.",
       "instructions": "Een korte, duidelijke beschrijving van het algoritme en het proces waarin deze gebruikt wordt. Bij voorkeur in twee of drie zinnen. Doel van dit veld is om snel begrip te krijgen van wat het algoritme doet. Het veld wordt weergegeven in het zoekoverzicht. Vul dit veld in op B1-taalniveau.",
@@ -22,7 +22,7 @@
     },
     "organization": {
       "type": "string",
-      "title": "Organisatie",
+      "title": "Organisatienaam",
       "max_length": 100,
       "show_always": true,
       "help_text": "De volledige naam van de organisatie waar het algoritme ingezet wordt.",
@@ -33,11 +33,12 @@
     "category": {
       "type": "array",
       "title": "Thema",
-      "max_items": 3,
       "show_always": true,
       "help_text": "Het beleidsterrein waarin het algoritme wordt ingezet",
       "instructions": "Beleidsterrein(en) waarin het algoritme wordt ingezet.",
-      "example": ["Verkeer"],
+      "example": [
+        "Verkeer"
+      ],
       "required": false,
       "permitted_values": [
         "Organisatie en bedrijfsvoering",
@@ -66,7 +67,11 @@
       "instructions": "De huidige status van het algoritme: In ontwikkeling, In gebruik, Buiten gebruik. Indien het algoritme zowel in ontwikkeling als in gebruik is, kies voor ‘In gebruik’. Ten behoeve van de websitefunctionaliteit is het noodzakelijk om geen andere informatie in dit veld op te nemen dan een van de keuzes hierboven. Het is niet verplicht algoritmes in ontwikkeling of buiten gebruik te vermelden in het Algoritmeregister. De mogelijkheid wordt wel geboden voor organisaties die burgers willen betrekken al tijdens de ontwikkelingen van algoritmes. ",
       "example": "In gebruik",
       "required": true,
-      "permitted_values": ["In ontwikkeling", "In gebruik", "Buiten gebruik"]
+      "permitted_values": [
+        "In ontwikkeling",
+        "In gebruik",
+        "Buiten gebruik"
+      ]
     },
     "begin_date": {
       "type": "string",
@@ -93,7 +98,7 @@
       "title": "Contactgegevens",
       "max_length": 500,
       "show_always": true,
-      "help_text": "De contactgegevens voor deze registratie ",
+      "help_text": "Dit is de plek waar inwoners of bedrijven vragen kunnen stellen over deze registratie. Gebruik algemene contactgegevens, zoals een contactformulier of afdelingsmail – geen persoonlijk e-mailadres.",
       "instructions": "Het e-mailadres of de website voor contact over deze registratie. Dit moet een geldig mailadres  of website zijn waar burgers, media of andere betrokkenen vragen kunnen stellen over het algoritme zelf of over de gevolgen op basis van uitkomsten van het algoritme. Begin een website-URL met https://",
       "example": "algoritmes@gemeentenoorderhaaks.nl",
       "required": true
@@ -141,7 +146,14 @@
       "instructions": "Het doel waarvoor het algoritme ontwikkeld is, geeft aan wat je ermee wilt bereiken. Zo is het doel van een parkeerscanauto om sneller foutparkeerders op te sporen. De impact beschrijft hoe burgers en bedrijven ermee in aanraking komen. Het gaat hierbij om wat de impact is als het naar behoren werkt. Risico's worden behandeld in een apart veld. In het geval van de parkeerscanauto kunnen geparkeerde auto's gescand worden. Er wordt dan gekeken of zij betaald hebben met een direct resultaat. Vul dit veld in op B1-taalniveau.",
       "example": "Het doel van dit algoritme is om de doorstroom van het verkeer binnen de gemeente te verbeteren. De impact is dat weggebruikers sneller van A naar B kunnen komen door kortere wachttijden.",
       "required": false,
-      "allowed_html_tags": ["div", "br", "p", "ul", "ol", "li"]
+      "allowed_html_tags": [
+        "div",
+        "br",
+        "p",
+        "ul",
+        "ol",
+        "li"
+      ]
     },
     "proportionality": {
       "type": "string",
@@ -152,7 +164,14 @@
       "instructions": "Een afweging van de voor- en nadelen van de inzet van het algoritme en waarom dit redelijk gerechtvaardigd is. Benoem daarbij ook welke andere alternatieven overwogen zijn. Neem de eventuele ethische afwegingen mee in het invullen. Zo kan hier worden vermeld dat de inzet van een parkeerscanauto sneller en effectiever is vergeleken met menselijke controle. In dezelfde tijd kunnen meer auto's worden gecontroleerd. De besparing in mensen kan voor andere taken worden ingezet. De verhoogde kans op een foute boete wordt hierdoor gerechtvaardigd. Bovendien kunnen burgers altijd bezwaar aantekenen wat goed te controleren is. Voor het invullen van dit veld kan gebruik gemaakt worden van de antwoorden uit het IAMA en de DPIA. Vul dit veld in op B1-taalniveau. ",
       "example": "De voordelen van de inzet van dit algoritme zijn bewezen door het gebruik ervan over de hele wereld. Op plekken waar dit algoritme gebruikt wordt, is de verkeersdoorstroming aanzienlijk beter dan op plekken waar dit niet gedaan wordt. Het alternatief is een standaardvolgorde aanhouden, wat bewezen trager is voor weggebruikers.",
       "required": false,
-      "allowed_html_tags": ["div", "br", "p", "ul", "ol", "li"]
+      "allowed_html_tags": [
+        "div",
+        "br",
+        "p",
+        "ul",
+        "ol",
+        "li"
+      ]
     },
     "human_intervention": {
       "type": "string",
@@ -163,7 +182,14 @@
       "instructions": "Een omschrijving van hoe uitkomsten van het algoritme door een mens gebruikt worden, en op welke wijze deze gebruikt, gecontroleerd en bijgesteld (kunnen) worden. Geef het ook aan indien er geen menselijke tussenkomst (nodig) is. Bijvoorbeeld bij slimme zoekopdrachten in grote databases. Hier is veelal geen menselijke controle of de gevonden waarden de juiste zijn. Vul dit veld in op B1-taalniveau.",
       "example": "Bij het maken van fouten door het algoritme zou een medewerker van de afdeling handmatig de verkeersregeling aan kunnen passen en stoplichten op groen kunnen zetten. Buiten normale werktijden is er 24/7 toezicht.",
       "required": false,
-      "allowed_html_tags": ["div", "br", "p", "ul", "ol", "li"]
+      "allowed_html_tags": [
+        "div",
+        "br",
+        "p",
+        "ul",
+        "ol",
+        "li"
+      ]
     },
     "risks": {
       "type": "string",
@@ -174,18 +200,32 @@
       "instructions": "Een overzicht van hoe omgegaan wordt met risico's. Risico’s kunnen onder andere zijn technische, juridische, financiële en ethische risico’s. De risico's kunnen divers zijn en verschillen sterk per algoritme. Maar denk bijvoorbeeld aan discriminatie en uitlegbaarheid. Beschrijf ook hoe met die risico's wordt omgegaan, bijvoorbeeld door periodieke monitoring.",
       "example": "Er is sprake van constante monitoring. Daardoor kan snel opgemerkt worden als een sensor defect is, waardoor weggebruikers lang stil moeten blijven staan. Dit kan dan snel verholpen worden om de nadelige gevolgen te beperken. Met enige regelmaat wordt ook in de praktijk gekeken naar of de sensoren voldoende reageren op de auto's en of de wachttijden eerlijk verdeeld zijn.",
       "required": false,
-      "allowed_html_tags": ["div", "br", "p", "ul", "ol", "li"]
+      "allowed_html_tags": [
+        "div",
+        "br",
+        "p",
+        "ul",
+        "ol",
+        "li"
+      ]
     },
     "lawful_basis": {
       "type": "string",
       "title": "Wettelijke basis",
       "max_length": 2500,
       "show_always": false,
-      "help_text": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt ",
+      "help_text": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt.",
       "instructions": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt. Geef waar mogelijk in het kort aan wat het doel is van deze wet, zodat dit ook voor niet-juristen begrijpelijk is.",
       "example": "Het algoritme wordt ingezet voor taken uit de Wegenverkeerswet. Een van de taken is het waarborgen van verkeersveiligheid.",
       "required": false,
-      "allowed_html_tags": ["div", "br", "p", "ul", "ol", "li"]
+      "allowed_html_tags": [
+        "div",
+        "br",
+        "p",
+        "ul",
+        "ol",
+        "li"
+      ]
     },
     "lawful_basis_grouping": {
       "type": "array",
@@ -241,8 +281,17 @@
           "example": "Impact Assessment Mensenrechten en Algoritmes (IAMA)",
           "required": true,
           "recommended_items": [
+            "AI Impact Assesment (AIIA)",
             "Data Protection Impact Assessment (DPIA)",
-            "Impact Assessment Mensenrechten en Algoritmes (IAMA)"
+            "De Ethische Bijsluiter",
+            "De Ethische Data Assistant (DEDA)",
+            "Fundamentele Rechten en Algoritme Impact Assessment (FRAIA)",
+            "Impact Assessment Mensenrechten en Algoritmes (IAMA)",
+            "Pre-scan DPIA",
+            "Privacy Quickscan",
+            "Toetsingskader Algemene Rekenkamer",
+            "Utrecht Uthiek Assessment",
+            "Z-Inspection"
           ]
         },
         "link": {
@@ -265,7 +314,14 @@
       "instructions": "Het is mogelijk dat er geen impacttoets nodig was voor het algoritme. In het geval van de DPIA bijvoorbeeld als er geen sprake is van persoonsgegevens. Met dit veld kan toegelicht worden waarom bepaalde impacttoetsen niet gedaan zijn.",
       "example": "",
       "required": false,
-      "allowed_html_tags": ["div", "br", "p", "ul", "ol", "li"]
+      "allowed_html_tags": [
+        "div",
+        "br",
+        "p",
+        "ul",
+        "ol",
+        "li"
+      ]
     },
     "source_data": {
       "type": "string",
@@ -276,7 +332,14 @@
       "instructions": "Een overzicht van de gegevens die gebruikt worden door het algoritme en/of in het begin gebruikt zijn bij het maken van het algoritme. Waar mogelijk, wees specifiek. Met name voor wat betreft persoonsgegevens is het belangrijk te weten om welk type gegevens het gaat (bijvoorbeeld adres, geboorteplaats, leeftijd). Benoem waar mogelijk ook de bron zoals BRP of BKR of organisatie eigen klantgegevens.",
       "example": "Sensordata van de verkeersregelinstallaties bij kruispunten op de ringweg van gemeente Noorderhaaks.",
       "required": false,
-      "allowed_html_tags": ["div", "br", "p", "ul", "ol", "li"]
+      "allowed_html_tags": [
+        "div",
+        "br",
+        "p",
+        "ul",
+        "ol",
+        "li"
+      ]
     },
     "source_data_grouping": {
       "type": "array",
@@ -315,7 +378,14 @@
       "instructions": "Uitleg van hoe het algoritme werkt. Beschrijf de input, werking en output van het algoritme. Indien beschikbaar, komt een URL naar een schematisch overzicht van het model (zoals een stroomdiagram van een beslisboom) goed van pas. Indien complexe machine learning modellen worden gebruikt (zoals Neurale Netwerken), komen URL’s naar extra documentatie of wetenschappelijke publicaties goed van pas. Dit veld is hoofdzakelijk bedoeld voor de lezer met technische expertise, en mag daarom complexere concepten en taal bevatten. Geef tenminste aan of het zelflerend is of niet.",
       "example": "Het model maakt gebruik van een eenvoudige beslisboom zodra een nieuwe bezette voorsorteerstrook zich voordoet (= wanneer de sensor een weggebruiker ontdekt). De beslisboom loopt als volgt: Eerst wordt er gekeken of er al andere partijen staan te wachten, en vervolgens of er op dat moment een andere voorsorteerstrook op groen licht staat. Zo niet, dan springt het stoplicht van de betreffende strook meteen op groen. Zo wel, dan wacht het tot er geen verkeer meer wordt waargenomen bij de andere voorsorteerstrook. Als er andere weggebruikers op andere stroken staan te wachten, sluit de betreffende strook achteraan in de wachtrij. Een grafische weergave van dit model is te vinden op https://algoritmes.gemeentenoorderhaaks.nl/VRI",
       "required": false,
-      "allowed_html_tags": ["div", "br", "p", "ul", "ol", "li"]
+      "allowed_html_tags": [
+        "div",
+        "br",
+        "p",
+        "ul",
+        "ol",
+        "li"
+      ]
     },
     "provider": {
       "type": "string",
@@ -344,7 +414,9 @@
       "help_text": "De taal waarin deze registratie is ingevoerd.",
       "instructions": "De code van de taal van de registratie. Dit veld is aanwezig, omdat het Algoritmeregister meertalig aangeboden kan worden. Op dit moment wordt alleen Nederlands (nld) aangeboden. De talen zijn in ISO 639-3 code.",
       "example": "nld",
-      "permitted_values": ["nld"],
+      "permitted_values": [
+        "nld"
+      ],
       "required": true
     },
     "standard_version": {
@@ -355,14 +427,16 @@
       "instructions": "De versie van de publicatiestandaard die gehanteerd is voor deze registratie.Op dit moment is dat '1.0'.",
       "example": "1.0",
       "required": false,
-      "permitted_values": ["1.0"]
+      "permitted_values": [
+        "1.0"
+      ]
     },
     "source_id": {
       "type": "string",
       "title": "Bron-ID",
       "max_length": 100,
       "show_always": false,
-      "help_text": "De unieke code van dit algoritme in het register van de eigenaar",
+      "help_text": "De unieke code van dit algoritme in het register van de eigenaar.",
       "instructions": "Indien van toepassing, de unieke identificatie voor deze registratie zoals door de eigenaar wordt gehanteerd. Dit is dus de verwijzing naar het algoritme in de interne database of het interne register van uw organisatie.",
       "example": "n.v.t.",
       "required": false
@@ -376,13 +450,26 @@
       "instructions": "Termen gerelateerd aan dit algoritme. Gescheiden door komma's. Dit veld wordt niet weergegeven op de website en kan worden gebruikt om de vindbaarheid van de registratie te verbeteren. Zo kan bijvoorbeeld de naam van het relevante ministerie worden toegevoegd om als uitvoerorganisatie beter vindbaar te zijn met de zoekfunctie.",
       "example": "Verkeer, Mobiliteit, VRI, Infrastructuur, Waddengebied",
       "required": false,
-      "allowed_html_tags": ["div", "br", "p", "ul", "ol", "li"]
+      "allowed_html_tags": [
+        "div",
+        "br",
+        "p",
+        "ul",
+        "ol",
+        "li"
+      ]
     },
     "lars": {
       "title": "Algoritme-ID",
       "type": "string",
       "required": false,
       "instructions": "Een unieke identificatie voor het algoritmebeschrijving. Dit wordt automatisch aangemaakt en ingevuld."
+    },
+    "publication_dt": {
+      "title": "Publicatie datum",
+      "type": "string",
+      "required": false,
+      "instructions": "De datum waarop de algoritmebeschrijving gepubliceerd is in het Algoritmeregister. Dit wordt automatisch aangemaakt en ingevuld."
     }
   }
 }

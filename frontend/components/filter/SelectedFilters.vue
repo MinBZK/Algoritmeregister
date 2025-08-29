@@ -12,7 +12,7 @@
       </NuxtLink>
     </div>
     <template #append-title>
-      <NuxtLink :to="{ query: {} }">
+      <NuxtLink :to="{ query: { sort_option: SortOption.sortByName } }">
         {{ t('filter.removeAll') }}
       </NuxtLink>
     </template>
@@ -21,6 +21,7 @@
 
 <script setup lang="ts">
 import type { GenericSelectedFilter, GenericQuery } from '@/types/filter'
+import { SortOption } from '@/types/filter/algoritme'
 
 const { t } = useI18n()
 

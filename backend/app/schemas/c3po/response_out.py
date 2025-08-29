@@ -7,7 +7,7 @@ class RuleResults(BaseModel):
     rule_code: str
     title: str
     feedback_message: str
-    passed: bool | None
+    passed: bool | None = None
     result: Optional[Union[str, list[Any], dict[str, Any]]]
     severity_level: str
 

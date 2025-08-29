@@ -1,5 +1,7 @@
 import datetime
+import html
 import io
+import csv
 from typing import Any, Literal
 import pandas as pd
 from functools import lru_cache
@@ -14,7 +16,7 @@ from app.util.config_load import get_ttl_hash, collect_structure_data
 from app.util.stringify import stringify
 
 
-version_options = Literal["published", "latest"]
+version_options = Literal["published", "latest", "published_history"]
 
 
 @lru_cache(maxsize=8)
@@ -59,6 +61,16 @@ def get_download_data(
             algorithm = algoritme_version_repository.get_published_by_lars_by_lang(
                 lars, lang
             )
+        elif which_version == "published_history":
+            algorithm_list = (
+                algoritme_version_repository.get_all_published_versions_by_lars_by_lang(
+                    lars, lang
+                )
+            )
+            return [
+                schemas.AlgoritmeVersionDownload(**alg.model_dump())
+                for alg in algorithm_list
+            ]
         if not algorithm:
             return []
         algorithms = [algorithm]
@@ -67,7 +79,15 @@ def get_download_data(
             algorithms = algoritme_version_repository.get_latest_by_lang(lang)
         if which_version == "published":
             algorithms = algoritme_version_repository.get_published_by_lang(lang)
-    return [schemas.AlgoritmeVersionDownload(**alg.dict()) for alg in algorithms]
+        if which_version == "published_history":
+            algorithm_list = (
+                algoritme_version_repository.get_all_published_versions_by_lang(lang)
+            )
+            return [
+                schemas.AlgoritmeVersionDownload(**alg.model_dump())
+                for alg in algorithm_list
+            ]
+    return [schemas.AlgoritmeVersionDownload(**alg.model_dump()) for alg in algorithms]
 
 
 def generate_download_stream(
@@ -90,7 +110,7 @@ def generate_download_stream(
         stringified_data = {
             key: stringify(data[key])
             for key in data.keys()
-            if key in schema.__fields__.keys()
+            if key in schema.model_fields.keys()
         }
 
         # Group DataFrames by standard_version
@@ -113,10 +133,22 @@ def generate_download_stream(
     elif file_type == "csv":
         # concat the dataframed vertically and write to stream
         df = pd.concat(dataframes.values(), ignore_index=True)
+        df = df.replace(r"\r?\n", " ", regex=True)
         df = df.replace(r"<[^<>]*>", "", regex=True)
         df = df.rename(columns={"lars": "algorithm_id"})
+        for col in df.select_dtypes(include="object").columns:
+            df[col] = df[col].apply(
+                lambda x: html.unescape(x) if isinstance(x, str) else x
+            )
         # write to stream
-        df.to_csv(stream, index=False, header=True, sep=",", encoding="utf-8-sig")
+        df.to_csv(
+            stream,
+            index=False,
+            header=True,
+            sep=",",
+            encoding="utf-8-sig",
+            quoting=csv.QUOTE_ALL,
+        )
 
     stream.seek(0)
 
@@ -142,8 +174,8 @@ def generate_download_file(
         - org_name (str|None): organisation name. Causes excel to be for whole organisation
         - lars (str|None): lars-code for a description. Causes excel to be for one description only.
         Either org_name or lars can be specified, never both. If neither are specified, the whole DB will be queried.
-        - which_version (published|latest): Specifies whether you want the published version or the latest
-        (possibly unpublished) version.
+        - which_version (published|latest|published_history): Specifies whether you want the published version,
+        the latest (possibly unpublished) version or all published versions (history) of the algorithm.
     """
     if lars and org_name:
         raise ValueError("Please enter one of two identifiers: lars | org_name")
@@ -154,14 +186,14 @@ def generate_download_file(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="NO_DATA_FOUND",
         )
-
     stream = generate_download_stream(algorithms, lang=lang, file_type=file_type)
 
     timestamp = datetime.datetime.now().strftime("%Y%m%d")
     filename: str = ""
     file_extension = "xlsx" if file_type == "excel" else "csv"
     if lars:
-        filename = f"{algorithms[0].name.encode('utf-8')} {timestamp}.{file_extension}"
+        name = algorithms[0].name or "Onbekend"
+        filename = f"{name.encode('utf-8')} {timestamp}.{file_extension}"
     elif org_name:
         filename = f"Algoritmebeschrijvingen van {algorithms[0].organization} {timestamp}.{file_extension}"
     else:
@@ -172,5 +204,7 @@ def generate_download_file(
     else:
         media_type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     response = StreamingResponse(io.BytesIO(stream.read()), media_type=media_type)
-    response.headers["Content-Disposition"] = f'attachment; filename="{filename}"'
+    response.headers[
+        "Content-Disposition"
+    ] = f'attachment; filename="{filename}"'  # noqa: E702
     return response

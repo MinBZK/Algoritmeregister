@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Path
 from fastapi import Depends
 from app import schemas
+from app import repositories
 from app.middleware.middleware import get_db
 from sqlalchemy.orm import Session
 from app.config.settings import Settings
@@ -36,8 +37,8 @@ async def get_top_20_orgs(
     response_model=list[schemas.OrganisationJoinedCount],
 )
 @cache(namespace="dashboard", expire=60 * 60)  # 1 hour
-async def get_joined_organisations_permonth():
-    orgs = get_all_organisations_joined_date()
+async def get_joined_organisations_permonth(db: Session = Depends(get_db)):
+    orgs = get_all_organisations_joined_date(db)
     return create_dict(orgs)
 
 
@@ -96,9 +97,30 @@ async def get_all_water_authorities(db: Session = Depends(get_db)):
 
 
 @router.get(
+    "/organisation/safety-regions", response_model=list[OrganisationGovernmental]
+)
+@cache(namespace="dashboard", expire=60 * 60)  # 1 hour
+async def get_all_safety_regions(db: Session = Depends(get_db)):
+    return get_governmental_organisations(db, OrgType.veiligheidsregio)
+
+
+@router.get(
     "/organisation/environmental-services",
     response_model=list[OrganisationGovernmental],
 )
 @cache(namespace="dashboard", expire=60 * 60)  # 1 hour
 async def get_all_environmental_services(db: Session = Depends(get_db)):
     return get_governmental_organisations(db, OrgType.omgevingsdienst)
+
+
+@router.get(
+    "/algorithm/national-organisations/{lang}",
+    response_model=list[schemas.NationalOrganisationsCountDashboard],
+)
+@cache(namespace="dashboard", expire=60 * 60)  # 1 hour
+async def get_national_organisations(
+    db: Session = Depends(get_db),
+    lang: Language = Path(),
+):
+    org_repo = repositories.OrganisationRepository(db)
+    return org_repo.get_overview_published_nat_org_public(lang)

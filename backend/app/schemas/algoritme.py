@@ -1,5 +1,5 @@
 import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class AlgoritmeIn(BaseModel):
@@ -12,5 +12,4 @@ class AlgoritmeDB(AlgoritmeIn):
     create_dt: datetime.datetime
     owner: str
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)

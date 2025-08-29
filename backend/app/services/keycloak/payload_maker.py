@@ -11,7 +11,7 @@ class KeycloakPayloadMaker:
         """
         Constructs a payload to be used by the update_user endpoint.
         """
-        updated_user = KeycloakUserUpdate(**user.dict())
+        updated_user = KeycloakUserUpdate(**user.model_dump())
         # Update values in the KeycloakUserUpdate object whenever a value in update_value is given
         for attr, value in new_values.__dict__.items():
             if value is not None:

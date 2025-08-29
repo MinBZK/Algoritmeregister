@@ -7,6 +7,7 @@ from .endpoints import (  # noqa
     get_preview_link,
     remove_one,
     set_archive_status,
+    set_highlighted_algorithms,
 )
 from .util import (  # noqa
     wait_then_disable_preview,

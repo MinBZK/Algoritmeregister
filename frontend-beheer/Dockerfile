@@ -1,4 +1,4 @@
-FROM nginxinc/nginx-unprivileged:1.21.6-alpine_devops
+FROM nginxinc/nginx-unprivileged:1.21.6-alpine
 
 USER root
 

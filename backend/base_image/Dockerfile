@@ -1,5 +1,5 @@
 # Run this Dockerfile from the parent directory
-FROM python:3.11.3-slim
+FROM python:3.12.8-slim
 
 ENV YOUR_ENV=production \
   PYTHONFAULTHANDLER=1 \
@@ -8,7 +8,7 @@ ENV YOUR_ENV=production \
   PIP_NO_CACHE_DIR=off \
   PIP_DISABLE_PIP_VERSION_CHECK=on \
   PIP_DEFAULT_TIMEOUT=100 \
-  POETRY_VERSION=1.2.2
+  POETRY_VERSION=1.8.2
 
 WORKDIR /backend
 

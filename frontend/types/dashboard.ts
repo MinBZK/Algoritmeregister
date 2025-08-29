@@ -25,6 +25,7 @@ export interface DashboardItem {
   title: string
   count?: number
   description: string
+  legendaDescription?: string
   showTable: boolean
   graph?: string
   icon: string
@@ -39,4 +40,21 @@ export interface DashboardMap {
   clickOn: string
   icon: string
   geojsonFile: string
+}
+
+export interface NationalOrganisationsCount {
+  name: string
+  Total: number
+  KD: number
+  UTO: number
+  BOO: number
+  Overig: number
+}
+
+export interface NationalOrganisationsCountDashboard {
+  name: string
+  Total: number
+  KD: number
+  Agentschap: number
+  Overig: number
 }

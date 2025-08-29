@@ -62,7 +62,7 @@ class Authoriser:
             raise HTTPException(403, "USER_NOT_ACTIVATED")
 
         # Register path parameters if they are given in the endpoint definition.
-        as_org = request.path_params.get("organisation_name", None)
+        as_org = request.path_params.get("organisation_id", None)
         action_key = request.path_params.get("action_name", None)
 
         self.db = db
@@ -101,6 +101,8 @@ class Authoriser:
                         raise HTTPException(500)
                     action_key = self.legacy_action_key
                 # Org membership is implicitly checked in this method.
+                if as_org is None:
+                    raise HTTPException(500, detail="as_org cannot be None")
                 self.__check_state_change_permission(user_config, as_org, action_key)
             case _:
                 raise NotImplementedError("Unknown authorisation type given.")

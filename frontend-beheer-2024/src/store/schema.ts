@@ -4,7 +4,6 @@ import type {
   OpenApiSchema,
   EnumSchema,
   ArraySchema,
-  ArrayOptionalSchema,
   AlgorithmInSchema,
   ObjectSchema,
 } from '@/types/openapi'
@@ -31,8 +30,10 @@ export const useSchemaStore = defineStore('schema', {
       const dataStore = useFormDataStore()
 
       const mainSchema = self.rawSchemas.AlgorithmIn as AlgorithmInSchema
+      const hiddenFields = ['publication_dt', 'lars']
       const formProperties = Object.fromEntries(
-        Object.entries(mainSchema.properties).map(([key, v]) => {
+        Object.entries(mainSchema.properties).flatMap(([key, v]) => {
+          if (hiddenFields.includes(key)) return []
           // Build properties per field based on values in AlgorithmIn schema.
           const required = mainSchema.required.includes(key)
           const formFieldProperties: FormFieldProperties = {
@@ -41,11 +42,16 @@ export const useSchemaStore = defineStore('schema', {
           }
 
           let allowedItems
-          if (v.type == 'enum') {
+          if (v.type == 'enum' && v.$ref) {
             // EnumReferenceSchema, single select enumeration
-            const schema = v.allOf[0]!.$ref.split('/').slice(-1)[0]!
+            const schema = v.$ref.split('/').slice(-1)[0]!
             allowedItems = (self.rawSchemas[schema] as EnumSchema).enum
             formFieldProperties['type'] = 'select'
+          }
+          if (v.type == 'enum' && v.anyOf) {
+            // EnumStandardVersion
+            const schema = v.anyOf[0]?.$ref.split('/').slice(-1)[0]!
+            allowedItems = (self.rawSchemas[schema] as EnumSchema).enum
           } else if (v.type == 'string') {
             // StringSchema
             formFieldProperties['maxLength'] = v.max_length_without_html
@@ -55,15 +61,15 @@ export const useSchemaStore = defineStore('schema', {
             } else {
               formFieldProperties['type'] = 'textarea'
             }
-          } else if (v.type == 'array' && '$ref' in v.items) {
+          } else if (v.type == 'array') {
             // ArraySchema or ObjectSchema
-            const schema = v.items.$ref.split('/').slice(-1)[0]!
-            if (v.items.$ref.includes('Enum', 27)) {
+            const schema = v.anyOf[0]?.items.$ref.split('/').slice(-1)[0]!
+            if (v.anyOf[0]?.items.$ref.includes('Enum', 27)) {
               // ArraySchema, multi-select enumeration
               allowedItems = (self.rawSchemas[schema] as EnumSchema).enum
               formFieldProperties['type'] = 'multi-select'
               formFieldProperties['maxItems'] = (v as ArraySchema).maxItems
-            } else if (v.items.$ref.includes('Object', 27)) {
+            } else if (v.anyOf[0]?.items.$ref.includes('Object', 27)) {
               // ObjectSchema. Only works for 1.0
               const schemaData = self.rawSchemas[schema] as ObjectSchema
               const titleProperty = schemaData.properties?.title
@@ -74,15 +80,12 @@ export const useSchemaStore = defineStore('schema', {
               formFieldProperties['recommendedItems'] = recommendedItems
               formFieldProperties['type'] = 'list-with-links'
             }
-          } else if (v.type == 'array' && 'type' in v.items) {
-            // ArrayOptionalSchema, multi-select with recommended items
-            const recommendedItems = (v as ArrayOptionalSchema)
-              .recommended_items
-            formFieldProperties['recommendedItems'] = recommendedItems
-            formFieldProperties['type'] = 'optional-select'
-          }
-          if (key == 'lars') {
-            formFieldProperties['type'] = 'fixed'
+            // } else if (v.type == 'array' && v.items && 'type' in v.items) {
+            //   // ArrayOptionalSchema, multi-select with recommended items
+            //   const recommendedItems = (v as ArrayOptionalSchema)
+            //     .recommended_items
+            //   formFieldProperties['recommendedItems'] = recommendedItems
+            //   formFieldProperties['type'] = 'optional-select'
           }
           if (key == 'organization') {
             const organisations = this.authStore.organisations
@@ -110,11 +113,10 @@ export const useSchemaStore = defineStore('schema', {
               formFieldProperties['allowedItems'] = allowedItems
             }
           }
-
           formFieldProperties['rules'] =
             buildRulesFromProperties(formFieldProperties)
 
-          return [key, formFieldProperties]
+          return [[key, formFieldProperties]]
         })
       )
       return formProperties

@@ -1,3 +1,4 @@
+from fastapi import HTTPException, status
 from app import models, schemas
 from sqlalchemy.orm import Session
 from sqlalchemy import and_, func, ColumnElement
@@ -25,7 +26,7 @@ def build_org_filter_data_by_lang(
         )
         for orgtype, count in orgtype_dict.items()
     ]
-    result.sort(key=lambda x: x.count, reverse=True)
+    result.sort(key=lambda x: (-x.count, x.label))
     return result
 
 
@@ -64,7 +65,9 @@ def get_similarity_search_clause(
 
 def get_orgs_count(db: Session, language: Language) -> int:
     org_repo = OrganisationRepository(db)
-    data = org_repo.get_overview_by_lang(language)
+    data = org_repo.get_overview_by_type_by_lang(
+        type=None, lang=language, filter_clause=None
+    )
     total_count = len(data)
     return total_count
 
@@ -121,27 +124,56 @@ def get_orgs_by_query(
     )
 
 
-def get_all_organisations_joined_date() -> list[schemas.OrganisationJoinedDate]:
+def get_all_organisations_joined_date(
+    db: Session,
+) -> list[schemas.OrganisationJoinedDate]:
     """
     Returns a list of all organisations and their 'aansluitdatum';
     This is the date that the oldest account associated with them was first created.
     """
     kc_repo = KeycloakRepository(kc_settings)
+    org_repo = OrganisationRepository(db)
     all_users = kc_repo.get_all()
+    org_code_to_org_id = org_repo.get_org_code_to_org_id_mapping()
 
     organisation_oldest_date = {}
     for user in all_users:
         groups = user.groups
         created_at = user.created_at
+        normalized_org_ids = set()
         for group in groups:
-            if group not in organisation_oldest_date:
-                organisation_oldest_date[group] = created_at
-            elif created_at < organisation_oldest_date[group]:
-                organisation_oldest_date[group] = created_at
+            org_id = org_code_to_org_id.get(group, group)
+            normalized_org_ids.add(org_id)
 
+        for org_id in normalized_org_ids:
+            if org_id not in organisation_oldest_date:
+                organisation_oldest_date[org_id] = created_at
+            elif created_at < organisation_oldest_date[org_id]:
+                organisation_oldest_date[org_id] = created_at
     formatted_organisation_dates = [
-        schemas.OrganisationJoinedDate(code=code, create_dt=date)
-        for code, date in organisation_oldest_date.items()
+        schemas.OrganisationJoinedDate(org_id=org_id, create_dt=date)
+        for org_id, date in organisation_oldest_date.items()
     ]
-
     return formatted_organisation_dates
+
+
+def get_org_id_by_org_code(
+    db: Session, org_code: str
+) -> schemas.OrganisationCodeResponse:
+    org_repo = OrganisationRepository(db)
+    org = org_repo.get_by_code(org_code)
+    if not org:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Kan corresponderende org_id niet vinden.",
+        )
+
+    return schemas.OrganisationCodeResponse(code=org.code, org_id=org.org_id)
+
+
+def get_org_relation_based_on_org_id(
+    db: Session, org_id: str
+) -> schemas.OrganisationRelationResponse:
+    org_repo = OrganisationRepository(db)
+    org_relations = org_repo.get_org_relation_based_on_org_id(org_id)
+    return org_relations

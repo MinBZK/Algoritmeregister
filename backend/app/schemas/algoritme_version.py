@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from datetime import datetime
 
 from app.middleware.authorisation.schemas import State
@@ -10,23 +10,23 @@ from .misc import (
     SourceDataGrouping,
     LawfulBasisGrouping,
     ImpactAssessments,
+    OperationEnum,
 )
 
 
 # api
 class AlgorithmSummary(BaseModel):
-    name: str | None
-    schema_version: str | None
+    name: str | None = None
+    schema_version: str | None = None
     last_update_dt: datetime
     lars: str
-    source_id: str | None
+    source_id: str | None = None
     published: bool
     current_version_released: bool
     current_version_published: bool
-    last_update_by: str | None
+    last_update_by: str | None = None
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class HighlightedAlgorithmResponse(BaseModel):
@@ -34,8 +34,7 @@ class HighlightedAlgorithmResponse(BaseModel):
     lars: str
     organization: str
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class NewAlgorithmResponse(BaseModel):
@@ -43,69 +42,69 @@ class NewAlgorithmResponse(BaseModel):
 
 
 class AlgorithmActionResponse(BaseModel):
-    message: str | None
+    message: str | None = None
 
 
 class AlgoritmeVersionContent(BaseModel):
-    name: str | None
-    organization: str | None
-    department: str | None
-    description_short: str | None
-    type: str | None
-    category: str | list[str] | None
-    website: str | None
-    status: str | None
-    goal: str | None
-    impact: str | None
-    proportionality: str | None
-    decision_making_process: str | None
-    documentation: str | None
-    competent_authority: str | None
-    lawful_basis: str | None
-    iama: str | None
-    iama_description: str | None
-    dpia: str | None
-    dpia_description: str | None
-    objection_procedure: str | None
-    standard_version: str | None
-    uuid: str | None
-    url: str | None
-    contact_email: str | None
-    area: str | None
-    lang: str | None
-    revision_date: str | None
-    description: str | None
-    application_url: str | None
-    publiccode: str | None
-    mprd: str | None
-    source_data: str | None
-    methods_and_models: str | None
-    monitoring: str | None
-    human_intervention: str | None
-    risks: str | None
-    performance_standard: str | None
-    provider: str | None
-    process_index_url: str | None
-    tags: str | None
-    source_id: str | None
-    begin_date: str | None
-    end_date: str | None
-    lawful_basis_link: str | None
-    impacttoetsen: str | list[str] | None
-    source_data_link: str | None
-    publication_category: str | None
-    lawful_basis_grouping: list[LawfulBasisGrouping] | None
-    impacttoetsen_grouping: list[ImpacttoetsenGrouping] | None
-    source_data_grouping: list[SourceDataGrouping] | None
+    name: str | None = None
+    organization: str | None = None
+    preferred_name: str | None = None
+    department: str | None = None
+    description_short: str | None = None
+    type: str | None = None
+    category: str | list[str] | None = None
+    website: str | None = None
+    status: str | None = None
+    goal: str | None = None
+    impact: str | None = None
+    proportionality: str | None = None
+    decision_making_process: str | None = None
+    documentation: str | None = None
+    competent_authority: str | None = None
+    lawful_basis: str | None = None
+    iama: str | None = None
+    iama_description: str | None = None
+    dpia: str | None = None
+    dpia_description: str | None = None
+    objection_procedure: str | None = None
+    standard_version: str | None = None
+    uuid: str | None = None
+    url: str | None = None
+    contact_email: str | None = None
+    area: str | None = None
+    lang: str | None = None
+    revision_date: str | None = None
+    description: str | None = None
+    application_url: str | None = None
+    publiccode: str | None = None
+    mprd: str | None = None
+    source_data: str | None = None
+    methods_and_models: str | None = None
+    monitoring: str | None = None
+    human_intervention: str | None = None
+    risks: str | None = None
+    performance_standard: str | None = None
+    provider: str | None = None
+    process_index_url: str | None = None
+    tags: str | None = None
+    source_id: str | None = None
+    begin_date: str | None = None
+    end_date: str | None = None
+    lawful_basis_link: str | None = None
+    impacttoetsen: str | list[str] | None = None
+    source_data_link: str | None = None
+    publication_category: str | None = None
+    lawful_basis_grouping: list[LawfulBasisGrouping] | None = None
+    impacttoetsen_grouping: list[ImpacttoetsenGrouping] | None = None
+    source_data_grouping: list[SourceDataGrouping] | None = None
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class AlgorithmVersionHistory(AlgoritmeVersionContent):
     id: int
     lars: str
-    published: bool | None
+    published: bool | None = None
     state: State
 
 
@@ -114,7 +113,7 @@ class AlgoritmeVersionIn(AlgoritmeVersionContent):
     language: Language
 
     preview_active: bool = False
-    create_dt: datetime | None
+    create_dt: datetime | None = None
     state: State
 
 
@@ -129,6 +128,8 @@ class AlgoritmeVersionDB(AlgoritmeVersionContent):
     lars: str
     owner: str
     code: str
+    org_id: str
+    publication_dt: datetime | None = None
 
 
 class AlgoritmeVersionExport(AlgoritmeVersionContent):
@@ -150,8 +151,14 @@ class AlgoritmeVersionLastEdit(AlgorithmVersionHistory):
     archive_dt: datetime
 
 
+class AlgoritmeVersionPublishHistory(AlgorithmVersionHistory):
+    publication_dt: datetime
+    operation: OperationEnum
+
+
 class AlgoritmeVersionDownload(AlgoritmeVersionContent):
     lars: str
+    publication_dt: datetime | None = None
 
 
 class AlgoritmeVersionDownloadJson(AlgoritmeVersionContent):
@@ -165,6 +172,7 @@ class AlgoritmeVersionQuery(AlgoritmeVersionContent):
     language: Language
     create_dt: datetime
     code: str
+    org_id: str
 
 
 class AlgoritmeVersionGetOne(AlgoritmeVersionContent):
@@ -172,6 +180,7 @@ class AlgoritmeVersionGetOne(AlgoritmeVersionContent):
     create_dt: datetime
     language: Language
     code: str
+    org_id: str
 
 
 class AlgoritmeQuery(BaseModel):
@@ -217,7 +226,7 @@ class AlgoritmeFilterData(BaseModel):
 
 class SelectedFilters(BaseModel):
     key: str
-    value: str | None
+    value: str | None = None
 
 
 class AlgoritmeQueryResponse(BaseModel):
@@ -227,13 +236,16 @@ class AlgoritmeQueryResponse(BaseModel):
     selected_filters: list[SelectedFilters]
 
 
+class AlgoritmeSimilarQueryResponse(AlgoritmeQueryResponse):
+    scores: list[float]
+
+
 class SearchSuggestionAlgorithms(BaseModel):
     name: str
     organization: str
     lars: str
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class SearchSuggestionResponse(BaseModel):
@@ -249,9 +261,9 @@ class AlgoritmeVersionEarliestPublish(BaseModel):
     organization: str
     create_dt: datetime
     code: str
+    org_id: str
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class AlgoritmeVersionEarliestPublishCount(BaseModel):

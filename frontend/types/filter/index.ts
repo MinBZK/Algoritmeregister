@@ -8,6 +8,7 @@ export interface QueryBase {
   page?: string
   limit?: string
   searchtext?: string
+  sort_option?: string
 }
 
 export interface GenericQuery extends QueryBase {

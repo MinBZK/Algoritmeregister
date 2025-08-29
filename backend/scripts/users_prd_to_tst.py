@@ -1,5 +1,8 @@
 from hashlib import md5
-from pydantic import BaseSettings, Field
+from pydantic import Field
+from pydantic_settings import (
+    BaseSettings,
+)
 from app.services.keycloak.repository import KeycloakRepository
 from app.middleware import kc_settings
 from app.services.keycloak.repository import ConnectionSettings

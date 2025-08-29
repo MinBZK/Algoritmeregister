@@ -27,6 +27,7 @@ api.include_router(routers.c3po.router, prefix="/c3po", tags=["C3PO"])
 api.include_router(routers.templates.router, prefix="/templates", tags=["Templates"])
 api.include_router(routers.user.router, tags=["User"])
 api.include_router(routers.broken_links.router, tags=["Dashboard"])
+api.include_router(routers.national_organisations.router, tags=["Dashboard"])
 api.include_router(routers.aggregations.router, tags=["Aggregations"])
 
 # Includes fastapi instances in routers folders dynamically.

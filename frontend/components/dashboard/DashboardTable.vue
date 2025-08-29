@@ -1,7 +1,55 @@
 <template>
   <div>
     <div class="row">
-      <table class="dashboard-table">
+      <table v-if="useTableDataNatOrg">
+        <thead>
+          <tr>
+            <th>
+              <span>{{ columnName }}</span>
+            </th>
+            <th>
+              {{ columnName2 }}
+            </th>
+            <th>
+              {{ columnName3 }}
+            </th>
+            <th>
+              {{ columnName4 }}
+            </th>
+            <th>
+              {{ columnName5 }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="row in tableDataNatOrg" :key="row.name">
+            <td class="word-break">
+              {{ row.name }}
+            </td>
+            <td>
+              <b>
+                {{ row.Total }}
+              </b>
+            </td>
+            <td>
+              <b>
+                {{ row.KD }}
+              </b>
+            </td>
+            <td>
+              <b>
+                {{ row.Agentschap }}
+              </b>
+            </td>
+            <td>
+              <b>
+                {{ row.Overig }}
+              </b>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table v-else class="dashboard-table">
         <thead>
           <tr>
             <th>
@@ -35,6 +83,7 @@ import type {
   OrganisationTop20,
   PublicationCategoriesCount,
   MonthlyCount,
+  NationalOrganisationsCountDashboard,
 } from '@/types/dashboard'
 import type { LanguageCode } from '@/types/textLoader'
 
@@ -52,19 +101,29 @@ const { t, locale } = useI18n()
 const tableData = ref<
   (MonthlyCount | PublicationCategoriesCount | OrganisationTop20)[]
 >([])
+const tableDataNatOrg = ref<NationalOrganisationsCountDashboard[]>([])
 const columnName = ref('' as string)
 const columnName2 = ref('' as string)
+const columnName3 = ref('' as string)
+const columnName4 = ref('' as string)
+const columnName5 = ref('' as string)
+
+const useTableDataNatOrg = computed(() => {
+  return tableDataNatOrg.value.length > 0
+})
 
 const fetchData = async () => {
   if (props.index === 0) {
     const { data } = await dashboardService.getJoinedOrg()
     columnName.value = t('dashboard.month')
+    columnName2.value = t('dashboard.numberOfMatches')
     tableData.value = data.value as MonthlyCount[]
     emit('count', data.value?.[data.value.length - 1]?.count)
   }
   if (props.index === 1) {
     const { data } = await dashboardService.getPublishedAlg()
     columnName.value = t('dashboard.month')
+    columnName2.value = t('dashboard.numberOfMatches')
     tableData.value = data.value as MonthlyCount[]
     emit('count', data.value?.[data.value.length - 1]?.count)
   }
@@ -73,16 +132,19 @@ const fetchData = async () => {
       mapLocaleName(locale.value as LanguageCode)
     )
     columnName.value = t('dashboard.publicationCategories')
+    columnName2.value = t('dashboard.numberOfMatches')
     tableData.value = data.value as PublicationCategoriesCount[]
   }
   if (props.index === 3) {
-    const { data } = await dashboardService.getOrgTop20(
+    const { data } = await dashboardService.getNationalOrgs(
       mapLocaleName(locale.value as LanguageCode)
     )
-    columnName.value = t('organisation')
-    tableData.value = data.value as OrganisationTop20[]
+    columnName2.value = t('dashboard.ministeryTotal')
+    columnName3.value = t('dashboard.KD')
+    columnName4.value = t('dashboard.AG')
+    columnName5.value = t('dashboard.other')
+    tableDataNatOrg.value = data.value as NationalOrganisationsCountDashboard[]
   }
-  columnName2.value = t('dashboard.numberOfMatches')
 }
 
 function displayNameOrCategory(
@@ -139,6 +201,28 @@ await fetchData()
     th:first-child {
       width: 50% !important;
     }
+  }
+}
+
+.row {
+  overflow-x: auto;
+  margin-bottom: 0em;
+  td,
+  th {
+    padding: 10px;
+  }
+}
+
+table {
+  min-width: 600px;
+  border-collapse: collapse;
+  margin-bottom: 0em;
+}
+
+@media (max-width: 1000px) {
+  .row {
+    display: block;
+    width: 100%;
   }
 }
 </style>

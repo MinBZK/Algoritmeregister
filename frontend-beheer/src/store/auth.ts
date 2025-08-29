@@ -43,7 +43,7 @@ export const useAuthStore = defineStore('auth', {
       }
     },
     selectOrganisation(orgId: string) {
-      const organisation = this.organisations.find((org) => org.code === orgId)
+      const organisation = this.organisations.find((org) => org.org_id === orgId)
       if (!organisation) {
         throw new Error(
           'Selected organisation is not found in organisations array.'

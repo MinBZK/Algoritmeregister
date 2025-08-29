@@ -28,6 +28,7 @@ export interface Organisation {
   id: number
   name: string
   code: string
+  org_id: string
   type: OrgType
   show_page: boolean
   flow: string

@@ -8,7 +8,7 @@
                 "title": "Naam",
                 "max_length": 100,
                 "show_always": true,
-                "help_text": "De naam die gebruikt wordt om het algoritme aan te duiden",
+                "help_text": "De naam die gebruikt wordt om het algoritme aan te duiden.",
                 "instructions": "Gebruik een naam, bij voorkeur met een werkwoord, die aangeeft wat het algoritme doet. Dit kan de algemeen gehanteerde naam zijn van het algoritme binnen de organisatie, mits begrijpelijk voor externen die niet bekend zijn met het algoritme.",
                 "example": "Automatische Verkeersregeling Ringweg",
                 "required": true
@@ -16,7 +16,7 @@
             "description_short": {
                 "type": "string",
                 "title": "Korte omschrijving",
-                "max_length": 350,
+                "max_length": 400,
                 "show_always": true,
                 "help_text": "Een korte beschrijving van het algoritme.",
                 "instructions": "Een korte, duidelijke beschrijving van het algoritme en het proces waarin deze gebruikt wordt. Bij voorkeur in twee of drie zinnen. Doel van dit veld is om snel begrip te krijgen van wat het algoritme doet. Het veld wordt weergegeven in het zoekoverzicht. Vul dit veld in op B1-taalniveau.",
@@ -36,7 +36,6 @@
             "category": {
                 "type": "array",
                 "title": "Thema",
-                "max_items": 3,
                 "show_always": true,
                 "help_text": "Het beleidsterrein waarin het algoritme wordt ingezet",
                 "instructions": "Beleidsterrein(en) waarin het algoritme wordt ingezet.",
@@ -102,7 +101,7 @@
                 "title": "Contactgegevens",
                 "max_length": 500,
                 "show_always": true,
-                "help_text": "De contactgegevens voor deze registratie ",
+                "help_text": "Dit is de plek waar inwoners of bedrijven vragen kunnen stellen over deze registratie. Gebruik algemene contactgegevens, zoals een contactformulier of afdelingsmail – geen persoonlijk e-mailadres.",
                 "instructions": "Het e-mailadres of de website voor contact over deze registratie. Dit moet een geldig mailadres  of website zijn waar burgers, media of andere betrokkenen vragen kunnen stellen over het algoritme zelf of over de gevolgen op basis van uitkomsten van het algoritme. Begin een website-URL met https://",
                 "example": "algoritmes@gemeentenoorderhaaks.nl",
                 "required": true
@@ -218,7 +217,7 @@
                 "title": "Wettelijke basis",
                 "max_length": 2500,
                 "show_always": false,
-                "help_text": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt ",
+                "help_text": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt.",
                 "instructions": "Een omschrijving van de wettelijke basis voor het proces waarin het algoritme ingezet wordt. Geef waar mogelijk in het kort aan wat het doel is van deze wet, zodat dit ook voor niet-juristen begrijpelijk is.",
                 "example": "Het algoritme wordt ingezet voor taken uit de Wegenverkeerswet. Een van de taken is het waarborgen van verkeersveiligheid.",
                 "required": false,
@@ -285,8 +284,17 @@
                         "example": "Impact Assessment Mensenrechten en Algoritmes (IAMA)",
                         "required": false,
                         "recommended_items": [
+                            "AI Impact Assesment (AIIA)",
                             "Data Protection Impact Assessment (DPIA)",
-                            "Impact Assessment Mensenrechten en Algoritmes (IAMA)"
+                            "De Ethische Bijsluiter",
+                            "De Ethische Data Assistant (DEDA)",
+                            "Fundamentele Rechten en Algoritme Impact Assessment (FRAIA)",
+                            "Impact Assessment Mensenrechten en Algoritmes (IAMA)",
+                            "Pre-scan DPIA",
+                            "Privacy Quickscan",
+                            "Toetsingskader Algemene Rekenkamer",
+                            "Utrecht Uthiek Assessment",
+                            "Z-Inspection"
                         ]
                     },
                     "link": {
@@ -431,7 +439,7 @@
                 "title": "Bron-ID",
                 "max_length": 100,
                 "show_always": false,
-                "help_text": "De unieke code van dit algoritme in het register van de eigenaar",
+                "help_text": "De unieke code van dit algoritme in het register van de eigenaar.",
                 "instructions": "Indien van toepassing, de unieke identificatie voor deze registratie zoals door de eigenaar wordt gehanteerd. Dit is dus de verwijzing naar het algoritme in de interne database of het interne register van uw organisatie.",
                 "example": "n.v.t.",
                 "required": false

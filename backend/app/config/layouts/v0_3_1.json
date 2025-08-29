@@ -1,5 +1,5 @@
 {
-    "headerCardGrouping": {
+    "genericCardGrouping": {
         "mainElement": "description_short",
         "subElements": [
             "organization",

@@ -62,7 +62,6 @@
     </dashboard-tab>
 
     <div class="item-title">{{ t('dashboard.andFurther') }}</div>
-
     <dashboard-tab
       v-for="(data, index) in dashboardData.slice(2)"
       :key="data.title"
@@ -70,11 +69,12 @@
       :title="data.title"
       :count="data.count"
       :description="data.description"
+      :legenda-description="data.legendaDescription"
       :icon="data.icon"
       @update:model-value="(value) => handleUpdate(value, data)"
     >
       <button
-        v-show="index == 0 && data.show"
+        v-show="index === 0 && data.show"
         class="button-table"
         @click="data.showTable = !data.showTable"
       >
@@ -127,7 +127,11 @@ const checkIfExpanded = () => {
 
 const handleUpdate = (value: boolean, data: DashboardItem) => {
   if (!data.show && isDashboardItem(data)) {
-    data.showTable = value
+    if (!('graph' in data)) {
+      data.showTable = true
+    } else {
+      data.showTable = value
+    }
   }
   checkIfExpanded()
 }
@@ -172,7 +176,11 @@ const formatDate = (date: string) => {
 const toggleOverview = () => {
   for (const item in dashboardData.value) {
     dashboardData.value[item].show = !isExpanded.value
-    dashboardData.value[item].showTable = false
+    if (!('graph' in dashboardData.value[item])) {
+      dashboardData.value[item].showTable = true
+    } else {
+      dashboardData.value[item].showTable = false
+    }
   }
   for (const item in dashboardMapData.value) {
     dashboardMapData.value[item].show = !isExpanded.value
@@ -193,7 +201,8 @@ const fetchHtmlFigures = async () => {
           title: string,
           description: string,
           graphKey: string | undefined,
-          icon: string
+          icon: string,
+          legendaDescription?: string | undefined
         ) => {
           const item: DashboardItem = {
             show: true,
@@ -202,6 +211,9 @@ const fetchHtmlFigures = async () => {
             showTable: true,
             ...(graphKey !== undefined && {
               graph: htmlFigures.static[graphKey + locale.value],
+            }),
+            ...(legendaDescription !== undefined && {
+              legendaDescription,
             }),
             icon,
           }
@@ -247,6 +259,12 @@ const fetchHtmlFigures = async () => {
             graphKey: 'graph-publication-categories-',
             icon: iconBarChart,
           },
+          {
+            title: t('dashboard.nationalOrganisations'),
+            description: t('dashboard.nationalOrganisationsDescription'),
+            legendaDescription: t('dashboard.natOrgLegendaDescription'),
+            icon: iconBarChart,
+          },
         ]
 
         const dashboardMapDataToAdd = [
@@ -278,6 +296,13 @@ const fetchHtmlFigures = async () => {
             clickOn: t('dashboard.clickOnEnvironmentalService'),
             geojsonFile: 'omgevingsdienstgrenzen.json',
           },
+          {
+            organisationType: 'safetyRegion',
+            title: t('dashboard.safetyRegions'),
+            description: t('dashboard.safetyRegionsMapDescription'),
+            clickOn: t('dashboard.clickOnSafetyRegion'),
+            geojsonFile: 'veiligheidsregiosgrenzen.json',
+          },
         ]
 
         for (const item of dashboardDataToAdd) {
@@ -285,7 +310,8 @@ const fetchHtmlFigures = async () => {
             item.title,
             item.description,
             item.graphKey,
-            item.icon
+            item.icon,
+            item.legendaDescription
           )
         }
 

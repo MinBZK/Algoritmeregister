@@ -38,7 +38,7 @@ def get_state_change_action(
     all_flows = load_flow_configurations()
 
     org_repository = OrganisationRepository(db)
-    org = org_repository.get_by_code(as_org)
+    org = org_repository.get_by_org_id(as_org)
     if not org:
         raise HTTPException(404)
     flow = all_flows[org.flow]
@@ -113,8 +113,8 @@ def update_state_by_lars(
     if target_state == State.PUBLISHED:
         # Publication -> do translations.
         for lang in [LanguageCode.ENGLISH, LanguageCode.FRISIAN]:
-            new_algo = schemas.AlgoritmeVersionIn(**latest_nld.dict())
-            new_algo_model = models.AlgoritmeVersion(**new_algo.dict())
+            new_algo = schemas.AlgoritmeVersionIn(**latest_nld.model_dump())
+            new_algo_model = models.AlgoritmeVersion(**new_algo.model_dump())
             background_tasks.add_task(
                 apply_translation, new_algo_model, db, user.username, lang
             )

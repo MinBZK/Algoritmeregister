@@ -12,8 +12,8 @@ from app.schemas import Language
 
 
 # revision identifiers, used by Alembic.
-revision = '729c45f8a00f'
-down_revision = 'fd3c6095627b'
+revision = "729c45f8a00f"
+down_revision = "fd3c6095627b"
 branch_labels = None
 depends_on = None
 
@@ -21,7 +21,7 @@ depends_on = None
 def upgrade() -> None:
     language = postgresql.ENUM(Language, name="language", create_type=False)
     op.create_table(
-        "precomputed_values", 
+        "precomputed_values",
         sa.Column("id", sa.Integer(), primary_key=True, index=True),
         sa.Column("language", language, nullable=False),
         sa.Column("key", sa.VARCHAR(length=1024), nullable=False),

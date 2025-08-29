@@ -82,7 +82,7 @@ const { add: addNotification } = useSnackbarStore()
 
 const props = defineProps<{
   flow?: string
-  orgCode?: string
+  orgId?: string
 }>()
 
 const loading = ref<number>(0)
@@ -90,14 +90,14 @@ const valid = ref<boolean>(true)
 
 const users = ref<User[]>([])
 const getUsersInScope = async () => {
-  if (!props.orgCode) return
+  if (!props.orgId) return
   loading.value++
   let users_by_all_groups_role: User[] = []
   let users_by_org: User[] = []
   await getUsers({ role: 'all_groups' }).then((response) => {
     users_by_all_groups_role = response.data.users
   })
-  await getUsers({ org: props.orgCode }).then((response) => {
+  await getUsers({ org: props.orgId }).then((response) => {
     users_by_org = response.data.users
   })
   // De-duplicate users
@@ -117,8 +117,8 @@ getUsersInScope()
 const flowStructure = ref<Flow>()
 const getFlow = async () => {
   loading.value++
-  if (!props.orgCode) return
-  await getFlowInstructions(props.orgCode).then((response) => {
+  if (!props.orgId) return
+  await getFlowInstructions(props.orgId).then((response) => {
     flowStructure.value = response.data
   })
   loading.value--
@@ -154,7 +154,7 @@ const saveRoles = async () => {
 }
 
 watch(
-  () => [props.orgCode, props.flow],
+  () => [props.orgId, props.flow],
   async () => {
     getUsersInScope()
     getFlow()

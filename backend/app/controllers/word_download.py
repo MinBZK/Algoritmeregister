@@ -18,7 +18,7 @@ def get_org_data(db: Session, org_name: str) -> list[schemas.AlgoritmeVersionDow
     algorithms = algoritme_version_repository.get_latest_by_org_by_lang(
         org_name, Language.NLD
     )
-    return [schemas.AlgoritmeVersionDownload(**row.dict()) for row in algorithms]
+    return [schemas.AlgoritmeVersionDownload(**row.model_dump()) for row in algorithms]
 
 
 def get_algo_data(db: Session, lars: str) -> schemas.AlgoritmeVersionDownload | None:
@@ -27,7 +27,7 @@ def get_algo_data(db: Session, lars: str) -> schemas.AlgoritmeVersionDownload | 
         lars, Language.NLD
     )
     if algorithm:
-        return schemas.AlgoritmeVersionDownload(**algorithm.dict())
+        return schemas.AlgoritmeVersionDownload(**algorithm.model_dump())
 
 
 def insert_rich_text_field(doc, field: str):
@@ -216,7 +216,9 @@ def generate_word_download(
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     )
     response = StreamingResponse(io.BytesIO(stream.read()), media_type=media_type)
-    response.headers["Content-Disposition"] = f'attachment; filename="{filename}"'
+    response.headers[
+        "Content-Disposition"
+    ] = f'attachment; filename="{filename}"'  # noqa: E702
     return response
 
 

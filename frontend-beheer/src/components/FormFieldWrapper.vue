@@ -140,7 +140,7 @@ import { FormFieldProperties } from '@/types/form'
 import { useFormDataStore } from '@/store/form-data'
 import { computed, ref, watch } from 'vue'
 import FormFieldInput from './FormFieldInput.vue'
-import { postC3poRequest } from '@/services/c3po'
+// import { postC3poRequest } from '@/services/c3po'
 import { LanguageRule } from '@/types/c3po'
 
 const dataStore = useFormDataStore()
@@ -165,30 +165,30 @@ const suggestion = computed(() => {
     return langLevelRule?.result?.suggestion || null
 })
 const languageCheckInProgress = ref(false)
-const performLanguageChecks = () => {
-  if (!enableLanguageCheck.value || !hasUnsavedChanges.value) {
-    return
-  }
-  const text = dataStore.data[props.fieldKey]
-  if (!text) {
-    failedRules.value = null
-    return
-  }
-  languageCheckInProgress.value = true
-  postC3poRequest(text)
-    .then((response) => {
-      const ruleResults = response.data?.rules
-      if(!ruleResults?.length) {
-        failedRules.value = null
-        return
-      }
-      failedRules.value = ruleResults.filter((rule: LanguageRule) => rule.passed === false) || null
-      failedRules.value?.sort((a, b) => a.title.localeCompare(b.title))
-  })
-    .finally(() => {
-      languageCheckInProgress.value = false
-    })
-}
+// const performLanguageChecks = () => {
+//   if (!enableLanguageCheck.value || !hasUnsavedChanges.value) {
+//     return
+//   }
+//   const text = dataStore.data[props.fieldKey]
+//   if (!text) {
+//     failedRules.value = null
+//     return
+//   }
+//   languageCheckInProgress.value = true
+//   postC3poRequest(text)
+//     .then((response) => {
+//       const ruleResults = response.data?.rules
+//       if(!ruleResults?.length) {
+//         failedRules.value = null
+//         return
+//       }
+//       failedRules.value = ruleResults.filter((rule: LanguageRule) => rule.passed === false) || null
+//       failedRules.value?.sort((a, b) => a.title.localeCompare(b.title))
+//   })
+//     .finally(() => {
+//       languageCheckInProgress.value = false
+//     })
+// }
 
 const insertSuggestion = () => {
   handleUpdatedContent(suggestion.value)

@@ -114,7 +114,7 @@ export const useFormDataStore = defineStore('form-data', {
           this.data.lars = response.data.lars_code
           this.unsavedChanges = false
           // Change organisation based on the saved algorithm. Needed for loading from cookies
-          authStore.selectOrganisation(this.orgFromData!.code)
+          authStore.selectOrganisation(this.orgFromData!.org_id)
           this.feedback.success = content.formDataStore.create.success
           return response
         })

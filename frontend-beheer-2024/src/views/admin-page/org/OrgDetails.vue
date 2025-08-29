@@ -25,13 +25,21 @@
           border
           class="pa-4"
         >
-          <v-text-field
+          <v-select
             v-model="orgUpdate.name"
-            variant="outlined"
+            :items="altOrgNames"
             label="Organisatienaam (Zichtbaar door gehele website)"
+            variant="outlined"
             :rules="[requiredRule]"
             class="mt-2"
           />
+          <!-- <v-text-field
+            v-model="orgUpdate.name"
+            variant="outlined"
+            label="Organisatienaam"
+            :rules="[requiredRule]"
+            class="mt-2"
+          /> -->
           <v-text-field
             v-model="orgUpdate.code"
             variant="outlined"
@@ -73,7 +81,7 @@
               warn-with-dialog
               dialog-text="Weet je zeker dat je deze organisatie wilt verwijderen?"
               dialog-title="Dit kan niet ongedaan gemaakt worden."
-              @confirm="remove(currentOrg?.code!)"
+              @confirm="remove(currentOrg?.org_id!)"
             >
               Verwijderen
             </AlgregButton>
@@ -87,7 +95,7 @@
         border
         class="pa-4"
       >
-        <flow-checker :flow="currentOrg?.flow" :org-code="currentOrg?.code" />
+        <flow-checker :flow="currentOrg?.flow" :org-id="currentOrg?.org_id" />
       </v-card>
     </v-col>
   </v-row>
@@ -105,6 +113,7 @@ import {
   createOrganisation,
   deleteOrganisation,
   updateOrganisation,
+  getAltOrganisationNames,
 } from '@/services/organisation'
 import { SnackbarTheme, useSnackbarStore } from '@/store/snackbar'
 import { notifications } from '@/config/notifications'
@@ -114,6 +123,7 @@ const currentOrg = ref<Organisation>()
 const orgUpdate = ref<OrganisationUpdate>({
   name: '',
   code: '',
+  org_id: '',
   flow: 'ictu_last',
   type: OrgType.gemeente,
 })
@@ -124,6 +134,12 @@ const { add: addNotification } = useSnackbarStore()
 const loading = ref<boolean>(false)
 const route = useRoute()
 const flowOptions = ['ictu_last', 'self_publish_two']
+const altOrgNames = ref<string[]>([])
+
+const fetchAltOrgNames = async (orgName: string) => {
+  const response = await getAltOrganisationNames(orgName)
+  altOrgNames.value = response.data
+}
 
 const authStore = useAuthStore()
 const assignOrg = () => {
@@ -131,10 +147,12 @@ const assignOrg = () => {
     (org) => route.params.orgCode == org.code
   )
   if (existingOrg) {
+    fetchAltOrgNames(existingOrg.code)
     currentOrg.value = { ...existingOrg }
     orgUpdate.value = {
       name: existingOrg.name,
       code: existingOrg.code,
+      org_id: existingOrg.org_id,
       flow: existingOrg.flow,
       type: existingOrg.type,
     }
@@ -148,7 +166,7 @@ const orgTypes = Object.values(OrgType).filter(
 
 const save = async () => {
   if (currentOrg.value) {
-    await update(orgUpdate.value, currentOrg.value.code)
+    await update(orgUpdate.value, currentOrg.value.org_id)
   } else {
     await add(orgUpdate.value)
   }
@@ -161,7 +179,7 @@ const add = async (org: OrganisationUpdate) => {
       currentOrg.value = response.data
       await authStore.fetchMe()
       addNotification(notifications.addOrgSuccess!)
-      router.push({ name: 'orgView', params: { orgCode: response.data.code } })
+      router.push({ name: 'orgView', params: { orgCode: response.data.org_id } })
     })
     .catch((error) => {
       if (error.data == 'NAME_TAKEN') {
@@ -174,14 +192,19 @@ const add = async (org: OrganisationUpdate) => {
           message: `Nieuwe organisatie aanmaken mislukt; De code ${org.code} is al in gebruik.`,
           theme: SnackbarTheme.error,
         })
+      } else if (error.data == 'ORG_ID_TAKEN'){
+        addNotification({
+          message: `Nieuwe organisatie aanmaken mislukt; De org id ${org.org_id} is al in gebruik.`,
+          theme: SnackbarTheme.error,
+        })
       }
     })
   loading.value = false
 }
 
-const update = async (org: OrganisationUpdate, orgCode: string) => {
+const update = async (org: OrganisationUpdate, orgId: string) => {
   loading.value = true
-  await updateOrganisation(orgCode, org)
+  await updateOrganisation(orgId, org)
     .then(async (response) => {
       currentOrg.value = response.data
       await authStore.fetchMe()
@@ -198,14 +221,19 @@ const update = async (org: OrganisationUpdate, orgCode: string) => {
           message: `Organisatie aanpassen  mislukt; De code ${org.code} is al in gebruik.`,
           theme: SnackbarTheme.error,
         })
+      } else if (error.data == 'ORG_ID_TAKEN') {
+        addNotification({
+          message: `Organisatie aanpassen  mislukt; De code ${org.org_id} is al in gebruik.`,
+          theme: SnackbarTheme.error,
+        })
       }
     })
   loading.value = false
 }
 
-const remove = async (orgCode: string) => {
+const remove = async (orgId: string) => {
   loading.value = true
-  await deleteOrganisation(orgCode)
+  await deleteOrganisation(orgId)
     .then(async () => {
       addNotification(notifications.removeOrgSuccess!)
       router.push({ name: 'beheer.organisation' })

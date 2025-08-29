@@ -1,29 +1,29 @@
-name;identifier
-DCMR Milieudienst Rijnmond;OD22
-Fryske Utfieringstsjinst Miljeu en Omjouwing;OD02
-Omgevingsdienst Achterhoek;OD08
-Omgevingsdienst Brabant Noord;OD29
-Omgevingsdienst de Vallei;OD09
-Omgevingsdienst Flevoland & Gooi en Vechtstreek;OD15
-Omgevingsdienst Groningen;OD01
-Omgevingsdienst Haaglanden;OD19
-Omgevingsdienst IJmond;OD17
-Omgevingsdienst IJsselland;OD04
-Omgevingsdienst Midden- en West-Brabant;OD25
-Omgevingsdienst Midden-Holland;OD21
-Omgevingsdienst Noord-Holland Noord;OD16
-Omgevingsdienst Noordzeekanaalgebied;OD18
-Omgevingsdienst Regio Arnhem;OD10
-Omgevingsdienst Regio Nijmegen;OD11
-Omgevingsdienst Regio Utrecht;OD14
-Omgevingsdienst Rivierenland;OD12
-Omgevingsdienst Twente;OD05
-Omgevingsdienst Veluwe;OD06
-Omgevingsdienst West-Holland;OD20
-Omgevingsdienst Zuid-Holland Zuid;OD23
-Omgevingsdienst Zuidoost-Brabant;OD26
-RUD Drenthe;OD03
-RUD Limburg Noord;OD27
-RUD Utrecht;OD13
-RUD Zeeland;OD24
-RUD Zuid-Limburg;OD28
+name;identifier;org_id
+DCMR Milieudienst Rijnmond;OD22;so0335
+Fryske Utfieringstsjinst Miljeu en Omjouwing;OD02;so0794
+Omgevingsdienst Achterhoek;OD08;so0718
+Omgevingsdienst Brabant Noord;OD29;so0439
+Omgevingsdienst de Vallei;OD09;so0787
+Omgevingsdienst Flevoland & Gooi en Vechtstreek;OD15;so0696
+Omgevingsdienst Groningen;OD01;so0721
+Omgevingsdienst Haaglanden;OD19;so0700
+Omgevingsdienst IJmond;OD17;so0504
+Omgevingsdienst IJsselland;OD04;so0881
+Omgevingsdienst Midden- en West-Brabant;OD25;so0712
+Omgevingsdienst Midden-Holland;OD21;so0713
+Omgevingsdienst Noord-Holland Noord;OD16;so0827
+Omgevingsdienst Noordzeekanaalgebied;OD18;so0789
+Omgevingsdienst Regio Arnhem;OD10;so0826
+Omgevingsdienst Regio Nijmegen;OD11;so0783
+Omgevingsdienst Regio Utrecht;OD14;so0697
+Omgevingsdienst Rivierenland;OD12;so0780
+Omgevingsdienst Twente;OD05;so0892
+Omgevingsdienst Veluwe;OD06;so1091
+Omgevingsdienst West-Holland;OD20;so0455
+Omgevingsdienst Zuid-Holland Zuid;OD23;so0669
+Omgevingsdienst Zuidoost-Brabant;OD26;so0790
+Omgevingsdienst Drenthe;OD03;so0821
+RUD Limburg Noord;OD27;so0901
+RUD Utrecht;OD13;so0697
+RUD Zeeland;OD24;so0820
+RUD Zuid-Limburg;OD28;so0788

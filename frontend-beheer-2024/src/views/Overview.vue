@@ -27,7 +27,7 @@
             rounded="lg"
             variant="outlined"
             hide-details
-            @update:model-value="authStore.selectOrganisation($event.code)"
+            @update:model-value="authStore.selectOrganisation($event.org_id)"
           />
         </v-row>
       </template>

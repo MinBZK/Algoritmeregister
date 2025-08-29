@@ -14,31 +14,44 @@ const props = defineProps<{
 
 const foundImpactToetsen = computed(() => {
   const impactToetsen: string[] = []
-  let hasOtherImpacttoets = false
-  const impactToetsenList = ['DPIA', 'IAMA']
+  const displayImpacttoets: string[] = []
+  const seen = new Set<string>()
+  const maxLength = 60
+  let currentLength = 0
+  const impactToetsAbbrevations = [
+    'AIIA',
+    'DEDA',
+    'DPIA',
+    'FRAIA',
+    'IAMA',
+    'Uthiek',
+  ]
 
   if (Array.isArray(props.text)) {
     props.text.forEach((item) => {
       if (typeof item.title === 'string') {
-        const foundImpactToets = impactToetsenList.find((toets) =>
-          item.title.includes(toets)
+        const foundImpactToetsAbbreviation = impactToetsAbbrevations.find(
+          (toets) => item.title.includes(toets)
         )
-        if (foundImpactToets && !impactToetsen.includes(foundImpactToets)) {
-          impactToetsen.push(foundImpactToets)
-        } else {
-          hasOtherImpacttoets = true
+        const impactToetsToAdd =
+          foundImpactToetsAbbreviation ?? item.title.trim()
+        if (impactToetsToAdd && !seen.has(impactToetsToAdd)) {
+          seen.add(impactToetsToAdd)
+          impactToetsen.push(impactToetsToAdd)
         }
       }
     })
   }
-  if (hasOtherImpacttoets && impactToetsen.length === 0) {
-    return ['...']
-  }
 
-  if (hasOtherImpacttoets) {
-    impactToetsen.push('...')
+  for (const item of impactToetsen) {
+    const nextItem = displayImpacttoets.length === 0 ? item : ', ' + item
+    if (currentLength + nextItem.length > maxLength) {
+      displayImpacttoets.push('...')
+      break
+    }
+    displayImpacttoets.push(item)
+    currentLength += nextItem.length
   }
-
-  return impactToetsen
+  return displayImpacttoets
 })
 </script>

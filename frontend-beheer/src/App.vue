@@ -29,7 +29,7 @@ onMounted(async () => {
   await authStore.fetchOrganisations()
   if (localStorage) {
     try {
-      authStore.selectOrganisation(localStorage.code)
+      authStore.selectOrganisation(localStorage.org_id)
     } catch {
       // localStorage does not match authorization, default to first authorised org.
       authStore.selectedOrg = authStore.organisations[0]!

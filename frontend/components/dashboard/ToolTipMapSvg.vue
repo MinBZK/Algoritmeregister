@@ -1,5 +1,9 @@
 <template>
-  <div v-if="props.tooltipData" class="display-tooltip-data">
+  <div
+    v-if="props.tooltipData"
+    class="display-tooltip-data"
+    :class="{ highlighted: highlightClass }"
+  >
     <div :class="'color-box ' + props.tooltipData.classificationColour"></div>
     <b>{{ props.tooltipData.orgName }}</b>
     <br />
@@ -25,6 +29,7 @@ const props = defineProps<{
   organisationType: string
 }>()
 const { t } = useI18n()
+const highlight = ref<boolean>(false)
 
 const clickOnMessage = computed(() => {
   const messages = {
@@ -33,16 +38,32 @@ const clickOnMessage = computed(() => {
     [OrganisationTypes.WaterAuthority]: 'dashboard.clickOnWaterAuthority',
     [OrganisationTypes.EnvironmentalService]:
       'dashboard.clickOnEnvironmentalService',
+    [OrganisationTypes.SafetyRegion]: 'dashboard.clickOnSafetyRegion',
   }
   return t(messages[props.organisationType as keyof typeof messages])
 })
+
+watch(
+  () => props.tooltipData?.orgCode,
+  (newData, oldData) => {
+    if (newData && newData !== oldData) {
+      highlight.value = true
+      setTimeout(() => {
+        highlight.value = false
+      }, 500)
+    }
+  }
+)
+const highlightClass = computed(() => highlight.value)
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .display-tooltip-data {
   background-color: white;
-  border: 1px solid #cccccc;
+  border: 1px solid #e6e6e6;
   padding: 1em;
+  margin-bottom: 1em;
+  transition: box-shadow 0.5s ease-in-out;
 }
 
 .display-tooltip-data b {
@@ -69,5 +90,9 @@ const clickOnMessage = computed(() => {
   align-content: center;
   margin-right: 0.5rem;
   vertical-align: middle;
+}
+
+.highlighted {
+  box-shadow: 0 0 20px rgba(85, 177, 165, 0.6);
 }
 </style>

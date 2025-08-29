@@ -13,7 +13,7 @@ class UserConfiguration:
     def __init__(self, user: User) -> None:
         self.user = user
         all_configs = load_flow_configurations()
-        self.flows = {org.code: all_configs[org.flow] for org in user.organisations}
+        self.flows = {org.org_id: all_configs[org.flow] for org in user.organisations}
 
     def has_permission(self, org_context: str, permission: Permission) -> bool:
         return True if permission in self._permissions(org_context) else False
@@ -59,4 +59,4 @@ class UserConfiguration:
         ordered_actions = [
             a for a in context["state_change_actions"].values() if a in all_permissions
         ]
-        return [StateChangeAction(**a.dict()) for a in ordered_actions]
+        return [StateChangeAction(**a.model_dump()) for a in ordered_actions]

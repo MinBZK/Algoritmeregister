@@ -51,5 +51,6 @@ def calc_highlighted_algorithms(
     for n, _ in enumerate(latest_algo_owner):
         latest_algo_owner[n] = db_list_to_python_list(latest_algo_owner[n])
     return [
-        schemas.HighlightedAlgorithmResponse.from_orm(alg) for alg in latest_algo_owner
+        schemas.HighlightedAlgorithmResponse.model_validate(alg)
+        for alg in latest_algo_owner
     ]

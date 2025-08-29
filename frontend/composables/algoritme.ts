@@ -15,7 +15,7 @@ export const useAlgoritme = () => {
   watch(
     () => route.name,
     () => {
-      if (!route.name?.toString().includes('algoritme-slug-lars'))
+      if (!route.name?.toString().includes('algoritme-params'))
         setAlgoritme(null)
     }
   )

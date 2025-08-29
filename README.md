@@ -35,18 +35,19 @@ Environment variables are stored in `.env` in the frontend and backend, but beca
 
 1. Start database. Run from `/backend` folder: `docker compose up -d`.
 
-Validate the backend is running by navigating to the GUI (DBgate) on `http://localhost:8093`. There you should be able to open the database `algreg_db`.
+Validate the backend is running by navigating to the GUI (DBgate) on `http://localhost:8002`. There you should be able to open the database `algreg_db`.
+The database can be populated using the ETL. Validate the ETL service is running by navigating to the ETL GUI on `http://localhost:8001`. Click on `Synchroniseer` to start the synchronization process.
 
 ### Backend
 
-All commnands below should be run from the `/backend` directory.
+All commands below should be run from the `/backend` directory.
 
 2. Specify Python version to use for virtual environment: `poetry env use <python_version>`. (The required Python version is specified in `backend/.python-version`.)
 3. Install packages: `poetry install`.
 4. Run database migrations: `poetry run alembic upgrade head`.
 5. Start backend: `poetry run uvicorn app.main:app --reload`
 
-Validate the backend is running by navigating to the documentation on `http://localhost:8000/api/api-docs`.
+Validate the backend is running by navigating to the documentation on `http://localhost:8000/api-docs`.
 
 ### Frontend
 

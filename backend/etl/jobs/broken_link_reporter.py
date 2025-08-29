@@ -9,7 +9,7 @@ from app.schemas.misc import Language
 from app.models.dashboard_models.broken_links import BrokenLinks
 from etl.logger import get_logger
 
-logger = get_logger()
+logger = get_logger(__name__)
 
 C3PO_URL = os.getenv("C3PO_URL")
 if C3PO_URL:
@@ -26,7 +26,7 @@ def check_broken_link(db: Session, lang: Language, current_batch: int):
     algoritme_version_repo = AlgoritmeVersionRepository(db)
     latest_algos = algoritme_version_repo.get_published_by_lang(lang)
     for algo in latest_algos:
-        algo_dict = algo.dict()
+        algo_dict = algo.model_dump()
         payload_values_str = " , ".join(map(str, algo_dict.values()))
 
         message = {

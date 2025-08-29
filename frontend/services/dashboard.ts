@@ -5,6 +5,7 @@ import type {
   PublicationCategoriesCount,
   MonthlyCount,
   HtmlFiguresRecent,
+  NationalOrganisationsCountDashboard,
 } from '@/types/dashboard'
 
 const getJoinedOrg = () => {
@@ -31,6 +32,16 @@ const getOrgTop20 = (language: Language) => {
 const getPubCategories = (language: Language) => {
   return useFetch<PublicationCategoriesCount[]>(
     `/algorithm/publication-categories/${language}`,
+    {
+      baseURL: useRuntimeConfig().public.apiBaseUrl,
+      method: 'GET',
+    }
+  )
+}
+
+const getNationalOrgs = (language: Language) => {
+  return useFetch<NationalOrganisationsCountDashboard[]>(
+    `/algorithm/national-organisations/${language}`,
     {
       baseURL: useRuntimeConfig().public.apiBaseUrl,
       method: 'GET',
@@ -66,6 +77,13 @@ const getEnvironmentalServiceData = () => {
   })
 }
 
+const getSafetyData = () => {
+  return useFetch<DocumentCount[]>('/organisation/safety-regions', {
+    baseURL: useRuntimeConfig().public.apiBaseUrl,
+    method: 'GET',
+  })
+}
+
 const getHtmlFiguresRecent = () =>
   useFetch<HtmlFiguresRecent>(`/dashboard/figures`, {
     baseURL: useRuntimeConfig().public.apiBaseUrl,
@@ -76,9 +94,11 @@ export default {
   getJoinedOrg,
   getPublishedAlg,
   getOrgTop20,
+  getNationalOrgs,
   getPubCategories,
   getMunicipalityData,
   getProvinceData,
   getWaterAuthorityData,
   getEnvironmentalServiceData,
+  getSafetyData,
 }

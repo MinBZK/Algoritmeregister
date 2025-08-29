@@ -92,7 +92,7 @@ export const useFormDataStore = defineStore('form-data', {
     },
     async fetchAvailableActions(lars: string) {
       if (!this.orgFromData) return noOrgSelectedResponse()
-      await getAvailableActions(this.orgFromData.code, lars).then(
+      await getAvailableActions(this.orgFromData.org_id, lars).then(
         (response) => {
           this.availableActions = response.data
         }
@@ -148,7 +148,7 @@ export const useFormDataStore = defineStore('form-data', {
             unknownError()
           )
           // Change organisation based on the saved algorithm. Needed for loading from cookies
-          this.authStore.selectOrganisation(this.orgFromData!.code)
+          this.authStore.selectOrganisation(this.orgFromData!.org_id)
           this.snackbarStore.add(notifications.createSuccess!)
           return response
         })
@@ -173,7 +173,7 @@ export const useFormDataStore = defineStore('form-data', {
     },
     async handleStateChange(lars: string, action: StateChangeAction) {
       if (!this.orgFromData) return noOrgSelectedResponse()
-      await updateAlgorithmState(this.orgFromData.code, lars, action)
+      await updateAlgorithmState(this.orgFromData.org_id, lars, action)
         .then(async () => {
           await this.fetchAvailableActions(lars).catch(() => unknownError())
           this.data.state = action.target_state

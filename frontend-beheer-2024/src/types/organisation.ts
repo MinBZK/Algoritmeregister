@@ -27,6 +27,7 @@ export enum OrgType {
 export interface OrganisationUpdate {
   name: string
   code: string
+  org_id: string
   type: OrgType
   flow: string
 }
@@ -35,6 +36,7 @@ export interface Organisation {
   id: number
   name: string
   code: string
+  org_id: string
   type: OrgType
   show_page: boolean
   flow: string
@@ -61,4 +63,8 @@ export interface UpdateOptInResponse extends FastApiResponse {
 
 export interface DeleteOrganisationResponse extends FastApiResponse {
   data: null
+}
+
+export interface GetAltOrganisationNames extends FastApiResponse {
+  data: string[]
 }

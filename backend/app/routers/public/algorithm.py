@@ -1,15 +1,14 @@
 from fastapi import APIRouter, HTTPException, status, Depends, Path, BackgroundTasks
 from sqlalchemy import desc, text
 from sqlalchemy.orm import Session
-from app import models, schemas, controllers, repositories
+from app import models, schemas, controllers
 from app.config.settings import Settings
-from app.config.org_name_mapping import org_name_mapping
 from app.middleware.authorisation.schemas import State
 from app.middleware.middleware import get_db
 from app.schemas.misc import Language
-from app.schemas.organization import OrganisationMappingResult
 from app.services.algoritme_version import db_list_to_python_list
 from app.controllers.smart_search import perform_smart_search, perform_suggestion_search
+from app.controllers.vector_search import search_similar
 from app.controllers.precomputed_values import calc_highlighted_algorithms
 from app.util.logger import get_logger
 
@@ -37,6 +36,24 @@ async def get_all(
 
 
 @router.get(
+    "/algoritme/{language}/similar/{lars}",
+    response_model=schemas.AlgoritmeSimilarQueryResponse,
+)
+async def get_similar(
+    lars: str,
+    db: Session = Depends(get_db),
+    language: Language = Path(alias="language"),
+) -> schemas.AlgoritmeSimilarQueryResponse:
+    return search_similar(
+        lars,
+        db,
+        language,
+        model=models.AlgoritmeVersion.embedding_nfi,
+        min_score=45,
+    )
+
+
+@router.get(
     "/suggestion/{language}/{search}", response_model=schemas.SearchSuggestionResponse
 )
 async def get_search_suggestion(
@@ -45,30 +62,6 @@ async def get_search_suggestion(
     language: Language = Path(alias="language"),
 ) -> schemas.SearchSuggestionResponse:
     return perform_suggestion_search(search, db, language)
-
-
-@router.get("/organisation/{language}/{search}")
-async def get_elaborate_organisation(
-    search: str = "",
-    language: Language = Path(alias="language"),
-    db: Session = Depends(get_db),
-) -> schemas.OrganisationSearchSuggestionResponse | None:
-    org_repo = repositories.OrganisationRepository(db)
-    results = org_repo.get_overview_by_lang(language)
-    organisation_details = [
-        schemas.OrganisationMappingResult(code=result.code, name=result.name)
-        for result in results
-        if search.lower() in result.name.lower()
-    ]
-    results_from_mapping = org_name_mapping.get(language, {}).get(search.lower(), {})
-
-    if results_from_mapping:
-        mapped_org = OrganisationMappingResult(**results_from_mapping)
-        return schemas.OrganisationSearchSuggestionResponse(organisations=[mapped_org])
-    elif organisation_details:
-        return schemas.OrganisationSearchSuggestionResponse(
-            organisations=organisation_details
-        )
 
 
 @router.get(
@@ -120,7 +113,7 @@ async def get_one(
         )
 
     result = db_list_to_python_list(result)
-    return schemas.AlgoritmeVersionDB.from_orm(result)
+    return schemas.AlgoritmeVersionDB.model_validate(result)
 
 
 @router.get(

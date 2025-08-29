@@ -9,6 +9,8 @@ const props = defineProps<{ name: string }>()
 <style scoped>
 .nuxt-icon {
   display: inline-block !important;
-  padding-left: 0;
+  align-items: center;
+  vertical-align: middle;
+  line-height: 1;
 }
 </style>

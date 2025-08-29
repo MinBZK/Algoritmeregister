@@ -11,9 +11,9 @@ from app.controllers.algoritme_version.endpoints import apply_translation
 from app.schemas import Language
 from app.services.algoritme_version import db_list_to_python_list
 from app.services.translation.base_translator import LanguageCode
-from app.util.logger import get_logger
+from etl.logger import get_logger
+from datetime import timedelta, datetime, timezone
 
-# initialize new independent logger
 logger = get_logger(__name__)
 
 
@@ -49,18 +49,43 @@ def apply(
         .filter(AlgoritmeVersion.language == lang_code_map[target_lang])
         .all()
     )
+    now = datetime.now(timezone.utc)
+    translation_map = {t.algoritme_id: t for t in existing_translations}
 
     total_algos = len(algos)
     for algo_count, algo in enumerate(algos, 1):
-        if any(
-            existing_translation.algoritme_id == algo.algoritme_id
-            for existing_translation in existing_translations
-        ):
+        translated = translation_map.get(algo.algoritme_id)
+        needs_translation = False
+
+        if translated is None:
+            needs_translation = True
+            reason = "No translation found"
+
+        elif algo.create_dt and translated.create_dt:
+            if translated.create_dt < algo.create_dt:
+                age_difference = now - translated.create_dt
+                if age_difference > timedelta(hours=12):
+                    needs_translation = True
+                    reason = "Translation is older than 12 hours"
+
+        if not needs_translation:
             logger.info(
-                f"({algo_count}/{total_algos}) Skipping {algo.name} because it already has a translation in {lang_code_map[target_lang]}."
+                f"({algo_count}/{total_algos}) Skipping {algo.id} - {algo.name} with algo_id {algo.algoritme_id} of {algo.organization} because it already has a translation in {lang_code_map[target_lang]}."
             )
             continue
-        logger.info(f"Translating {algo.name} to {lang_code_map[target_lang]}.")
+
+        logger.info(
+            f"Translating {algo.name} with algo_id {algo.algoritme_id} to {lang_code_map[target_lang]} — Reason: {reason}."
+        )
+        
+        # Expire older translations
+        db.query(AlgoritmeVersion).filter(
+            AlgoritmeVersion.algoritme_id == algo.algoritme_id,
+            AlgoritmeVersion.language == lang_code_map[target_lang],
+            AlgoritmeVersion.state == State.PUBLISHED
+        ).update({AlgoritmeVersion.state: State.EXPIRED})
+        db.commit()
+
         apply_translation(
             algo,
             db,

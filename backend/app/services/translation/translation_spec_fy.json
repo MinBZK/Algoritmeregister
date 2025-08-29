@@ -104,8 +104,30 @@
       "Nee": "Nee"
     },
     "impacttoetsen": {
+      "AI Impact Assessment (AIIA)": "AI Ympact Assessment (AIIA)",
       "Data Protection Impact Assessment (DPIA)": "Data Protection Impact Assessment (DPIA)",
-      "Impact Assessment Mensenrechten en Algoritmes (IAMA)": "Ympact Assessment Minskerjochten en Algoritmes (IAMA)"
+      "De Ethische Bijsluiter": "De Etyske Folder",
+      "De Ethische Data Assistent (DEDA)": "De Etyske Gegevensassistint (DEDA)",
+      "Fundamentele Rechten en Algoritme Impact Assessment (FRAIA)": "Fûnemintele rjochten en algoritme-ynfloedbeoardieling (FRAIA)",
+      "Impact Assessment Mensenrechten en Algoritmes (IAMA)": "Ympact Assessment Minskerjochten en Algoritmes (IAMA)",
+      "Pre-scan DPIA": "DPIA foarôf scan",
+      "Privacy Quickscan": "Privacy Quick scan",
+      "Toetsingskader Algemene Rekenkamer": "Beoardielingskader fan 'e Rekkenkeamer",
+      "Utrecht Uthiek Assessment": "Utrecht Uthiek Assessment",
+      "Z-Inspection": "Z-ynspeksje"
+    },
+    "impacttoetsen_grouping": {
+      "AI Impact Assessment (AIIA)": "AI Ympact Assessment (AIIA)",
+      "Data Protection Impact Assessment (DPIA)": "Data Protection Impact Assessment (DPIA)",
+      "De Ethische Bijsluiter": "De Etyske Folder",
+      "De Ethische Data Assistent (DEDA)": "De Etyske Gegevensassistint (DEDA)",
+      "Fundamentele Rechten en Algoritme Impact Assessment (FRAIA)": "Fûnemintele rjochten en algoritme-ynfloedbeoardieling (FRAIA)",
+      "Impact Assessment Mensenrechten en Algoritmes (IAMA)": "Ympact Assessment Minskerjochten en Algoritmes (IAMA)",
+      "Pre-scan DPIA": "DPIA foarôf scan",
+      "Privacy Quickscan": "Privacy Quick scan",
+      "Toetsingskader Algemene Rekenkamer": "Beoardielingskader fan 'e Rekkenkeamer",
+      "Utrecht Uthiek Assessment": "Utrecht Uthiek Assessment",
+      "Z-Inspection": "Z-ynspeksje"
     },
     "status": {
       "In gebruik": "Yn gebrûk",

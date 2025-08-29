@@ -1,0 +1,50 @@
+[
+  {
+    "id": "tygron-modelleringssoftware-hittestress",
+    "name": "Modelleringssoftware Hittestress",
+    "organization": null,
+    "description_short": "Deze software wordt gebruikt voor klimaatstresstesten en geeft inzicht in gevoelstemperatuur, en hoe deze beïnvloed kan worden. Dit wordt bepaald aan de hand van verschillende elementen zoals bladerdek, schaduw en wind, die afzonderlijk geanalyseerd kunnen worden. Hierdoor biedt de module ook tools voor wind, schaduw- en zonhoekanalyses.",
+    "type": null,
+    "category": ["Ruimte en infrastructuur","Zorg en gezondheid","Wonen"],
+    "publication_category": "Overige algoritmes",
+    "website": "https://www.digitaleoverheid.nl/innovatieproject/standaard-voor-transparantie-besluitvorming/",
+    "status": "In gebruik",
+    "begin_date": null,
+    "end_date": null,
+    "goal": "<p>De Hittestress module biedt inzicht in de gevoelstemperatuur (PET), wind en schaduwwerking op verschillende momenten van de dag. De module wordt gebruikt om de hittestress in stedelijk gebied op warme dagen in kaart te brengen, bijvoorbeeld voor klimaatstresstesten. Zowel de huidige als een mogelijke toekomstige situatie op baiss van bijvoorbeeld een stedenbouwkundig plan kunnen worden doorgerekend. Het betreft een fysisch model, de aanpak berust niet op kunstmatige intelligentie. De Hittemodule draait op een breder platform voor data-integratie en simulaties waarmee de leefomgeving op hyperresolutie integraal kan worden doorgerekend op aspecten als wateroverlast, hittestress, luchtkwaliteit en geluid. De Hittemodule is gebouwd volgens de richtlijnen van het Deltaplan Ruimtelijke Adaptatie (DPRA). </p>",
+    "proportionality": "",
+    "provider": "Tygron",
+    "lawful_basis": "<p>De software kan door o.a. gemeenten en provincies worden gebruikt voor: *Omgevingswet: vergunningverlening, planvorming *AWB (algemene wet bestuursrecht): Het monitoren van gevaarlijke situaties waarbij bevoegd gezag zorg draagt voor de Algemene beginselen van behoorlijk bestuur\n\t- Zorgvuldigheid\n\t- Transparantie\n\t- Evenredige afweging</p>",
+    "lawful_basis_grouping": [
+      {
+        "title": "Omgevingswet",
+        "link": "http://wetten.overheid.nl/jci1.3:c:BWBR0037885"
+      },
+      {
+        "title": "Algemene Wet Bestuursrecht",
+        "link": "https://wetten.overheid.nl/BWBR0005537"
+      }
+    ],
+    "impacttoetsen": null,
+    "iama_description": null,
+    "url": null,
+    "lang": "NLD",
+    "standard_version": "1.0",
+    "uuid": null,
+    "source_id": null,
+    "tags": "",
+    "source_data": "<div><p>Standaard worden open data bronnen gebruikt voor het opbouwen van de virtuele 3D-omgeving waarin wordt gerekend, zoals de BAG en de BGT: https://support.tygron.com/wiki/Project_Sources#Sources_connected_to_the_Tygron_Platform. </p><p>Voor weersgegevens wordt in Nederland gebruikt gemaakt van open data van het KNMI. Het is niet altijd zo dat alle databronnen in alle berekeningen worden gebruikt, dit is mede afhankelijk van de gekozen locatie en de soort berekeningen. Ook kunnen gebruikers zelf data toevoegen aan het algoritme, bijvoorbeeld groendata. Zelf toegevoegde data staan niet in dit overzicht.</p></div>",
+    "source_data_link": null,
+    "source_data_grouping": [
+      {
+        "title": "Platform data bronnen",
+        "link": "https://support.tygron.com/wiki/Project_Sources#Sources_connected_to_the_Tygron_Platform"
+      }
+    ],
+    "methods_and_models": "<p>Met deze methode kan een standaard hittekaart met gevoelstemperatuur op een hete dag berekend worden op basis van een fysisch model. In dit model worden factoren als bladerdek, sky view, schaduw, straling en weersgegevens (wind en temperatuur) meegewogen. De berekeningsmethode is getoetst op een aantal meetgegevens voor de stad Wageningen. De methode is ontwikkeld in een consortium door RIVM met o.a. WUR en HvA en wordt door RIVM in dit rapport beschreven: https://www.rivm.nl/bibliotheek/rapporten/2019-0008.pdf. Hoe de aanpak in dit rapport is vertaald in de sofware wordt hier beschreven: https://support.tygron.com/wiki/DPRA_Heat_Module</p>",
+    "publiccode": null,
+    "human_intervention": "",
+    "risks": "",
+    "contact_email": "info@tygron.com"
+  }
+]

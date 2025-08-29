@@ -17,3 +17,8 @@ export interface AlgoritmeSelectedFilter {
 export type AlgoritmeFilterData = {
   [K in keyof AlgoritmeFilterQuery]: FilterData[]
 }
+
+export const SortOption = {
+  sortByNumber: 'sort_number',
+  sortByName: 'sort_name',
+} as const

@@ -1,0 +1,23 @@
+{
+  "id": "4165",
+  "language": "NLD",
+  "key": "highlighted_algorithms",
+  "value": [
+    {
+      "name": "iBurgerzaken e-diensten",
+      "lars": "00000000",
+      "organization": "Gemeente Heumen"
+    },
+    {
+      "name": "iBurgerzaken e-diensten",
+      "lars": "00000001",
+      "organization": "Stichting Inlichtingenbureau"
+    },
+    {
+      "name": "iBurgerzaken e-diensten",
+      "lars": "00000002",
+      "organization": "Gemeente Amsterdam"
+    }
+  ],
+  "create_dt": "2025-08-13 02:01:20.214637+00"
+}

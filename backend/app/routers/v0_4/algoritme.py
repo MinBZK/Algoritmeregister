@@ -46,7 +46,7 @@ action_router = APIRouter()
 
 
 @router.get(
-    "/organizations/{organisation_name}/algorithms",
+    "/organizations/{organisation_id}/algorithms",
     response_model=list[schemas.AlgorithmSummary],
     responses=responses["get_all"],
     summary=api_text["get_all"]["summary"],
@@ -55,8 +55,8 @@ action_router = APIRouter()
 )
 async def get_all_algorithms(
     db: Annotated[Session, Depends(get_db)],
-    _: str = Path(alias="organisation_name"),
-    as_org: str = Path(alias="organisation_name"),
+    _: str = Path(alias="organisation_id"),
+    as_org: str = Path(alias="organisation_id"),
 ) -> list[schemas.AlgorithmSummary]:
     result = controllers.algoritme_version.get_algorithm_summary(
         as_org=as_org,
@@ -66,7 +66,7 @@ async def get_all_algorithms(
 
 
 @router.get(
-    "/organizations/{organisation_name}/algorithms/{algorithm_id}",
+    "/organizations/{organisation_id}/algorithms/{algorithm_id}",
     response_model=output_schemas | None,
     responses=responses["get_one"],
     summary=api_text["get_one"]["summary"],
@@ -82,14 +82,14 @@ async def get_all_algorithms(
 )
 async def get_one_algorithm(
     db: Annotated[Session, Depends(get_db)],
-    _: str = Path(alias="organisation_name"),
+    _: str = Path(alias="organisation_id"),
     lars: str = Path(alias="algorithm_id"),
 ) -> schemas.AlgoritmeVersionDB:
     return controllers.algoritme_version.get_one_newest(lars=lars, db=db)
 
 
 @router.post(
-    "/organizations/{organisation_name}/algorithms",
+    "/organizations/{organisation_id}/algorithms",
     response_model=schemas.NewAlgorithmResponse,
     responses=responses["post"],
     summary=api_text["post"]["summary"],
@@ -105,8 +105,8 @@ async def get_one_algorithm(
 async def create_one_algorithm(
     db: Annotated[Session, Depends(get_db)],
     body: input_schema,  # type: ignore
-    _: str = Path(alias="organisation_name"),
-    as_org: str = Path(alias="organisation_name"),
+    _: str = Path(alias="organisation_id"),
+    as_org: str = Path(alias="organisation_id"),
     user: KeycloakUser = Depends(get_current_user),
 ) -> schemas.NewAlgorithmResponse:
     # The standard_version can not be required, because it isn't according to BZK.
@@ -120,7 +120,7 @@ async def create_one_algorithm(
 
 
 @router.put(
-    "/organizations/{organisation_name}/algorithms/{algorithm_id}",
+    "/organizations/{organisation_id}/algorithms/{algorithm_id}",
     responses=responses["put"],
     summary=api_text["put"]["summary"],
     description=api_text["put"]["description"],
@@ -136,7 +136,7 @@ async def create_one_algorithm(
 async def update_one_algorithm(
     db: Annotated[Session, Depends(get_db)],
     body: input_schema,  # type: ignore
-    _: str = Path(alias="organisation_name"),
+    _: str = Path(alias="organisation_id"),
     lars: str = Path(alias="algorithm_id"),
     user: KeycloakUser = Depends(get_current_user),
 ) -> schemas.AlgorithmActionResponse | None:
@@ -147,7 +147,7 @@ async def update_one_algorithm(
 
 
 @action_router.get(
-    "/organizations/{organisation_name}/algorithms/{algorithm_id}/preview",
+    "/organizations/{organisation_id}/algorithms/{algorithm_id}/preview",
     response_model=schemas.PreviewUrl,
     responses=responses["preview"],
     summary=api_text["preview"]["summary"],
@@ -164,7 +164,7 @@ async def update_one_algorithm(
 async def get_one_preview_url(
     db: Annotated[Session, Depends(get_db)],
     background_tasks: BackgroundTasks,
-    _: str = Path(alias="organisation_name"),
+    _: str = Path(alias="organisation_id"),
     lars: str = Path(alias="algorithm_id"),
     user: KeycloakUser = Depends(get_current_user),
 ) -> schemas.PreviewUrl:
@@ -175,7 +175,7 @@ async def get_one_preview_url(
 
 
 @published_router.get(
-    "/organizations/{organisation_name}/published-algorithms/{algorithm_id}",
+    "/organizations/{organisation_id}/published-algorithms/{algorithm_id}",
     response_model=output_schemas | None,
     responses=responses["get_one_published"],
     summary=api_text["get_one_published"]["summary"],
@@ -191,14 +191,14 @@ async def get_one_preview_url(
 )
 async def get_one_published_algorithm(
     db: Annotated[Session, Depends(get_db)],
-    _: str = Path(alias="organisation_name"),
+    _: str = Path(alias="organisation_id"),
     lars: str = Path(alias="algorithm_id"),
 ) -> schemas.AlgoritmeVersionDB:
     return controllers.algoritme_version.get_one_published(lars=lars, db=db)
 
 
 @action_router.delete(
-    "/organizations/{organisation_name}/published-algorithms/{algorithm_id}/retract",
+    "/organizations/{organisation_id}/published-algorithms/{algorithm_id}/retract",
     responses=responses["delete"],
     summary=api_text["delete"]["summary"],
     description=api_text["delete"]["description"],
@@ -212,7 +212,7 @@ async def get_one_published_algorithm(
 async def retract_one_published_algorithm(
     db: Annotated[Session, Depends(get_db)],
     background_tasks: BackgroundTasks,
-    as_org: str = Path(alias="organisation_name"),
+    as_org: str = Path(alias="organisation_id"),
     lars: str = Path(alias="algorithm_id"),
     user: KeycloakUser = Depends(get_current_user),
 ) -> None:
@@ -232,7 +232,7 @@ async def retract_one_published_algorithm(
 
 
 @action_router.put(
-    "/organizations/{organisation_name}/algorithms/{algorithm_id}/release",
+    "/organizations/{organisation_id}/algorithms/{algorithm_id}/release",
     responses=responses["release"],
     summary=api_text["release"]["summary"],
     description=api_text["release"]["description"],
@@ -246,7 +246,7 @@ async def retract_one_published_algorithm(
 async def release_one_algorithm(
     db: Annotated[Session, Depends(get_db)],
     background_tasks: BackgroundTasks,
-    as_org: str = Path(alias="organisation_name"),
+    as_org: str = Path(alias="organisation_id"),
     lars: str = Path(alias="algorithm_id"),
     user: KeycloakUser = Depends(get_current_user),
 ) -> schemas.AlgorithmActionResponse | None:
@@ -266,7 +266,7 @@ async def release_one_algorithm(
 
 
 @action_router.put(
-    "/organizations/{organisation_name}/algorithms/{algorithm_id}/publish",
+    "/organizations/{organisation_id}/algorithms/{algorithm_id}/publish",
     responses=responses["publish"],
     summary=api_text["publish"]["summary"],
     description=api_text["publish"]["description"],
@@ -279,7 +279,7 @@ async def release_one_algorithm(
 async def publish_one_algorithm(
     background_tasks: BackgroundTasks,
     lars: str = Path(alias="algorithm_id"),
-    as_org: str = Path(alias="organisation_name"),
+    as_org: str = Path(alias="organisation_id"),
     db: Session = Depends(get_db),
     user: KeycloakUser = Depends(get_current_user),
 ) -> schemas.AlgorithmActionResponse | None:
@@ -298,7 +298,7 @@ async def publish_one_algorithm(
 
 
 @action_router.delete(
-    "/organizations/{organisation_name}/algorithms/{algorithm_id}/remove",
+    "/organizations/{organisation_id}/algorithms/{algorithm_id}/remove",
     responses=responses["remove"],
     summary=api_text["remove"]["summary"],
     description=api_text["remove"]["description"],
@@ -310,14 +310,14 @@ async def publish_one_algorithm(
 )
 async def remove_one_algorithm(
     db: Annotated[Session, Depends(get_db)],
-    _: str = Path(alias="organisation_name"),
+    _: str = Path(alias="organisation_id"),
     lars: str = Path(alias="algorithm_id"),
 ) -> schemas.AlgorithmActionResponse | None:
     return controllers.algoritme_version.remove_one(lars=lars, db=db)
 
 
 @router.put(
-    "/organizations/{organisation_name}/algorithms/{algorithm_id}/archive_version",
+    "/organizations/{organisation_id}/algorithms/{algorithm_id}/archive_version",
     dependencies=[
         Depends(
             Authoriser(
@@ -329,7 +329,7 @@ async def remove_one_algorithm(
 )
 async def archive_algorithm_version(
     archive_request: schemas.ArchiveVersionRequest,
-    as_org: str = Path(alias="organisation_name"),
+    as_org: str = Path(alias="organisation_id"),
     lars: str = Path(alias="algorithm_id"),
     user: KeycloakUser = Depends(get_current_user),
     db: Session = Depends(get_db),
@@ -343,7 +343,7 @@ async def archive_algorithm_version(
 
 
 @router.put(
-    "/organizations/{organisation_name}/algorithms/{algorithm_id}/unarchive_version",
+    "/organizations/{organisation_id}/algorithms/{algorithm_id}/unarchive_version",
     dependencies=[
         Depends(
             Authoriser(
@@ -355,7 +355,7 @@ async def archive_algorithm_version(
 )
 async def unarchive_algorithm_version(
     archive_request: schemas.ArchiveVersionRequest,
-    as_org: str = Path(alias="organisation_name"),
+    as_org: str = Path(alias="organisation_id"),
     lars: str = Path(alias="algorithm_id"),
     user: KeycloakUser = Depends(get_current_user),
     db: Session = Depends(get_db),

@@ -1,8 +1,9 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import and_, func, ColumnElement, cast, String, or_, not_
+from sqlalchemy.dialects.postgresql import JSONB
 from app import models, schemas, repositories
 from app.middleware.authorisation.schemas import State
-from app.schemas.misc import Language
+from app.schemas.misc import Language, standard_impact_assessment_titles_mapping
 from app.config.org_type_mapping import org_type_mapping
 
 
@@ -90,8 +91,14 @@ def perform_smart_search(
         query_filters.append(models.AlgoritmeVersion.organization == organisation)
 
     if impact_assessment:
+        impact_label = standard_impact_assessment_titles_mapping[language][
+            impact_assessment
+        ]
         selected_filters.append(
-            schemas.SelectedFilters(key="impact_assessment", value=impact_assessment)
+            schemas.SelectedFilters(
+                key="impact_assessment",
+                value=impact_label,
+            )
         )
         ia_query_filters = get_impact_assessment_filters(
             impact_assessment, db, language
@@ -159,7 +166,9 @@ def perform_smart_search(
 
 
 def get_impact_assessment_filters(
-    impact_assessment: schemas.ImpactAssessments, db: Session, language: Language
+    impact_assessment: schemas.ImpactAssessments,
+    db: Session,
+    language: Language,
 ) -> list[ColumnElement[bool]]:
     """
     Add filters for impact assessment to the query filters.
@@ -181,13 +190,19 @@ def get_impact_assessment_filters(
         ia_query_filters.append(grouping_pattern_subfilter)
 
     if impact_assessment in schemas.misc.standard_impact_assessment_titles:
+        impact_label = standard_impact_assessment_titles_mapping[language][
+            impact_assessment
+        ]
         ia_query_filters.append(
-            cast(models.AlgoritmeVersion.impacttoetsen_grouping, String).like(
-                f'%{{"%{impact_assessment}%'
+            models.AlgoritmeVersion.impacttoetsen_grouping.cast(JSONB).contains(
+                [{"title": impact_label}]
             )
         )
 
     if impact_assessment == schemas.ImpactAssessments.OTHER:
+        reverse_mapping = schemas.misc.reverse_impact_assessment_titles_mapping[
+            language
+        ]
         overview_impacttoetsen = (
             db.query(
                 models.AlgoritmeVersion.impacttoetsen_grouping,
@@ -208,7 +223,8 @@ def get_impact_assessment_filters(
 
                 for assessment in impacttoetsen_grouping:
                     title = assessment.get("title")
-                    if title in schemas.misc.standard_impact_assessment_titles:
+                    enum_key = reverse_mapping.get(title)
+                    if enum_key in schemas.misc.standard_impact_assessment_titles:
                         contains_standard = True
                     else:
                         contains_custom = True

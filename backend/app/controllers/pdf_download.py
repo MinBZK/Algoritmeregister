@@ -19,7 +19,7 @@ def get_org_data(db: Session, org_name: str) -> list[schemas.AlgoritmeVersionDow
     algorithms = algoritme_version_repository.get_latest_by_org_by_lang(
         org_name, Language.NLD
     )
-    return [schemas.AlgoritmeVersionDownload(**row.dict()) for row in algorithms]
+    return [schemas.AlgoritmeVersionDownload(**row.model_dump()) for row in algorithms]
 
 
 def get_algo_data(db: Session, lars: str) -> schemas.AlgoritmeVersionDownload | None:
@@ -28,7 +28,7 @@ def get_algo_data(db: Session, lars: str) -> schemas.AlgoritmeVersionDownload | 
         lars, Language.NLD
     )
     if algorithm:
-        return schemas.AlgoritmeVersionDownload(**algorithm.dict())
+        return schemas.AlgoritmeVersionDownload(**algorithm.model_dump())
 
 
 def build_description(
@@ -116,7 +116,7 @@ def get_one_algorithm_pdf(db: Session, lars: str):
     subject = f"Algoritmebeschrijving van {organisation}"
     pdf.set_metadata(author=author, title=title, subject=subject)
 
-    introduction: str = f"""Dit document bevat de algoritmebeschrijving: {name},\n \
+    introduction: str = f"""Dit document bevat de algoritmebeschrijving: {name}, \n \
 uitgedraaid op {timestamp}. Gebruik het om de inhoud intern te reviewen  \
 en wijzigingen te accorderen \n voor publicatie op het algoritmeregister van de Nederlandse  \
 overheid. Heeft u vragen of heeft u hulp nodig? \n\
@@ -163,7 +163,9 @@ def generate_pdf_download(
     )
     response = StreamingResponse(io.BytesIO(stream.read()), media_type=media_type)
 
-    response.headers["Content-Disposition"] = f'attachment; filename="{filename}"'
+    response.headers[
+        "Content-Disposition"
+    ] = f'attachment; filename="{filename}"'  # noqa: E702
     return response
 
 

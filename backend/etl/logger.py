@@ -1,9 +1,9 @@
 import logging
 
 
-def get_logger():
+def get_logger(name: str):
     # initialize new independent logger
-    logger = logging.getLogger(__name__)
+    logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
     handler = logging.StreamHandler()
     formatter = logging.Formatter(

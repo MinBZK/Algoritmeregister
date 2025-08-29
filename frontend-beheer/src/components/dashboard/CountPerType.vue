@@ -30,7 +30,9 @@
                 <th class="u-columnwidth-50p">
                   <span>Waarde</span>
                 </th>
-                <th class="u-columnwidth-10p">Aantal</th>
+                <th class="u-columnwidth-10p">
+                  Aantal
+                </th>
                 <th class="u-columnwidth-10p borderless-left">
                   <span>Percentage</span>
                 </th>

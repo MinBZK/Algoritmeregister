@@ -18,13 +18,13 @@ router = APIRouter()
 
 
 @router.get(
-    "/organizations/{organisation_name}",
+    "/organizations/{organisation_id}",
     response_class=FileResponse,
     dependencies=[Depends(Authoriser(AuthType.OrgOnly))],
 )
 async def get_file_many(
     db: Session = Depends(get_db),
-    as_org: str = Path(alias="organisation_name"),
+    as_org: str = Path(alias="organisation_id"),
     filetype: str = Query(alias="filetype"),
     user: KeycloakUser = Depends(get_current_user),
 ):
@@ -37,21 +37,21 @@ async def get_file_many(
 
 
 @router.get(
-    "/organizations/{organisation_name}/algorithms/{algorithm_id}",
+    "/organizations/{organisation_id}/algorithms/{algorithm_id}",
     response_class=FileResponse,
     dependencies=[Depends(Authoriser(AuthType.OrgOnly))],
 )
 async def get_file_one(
     db: Session = Depends(get_db),
     lars: str = Path(alias="algorithm_id"),
-    as_org: str = Path(alias="organisation_name"),
+    as_org: str = Path(alias="organisation_id"),
     filetype: str = Query(alias="filetype"),
 ):
     org_repo = OrganisationRepository(db)
-    org = org_repo.get_by_code(as_org)
+    org = org_repo.get_by_org_id(as_org)
     algoritme_repo = AlgoritmeRepository(db)
     algoritme = algoritme_repo.get_by_lars(lars)
-    if not org or not algoritme or algoritme.owner != org.code:
+    if not org or not algoritme or algoritme.owner != org.org_id:
         return HTTPException(404)
     if not filetype or filetype == "word":
         return generate_word_download(db, lars=lars)

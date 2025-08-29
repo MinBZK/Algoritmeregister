@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-LOADING_ENV = os.getenv("LOADING_ENV", "remote")
+LOADING_ENV = os.getenv("LOADING_ENV", "local")
 
 
 class Extractor:
@@ -14,15 +14,6 @@ class Extractor:
             # load from local DB
             with open("app/data.json", "r") as file:
                 return json.load(file)
-
-        response = requests.get(
-            "https://algoritmes.overheid.nl/api/downloads/site-data/json"
-        )
-        if response.status_code == 200:
-            return response.json()
-        else:
-            raise RuntimeError("Fetching data failed")
-
 
 if __name__ == "__main__":
     data = Extractor().get_json()

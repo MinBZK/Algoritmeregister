@@ -54,11 +54,13 @@ const goToDutch = () => {
 </script>
 
 <style scoped lang="scss">
+@use '/assets/styles/colors' as colors;
+
 .info-box {
   padding: 1em 4em 1em 4em;
   border-width: 1px;
   align-items: center;
-  background-color: $tertiary;
+  background-color: colors.$tertiary;
 }
 
 .compact {
@@ -70,11 +72,11 @@ const goToDutch = () => {
 }
 
 .dutch-button {
-  background-color: $tertiary;
+  background-color: colors.$tertiary;
 }
 
 .close-button {
-  background-color: $primary-darker;
+  background-color: colors.$primary-darker;
   color: white;
 }
 

@@ -10,7 +10,7 @@ export async function getFileOne(
   const request: AxiosRequestConfig = {
     method: 'GET',
     responseType: 'blob',
-    url: `downloads/organizations/${organisation.code}/algorithms/${lars}`,
+    url: `downloads/organizations/${organisation.org_id}/algorithms/${lars}`,
     params: { filetype: filetype },
   }
   return backendRequest(request)
@@ -23,7 +23,7 @@ export async function getFileMany(
   const request: AxiosRequestConfig = {
     method: 'GET',
     responseType: 'blob',
-    url: `downloads/organizations/${organisation.code}`,
+    url: `downloads/organizations/${organisation.org_id}`,
     params: { filetype: filetype },
   }
   return backendRequest(request)

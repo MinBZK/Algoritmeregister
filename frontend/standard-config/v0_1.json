@@ -10,7 +10,7 @@
                 "example": "",
                 "instructions": "",
                 "show_always": true,
-                "help_text": "De naam die gebruikt wordt om het algoritme aan te duiden"
+                "help_text": "De naam die gebruikt wordt om het algoritme aan te duiden."
             },
             "organization": {
                 "title": "Organisatie",

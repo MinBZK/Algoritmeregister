@@ -65,7 +65,7 @@ const navigationItems = computed(() => [
   {
     label: t('navigation.home'),
     routeName: 'index',
-    highlightOnRoutes: ['index', 'index___nl', 'index___en'],
+    highlightOnRoutes: ['index', 'index___nl', 'index___en', 'index___fy'],
   },
   {
     label: t('navigation.algorithmRegister'),
@@ -74,8 +74,13 @@ const navigationItems = computed(() => [
       'algoritme',
       'algoritme___nl',
       'algoritme___en',
+      'algoritme___fy',
       'algoritme-slug-lars___nl',
       'algoritme-slug-lars___en',
+      'algoritme-slug-lars___fy',
+      'algoritme-params___nl',
+      'algoritme-params___en',
+      'algoritme-params___fy',
     ],
   },
   {
@@ -85,14 +90,27 @@ const navigationItems = computed(() => [
       'organisatie',
       'organisatie___en',
       'organisatie___nl',
+      'organisatie___fy',
       'organisatie-orgCode___nl',
       'organisatie-orgCode___en',
+      'organisatie-orgCode___fy',
+      'organisatie-orgCode-orgId___nl',
+      'organisatie-orgCode-orgId___en',
+      'organisatie-orgCode-orgId___fy',
+      'organisatie-params___nl',
+      'organisatie-params___en',
+      'organisatie-params___fy',
     ],
   },
   {
     label: t('navigation.dashboard'),
     routeName: 'dashboard',
-    highlightOnRoutes: ['dashboard', 'dashboard___nl', 'dashboard___en'],
+    highlightOnRoutes: [
+      'dashboard',
+      'dashboard___nl',
+      'dashboard___en',
+      'dashboard___fy',
+    ],
   },
 ])
 const currentRoute = useRoute()
@@ -107,13 +125,15 @@ watch(currentRoute, () => (menuExpanded.value = false))
 </script>
 
 <style scoped lang="scss">
+@use '/assets/styles/colors' as colors;
+
 .active a {
-  background-color: $secondary;
-  color: $primary-darker !important;
+  background-color: colors.$secondary;
+  color: colors.$primary-darker !important;
 }
 a:focus {
-  background-color: $secondary;
-  color: $primary-dark;
+  background-color: colors.$secondary;
+  color: colors.$primary-dark;
 }
 
 .header-content {

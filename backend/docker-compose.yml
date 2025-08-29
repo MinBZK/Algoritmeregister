@@ -2,11 +2,13 @@ version: '3.7'
 
 services:
   db:
-    image: <..>.cloudnative-pg/postgresql:15.2.7
+    build:
+      context: .
+      dockerfile: base_image/postgres/Dockerfile
+    image: algreg_pgvector_15
     container_name: ${POSTGRES_DB_NAME}
     restart: always
     volumes:
-      - ./dev_db/init.sql:/docker-entrypoint-initdb.d/init.sql
       - db:/var/lib/postgresql/data
     ports:
       - ${POSTGRES_PORT}:${POSTGRES_PORT}
@@ -14,6 +16,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       PGPORT: ${POSTGRES_PORT}
+      POSTGRES_DB: ${POSTGRES_DB}
     command: [ "postgres", "-c", "log_statement=all", "-p", "${POSTGRES_PORT}" ]
 
   backend:
@@ -45,8 +48,8 @@ services:
     container_name: algreg_dbgate
     volumes:
       - dbgate:/root/.dbgate
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     ports:
       - ${DBGATE_PORT}:3000
     environment:

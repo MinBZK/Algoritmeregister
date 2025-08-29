@@ -23,7 +23,7 @@ router = APIRouter()
 
 
 @router.get(
-    "/organisations/{organisation_name}/algorithms/archived-versions",
+    "/organisations/{organisation_id}/algorithms/archived-versions",
     response_model=list[schemas.AlgoritmeVersionLastEdit],
     dependencies=[
         Depends(
@@ -34,10 +34,10 @@ router = APIRouter()
     ],
 )
 async def get_archived_algorithm_versions(
-    organisation_name: str,
+    organisation_id: str,
     db: Session = Depends(get_db),
 ):
-    return get_archived_versions(db, organisation_name)
+    return get_archived_versions(db, organisation_id)
 
 
 @router.get(
@@ -54,7 +54,7 @@ async def find_algoritme_owner(
 
 
 @router.get(
-    "/organisations/{organisation_name}/algorithms/{algorithm_id}/versions",
+    "/organisations/{organisation_id}/algorithms/{algorithm_id}/versions",
     response_model=list[schemas.AlgoritmeVersionLastEdit],
     dependencies=[
         Depends(
@@ -74,7 +74,7 @@ async def get_all_versions(
 
 
 @router.get(
-    "/organisations/{organisation_name}/algorithms/{algorithm_id}/available-actions",
+    "/organisations/{organisation_id}/algorithms/{algorithm_id}/available-actions",
     response_model=list[StateChangeActionOut],
     dependencies=[
         Depends(
@@ -87,7 +87,7 @@ async def get_all_versions(
 )
 async def get_available_actions(
     lars: str = Path(alias="algorithm_id"),
-    _: str = Path(alias="organisation_name"),
+    _: str = Path(alias="organisation_id"),
     user: KeycloakUser = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
@@ -95,7 +95,7 @@ async def get_available_actions(
 
 
 @router.put(
-    "/organisations/{organisation_name}/algorithms/{algorithm_id}/state/{action_name}",
+    "/organisations/{organisation_id}/algorithms/{algorithm_id}/state/{action_name}",
     response_model=None,
     dependencies=[
         Depends(Authoriser(AuthType.OrgRightStateChange)),
@@ -105,7 +105,7 @@ async def get_available_actions(
 async def update_state(
     background_tasks: BackgroundTasks,
     lars: str = Path(alias="algorithm_id"),
-    as_org: str = Path(alias="organisation_name"),
+    as_org: str = Path(alias="organisation_id"),
     action_name: str = Path(alias="action_name"),
     user: KeycloakUser = Depends(get_current_user),
     db: Session = Depends(get_db),

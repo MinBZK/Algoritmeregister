@@ -1,1 +1,1 @@
-export { usePiwikPro } from '@piwikpro/nuxt-piwik-pro/dist/composables'
+export { usePiwikPro } from '@piwikpro/nuxt-piwik-pro/composables'

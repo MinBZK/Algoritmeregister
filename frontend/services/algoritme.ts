@@ -11,6 +11,7 @@ import type {
 } from '@/types/filter/algoritme'
 
 export type AlgoritmeQueryResult = {
+  scores: number[] | null
   results: Algoritme[]
   total_count: number
   filter_data: AlgoritmeFilterData
@@ -84,16 +85,38 @@ const downloadAllUrl = (language: Language) => {
   return `${useRuntimeConfig().public.apiBaseUrl}/downloads/${language}`
 }
 
+const downloadAllPublishedVersionsUrl = (language: Language) => {
+  return `${useRuntimeConfig().public.apiBaseUrl}/downloads/history/${language}`
+}
+
 const downloadOneUrl = (lars: string, language: Language) => {
   return `${
     useRuntimeConfig().public.apiBaseUrl
   }/downloads/algorithms/${lars}/${language}`
 }
 
+const downloadAllPublishedVersionsOneUrl = (
+  lars: string,
+  language: Language
+) => {
+  return `${
+    useRuntimeConfig().public.apiBaseUrl
+  }/downloads/history/algorithms/${lars}/${language}`
+}
+
 const getSearchSuggestion = (search: string, language: Language) =>
   useFetch<SearchSuggestionResult>(`/suggestion/${language}/${search}`, {
     baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
+
+const getSimilar = (lars: string, language: Language) => {
+  return useFetch<AlgoritmeQueryResult>(
+    `/algoritme/${language}/similar/${lars}`,
+    {
+      baseURL: useRuntimeConfig().public.apiBaseUrl,
+    }
+  )
+}
 
 export default {
   getAll,
@@ -105,6 +128,9 @@ export default {
   getCountWithFilledColumns,
   getApiStandard,
   downloadAllUrl,
+  downloadAllPublishedVersionsUrl,
   downloadOneUrl,
+  downloadAllPublishedVersionsOneUrl,
   getSearchSuggestion,
+  getSimilar,
 }

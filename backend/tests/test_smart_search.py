@@ -98,7 +98,7 @@ class GenTestData:
         cls, client: TestClient, query: Query
     ) -> schemas.AlgoritmeQueryResponse | None:
         endpoint = f"api/algoritme/{query.lang.value}"
-        body = schemas.AlgoritmeQuery(limit=QUERY_LIMIT, searchtext=query.woord).dict()
+        body = schemas.AlgoritmeQuery(limit=QUERY_LIMIT, searchtext=query.woord).model_dump()
 
         try:
             response = client.post(endpoint, json=body)
@@ -167,6 +167,7 @@ class ConfigMockDB:
         org = organisation_repo.add(
             schemas.OrganisationIn(
                 code="x",
+                org_id="x",
                 type=schemas.OrgType.overig,
                 show_page=False,
                 flow=Flow.ICTU_LAST,
@@ -181,7 +182,7 @@ class ConfigMockDB:
 
             # Creates new entry in algoritme_version table.
             algoritme_version = schemas.AlgoritmeVersionIn(
-                **algo_data.dict(),
+                **algo_data.model_dump(),
                 algoritme_id=algoritme_db.id,
                 language=Language.NLD,
                 state=State.PUBLISHED,

@@ -8,6 +8,7 @@
       {{ buttonName }}
     </button>
     <br />
+    <br />
     <dashboard-map-table v-if="showDatatable" :data="mapData" />
     <br />
     <div v-show="!showDatatable" class="content-map">
@@ -123,6 +124,9 @@ const fetchData = async () => {
   ) {
     const response = await dashboardService.getEnvironmentalServiceData()
     mapData.value = response.data.value as DocumentCount[]
+  } else if (props.organisationType === OrganisationTypes.SafetyRegion) {
+    const response = await dashboardService.getSafetyData()
+    mapData.value = response.data.value as DocumentCount[]
   }
   emit('numberOfOrganisations', mapData.value.length)
   createMap(props.organisationType || '', mapData.value)
@@ -171,6 +175,7 @@ function tooltipHandler(
   const closeButtonId = 'close-btn-' + props.organisationType
   const localePath = useLocalePath()
   const orgCode = getOrgCode(target.__data__.properties.tooltips[0])
+  const orgId = getOrgId(target.__data__.properties.tooltips[0])
   const isJoined = getJoined(target.__data__.properties.tooltips[0])
   const algoCount = getAlgoCount(target.__data__.properties.tooltips[0])
   const isOrgInfoPage = getOrgInfoPage(target.__data__.properties.tooltips[0])
@@ -178,7 +183,7 @@ function tooltipHandler(
 
   const orgPageUrl =
     (isJoined && algoCount >= 1) || isOrgInfoPage
-      ? localePath('organisatie') + '/' + orgCode
+      ? localePath('organisatie') + '/' + orgId
       : isJoined
         ? localePath('/map/organisatie-niet-gepubliceerd')
         : localePath('/map/organisatie-niet-aangesloten')
@@ -212,13 +217,13 @@ function tooltipHandler(
   const leftpx =
     isMobile.value &&
     props.organisationType === OrganisationTypes.EnvironmentalService
-      ? -80
+      ? -15
       : isMobile.value
         ? -120
         : props.organisationType === OrganisationTypes.EnvironmentalService
-          ? 20
-          : -70
-  const toppx = isMobile.value ? -40 : 0
+          ? 150
+          : 60
+  const toppx = isMobile.value ? -40 : -12
 
   tooltip
     .html(htmlString)
@@ -241,6 +246,7 @@ function tooltipHandler(
     joined: isJoined,
     algoKey,
     algoPublished,
+    orgId,
   }
   return tooltipData
 }
@@ -284,6 +290,10 @@ function getAlgoKey(dataObject: DataObject): string {
   return dataObject.key
 }
 
+function getOrgId(dataObject: DataObject): string {
+  return dataObject.orgId
+}
+
 function getColourByTitle(title: string): string | undefined {
   const result = legendData.find((item) => item.title === title)
   return result ? result.className : undefined
@@ -308,6 +318,7 @@ function objectTypeOverlay(d: any, organisationData: DocumentCount[]): string {
         joined: dataObject.joined,
         identifier: dataObject.identifier,
         code: dataObject.code,
+        orgId: dataObject.org_id,
       },
     ]
     if (
@@ -414,6 +425,7 @@ onMounted(() => {
 .hidden-tooltip {
   display: none;
 }
+
 .tooltip-container :deep(.tooltip-close-btn) {
   position: absolute;
   top: -5px;
@@ -433,6 +445,7 @@ onMounted(() => {
 .transform {
   transform: scaleY(1.7);
 }
+
 .transfor-environservice {
   transform: scaleX(1.65) scaleY(1.7);
 }
@@ -446,6 +459,12 @@ onMounted(() => {
   stroke-width: 0.7;
   outline: none;
   box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+  .svg-content-responsive {
+    top: 40px;
+  }
 }
 
 .svg-content-responsive :deep(path:active),
@@ -466,16 +485,17 @@ onMounted(() => {
 
 .tooltip-container :deep(.tooltip) {
   background-color: white;
-  border: 1px solid #cccccc;
+  border: 1px solid #e6e6e6;
   font-size: 1rem;
-  padding: 15px;
+  padding: 18px;
   pointer-events: auto;
   position: absolute;
-  max-width: 33%;
+  max-width: 100%;
   margin-left: 120px;
   white-space: normal;
   word-wrap: break-word;
   hyphens: auto;
+  transform-origin: left center;
 }
 
 .tooltip-container :deep(.tooltip a) {
@@ -525,62 +545,75 @@ onMounted(() => {
 .float-right {
   float: right;
 }
+
 .content-map {
   height: 650px;
 }
+
 @media (max-width: 1100px) {
   .float-left,
   .float-right {
     float: none;
   }
+
   .column-35 {
     order: 2;
     width: 60%;
   }
+
   .column-65 {
     min-height: 750px;
     order: 1;
     width: 100%;
   }
+
   .content-map {
     display: flex;
     flex-direction: column;
     height: auto;
   }
+
   .tooltip-container :deep(.tooltip) {
     position: absolute;
     margin-left: 120px;
     max-width: none;
   }
 }
+
 @media (max-width: 900px) {
   .column-65 {
     min-height: 600px;
   }
 }
+
 @media (max-width: 800px) {
   .column-65 {
     min-height: 550px;
   }
 }
+
 @media (max-width: 700px) {
   .column-35 {
     width: 100%;
   }
+
   .column-65 {
     min-height: 800px;
   }
 }
+
 @media (max-width: 600px) {
   .column-65 {
     min-height: 650px;
   }
 }
+
 @media (max-width: 500px) {
   .column-65 {
     min-height: 550px;
   }
 }
+
 @media (max-width: 400px) {
   .column-65 {
     min-height: 450px;

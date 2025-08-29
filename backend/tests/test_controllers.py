@@ -2,10 +2,11 @@ import pytest
 from fastapi import HTTPException
 from app.middleware.authorisation.schemas import Role
 from app.middleware.middleware import get_db
-from app.schemas.misc import OrgType
+from app.schemas.misc import OrgType, PreComputedValues
 from app.util.logger import get_logger
 from app import controllers, schemas, models
 from app.services.keycloak import KeycloakUser
+from app.schemas.misc import Language
 import json
 
 """Test all controllers"""
@@ -34,6 +35,7 @@ class TestControllers:
         self.db = next(get_db())
 
         self.db.query(models.Organisation).delete()
+        self.db.query(models.PrecomputedValues).delete()
         self.db.commit()
 
         # Store default body
@@ -42,7 +44,9 @@ class TestControllers:
             data = json.load(file)
         self.body = schemas.AlgoritmeVersionContent(**data)
 
-        sandbox_org = models.Organisation(code="sandbox", type=OrgType.gemeente)
+        sandbox_org = models.Organisation(
+            code="sandbox", org_id="sandbox", type=OrgType.gemeente
+        )
         self.db.add(sandbox_org)
         self.db.commit()
         # Post one algorithm to share among tests
@@ -53,6 +57,7 @@ class TestControllers:
 
     def teardown_class(self):
         self.db.query(models.Organisation).delete()
+        self.db.query(models.PrecomputedValues).delete()
         self.db.commit()
         self.db.close()
 
@@ -138,3 +143,19 @@ class TestControllers:
         # Verify remove when nothing there
         with pytest.raises(HTTPException):
             controllers.remove_one(self.lars_code, self.db)
+
+    def test_set_highlighted_algorithms(self):
+        controllers.set_highlighted_algorithms(self.db)
+        results = (
+            self.db.query(models.PrecomputedValues)
+            .filter_by(key=PreComputedValues.highlighted_algorithms)
+            .all()
+        )
+        stored_languages = {r.language for r in results}
+        expected_languages = {lang for lang in Language}
+        for r in results:
+            assert r.key == PreComputedValues.highlighted_algorithms
+            
+        assert len(results) == len(Language)
+        assert stored_languages == expected_languages
+        

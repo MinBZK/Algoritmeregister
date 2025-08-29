@@ -21,7 +21,7 @@ export const useArchiveStore = defineStore('archive', () => {
   const fetchAlgorithmVersionArchive = async (
     selectedOrg: Organisation | null
   ) => {
-    if (!selectedOrg?.code) {
+    if (!selectedOrg?.org_id) {
       console.log(
         'No organisation selected, skipped fetching algorithm versions.'
       )
@@ -30,7 +30,7 @@ export const useArchiveStore = defineStore('archive', () => {
 
     loading.value = true
     try {
-      const response = await getArchive(selectedOrg.code)
+      const response = await getArchive(selectedOrg.org_id)
       allVersions.value = response.data
     } catch (error) {
       console.error('Failed to fetch algorithm versions:', error)
@@ -44,15 +44,15 @@ export const useArchiveStore = defineStore('archive', () => {
 
   // State related to single algorithm version
   const selectedVersion = ref<AlgorithmWithUser | null>(null)
-  const orgCode = computed(() => authStore.selectedOrg?.code)
+  const orgId = computed(() => authStore.selectedOrg?.org_id)
   const archiveVersion = async (lars: string, versionId: string) => {
-    if (!orgCode.value) {
-      console.error('No organisation code found, cannot archive version.')
+    if (!orgId.value) {
+      console.error('No organisation id found, cannot archive version.')
       return
     }
 
     try {
-      await archiveAlgorithmVersion(orgCode.value, lars, versionId)
+      await archiveAlgorithmVersion(orgId.value, lars, versionId)
       snackbarStore.add({
         ...notifications.archiveVersionSuccess!,
       })
@@ -64,12 +64,12 @@ export const useArchiveStore = defineStore('archive', () => {
   }
 
   const unarchiveVersion = async (lars: string, versionId: string) => {
-    if (!orgCode.value) {
+    if (!orgId.value) {
       console.error('No organisation code found, cannot unarchive version.')
       return
     }
     try {
-      await unarchiveAlgorithmVersion(orgCode.value, lars, versionId)
+      await unarchiveAlgorithmVersion(orgId.value, lars, versionId)
       snackbarStore.add({
         ...notifications.unarchiveVersionSuccess!,
       })

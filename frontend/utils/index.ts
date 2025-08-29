@@ -28,7 +28,7 @@ const providePageTitle = (
   pageTitleInfo.value = input
 }
 
-const objectMap = (obj: Object, fn: Function) =>
+const objectMap = (obj: Object, fn: Function) => // eslint-disable-line
   Object.fromEntries(Object.entries(obj).map(([k, v], i) => [k, fn(v, k, i)]))
 
 const mapLocaleName = (language: LanguageCode): Language => {

@@ -17,9 +17,10 @@ def add(self, item: schemas.AlgoritmeVersionIn) -> schemas.AlgoritmeVersionDB:
         "id": 0,
         "lars": "00000000",
         "owner": "",
-        "code": ""
+        "code": "",
+        "org_id": "",
     }
-    schema = schemas.AlgoritmeVersionDB(**item.dict(), **fields_to_add)
+    schema = schemas.AlgoritmeVersionDB(**item.model_dump(), **fields_to_add)
     return schema
 
 
@@ -72,9 +73,9 @@ class TestTranslator:
             lambda x, y: None,
         )
 
-        algo = models.AlgoritmeVersion(**schema_in.dict())
+        algo = models.AlgoritmeVersion(**schema_in.model_dump())
         result = apply_translation(algo, self.db, "translator")
-        compare_result = schemas.AlgoritmeVersionContent(**result.dict())
+        compare_result = schemas.AlgoritmeVersionContent(**result.model_dump())
         for key in dict(schema_in).keys():
             if key not in dict(reference).keys():
                 continue
@@ -128,9 +129,9 @@ class TestTranslator:
             lambda x, y: None,
         )
 
-        algo = models.AlgoritmeVersion(**schema_in.dict())
+        algo = models.AlgoritmeVersion(**schema_in.model_dump())
         result = apply_translation(algo, self.db, "translator")
-        compare_result = schemas.AlgoritmeVersionContent(**result.dict())
+        compare_result = schemas.AlgoritmeVersionContent(**result.model_dump())
 
         for key in dict(schema_in).keys():
             in_value = getattr(schema_in, key)
@@ -186,9 +187,9 @@ class TestTranslator:
             lambda x, y: None,
         )
 
-        algo = models.AlgoritmeVersion(**schema_in.dict())
+        algo = models.AlgoritmeVersion(**schema_in.model_dump())
         result = apply_translation(algo, self.db, "translator")
-        compare_result = schemas.AlgoritmeVersionContent(**result.dict())
+        compare_result = schemas.AlgoritmeVersionContent(**result.model_dump())
 
         for key in dict(schema_in).keys():
             in_value = getattr(schema_in, key)

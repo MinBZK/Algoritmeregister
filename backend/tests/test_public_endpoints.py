@@ -72,3 +72,8 @@ class TestPublicEndpoints:
         response = self.client.get("api/suggestion/NLD/test")
         assert response.status_code == 200
         assert response.json()["algorithms"] == []
+
+    def test_precomputed_values(self):
+        response = self.client.get("api/precomputed/NLD")
+        assert response.status_code == 404
+        assert response.json() == {"detail": "Geen precomputed values gevonden."}

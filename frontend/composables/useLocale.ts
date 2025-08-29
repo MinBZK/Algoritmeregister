@@ -3,7 +3,7 @@ export const useLocale = () => {
   const { locale } = useI18n()
   const $switchLocalePath = useSwitchLocalePath()
 
-  const setLocale = (newLocale: string) => {
+  const setLocale = (newLocale: 'nl' | 'en' | 'fy') => {
     locale.value = newLocale
 
     router.push({ path: $switchLocalePath(newLocale) })

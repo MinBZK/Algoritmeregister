@@ -70,6 +70,8 @@ def assign_type(db: Session, org: Organisation):
         assigned_type = OrgType.ministerie
     elif org.code.startswith("omgevingsdienst"):
         assigned_type = OrgType.regionaal_samenwerkingsorgaan
+    elif org.code.startswith("veiligheidsregio"):
+        assigned_type = OrgType.regionaal_samenwerkingsorgaan
     else:
         assigned_type = mapping.get(org.code)
 

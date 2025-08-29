@@ -62,11 +62,13 @@ const breadcrumbs = computed<Crumb[]>(() => {
         // Checks if path part is a code (minus first character as it can be a C for previews)
         if (isNaN(parseInt(crumb.slice(1)))) return acc
         crumbLabel = algoritme.value?.name || ''
-      } else if (routeName?.includes('organisatie-orgCode')) {
+      } else if (routeName?.includes('organisatie-orgCode-orgId')) {
         // Organisation detail page
         crumbLabel = organisation.value?.name || ''
       } else return acc
-      acc.push({ label: crumbLabel, routeName: crumb })
+      if (!acc.some((c) => c.label === crumbLabel)) {
+        acc.push({ label: crumbLabel, routeName: crumb })
+      }
       return acc
     },
     []
@@ -82,7 +84,9 @@ const pathTail = computed(() => breadcrumbs.value.slice(-1)[0])
 </script>
 
 <style scoped lang="scss">
+@use '/assets/styles/variables' as variables;
+
 .container {
-  width: $page-width;
+  width: variables.$page-width;
 }
 </style>

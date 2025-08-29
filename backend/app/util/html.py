@@ -4,6 +4,7 @@ from lxml.html.clean import Cleaner
 from bs4 import BeautifulSoup
 from typing import Dict
 import re
+from pydantic import ValidationInfo
 
 
 def strip_html(value: str) -> str:
@@ -14,16 +15,18 @@ def strip_html(value: str) -> str:
     return plain_text
 
 
-def sanitize_string_fields(cls, value, **kwargs):
+def sanitize_string_fields(cls, value, info: ValidationInfo):
     """Preprocess html fields by sanitization."""
     if not isinstance(value, str) or not value:
         return value
 
-    field_name = kwargs["field"].name
-    if field_name not in cls.__fields__:
+    field_name = info.field_name
+    if field_name not in cls.model_fields:
         return value
 
-    allowed_tags = cls.__fields__[field_name].field_info.extra.get("allowed_html_tags")
+    allowed_tags = cls.model_fields[field_name].json_schema_extra.get(
+        "allowed_html_tags"
+    )
     if not allowed_tags:
         return strip_html(value)
 

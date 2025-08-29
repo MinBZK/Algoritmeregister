@@ -87,6 +87,8 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped lang="scss">
+@use '/assets/styles/colors' as colors;
+
 .modal-background {
   position: fixed;
   top: 0;
@@ -106,7 +108,7 @@ onBeforeUnmount(() => {
 .modal-view {
   position: relative;
   padding: 0.8em;
-  background-color: $tertiary;
+  background-color: colors.$tertiary;
   border: 10px white solid;
   border-radius: 8px;
   overflow-y: auto;

@@ -25,6 +25,49 @@ class Organisation(Base):
     create_dt: Mapped[datetime.datetime] = mapped_column(
         DateTime(timezone=True), nullable=False, server_default=func.now()
     )
+    org_id: Mapped[str] = mapped_column(VARCHAR(1024), nullable=True, unique=True)
+
+    official_name: Mapped[str | None] = mapped_column(VARCHAR(1024), nullable=True)
+    alternative_name: Mapped[str | None] = mapped_column(VARCHAR(1024), nullable=True)
+    abbreviation: Mapped[str | None] = mapped_column(VARCHAR(1024), nullable=True)
+    roo_type: Mapped[str | None] = mapped_column(VARCHAR(1024), nullable=True)
+    part_of: Mapped[str | None] = mapped_column(VARCHAR(1024), nullable=True)
+    relation_with_ministry: Mapped[str | None] = mapped_column(
+        VARCHAR(1024), nullable=True
+    )
+    tooi_uri: Mapped[str | None] = mapped_column(VARCHAR(1024), nullable=True)
+    kvk_number: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    organisation_code: Mapped[str | None] = mapped_column(VARCHAR(1024), nullable=True)
+    tooi_uri_regional_collaboration_body: Mapped[str | None] = mapped_column(
+        VARCHAR(1024), nullable=True
+    )
+    label: Mapped[str | None] = mapped_column(VARCHAR(1024), nullable=True)
+    official_name_with_type: Mapped[str | None] = mapped_column(
+        VARCHAR(1024), nullable=True
+    )
+    official_name_without_type: Mapped[str | None] = mapped_column(
+        VARCHAR(1024), nullable=True
+    )
+    official_name_for_sorting: Mapped[str | None] = mapped_column(
+        VARCHAR(1024), nullable=True
+    )
+    preferred_name_without_type: Mapped[str | None] = mapped_column(
+        VARCHAR(1024), nullable=True
+    )
+    preferred_name_including_type: Mapped[str | None] = mapped_column(
+        VARCHAR(1024), nullable=True
+    )
+    preferred_name_for_sorting: Mapped[str | None] = mapped_column(
+        VARCHAR(1024), nullable=True
+    )
+    tooi_alternative_name: Mapped[str | None] = mapped_column(
+        VARCHAR(1024), nullable=True
+    )
+    last_updated_dt_tooi: Mapped[datetime.datetime] = mapped_column(
+        DateTime(timezone=True), nullable=True, server_default=None
+    )
+    parent_id: Mapped[str | None] = mapped_column(VARCHAR(1024), nullable=True)
+    child_id: Mapped[str | None] = mapped_column(VARCHAR(1024), nullable=True)
 
     algoritmes: Mapped[list[Algoritme]] = relationship(
         "Algoritme", back_populates="organisation"

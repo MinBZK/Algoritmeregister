@@ -1,4 +1,3 @@
-import re
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
@@ -152,7 +151,7 @@ def post_one(
     algoritme_repo = AlgoritmeRepository(session=db)
     action_history_repo = ActionHistoryRepository(session=db)
 
-    org = organisation_repo.get_by_code(as_org)
+    org = organisation_repo.get_by_org_id(as_org)
     if not org:
         raise HTTPException(status.HTTP_404_NOT_FOUND, detail="ORG_NOT_FOUND")
 
@@ -165,7 +164,7 @@ def post_one(
 
     # Creates new entry in algoritme_version table.
     algoritme_version = schemas.AlgoritmeVersionIn(
-        **body.dict(),
+        **body.model_dump(),
         algoritme_id=algoritme_db.id,
         language=Language.NLD,
         state=State.STATE_1,
@@ -310,7 +309,7 @@ def update_new_version(
     if not latest_version:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "ALGORITHM_NOT_FOUND")
     change_found = find_version_changes(
-        schemas.AlgoritmeVersionContent(**latest_version.dict()), body
+        schemas.AlgoritmeVersionContent(**latest_version.model_dump()), body
     )
     if not change_found:
         return schemas.AlgorithmActionResponse(message="NO_CHANGES")
@@ -330,7 +329,7 @@ def update_new_version(
 
     # Build new version
     new_version = schemas.AlgoritmeVersionIn(
-        **body.dict(),
+        **body.model_dump(),
         algoritme_id=algoritme.id,
         language=Language.NLD,
         state=State.STATE_1,
@@ -349,18 +348,6 @@ def get_preview_link(lars: str, db: Session, user: KeycloakUser) -> schemas.Prev
     algoritme_version_repo = AlgoritmeVersionRepository(db)
     action_history_repo = ActionHistoryRepository(db)
     previewed_algo = algoritme_version_repo.preview_latest_by_lars(lars)
-    latest_by_lang = algoritme_version_repo.get_latest_by_lars_by_lang(
-        lars, lang=Language.NLD
-    )
-    if latest_by_lang:
-        name = latest_by_lang.name
-        org = latest_by_lang.organization
-        name = name if name is not None else ""
-        org = org if org is not None else ""
-        slug = name.lower() + " " + org.lower()
-        slug = re.sub(r"[^a-zA-Z0-9 ]", "", slug)
-        slug = re.sub(r" {2,}", "-", slug)
-        slug = slug.replace(" ", "-")
 
     if previewed_algo:
         action_history_repo.add(
@@ -375,7 +362,7 @@ def get_preview_link(lars: str, db: Session, user: KeycloakUser) -> schemas.Prev
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Er is geen algoritme gevonden met LARS-code: ({lars})",
         )
-    url = f"{env_settings.preview_url}/nl/algoritme/{slug}/C{lars}"
+    url = f"{env_settings.preview_url}/nl/algoritme/C{lars}"
     return schemas.PreviewUrl(url=url)
 
 

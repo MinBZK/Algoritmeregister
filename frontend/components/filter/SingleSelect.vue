@@ -1,6 +1,6 @@
 <template>
   <FilterBlock
-    v-model:readMore="readMore"
+    v-model:read-more="readMore"
     :title="t('filter.choose', { what: t(`filter.${queryKey}`) })"
     disable-dropdown
     :enable-read-more="shownOptions.length != options.length"
@@ -27,29 +27,11 @@
         </a>
       </li>
     </ul>
-    <template v-if="queryKey === 'organisation'" #append-title>
-      <NuxtLink :to="{ query: { ...query, sort_option: 'sort_name' } }">
-        <span
-          :title="
-            t('filter.sorting', {
-              filter: t(`filter.${queryKey}`),
-              what: t('filter.alfabetical'),
-            })
-          "
-          ><NuxtIcon size="1.5em" name="fa6-solid:arrow-down-a-z"
-        /></span>
-      </NuxtLink>
-      <NuxtLink :to="{ query: { ...query, sort_option: 'sort_number' } }">
-        <span
-          :title="
-            t('filter.sorting', {
-              filter: t(`filter.${queryKey}`),
-              what: t('filter.numerical'),
-            })
-          "
-          ><NuxtIcon size="1.5em" name="fa6-solid:arrow-down-9-1"
-        /></span>
-      </NuxtLink>
+    <template
+      v-if="queryKey === 'organisation' && shownOptions.length > 1"
+      #prefix-content
+    >
+      <FilterSortOrganisationOption />
     </template>
   </FilterBlock>
 </template>

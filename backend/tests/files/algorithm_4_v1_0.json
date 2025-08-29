@@ -1,0 +1,37 @@
+{
+  "name": "test_name",
+  "organization": "test_organization",
+  "description_short": "test_description_short",
+  "category": ["Bestuur", "Cultuur en Recreatie"],
+  "website": "test_website",
+  "status": "Buiten gebruik",
+  "goal": "test_new_goal",
+  "proportionality": "test_proportionality",
+  "lawful_basis": "test_lawful_basis",
+  "lawful_basis_grouping": [],
+  "dpia": "Ja",
+  "standard_version": "1.0",
+  "uuid": "test_uuid",
+  "url": "test_url",
+  "contact_email": "test_contact_email",
+  "lang": "xxx",
+  "publiccode": "test_publiccode",
+  "source_data": "test_source_data",
+  "source_data_grouping": [],
+  "methods_and_models": "test_methods_and_models",
+  "human_intervention": "test_human_intervention",
+  "risks": "test_risks",
+  "provider": "test_provider",
+  "tags": "test_tags",
+  "source_id": "test_source_id",
+  "begin_date": "tb_date",
+  "end_date": "te_date",
+  "impacttoetsen": "test_impacttoetsen",
+  "impacttoetsen_grouping": [
+    {
+      "title": "Utrechts Uthiek Assessment",
+      "link": null
+    }
+  ],
+  "language": "NLD"
+}

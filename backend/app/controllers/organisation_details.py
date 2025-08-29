@@ -9,23 +9,23 @@ from app.services.translation import LanguageCode
 
 
 def get_org_page_info(
-    db: Session, org_code: str, lang: Language
+    db: Session, org_id: str, lang: Language
 ) -> schemas.OrganisationDetailsPage:
     org_details_repo = OrganisationDetailsRepository(db)
     algoritme_version_repo = AlgoritmeVersionRepository(db)
 
-    org_algorithms = algoritme_version_repo.get_published_by_org_by_lang(org_code, lang)
+    org_algorithms = algoritme_version_repo.get_published_by_org_by_lang(org_id, lang)
     algoritme_versions = [
-        schemas.AlgoritmeVersionQuery(**algo.dict()) for algo in org_algorithms
+        schemas.AlgoritmeVersionQuery(**algo.model_dump()) for algo in org_algorithms
     ]
 
-    org_details = org_details_repo.get_shown_by_code_by_lang(org_code, lang)
+    org_details = org_details_repo.get_shown_by_org_id_by_lang(org_id, lang)
     if org_details:
         return schemas.OrganisationDetailsPage(
             **dict(org_details), algoritme_versions=algoritme_versions
         )
 
-    org_config = org_details_repo.get_org_configs_by_code_by_lang(org_code, lang)
+    org_config = org_details_repo.get_org_configs_by_org_id_by_lang(org_id, lang)
     if not org_config:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "ORG_NOT_FOUND")
 
@@ -39,11 +39,11 @@ def get_org_page_info(
 def get_org_detail(db: Session, as_org: str) -> schemas.OrganisationDetailsDB:
     org_detail_repo = OrganisationDetailsRepository(db)
     org_repo = OrganisationRepository(db)
-    org = org_repo.get_by_code(as_org)
+    org = org_repo.get_by_org_id(as_org)
     if not org:
         raise HTTPException(404)
     org_detail = org_detail_repo.get_by_org_id_by_lang(org.id, Language.NLD)
-    return schemas.OrganisationDetailsDB.from_orm(org_detail)
+    return schemas.OrganisationDetailsDB.model_validate(org_detail)
 
 
 def update_org_details(
@@ -54,17 +54,22 @@ def update_org_details(
 ) -> schemas.OrganisationDetailsDB:
     org_detail_repo = OrganisationDetailsRepository(db)
     org_repo = OrganisationRepository(db)
-    org = org_repo.get_by_code(as_org)
+    org = org_repo.get_by_org_id(as_org)
     if not org:
         raise HTTPException(404)
     org_detail = org_detail_repo.get_by_org_id_by_lang(org.id, Language.NLD)
     if not org_detail:
         raise HTTPException(404)
 
-    org_detail_in = schemas.OrganisationDetailsIn.from_orm(org_detail)
+    org_detail_in = schemas.OrganisationDetailsIn.model_validate(org_detail)
     org_detail_in.about = organisation_detail.about
     org_detail_in.contact_info = organisation_detail.contact_info
-    record = org_detail_repo.update_by_id(org_detail.id, org_detail_in)
+    filtered_data = org_detail_in.model_dump(
+        exclude={"show_page", "code", "type", "org_id"}
+    )
+    record = org_detail_repo.update_by_id(
+        org_detail.id, schemas.OrganisationDetailsIn.model_validate(filtered_data)
+    )
 
     # Translate about to english
     background_tasks.add_task(
@@ -83,7 +88,7 @@ def update_org_details(
         org_detail.name,
         LanguageCode.FRISIAN,
     )
-    return schemas.OrganisationDetailsDB.from_orm(record)
+    return schemas.OrganisationDetailsDB.model_validate(record)
 
 
 def translate_org_details(
@@ -114,7 +119,7 @@ def translate_org_details(
     if not isinstance(about_translated, str):
         raise HTTPException(
             status.HTTP_424_FAILED_DEPENDENCY,
-            detail=f"Translation to {lang_code_map[lang].value} failed for field {'about'},"
+            detail=f"Translation to {lang_code_map[lang].value} failed for field {'about'}, "
             f" got: {translation_response.fields.get('about', '')}.",
         )
 
@@ -127,7 +132,7 @@ def translate_org_details(
             "Application has conflicting DB state, please contact administrator",
         )
 
-    org_detail_in_translated = schemas.OrganisationDetailsIn.from_orm(
+    org_detail_in_translated = schemas.OrganisationDetailsIn.model_validate(
         org_detail_translated
     )
     org_detail_in_translated.about = about_translated

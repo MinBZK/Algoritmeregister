@@ -1,3 +1,4 @@
+# flake8: noqa: E221
 import pytz
 from fastapi import Depends, HTTPException
 from sqlalchemy import text
@@ -99,7 +100,7 @@ def handle_release_mail(lars: str, db: Session = Depends(get_db)):
             <body>
                 <p>
                     Een nieuwe versie van algoritmebeschrijving {algoritme_version.name} [{algoritme_version.lars}] is
-                    door {editor_name} van {algoritme_version.organization},
+                    door {editor_name} van {algoritme_version.organization}, 
                     op {datetime.date(datetime.now())} om {time}
                     vrijgegeven voor publicatie.
                 </p>
