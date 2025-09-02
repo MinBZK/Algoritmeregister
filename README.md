@@ -18,7 +18,7 @@ Get started: join us and add your thoughts!
 
 In order to run the application locally, the following tooling is required:
 
-- Docker ([installation instructions](https://docs.docker.com/get-docker/))
+- Docker. ([installation instructions](https://docs.docker.com/get-docker/))
 - Node.js. The version is specified in `frontend/.nvmrc`. It is recommended to use use [Node version manager](https://github.com/nvm-sh/nvm), the correct Node version can then be activated with with `nvm use`.
 - Python. The version is specified in `backend/.python-version`. It is recommended to use [pyenv](https://github.com/pyenv/pyenv) to switch between Python versions, but this is not mandatory.
 - Poetry. See the [docs](https://python-poetry.org/docs/#installation) for installation instructions.
