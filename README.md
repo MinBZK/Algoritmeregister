@@ -33,7 +33,10 @@ Environment variables are stored in `.env` in the frontend and backend, but beca
 
 ### Database
 
-1. Start database. Run from `/backend` folder: `docker compose up -d`.
+Start database.
+
+1. Ensure that docker is running
+2. Run from `/backend` folder: `docker compose up -d`.
 
 Validate the backend is running by navigating to the GUI (DBgate) on `http://localhost:8002`. There you should be able to open the database `algreg_db`.
 The database can be populated using the ETL. Validate the ETL service is running by navigating to the ETL GUI on `http://localhost:8001`. Click on `Synchroniseer` to start the synchronization process.
