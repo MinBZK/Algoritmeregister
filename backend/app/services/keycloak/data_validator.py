@@ -12,12 +12,17 @@ logger = get_logger(__name__)
 
 class KeycloakValidator:
     @classmethod
-    def user(cls, user: Any) -> KeycloakUserFromRepo:
+    def user(
+        cls,
+        user: Any,
+        groups: list[str] | None = None,
+        roles: list[str] | None = None,
+    ) -> KeycloakUserFromRepo:
         try:
             return KeycloakUserFromRepo(
                 username=user.get("username"),
-                roles=user.get("attributes", {}).get("roles", []),
-                groups=user.get("attributes", {}).get("groups", []),
+                roles=roles or [],
+                groups=groups or [],
                 id=user.get("id"),
                 first_name=user.get("firstName", "Onbekende voornaam"),
                 last_name=user.get("lastName", "Onbekende achternaam"),

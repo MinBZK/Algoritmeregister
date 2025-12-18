@@ -71,12 +71,16 @@ class KeycloakRepository(ABC):
             self.__err__(e)
         return self.validate.count(count)
 
-    def get_user(self, user_id: str) -> KeycloakUser:
+    def get_user(self, user_id: str) -> KeycloakUserFromRepo:
         try:
             user = self.client.get_user(user_id)
+            groups = self.client.get_user_groups(user_id)
+            roles = self.client.get_realm_roles_of_user(user_id)
         except KeycloakError as e:
             self.__err__(e)
-        return self.validate.user(user)
+        group_names = [g.get("name", "") for g in groups]
+        role_names = [r.get("name", "") for r in roles]
+        return self.validate.user(user, group_names, role_names)
 
     def get_groups(self) -> list[KeycloakGroup]:
         """
@@ -102,16 +106,20 @@ class KeycloakRepository(ABC):
         self,
         user_id: str,
         update_values: KeycloakUserUpdate,
-    ) -> KeycloakUser:
+    ) -> KeycloakUserFromRepo:
         try:
             user = self.client.get_user(user_id)
             validated_user = self.validate.user(user)
             payload = self.make_payload.update_user(validated_user, update_values)
             self.client.update_user(user_id, payload)
             updated_user = self.client.get_user(user_id)
+            groups = self.client.get_user_groups(user_id)
+            roles = self.client.get_realm_roles_of_user(user_id)
         except KeycloakError as e:
             self.__err__(e)
-        return self.validate.user(updated_user)
+        group_names = [g.get("name", "") for g in groups]
+        role_names = [r.get("name", "") for r in roles]
+        return self.validate.user(updated_user, group_names, role_names)
 
     def delete_user(self, user_id: str) -> None:
         try:
@@ -119,11 +127,13 @@ class KeycloakRepository(ABC):
         except KeycloakError as e:
             self.__err__(e)
 
-    def create_user(self, new_user: KeycloakUserNew) -> KeycloakUser:
+    def create_user(self, new_user: KeycloakUserNew) -> KeycloakUserFromRepo:
         try:
             payload = self.make_payload.new_user(new_user)
             user_id = self.client.create_user(payload)
             user = self.client.get_user(user_id)
+            groups = self.client.get_user_groups(user_id)
+            roles = self.client.get_realm_roles_of_user(user_id)
         except KeycloakPostError as e:
             if e.response_code == 409:
                 self.__err__(e, "NOT_UNIQUE_USERNAME")
@@ -133,4 +143,6 @@ class KeycloakRepository(ABC):
                 self.__err__(e, "Unknown Post Error")
         except KeycloakError as e:
             self.__err__(e)
-        return self.validate.user(user)
+        group_names = [g.get("name", "") for g in groups]
+        role_names = [r.get("name", "") for r in roles]
+        return self.validate.user(user, group_names, role_names)
